@@ -193,32 +193,36 @@ export default function ChainTrackLogisticsPage() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-              <Route className="w-4 h-4 text-white" />
+          <Link href="/logistics" className="flex items-center gap-3 group">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-lg shadow-amber-500/30 group-hover:shadow-amber-500/50 transition-shadow">
+              <Anchor className="w-4.5 h-4.5 text-white" />
             </div>
-            <div>
-              <span className="font-bold text-white text-sm tracking-wide">ChainTrack</span>
-              <span className="text-amber-400 font-semibold text-sm ml-1 tracking-wider">LOGISTICS</span>
+            <div className="leading-none">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-black text-white text-base tracking-tight">DeliWer</span>
+                <span className="font-black text-amber-400 text-base tracking-widest">LOGISTICS</span>
+              </div>
+              <p className="text-[9px] text-amber-500/60 font-black uppercase tracking-widest mt-0.5">Powered by ChainTrack · Dubai–Gawadar</p>
             </div>
-          </div>
+          </Link>
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-400">
             <a href="#corridor" className="hover:text-white transition-colors">The Corridor</a>
             <a href="#opportunity" className="hover:text-white transition-colors">Why Now</a>
             <a href="#pioneer" className="hover:text-white transition-colors">Our Edge</a>
             <a href="#partners" className="hover:text-white transition-colors">Partners</a>
+            <Link href="/freight-broker" className="hover:text-amber-400 transition-colors">Freight Brokers</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Link href="/chaintrack">
-              <Button variant="ghost" size="sm" className="text-slate-400 hover:text-white hidden md:flex">
-                B2B Platform
+            <Link href="/logistics-funnel">
+              <Button variant="ghost" size="sm" className="text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 hidden md:flex gap-1.5 text-xs font-bold">
+                Join Network
               </Button>
             </Link>
-            <a href="#partners">
-              <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold">
-                Join the Corridor
+            <Link href="/logistics-funnel">
+              <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold gap-1.5">
+                Apply as Freight Broker
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -272,15 +276,15 @@ export default function ChainTrackLogisticsPage() {
 
             <AnimatedItem>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#corridor">
+                <Link href="/logistics-funnel">
                   <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2">
-                    Explore the Corridor
+                    Join as Freight Broker
                     <ArrowRight className="w-5 h-5" />
                   </Button>
-                </a>
-                <a href="#partners">
+                </Link>
+                <a href="#corridor">
                   <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:text-white hover:border-slate-400 gap-2">
-                    Partner With Us
+                    Explore the Corridor
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </a>
@@ -695,13 +699,15 @@ export default function ChainTrackLogisticsPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-                <Route className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-md shadow-amber-500/20">
+                <Anchor className="w-4 h-4 text-white" />
               </div>
               <div>
-                <span className="font-bold text-white text-sm">ChainTrack</span>
-                <span className="text-amber-400 font-semibold text-sm ml-1">LOGISTICS</span>
-                <p className="text-slate-500 text-xs">An integrated DeliWer logistics vertical</p>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-black text-white text-sm">DeliWer</span>
+                  <span className="font-black text-amber-400 text-sm tracking-wider">LOGISTICS</span>
+                </div>
+                <p className="text-slate-500 text-xs">Powered by ChainTrack · DeliWer Group</p>
               </div>
             </div>
             <div className="flex items-center gap-6 text-sm text-slate-500">

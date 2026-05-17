@@ -249,15 +249,15 @@ export default function FreightBrokerPage() {
             </Item>
             <Item>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#apply">
-                  <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 gap-2">
-                    Apply as Freight Broker
+                <Link href="/logistics-funnel">
+                  <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2">
+                    Start Your Application
                     <ArrowRight className="w-5 h-5" />
                   </Button>
-                </a>
-                <a href="#hubs">
+                </Link>
+                <a href="#apply">
                   <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:text-white gap-2">
-                    See the Hubs
+                    View Application Form
                     <ChevronDown className="w-5 h-5" />
                   </Button>
                 </a>

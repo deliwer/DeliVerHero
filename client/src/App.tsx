@@ -130,6 +130,7 @@ const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const FreightBrokerPage = lazy(() => import("@/pages/freight-broker"));
+const LogisticsFunnelPage = lazy(() => import("@/pages/logistics-funnel"));
 const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
 const BulkPurchasingPage = lazy(() => import("@/pages/bulk-purchasing"));
 const MembershipPlansPage = lazy(() => import("@/pages/membership-plans"));
@@ -468,6 +469,7 @@ function Router() {
         <Route path="/partnership" component={Partners} />
         
         {/* ChainTrack Logistics — Dubai/Gawadar Corridor */}
+        <Route path="/logistics-funnel" component={LogisticsFunnelPage} />
         <Route path="/logistics" component={ChainTrackLogisticsPage} />
 
         {/* ChainTrack Freight Broker Network */}

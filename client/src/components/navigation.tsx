@@ -3,8 +3,9 @@ import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
   Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key,
-  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route
+  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route, Zap
 } from "lucide-react";
+import { LogisticsCTABar } from "@/components/logistics-cta-bar";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustStrip } from "@/components/trust-strip";
@@ -72,22 +73,31 @@ const managementNavItems = [
   { path: "/broker-master-db",    label: "Broker DB",      id: "mgmt-db",         icon: Database,   external: false },
 ];
 
-// ── ChainTrack deep-nav (marketplace + logistics) ────────────────────────────
+// ── ChainTrack deep-nav (phone marketplace only) ─────────────────────────────
 const chaintrackNavItems = [
-  { path: "/logistics",        label: "Logistics",   id: "ct-logistics",   icon: Anchor },
-  { path: "/freight-broker",   label: "Freight",     id: "ct-freight",     icon: Route },
   { path: "/chaintrack",       label: "Marketplace", id: "ct-marketplace", icon: LayoutGrid },
   { path: "/bulk-purchasing",  label: "Bulk Buy",    id: "ct-bulk",        icon: Package },
   { path: "/fulfillment",      label: "Fulfillment", id: "ct-fulfillment", icon: Truck },
   { path: "/corporate",        label: "Corporate",   id: "ct-corporate",   icon: Building2 },
+  { path: "/logistics",        label: "Logistics →", id: "ct-logistics",   icon: Anchor },
   { path: "/partners",         label: "← Brokers",  id: "ct-back",        icon: Users },
 ];
 
-// Paths that are "deep" inside the ChainTrack phone marketplace
+// ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
+const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel"];
+
+const logisticsNavItems = [
+  { path: "/logistics",        label: "Corridor",     id: "lg-corridor",  icon: Anchor },
+  { path: "/freight-broker",   label: "Freight Hub",  id: "lg-freight",   icon: Route },
+  { path: "/logistics-funnel", label: "Join Network", id: "lg-funnel",    icon: Zap },
+  { path: "/partners",         label: "← Brokers",   id: "lg-back",      icon: Users },
+];
+
+// Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)
 const DEEP_CHAINTRACK_PATHS = [
   "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
   "/fulfillment", "/membership-plans", "/corporate",
-  "/cobone-corporate", "/logistics", "/freight-broker",
+  "/cobone-corporate",
 ];
 
 export function Navigation() {
@@ -95,18 +105,21 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
-  const isBrokerSide = isManagementSide || CHAINTRACK_PATHS.some((p) => location.startsWith(p));
-  const isDeepChaintrack = DEEP_CHAINTRACK_PATHS.some((p) => location.startsWith(p));
+  const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
+  const isBrokerSide = isManagementSide || isLogisticsSide || CHAINTRACK_PATHS.some((p) => location.startsWith(p));
+  const isDeepChaintrack = !isLogisticsSide && DEEP_CHAINTRACK_PATHS.some((p) => location.startsWith(p));
 
-  // Nav items: management paths → admin nav; deep ChainTrack → phone-flipper nav;
-  // other broker-side paths → broker nav; everything else → consumer nav.
+  // Nav items: management → admin; logistics-side → dedicated logistics nav;
+  // deep ChainTrack marketplace → marketplace nav; other broker-side → broker nav; consumer → deliwer nav.
   const navItems = isManagementSide
     ? managementNavItems
-    : isDeepChaintrack
-      ? chaintrackNavItems
-      : isBrokerSide
-        ? brokerNavItems
-        : deliwerNavItems;
+    : isLogisticsSide
+      ? logisticsNavItems
+      : isDeepChaintrack
+        ? chaintrackNavItems
+        : isBrokerSide
+          ? brokerNavItems
+          : deliwerNavItems;
 
   const isActive = (itemPath: string) => location === itemPath.split("#")[0];
 
@@ -149,29 +162,43 @@ export function Navigation() {
 
       {/* ── Main Nav Bar ── */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
-        isBrokerSide
-          ? "bg-indigo-950/95 border-purple-500/20"
-          : "bg-slate-900/95 border-white/5"
+        isLogisticsSide
+          ? "bg-amber-950/95 border-amber-500/20"
+          : isBrokerSide
+            ? "bg-indigo-950/95 border-purple-500/20"
+            : "bg-slate-900/95 border-white/5"
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
 
           {/* LEFT: Logo */}
           <Link
-            href={isBrokerSide ? "/partners" : "/"}
+            href={isLogisticsSide ? "/logistics" : isBrokerSide ? "/partners" : "/"}
             className="flex items-center gap-3 group order-1 mr-auto md:mr-0"
           >
             <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
-                isBrokerSide ? "text-purple-300" : "text-white"
-              }`}>
-                {isManagementSide ? "DeliWer" : isBrokerSide ? "ChainTrack" : "DeliWer"}
-              </span>
+              {isLogisticsSide ? (
+                <div className="flex items-baseline gap-1">
+                  <span className="font-black text-xl tracking-tighter uppercase text-white">DeliWer</span>
+                  <span className="font-black text-xl tracking-widest uppercase text-amber-400">LOGISTICS</span>
+                </div>
+              ) : (
+                <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
+                  isBrokerSide ? "text-purple-300" : "text-white"
+                }`}>
+                  {isManagementSide ? "DeliWer" : isBrokerSide ? "ChainTrack" : "DeliWer"}
+                </span>
+              )}
               {isManagementSide && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-purple-400/70">
                   Partner Admin
+                </span>
+              )}
+              {isLogisticsSide && (
+                <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
+                  Dubai · Gawadar Corridor
                 </span>
               )}
             </div>
@@ -188,9 +215,11 @@ export function Navigation() {
                   (item as any).external
                     ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     : isActive(item.path)
-                    ? isBrokerSide
-                      ? "bg-purple-500/15 text-purple-300"
-                      : "bg-emerald-500/10 text-emerald-400"
+                    ? isLogisticsSide
+                      ? "bg-amber-500/15 text-amber-300"
+                      : isBrokerSide
+                        ? "bg-purple-500/15 text-purple-300"
+                        : "bg-emerald-500/10 text-emerald-400"
                     : "text-gray-400 hover:text-white"
                 }`}
                 data-testid={`nav-${item.id}`}
@@ -247,6 +276,16 @@ export function Navigation() {
                   Partner Hub
                 </Button>
               </Link>
+            ) : isLogisticsSide ? (
+              <Link href="/logistics-funnel">
+                <Button
+                  className="relative font-black uppercase tracking-widest text-[10px] px-4 rounded-xl gap-1.5 transition-all bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40"
+                  data-testid="nav-logistics-join"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+                  Join Network
+                </Button>
+              </Link>
             ) : (
               <Link href="/partners">
                 <Button
@@ -266,13 +305,15 @@ export function Navigation() {
             <Button
               variant="outline"
               className={`font-black uppercase tracking-widest text-[10px] px-6 rounded-xl ${
-                isBrokerSide
-                  ? "border-purple-500/40 text-purple-400 hover:bg-purple-500/10"
-                  : "border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10"
+                isLogisticsSide
+                  ? "border-amber-500/40 text-amber-400 hover:bg-amber-500/10"
+                  : isBrokerSide
+                    ? "border-purple-500/40 text-purple-400 hover:bg-purple-500/10"
+                    : "border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10"
               }`}
               onClick={() => window.open('https://wa.me/971523946311', '_blank')}
             >
-              WhatsApp Support
+              WhatsApp
             </Button>
           </div>
 
@@ -288,8 +329,26 @@ export function Navigation() {
         </div>
       </nav>
 
-      {/* ── YouTube Training Bar — broker side only (not on management paths) ── */}
-      {isBrokerSide && !isManagementSide && (
+      {/* ── Logistics Corridor Bar — logistics pages only ── */}
+      {isLogisticsSide && (
+        <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+          <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
+            DeliWer Logistics
+          </span>
+          <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
+          <span className="hidden sm:inline text-[11px] font-bold text-amber-100/50">
+            Dubai ↔ Gawadar Air-Charter Corridor · Powered by ChainTrack
+          </span>
+          <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
+          <a href="/logistics-funnel" className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-amber-400 hover:text-amber-300 transition-colors">
+            Join as Freight Broker →
+          </a>
+        </div>
+      )}
+
+      {/* ── YouTube Training Bar — broker side only (not on management or logistics paths) ── */}
+      {isBrokerSide && !isManagementSide && !isLogisticsSide && (
         <a
           href="https://www.youtube.com/@vdeliwer"
           target="_blank"
@@ -313,6 +372,11 @@ export function Navigation() {
             Free
           </span>
         </a>
+      )}
+
+      {/* ── Logistics CTA Bar — broker non-logistics pages only ── */}
+      {isBrokerSide && !isManagementSide && !isLogisticsSide && (
+        <LogisticsCTABar variant="banner" />
       )}
 
       {/* ── Management breadcrumb bar — admin/marketing paths only ── */}
@@ -367,11 +431,24 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className={`md:hidden absolute top-full left-0 right-0 border-b p-6 space-y-3 z-[70] shadow-2xl ${
-              isBrokerSide
-                ? "bg-indigo-950 border-purple-500/20"
-                : "bg-slate-900 border-white/10"
+              isLogisticsSide
+                ? "bg-amber-950 border-amber-500/20"
+                : isBrokerSide
+                  ? "bg-indigo-950 border-purple-500/20"
+                  : "bg-slate-900 border-white/10"
             }`}
           >
+            {/* Logistics section label for mobile */}
+            {isLogisticsSide && (
+              <div className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
+                <Anchor className="w-4 h-4 text-amber-400" />
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-amber-300">DeliWer Logistics</p>
+                  <p className="text-[9px] text-amber-500/60">Dubai · Gawadar Corridor</p>
+                </div>
+              </div>
+            )}
+
             {/* 2-way mode switcher */}
             <div className="space-y-2">
               <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-emerald-300">
@@ -421,41 +498,48 @@ export function Navigation() {
                   (item as any).external
                     ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     : isActive(item.path)
-                    ? isBrokerSide
-                      ? "bg-purple-500/15 text-purple-300"
-                      : "bg-emerald-500/10 text-emerald-400"
+                    ? isLogisticsSide
+                      ? "bg-amber-500/15 text-amber-300"
+                      : isBrokerSide
+                        ? "bg-purple-500/15 text-purple-300"
+                        : "bg-emerald-500/10 text-emerald-400"
                     : "text-gray-400"
                 }`}
                 data-testid={`nav-mobile-${item.id}`}
               >
-                <item.icon className={`w-5 h-5 mr-3 ${(item as any).external ? "text-red-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
+                <item.icon className={`w-5 h-5 mr-3 ${(item as any).external ? "text-red-500" : isLogisticsSide ? "text-amber-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
                 {item.label}
               </Button>
             ))}
 
             <div className="w-full h-px bg-white/10" />
 
-            {/* Partner & Earn — crossover gateway on both sides */}
-            <Link href="/partners">
+            {/* Partner & Earn / Broker Hub / Join Logistics Network — crossover gateway */}
+            <Link href={isLogisticsSide ? "/logistics-funnel" : "/partners"}>
               <Button
                 className={`w-full justify-between text-xs font-black uppercase tracking-widest h-14 rounded-xl border transition-all ${
-                  isBrokerSide
-                    ? "bg-purple-600/15 text-purple-300 border-purple-500/30 hover:bg-purple-600/25"
-                    : "bg-emerald-600/15 text-emerald-300 border-emerald-500/30 hover:bg-emerald-600/25"
+                  isLogisticsSide
+                    ? "bg-amber-600/15 text-amber-300 border-amber-500/30 hover:bg-amber-600/25"
+                    : isBrokerSide
+                      ? "bg-purple-600/15 text-purple-300 border-purple-500/30 hover:bg-purple-600/25"
+                      : "bg-emerald-600/15 text-emerald-300 border-emerald-500/30 hover:bg-emerald-600/25"
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid="mobile-nav-partner-earn"
               >
                 <div className="flex items-center gap-3">
-                  <Handshake className={`w-5 h-5 shrink-0 ${isBrokerSide ? "text-purple-400" : "text-emerald-400"}`} />
+                  {isLogisticsSide
+                    ? <Anchor className="w-5 h-5 shrink-0 text-amber-400" />
+                    : <Handshake className={`w-5 h-5 shrink-0 ${isBrokerSide ? "text-purple-400" : "text-emerald-400"}`} />
+                  }
                   <div className="text-left">
-                    <div>{isBrokerSide ? "Broker Hub" : "Partner & Earn"}</div>
-                    <div className={`text-[9px] normal-case font-bold tracking-normal ${isBrokerSide ? "text-purple-500/70" : "text-emerald-500/70"}`}>
-                      {isBrokerSide ? "Broker portal & business tools" : "AED 150–800+ per client"}
+                    <div>{isLogisticsSide ? "Join Freight Network" : isBrokerSide ? "Broker Hub" : "Partner & Earn"}</div>
+                    <div className={`text-[9px] normal-case font-bold tracking-normal ${isLogisticsSide ? "text-amber-500/70" : isBrokerSide ? "text-purple-500/70" : "text-emerald-500/70"}`}>
+                      {isLogisticsSide ? "Dubai ↔ Gawadar · Earn per CBM" : isBrokerSide ? "Broker portal & business tools" : "AED 150–800+ per client"}
                     </div>
                   </div>
                 </div>
-                <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isBrokerSide ? "bg-purple-400" : "bg-emerald-400"}`} />
+                <span className={`w-2 h-2 rounded-full animate-pulse shrink-0 ${isLogisticsSide ? "bg-amber-400" : isBrokerSide ? "bg-purple-400" : "bg-emerald-400"}`} />
               </Button>
             </Link>
 
@@ -475,9 +559,11 @@ export function Navigation() {
 
             <Button
               className={`w-full h-14 font-black rounded-xl uppercase tracking-widest text-xs ${
-                isBrokerSide
-                  ? "bg-purple-700 hover:bg-purple-600 text-white"
-                  : "bg-emerald-600 hover:bg-emerald-500 text-white"
+                isLogisticsSide
+                  ? "bg-amber-600 hover:bg-amber-500 text-slate-950"
+                  : isBrokerSide
+                    ? "bg-purple-700 hover:bg-purple-600 text-white"
+                    : "bg-emerald-600 hover:bg-emerald-500 text-white"
               }`}
               onClick={() => {
                 window.open('https://wa.me/971523946311', '_blank');
