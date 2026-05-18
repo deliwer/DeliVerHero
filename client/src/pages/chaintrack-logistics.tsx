@@ -4,6 +4,7 @@ import dubaiHubImg from "@assets/stock_images/dubai_air_hub.jpg";
 import airCharterImg from "@assets/stock_images/air_charter_bridge.jpg";
 import gwadarPortImg from "@assets/stock_images/gawadar_port.jpg";
 import instcRailImg from "@assets/stock_images/instc_rail.jpg";
+import heroLogisticsBg from "@assets/stock_images/hero_cargo_plane.jpg";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Plane,
@@ -45,6 +46,182 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+
+const DEMO_NUMBERS = ["CT-DXB-4821", "CT-DWC-7734", "CT-GWD-9901"];
+
+const STAGES = [
+  { key: "intake",    label: "DWC Cargo Intake",         sub: "Dubai World Central cargo apron",      icon: Package },
+  { key: "airborne",  label: "Air Charter in Transit",   sub: "Dubai → Gawadar · Hormuz-free lane",   icon: Plane },
+  { key: "port",      label: "GWD Port Processing",      sub: "Gawadar CPEC Free Zone customs",       icon: Anchor },
+  { key: "onward",    label: "Onward Delivery",          sub: "INSTC rail / last-mile to destination",icon: Route },
+];
+
+function seededInt(seed: string, mod: number) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (Math.imul(31, h) + seed.charCodeAt(i)) | 0;
+  return Math.abs(h) % mod;
+}
+
+function buildShipment(id: string) {
+  const progress = seededInt(id, 4);
+  const kg      = 200 + seededInt(id + "kg", 800);
+  const cbm     = (0.3 + seededInt(id + "cbm", 80) / 100).toFixed(1);
+  const broker  = ["AL-Rashid Freight", "Gulf Link FWD", "Falcon Cargo WLL", "Silk Route Brokers"][seededInt(id + "b", 4)];
+  const ago     = [2, 6, 14, 38][progress];
+  const etaDays = [3, 2, 1, 0][progress];
+  return { progress, kg, cbm, broker, ago, etaDays };
+}
+
+function ShipmentTracker() {
+  const [input, setInput] = useState("");
+  const [tracking, setTracking] = useState<string | null>(null);
+  const [animating, setAnimating] = useState(false);
+
+  function track(id: string) {
+    setInput(id);
+    setAnimating(true);
+    setTimeout(() => {
+      setTracking(id.trim().toUpperCase());
+      setAnimating(false);
+    }, 700);
+  }
+
+  const ship = tracking ? buildShipment(tracking) : null;
+  const isDemo = DEMO_NUMBERS.includes(tracking ?? "");
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      {/* Input row */}
+      <div className="flex gap-2 mb-3">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && input.trim() && track(input)}
+          placeholder="Enter tracking number (e.g. CT-DXB-4821)"
+          className="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-amber-500/60 transition-colors"
+          data-testid="input-tracking-number"
+        />
+        <Button
+          onClick={() => input.trim() && track(input)}
+          disabled={!input.trim() || animating}
+          className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 rounded-xl gap-2"
+          data-testid="button-track-shipment"
+        >
+          {animating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Route className="w-4 h-4" />}
+          Track
+        </Button>
+      </div>
+
+      {/* Demo chips */}
+      <div className="flex items-center gap-2 mb-8 flex-wrap">
+        <span className="text-xs text-slate-600 font-bold uppercase tracking-wider">Try demo:</span>
+        {DEMO_NUMBERS.map((n) => (
+          <button
+            key={n}
+            onClick={() => track(n)}
+            className="text-xs font-black text-amber-400 border border-amber-500/30 rounded-lg px-3 py-1 hover:bg-amber-500/10 transition-colors"
+            data-testid={`chip-demo-${n}`}
+          >
+            {n}
+          </button>
+        ))}
+      </div>
+
+      {/* Result */}
+      {ship && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="rounded-2xl border border-slate-800 bg-slate-900/80 overflow-hidden"
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-900">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-0.5">ChainTrack Logistics</p>
+              <p className="text-lg font-black text-white">{tracking}</p>
+            </div>
+            <div className="text-right">
+              {ship.etaDays === 0 ? (
+                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Delivered</Badge>
+              ) : (
+                <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">In Transit · ETA {ship.etaDays}d</Badge>
+              )}
+              <p className="text-xs text-slate-500 mt-1">{ship.kg} kg · {ship.cbm} CBM</p>
+            </div>
+          </div>
+
+          {/* Broker strip */}
+          <div className="px-6 py-2.5 bg-amber-500/5 border-b border-amber-500/10 flex items-center gap-2">
+            <Users className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+            <span className="text-xs text-amber-300 font-semibold">{ship.broker}</span>
+            <span className="text-slate-600 text-xs">· Handling broker</span>
+            {isDemo && <Badge className="ml-auto bg-slate-800 text-slate-400 border-slate-700 text-[10px]">Demo shipment</Badge>}
+          </div>
+
+          {/* Timeline */}
+          <div className="px-6 py-6 space-y-0">
+            {STAGES.map((stage, i) => {
+              const done    = i < ship.progress;
+              const active  = i === ship.progress;
+              const pending = i > ship.progress;
+              return (
+                <div key={stage.key} className="flex gap-4">
+                  {/* Spine */}
+                  <div className="flex flex-col items-center">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border-2 transition-colors ${
+                      done    ? "bg-emerald-500 border-emerald-500" :
+                      active  ? "bg-amber-500 border-amber-500 animate-pulse" :
+                                "bg-slate-900 border-slate-700"
+                    }`}>
+                      {done ? (
+                        <CheckCircle2 className="w-4 h-4 text-white" />
+                      ) : (
+                        <stage.icon className={`w-4 h-4 ${active ? "text-slate-950" : "text-slate-600"}`} />
+                      )}
+                    </div>
+                    {i < STAGES.length - 1 && (
+                      <div className={`w-0.5 flex-1 min-h-[32px] mt-1 mb-1 ${done ? "bg-emerald-500/50" : "bg-slate-800"}`} />
+                    )}
+                  </div>
+                  {/* Content */}
+                  <div className="pb-6 flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <p className={`text-sm font-black ${done ? "text-white" : active ? "text-amber-400" : "text-slate-500"}`}>
+                          {stage.label}
+                        </p>
+                        <p className="text-xs text-slate-600 mt-0.5">{stage.sub}</p>
+                      </div>
+                      {done && (
+                        <span className="text-[10px] font-bold text-slate-500 shrink-0">{ship.ago + i * 2}h ago</span>
+                      )}
+                      {active && (
+                        <span className="text-[10px] font-black text-amber-400 shrink-0 animate-pulse">NOW</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Footer CTA */}
+          <div className="px-6 pb-5 flex items-center justify-between gap-4 border-t border-slate-800 pt-4">
+            <p className="text-xs text-slate-500">Full real-time track &amp; trace available to registered network brokers.</p>
+            <Link href="/logistics-funnel">
+              <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs gap-1.5 shrink-0">
+                Join to Track Live
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            </Link>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 32 },
@@ -637,16 +814,26 @@ export default function ChainTrackLogisticsPage() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center justify-center px-6 pt-16 overflow-hidden">
+        {/* Real photo background */}
+        <img
+          src={heroLogisticsBg}
+          alt="Cargo aircraft over trade corridor"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Layered dark overlay — heavier at bottom so text reads clean */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/55 to-slate-950" />
+        {/* Amber tint on left to preserve brand colour */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-amber-950/40 via-transparent to-transparent" />
+
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-3xl" />
         </div>
 
         {/* World map grid */}
-        <div className="absolute inset-0 opacity-5"
+        <div className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
@@ -773,6 +960,33 @@ export default function ChainTrackLogisticsPage() {
               </AnimatedItem>
             ))}
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── SHIPMENT TRACKER ── */}
+      <section id="tracker" className="py-20 px-6 border-b border-slate-800 bg-slate-950">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-10">
+            <AnimatedItem>
+              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 mb-4 gap-1.5">
+                <Route className="w-3.5 h-3.5" />
+                Live Corridor Tracking
+              </Badge>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+                Track Your Shipment
+              </h2>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="text-slate-400 max-w-xl mx-auto">
+                Every ChainTrack Logistics shipment is tracked across all four corridor nodes — from Dubai intake to onward delivery.
+              </p>
+            </AnimatedItem>
+          </AnimatedSection>
+          <AnimatedItem>
+            <ShipmentTracker />
+          </AnimatedItem>
         </div>
       </section>
 

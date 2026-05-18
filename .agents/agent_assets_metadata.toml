@@ -66,3 +66,21 @@ id = "wV_AgPz4N3AOUo_OMPKRs"
 uri = "file://attached_assets/stock_images/instc_rail.jpg"
 type = "image"
 title = "freight train railway through mountain landscape Central Asia"
+
+[[outputs]]
+id = "309tV7nBx8NJNvF6hvBAI"
+uri = "file://attached_assets/stock_images/hero_dubai_night.jpg"
+type = "image"
+title = "Dubai skyline night aerial highway lights"
+
+[[outputs]]
+id = "96QH4RgiBHBqKGp1JO0ka"
+uri = "file://attached_assets/stock_images/hero_shipping_port.jpg"
+type = "image"
+title = "aerial view shipping port containers cranes industrial"
+
+[[outputs]]
+id = "awNqjeb6Q9ltOm0ktAseU"
+uri = "file://attached_assets/stock_images/hero_cargo_plane.jpg"
+type = "image"
+title = "cargo aircraft flying over ocean sunset aerial wide"
