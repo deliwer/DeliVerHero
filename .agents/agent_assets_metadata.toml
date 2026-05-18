@@ -42,3 +42,27 @@ id = "sQ0IedwjjfMFbfIlsTQKl"
 uri = "file://attached_assets/stock_images/keys_handover.jpg"
 type = "image"
 title = "modern keys handover apartment new home Dubai"
+
+[[outputs]]
+id = "qOIUVzX-zBqfmGDD89aNN"
+uri = "file://attached_assets/stock_images/gawadar_port.jpg"
+type = "image"
+title = "deep water container port harbor aerial view cargo ships"
+
+[[outputs]]
+id = "bmmk03txckljtZbtKB_64"
+uri = "file://attached_assets/stock_images/air_charter_bridge.jpg"
+type = "image"
+title = "cargo freighter aircraft flying over blue sky clouds air freight"
+
+[[outputs]]
+id = "Clu8zIxGtTizAKb4PQC_3"
+uri = "file://attached_assets/stock_images/dubai_air_hub.jpg"
+type = "image"
+title = "Dubai airport cargo terminal at night aerial view with city lights"
+
+[[outputs]]
+id = "wV_AgPz4N3AOUo_OMPKRs"
+uri = "file://attached_assets/stock_images/instc_rail.jpg"
+type = "image"
+title = "freight train railway through mountain landscape Central Asia"

@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
+import dubaiHubImg from "@assets/stock_images/dubai_air_hub.jpg";
+import airCharterImg from "@assets/stock_images/air_charter_bridge.jpg";
+import gwadarPortImg from "@assets/stock_images/gawadar_port.jpg";
+import instcRailImg from "@assets/stock_images/instc_rail.jpg";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   Plane,
@@ -89,8 +93,9 @@ const ROUTE_MILESTONES = [
     detail: "DXB & DWC as the world's largest cargo transit airports — the nerve centre of the new trade arc.",
     icon: Plane,
     color: "from-amber-500 to-orange-600",
-    bg: "bg-amber-50 dark:bg-amber-950/30",
-    border: "border-amber-200 dark:border-amber-800",
+    overlay: "from-amber-950/80 via-slate-950/70 to-slate-950/90",
+    badge: "bg-amber-500/20 text-amber-300 border-amber-500/40",
+    img: dubaiHubImg,
   },
   {
     city: "Air Charter Bridge",
@@ -98,8 +103,9 @@ const ROUTE_MILESTONES = [
     detail: "Dedicated charter lanes circumvent the Strait of Hormuz entirely — zero dependency on the contested waterway.",
     icon: Wind,
     color: "from-sky-500 to-blue-600",
-    bg: "bg-sky-50 dark:bg-sky-950/30",
-    border: "border-sky-200 dark:border-sky-800",
+    overlay: "from-sky-950/80 via-slate-950/70 to-slate-950/90",
+    badge: "bg-sky-500/20 text-sky-300 border-sky-500/40",
+    img: airCharterImg,
   },
   {
     city: "Gawadar Port",
@@ -107,8 +113,9 @@ const ROUTE_MILESTONES = [
     detail: "Pakistan's CPEC-built deep-sea port rises as the successor to Jebel Ali — now the primary Indian Ocean gateway.",
     icon: Anchor,
     color: "from-emerald-500 to-teal-600",
-    bg: "bg-emerald-50 dark:bg-emerald-950/30",
-    border: "border-emerald-200 dark:border-emerald-800",
+    overlay: "from-emerald-950/80 via-slate-950/70 to-slate-950/90",
+    badge: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+    img: gwadarPortImg,
   },
   {
     city: "INSTC Network",
@@ -116,8 +123,9 @@ const ROUTE_MILESTONES = [
     detail: "International North–South Transport Corridor onward connections to Central Asia, Russia and Europe.",
     icon: Route,
     color: "from-violet-500 to-purple-600",
-    bg: "bg-violet-50 dark:bg-violet-950/30",
-    border: "border-violet-200 dark:border-violet-800",
+    overlay: "from-violet-950/80 via-slate-950/70 to-slate-950/90",
+    badge: "bg-violet-500/20 text-violet-300 border-violet-500/40",
+    img: instcRailImg,
   },
 ];
 
@@ -792,13 +800,21 @@ export default function ChainTrackLogisticsPage() {
           <AnimatedSection className="grid md:grid-cols-2 gap-6">
             {ROUTE_MILESTONES.map((m) => (
               <AnimatedItem key={m.city}>
-                <div className={`rounded-2xl border p-8 ${m.bg} ${m.border} h-full`}>
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center mb-5`}>
-                    <m.icon className="w-6 h-6 text-white" />
+                <div className="relative rounded-2xl overflow-hidden h-64 group">
+                  <img
+                    src={m.img}
+                    alt={m.city}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${m.overlay}`} />
+                  <div className="relative z-10 h-full flex flex-col justify-end p-7">
+                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${m.color} flex items-center justify-center mb-4 shadow-lg`}>
+                      <m.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <Badge className={`text-xs border self-start mb-2 ${m.badge}`}>{m.role}</Badge>
+                    <h3 className="text-xl font-black text-white mb-1.5 leading-tight">{m.city}</h3>
+                    <p className="text-slate-300 text-sm leading-relaxed">{m.detail}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-1">{m.city}</h3>
-                  <Badge className="bg-white/10 text-slate-300 border-white/10 text-xs mb-4">{m.role}</Badge>
-                  <p className="text-slate-300 leading-relaxed">{m.detail}</p>
                 </div>
               </AnimatedItem>
             ))}
