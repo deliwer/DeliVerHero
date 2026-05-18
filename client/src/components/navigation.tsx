@@ -159,7 +159,6 @@ export function Navigation() {
     <div id="main-nav" className="w-full fixed top-0 z-[100]">
       {/* Emergency banner — consumer side only */}
       {!isBrokerSide && <EmergencyBanner />}
-
       {/* ── Main Nav Bar ── */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
         isLogisticsSide
@@ -249,7 +248,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer — Home Services for residents"
                   data-testid="mode-b2c"
-                >Tenants</button>
+                >Clients</button>
                 <button
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
@@ -328,7 +327,6 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-
       {/* ── Logistics Corridor Bar — logistics pages only ── */}
       {isLogisticsSide && (
         <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
@@ -346,7 +344,6 @@ export function Navigation() {
           </a>
         </div>
       )}
-
       {/* ── YouTube Training Bar — broker side only (not on management or logistics paths) ── */}
       {isBrokerSide && !isManagementSide && !isLogisticsSide && (
         <a
@@ -373,12 +370,10 @@ export function Navigation() {
           </span>
         </a>
       )}
-
       {/* ── Logistics CTA Bar — broker non-logistics pages only ── */}
       {isBrokerSide && !isManagementSide && !isLogisticsSide && (
         <LogisticsCTABar variant="banner" />
       )}
-
       {/* ── Management breadcrumb bar — admin/marketing paths only ── */}
       {isManagementSide && (
         <div className="flex items-center gap-2 py-1.5 px-4 bg-purple-950/80 backdrop-blur-sm border-b border-purple-500/20 relative z-50">
@@ -392,7 +387,6 @@ export function Navigation() {
           </span>
         </div>
       )}
-
       {/* ── Flex Living Announcement Bar — consumer side only ── */}
       {!isBrokerSide && (
         <a
@@ -413,7 +407,6 @@ export function Navigation() {
           </span>
         </a>
       )}
-
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">
@@ -422,7 +415,6 @@ export function Navigation() {
           </div>
         </div>
       )}
-
       {/* ── Mobile Nav Dropdown ── */}
       <AnimatePresence>
         {isMobileMenuOpen && (
