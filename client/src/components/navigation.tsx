@@ -180,8 +180,8 @@ export function Navigation() {
             <div className="flex flex-col leading-none">
               {isLogisticsSide ? (
                 <div className="flex items-baseline gap-1">
-                  <span className="font-black text-xl tracking-tighter uppercase text-white">DeliWer</span>
-                  <span className="font-black text-xl tracking-widest uppercase text-amber-400">LOGISTICS</span>
+                  <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack</span>
+                  <span className="font-black text-xl tracking-widest uppercase text-white">Logistics</span>
                 </div>
               ) : (
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
@@ -197,7 +197,7 @@ export function Navigation() {
               )}
               {isLogisticsSide && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
-                  Dubai · Gawadar Corridor
+                  Air Charter · Trade Corridor
                 </span>
               )}
             </div>
@@ -332,11 +332,11 @@ export function Navigation() {
         <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
-            DeliWer Logistics
+            ChainTrack Logistics
           </span>
           <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
           <span className="hidden sm:inline text-[11px] font-bold text-amber-100/50">
-            Dubai ↔ Gawadar Air-Charter Corridor · Powered by ChainTrack
+            Dubai ↔ Gawadar · Relocation &amp; Commercial Charter
           </span>
           <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
           <a href="/logistics-funnel" className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-amber-400 hover:text-amber-300 transition-colors">

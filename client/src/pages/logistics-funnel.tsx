@@ -568,10 +568,10 @@ export default function LogisticsFunnelPage() {
               </div>
               <div className="text-left">
                 <div className="flex items-center gap-1.5">
-                  <span className="font-black text-white text-xl tracking-tight">DeliWer</span>
-                  <span className="font-black text-amber-400 text-xl tracking-wider">Logistics</span>
+                  <span className="font-black text-amber-400 text-xl tracking-tight">ChainTrack</span>
+                  <span className="font-black text-white text-xl tracking-wider">Logistics</span>
                 </div>
-                <p className="text-[10px] text-amber-500/70 font-bold uppercase tracking-widest">Powered by ChainTrack · Dubai–Gawadar Corridor</p>
+                <p className="text-[10px] text-amber-500/70 font-bold uppercase tracking-widest">Dubai–Gawadar · Relocation &amp; Commercial Charter</p>
               </div>
             </div>
             <h1 className="text-2xl md:text-3xl font-black text-white mb-2">
@@ -889,7 +889,7 @@ export default function LogisticsFunnelPage() {
                   </div>
                   <h2 className="text-3xl font-black text-white mb-3">You're In.</h2>
                   <p className="text-slate-400 text-lg mb-2">
-                    Welcome to the DeliWer Logistics Freight Broker Network.
+                    Welcome to the ChainTrack Logistics Freight Broker Network.
                   </p>
                   <p className="text-slate-500 mb-8">
                     Your onboarding kit will be sent to <span className="text-white font-semibold">{data.email}</span> within 24 hours.

@@ -20,7 +20,7 @@ export function LogisticsCTABar({ variant = "strip" }: LogisticsCTABarProps) {
               <Anchor className="w-3.5 h-3.5 text-white" />
             </div>
             <span className="text-[11px] font-black uppercase tracking-widest text-white">
-              DeliWer Logistics
+              ChainTrack Logistics
             </span>
             <span className="text-amber-200 text-[11px] font-semibold hidden sm:inline">·</span>
             <span className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-amber-100">
@@ -43,7 +43,7 @@ export function LogisticsCTABar({ variant = "strip" }: LogisticsCTABarProps) {
             <Anchor className="w-4 h-4 text-white" />
           </div>
           <div>
-            <p className="text-xs font-black text-amber-300 uppercase tracking-wider leading-none">DeliWer Logistics</p>
+            <p className="text-xs font-black text-amber-300 uppercase tracking-wider leading-none">ChainTrack Logistics</p>
             <p className="text-[11px] text-slate-500 mt-0.5">Dubai ↔ Gawadar · Earn per CBM</p>
           </div>
         </div>

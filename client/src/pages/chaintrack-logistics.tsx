@@ -595,22 +595,22 @@ export default function ChainTrackLogisticsPage() {
             </div>
             <div className="leading-none">
               <div className="flex items-baseline gap-1.5">
-                <span className="font-black text-white text-base tracking-tight">DeliWer</span>
-                <span className="font-black text-amber-400 text-base tracking-widest">LOGISTICS</span>
+                <span className="font-black text-amber-400 text-base tracking-tight">ChainTrack</span>
+                <span className="font-black text-white text-base tracking-widest">Logistics</span>
               </div>
-              <p className="text-[9px] text-amber-500/60 font-black uppercase tracking-widest mt-0.5">Powered by ChainTrack · Dubai–Gawadar</p>
+              <p className="text-[9px] text-amber-500/60 font-black uppercase tracking-widest mt-0.5">Relocation &amp; Commercial Charter · Dubai–Gawadar</p>
             </div>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-400">
-            <a href="#corridor" className="hover:text-white transition-colors">The Corridor</a>
+          <nav className="hidden md:flex items-center gap-5 text-sm text-slate-400">
+            <a href="#corridor" className="hover:text-white transition-colors">Corridor</a>
+            <a href="#use-cases" className="hover:text-sky-400 transition-colors">Charter Use Cases</a>
             <a href="#opportunity" className="hover:text-white transition-colors">Why Now</a>
-            <a href="#pioneer" className="hover:text-white transition-colors">Our Edge</a>
             <a href="#partners" className="hover:text-white transition-colors">Partners</a>
             <a href="#intelligence" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
               <Radio className="w-3 h-3 text-amber-500 animate-pulse" />
               Intel
             </a>
-            <Link href="/freight-broker" className="hover:text-amber-400 transition-colors">Freight Brokers</Link>
+            <Link href="/freight-broker" className="hover:text-amber-400 transition-colors font-semibold">Freight Hub</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link href="/logistics-funnel">
@@ -850,6 +850,134 @@ export default function ChainTrackLogisticsPage() {
                   "For the first time in history, Dubai's aviation supremacy and Gawadar's deep-water access can be fused into a single, Hormuz-independent supply chain that is faster, cheaper, and more resilient than anything that has come before."
                 </p>
                 <p className="text-amber-400 mt-6 font-semibold">— ChainTrack Logistics Founding Strategy, 2025</p>
+              </div>
+            </AnimatedItem>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── CHARTER USE CASES ── */}
+      <section id="use-cases" className="py-24 px-6 border-t border-slate-800 bg-slate-950">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-14">
+            <AnimatedItem>
+              <Badge className="bg-sky-500/20 text-sky-400 border-sky-500/30 mb-4 gap-1.5">
+                <Plane className="w-3.5 h-3.5" />
+                What Moves on the Corridor
+              </Badge>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Relocation &amp; Commercial Freight —<br />
+                <span className="text-amber-400">One Corridor, Every Category</span>
+              </h2>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                Whether you're moving a household, clearing a warehouse, or shipping
+                time-sensitive industrial goods — the Dubai–Gawadar air charter lane
+                handles every cargo category faster and cheaper than Hormuz-routed alternatives.
+              </p>
+            </AnimatedItem>
+          </AnimatedSection>
+
+          <AnimatedSection className="grid md:grid-cols-2 gap-6 mb-12">
+            {[
+              {
+                icon: Building2,
+                title: "Relocation Cargo",
+                sub: "Household · Personal Effects · Vehicles",
+                desc: "The corridor is the fastest route for expats relocating between Dubai and Central/South Asia. Full-container household moves, air-freight personal effects, and bonded vehicle transit all move under CPEC Free Zone status — no re-export duty, door-to-door tracking.",
+                highlights: ["Household goods — FCL & LCL", "Personal effects — air priority", "Vehicles — bonded transit via GWD", "Unaccompanied baggage — same-day uplift", "Corporate relocation packages"],
+                accent: "from-sky-500 to-blue-600",
+                border: "border-sky-500/30",
+                bg: "bg-sky-500/5",
+                badgeCls: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+              },
+              {
+                icon: Package,
+                title: "Commercial Freight",
+                sub: "FMCG · Electronics · Industrial Goods",
+                desc: "Dubai is the world's largest re-export hub. ChainTrack bridges DWC's air-cargo supremacy with Gawadar's deep-sea access — giving UAE traders a Hormuz-free route to Central Asian, South Asian, and Chinese markets at ocean-freight cost.",
+                highlights: ["Consumer goods & FMCG — bulk consolidation", "Electronics & smartphones — air express", "Machinery & spare parts — project cargo", "Perishables — reefer-trailer DWC intake", "E-commerce batches — micro-fulfilment"],
+                accent: "from-amber-500 to-orange-600",
+                border: "border-amber-500/30",
+                bg: "bg-amber-500/5",
+                badgeCls: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+              },
+              {
+                icon: Shield,
+                title: "Diplomatic & Institutional",
+                sub: "Embassies · NGOs · Government Bodies",
+                desc: "Consular shipments, diplomatic pouches, UN supply chains, and government institutional freight benefit from ChainTrack's direct Gawadar Port Authority relationships and priority charter lane access.",
+                highlights: ["Diplomatic pouch & consular freight", "UN / NGO humanitarian supply chains", "Government institutional cargo", "Priority customs clearance", "Discreet handling & documentation"],
+                accent: "from-violet-500 to-purple-600",
+                border: "border-violet-500/30",
+                bg: "bg-violet-500/5",
+                badgeCls: "bg-violet-500/20 text-violet-300 border-violet-500/30",
+              },
+              {
+                icon: Zap,
+                title: "Time-Critical & Cold-Chain",
+                sub: "Pharma · Perishables · High-Value Parcels",
+                desc: "The air charter lane delivers Dubai-to-Gawadar in under 4 hours with full cold-chain continuity. DWC's reefer apron to Gawadar's bonded pharmaceutical handling zone is a single unbroken cold chain — the first in the region.",
+                highlights: ["Pharmaceutical cold-chain — GDP-compliant", "Fresh produce & perishables — reefer", "High-value parcels — insured handling", "Biological samples & medical devices", "Urgent industrial spares — 24hr door"],
+                accent: "from-emerald-500 to-teal-600",
+                border: "border-emerald-500/30",
+                bg: "bg-emerald-500/5",
+                badgeCls: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+              },
+            ].map((uc) => (
+              <AnimatedItem key={uc.title}>
+                <Card className={`${uc.bg} border ${uc.border} p-8 h-full hover:border-opacity-60 transition-all`}>
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${uc.accent} flex items-center justify-center mb-5 shadow-lg`}>
+                    <uc.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <Badge className={`text-xs border mb-3 ${uc.badgeCls}`}>{uc.sub}</Badge>
+                  <h3 className="text-xl font-black text-white mb-3">{uc.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-5">{uc.desc}</p>
+                  <ul className="space-y-1.5">
+                    {uc.highlights.map((h) => (
+                      <li key={h} className="flex items-center gap-2 text-xs text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              </AnimatedItem>
+            ))}
+          </AnimatedSection>
+
+          {/* Speed comparison bar */}
+          <AnimatedSection>
+            <AnimatedItem>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
+                <p className="text-center text-xs font-black uppercase tracking-widest text-slate-500 mb-6">Transit Time Comparison — Dubai → Gawadar Hinterland</p>
+                <div className="grid sm:grid-cols-3 gap-6">
+                  {[
+                    { mode: "Air Charter (DWC → GWD)", time: "4–6 hours", note: "Door-to-port, Hormuz-free", color: "text-amber-400", bar: "bg-amber-500", pct: 10 },
+                    { mode: "Sea Feeder (Jebel Ali → GWD)", time: "5–7 days", note: "Via Hormuz — disrupted", color: "text-red-400", bar: "bg-red-600", pct: 45 },
+                    { mode: "Traditional Silk Road (Air)", time: "2–3 days", note: "Legacy routing, no port access", color: "text-slate-400", bar: "bg-slate-600", pct: 25 },
+                  ].map((row) => (
+                    <div key={row.mode}>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-bold text-slate-300 leading-tight">{row.mode}</span>
+                        <span className={`text-sm font-black ${row.color}`}>{row.time}</span>
+                      </div>
+                      <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden mb-1.5">
+                        <motion.div
+                          className={`h-full rounded-full ${row.bar}`}
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${row.pct}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, ease: "easeOut" }}
+                        />
+                      </div>
+                      <p className="text-[10px] text-slate-600">{row.note}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </AnimatedItem>
           </AnimatedSection>
@@ -1107,10 +1235,10 @@ export default function ChainTrackLogisticsPage() {
               </div>
               <div>
                 <div className="flex items-baseline gap-1">
-                  <span className="font-black text-white text-sm">DeliWer</span>
-                  <span className="font-black text-amber-400 text-sm tracking-wider">LOGISTICS</span>
+                  <span className="font-black text-amber-400 text-sm tracking-tight">ChainTrack</span>
+                  <span className="font-black text-white text-sm tracking-wider">Logistics</span>
                 </div>
-                <p className="text-slate-500 text-xs">Powered by ChainTrack · DeliWer Group</p>
+                <p className="text-slate-500 text-xs">Dubai–Gawadar Corridor · DeliWer Group</p>
               </div>
             </div>
             <div className="flex items-center gap-6 text-sm text-slate-500">
