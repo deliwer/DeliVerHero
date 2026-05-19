@@ -84,13 +84,14 @@ const chaintrackNavItems = [
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
-const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel"];
+const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics"];
 
 const logisticsNavItems = [
-  { path: "/logistics",        label: "Corridor",     id: "lg-corridor",  icon: Anchor },
-  { path: "/freight-broker",   label: "Freight Hub",  id: "lg-freight",   icon: Route },
-  { path: "/logistics-funnel", label: "Join Network", id: "lg-funnel",    icon: Zap },
-  { path: "/partners",         label: "← Brokers",   id: "lg-back",      icon: Users },
+  { path: "/logistics",        label: "Corridor",       id: "lg-corridor",     icon: Anchor },
+  { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics", icon: Package },
+  { path: "/freight-broker",   label: "Freight Hub",    id: "lg-freight",      icon: Route },
+  { path: "/logistics-funnel", label: "Join Network",   id: "lg-funnel",       icon: Zap },
+  { path: "/partners",         label: "← Brokers",     id: "lg-back",         icon: Users },
 ];
 
 // Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)

@@ -254,7 +254,7 @@ export default function BrokerOnboard() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Broker Activation · DeliWer Dubai · Real Estate · Electronics · Logistics
+            Broker Activation · ChainTrack B2B · Electronics · Logistics · Relocation
           </motion.div>
 
           <div className="h-24 md:h-20 flex items-center justify-center overflow-hidden">
@@ -394,14 +394,6 @@ export default function BrokerOnboard() {
 
           <div className="grid md:grid-cols-2 gap-5">
             {[
-              {
-                track: "Real Estate & Flex Living",
-                desc: "Refer clients for Ejari, DEWA, move-in bundles, and Flex Living rentals. Ideal for RERA brokers and property managers.",
-                earnings: "AED 150–800+ per referral",
-                items: ["Ejari Registration", "Move-In Bundles", "DEWA Activation", "Flex Living Referrals", "Habtoor Polo (NDA)"],
-                color: "emerald",
-                highlight: true,
-              },
               {
                 track: "Phone Flipping & Electronics",
                 desc: "Earn through Dubai electronics sourcing, logistics brokerage, and cross-border trade coordination into CIS markets.",
