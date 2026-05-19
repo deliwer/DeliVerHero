@@ -55,9 +55,9 @@ const deliwerNavItems = [
 
 // ── Broker / Partner nav items ────────────────────────────────────────────────
 const brokerNavItems = [
+  { path: "/logistics",                              label: "Logistics",       id: "ct-logistics", icon: Anchor,       external: false },
   { path: "/broker-onboard",                          label: "Broker Portal",  id: "ct-broker",    icon: Briefcase,    external: false },
   { path: "/partners",                               label: "Partner Program", id: "ct-partners",  icon: Users,        external: false },
-  { path: "/logistics",                              label: "Logistics",       id: "ct-logistics", icon: Anchor,       external: false },
   { path: "/freight-broker",                         label: "Freight Broker",  id: "ct-freight",   icon: Route,        external: false },
   { path: "/partner-dashboard",                      label: "Dashboard",       id: "ct-dashboard", icon: LayoutGrid,   external: false },
   { path: "https://www.youtube.com/@vdeliwer",       label: "Training",        id: "ct-training",  icon: Youtube,      external: true  },
