@@ -207,7 +207,9 @@ export function Navigation() {
           {/* CENTER: Nav Links (Desktop) */}
           <div className="hidden md:flex items-center gap-1 order-2 mx-auto">
             {navItems.map((item) => {
-              const isLogisticsPrimary = item.id === "ct-logistics" && isBrokerSide && !isLogisticsSide;
+              const isLogisticsPrimary =
+                (item.id === "ct-logistics" && isBrokerSide && !isLogisticsSide) ||
+                (item.id === "lg-electronics" && isLogisticsSide && !isActive(item.path));
               return (
                 <Button
                   key={item.id}
