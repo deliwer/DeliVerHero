@@ -1559,13 +1559,19 @@ export default function ChainTrackLogisticsPage() {
               <p className="text-slate-300 text-base leading-relaxed mb-8">
                 Local coordination support available in Azerbaijan. Broker partnerships and revenue-sharing opportunities open for CIS importers, freight coordinators, and relocation agents.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 flex-wrap">
                 <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold gap-2">
                     <MessageSquare className="w-4 h-4" />
                     Join Broker Network
                   </Button>
                 </a>
+                <Link href="/cis-electronics">
+                  <Button className="bg-sky-500 hover:bg-sky-400 text-white font-bold gap-2">
+                    <Smartphone className="w-4 h-4" />
+                    Source Electronics for CIS
+                  </Button>
+                </Link>
                 <Link href="/logistics-funnel">
                   <Button variant="outline" className="border-slate-600 text-slate-300 hover:text-white gap-2">
                     Apply as Partner

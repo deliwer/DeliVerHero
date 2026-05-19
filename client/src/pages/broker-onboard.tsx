@@ -409,6 +409,8 @@ export default function BrokerOnboard() {
                 items: ["Used iPhone sourcing referrals", "Bulk electronics coordination", "CIS importer connections", "Remote inspection facilitation", "Zero inventory required"],
                 color: "sky",
                 highlight: false,
+                learnMore: "/cis-electronics",
+                learnMoreLabel: "Explore Electronics Supply →",
               },
               {
                 track: "Logistics Coordination",
@@ -468,6 +470,14 @@ export default function BrokerOnboard() {
                     <MessageCircle className="w-4 h-4" />
                     Join This Track
                   </Button>
+                  {(t as any).learnMore && (
+                    <a
+                      href={(t as any).learnMore}
+                      className="mt-3 block text-center text-xs font-bold text-sky-400 hover:text-sky-300 transition-colors"
+                    >
+                      {(t as any).learnMoreLabel}
+                    </a>
+                  )}
                 </motion.div>
               );
             })}

@@ -392,13 +392,19 @@ export default function CisElectronicsPage() {
           <p className="text-slate-400 mb-8 text-sm">
             Contact our coordination desk on WhatsApp — available for CIS importers, brokers, and logistics partners.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <a href={WA_BASE} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
                 <MessageSquare className="w-5 h-5" />
                 WhatsApp: +971 52 394 6311
               </Button>
             </a>
+            <Link href="/broker-onboard">
+              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 gap-2">
+                <Handshake className="w-5 h-5" />
+                Become a Broker Partner
+              </Button>
+            </Link>
             <Link href="/logistics">
               <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:text-white gap-2">
                 View Logistics Services
