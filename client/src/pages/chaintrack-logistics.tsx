@@ -41,6 +41,12 @@ import {
   ChevronRight,
   ExternalLink,
   Gauge,
+  MessageSquare,
+  Smartphone,
+  Search,
+  Video,
+  MapPinned,
+  Handshake,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -843,23 +849,22 @@ export default function ChainTrackLogisticsPage() {
             <AnimatedItem>
               <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 px-4 py-1.5 text-sm font-medium mb-6 inline-flex">
                 <Zap className="w-3.5 h-3.5 mr-1.5" />
-                The Post-Hormuz Trade Era Begins
+                Dubai to CIS Charter Logistics &amp; Emerging Trade Corridors
               </Badge>
             </AnimatedItem>
 
             <AnimatedItem>
               <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-none">
-                <span className="block text-white">Dubai ↔ Gawadar</span>
+                <span className="block text-white">Dubai to CIS Charter</span>
                 <span className="block bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent mt-2">
-                  The New Trade Spine
+                  Logistics &amp; Electronics Movement
                 </span>
               </h1>
             </AnimatedItem>
 
             <AnimatedItem>
               <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-4">
-                Jebel Ali has ceased regular commercial operations. The Strait of Hormuz is a contested chokepoint.
-                Gawadar — backed by CPEC and INSTC — is the world's next great deep-sea port.
+                Air cargo, charter logistics, sourcing support, remote inspections, and cross-border movement coordination for refurbished electronics, urgent cargo, and relocation support.
               </p>
             </AnimatedItem>
 
@@ -873,13 +878,19 @@ export default function ChainTrackLogisticsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/logistics-funnel">
                   <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2">
-                    Join as Freight Broker
+                    Request Logistics Support
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </Link>
-                <a href="#corridor">
+                <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
+                    <MessageSquare className="w-5 h-5" />
+                    WhatsApp Us
+                  </Button>
+                </a>
+                <a href="#partners">
                   <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:text-white hover:border-slate-400 gap-2">
-                    Explore the Corridor
+                    Become a Broker Partner
                     <ArrowRight className="w-5 h-5" />
                   </Button>
                 </a>
@@ -946,6 +957,28 @@ export default function ChainTrackLogisticsPage() {
         </div>
       </section>
 
+      {/* ── TRUST STRIP ── */}
+      <section className="py-6 px-6 border-y border-amber-500/20 bg-amber-500/5 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-black uppercase tracking-widest text-amber-300">
+            {[
+              "Dubai Logistics Coordination",
+              "Charter Cargo Support",
+              "CIS Shipment Assistance",
+              "Remote Inspection Support",
+              "Broker Distribution Network",
+              "Azerbaijan Local Contact Available",
+              "Gawadar Air-Sea Corridor Access",
+            ].map((item) => (
+              <span key={item} className="flex items-center gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── STATS ── */}
       <section id="stats" className="py-16 px-6 border-y border-slate-800 bg-slate-900/50">
         <div className="max-w-6xl mx-auto">
@@ -959,6 +992,110 @@ export default function ChainTrackLogisticsPage() {
                 </div>
               </AnimatedItem>
             ))}
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── FEATURE CARDS ── */}
+      <section id="services" className="py-24 px-6 border-b border-slate-800 bg-slate-950">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-14">
+            <AnimatedItem>
+              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 mb-4">Logistics Services</Badge>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                What We <span className="text-amber-400">Move & Coordinate</span>
+              </h2>
+            </AnimatedItem>
+          </AnimatedSection>
+          <AnimatedSection className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Smartphone,
+                title: "Refurbished Electronics Logistics",
+                sub: "Used iPhones · Laptops · Consumer Electronics",
+                desc: "Sourcing coordination, consolidation, and export logistics for refurbished electronics from Dubai to CIS markets. Zero-inventory models supported.",
+                highlights: ["Used iPhones & refurbished smartphones", "Laptops & consumer electronics", "Consolidation & export coordination", "Broker-powered distribution"],
+                accent: "from-sky-500 to-blue-600",
+                border: "border-sky-500/30",
+                bg: "bg-sky-500/5",
+                badgeCls: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+              },
+              {
+                icon: Plane,
+                title: "Charter Cargo Support",
+                sub: "Urgent Shipments · High-Value Cargo",
+                desc: "Dedicated charter coordination for time-sensitive, high-value, and flexible cargo. Routing support across Gulf, South Asia, and CIS corridors.",
+                highlights: ["Urgent shipments", "High-value cargo", "Flexible routing", "Air charter coordination"],
+                accent: "from-amber-500 to-orange-600",
+                border: "border-amber-500/30",
+                bg: "bg-amber-500/5",
+                badgeCls: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+              },
+              {
+                icon: Video,
+                title: "Remote Inspection & Verification",
+                sub: "Supplier Coordination · Device Verification",
+                desc: "Video-based inspection support for electronics sourcing. Supplier coordination, device grading verification, and shipment validation before export.",
+                highlights: ["Supplier coordination", "Video inspections", "Device verification", "Shipment validation"],
+                accent: "from-violet-500 to-purple-600",
+                border: "border-violet-500/30",
+                bg: "bg-violet-500/5",
+                badgeCls: "bg-violet-500/20 text-violet-300 border-violet-500/30",
+              },
+              {
+                icon: MapPinned,
+                title: "Dubai-to-CIS Trade Support",
+                sub: "Azerbaijan · Kazakhstan · Uzbekistan · Russia",
+                desc: "End-to-end trade support for importers and brokers moving goods from Dubai into CIS and Central Asian markets. Local Azerbaijan coordination available.",
+                highlights: ["Azerbaijan", "Kazakhstan", "Uzbekistan", "Russia", "Georgia", "Kyrgyzstan"],
+                accent: "from-emerald-500 to-teal-600",
+                border: "border-emerald-500/30",
+                bg: "bg-emerald-500/5",
+                badgeCls: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+              },
+              {
+                icon: Anchor,
+                title: "Gawadar Air-Sea Corridor",
+                sub: "Dubai → Gawadar → Central Asia / CIS",
+                desc: "Multimodal air-sea routing through the Gawadar corridor connecting Gulf trade to Central Asia and CIS markets via an emerging strategic logistics lane.",
+                highlights: ["Dubai to Gawadar coordination", "Sea-air multimodal routing", "Central Asia connectivity", "Charter cargo integration", "Emerging trade corridor support"],
+                accent: "from-rose-500 to-pink-600",
+                border: "border-rose-500/30",
+                bg: "bg-rose-500/5",
+                badgeCls: "bg-rose-500/20 text-rose-300 border-rose-500/30",
+              },
+            ].map((card) => (
+              <AnimatedItem key={card.title}>
+                <div className={`${card.bg} border ${card.border} rounded-2xl p-7 h-full flex flex-col hover:border-opacity-60 transition-all`}>
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${card.accent} flex items-center justify-center mb-4 shadow-lg`}>
+                    <card.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <Badge className={`text-xs border mb-3 self-start ${card.badgeCls}`}>{card.sub}</Badge>
+                  <h3 className="text-lg font-black text-white mb-2">{card.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">{card.desc}</p>
+                  <ul className="space-y-1.5">
+                    {card.highlights.map((h) => (
+                      <li key={h} className="flex items-center gap-2 text-xs text-slate-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </AnimatedItem>
+            ))}
+          </AnimatedSection>
+          <AnimatedSection className="mt-10 text-center">
+            <AnimatedItem>
+              <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
+                  <MessageSquare className="w-5 h-5" />
+                  Discuss Your Requirement on WhatsApp
+                </Button>
+              </a>
+            </AnimatedItem>
           </AnimatedSection>
         </div>
       </section>
@@ -1255,6 +1392,92 @@ export default function ChainTrackLogisticsPage() {
         </div>
       </section>
 
+      {/* ── AIR-SEA CORRIDOR ── */}
+      <section id="air-sea-corridor" className="py-24 px-6 bg-gradient-to-b from-slate-900 to-slate-950 border-y border-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="text-center mb-14">
+            <AnimatedItem>
+              <Badge className="bg-sky-500/20 text-sky-400 border-sky-500/30 mb-4 gap-1.5">
+                <Anchor className="w-3.5 h-3.5" />
+                Emerging Trade Infrastructure
+              </Badge>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
+                Air-Sea Corridor <span className="text-sky-400">Opportunities</span>
+              </h2>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="text-slate-400 text-lg max-w-3xl mx-auto">
+                Connecting Dubai, Gawadar, Central Asia, and CIS markets through flexible logistics and charter coordination.
+              </p>
+            </AnimatedItem>
+          </AnimatedSection>
+
+          {/* Route visual */}
+          <AnimatedSection className="mb-14">
+            <AnimatedItem>
+              <div className="rounded-2xl border border-sky-500/20 bg-sky-500/5 p-8">
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-center">
+                  {[
+                    { label: "Dubai", sub: "Origin Hub", color: "from-amber-400 to-orange-500", icon: Plane, shadow: "shadow-amber-500/30" },
+                    { label: "→", sub: "", color: "", icon: null, shadow: "" },
+                    { label: "Gawadar", sub: "Air-Sea Transfer", color: "from-sky-400 to-blue-600", icon: Anchor, shadow: "shadow-sky-500/30" },
+                    { label: "→", sub: "", color: "", icon: null, shadow: "" },
+                    { label: "Central Asia / CIS", sub: "Final Markets", color: "from-violet-500 to-purple-700", icon: Globe, shadow: "shadow-violet-500/30" },
+                  ].map((node, i) =>
+                    node.icon ? (
+                      <div key={i} className="flex flex-col items-center">
+                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${node.color} flex items-center justify-center mb-2 shadow-lg ${node.shadow}`}>
+                          <node.icon className="w-7 h-7 text-white" />
+                        </div>
+                        <p className="text-sm font-black text-white">{node.label}</p>
+                        <p className="text-xs text-slate-500">{node.sub}</p>
+                      </div>
+                    ) : (
+                      <ArrowRight key={i} className="w-6 h-6 text-slate-600 hidden md:block" />
+                    )
+                  )}
+                </div>
+              </div>
+            </AnimatedItem>
+          </AnimatedSection>
+
+          <AnimatedSection className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: Smartphone, title: "Electronics Movement", desc: "Refurbished iPhones, laptops, and consumer electronics coordinated from Dubai suppliers into CIS distribution networks." },
+              { icon: Zap, title: "Urgent Cargo", desc: "Time-critical shipments via air charter from Dubai through the corridor with same-day uplift access from DXB/DWC." },
+              { icon: Layers, title: "Multimodal Routing", desc: "Flexible air-sea combinations optimised for cost, speed, and cargo type across Gulf, South Asia, and Central Asia." },
+              { icon: Route, title: "Future Trade Infrastructure", desc: "First-mover positioning on a corridor that is still defining its operating standards — strategic advantage for early partners." },
+              { icon: Network, title: "Charter Cargo Integration", desc: "Dedicated charter capacity for high-value or time-sensitive loads that cannot move on commercial airline bellies." },
+              { icon: Globe, title: "Central Asia Connectivity", desc: "Onward distribution into Kazakhstan, Uzbekistan, Kyrgyzstan, Azerbaijan, and the wider CIS trade zone." },
+            ].map((item) => (
+              <AnimatedItem key={item.title}>
+                <div className="flex items-start gap-4 p-5 rounded-xl border border-slate-800 bg-slate-900 hover:border-sky-500/30 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0">
+                    <item.icon className="w-5 h-5 text-sky-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
+                    <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              </AnimatedItem>
+            ))}
+          </AnimatedSection>
+
+          <AnimatedSection className="mt-10">
+            <AnimatedItem>
+              <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-8 text-center">
+                <p className="text-xl md:text-2xl font-bold text-white max-w-3xl mx-auto leading-relaxed">
+                  "Connecting Dubai, Gawadar, Central Asia, and CIS markets through flexible logistics and charter coordination — infrastructure for the next generation of cross-border trade."
+                </p>
+              </div>
+            </AnimatedItem>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* ── HOW IT WORKS ── */}
       <section className="py-24 px-6 bg-gradient-to-b from-slate-900/60 to-slate-950 border-y border-slate-800">
         <div className="max-w-5xl mx-auto">
@@ -1264,51 +1487,116 @@ export default function ChainTrackLogisticsPage() {
             </AnimatedItem>
             <AnimatedItem>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Air-to-Sea Feeder — How It Works
+                How It Works
               </h2>
             </AnimatedItem>
           </AnimatedSection>
 
-          <AnimatedSection className="grid md:grid-cols-3 gap-0">
+          <AnimatedSection className="grid md:grid-cols-4 gap-0">
             {[
               {
                 step: "01",
-                title: "Origin Consolidation",
-                desc: "Cargo collected across UAE warehouses and consolidated at DXB or DWC cargo terminals through DeliWer's last-mile network.",
-                icon: Package,
+                title: "Share Requirement",
+                desc: "Share your sourcing or logistics requirement — electronics, cargo, or relocation — via WhatsApp or our logistics funnel.",
+                icon: MessageSquare,
                 color: "text-amber-400",
               },
               {
                 step: "02",
-                title: "Charter Air Bridge",
-                desc: "Dedicated freighter operates the Dubai–Gawadar sector. Block-space for partners on scheduled uplift. Sub-24-hour transit.",
-                icon: Plane,
+                title: "Supplier Coordination & Inspection",
+                desc: "Supplier coordination and remote inspection support. Device verification, grading, and shipment validation before export.",
+                icon: Search,
                 color: "text-sky-400",
               },
               {
                 step: "03",
-                title: "Port Feeder & Onward",
-                desc: "Cargo transfers at Gawadar to deep-sea vessel or CPEC rail. Full track-and-trace handoff via ChainTrack platform.",
-                icon: Ship,
+                title: "Cargo or Charter Coordination",
+                desc: "Cargo or charter coordination from Dubai. Air express, charter slots, or consolidation — depending on your volume and urgency.",
+                icon: Plane,
+                color: "text-violet-400",
+              },
+              {
+                step: "04",
+                title: "Delivery into CIS Markets",
+                desc: "Delivery support into CIS and Central Asian markets. Local Azerbaijan coordination support available for last-mile.",
+                icon: MapPinned,
                 color: "text-emerald-400",
               },
-            ].map((s, i) => (
+            ].map((s, i, arr) => (
               <AnimatedItem key={s.step} className="relative">
-                <div className="p-8 text-center">
-                  <div className="text-6xl font-black text-slate-800 mb-4">{s.step}</div>
-                  <div className={`w-16 h-16 rounded-2xl bg-slate-800 flex items-center justify-center mx-auto mb-5`}>
-                    <s.icon className={`w-8 h-8 ${s.color}`} />
+                <div className="p-6 text-center">
+                  <div className="text-5xl font-black text-slate-800 mb-4">{s.step}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center mx-auto mb-4">
+                    <s.icon className={`w-7 h-7 ${s.color}`} />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{s.desc}</p>
+                  <h3 className="text-base font-bold text-white mb-2">{s.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{s.desc}</p>
                 </div>
-                {i < 2 && (
-                  <div className="hidden md:block absolute top-1/2 -right-0 transform -translate-y-1/2">
-                    <ArrowRight className="w-6 h-6 text-slate-600" />
+                {i < arr.length - 1 && (
+                  <div className="hidden md:block absolute top-16 -right-0 transform">
+                    <ArrowRight className="w-5 h-5 text-slate-600" />
                   </div>
                 )}
               </AnimatedItem>
             ))}
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── IMPORTERS & BROKERS ── */}
+      <section className="py-24 px-6 border-b border-slate-800 bg-slate-900/40">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection className="grid md:grid-cols-2 gap-16 items-center">
+            <AnimatedItem>
+              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mb-4">For Importers &amp; Brokers</Badge>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                Operate Remotely.<br />
+                <span className="text-emerald-400">Zero Dubai Office Required.</span>
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                No Dubai office required. Our sourcing coordination support, remote inspection capability, and flexible shipment models mean you can operate a Dubai-sourced electronics or logistics business from anywhere in the world.
+              </p>
+              <p className="text-slate-300 text-base leading-relaxed mb-8">
+                Local coordination support available in Azerbaijan. Broker partnerships and revenue-sharing opportunities open for CIS importers, freight coordinators, and relocation agents.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Join Broker Network
+                  </Button>
+                </a>
+                <Link href="/logistics-funnel">
+                  <Button variant="outline" className="border-slate-600 text-slate-300 hover:text-white gap-2">
+                    Apply as Partner
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </AnimatedItem>
+
+            <AnimatedItem>
+              <div className="space-y-4">
+                {[
+                  { icon: CheckCircle2, title: "No Dubai Office Required", desc: "Source, coordinate, and sell from your home country. We handle the Dubai-side logistics." },
+                  { icon: Search, title: "Sourcing Coordination Support", desc: "Access Dubai supplier networks without being physically present. We coordinate on your behalf." },
+                  { icon: Video, title: "Remote Operations Possible", desc: "Video inspections, digital documentation, and WhatsApp-based coordination make remote trade fully operational." },
+                  { icon: Handshake, title: "Flexible Shipment Models", desc: "From single pallets to full containers. Zero-inventory coordination models available for brokers." },
+                  { icon: Users, title: "Revenue-Sharing Partnerships", desc: "Commission-based arrangements for importers, freight coordinators, and relocation agents." },
+                  { icon: MapPinned, title: "Azerbaijan Local Coordination", desc: "Local coordination support available in Azerbaijan for CIS market distribution and last-mile delivery." },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-start gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/30 transition-colors">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                      <item.icon className="w-4 h-4 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-bold text-sm mb-0.5">{item.title}</p>
+                      <p className="text-slate-500 text-xs leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </AnimatedItem>
           </AnimatedSection>
         </div>
       </section>

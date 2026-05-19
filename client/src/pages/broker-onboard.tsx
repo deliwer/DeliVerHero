@@ -254,7 +254,7 @@ export default function BrokerOnboard() {
             className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-black uppercase tracking-widest"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Broker Activation · DeliWer Dubai
+            Broker Activation · DeliWer Dubai · Real Estate · Electronics · Logistics
           </motion.div>
 
           <div className="h-24 md:h-20 flex items-center justify-center overflow-hidden">
@@ -374,6 +374,108 @@ export default function BrokerOnboard() {
               </div>
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── BROKER TRACKS ────────────────────────────────────────────────── */}
+      <section className="py-24 px-4 border-y border-white/5 bg-slate-900/30">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <Badge className="bg-sky-500/10 text-sky-400 border-sky-500/20 mb-4 font-black uppercase tracking-widest text-xs">
+              Broker Tracks
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">
+              Choose Your <span className="text-sky-400">Track</span>
+            </h2>
+            <p className="mt-3 text-gray-400 text-sm font-semibold max-w-xl mx-auto">
+              Zero inventory required · Commission-based · Remote work possible · Dubai supplier access included
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              {
+                track: "Real Estate & Flex Living",
+                desc: "Refer clients for Ejari, DEWA, move-in bundles, and Flex Living rentals. Ideal for RERA brokers and property managers.",
+                earnings: "AED 150–800+ per referral",
+                items: ["Ejari Registration", "Move-In Bundles", "DEWA Activation", "Flex Living Referrals", "Habtoor Polo (NDA)"],
+                color: "emerald",
+                highlight: true,
+              },
+              {
+                track: "Phone Flipping & Electronics",
+                desc: "Earn through Dubai electronics sourcing, logistics brokerage, and cross-border trade coordination into CIS markets.",
+                earnings: "Commission on each coordinated deal",
+                items: ["Used iPhone sourcing referrals", "Bulk electronics coordination", "CIS importer connections", "Remote inspection facilitation", "Zero inventory required"],
+                color: "sky",
+                highlight: false,
+              },
+              {
+                track: "Logistics Coordination",
+                desc: "Connect shippers, importers, and freight forwarders with ChainTrack's Dubai–Gawadar–CIS corridor. No logistics background needed.",
+                earnings: "Referral & coordination commissions",
+                items: ["Charter cargo referrals", "Freight forwarder connections", "CIS importer leads", "Shipment coordination support", "Air-sea corridor access"],
+                color: "violet",
+                highlight: false,
+              },
+              {
+                track: "Relocation & Exit Assistance",
+                desc: "Help professionals, families, and traders navigate Dubai relocation, exit support, and emergency movement coordination.",
+                earnings: "Per-service referral commissions",
+                items: ["Exit concierge referrals", "Move-in & move-out packages", "Emergency movement leads", "Charter assistance referrals", "Asset movement coordination"],
+                color: "amber",
+                highlight: false,
+              },
+            ].map((t) => {
+              const cMap: Record<string, string> = {
+                emerald: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25",
+                sky: "text-sky-400 bg-sky-500/10 border-sky-500/25",
+                violet: "text-violet-400 bg-violet-500/10 border-violet-500/25",
+                amber: "text-amber-400 bg-amber-500/10 border-amber-500/25",
+              };
+              const dotMap: Record<string, string> = {
+                emerald: "bg-emerald-500", sky: "bg-sky-500", violet: "bg-violet-500", amber: "bg-amber-500",
+              };
+              return (
+                <motion.div
+                  key={t.track}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className={`rounded-2xl border p-7 flex flex-col ${t.highlight ? "border-emerald-500/40 bg-emerald-500/5" : "border-white/8 bg-slate-950"}`}
+                >
+                  {t.highlight && (
+                    <Badge className="bg-emerald-500 text-slate-950 font-bold self-start mb-3 px-3 text-xs">Most Popular</Badge>
+                  )}
+                  <h3 className="text-xl font-black text-white mb-2">{t.track}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-4">{t.desc}</p>
+                  <div className={`text-xs font-black px-3 py-2 rounded-lg border mb-4 ${cMap[t.color]}`}>
+                    {t.earnings}
+                  </div>
+                  <ul className="space-y-2 flex-1">
+                    {t.items.map((item) => (
+                      <li key={item} className="flex items-center gap-2 text-sm text-gray-300">
+                        <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dotMap[t.color]}`} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    size="sm"
+                    onClick={activateOnWA}
+                    className="mt-6 w-full bg-slate-800 hover:bg-slate-700 text-white font-bold gap-2 border border-white/10"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Join This Track
+                  </Button>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <p className="mt-8 text-center text-xs text-gray-600 font-semibold">
+            All tracks: zero inventory · commission-based · remote work possible · Dubai supplier access · inspection support available · Azerbaijan coordination support
+          </p>
         </div>
       </section>
 

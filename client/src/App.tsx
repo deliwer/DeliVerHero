@@ -165,6 +165,7 @@ const ConciergePricingPage = lazy(() => import("@/pages/concierge-pricing-page")
 const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dubai"));
 const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
 const BrokerOnboardPage = lazy(() => import("@/pages/broker-onboard"));
+const CisElectronicsPage = lazy(() => import("@/pages/cis-electronics"));
 const BrokerSuccessPage = lazy(() => import("@/pages/broker-success"));
 const RefRedirectPage = lazy(() => import("@/pages/ref-redirect"));
 const HowToRegisterEjari = lazy(() => import("@/pages/how-to-register-ejari"));
@@ -537,6 +538,7 @@ function Router() {
         <Route path="/brokers" component={BrokerPartnerPage} />
         <Route path="/broker-onboard" component={BrokerOnboardPage} />
         <Route path="/broker-onboarding" component={BrokerOnboardPage} />
+        <Route path="/cis-electronics" component={CisElectronicsPage} />
         <Route path="/join-as-broker" component={BrokerOnboardPage} />
         <Route path="/broker-earn" component={BrokerOnboardPage} />
         <Route path="/broker-success" component={BrokerSuccessPage} />
