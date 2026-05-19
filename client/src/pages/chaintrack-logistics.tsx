@@ -896,10 +896,28 @@ export default function ChainTrackLogisticsPage() {
                 </a>
               </div>
             </AnimatedItem>
+
+            {/* CIS Electronics Callout */}
+            <AnimatedItem>
+              <div className="mt-8 flex justify-center">
+                <Link href="/cis-electronics">
+                  <div className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl border border-sky-500/40 bg-sky-500/10 hover:bg-sky-500/20 hover:border-sky-400/60 shadow-[0_0_18px_-4px_rgba(14,165,233,0.35)] hover:shadow-[0_0_24px_-4px_rgba(14,165,233,0.55)] transition-all cursor-pointer">
+                    <div className="w-7 h-7 rounded-lg bg-sky-500/20 flex items-center justify-center shrink-0">
+                      <Smartphone className="w-4 h-4 text-sky-400" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs font-black uppercase tracking-widest text-sky-300 leading-none">Featured Service</p>
+                      <p className="text-sm font-bold text-white mt-0.5">Dubai Refurbished Electronics Supply for CIS Markets</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-sky-400 group-hover:translate-x-1 transition-transform shrink-0" />
+                  </div>
+                </Link>
+              </div>
+            </AnimatedItem>
           </AnimatedSection>
 
           {/* Route Visual */}
-          <AnimatedSection className="mt-20">
+          <AnimatedSection className="mt-14">
             <AnimatedItem>
               <div className="relative flex items-center justify-center gap-4 md:gap-8">
                 <div className="text-center">
