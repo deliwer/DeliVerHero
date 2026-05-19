@@ -206,27 +206,35 @@ export function Navigation() {
 
           {/* CENTER: Nav Links (Desktop) */}
           <div className="hidden md:flex items-center gap-1 order-2 mx-auto">
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                onClick={() => navigateToItem(item.path, (item as any).external)}
-                className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
-                  (item as any).external
-                    ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
-                    : isActive(item.path)
-                    ? isLogisticsSide
-                      ? "bg-amber-500/15 text-amber-300"
-                      : isBrokerSide
-                        ? "bg-purple-500/15 text-purple-300"
-                        : "bg-emerald-500/10 text-emerald-400"
-                    : "text-gray-400 hover:text-white"
-                }`}
-                data-testid={`nav-${item.id}`}
-              >
-                {item.label}
-              </Button>
-            ))}
+            {navItems.map((item) => {
+              const isLogisticsPrimary = item.id === "ct-logistics" && isBrokerSide && !isLogisticsSide;
+              return (
+                <Button
+                  key={item.id}
+                  variant="ghost"
+                  onClick={() => navigateToItem(item.path, (item as any).external)}
+                  className={`text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
+                    (item as any).external
+                      ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                      : isLogisticsPrimary
+                      ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-[0_0_10px_-2px_rgba(245,158,11,0.4)] hover:bg-amber-500/30 hover:text-amber-200"
+                      : isActive(item.path)
+                      ? isLogisticsSide
+                        ? "bg-amber-500/15 text-amber-300"
+                        : isBrokerSide
+                          ? "bg-purple-500/15 text-purple-300"
+                          : "bg-emerald-500/10 text-emerald-400"
+                      : "text-gray-400 hover:text-white"
+                  }`}
+                  data-testid={`nav-${item.id}`}
+                >
+                  {isLogisticsPrimary && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse mr-1.5 shrink-0" />
+                  )}
+                  {item.label}
+                </Button>
+              );
+            })}
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
