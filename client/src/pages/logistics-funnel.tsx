@@ -932,28 +932,6 @@ export default function LogisticsFunnelPage() {
         </div>
       </div>
 
-      {/* ── Footer ── */}
-      <footer className="border-t border-slate-800 py-8 px-6 bg-slate-950">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-              <Anchor className="w-3.5 h-3.5 text-white" />
-            </div>
-            <div>
-              <span className="font-black text-white text-xs">DeliWer</span>
-              <span className="text-amber-400 font-black text-xs ml-1">Logistics</span>
-              <span className="text-slate-600 text-xs ml-1">· ChainTrack · DeliWer Group</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-slate-600">
-            <Link href="/logistics" className="hover:text-slate-400 transition-colors">Corridor Overview</Link>
-            <span>·</span>
-            <Link href="/freight-broker" className="hover:text-slate-400 transition-colors">Freight Broker Hub</Link>
-            <span>·</span>
-            <Link href="/" className="hover:text-slate-400 transition-colors">DeliWer</Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
