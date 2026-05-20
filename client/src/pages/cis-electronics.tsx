@@ -24,7 +24,7 @@ const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} variants={stagger} className={className}>
+    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0 }} variants={stagger} className={className}>
       {children}
     </motion.div>
   );
