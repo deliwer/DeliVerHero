@@ -7,63 +7,72 @@
 
   <!--
     DeliWer — Broker / Partner / B2B Sitemap (ChainTrack by DeliWer)
-    Target audience: RERA brokers, real estate agents, side-hustlers, affiliates, corporate clients
+    Target audience: RERA brokers, real estate agents, side-hustlers, affiliates, corporate clients,
+                     CIS electronics importers, freight forwarders, cargo brokers
     Brand: ChainTrack by DeliWer (chaintrack.ae · deliwer.com/brokers)
     Geo: UAE, Dubai (AE-DU) · Language: en-AE
-    Last updated: 2026-05-12
+    Last updated: 2026-05-20
   -->
 
   <!-- ══ BROKER PORTAL — top entry points ══ -->
-  <url><loc>https://www.deliwer.com/brokers</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/broker-onboard</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/brokers</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/broker-onboard</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/broker-move-in-support-dubai</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
 
   <!-- ══ PARTNER PROGRAMME ══ -->
-  <url><loc>https://www.deliwer.com/partners</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partners/career</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partners/join</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partners/earnings</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partners/resources</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partner-program</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partner-dashboard</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/partner-growth-kit</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/career</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/join</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/earnings</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners/resources</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partner-program</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partner-dashboard</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partner-growth-kit</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
 
   <!-- ══ EARN / AFFILIATE ══ -->
-  <url><loc>https://www.deliwer.com/earn</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/earn</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+
+  <!-- ══ CHAINTRACK LOGISTICS — Dubai–Gawadar Corridor ══ -->
+  <url><loc>https://www.deliwer.com/logistics</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/freight-broker</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/logistics-funnel</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+
+  <!-- ══ CIS ELECTRONICS — Dubai Refurbished Device Export ══ -->
+  <url><loc>https://www.deliwer.com/cis-electronics</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
 
   <!-- ══ CHAINTRACK PHONE MARKETPLACE ══ -->
-  <url><loc>https://www.deliwer.com/chaintrack</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/bulk-purchasing</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/bulk-tradein</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/fulfillment</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/membership-plans</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/chaintrack</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/bulk-purchasing</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/bulk-tradein</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/fulfillment</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/membership-plans</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
   <!-- ══ BROKER CAREER & TRAINING ══ -->
-  <url><loc>https://www.deliwer.com/career</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/transaction-support</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/career</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/transaction-support</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
 
   <!-- ══ CORPORATE & B2B ══ -->
-  <url><loc>https://www.deliwer.com/corporate</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/corporate-partner-portal</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/cobone-corporate</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.68</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/corporate</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/corporate-partner-portal</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/cobone-corporate</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.68</priority><mobile:mobile/></url>
 
   <!-- ══ RELOCATION & BUSINESS SETUP (B2B lens) ══ -->
-  <url><loc>https://www.deliwer.com/business-setup</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/relocate/business-setup</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/relocation-for-founders</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/relocation-alliance</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/business-setup</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocate/business-setup</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocation-for-founders</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/relocation-alliance</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
   <!-- ══ FLEX LIVING — broker referral entry ══ -->
-  <url><loc>https://www.deliwer.com/flex-living</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/flex-living</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
 
   <!-- ══ MARKET INTELLIGENCE — useful for broker clients ══ -->
-  <url><loc>https://www.deliwer.com/move-dubai</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/rent-increase-calculator-dubai</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/are-you-overpaying-rent-dubai</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.75</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/landlord-turnover</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-dubai</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/rent-increase-calculator-dubai</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.78</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/are-you-overpaying-rent-dubai</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/landlord-turnover</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
 
   <!-- ══ MISC / DISCOVERY ══ -->
-  <url><loc>https://www.deliwer.com/taf</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/play</loc><lastmod>2026-05-12</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/taf</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/play</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.65</priority><mobile:mobile/></url>
 
 </urlset>

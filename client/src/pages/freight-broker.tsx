@@ -37,6 +37,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -173,6 +174,19 @@ export default function FreightBrokerPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      <Helmet>
+        <title>Freight Broker Hub — Dubai Cargo Network | ChainTrack by DeliWer</title>
+        <meta name="description" content="Join ChainTrack's freight broker network. Source cargo, coordinate air and sea-air multimodal shipments, and earn per CBM on Dubai–Gawadar corridor routes." />
+        <meta name="keywords" content="freight broker Dubai, cargo broker UAE, ChainTrack freight, Dubai Gawadar freight, broker commission cargo, sea-air multimodal Dubai, cargo network UAE" />
+        <meta property="og:title" content="Freight Broker Hub — Dubai Cargo Network | ChainTrack" />
+        <meta property="og:description" content="Join ChainTrack's freight broker network. Earn per CBM. Air and sea-air cargo coordination on the Dubai–Gawadar corridor." />
+        <meta property="og:url" content="https://www.deliwer.com/freight-broker" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.deliwer.com/freight-broker" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, UAE" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── Fixed Nav ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur border-b border-slate-800">
@@ -261,6 +275,13 @@ export default function FreightBrokerPage() {
                     <ChevronDown className="w-5 h-5" />
                   </Button>
                 </a>
+                <Link href="/chaintrack">
+                  <Button size="lg" variant="outline" className="border-amber-500/40 text-amber-300 hover:bg-amber-500/10 hover:border-amber-400/60 gap-2 transition-all">
+                    <Package className="w-5 h-5" />
+                    Electronics Marketplace
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
             </Item>
           </Anim>

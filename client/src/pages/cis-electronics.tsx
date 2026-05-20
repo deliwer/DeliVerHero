@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet";
+import heroPhoneImg from "@assets/Hero_iPhone_1755786821791.avif";
 
 const WA_NUMBER = "971523946311";
 const WA_BASE = `https://wa.me/${WA_NUMBER}`;
@@ -86,20 +88,32 @@ export default function CisElectronicsPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      <Helmet>
+        <title>Dubai Refurbished iPhone &amp; Electronics Supply for CIS Markets | ChainTrack by DeliWer</title>
+        <meta name="description" content="Source refurbished iPhones, smartphones, laptops and consumer electronics from Dubai for CIS markets — Azerbaijan, Kazakhstan, Uzbekistan, Russia. Remote inspection, air cargo &amp; charter logistics via ChainTrack by DeliWer." />
+        <meta name="keywords" content="Dubai refurbished iPhone, electronics supply CIS, used phones Dubai export, Azerbaijan electronics import, Kazakhstan smartphones Dubai, Uzbekistan refurbished devices, air cargo Dubai CIS, ChainTrack logistics, Dubai electronics broker" />
+        <meta property="og:title" content="Dubai Refurbished Electronics Supply for CIS Markets | ChainTrack" />
+        <meta property="og:description" content="Access Dubai's refurbished electronics supply chain. iPhones, laptops, and consumer devices for CIS importers — broker partnerships, remote inspection, charter logistics." />
+        <meta property="og:url" content="https://www.deliwer.com/cis-electronics" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.deliwer.com/og-chaintrack-electronics.jpg" />
+        <link rel="canonical" href="https://www.deliwer.com/cis-electronics" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, UAE" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── HERO ── */}
       <section className="relative min-h-[80vh] flex items-center justify-center px-6 pt-20 pb-16 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sky-500/8 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-violet-500/8 rounded-full blur-3xl" />
-          <div
-            className="absolute inset-0 opacity-[0.025]"
-            style={{
-              backgroundImage: "linear-gradient(rgba(14,165,233,1) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,1) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
+          <img
+            src={heroPhoneImg}
+            alt="Dubai refurbished electronics supply"
+            className="absolute inset-0 w-full h-full object-cover object-center"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-950/92 via-slate-950/78 to-slate-950/88" />
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-violet-500/12 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-5xl mx-auto text-center">
@@ -138,6 +152,13 @@ export default function CisElectronicsPage() {
                     WhatsApp Us
                   </Button>
                 </a>
+                <Link href="/chaintrack">
+                  <Button size="lg" variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 hover:border-sky-400/60 font-bold px-8 gap-2 transition-all">
+                    <Smartphone className="w-5 h-5" />
+                    Browse Marketplace
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
             </Item>
           </Section>

@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet";
 
 const TOTAL_STEPS = 5;
 
@@ -523,6 +524,19 @@ export default function LogisticsFunnelPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      <Helmet>
+        <title>Join ChainTrack Freight Network — Broker Application | DeliWer</title>
+        <meta name="description" content="Apply to join ChainTrack's freight broker network. Coordinate air cargo and charter shipments on the Dubai–Gawadar corridor. Earn per CBM. Quick 5-step application." />
+        <meta name="keywords" content="join freight broker network Dubai, ChainTrack freight application, cargo broker registration UAE, Dubai Gawadar broker earn, freight network application" />
+        <meta property="og:title" content="Join ChainTrack Freight Network | DeliWer Group" />
+        <meta property="og:description" content="5-step freight broker application. Join ChainTrack's Dubai–Gawadar cargo network. Earn per CBM shipped." />
+        <meta property="og:url" content="https://www.deliwer.com/logistics-funnel" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.deliwer.com/logistics-funnel" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, UAE" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── Header ── */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/97 backdrop-blur border-b border-slate-800">

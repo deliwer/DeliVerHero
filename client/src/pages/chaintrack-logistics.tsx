@@ -52,6 +52,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Helmet } from "react-helmet";
 
 const DEMO_NUMBERS = ["CT-DXB-4821", "CT-DWC-7734", "CT-GWD-9901"];
 
@@ -772,6 +773,19 @@ export default function ChainTrackLogisticsPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      <Helmet>
+        <title>ChainTrack Logistics — Dubai–Gawadar Air Cargo Corridor | DeliWer Group</title>
+        <meta name="description" content="ChainTrack by DeliWer: Dubai–Gawadar air cargo and charter logistics. CPEC Free Zone access, Hormuz-free routing, freight broker network across UAE, Pakistan, and CIS markets." />
+        <meta name="keywords" content="Dubai Gawadar air cargo, ChainTrack logistics, freight broker Dubai, CPEC corridor shipping, charter logistics UAE, DeliWer logistics, Dubai cargo corridor, Pakistan freight" />
+        <meta property="og:title" content="ChainTrack Logistics — Dubai–Gawadar Corridor | DeliWer Group" />
+        <meta property="og:description" content="Air cargo, charter freight, and corridor logistics between Dubai and Gawadar. CPEC Free Zone access. Freight broker network." />
+        <meta property="og:url" content="https://www.deliwer.com/logistics" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.deliwer.com/logistics" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, UAE" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── Fixed Nav ── */}
       <header

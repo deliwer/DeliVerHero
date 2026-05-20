@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { Helmet } from "react-helmet";
 
 const WA_NUMBER = "971523946311";
 function openWA(msg: string) {
@@ -216,6 +217,19 @@ export default function BrokerOnboard() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-emerald-500/40">
+      <Helmet>
+        <title>Broker Onboarding — Partner Portal | ChainTrack &amp; DeliWer</title>
+        <meta name="description" content="Onboard as a DeliWer broker partner. Earn commissions on Ejari, relocation, logistics sourcing, and electronics exports. Three B2B tracks: Electronics, Logistics, Relocation." />
+        <meta name="keywords" content="broker onboarding Dubai, RERA broker partner, DeliWer broker, ChainTrack broker, earn commission Dubai relocation, Ejari broker commission, Dubai partner program" />
+        <meta property="og:title" content="Broker Onboarding — Partner Portal | DeliWer &amp; ChainTrack" />
+        <meta property="og:description" content="Join DeliWer's broker program. Three B2B tracks: Electronics export, logistics freight, and relocation concierge. Earn AED 150–800+ per client." />
+        <meta property="og:url" content="https://www.deliwer.com/broker-onboard" />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://www.deliwer.com/broker-onboard" />
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, UAE" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-4">
