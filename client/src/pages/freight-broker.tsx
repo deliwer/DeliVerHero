@@ -677,29 +677,6 @@ export default function FreightBrokerPage() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-slate-800 py-10 px-6 bg-slate-950">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-              <Route className="w-4 h-4 text-white" />
-            </div>
-            <div>
-              <span className="font-bold text-white text-sm">ChainTrack</span>
-              <span className="text-amber-400 font-semibold text-sm ml-1">FREIGHT BROKER</span>
-              <p className="text-slate-500 text-xs">A ChainTrack Logistics vertical · DeliWer Group</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-5 text-sm text-slate-500">
-            <Link href="/logistics" className="hover:text-slate-300 transition-colors">Logistics Overview</Link>
-            <span>·</span>
-            <Link href="/chaintrack" className="hover:text-slate-300 transition-colors">ChainTrack B2B</Link>
-            <span>·</span>
-            <Link href="/" className="hover:text-slate-300 transition-colors">DeliWer</Link>
-          </div>
-          <p className="text-slate-600 text-xs">© 2025 ChainTrack Logistics · DeliWer Group</p>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -1767,42 +1767,6 @@ export default function ChainTrackLogisticsPage() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="border-t border-slate-800 py-12 px-6 bg-slate-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-md shadow-amber-500/20">
-                <Anchor className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="font-black text-amber-400 text-sm tracking-tight">ChainTrack</span>
-                  <span className="font-black text-white text-sm tracking-wider">Logistics</span>
-                </div>
-                <p className="text-slate-500 text-xs">Dubai–Gawadar Corridor · DeliWer Group</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-slate-500">
-              <a href="mailto:logistics@chaintrack.com" className="hover:text-slate-300 transition-colors">
-                logistics@chaintrack.com
-              </a>
-              <span>·</span>
-              <Link href="/chaintrack" className="hover:text-slate-300 transition-colors">
-                ChainTrack B2B
-              </Link>
-              <span>·</span>
-              <Link href="/" className="hover:text-slate-300 transition-colors">
-                DeliWer
-              </Link>
-            </div>
-            <p className="text-slate-600 text-xs">
-              © 2025 ChainTrack Logistics · DeliWer Group
-            </p>
-          </div>
-        </div>
-      </footer>
-
     </div>
   );
 }
