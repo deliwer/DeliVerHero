@@ -844,6 +844,8 @@ export default function ChainTrackLogisticsPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/55 to-slate-950" />
         {/* Amber tint on left to preserve brand colour */}
         <div className="absolute inset-0 bg-gradient-to-tr from-amber-950/40 via-transparent to-transparent" />
+        {/* ── Text overlay gradient — makes hero header pop ── */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 90% 72% at 50% 44%, rgba(10,5,0,0.84) 0%, rgba(2,6,23,0.48) 58%, transparent 100%)" }} />
 
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />

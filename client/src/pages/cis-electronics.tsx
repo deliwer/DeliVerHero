@@ -112,6 +112,8 @@ export default function CisElectronicsPage() {
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/92 via-slate-950/78 to-slate-950/88" />
+          {/* ── Text overlay gradient — makes hero header pop ── */}
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 88% 70% at 50% 44%, rgba(2,6,23,0.82) 0%, rgba(2,6,23,0.42) 56%, transparent 100%)" }} />
           <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-violet-500/12 rounded-full blur-3xl" />
         </div>

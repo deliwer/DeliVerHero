@@ -234,6 +234,8 @@ export default function FreightBrokerPage() {
             backgroundSize: "50px 50px",
           }}
         />
+        {/* ── Text overlay gradient — makes hero header pop ── */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 88% 70% at 50% 48%, rgba(2,6,23,0.80) 0%, rgba(2,6,23,0.38) 58%, transparent 100%)" }} />
 
         <div className="relative max-w-6xl mx-auto text-center">
           <Anim>
