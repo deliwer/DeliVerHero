@@ -1096,6 +1096,74 @@ export default function ChainTrackPage() {
         </div>
       </section>
 
+      {/* ── Phone Flipper Track Gateway ── */}
+      <section className="border-t border-purple-500/20 bg-gradient-to-br from-purple-950/40 via-[#0A0F1E] to-violet-950/30 py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/30 mb-5">
+                <Smartphone className="w-3.5 h-3.5 text-purple-400" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-purple-300">Remote Work · Worldwide</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+                Join the <span className="text-purple-400">Phone Flipper</span> Track
+              </h2>
+              <p className="text-slate-400 mb-6 leading-relaxed">
+                The main onboarding track for ChainTrack. Buy verified lots at reverse-auction prices, flip to local retail channels, and earn. 100% remote — operate from anywhere in the world.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  { earn: "Starter Flipper", action: "Buy 5 units/month", income: "AED 500–1,500", note: "Weekend side hustle" },
+                  { earn: "Active Flipper", action: "Buy 25 units/month", income: "AED 2,500–7,500", note: "Part-time operation" },
+                  { earn: "Pro Flipper", action: "Buy 100+ units/month", income: "AED 10,000–30,000+", note: "Full-time business" },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-center justify-between bg-[#0D1424] border border-purple-500/20 rounded-xl px-4 py-3">
+                    <div>
+                      <div className="text-xs font-black text-white">{row.earn}</div>
+                      <div className="text-[11px] text-slate-500">{row.action} · {row.note}</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm font-black text-purple-300">{row.income}</div>
+                      <div className="text-[10px] text-slate-600 uppercase tracking-wider">monthly</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/partners#phone-flipper-track">
+                  <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-main">
+                    <Smartphone className="w-4 h-4" />
+                    Join Phone Flipper Track
+                  </Button>
+                </Link>
+                <a href="https://wa.me/971523946311?text=Hi%20DeliWer!%20I%20want%20to%20join%20the%20*Phone%20Flipper%20Track*%20and%20start%20buying%2C%20flipping%20and%20earning%20on%20devices%20via%20ChainTrack." target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-whatsapp">
+                    <SiWhatsapp className="w-4 h-4" />
+                    WhatsApp to Apply
+                  </Button>
+                </a>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { icon: Globe, title: "Worldwide", desc: "Operate from any country. Buy lots on ChainTrack, sell locally.", color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
+                { icon: Shield, title: "Verified Lots", desc: "Every device IMEI-checked, graded and escrowed before you bid.", color: "text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/20" },
+                { icon: TrendingDown, title: "Reverse Auction", desc: "Suppliers compete down. You win at the lowest price available.", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+                { icon: Zap, title: "Fast Onboarding", desc: "Apply via WhatsApp. KYC in 24h. First lot within 72h.", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
+                { icon: Users, title: "Flipper Network", desc: "Join a community of active flippers across 30+ countries.", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+                { icon: Award, title: "Tier Rewards", desc: "Volume bonuses, priority lot access, and dedicated ops at scale.", color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+              ].map((card, i) => (
+                <div key={i} className={`rounded-2xl border p-4 ${card.bg}`}>
+                  <card.icon className={`w-5 h-5 ${card.color} mb-2`} />
+                  <div className="font-black text-white text-sm mb-1">{card.title}</div>
+                  <div className="text-[11px] text-slate-400 leading-relaxed">{card.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

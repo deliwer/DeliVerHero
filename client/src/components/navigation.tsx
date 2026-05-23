@@ -358,7 +358,7 @@ export function Navigation() {
       )}
       {/* ── Logistics CTA Bar — broker non-logistics pages only ── */}
       {isBrokerSide && !isManagementSide && !isLogisticsSide && (
-        <LogisticsCTABar variant="banner" />
+        <LogisticsCTABar variant={isDeepChaintrack ? "chaintrack" : "banner"} />
       )}
       {/* ── Management breadcrumb bar — admin/marketing paths only ── */}
       {isManagementSide && (
