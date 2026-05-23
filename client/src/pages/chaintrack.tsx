@@ -39,12 +39,18 @@ const LIVE_LOTS = [
 ];
 
 const CIS_MARKETS = [
+  { name: "Russia", flag: "🇷🇺", city: "Moscow", demand: 99, volume: "85k units/mo" },
   { name: "Kazakhstan", flag: "🇰🇿", city: "Almaty", demand: 98, volume: "12k units/mo" },
   { name: "Uzbekistan", flag: "🇺🇿", city: "Tashkent", demand: 91, volume: "9k units/mo" },
   { name: "Azerbaijan", flag: "🇦🇿", city: "Baku", demand: 87, volume: "7k units/mo" },
   { name: "Georgia", flag: "🇬🇪", city: "Tbilisi", demand: 82, volume: "4k units/mo" },
   { name: "Kyrgyzstan", flag: "🇰🇬", city: "Bishkek", demand: 79, volume: "3k units/mo" },
   { name: "Tajikistan", flag: "🇹🇯", city: "Dushanbe", demand: 74, volume: "2k units/mo" },
+  { name: "Turkmenistan", flag: "🇹🇲", city: "Ashgabat", demand: 68, volume: "1.5k units/mo" },
+  { name: "Armenia", flag: "🇦🇲", city: "Yerevan", demand: 72, volume: "1.8k units/mo" },
+  { name: "Belarus", flag: "🇧🇾", city: "Minsk", demand: 76, volume: "3k units/mo" },
+  { name: "Moldova", flag: "🇲🇩", city: "Chișinău", demand: 65, volume: "1k units/mo" },
+  { name: "Mongolia", flag: "🇲🇳", city: "Ulaanbaatar", demand: 61, volume: "800 units/mo" },
 ];
 
 const TICKER_ITEMS = [
@@ -489,7 +495,7 @@ export default function ChainTrackPage() {
               { value: "15,000+", label: "Verified Trades", icon: CheckCircle2, color: "text-emerald-400" },
               { value: "$280M+", label: "GMV Processed", icon: DollarSign, color: "text-cyan-400" },
               { value: "420+", label: "Active Suppliers", icon: Building2, color: "text-blue-400" },
-              { value: "6", label: "CIS Markets", icon: Globe, color: "text-purple-400" },
+              { value: "12", label: "CIS Markets", icon: Globe, color: "text-purple-400" },
             ].map((s, i) => (
               <div key={i} className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-4">
                 <s.icon className={`w-5 h-5 ${s.color} mb-2`} />
@@ -757,7 +763,7 @@ export default function ChainTrackPage() {
               <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-3">Target Markets</div>
               <h2 className="text-3xl md:text-4xl font-black text-white mb-5">CIS & Central Asia Retail Channels</h2>
               <p className="text-slate-400 mb-8 leading-relaxed">
-                The fastest-growing used iPhone markets globally. Dubai serves as the ideal re-export hub — zero tariffs at DAFZA, direct air connections, and ChainTrack's established retail network across 6 countries.
+                The fastest-growing used iPhone markets globally. Dubai serves as the ideal re-export hub — zero tariffs at DAFZA, direct air connections, and ChainTrack's established retail network across 12 countries.
               </p>
               <div className="space-y-3">
                 {CIS_MARKETS.map((m, i) => (
@@ -976,50 +982,6 @@ export default function ChainTrackPage() {
         </div>
       </section>
 
-      {/* ── CTA footer ── */}
-      <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
-        <div className="container mx-auto px-4 max-w-4xl text-center">
-          <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-4">Join ChainTrack</div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Ready to Bid?</h2>
-          <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
-            Verified buyers and suppliers only. KYC/AML required. Escrow protection on every deal.
-            Operate from Dubai — sell to the world.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center mb-10">
-            <Button size="lg" className="gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest" data-testid="button-cta-buyer">
-              <Shield className="w-5 h-5" />
-              Register as Buyer
-            </Button>
-            <ListLotDialog />
-            <a href="https://wa.me/971523946311?text=ChainTrack%20enquiry" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="gap-2 border-[#1E293B] text-slate-300 hover:border-emerald-500/50 hover:text-emerald-400 font-bold uppercase tracking-widest" data-testid="button-cta-whatsapp">
-                <SiWhatsapp className="w-5 h-5" />
-                WhatsApp Us
-              </Button>
-            </a>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-[11px] text-slate-500">
-            <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5 text-cyan-400" />KYC/AML Verified</span>
-            <span className="flex items-center gap-1.5"><Lock className="w-3.5 h-3.5 text-cyan-400" />DAFZA Escrow</span>
-            <span className="flex items-center gap-1.5"><Plane className="w-3.5 h-3.5 text-cyan-400" />1FLT Charter</span>
-            <span className="flex items-center gap-1.5"><Globe className="w-3.5 h-3.5 text-cyan-400" />CIS & Central Asia</span>
-            <span className="flex items-center gap-1.5"><Award className="w-3.5 h-3.5 text-cyan-400" />15,000+ Trades</span>
-          </div>
-          <div className="mt-10 pt-8 border-t border-[#1E293B] flex items-center justify-center gap-6 text-[11px] text-slate-500">
-            <span>chaintrack.com</span>
-            <span>·</span>
-            <a href="mailto:b2b@deliwer.com" className="hover:text-slate-300 transition-colors">b2b@deliwer.com</a>
-            <span>·</span>
-            <a href="https://linkedin.com/company/chaintrack" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-blue-400 transition-colors">
-              <SiLinkedin className="w-3.5 h-3.5" />LinkedIn
-            </a>
-            <span>·</span>
-            <Link href="/chaintrack-logistics">
-              <span className="hover:text-slate-300 cursor-pointer transition-colors">Logistics →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

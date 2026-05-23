@@ -87,6 +87,7 @@ const chaintrackNavItems = [
 const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics"];
 
 const logisticsNavItems = [
+  { path: "/chaintrack",       label: "Marketplace",    id: "lg-marketplace",  icon: LayoutGrid },
   { path: "/logistics",        label: "Corridor",       id: "lg-corridor",     icon: Anchor },
   { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics", icon: Package },
   { path: "/freight-broker",   label: "Freight Hub",    id: "lg-freight",      icon: Route },
