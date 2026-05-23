@@ -609,7 +609,7 @@ export default function ChainTrackPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-          <TabsList className="bg-[#0D1424] border border-[#1E293B] p-1">
+          <TabsList className="border border-[#1E293B] p-1 bg-[#ffffff]">
             <TabsTrigger value="live" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-xs uppercase tracking-widest" data-testid="tab-live">
               <Radio className="w-3 h-3 mr-1.5" />
               Live Auctions <Badge className="ml-1.5 bg-red-500 text-white text-[9px] px-1.5">{LIVE_LOTS.length}</Badge>
