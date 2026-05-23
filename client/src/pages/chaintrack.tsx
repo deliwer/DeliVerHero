@@ -53,6 +53,37 @@ const CIS_MARKETS = [
   { name: "Mongolia", flag: "🇲🇳", city: "Ulaanbaatar", demand: 61, volume: "800 units/mo" },
 ];
 
+const EUROPE_MARKETS = [
+  { name: "Turkey", flag: "🇹🇷", city: "Istanbul", demand: 94, volume: "22k units/mo" },
+  { name: "Germany", flag: "🇩🇪", city: "Berlin", demand: 88, volume: "18k units/mo" },
+  { name: "United Kingdom", flag: "🇬🇧", city: "London", demand: 85, volume: "15k units/mo" },
+  { name: "France", flag: "🇫🇷", city: "Paris", demand: 83, volume: "14k units/mo" },
+  { name: "Poland", flag: "🇵🇱", city: "Warsaw", demand: 79, volume: "8k units/mo" },
+  { name: "Romania", flag: "🇷🇴", city: "Bucharest", demand: 74, volume: "5k units/mo" },
+  { name: "Ukraine", flag: "🇺🇦", city: "Kyiv", demand: 71, volume: "4k units/mo" },
+  { name: "Netherlands", flag: "🇳🇱", city: "Amsterdam", demand: 68, volume: "3.5k units/mo" },
+];
+
+const AFRICA_MARKETS = [
+  { name: "Nigeria", flag: "🇳🇬", city: "Lagos", demand: 92, volume: "30k units/mo" },
+  { name: "Egypt", flag: "🇪🇬", city: "Cairo", demand: 88, volume: "20k units/mo" },
+  { name: "Kenya", flag: "🇰🇪", city: "Nairobi", demand: 84, volume: "12k units/mo" },
+  { name: "South Africa", flag: "🇿🇦", city: "Johannesburg", demand: 81, volume: "10k units/mo" },
+  { name: "Ghana", flag: "🇬🇭", city: "Accra", demand: 76, volume: "6k units/mo" },
+  { name: "Tanzania", flag: "🇹🇿", city: "Dar es Salaam", demand: 71, volume: "4k units/mo" },
+  { name: "Ethiopia", flag: "🇪🇹", city: "Addis Ababa", demand: 67, volume: "3k units/mo" },
+  { name: "Morocco", flag: "🇲🇦", city: "Casablanca", demand: 73, volume: "5k units/mo" },
+];
+
+const SOUTHASIA_MARKETS = [
+  { name: "Pakistan", flag: "🇵🇰", city: "Karachi", demand: 96, volume: "40k units/mo" },
+  { name: "Bangladesh", flag: "🇧🇩", city: "Dhaka", demand: 89, volume: "18k units/mo" },
+  { name: "Sri Lanka", flag: "🇱🇰", city: "Colombo", demand: 82, volume: "7k units/mo" },
+  { name: "Nepal", flag: "🇳🇵", city: "Kathmandu", demand: 77, volume: "4k units/mo" },
+  { name: "Afghanistan", flag: "🇦🇫", city: "Kabul", demand: 72, volume: "3k units/mo" },
+  { name: "Maldives", flag: "🇲🇻", city: "Malé", demand: 58, volume: "500 units/mo" },
+];
+
 const TICKER_ITEMS = [
   "🔴 LIVE: CT-CN-8843 iPhone 12 Mix — new bid $142 · 47 bids",
   "✅ CLOSED: CT-US-3301 iPhone 15 Pro Max — won at $481 by Almaty buyer",
@@ -428,6 +459,7 @@ export default function ChainTrackPage() {
   const [filterWarehouse, setFilterWarehouse] = useState("all");
   const [activeTab, setActiveTab] = useState("live");
   const [showFilters, setShowFilters] = useState(false);
+  const [openMarketBlocks, setOpenMarketBlocks] = useState<Record<string, boolean>>({});
 
   const filteredLots = LIVE_LOTS.filter(lot => {
     if (searchQuery && !lot.model.toLowerCase().includes(searchQuery.toLowerCase()) && !lot.id.toLowerCase().includes(searchQuery.toLowerCase())) return false;
@@ -795,6 +827,88 @@ export default function ChainTrackPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Additional Market Blocks ── */}
+      <section className="bg-[#0A0F1E] pb-10">
+        <div className="container mx-auto px-4 max-w-7xl space-y-3">
+          {[
+            {
+              key: "europe",
+              label: "Europe",
+              subtitle: "8 Markets · 89.5k units/mo",
+              accent: "text-blue-400",
+              border: "border-blue-500/30",
+              bg: "bg-blue-500/5",
+              pill: "bg-blue-500/20 text-blue-300",
+              bar: "from-blue-500 to-indigo-500",
+              markets: EUROPE_MARKETS,
+            },
+            {
+              key: "africa",
+              label: "Africa",
+              subtitle: "8 Markets · 90k units/mo",
+              accent: "text-amber-400",
+              border: "border-amber-500/30",
+              bg: "bg-amber-500/5",
+              pill: "bg-amber-500/20 text-amber-300",
+              bar: "from-amber-500 to-orange-500",
+              markets: AFRICA_MARKETS,
+            },
+            {
+              key: "southasia",
+              label: "South Asia",
+              subtitle: "6 Markets · 72.5k units/mo",
+              accent: "text-emerald-400",
+              border: "border-emerald-500/30",
+              bg: "bg-emerald-500/5",
+              pill: "bg-emerald-500/20 text-emerald-300",
+              bar: "from-emerald-500 to-teal-500",
+              markets: SOUTHASIA_MARKETS,
+            },
+          ].map((block) => {
+            const isOpen = !!openMarketBlocks[block.key];
+            return (
+              <div key={block.key} className={`rounded-2xl border ${block.border} ${block.bg} overflow-hidden`}>
+                <button
+                  className="w-full flex items-center justify-between px-6 py-4 text-left"
+                  onClick={() => setOpenMarketBlocks(prev => ({ ...prev, [block.key]: !prev[block.key] }))}
+                  data-testid={`toggle-market-${block.key}`}
+                >
+                  <div className="flex items-center gap-4">
+                    <Globe className={`w-5 h-5 ${block.accent} shrink-0`} />
+                    <div>
+                      <span className={`font-black text-white text-base`}>{block.label}</span>
+                      <span className={`ml-3 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${block.pill}`}>{block.subtitle}</span>
+                    </div>
+                  </div>
+                  {isOpen ? <ChevronUp className={`w-4 h-4 ${block.accent}`} /> : <ChevronDown className={`w-4 h-4 ${block.accent}`} />}
+                </button>
+                {isOpen && (
+                  <div className="px-6 pb-6">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                      {block.markets.map((m, i) => (
+                        <div key={i} className="flex items-center gap-3 bg-[#0D1424] border border-[#1E293B] rounded-xl p-3">
+                          <span className="text-xl shrink-0">{m.flag}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="font-bold text-white text-xs truncate">{m.name}</span>
+                              <span className="text-[9px] text-slate-500 font-bold ml-1 shrink-0">{m.volume}</span>
+                            </div>
+                            <div className="w-full bg-[#070B14] rounded-full h-1">
+                              <div className={`h-1 rounded-full bg-gradient-to-r ${block.bar}`} style={{ width: `${m.demand}%` }} />
+                            </div>
+                          </div>
+                          <span className={`text-[10px] font-black ${block.accent} w-7 text-right shrink-0`}>{m.demand}%</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
