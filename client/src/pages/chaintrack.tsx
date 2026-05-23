@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { SEOMeta } from "@/components/seo-meta";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -472,6 +473,14 @@ export default function ChainTrackPage() {
 
   return (
     <div className="min-h-screen bg-[#070B14] text-white">
+      <SEOMeta
+        title="ChainTrack — World's #1 Reverse Auction Marketplace for Used iPhones | Dubai"
+        description="ChainTrack is Dubai's B2B reverse auction platform for used iPhones. Suppliers from US, China & India compete on price. DAFZA & Commercity escrow. 34 markets served: CIS, Europe, Africa & South Asia. Join as Phone Flipper — buy verified lots, flip locally, earn globally."
+        canonical="https://www.deliwer.com/chaintrack"
+        keywords="used iPhone wholesale Dubai, reverse auction iPhones, buy used iPhones bulk Dubai, DAFZA electronics escrow, used iPhone export Dubai, CIS iPhone market, phone flipper Dubai, refurbished iPhone wholesale, ChainTrack marketplace, iPhone lots Dubai, bulk iPhone purchase, B2B phone marketplace, used iPhone Kazakhstan, used iPhone Russia, used iPhone Africa, iPhone wholesale supplier Dubai, reverse bid marketplace, phone flipper track"
+        ogType="website"
+        dateModified="2026-05-23"
+      />
       <LiveTicker />
 
       {/* ── Hero ── */}
@@ -787,128 +796,121 @@ export default function ChainTrackPage() {
         </div>
       </section>
 
-      {/* ── CIS & Central Asia Markets ── */}
+      {/* ── Target Markets — all collapsible ── */}
       <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Header + Dubai image */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center mb-10">
             <div>
               <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-3">Target Markets</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">CIS & Central Asia Retail Channels</h2>
-              <p className="text-slate-400 mb-8 leading-relaxed">
-                The fastest-growing used iPhone markets globally. Dubai serves as the ideal re-export hub — zero tariffs at DAFZA, direct air connections, and ChainTrack's established retail network across 12 countries.
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">34 Markets Covered from Dubai</h2>
+              <p className="text-slate-400 leading-relaxed">
+                Dubai DAFZA & Commercity serve as the zero-tariff re-export hub for ChainTrack's network across CIS, Europe, Africa and South Asia. Click any region to explore demand data.
               </p>
-              <div className="space-y-3">
-                {CIS_MARKETS.map((m, i) => (
-                  <div key={i} className="flex items-center gap-4 bg-[#0D1424] border border-[#1E293B] rounded-xl p-3">
-                    <span className="text-2xl">{m.flag}</span>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="font-bold text-white text-sm">{m.name}</span>
-                        <span className="text-[10px] text-slate-500 font-bold">{m.volume}</span>
-                      </div>
-                      <div className="w-full bg-[#070B14] rounded-full h-1.5">
-                        <div className="h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500" style={{ width: `${m.demand}%` }} />
-                      </div>
-                    </div>
-                    <span className="text-[11px] font-black text-purple-400 w-8 text-right">{m.demand}%</span>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="relative">
-              <img src={dubaiHubImage} alt="Dubai air freight hub" className="rounded-2xl w-full object-cover h-[400px] opacity-70" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent rounded-2xl" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-[#0D1424]/90 backdrop-blur-sm border border-[#1E293B] rounded-xl p-4">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-1">Dubai Re-Export Hub</div>
+              <img src={dubaiHubImage} alt="Dubai air freight hub" className="rounded-2xl w-full object-cover h-[260px] opacity-70" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1E] via-transparent to-transparent rounded-2xl" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-[#0D1424]/90 backdrop-blur-sm border border-[#1E293B] rounded-xl p-3">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-0.5">Dubai Re-Export Hub</div>
                   <div className="font-black text-white text-sm">DAFZA · Commercity · DWC Airport</div>
-                  <div className="text-[11px] text-slate-400 mt-1">0% duty, escrow protection, same-day clearance</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">0% duty · escrow protection · same-day clearance</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── Additional Market Blocks ── */}
-      <section className="bg-[#0A0F1E] pb-10">
-        <div className="container mx-auto px-4 max-w-7xl space-y-3">
-          {[
-            {
-              key: "europe",
-              label: "Europe",
-              subtitle: "8 Markets · 89.5k units/mo",
-              accent: "text-blue-400",
-              border: "border-blue-500/30",
-              bg: "bg-blue-500/5",
-              pill: "bg-blue-500/20 text-blue-300",
-              bar: "from-blue-500 to-indigo-500",
-              markets: EUROPE_MARKETS,
-            },
-            {
-              key: "africa",
-              label: "Africa",
-              subtitle: "8 Markets · 90k units/mo",
-              accent: "text-amber-400",
-              border: "border-amber-500/30",
-              bg: "bg-amber-500/5",
-              pill: "bg-amber-500/20 text-amber-300",
-              bar: "from-amber-500 to-orange-500",
-              markets: AFRICA_MARKETS,
-            },
-            {
-              key: "southasia",
-              label: "South Asia",
-              subtitle: "6 Markets · 72.5k units/mo",
-              accent: "text-emerald-400",
-              border: "border-emerald-500/30",
-              bg: "bg-emerald-500/5",
-              pill: "bg-emerald-500/20 text-emerald-300",
-              bar: "from-emerald-500 to-teal-500",
-              markets: SOUTHASIA_MARKETS,
-            },
-          ].map((block) => {
-            const isOpen = !!openMarketBlocks[block.key];
-            return (
-              <div key={block.key} className={`rounded-2xl border ${block.border} ${block.bg} overflow-hidden`}>
-                <button
-                  className="w-full flex items-center justify-between px-6 py-4 text-left"
-                  onClick={() => setOpenMarketBlocks(prev => ({ ...prev, [block.key]: !prev[block.key] }))}
-                  data-testid={`toggle-market-${block.key}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <Globe className={`w-5 h-5 ${block.accent} shrink-0`} />
-                    <div>
-                      <span className={`font-black text-white text-base`}>{block.label}</span>
-                      <span className={`ml-3 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${block.pill}`}>{block.subtitle}</span>
+          {/* Collapsible market blocks */}
+          <div className="space-y-3">
+            {[
+              {
+                key: "cis",
+                label: "CIS & Central Asia",
+                subtitle: "12 Markets · 134k units/mo",
+                accent: "text-purple-400",
+                border: "border-purple-500/30",
+                bg: "bg-purple-500/5",
+                pill: "bg-purple-500/20 text-purple-300",
+                bar: "from-purple-500 to-cyan-500",
+                markets: CIS_MARKETS,
+              },
+              {
+                key: "europe",
+                label: "Europe",
+                subtitle: "8 Markets · 89.5k units/mo",
+                accent: "text-blue-400",
+                border: "border-blue-500/30",
+                bg: "bg-blue-500/5",
+                pill: "bg-blue-500/20 text-blue-300",
+                bar: "from-blue-500 to-indigo-500",
+                markets: EUROPE_MARKETS,
+              },
+              {
+                key: "africa",
+                label: "Africa",
+                subtitle: "8 Markets · 90k units/mo",
+                accent: "text-amber-400",
+                border: "border-amber-500/30",
+                bg: "bg-amber-500/5",
+                pill: "bg-amber-500/20 text-amber-300",
+                bar: "from-amber-500 to-orange-500",
+                markets: AFRICA_MARKETS,
+              },
+              {
+                key: "southasia",
+                label: "South Asia",
+                subtitle: "6 Markets · 72.5k units/mo",
+                accent: "text-emerald-400",
+                border: "border-emerald-500/30",
+                bg: "bg-emerald-500/5",
+                pill: "bg-emerald-500/20 text-emerald-300",
+                bar: "from-emerald-500 to-teal-500",
+                markets: SOUTHASIA_MARKETS,
+              },
+            ].map((block) => {
+              const isOpen = !!openMarketBlocks[block.key];
+              return (
+                <div key={block.key} className={`rounded-2xl border ${block.border} ${block.bg} overflow-hidden`}>
+                  <button
+                    className="w-full flex items-center justify-between px-6 py-4 text-left"
+                    onClick={() => setOpenMarketBlocks(prev => ({ ...prev, [block.key]: !prev[block.key] }))}
+                    data-testid={`toggle-market-${block.key}`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <Globe className={`w-5 h-5 ${block.accent} shrink-0`} />
+                      <div>
+                        <span className="font-black text-white text-base">{block.label}</span>
+                        <span className={`ml-3 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${block.pill}`}>{block.subtitle}</span>
+                      </div>
                     </div>
-                  </div>
-                  {isOpen ? <ChevronUp className={`w-4 h-4 ${block.accent}`} /> : <ChevronDown className={`w-4 h-4 ${block.accent}`} />}
-                </button>
-                {isOpen && (
-                  <div className="px-6 pb-6">
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-                      {block.markets.map((m, i) => (
-                        <div key={i} className="flex items-center gap-3 bg-[#0D1424] border border-[#1E293B] rounded-xl p-3">
-                          <span className="text-xl shrink-0">{m.flag}</span>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between mb-1">
-                              <span className="font-bold text-white text-xs truncate">{m.name}</span>
-                              <span className="text-[9px] text-slate-500 font-bold ml-1 shrink-0">{m.volume}</span>
+                    {isOpen ? <ChevronUp className={`w-4 h-4 ${block.accent}`} /> : <ChevronDown className={`w-4 h-4 ${block.accent}`} />}
+                  </button>
+                  {isOpen && (
+                    <div className="px-6 pb-6">
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
+                        {block.markets.map((m, i) => (
+                          <div key={i} className="flex items-center gap-3 bg-[#0D1424] border border-[#1E293B] rounded-xl p-3">
+                            <span className="text-xl shrink-0">{m.flag}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-bold text-white text-xs truncate">{m.name}</span>
+                                <span className="text-[9px] text-slate-500 font-bold ml-1 shrink-0">{m.volume}</span>
+                              </div>
+                              <div className="w-full bg-[#070B14] rounded-full h-1">
+                                <div className={`h-1 rounded-full bg-gradient-to-r ${block.bar}`} style={{ width: `${m.demand}%` }} />
+                              </div>
                             </div>
-                            <div className="w-full bg-[#070B14] rounded-full h-1">
-                              <div className={`h-1 rounded-full bg-gradient-to-r ${block.bar}`} style={{ width: `${m.demand}%` }} />
-                            </div>
+                            <span className={`text-[10px] font-black ${block.accent} w-7 text-right shrink-0`}>{m.demand}%</span>
                           </div>
-                          <span className={`text-[10px] font-black ${block.accent} w-7 text-right shrink-0`}>{m.demand}%</span>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

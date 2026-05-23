@@ -8,10 +8,10 @@
   <!--
     DeliWer — Broker / Partner / B2B Sitemap (ChainTrack by DeliWer)
     Target audience: RERA brokers, real estate agents, side-hustlers, affiliates, corporate clients,
-                     CIS electronics importers, freight forwarders, cargo brokers
+                     CIS electronics importers, freight forwarders, cargo brokers, phone flippers
     Brand: ChainTrack by DeliWer (chaintrack.ae · deliwer.com/brokers)
     Geo: UAE, Dubai (AE-DU) · Language: en-AE
-    Last updated: 2026-05-20
+    Last updated: 2026-05-23
   -->
 
   <!-- ══ BROKER PORTAL — top entry points ══ -->
@@ -40,12 +40,13 @@
   <!-- ══ CIS ELECTRONICS — Dubai Refurbished Device Export ══ -->
   <url><loc>https://www.deliwer.com/cis-electronics</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.90</priority><mobile:mobile/></url>
 
-  <!-- ══ CHAINTRACK PHONE MARKETPLACE ══ -->
-  <url><loc>https://www.deliwer.com/chaintrack</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.85</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/bulk-purchasing</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/bulk-tradein</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/fulfillment</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
-  <url><loc>https://www.deliwer.com/membership-plans</loc><lastmod>2026-05-20</lastmod><changefreq>monthly</changefreq><priority>0.72</priority><mobile:mobile/></url>
+  <!-- ══ CHAINTRACK PHONE MARKETPLACE — primary B2B electronics hub ══ -->
+  <url><loc>https://www.deliwer.com/chaintrack</loc><lastmod>2026-05-23</lastmod><changefreq>daily</changefreq><priority>0.97</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/partners</loc><lastmod>2026-05-23</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/bulk-purchasing</loc><lastmod>2026-05-23</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/bulk-tradein</loc><lastmod>2026-05-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/fulfillment</loc><lastmod>2026-05-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/membership-plans</loc><lastmod>2026-05-23</lastmod><changefreq>monthly</changefreq><priority>0.75</priority><mobile:mobile/></url>
 
   <!-- ══ BROKER CAREER & TRAINING ══ -->
   <url><loc>https://www.deliwer.com/career</loc><lastmod>2026-05-20</lastmod><changefreq>weekly</changefreq><priority>0.82</priority><mobile:mobile/></url>

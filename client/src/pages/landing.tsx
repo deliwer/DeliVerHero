@@ -18,6 +18,7 @@ import {
   Key,
   Flame,
   Zap,
+  Smartphone,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
@@ -229,6 +230,32 @@ export default function LandingPage() {
                   <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Just Signed?</div>
                   <div className="text-[9px] text-gray-400 font-medium leading-tight">Post-deal support</div>
                 </div>
+              </div>
+            </Link>
+          </motion.div>
+
+          {/* ── ChainTrack Electronics Discovery ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.28 }}
+            className="max-w-2xl mx-auto w-full"
+          >
+            <Link href="/chaintrack" data-testid="funnel-btn-chaintrack">
+              <div className="group flex items-center justify-between gap-4 px-5 py-3.5 bg-cyan-500/8 backdrop-blur-sm border border-cyan-500/30 hover:border-cyan-500/60 hover:bg-cyan-500/12 rounded-xl transition-all">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-cyan-500/15 rounded-lg flex items-center justify-center group-hover:bg-cyan-500/25 transition-all shrink-0">
+                    <Smartphone className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <div>
+                    <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight flex items-center gap-2">
+                      ChainTrack · Used iPhone Marketplace
+                      <span className="bg-cyan-500 text-slate-950 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full">B2B</span>
+                    </div>
+                    <div className="text-[9px] text-cyan-400/80 font-semibold leading-tight">Reverse auction · 34 markets · Phone Flipper Track open</div>
+                  </div>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </Link>
           </motion.div>
