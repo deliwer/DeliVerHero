@@ -90,8 +90,24 @@ export default function ChainTrackGradingPage() {
         description="Remote sourcing confidence powered by institutional grading standards. Automated diagnostics, standardized cosmetic grading, battery testing, and video inspection delivery."
       />
 
+      {/* Breadcrumb nav */}
+      <div className="border-b border-[#1E293B] bg-[#060A15]">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between flex-wrap gap-2">
+          <Link href="/chaintrack" className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-cyan-400 transition-colors font-bold">
+            <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+            ChainTrack Marketplace
+          </Link>
+          <div className="flex items-center gap-4">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">Also explore</span>
+            <Link href="/chaintrack-sourcing" className="flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 transition-colors font-bold">
+              Remote Sourcing <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Hero */}
-      <section className="relative overflow-hidden pt-20 pb-16 border-b border-[#1E293B]">
+      <section className="relative overflow-hidden pt-16 pb-16 border-b border-[#1E293B]">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-transparent to-blue-900/10 pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6">
@@ -278,9 +294,31 @@ export default function ChainTrackGradingPage() {
         </div>
       </section>
 
+      {/* Sourcing cross-link callout */}
+      <div className="border-t border-b border-[#1E293B] bg-[#060A15] py-5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-cyan-500/5 border border-cyan-500/20 rounded-2xl px-6 py-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
+                <Search className="w-4 h-4 text-cyan-400" />
+              </div>
+              <div>
+                <div className="text-xs font-black text-white">Don't see your product in the live auctions?</div>
+                <div className="text-[11px] text-slate-500">Submit a custom sourcing request — agents aggregate suppliers and arrange grading for you</div>
+              </div>
+            </div>
+            <Link href="/chaintrack-sourcing" className="shrink-0">
+              <Button size="sm" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-[10px] gap-1.5">
+                <Search className="w-3 h-3" /> Submit Sourcing Request
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+
       {/* Verified by ChainTrack Banner */}
       <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6 space-y-5">
           <FadeIn>
             <div className="bg-gradient-to-br from-cyan-900/30 to-blue-900/20 border border-cyan-500/20 rounded-3xl p-10 text-center">
               <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full px-4 py-2 mb-6">
@@ -299,12 +337,24 @@ export default function ChainTrackGradingPage() {
                     <SiWhatsapp className="w-4 h-4" /> Request Grading for My Lot
                   </Button>
                 </a>
-                <Link href="/chaintrack">
-                  <Button variant="outline" className="border-[#1E293B] text-slate-300 hover:text-white font-bold uppercase tracking-widest text-xs gap-2">
-                    Browse Live Auctions <ArrowRight className="w-4 h-4" />
+                <Link href="/chaintrack-sourcing">
+                  <Button className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs gap-2">
+                    <Search className="w-4 h-4" /> Submit Sourcing Request
                   </Button>
                 </Link>
               </div>
+            </div>
+          </FadeIn>
+          {/* Page navigation row */}
+          <FadeIn delay={0.1}>
+            <div className="flex flex-col sm:flex-row gap-3 justify-between items-center border border-[#1E293B] rounded-2xl px-6 py-4 bg-[#0D1424]">
+              <Link href="/chaintrack" className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors font-bold">
+                <ArrowRight className="w-3.5 h-3.5 rotate-180" /> Back to Live Auctions
+              </Link>
+              <span className="text-[10px] text-slate-700 hidden sm:block">·</span>
+              <Link href="/chaintrack-sourcing" className="flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 transition-colors font-bold">
+                <Search className="w-3.5 h-3.5" /> Browse Sourcing Requests <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
           </FadeIn>
         </div>
