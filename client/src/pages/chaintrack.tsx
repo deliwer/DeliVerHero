@@ -1400,6 +1400,132 @@ export default function ChainTrackPage() {
         </div>
       </section>
 
+      {/* ── Real Customer Reviews ── */}
+      <section className="py-20 bg-[#0A0F1E] border-t border-[#1E293B]">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-amber-400 mb-3">Verified Buyers</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Real Traders. Real Results.</h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm">
+              From Deira electronics shops to regional distributors — hear from buyers who moved from middlemen to ChainTrack direct sourcing.
+            </p>
+          </div>
+
+          {/* Featured video review - Exphone */}
+          <div className="grid lg:grid-cols-2 gap-8 items-center mb-14">
+            <div className="relative rounded-2xl overflow-hidden bg-[#0D1424] border border-amber-500/30 aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/VcbttEBINQY"
+                title="Exphone Retailer Review - Deira Dubai"
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                data-testid="video-exphone-review"
+              />
+            </div>
+            <div>
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 mb-5">
+                <Star className="w-3.5 h-3.5 text-amber-400 fill-current" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">Featured Buyer Review</span>
+              </div>
+              <div className="flex gap-1 mb-4">
+                {[1,2,3,4,5].map(i => (
+                  <Star key={i} className="w-5 h-5 text-amber-400 fill-current" />
+                ))}
+              </div>
+              <blockquote className="text-lg font-bold text-white leading-relaxed mb-5 italic">
+                "Before ChainTrack, we were buying iPhones from 3–4 middlemen in Deira and still not getting consistent grades. Now we source directly from DAFZA-graded lots — same price, better quality, full IMEI documentation."
+              </blockquote>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center">
+                  <Smartphone className="w-5 h-5 text-amber-400" />
+                </div>
+                <div>
+                  <div className="font-black text-white">Exphone Electronics</div>
+                  <div className="text-xs text-slate-500">Deira, Dubai · Retail & Wholesale · 200+ units/month on ChainTrack</div>
+                </div>
+              </div>
+              <div className="mt-5 flex items-center gap-3">
+                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-2">
+                  <div className="text-[9px] text-slate-500 uppercase tracking-wider">Monthly volume</div>
+                  <div className="text-sm font-black text-emerald-400">200+ units</div>
+                </div>
+                <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-lg px-3 py-2">
+                  <div className="text-[9px] text-slate-500 uppercase tracking-wider">Avg savings vs middlemen</div>
+                  <div className="text-sm font-black text-cyan-400">AED 120/unit</div>
+                </div>
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2">
+                  <div className="text-[9px] text-slate-500 uppercase tracking-wider">On ChainTrack since</div>
+                  <div className="text-sm font-black text-amber-400">2024</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional reviews grid */}
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                name: "Al Noor Mobile Trading",
+                location: "Karama, Dubai",
+                volume: "80 units/month",
+                review: "The reverse auction saved us 28% on our last iPhone 15 Pro Max order. Suppliers came down from $420 to $301 per unit. That margin difference funded our new shop expansion.",
+                stars: 5,
+                tag: "Reverse Auction Buyer",
+                tagColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+              },
+              {
+                name: "Bright Star Electronics",
+                location: "Sharjah · Exporting to Pakistan",
+                volume: "500+ units/month",
+                review: "We used to fly to China every quarter for stock. ChainTrack eliminated that entirely. RODTEP-exempt Indian supply with DAFZA re-export docs — our Pakistani buyers love the pricing now.",
+                stars: 5,
+                tag: "Export Distributor",
+                tagColor: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+              },
+              {
+                name: "Gulf Gadgets LLC",
+                location: "Abu Dhabi",
+                volume: "150 units/month",
+                review: "We moved from fixed-price to reverse auctions after the third order. The IMEI documentation alone is worth it — zero customs issues at any of our destination markets.",
+                stars: 5,
+                tag: "Wholesale Buyer",
+                tagColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+              },
+            ].map((review, i) => (
+              <div key={i} className="bg-[#0D1424] border border-[#1E293B] hover:border-amber-500/20 transition-all rounded-2xl p-5" data-testid={`card-review-${i}`}>
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: review.stars }).map((_, j) => (
+                    <Star key={j} className="w-4 h-4 text-amber-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5 italic">"{review.review}"</p>
+                <div className="border-t border-[#1E293B] pt-4">
+                  <div className="font-black text-white text-sm">{review.name}</div>
+                  <div className="text-[10px] text-slate-500 mb-2">{review.location} · {review.volume} on ChainTrack</div>
+                  <div className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded border w-fit ${review.tagColor}`}>{review.tag}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA below reviews */}
+          <div className="text-center mt-12">
+            <a
+              href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20saw%20the%20buyer%20reviews%20and%20want%20to%20start%20sourcing%20iPhones."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-reviews-cta"
+            >
+              <Button className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2 px-8 py-5">
+                <SiWhatsapp className="w-4 h-4" />
+                Join These Buyers — WhatsApp Us Now
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── Phone Flipper Track Gateway ── */}
       <section className="border-t border-purple-500/20 bg-gradient-to-br from-purple-950/40 via-[#0A0F1E] to-violet-950/30 py-20">
         <div className="container mx-auto px-4 max-w-7xl">

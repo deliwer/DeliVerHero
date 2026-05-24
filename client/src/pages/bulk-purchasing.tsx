@@ -10,24 +10,25 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import {
-  Package,
-  Globe,
-  Filter,
-  ShoppingCart,
-  Gavel,
-  TrendingDown,
-  CheckCircle,
-  Star,
-  Sparkles,
-  Clock,
-  MapPin,
-  Search,
+  Package, Globe, Filter, ShoppingCart, Gavel, TrendingDown, CheckCircle,
+  Star, Sparkles, Clock, MapPin, Search, ArrowRight, Shield, DollarSign,
+  Zap, Users, BarChart3, ChevronRight, Truck, Building2, Banknote,
+  FileCheck, Timer, AlertCircle, Play, ExternalLink, Phone
 } from "lucide-react";
 import { IPHONE_CATALOG, getLatestModels } from "@shared/iphone-catalog";
 import iPhone17ProMaxBlue from "@assets/generated_images/iPhone_17_Pro_Max_Blue_5527e769.png";
 import iPhone17Pro from "@assets/generated_images/iPhone_17_Pro_Natural_102f756e.png";
 import iPhone17Plus from "@assets/generated_images/iPhone_17_Plus_Black_07e48dac.png";
 import iPhone17 from "@assets/generated_images/iPhone_17_White_c97e6eb6.png";
+import electronicsRetailImg from "@assets/stock_images/people_electronics_r_02ba73a8.jpg";
+import electronicsRetail2 from "@assets/stock_images/people_electronics_r_a39cc14b.jpg";
+import electronicsRetail3 from "@assets/stock_images/people_electronics_r_56b6c258.jpg";
+import warehouseImg from "@assets/stock_images/modern_warehouse_ful_49a92694.jpg";
+import smartphoneExchange from "@assets/stock_images/smartphone_exchange__8d89cbac.jpg";
+import smartphoneExchange2 from "@assets/stock_images/smartphone_exchange__fed81eff.jpg";
+import shippingPort from "@assets/stock_images/hero_shipping_port.jpg";
+import brokerHandshake from "@assets/stock_images/broker_handshake_dubai.jpg";
+import dubaiAirHub from "@assets/stock_images/dubai_air_hub.jpg";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -36,81 +37,18 @@ export default function BulkPurchasingPage() {
   const [selectedCondition, setSelectedCondition] = useState<string>("all");
   const [selectedRegion, setSelectedRegion] = useState<string>("all");
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
+  const [activeProcurement, setActiveProcurement] = useState<"wholesale" | "auction" | null>(null);
   const { toast } = useToast();
 
   const iphone17Models = getLatestModels();
 
   const mockInventory = [
-    {
-      id: "1",
-      model: "iPhone 17 Pro Max",
-      storage: "256GB",
-      color: "Blue Titanium",
-      condition: "New",
-      quantity: 150,
-      pricePerUnit: 485,
-      region: "USA",
-      grade: "A+",
-      image: iPhone17ProMaxBlue,
-    },
-    {
-      id: "2",
-      model: "iPhone 17 Pro",
-      storage: "256GB",
-      color: "Natural Titanium",
-      condition: "New",
-      quantity: 200,
-      pricePerUnit: 425,
-      region: "UAE",
-      grade: "A+",
-      image: iPhone17Pro,
-    },
-    {
-      id: "3",
-      model: "iPhone 17 Plus",
-      storage: "128GB",
-      color: "Black",
-      condition: "Like New",
-      quantity: 100,
-      pricePerUnit: 365,
-      region: "Japan",
-      grade: "A",
-      image: iPhone17Plus,
-    },
-    {
-      id: "4",
-      model: "iPhone 17",
-      storage: "128GB",
-      color: "White",
-      condition: "New",
-      quantity: 180,
-      pricePerUnit: 345,
-      region: "China",
-      grade: "A+",
-      image: iPhone17,
-    },
-    {
-      id: "5",
-      model: "iPhone 16 Pro Max",
-      storage: "512GB",
-      color: "Black Titanium",
-      condition: "Like New",
-      quantity: 80,
-      pricePerUnit: 450,
-      region: "USA",
-      grade: "A",
-    },
-    {
-      id: "6",
-      model: "iPhone 15 Pro Max",
-      storage: "256GB",
-      color: "Natural Titanium",
-      condition: "Refurbished",
-      quantity: 120,
-      pricePerUnit: 380,
-      region: "Europe",
-      grade: "B+",
-    },
+    { id: "1", model: "iPhone 17 Pro Max", storage: "256GB", color: "Blue Titanium", condition: "New", quantity: 150, pricePerUnit: 485, region: "USA", grade: "A+", image: iPhone17ProMaxBlue },
+    { id: "2", model: "iPhone 17 Pro", storage: "256GB", color: "Natural Titanium", condition: "New", quantity: 200, pricePerUnit: 425, region: "UAE", grade: "A+", image: iPhone17Pro },
+    { id: "3", model: "iPhone 17 Plus", storage: "128GB", color: "Black", condition: "Like New", quantity: 100, pricePerUnit: 365, region: "Japan", grade: "A", image: iPhone17Plus },
+    { id: "4", model: "iPhone 17", storage: "128GB", color: "White", condition: "New", quantity: 180, pricePerUnit: 345, region: "China", grade: "A+", image: iPhone17 },
+    { id: "5", model: "iPhone 16 Pro Max", storage: "512GB", color: "Black Titanium", condition: "Like New", quantity: 80, pricePerUnit: 450, region: "USA", grade: "A" },
+    { id: "6", model: "iPhone 15 Pro Max", storage: "256GB", color: "Natural Titanium", condition: "Refurbished", quantity: 120, pricePerUnit: 380, region: "Europe", grade: "B+" },
   ];
 
   const filteredInventory = mockInventory.filter((item) => {
@@ -121,455 +59,688 @@ export default function BulkPurchasingPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
-      {/* Hero Section */}
-      <section className="relative py-16 px-4 overflow-hidden border-b">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center space-y-6">
-            <Badge className="mb-4" variant="outline" data-testid="badge-bulk-purchasing">
-              <Package className="w-3 h-3 mr-1" />
-              B2B Wholesale Procurement
-            </Badge>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight" data-testid="text-hero-title">
-              Bulk iPhone Purchasing
+    <div className="min-h-screen bg-[#070B14] text-white">
+
+      {/* ── HERO with real image overlay ── */}
+      <section className="relative min-h-[70vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={electronicsRetailImg} alt="Electronics wholesale market" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/85 to-[#070B14]/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-transparent" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-24">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 mb-6">
+              <Package className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">B2B Wholesale Procurement · Dubai</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+              Bulk iPhone
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
+                Wholesale Purchasing
+              </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto" data-testid="text-hero-subtitle">
-              Browse ready-to-ship inventory or submit auction requests. Access verified global supply with anonymous supplier listings.
+            <p className="text-xl text-slate-300 mb-4 leading-relaxed max-w-2xl">
+              The procurement platform for traditional channel buyers — Deira traders, souq retailers, and regional distributors. Two models. Fixed price or reverse auction. You choose.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center mt-8">
-              <Link href="/chaintrack">
-                <Button size="lg" variant="outline" data-testid="button-reverse-auction">
-                  <Gavel className="w-5 h-5 mr-2" />
-                  Submit Reverse Auction
+            <div className="flex items-center gap-4 mb-10 text-sm text-slate-400">
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                <span>No minimum barrier for registered buyers</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                <span>DAFZA escrow on every deal</span>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2"
+                onClick={() => setActiveProcurement("wholesale")}
+                data-testid="button-hero-wholesale"
+              >
+                <Banknote className="w-5 h-5" />
+                Buy at Fixed Price
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black uppercase tracking-widest gap-2"
+                onClick={() => setActiveProcurement("auction")}
+                data-testid="button-hero-auction"
+              >
+                <Gavel className="w-5 h-5" />
+                Submit Reverse Auction
+              </Button>
+            </div>
+          </div>
+        </div>
+        {/* Floating stats */}
+        <div className="absolute bottom-8 right-8 hidden lg:flex gap-4">
+          {[
+            { label: "Lots Live Today", value: "142", color: "text-cyan-400" },
+            { label: "Avg Savings vs Retail", value: "34%", color: "text-emerald-400" },
+            { label: "Countries Served", value: "34+", color: "text-amber-400" },
+          ].map((s, i) => (
+            <div key={i} className="bg-[#0D1424]/90 border border-[#1E293B] rounded-xl px-4 py-3 text-center backdrop-blur-sm">
+              <div className={`text-2xl font-black ${s.color}`}>{s.value}</div>
+              <div className="text-[10px] text-slate-500 uppercase tracking-wider mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── PROCUREMENT MODEL GATEWAY ── */}
+      <section className="py-16 px-4 bg-[#0A0F1E]" id="procurement-gateway">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="text-[10px] font-black uppercase tracking-widest text-amber-400 mb-3">Choose Your Procurement Model</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Two Ways to Buy. One Platform.</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Traditional Deira-style cash buyers get fixed-price wholesale. Tech-savvy bulk importers unlock reverse auctions where suppliers compete for your business.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6 mb-12">
+            {/* Model 1: Straight Wholesale */}
+            <div
+              className={`relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 border-2 ${activeProcurement === "wholesale" ? "border-amber-500 shadow-lg shadow-amber-500/20" : "border-[#1E293B] hover:border-amber-500/40"}`}
+              onClick={() => setActiveProcurement("wholesale")}
+              data-testid="card-procurement-wholesale"
+            >
+              <div className="absolute inset-0">
+                <img src={smartphoneExchange} alt="Wholesale purchase" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/80 to-[#070B14]/40" />
+              </div>
+              <div className="relative z-10 p-8 min-h-[360px] flex flex-col justify-end">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 mb-4 w-fit">
+                  <Banknote className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">Model 1 · Traditional Wholesale</span>
+                </div>
+                <h3 className="text-2xl font-black text-white mb-3">Straight Wholesale<br />Fixed Price Purchase</h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-5">
+                  Browse verified lots at displayed prices. See the unit cost, click buy, pay by wire or escrow — units are yours. No bidding, no waiting. The traditional Deira way, but with global supply.
+                </p>
+                <div className="space-y-2 mb-6">
+                  {[
+                    "Price shown = price you pay. No surprises.",
+                    "Minimum 10 units per lot — cash or wire accepted",
+                    "Goods at DAFZA within 48–72h of payment",
+                    "Perfect for: shop owners, souq traders, small importers",
+                  ].map((p, i) => (
+                    <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                      <CheckCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <Button
+                  className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2 w-fit"
+                  data-testid="button-start-wholesale"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Browse Fixed-Price Lots
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
-              </Link>
-              <Link href="/signup">
-                <Button size="lg" data-testid="button-become-buyer">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  Become Verified Buyer
+              </div>
+              {activeProcurement === "wholesale" && (
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-black" />
+                </div>
+              )}
+            </div>
+
+            {/* Model 2: Reverse Auction */}
+            <div
+              className={`relative rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 border-2 ${activeProcurement === "auction" ? "border-cyan-500 shadow-lg shadow-cyan-500/20" : "border-[#1E293B] hover:border-cyan-500/40"}`}
+              onClick={() => setActiveProcurement("auction")}
+              data-testid="card-procurement-auction"
+            >
+              <div className="absolute inset-0">
+                <img src={electronicsRetail2} alt="Reverse auction" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/80 to-[#070B14]/40" />
+              </div>
+              <div className="relative z-10 p-8 min-h-[360px] flex flex-col justify-end">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 mb-4 w-fit">
+                  <Gavel className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-cyan-300">Model 2 · Reverse Auction</span>
+                </div>
+                <h3 className="text-2xl font-black text-white mb-3">Reverse Auction<br />Suppliers Compete Down</h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-5">
+                  Post what you want to buy. Verified global suppliers then compete to offer you the lowest price. The longer the auction runs, the lower the price drops. You win at the floor.
+                </p>
+                <div className="space-y-2 mb-6">
+                  {[
+                    "You name the model, qty, and target price",
+                    "Multiple verified suppliers bid against each other",
+                    "You pick the winner — guaranteed best market price",
+                    "Perfect for: importers buying 100+ units at a time",
+                  ].map((p, i) => (
+                    <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                      <CheckCircle className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      {p}
+                    </div>
+                  ))}
+                </div>
+                <Button
+                  className="bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest gap-2 w-fit"
+                  data-testid="button-start-auction"
+                >
+                  <Gavel className="w-4 h-4" />
+                  Submit Auction Request
+                  <ArrowRight className="w-4 h-4" />
                 </Button>
-              </Link>
+              </div>
+              {activeProcurement === "auction" && (
+                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Key difference callout */}
+          <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-6 mb-6">
+            <div className="flex items-start gap-4">
+              <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 shrink-0">
+                <AlertCircle className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <h4 className="font-black text-white mb-2">What's the real difference?</h4>
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  <strong className="text-amber-300">Fixed-price wholesale</strong> is fast and predictable — you see the price, you buy. Best for regular stock replenishment and small shops.&nbsp;
+                  <strong className="text-cyan-300">Reverse auctions</strong> take 24–72 hours but typically save 15–35% vs listed prices because suppliers actively undercut each other. Best for large bulk orders where savings multiply per unit. Watch the explainer below.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* iPhone 17 Spotlight */}
-      <section className="py-12 px-4 bg-gradient-to-r from-primary/5 to-accent/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <Badge className="mb-4" data-testid="badge-iphone17-spotlight">
-              <Sparkles className="w-3 h-3 mr-1" />
-              iPhone 17 - GITEX 2025 Launch
-            </Badge>
-            <h2 className="text-3xl font-bold mb-2">Pre-Order iPhone 17 Inventory</h2>
-            <p className="text-muted-foreground">Priority access for verified B2B buyers. Lock in pricing now.</p>
+      {/* ── VIDEO EXPLAINER: Reverse Auction ── */}
+      <section className="py-16 px-4 bg-[#070B14]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Video Explainer</div>
+            <h2 className="text-3xl font-black text-white mb-4">See How Reverse Auctions Work</h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm">
+              Watch this real-world breakdown of how buyers post requests and suppliers compete for the best price — exactly what happens on ChainTrack.
+            </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Video embed */}
+            <div className="relative rounded-2xl overflow-hidden bg-[#0D1424] border border-[#1E293B] aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/EEqupgrtNX0"
+                title="How Reverse Auctions Work"
+                className="absolute inset-0 w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                data-testid="video-reverse-auction"
+              />
+            </div>
+            {/* Steps */}
+            <div className="space-y-4">
+              {[
+                { step: "01", title: "You post your requirement", desc: "Specify model, storage, condition, quantity and your target unit price. Takes 2 minutes.", icon: FileCheck, color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
+                { step: "02", title: "Suppliers bid against each other", desc: "Verified global suppliers (US, India, China, UAE) each submit their best offer. They compete down — not up.", icon: TrendingDown, color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
+                { step: "03", title: "You pick the winner", desc: "Review all bids side by side. Choose price, supplier rating, or delivery speed. You're always in control.", icon: Gavel, color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+                { step: "04", title: "Escrow protects your money", desc: "Payment held in DAFZA escrow. Released to supplier only after you confirm receipt and grading.", icon: Shield, color: "text-purple-400 bg-purple-500/10 border-purple-500/20" },
+              ].map((s, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  <div className={`p-2 rounded-xl border shrink-0 ${s.color}`}>
+                    <s.icon className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-0.5">Step {s.step}</div>
+                    <div className="font-black text-white text-sm mb-1">{s.title}</div>
+                    <div className="text-xs text-slate-400">{s.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRADITIONAL BUYER FUNNEL ── */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={warehouseImg} alt="Warehouse operations" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/90 to-[#070B14]/80" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/15 border border-orange-500/30 mb-5">
+              <Building2 className="w-3.5 h-3.5 text-orange-400" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-orange-300">For Traditional Channel Buyers</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Built for Deira Traders &amp; Souq Retailers</h2>
+            <p className="text-slate-300 max-w-2xl leading-relaxed">
+              You've been buying iPhones the hard way — calling middlemen, flying to China, dealing with quality issues. ChainTrack gives traditional traders the tools that global importers have been using for years.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
             {[
-              { name: "iPhone 17 Pro Max", image: iPhone17ProMaxBlue, qty: "150+ units", price: "$485/unit" },
-              { name: "iPhone 17 Pro", image: iPhone17Pro, qty: "200+ units", price: "$425/unit" },
-              { name: "iPhone 17 Plus", image: iPhone17Plus, qty: "100+ units", price: "$365/unit" },
-              { name: "iPhone 17", image: iPhone17, qty: "180+ units", price: "$345/unit" },
-            ].map((model, idx) => (
-              <Card key={idx} className="text-center hover:shadow-lg transition-shadow" data-testid={`card-iphone17-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
-                <CardContent className="p-6">
-                  <img src={model.image} alt={model.name} className="w-24 h-24 object-contain mx-auto mb-4" />
-                  <h3 className="font-bold mb-1">{model.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-1">{model.qty} available</p>
-                  <p className="text-primary font-bold">{model.price}</p>
-                </CardContent>
-              </Card>
+              {
+                icon: Banknote,
+                title: "Cash & Wire Buyers",
+                desc: "Pay by bank transfer or cash-in-DAFZA. No credit card required. Invoices issued same day.",
+                tag: "Traditional Payment",
+                color: "border-amber-500/30 bg-amber-500/5",
+                badge: "amber",
+              },
+              {
+                icon: Building2,
+                title: "Deira Shop Owners",
+                desc: "Stock your shelves weekly. Pick models by model number, colour, storage — exactly how you'd call a supplier, but verified.",
+                tag: "Retail Replenishment",
+                color: "border-orange-500/30 bg-orange-500/5",
+                badge: "orange",
+              },
+              {
+                icon: Globe,
+                title: "Regional Distributors",
+                desc: "Buying for Pakistan, Africa or CIS? We handle customs docs, RODTEP exemptions, and freight to your hub.",
+                tag: "Export Wholesale",
+                color: "border-blue-500/30 bg-blue-500/5",
+                badge: "blue",
+              },
+              {
+                icon: Users,
+                title: "Group Buyers",
+                desc: "Running a buying group or collective? Pool orders to hit volume tiers and unlock better unit prices for everyone.",
+                tag: "Collective Buying",
+                color: "border-emerald-500/30 bg-emerald-500/5",
+                badge: "emerald",
+              },
+            ].map((card, i) => (
+              <div key={i} className={`rounded-2xl border p-5 ${card.color}`} data-testid={`card-buyer-type-${i}`}>
+                <card.icon className={`w-6 h-6 mb-3 ${card.badge === "amber" ? "text-amber-400" : card.badge === "orange" ? "text-orange-400" : card.badge === "blue" ? "text-blue-400" : "text-emerald-400"}`} />
+                <div className="font-black text-white text-sm mb-2">{card.title}</div>
+                <div className="text-xs text-slate-400 leading-relaxed mb-3">{card.desc}</div>
+                <div className={`text-[9px] font-black uppercase tracking-widest ${card.badge === "amber" ? "text-amber-500" : card.badge === "orange" ? "text-orange-500" : card.badge === "blue" ? "text-blue-500" : "text-emerald-500"}`}>{card.tag}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Traditional buyer journey */}
+          <div className="bg-[#0D1424]/90 border border-[#1E293B] rounded-2xl p-8 backdrop-blur-sm">
+            <h3 className="text-xl font-black text-white mb-6 text-center">Your Journey from Inquiry to Delivery</h3>
+            <div className="flex flex-col md:flex-row items-stretch gap-0">
+              {[
+                { step: "WhatsApp Inquiry", desc: "Message us what you want: model, qty, condition. Our team responds within 1 hour during business hours.", icon: Phone, time: "~1 hour" },
+                { step: "Verified Quote", desc: "We send a formal quote with unit price, total, payment terms, and delivery timeline. No hidden charges.", icon: FileCheck, time: "Same day" },
+                { step: "Escrow Payment", desc: "Wire payment to DAFZA escrow account. Funds held safely until you confirm receiving the goods.", icon: Banknote, time: "24-48 hours" },
+                { step: "Grading & Inspection", desc: "Every device physically inspected at our DAFZA facility. Detailed condition report sent with photos.", icon: Shield, time: "24-48 hours" },
+                { step: "Delivery to You", desc: "Goods shipped to your location or collected at DAFZA. Real-time tracking from warehouse to door.", icon: Truck, time: "48-72 hours" },
+              ].map((s, i) => (
+                <div key={i} className="flex-1 flex flex-col items-center text-center relative">
+                  {i < 4 && (
+                    <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10">
+                      <ChevronRight className="w-5 h-5 text-slate-600" />
+                    </div>
+                  )}
+                  <div className="w-10 h-10 rounded-full bg-[#070B14] border border-amber-500/30 flex items-center justify-center mb-3">
+                    <s.icon className="w-4 h-4 text-amber-400" />
+                  </div>
+                  <div className="font-black text-white text-xs mb-1">{s.step}</div>
+                  <div className="text-[10px] text-slate-500 leading-relaxed mb-2 px-2">{s.desc}</div>
+                  <div className="text-[9px] font-black text-amber-500 uppercase tracking-widest">{s.time}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── INVENTORY BROWSER ── */}
+      <section className="py-16 px-4 bg-[#0A0F1E]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-3">Live Inventory</div>
+            <h2 className="text-3xl font-black text-white mb-4">Browse Fixed-Price Wholesale Lots</h2>
+            <p className="text-slate-400 text-sm">Verified, graded, and ready to ship. Prices locked for 24 hours.</p>
+          </div>
+
+          {/* Filters */}
+          <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-5 mb-8">
+            <div className="grid md:grid-cols-4 gap-4">
+              <div>
+                <Label className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1.5 block">Model</Label>
+                <Select value={selectedModel} onValueChange={setSelectedModel}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-model-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="all">All Models</SelectItem>
+                    <SelectItem value="iPhone 17">iPhone 17 Series</SelectItem>
+                    <SelectItem value="iPhone 16">iPhone 16 Series</SelectItem>
+                    <SelectItem value="iPhone 15">iPhone 15 Series</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1.5 block">Condition</Label>
+                <Select value={selectedCondition} onValueChange={setSelectedCondition}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-condition-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="all">All Conditions</SelectItem>
+                    <SelectItem value="New">New</SelectItem>
+                    <SelectItem value="Like New">Like New</SelectItem>
+                    <SelectItem value="Refurbished">Refurbished</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-slate-400 text-xs font-bold uppercase tracking-wider mb-1.5 block">Source Region</Label>
+                <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-region-filter">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="all">All Regions</SelectItem>
+                    <SelectItem value="USA">USA</SelectItem>
+                    <SelectItem value="UAE">UAE</SelectItem>
+                    <SelectItem value="Japan">Japan</SelectItem>
+                    <SelectItem value="China">China</SelectItem>
+                    <SelectItem value="Europe">Europe</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex items-end">
+                <Button
+                  variant="outline"
+                  className="w-full border-[#1E293B] text-slate-400 hover:text-white"
+                  onClick={() => { setSelectedModel("all"); setSelectedCondition("all"); setSelectedRegion("all"); }}
+                  data-testid="button-clear-filters"
+                >
+                  Clear Filters
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Inventory Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredInventory.map((item) => (
+              <div key={item.id} className="bg-[#0D1424] border border-[#1E293B] hover:border-amber-500/30 transition-all rounded-2xl overflow-hidden" data-testid={`card-inventory-${item.id}`}>
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <div className="font-black text-white text-base mb-0.5">{item.model}</div>
+                      <div className="text-xs text-slate-500">{item.storage} · {item.color}</div>
+                    </div>
+                    {item.image && <img src={item.image} alt={item.model} className="w-14 h-14 object-contain" />}
+                  </div>
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-500">Condition</span>
+                      <span className="font-bold text-white">{item.condition}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-500">Grade</span>
+                      <div className="flex items-center gap-1">
+                        <Star className="w-3 h-3 text-amber-400 fill-current" />
+                        <span className="font-bold text-amber-300">{item.grade}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-500">Origin</span>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="w-3 h-3 text-blue-400" />
+                        <span className="text-slate-300">{item.region}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-500">Available</span>
+                      <span className="font-bold text-emerald-400">{item.quantity} units</span>
+                    </div>
+                  </div>
+                  <div className="border-t border-[#1E293B] pt-4">
+                    <div className="flex items-baseline justify-between mb-3">
+                      <span className="text-xs text-slate-500">Fixed wholesale price</span>
+                      <span className="text-2xl font-black text-amber-400">${item.pricePerUnit}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+                        <DialogTrigger asChild>
+                          <Button className="flex-1 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs uppercase tracking-widest" data-testid={`button-request-quote-${item.id}`}>
+                            Request Quote
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                          <DialogHeader>
+                            <DialogTitle className="text-white">Request Wholesale Quote</DialogTitle>
+                            <DialogDescription className="text-slate-400">
+                              Get a formal quote for {item.model} with payment terms and delivery schedule
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4 pt-2">
+                            <div>
+                              <Label className="text-slate-300 text-xs">Quantity (min 10 units)</Label>
+                              <Input id="quote-quantity" type="number" placeholder="e.g. 50" min="10" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" data-testid="input-quote-quantity" />
+                            </div>
+                            <div>
+                              <Label className="text-slate-300 text-xs">Company / Shop Name</Label>
+                              <Input id="quote-company" placeholder="Exphone Electronics LLC" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" data-testid="input-quote-company" />
+                            </div>
+                            <div>
+                              <Label className="text-slate-300 text-xs">WhatsApp Number</Label>
+                              <Input id="quote-phone" type="tel" placeholder="+971 5X XXX XXXX" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" />
+                            </div>
+                            <div>
+                              <Label className="text-slate-300 text-xs">Email (for formal invoice)</Label>
+                              <Input id="quote-email" type="email" placeholder="your@company.com" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" data-testid="input-quote-email" />
+                            </div>
+                            <Button
+                              className="w-full bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest"
+                              onClick={() => {
+                                toast({ title: "Quote Requested", description: "Our team will WhatsApp you a formal quote within 2 hours." });
+                                setShowQuoteDialog(false);
+                              }}
+                              data-testid="button-submit-quote"
+                            >
+                              Submit — Get Quote in 2 Hours
+                            </Button>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                      <Link href="/chaintrack">
+                        <Button variant="outline" className="border-[#1E293B] text-slate-400 hover:text-white text-xs" data-testid={`button-view-details-${item.id}`}>
+                          Auction
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filteredInventory.length === 0 && (
+            <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-16 text-center text-slate-500">
+              <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
+              <p className="font-bold mb-1">No inventory matches your filters</p>
+              <p className="text-sm">Try broader filters or submit a reverse auction for what you need</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── REVERSE AUCTION REQUEST FORM ── */}
+      <section className="py-16 px-4 bg-[#070B14]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+            <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Reverse Auction</div>
+            <h2 className="text-3xl font-black text-white mb-4">Can't Find What You Need? Post an Auction</h2>
+            <p className="text-slate-400 text-sm max-w-lg mx-auto">
+              Submit your requirements and let verified suppliers compete. Typically saves 15–35% vs fixed-price lots.
+            </p>
+          </div>
+          <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-8">
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">iPhone Model *</Label>
+                <Select>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-model">
+                    <SelectValue placeholder="Select model" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    {IPHONE_CATALOG.slice(0, 10).map((model) => (
+                      <SelectItem key={model.id} value={model.id}>{model.name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Storage</Label>
+                <Select>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-storage">
+                    <SelectValue placeholder="Select storage" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="128GB">128GB</SelectItem>
+                    <SelectItem value="256GB">256GB</SelectItem>
+                    <SelectItem value="512GB">512GB</SelectItem>
+                    <SelectItem value="1TB">1TB</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Condition *</Label>
+                <Select>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-condition">
+                    <SelectValue placeholder="Select condition" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="new">New</SelectItem>
+                    <SelectItem value="like-new">Like New</SelectItem>
+                    <SelectItem value="refurbished">Refurbished</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Quantity *</Label>
+                <Input type="number" placeholder="Minimum 50 units" min="50" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-quantity" />
+              </div>
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Target Price / Unit (USD)</Label>
+                <Input type="number" placeholder="Your max budget per unit" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-target-price" />
+              </div>
+              <div>
+                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Delivery Location</Label>
+                <Input placeholder="City, Country (e.g. Dubai, UAE)" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-delivery" />
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <Link href="/chaintrack" className="flex-1">
+                <Button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest gap-2 py-3" data-testid="button-submit-auction">
+                  <Gavel className="w-5 h-5" />
+                  Launch My Reverse Auction
+                </Button>
+              </Link>
+              <a
+                href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20want%20to%20submit%20a%20bulk%20purchase%20request."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest gap-2 py-3 px-5">
+                  <Phone className="w-4 h-4" />
+                  WhatsApp
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── COMPARISON TABLE ── */}
+      <section className="py-16 px-4 bg-[#0A0F1E]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-black text-white mb-4">Wholesale vs Reverse Auction — Side by Side</h2>
+            <p className="text-slate-400 text-sm">Pick the model that fits your business rhythm</p>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-[#1E293B]">
+            <div className="grid grid-cols-3 bg-[#0D1424] border-b border-[#1E293B]">
+              <div className="p-4 text-xs font-black uppercase tracking-widest text-slate-500">Factor</div>
+              <div className="p-4 text-xs font-black uppercase tracking-widest text-amber-400 border-l border-[#1E293B]">Fixed Wholesale</div>
+              <div className="p-4 text-xs font-black uppercase tracking-widest text-cyan-400 border-l border-[#1E293B]">Reverse Auction</div>
+            </div>
+            {[
+              { factor: "Price certainty", wholesale: "✓ Fixed — you know before you buy", auction: "Variable — competition drives it down" },
+              { factor: "Potential savings", wholesale: "Listed price — fair market rate", auction: "15–35% below listed price" },
+              { factor: "Speed to receive", wholesale: "48–72h from payment", auction: "72h–5 days (auction + logistics)" },
+              { factor: "Min. order qty", wholesale: "10 units", auction: "50 units" },
+              { factor: "Ideal for", wholesale: "Shop restocking, urgent orders", auction: "Container loads, large imports" },
+              { factor: "Payment method", wholesale: "Wire, cash, escrow", auction: "Escrow only (buyer protection)" },
+              { factor: "Supplier transparency", wholesale: "Anonymous until purchase", auction: "Multiple suppliers, rated profiles" },
+              { factor: "Best buyer type", wholesale: "Deira retailers, small shops", auction: "Importers, distributors, flippers" },
+            ].map((row, i) => (
+              <div key={i} className={`grid grid-cols-3 border-b border-[#1E293B] ${i % 2 === 0 ? "bg-[#070B14]" : "bg-[#0D1424]"}`}>
+                <div className="p-4 text-xs text-slate-400 font-bold">{row.factor}</div>
+                <div className="p-4 text-xs text-slate-300 border-l border-[#1E293B]">{row.wholesale}</div>
+                <div className="p-4 text-xs text-slate-300 border-l border-[#1E293B]">{row.auction}</div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Main Content - Inventory Browser */}
-      <section className="py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <Tabs defaultValue="ready-to-ship" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
-              <TabsTrigger value="ready-to-ship" data-testid="tab-ready-to-ship">
-                <Package className="w-4 h-4 mr-2" />
-                Ready to Ship
-              </TabsTrigger>
-              <TabsTrigger value="auction-request" data-testid="tab-auction-request">
-                <Gavel className="w-4 h-4 mr-2" />
-                Request Quote
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="ready-to-ship">
-              {/* Filters */}
-              <Card className="mb-8">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Filter className="w-5 h-5" />
-                    Filter Inventory
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-4 gap-4">
-                    <div>
-                      <Label htmlFor="model-filter">Model</Label>
-                      <Select value={selectedModel} onValueChange={setSelectedModel}>
-                        <SelectTrigger id="model-filter" data-testid="select-model-filter">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">All Models</SelectItem>
-                          <SelectItem value="iPhone 17">iPhone 17 Series</SelectItem>
-                          <SelectItem value="iPhone 16">iPhone 16 Series</SelectItem>
-                          <SelectItem value="iPhone 15">iPhone 15 Series</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="condition-filter">Condition</Label>
-                      <Select value={selectedCondition} onValueChange={setSelectedCondition}>
-                        <SelectTrigger id="condition-filter" data-testid="select-condition-filter">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">All Conditions</SelectItem>
-                          <SelectItem value="New">New</SelectItem>
-                          <SelectItem value="Like New">Like New</SelectItem>
-                          <SelectItem value="Refurbished">Refurbished</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="region-filter">Source Region</Label>
-                      <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                        <SelectTrigger id="region-filter" data-testid="select-region-filter">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">All Regions</SelectItem>
-                          <SelectItem value="USA">USA</SelectItem>
-                          <SelectItem value="UAE">UAE</SelectItem>
-                          <SelectItem value="Japan">Japan</SelectItem>
-                          <SelectItem value="China">China</SelectItem>
-                          <SelectItem value="Europe">Europe</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="flex items-end">
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={() => {
-                          setSelectedModel("all");
-                          setSelectedCondition("all");
-                          setSelectedRegion("all");
-                        }}
-                        data-testid="button-clear-filters"
-                      >
-                        Clear Filters
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Inventory Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredInventory.map((item) => (
-                  <Card key={item.id} className="hover:shadow-lg transition-shadow" data-testid={`card-inventory-${item.id}`}>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <CardTitle className="text-lg mb-1">{item.model}</CardTitle>
-                          <CardDescription>
-                            {item.storage} • {item.color}
-                          </CardDescription>
-                        </div>
-                        {item.image && (
-                          <img src={item.image} alt={item.model} className="w-16 h-16 object-contain" />
-                        )}
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Condition</span>
-                        <Badge variant="outline">{item.condition}</Badge>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Grade</span>
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 text-amber-500 fill-current" />
-                          <span className="font-bold">{item.grade}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Region</span>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4 text-primary" />
-                          <span>{item.region}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Available</span>
-                        <Badge className="bg-green-500/10 text-green-700 dark:text-green-400">
-                          {item.quantity} units
-                        </Badge>
-                      </div>
-                      <div className="pt-4 border-t">
-                        <div className="flex items-baseline justify-between mb-3">
-                          <span className="text-sm text-muted-foreground">Price per unit</span>
-                          <span className="text-2xl font-bold text-primary">${item.pricePerUnit}</span>
-                        </div>
-                        <div className="flex gap-2">
-                          <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
-                            <DialogTrigger asChild>
-                              <Button className="flex-1" data-testid={`button-request-quote-${item.id}`}>
-                                Request Quote
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                              <DialogHeader>
-                                <DialogTitle>Request Bulk Quote</DialogTitle>
-                                <DialogDescription>
-                                  Fill out the form below to get a custom quote for {item.model}
-                                </DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-4 pt-4">
-                                <div>
-                                  <Label htmlFor="quote-quantity">Quantity</Label>
-                                  <Input
-                                    id="quote-quantity"
-                                    type="number"
-                                    placeholder="Minimum 50 units"
-                                    min="50"
-                                    data-testid="input-quote-quantity"
-                                  />
-                                </div>
-                                <div>
-                                  <Label htmlFor="quote-company">Company Name</Label>
-                                  <Input id="quote-company" placeholder="Your company" data-testid="input-quote-company" />
-                                </div>
-                                <div>
-                                  <Label htmlFor="quote-email">Email</Label>
-                                  <Input
-                                    id="quote-email"
-                                    type="email"
-                                    placeholder="your@email.com"
-                                    data-testid="input-quote-email"
-                                  />
-                                </div>
-                                <Button
-                                  className="w-full"
-                                  onClick={() => {
-                                    toast({
-                                      title: "Quote Requested",
-                                      description: "We'll send you a detailed quote within 24 hours.",
-                                    });
-                                    setShowQuoteDialog(false);
-                                  }}
-                                  data-testid="button-submit-quote"
-                                >
-                                  Submit Request
-                                </Button>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                          <Link href="/chaintrack">
-                            <Button variant="outline" data-testid={`button-view-details-${item.id}`}>
-                              View Details
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {filteredInventory.length === 0 && (
-                <Card className="p-12">
-                  <div className="text-center text-muted-foreground">
-                    <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg font-semibold mb-2">No inventory found</p>
-                    <p>Try adjusting your filters or check back later for new stock.</p>
-                  </div>
-                </Card>
-              )}
-            </TabsContent>
-
-            <TabsContent value="auction-request">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Submit Reverse Auction Request</CardTitle>
-                  <CardDescription>
-                    Request quotes for specific quantities and let suppliers compete to win your business.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="auction-model">iPhone Model *</Label>
-                      <Select>
-                        <SelectTrigger id="auction-model" data-testid="select-auction-model">
-                          <SelectValue placeholder="Select model" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {IPHONE_CATALOG.slice(0, 10).map((model) => (
-                            <SelectItem key={model.id} value={model.id}>
-                              {model.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="auction-storage">Storage</Label>
-                      <Select>
-                        <SelectTrigger id="auction-storage" data-testid="select-auction-storage">
-                          <SelectValue placeholder="Select storage" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="128GB">128GB</SelectItem>
-                          <SelectItem value="256GB">256GB</SelectItem>
-                          <SelectItem value="512GB">512GB</SelectItem>
-                          <SelectItem value="1TB">1TB</SelectItem>
-                          <SelectItem value="2TB">2TB</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="auction-condition">Condition *</Label>
-                      <Select>
-                        <SelectTrigger id="auction-condition" data-testid="select-auction-condition">
-                          <SelectValue placeholder="Select condition" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="new">New</SelectItem>
-                          <SelectItem value="like-new">Like New</SelectItem>
-                          <SelectItem value="refurbished">Refurbished</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor="auction-quantity">Quantity *</Label>
-                      <Input
-                        id="auction-quantity"
-                        type="number"
-                        placeholder="Minimum 50"
-                        min="50"
-                        data-testid="input-auction-quantity"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="auction-target-price">Target Price (per unit)</Label>
-                    <Input
-                      id="auction-target-price"
-                      type="number"
-                      placeholder="USD"
-                      data-testid="input-auction-target-price"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="auction-delivery">Delivery Location</Label>
-                    <Input
-                      id="auction-delivery"
-                      placeholder="City, Country"
-                      data-testid="input-auction-delivery"
-                    />
-                  </div>
-
-                  <div className="bg-muted/50 rounded-lg p-6">
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
-                      <TrendingDown className="w-5 h-5 text-primary" />
-                      How Reverse Auctions Work
-                    </h4>
-                    <ol className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex gap-2">
-                        <span className="font-bold text-primary">1.</span>
-                        <span>Submit your requirements and target pricing</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-bold text-primary">2.</span>
-                        <span>Verified suppliers compete to offer the best price</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-bold text-primary">3.</span>
-                        <span>Review bids and select the winning supplier</span>
-                      </li>
-                      <li className="flex gap-2">
-                        <span className="font-bold text-primary">4.</span>
-                        <span>Escrow payment ensures secure transaction</span>
-                      </li>
-                    </ol>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <Link href="/chaintrack" className="flex-1">
-                      <Button className="w-full" size="lg" data-testid="button-submit-auction">
-                        <Gavel className="w-5 h-5 mr-2" />
-                        Submit Auction Request
-                      </Button>
-                    </Link>
-                    <Button variant="outline" size="lg" data-testid="button-save-draft">
-                      <Clock className="w-5 h-5 mr-2" />
-                      Save Draft
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+      {/* ── SOCIAL PROOF / TRUST ── */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={dubaiAirHub} alt="Dubai logistics hub" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/92 to-[#070B14]/80" />
         </div>
-      </section>
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-4 mb-14">
+            {[
+              { value: "142+", label: "Live lots right now", color: "text-amber-400" },
+              { value: "34%", label: "Avg savings in auctions", color: "text-emerald-400" },
+              { value: "48h", label: "Avg fixed-price delivery", color: "text-cyan-400" },
+              { value: "200+", label: "Verified global suppliers", color: "text-purple-400" },
+            ].map((s, i) => (
+              <div key={i} className="bg-[#0D1424]/80 border border-[#1E293B] rounded-xl p-5 text-center backdrop-blur-sm">
+                <div className={`text-3xl font-black ${s.color} mb-1`}>{s.value}</div>
+                <div className="text-xs text-slate-500 uppercase tracking-wider">{s.label}</div>
+              </div>
+            ))}
+          </div>
 
-      {/* Features */}
-      <section className="py-12 px-4 bg-muted/50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Buy in Bulk from Us?</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-primary" />
-                  Anonymous Sourcing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Suppliers remain anonymous until purchase. Browse by region, condition, and quantity without revealing your identity.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  Quality Verified
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Every device inspected and graded before listing. A+, A, B+ grades with detailed condition reports.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingDown className="w-5 h-5 text-primary" />
-                  Best Pricing
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  Competitive pricing through reverse auctions. Volume discounts and membership tiers for frequent buyers.
-                </p>
-              </CardContent>
-            </Card>
+          {/* CTA */}
+          <div className="text-center">
+            <h2 className="text-3xl font-black text-white mb-4">Ready to Start Buying?</h2>
+            <p className="text-slate-400 mb-8 max-w-lg mx-auto">Join 200+ verified buyers sourcing from the world's best iPhone supply through ChainTrack.</p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20want%20to%20start%20buying%20iPhones%20in%20bulk."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2">
+                  <Phone className="w-5 h-5" />
+                  Start on WhatsApp
+                </Button>
+              </a>
+              <Link href="/chaintrack">
+                <Button size="lg" variant="outline" className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black uppercase tracking-widest gap-2">
+                  <Gavel className="w-5 h-5" />
+                  View Live Auctions
+                </Button>
+              </Link>
+              <Link href="/fulfillment">
+                <Button size="lg" variant="outline" className="border-[#1E293B] text-slate-300 hover:bg-[#1E293B] font-black uppercase tracking-widest gap-2">
+                  <Package className="w-5 h-5" />
+                  Fulfillment Options
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
