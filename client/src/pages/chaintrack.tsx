@@ -1228,6 +1228,137 @@ export default function ChainTrackPage() {
         </div>
       </section>
 
+      {/* ── Trust Signal & Subscription Conversion ── */}
+      <section className="border-t border-emerald-500/20 bg-gradient-to-br from-[#020608] via-[#070B14] to-[#020608] py-20 relative overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-4 max-w-7xl relative">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 mb-4">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Verified Buyer Proof</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              See What Happens When You Join ChainTrack
+            </h2>
+            <p className="text-slate-400 max-w-xl mx-auto text-sm">
+              Real buyers. Real lots. Real margins. Watch how the reverse auction works — then lock in your seat before this cohort closes.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* YouTube embed */}
+            <div className="relative rounded-2xl overflow-hidden border border-emerald-500/20 shadow-2xl shadow-emerald-500/5">
+              <div className="aspect-video w-full">
+                <iframe
+                  src="https://www.youtube.com/embed/oozHndEpgIM?rel=0&modestbranding=1&autohide=1"
+                  title="ChainTrack Verified Buyer Proof"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                  data-testid="iframe-trust-video"
+                />
+              </div>
+              {/* Overlay badge */}
+              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/70 backdrop-blur-sm border border-emerald-500/30 px-2.5 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-white">Live Auction Walkthrough</span>
+              </div>
+            </div>
+
+            {/* Conversion panel */}
+            <div className="flex flex-col gap-4">
+              {/* Social proof bar */}
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  { value: "47", label: "Buyers joined\nthis month", color: "text-emerald-400" },
+                  { value: "94%", label: "Lot satisfaction\nrate", color: "text-cyan-400" },
+                  { value: "$2.1M", label: "Paid out to\nbuyers YTD", color: "text-purple-400" },
+                ].map((s, i) => (
+                  <div key={i} className="bg-[#0D1424] border border-[#1E293B] rounded-xl p-3 text-center" data-testid={`stat-trust-${i}`}>
+                    <div className={`text-xl font-black ${s.color}`}>{s.value}</div>
+                    <div className="text-[10px] text-slate-500 leading-tight whitespace-pre-line mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Scarcity block */}
+              <div className="bg-[#0D1424] border border-amber-500/30 rounded-2xl p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span className="text-xs font-black uppercase tracking-widest text-amber-400">Cohort Access — Limited Seats</span>
+                </div>
+                <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+                  ChainTrack controls lot access by membership tier to protect price integrity. This cohort is capped at <strong className="text-white">12 Growth-tier seats</strong> per quarter. Once filled, the waitlist opens — no exceptions.
+                </p>
+                {/* Seat progress bar */}
+                <div className="mb-1 flex items-center justify-between text-[10px] font-black uppercase tracking-widest">
+                  <span className="text-slate-500">Seats filled</span>
+                  <span className="text-amber-400">9 / 12 taken</span>
+                </div>
+                <div className="w-full bg-[#070B14] rounded-full h-2 mb-4">
+                  <div className="h-2 rounded-full bg-gradient-to-r from-amber-500 to-red-500 transition-all" style={{ width: "75%" }} />
+                </div>
+                <div className="flex items-center gap-2 text-[11px] text-amber-300/70">
+                  <AlertCircle className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>3 seats remaining at Growth pricing. Starter tier stays open, Growth closes when full.</span>
+                </div>
+              </div>
+
+              {/* Trust checklist */}
+              <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-5">
+                <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3">What you get on day one</div>
+                <div className="space-y-2.5">
+                  {[
+                    { text: "Access to live reverse-auction lot feed — updated daily", color: "text-emerald-400" },
+                    { text: "IMEI-clean guarantee with full refund protection", color: "text-emerald-400" },
+                    { text: "Dubai DAFZA escrow — funds only released on grade confirmation", color: "text-emerald-400" },
+                    { text: "Dedicated WhatsApp support + lot advisors", color: "text-emerald-400" },
+                    { text: "Priority access 1–24h before public buyers", color: "text-cyan-400" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-2 text-[12px] text-slate-300">
+                      <CheckCircle2 className={`w-3.5 h-3.5 ${item.color} shrink-0 mt-0.5`} />
+                      {item.text}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-col gap-2.5">
+                <a
+                  href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20just%20watched%20the%20buyer%20proof%20video%20and%20want%20to%20lock%20in%20my%20Growth-tier%20seat%20before%20it%20closes."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="button-trust-cta-primary"
+                >
+                  <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-sm gap-2 py-6 shadow-lg shadow-emerald-500/20">
+                    <SiWhatsapp className="w-4 h-4" />
+                    Lock In My Buyer Seat — WhatsApp Now
+                  </Button>
+                </a>
+                <a
+                  href="https://t.me/+971523946311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="button-trust-cta-telegram"
+                >
+                  <Button variant="outline" className="w-full border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <SiTelegram className="w-3.5 h-3.5" />
+                    Message Hassan on Telegram
+                  </Button>
+                </a>
+                <p className="text-center text-[10px] text-slate-600">
+                  No commitment. Cancel anytime. Escrow protects every transaction.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Membership tiers ── */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-7xl">
