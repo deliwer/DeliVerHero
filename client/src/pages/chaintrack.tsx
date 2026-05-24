@@ -662,20 +662,23 @@ export default function ChainTrackPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-          <TabsList className="border border-[#1E293B] p-1 bg-[#ffffff]">
-            <TabsTrigger value="live" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-xs uppercase tracking-widest" data-testid="tab-live">
-              <Radio className="w-3 h-3 mr-1.5" />
-              Live Auctions <Badge className="ml-1.5 bg-red-500 text-white text-[9px] px-1.5">{LIVE_LOTS.length}</Badge>
-            </TabsTrigger>
-            <TabsTrigger value="closing" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-xs uppercase tracking-widest" data-testid="tab-closing">
-              <Timer className="w-3 h-3 mr-1.5" />
-              Closing Soon
-            </TabsTrigger>
-            <TabsTrigger value="won" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-xs uppercase tracking-widest" data-testid="tab-won">
-              <Award className="w-3 h-3 mr-1.5" />
-              Recently Closed
-            </TabsTrigger>
-          </TabsList>
+          <div className="overflow-x-auto -mx-1 px-1 pb-1">
+            <TabsList className="border border-[#1E293B] p-1 bg-[#0D1424] w-max min-w-full">
+              <TabsTrigger value="live" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-live">
+                <Radio className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
+                <span>Live Auctions</span>
+                <Badge className="ml-1 sm:ml-1.5 bg-red-500 text-white text-[9px] px-1 sm:px-1.5">{LIVE_LOTS.length}</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="closing" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-closing">
+                <Timer className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
+                <span>Closing Soon</span>
+              </TabsTrigger>
+              <TabsTrigger value="won" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-won">
+                <Award className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
+                <span>Recently Closed</span>
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="live" className="mt-6">
             {filteredLots.length === 0 ? (
