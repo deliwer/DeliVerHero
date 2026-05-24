@@ -601,15 +601,14 @@ export default function PartnersPage() {
               >
                 <Building2 className="w-5 h-5 mr-2" /> Broker Track
               </Button>
-              <Link href="/chaintrack">
-                <Button
-                  data-testid="button-hero-phone-flipper-cta"
-                  size="lg"
-                  className="bg-purple-600 hover:bg-purple-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-purple-900/40"
-                >
-                  <RefreshCw className="w-5 h-5 mr-2" /> Phone Flipper Track
-                </Button>
-              </Link>
+              <Button
+                data-testid="button-hero-phone-flipper-cta"
+                size="lg"
+                onClick={() => document.getElementById("phone-flipper-track")?.scrollIntoView({ behavior: "smooth" })}
+                className="bg-purple-600 hover:bg-purple-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-purple-900/40"
+              >
+                <RefreshCw className="w-5 h-5 mr-2" /> Phone Flipper Track
+              </Button>
             </div>
           </motion.div>
         </div>
@@ -753,6 +752,7 @@ export default function PartnersPage() {
 
             {/* ── PHONE FLIPPER TRACK (standalone) ── */}
             <motion.div
+              id="phone-flipper-track"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
