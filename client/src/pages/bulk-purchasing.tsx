@@ -13,7 +13,8 @@ import {
   Package, Globe, Filter, ShoppingCart, Gavel, TrendingDown, CheckCircle,
   Star, Sparkles, Clock, MapPin, Search, ArrowRight, Shield, DollarSign,
   Zap, Users, BarChart3, ChevronRight, Truck, Building2, Banknote,
-  FileCheck, Timer, AlertCircle, Play, ExternalLink, Phone
+  FileCheck, Timer, AlertCircle, Play, ExternalLink, Phone,
+  Plus, Trash2, ClipboardList, Send, CheckCircle2, X
 } from "lucide-react";
 import { IPHONE_CATALOG, getLatestModels } from "@shared/iphone-catalog";
 import iPhone17ProMaxBlue from "@assets/generated_images/iPhone_17_Pro_Max_Blue_5527e769.png";
@@ -39,6 +40,39 @@ export default function BulkPurchasingPage() {
   const [showQuoteDialog, setShowQuoteDialog] = useState(false);
   const [activeProcurement, setActiveProcurement] = useState<"wholesale" | "auction" | null>(null);
   const { toast } = useToast();
+
+  // BOQ state
+  type BoqLine = { id: string; model: string; storage: string; condition: string; qty: number; targetPrice: string };
+  const [boqLines, setBoqLines] = useState<BoqLine[]>([]);
+  const [boqDraft, setBoqDraft] = useState({ model: "", storage: "", condition: "", qty: "10", targetPrice: "" });
+  const [boqContact, setBoqContact] = useState({ company: "", whatsapp: "", email: "", location: "" });
+  const [boqSubmitted, setBoqSubmitted] = useState(false);
+
+  function addBoqLine() {
+    if (!boqDraft.model || !boqDraft.storage || !boqDraft.condition || !boqDraft.qty) {
+      toast({ title: "Fill in all required fields", description: "Model, storage, condition and quantity are required.", variant: "destructive" });
+      return;
+    }
+    setBoqLines(prev => [...prev, { ...boqDraft, id: Date.now().toString() }]);
+    setBoqDraft(d => ({ ...d, model: "", targetPrice: "" }));
+  }
+
+  function removeBoqLine(id: string) {
+    setBoqLines(prev => prev.filter(l => l.id !== id));
+  }
+
+  function submitBoq() {
+    if (boqLines.length === 0) {
+      toast({ title: "Add at least one line item", description: "Your BOQ is empty.", variant: "destructive" });
+      return;
+    }
+    if (!boqContact.company || !boqContact.whatsapp) {
+      toast({ title: "Contact details required", description: "Company name and WhatsApp number are required.", variant: "destructive" });
+      return;
+    }
+    setBoqSubmitted(true);
+    toast({ title: "BOQ Submitted!", description: "Our procurement team will send your formal quote within 4 business hours." });
+  }
 
   const iphone17Models = getLatestModels();
 
@@ -567,6 +601,310 @@ export default function BulkPurchasingPage() {
               <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
               <p className="font-bold mb-1">No inventory matches your filters</p>
               <p className="text-sm">Try broader filters or submit a reverse auction for what you need</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── BOQ — BILL OF QUANTITIES ── */}
+      <section className="py-16 px-4 bg-[#070B14]" id="boq">
+        <div className="max-w-5xl mx-auto">
+
+          {/* Header */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 mb-5">
+              <ClipboardList className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-amber-300">Step 1 Before Requesting a Quote</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Submit Your Bill of Quantities</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm leading-relaxed">
+              Don't just ask for a price and disappear. A BOQ tells our procurement team <strong className="text-white">exactly what you need</strong> — every model, storage, condition, and quantity — so we can source it precisely and send you a binding quote, not a ballpark.
+            </p>
+          </div>
+
+          {/* Why BOQ callout */}
+          <div className="grid md:grid-cols-3 gap-4 mb-10">
+            {[
+              { icon: ClipboardList, title: "Structured demand, not vague inquiry", desc: "A BOQ commits you to specific SKUs. Suppliers take committed buyers seriously and offer better pricing.", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
+              { icon: TrendingDown, title: "Better prices through volume bundling", desc: "When your BOQ spans multiple models, we negotiate as a single package — unlocking bundle pricing unavailable per-SKU.", color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
+              { icon: FileCheck, title: "Formal binding quote, not a WhatsApp number", desc: "BOQ submission triggers a real procurement workflow. You receive a signed pro-forma invoice with payment terms.", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+            ].map((c, i) => (
+              <div key={i} className={`rounded-2xl border p-5 ${c.color}`}>
+                <c.icon className="w-5 h-5 mb-3" />
+                <div className="font-black text-white text-sm mb-1.5">{c.title}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{c.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {boqSubmitted ? (
+            /* ── Success state ── */
+            <div className="bg-[#0D1424] border border-emerald-500/30 rounded-2xl p-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center mx-auto mb-5">
+                <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+              </div>
+              <h3 className="text-2xl font-black text-white mb-3">BOQ Received — Thank You</h3>
+              <p className="text-slate-400 text-sm mb-6 max-w-md mx-auto">
+                Our procurement team is reviewing your {boqLines.length} line item{boqLines.length !== 1 ? "s" : ""}. Expect a signed pro-forma invoice on WhatsApp within <strong className="text-white">4 business hours</strong>.
+              </p>
+              <div className="bg-[#070B14] border border-[#1E293B] rounded-xl p-4 max-w-sm mx-auto mb-6 text-left">
+                <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-3">Your BOQ summary</div>
+                {boqLines.map((l, i) => (
+                  <div key={l.id} className="flex items-center justify-between text-xs text-slate-400 py-1 border-b border-[#1E293B] last:border-0">
+                    <span>{l.model} · {l.storage} · {l.condition}</span>
+                    <span className="font-black text-white ml-2">{l.qty} units</span>
+                  </div>
+                ))}
+              </div>
+              <Button
+                variant="outline"
+                className="border-[#1E293B] text-slate-400 hover:text-white"
+                onClick={() => { setBoqSubmitted(false); setBoqLines([]); setBoqContact({ company: "", whatsapp: "", email: "", location: "" }); }}
+              >
+                Submit Another BOQ
+              </Button>
+            </div>
+          ) : (
+            <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl overflow-hidden">
+
+              {/* Line item builder */}
+              <div className="p-6 border-b border-[#1E293B]">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center text-[10px] font-black text-black">1</div>
+                  <span className="font-black text-white">Build Your Demand List — Add Each SKU</span>
+                </div>
+
+                {/* Draft row */}
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-4">
+                  <div className="col-span-2 md:col-span-1">
+                    <Label className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-1 block">Model *</Label>
+                    <Select value={boqDraft.model} onValueChange={v => setBoqDraft(d => ({ ...d, model: v }))}>
+                      <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9" data-testid="select-boq-model">
+                        <SelectValue placeholder="iPhone model" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white max-h-60">
+                        {[
+                          "iPhone 17 Pro Max", "iPhone 17 Pro", "iPhone 17 Plus", "iPhone 17",
+                          "iPhone 16 Pro Max", "iPhone 16 Pro", "iPhone 16 Plus", "iPhone 16",
+                          "iPhone 15 Pro Max", "iPhone 15 Pro", "iPhone 15 Plus", "iPhone 15",
+                          "iPhone 14 Pro Max", "iPhone 14 Pro", "iPhone 14 Plus", "iPhone 14",
+                          "iPhone 13 Pro Max", "iPhone 13 Pro", "iPhone 13", "iPhone 13 Mini",
+                          "iPhone 12 Pro Max", "iPhone 12 Pro", "iPhone 12", "iPhone 12 Mini",
+                          "iPhone 11 Pro Max", "iPhone 11 Pro", "iPhone 11",
+                          "iPhone SE (3rd Gen)", "iPhone SE (2nd Gen)",
+                        ].map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-1 block">Storage *</Label>
+                    <Select value={boqDraft.storage} onValueChange={v => setBoqDraft(d => ({ ...d, storage: v }))}>
+                      <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9" data-testid="select-boq-storage">
+                        <SelectValue placeholder="Storage" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                        {["64GB", "128GB", "256GB", "512GB", "1TB", "2TB"].map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-1 block">Condition *</Label>
+                    <Select value={boqDraft.condition} onValueChange={v => setBoqDraft(d => ({ ...d, condition: v }))}>
+                      <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9" data-testid="select-boq-condition">
+                        <SelectValue placeholder="Condition" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                        <SelectItem value="New">New (sealed)</SelectItem>
+                        <SelectItem value="Like New">Like New (A+ grade)</SelectItem>
+                        <SelectItem value="Excellent">Excellent (A grade)</SelectItem>
+                        <SelectItem value="Good">Good (B grade)</SelectItem>
+                        <SelectItem value="Refurbished">Refurbished (any grade)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-1 block">Qty (units) *</Label>
+                    <Input
+                      type="number"
+                      min="1"
+                      value={boqDraft.qty}
+                      onChange={e => setBoqDraft(d => ({ ...d, qty: e.target.value }))}
+                      className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9"
+                      placeholder="e.g. 50"
+                      data-testid="input-boq-qty"
+                    />
+                  </div>
+
+                  <div>
+                    <Label className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-1 block">Target $/unit</Label>
+                    <Input
+                      type="number"
+                      min="1"
+                      value={boqDraft.targetPrice}
+                      onChange={e => setBoqDraft(d => ({ ...d, targetPrice: e.target.value }))}
+                      className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9"
+                      placeholder="Optional"
+                      data-testid="input-boq-target-price"
+                    />
+                  </div>
+                </div>
+
+                <Button
+                  onClick={addBoqLine}
+                  className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest text-xs gap-2"
+                  data-testid="button-add-boq-line"
+                >
+                  <Plus className="w-4 h-4" />
+                  Add to BOQ
+                </Button>
+              </div>
+
+              {/* BOQ table */}
+              <div className="p-6 border-b border-[#1E293B]">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center text-[10px] font-black text-black">2</div>
+                    <span className="font-black text-white">Your BOQ — {boqLines.length} line item{boqLines.length !== 1 ? "s" : ""}</span>
+                    {boqLines.length > 0 && (
+                      <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                        {boqLines.reduce((sum, l) => sum + Number(l.qty), 0).toLocaleString()} total units
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {boqLines.length === 0 ? (
+                  <div className="border-2 border-dashed border-[#1E293B] rounded-xl p-8 text-center text-slate-600">
+                    <ClipboardList className="w-8 h-8 mx-auto mb-2 opacity-40" />
+                    <p className="text-sm font-bold">No items yet</p>
+                    <p className="text-xs mt-1">Add your first SKU above — you can add as many models as you need</p>
+                  </div>
+                ) : (
+                  <div className="rounded-xl overflow-hidden border border-[#1E293B]">
+                    {/* Table header */}
+                    <div className="grid grid-cols-12 bg-[#070B14] px-4 py-2 text-[9px] font-black uppercase tracking-widest text-slate-600">
+                      <div className="col-span-4">Model</div>
+                      <div className="col-span-2">Storage</div>
+                      <div className="col-span-2">Condition</div>
+                      <div className="col-span-2 text-right">Qty</div>
+                      <div className="col-span-1 text-right">Target</div>
+                      <div className="col-span-1"></div>
+                    </div>
+                    {boqLines.map((line, i) => (
+                      <div
+                        key={line.id}
+                        className={`grid grid-cols-12 items-center px-4 py-3 text-xs border-t border-[#1E293B] ${i % 2 === 0 ? "bg-[#0D1424]" : "bg-[#070B14]"}`}
+                        data-testid={`boq-line-${i}`}
+                      >
+                        <div className="col-span-4 font-bold text-white truncate">{line.model}</div>
+                        <div className="col-span-2 text-slate-400">{line.storage}</div>
+                        <div className="col-span-2">
+                          <span className={`text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider ${
+                            line.condition === "New" ? "bg-emerald-500/20 text-emerald-400" :
+                            line.condition === "Like New" ? "bg-cyan-500/20 text-cyan-400" :
+                            line.condition === "Excellent" ? "bg-blue-500/20 text-blue-400" :
+                            "bg-slate-500/20 text-slate-400"
+                          }`}>{line.condition}</span>
+                        </div>
+                        <div className="col-span-2 text-right font-black text-amber-400">{Number(line.qty).toLocaleString()}</div>
+                        <div className="col-span-1 text-right text-slate-500">{line.targetPrice ? `$${line.targetPrice}` : "—"}</div>
+                        <div className="col-span-1 flex justify-end">
+                          <button
+                            onClick={() => removeBoqLine(line.id)}
+                            className="text-slate-600 hover:text-red-400 transition-colors p-1"
+                            data-testid={`button-remove-boq-${i}`}
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                    {/* Totals row */}
+                    <div className="grid grid-cols-12 items-center px-4 py-3 text-xs border-t border-amber-500/20 bg-amber-500/5">
+                      <div className="col-span-8 font-black text-amber-400 uppercase tracking-widest text-[10px]">Total Demand</div>
+                      <div className="col-span-2 text-right font-black text-amber-400 text-base">
+                        {boqLines.reduce((sum, l) => sum + Number(l.qty), 0).toLocaleString()}
+                      </div>
+                      <div className="col-span-2"></div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Contact details + submit */}
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-6 h-6 rounded-full bg-amber-500 flex items-center justify-center text-[10px] font-black text-black">3</div>
+                  <span className="font-black text-white">Your Business Details</span>
+                  <span className="text-xs text-slate-500">— so we can send the formal quote</span>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <Label className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5 block">Company / Shop Name *</Label>
+                    <Input
+                      value={boqContact.company}
+                      onChange={e => setBoqContact(c => ({ ...c, company: e.target.value }))}
+                      placeholder="Exphone Electronics LLC"
+                      className="bg-[#070B14] border-[#1E293B] text-white"
+                      data-testid="input-boq-company"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5 block">WhatsApp Number *</Label>
+                    <Input
+                      type="tel"
+                      value={boqContact.whatsapp}
+                      onChange={e => setBoqContact(c => ({ ...c, whatsapp: e.target.value }))}
+                      placeholder="+971 5X XXX XXXX"
+                      className="bg-[#070B14] border-[#1E293B] text-white"
+                      data-testid="input-boq-whatsapp"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5 block">Email (for pro-forma invoice)</Label>
+                    <Input
+                      type="email"
+                      value={boqContact.email}
+                      onChange={e => setBoqContact(c => ({ ...c, email: e.target.value }))}
+                      placeholder="buyer@company.com"
+                      className="bg-[#070B14] border-[#1E293B] text-white"
+                      data-testid="input-boq-email"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1.5 block">Delivery Location</Label>
+                    <Input
+                      value={boqContact.location}
+                      onChange={e => setBoqContact(c => ({ ...c, location: e.target.value }))}
+                      placeholder="City, Country (e.g. Dubai, UAE)"
+                      className="bg-[#070B14] border-[#1E293B] text-white"
+                      data-testid="input-boq-location"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <Button
+                    onClick={submitBoq}
+                    size="lg"
+                    className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2"
+                    data-testid="button-submit-boq"
+                    disabled={boqLines.length === 0}
+                  >
+                    <Send className="w-5 h-5" />
+                    Submit BOQ — Get Formal Quote
+                  </Button>
+                  <div className="text-xs text-slate-500 leading-relaxed max-w-sm">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 inline mr-1" />
+                    Pro-forma invoice within 4 business hours ·
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 inline mx-1" />
+                    No commitment until you approve
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
