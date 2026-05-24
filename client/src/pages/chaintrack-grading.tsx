@@ -10,9 +10,13 @@ import {
   BarChart3, Globe, ArrowRight, Award, Zap, Eye, FileCheck,
   Building2, Video, Target, Lock, Star, Activity, Search, Microscope
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp, SiTelegram } from "react-icons/si";
 
 const WHATSAPP_URL = "https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20learn%20about%20ChainTrack%20certified%20grading";
+const TELEGRAM_URL = "https://t.me/chaintracklogistics";
+const BOTIM_NUMBER = "+971523906019";
+const ZOOM_URL = "mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20-%20ChainTrack%20Remote%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20for%20a%20remote%20lot%20inspection.";
+const TEAMS_URL = "https://teams.microsoft.com/l/chat/0/0?users=formatix%40hotmail.com";
 
 const GRADING_STAGES = [
   {
@@ -129,18 +133,34 @@ export default function ChainTrackGradingPage() {
             <p className="text-xl text-slate-400 max-w-2xl mb-8 leading-relaxed">
               Every ChainTrack lot undergoes automated device testing, standardized grading, cosmetic verification, and battery diagnostics — so importers can source remotely with institutional confidence.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2">
-                  <SiWhatsapp className="w-4 h-4" /> Request Grading Report
+                  <SiWhatsapp className="w-4 h-4" /> WhatsApp
                 </Button>
               </a>
-              <Link href="/chaintrack">
-                <Button variant="outline" className="border-[#1E293B] text-slate-300 hover:text-white hover:border-slate-500 font-bold uppercase tracking-widest text-xs gap-2">
-                  View Live Lots <ArrowRight className="w-4 h-4" />
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                  <SiTelegram className="w-4 h-4" /> Telegram
                 </Button>
-              </Link>
+              </a>
+              <a href={ZOOM_URL}>
+                <Button variant="outline" className="border-blue-500/40 text-blue-300 hover:bg-blue-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                  <Video className="w-4 h-4" /> Zoom Call
+                </Button>
+              </a>
+              <a href={TEAMS_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-indigo-500/40 text-indigo-300 hover:bg-indigo-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                  <Target className="w-4 h-4" /> Teams
+                </Button>
+              </a>
+              <a href={`tel:${BOTIM_NUMBER}`}>
+                <Button variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                  <Lock className="w-4 h-4" /> Botim
+                </Button>
+              </a>
             </div>
+            <p className="text-[11px] text-slate-600 mt-2">Botim backup: +971 52 390 6019 · Zoom/Teams: formatix@hotmail.com · All channels monitored</p>
           </FadeIn>
 
           {/* Stats */}
@@ -331,18 +351,34 @@ export default function ChainTrackGradingPage() {
               <p className="text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
                 Every certified lot includes a grading report, video inspection, IMEI manifest, and escrow documentation — giving remote importers the institutional confidence of an on-site buyer.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2">
-                    <SiWhatsapp className="w-4 h-4" /> Request Grading for My Lot
+                    <SiWhatsapp className="w-4 h-4" /> WhatsApp
                   </Button>
                 </a>
-                <Link href="/chaintrack-sourcing">
-                  <Button className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-xs gap-2">
-                    <Search className="w-4 h-4" /> Submit Sourcing Request
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-sky-500/30 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <SiTelegram className="w-4 h-4" /> Telegram
                   </Button>
-                </Link>
+                </a>
+                <a href={ZOOM_URL}>
+                  <Button variant="outline" className="border-blue-500/30 text-blue-300 hover:bg-blue-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <Video className="w-4 h-4" /> Zoom Inspection
+                  </Button>
+                </a>
+                <a href={TEAMS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <Target className="w-4 h-4" /> Teams Meeting
+                  </Button>
+                </a>
+                <a href={`tel:${BOTIM_NUMBER}`}>
+                  <Button variant="outline" className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <Lock className="w-4 h-4" /> Botim
+                  </Button>
+                </a>
               </div>
+              <p className="text-[11px] text-slate-600 mt-3">Remote inspection via Zoom / Teams: <span className="text-slate-500">formatix@hotmail.com</span> · Botim backup: <span className="text-slate-500">+971 52 390 6019</span></p>
             </div>
           </FadeIn>
           {/* Page navigation row */}

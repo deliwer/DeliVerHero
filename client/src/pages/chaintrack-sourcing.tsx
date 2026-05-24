@@ -21,6 +21,9 @@ import { SiWhatsapp, SiTelegram } from "react-icons/si";
 
 const WHATSAPP_URL = "https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai";
 const TELEGRAM_URL = "https://t.me/chaintrack_sourcing";
+const BOTIM_NUMBER = "tel:+971523906019";
+const ZOOM_URL = "mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20-%20ChainTrack%20Remote%20Sourcing%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20to%20inspect%20a%20sourcing%20lot.";
+const TEAMS_URL = "https://teams.microsoft.com/l/chat/0/0?users=formatix%40hotmail.com";
 
 const CATEGORIES = [
   {
@@ -454,14 +457,35 @@ export default function ChainTrackSourcingPage() {
               <p className="text-slate-400 max-w-xl mx-auto mb-8 leading-relaxed">
                 Submit your sourcing request and a ChainTrack agent will aggregate suppliers, arrange grading, and coordinate logistics within 24 hours.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 <SourcingRequestDialog />
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs gap-2">
-                    <SiWhatsapp className="w-4 h-4" /> Talk to an Agent
+                    <SiWhatsapp className="w-4 h-4" /> WhatsApp
+                  </Button>
+                </a>
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-sky-500/30 text-sky-300 hover:bg-sky-500/10 font-bold uppercase tracking-widest text-xs gap-2">
+                    <SiTelegram className="w-4 h-4" /> Telegram
+                  </Button>
+                </a>
+                <a href={ZOOM_URL}>
+                  <Button variant="outline" className="border-blue-500/30 text-blue-300 hover:bg-blue-500/10 font-bold uppercase tracking-widest text-xs gap-2">
+                    <Video className="w-4 h-4" /> Zoom
+                  </Button>
+                </a>
+                <a href={TEAMS_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-indigo-500/30 text-indigo-300 hover:bg-indigo-500/10 font-bold uppercase tracking-widest text-xs gap-2">
+                    <Eye className="w-4 h-4" /> Teams
+                  </Button>
+                </a>
+                <a href={BOTIM_NUMBER}>
+                  <Button variant="outline" className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-bold uppercase tracking-widest text-xs gap-2">
+                    <Clock className="w-4 h-4" /> Botim
                   </Button>
                 </a>
               </div>
+              <p className="text-[11px] text-slate-600 mt-3">Remote inspection: <span className="text-slate-500">Zoom / Teams → formatix@hotmail.com</span> · Botim backup: <span className="text-slate-500">+971 52 390 6019</span></p>
             </div>
           </FadeIn>
           {/* Page navigation row */}

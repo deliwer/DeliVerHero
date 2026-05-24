@@ -19,6 +19,7 @@ import {
   TrendingUp,
   CalendarCheck,
 } from "lucide-react";
+
 import { SiFacebook, SiTiktok, SiGoogle } from "react-icons/si";
 import { EmailSubscriptionForm } from "./email-subscription-form";
 import { PaymentCTA } from "./payment-cta";
@@ -269,6 +270,7 @@ export function Footer() {
               <Heart className="w-3.5 h-3.5 text-emerald-500" />Connect
             </h3>
             <div className="flex flex-col gap-2 mb-5">
+              {/* WhatsApp */}
               <a
                 href="https://wa.me/971523946311"
                 target="_blank"
@@ -277,6 +279,7 @@ export function Footer() {
               >
                 <Heart className="w-3 h-3" />Hassan (WhatsApp)
               </a>
+              {/* Telegram */}
               <a
                 href="https://t.me/+971523946311"
                 target="_blank"
@@ -286,6 +289,15 @@ export function Footer() {
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                 Hassan (Telegram)
               </a>
+              {/* Botim backup */}
+              <a
+                href="tel:+971523906019"
+                className="inline-flex items-center justify-center gap-1.5 bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 px-3 py-2 rounded-lg font-black text-xs transition-colors"
+                title="Botim — backup channel if WhatsApp/Telegram unavailable"
+              >
+                <Phone className="w-3 h-3" />Botim +971 52 390 6019
+              </a>
+              {/* Rubab WhatsApp */}
               <a
                 href="https://wa.me/971504547110"
                 target="_blank"
@@ -294,6 +306,7 @@ export function Footer() {
               >
                 <Heart className="w-3 h-3" />Rubab (WhatsApp)
               </a>
+              {/* ChainTrack Telegram channel */}
               <a
                 href="https://t.me/chaintracklogistics"
                 target="_blank"
@@ -302,6 +315,26 @@ export function Footer() {
               >
                 <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                 ChainTrack Channel
+              </a>
+              {/* Zoom — remote inspection */}
+              <a
+                href="mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20Request%20-%20Remote%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20for%20a%20ChainTrack%20remote%20inspection."
+                className="inline-flex items-center justify-center gap-1.5 bg-blue-500/10 border border-blue-500/30 hover:bg-blue-500/20 text-blue-300 px-3 py-2 rounded-lg font-black text-xs transition-colors"
+                title="Request a Zoom meeting for remote inspection"
+              >
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12c0 6.628-5.373 12-12 12S0 18.628 0 12 5.373 0 12 0s12 5.372 12 12zm-5.25-3.75H7.5C6.672 8.25 6 8.922 6 9.75v5.25c0 .826.672 1.5 1.5 1.5H18c.83 0 1.5-.674 1.5-1.5V9.75c0-.828-.67-1.5-1.5-1.5zM7.5 15V9.75H15V15H7.5zm12 0l-3-2.25V11.25L19.5 9v6z"/></svg>
+                Zoom (formatix@hotmail.com)
+              </a>
+              {/* Microsoft Teams */}
+              <a
+                href="https://teams.microsoft.com/l/chat/0/0?users=formatix%40hotmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 bg-indigo-500/10 border border-indigo-500/30 hover:bg-indigo-500/20 text-indigo-300 px-3 py-2 rounded-lg font-black text-xs transition-colors"
+                title="Chat or request a meeting on Microsoft Teams"
+              >
+                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12c0 6.628-5.373 12-12 12S0 18.628 0 12 5.373 0 12 0s12 5.372 12 12zm-9.857-4.875a1.875 1.875 0 1 0 0 3.75 1.875 1.875 0 0 0 0-3.75zM6 9.375A1.875 1.875 0 1 0 6 13.125 1.875 1.875 0 0 0 6 9.375zm8.143 1.5c.66 0 1.263.17 1.782.467.052-.02.108-.03.168-.03h2.282c.345 0 .625.28.625.625v3.688a2.5 2.5 0 0 1-2.5 2.5h-.25a2.5 2.5 0 0 1-2.5-2.5v-.188H12.5v.313A3.125 3.125 0 0 1 9.375 18.875h-.25A3.125 3.125 0 0 1 6 15.75V11c0-.345.28-.625.625-.625h2.75c.345 0 .625.28.625.625v.25c.52-.297 1.12-.5 1.768-.5h2.375z"/></svg>
+                Teams (formatix@hotmail.com)
               </a>
               <Link href="/consult">
                 <div className="inline-flex items-center justify-center gap-1.5 w-full bg-white/5 border border-white/10 hover:bg-white/10 text-gray-300 hover:text-white px-3 py-2 rounded-lg font-black text-xs transition-colors cursor-pointer">

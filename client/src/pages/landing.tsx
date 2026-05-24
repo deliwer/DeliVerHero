@@ -145,31 +145,45 @@ export default function LandingPage() {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="flex flex-col items-center gap-4"
           >
-            <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="cta-whatsapp-main-hero"
               >
-                <Button className="h-16 px-10 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-base rounded-2xl shadow-2xl shadow-emerald-900/50 transition-all">
-                  <MessageCircle className="w-6 h-6 mr-3" /> Start Move-In on WhatsApp
+                <Button className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-sm rounded-2xl shadow-2xl shadow-emerald-900/50 transition-all">
+                  <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp
+                </Button>
+              </a>
+              <a
+                href="https://t.me/+971523946311"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="cta-telegram-main-hero"
+              >
+                <Button className="h-14 px-8 bg-[#229ED9] hover:bg-[#1a8bbf] text-white font-black uppercase tracking-widest text-sm rounded-2xl shadow-2xl shadow-sky-900/30 transition-all">
+                  <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                  Telegram
                 </Button>
               </a>
               <button
                 onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="cta-see-how-it-works"
-                className="h-16 px-8 border border-white/20 text-white font-black uppercase tracking-widest text-sm rounded-2xl hover:bg-white/5 transition-all"
+                className="h-14 px-7 border border-white/20 text-white font-black uppercase tracking-widest text-sm rounded-2xl hover:bg-white/5 transition-all"
               >
                 See How It Works
               </button>
             </div>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-1">
-              {["Serving tenants across Dubai", "Verified partner network", "Fast WhatsApp support"].map((t) => (
+              {["Serving tenants across Dubai", "Verified partner network", "WhatsApp & Telegram support"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t}
                 </span>
               ))}
+            </div>
+            <div className="text-[10px] text-gray-600 font-bold">
+              Backup: Botim +971 52 390 6019 · Zoom/Teams: formatix@hotmail.com
             </div>
           </motion.div>
 
@@ -567,15 +581,26 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <a
               href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-bundle-start"
             >
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all">
-                <MessageCircle className="w-4 h-4 mr-2" /> Start My Move-In on WhatsApp
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-6 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all gap-2">
+                <MessageCircle className="w-4 h-4" /> WhatsApp
+              </Button>
+            </a>
+            <a
+              href="https://t.me/+971523946311"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-bundle-telegram"
+            >
+              <Button className="bg-[#229ED9] hover:bg-[#1a8bbf] text-white font-black rounded-xl px-6 h-11 text-sm shadow-lg shadow-sky-900/20 transition-all gap-2">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
               </Button>
             </a>
             <Link href="/concierge-pricing">
