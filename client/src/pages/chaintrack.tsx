@@ -20,9 +20,12 @@ import {
   Gavel, Plus, TrendingUp, AlertCircle, MapPin, Warehouse, ChevronDown,
   ChevronRight, Boxes, RefreshCw, Filter, Bell, Eye, Timer, Cpu,
   Award, Lock, ChevronUp, Layers, Truck, Activity, Radio, ExternalLink,
-  Target, BarChart2, Smartphone, Weight, FileCheck, Anchor, Route
+  Target, BarChart2, Smartphone, Weight, FileCheck, Anchor, Route,
+  Bot, MessageSquare, Video, Network, Repeat, CreditCard, UserCheck,
+  Send, Languages, BrainCircuit, TrendingDownIcon
 } from "lucide-react";
 import { SiLinkedin, SiWhatsapp, SiTelegram } from "react-icons/si";
+import ChainTrackAIAgent from "@/components/chaintrack-ai-agent";
 import warehouseImage from "@assets/stock_images/modern_warehouse_ful_49a92694.jpg";
 import cargoPlaneImage from "@assets/stock_images/hero_cargo_plane.jpg";
 import dubaiHubImage from "@assets/stock_images/dubai_air_hub.jpg";
@@ -1618,6 +1621,333 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Agentic Order Flow ── */}
+      <section className="border-t border-[#1E293B] py-20 bg-[#060A15]">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">End-to-End Automation</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Agentic Order Flow</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">From first website visit to repeat subscription — every step is automated, broker-assisted, and AI-coordinated.</p>
+          </div>
+          <div className="relative max-w-4xl mx-auto">
+            {/* Vertical connector line */}
+            <div className="absolute left-8 top-8 bottom-8 w-px bg-gradient-to-b from-cyan-500/60 via-blue-500/40 to-purple-500/30 hidden md:block" />
+            <div className="space-y-4">
+              {[
+                { step: 1, label: "Website Visitor", icon: Globe, color: "cyan", sub: "Organic, Telegram, TikTok, WhatsApp, LinkedIn" },
+                { step: 2, label: "AI Qualification Agent", icon: Bot, color: "blue", sub: "Lead classification · buyer type detection · volume scoring" },
+                { step: 3, label: "User Classification", icon: UserCheck, color: "indigo", sub: "Importer · Broker · Trader · Flipper · Logistics Partner" },
+                { step: 4, label: "Remote Sourcing Request", icon: Search, color: "violet", sub: "Product interest detection · supplier aggregation triggered" },
+                { step: 5, label: "Inspection Coordination", icon: Eye, color: "purple", sub: "Certified grading · automated testing · IMEI verification" },
+                { step: 6, label: "Video Inspection Delivery", icon: Video, color: "fuchsia", sub: "Recorded lot walkthrough delivered before payment release" },
+                { step: 7, label: "Logistics Quote Automation", icon: Truck, color: "pink", sub: "Charter cargo · sea freight · CIF quote in minutes" },
+                { step: 8, label: "Order Conversion + Escrow", icon: Shield, color: "rose", sub: "DAFZA escrow · zero inventory risk · secure release" },
+                { step: 9, label: "Broker Distribution", icon: Network, color: "orange", sub: "Regional broker network · local delivery · market trust" },
+                { step: 10, label: "Repeat Subscription", icon: Repeat, color: "amber", sub: "Membership upsell · automated follow-up · recurring revenue" },
+              ].map((item, i) => {
+                const Icon = item.icon;
+                const colorMap: Record<string, string> = {
+                  cyan: "bg-cyan-500/15 border-cyan-500/30 text-cyan-400",
+                  blue: "bg-blue-500/15 border-blue-500/30 text-blue-400",
+                  indigo: "bg-indigo-500/15 border-indigo-500/30 text-indigo-400",
+                  violet: "bg-violet-500/15 border-violet-500/30 text-violet-400",
+                  purple: "bg-purple-500/15 border-purple-500/30 text-purple-400",
+                  fuchsia: "bg-fuchsia-500/15 border-fuchsia-500/30 text-fuchsia-400",
+                  pink: "bg-pink-500/15 border-pink-500/30 text-pink-400",
+                  rose: "bg-rose-500/15 border-rose-500/30 text-rose-400",
+                  orange: "bg-orange-500/15 border-orange-500/30 text-orange-400",
+                  amber: "bg-amber-500/15 border-amber-500/30 text-amber-400",
+                };
+                const cls = colorMap[item.color];
+                return (
+                  <div key={i} className="flex items-center gap-5 group">
+                    <div className={`w-16 h-10 rounded-xl border flex items-center justify-center shrink-0 relative z-10 ${cls}`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1 bg-[#0D1424] border border-[#1E293B] hover:border-cyan-500/20 rounded-xl px-5 py-3 flex items-center justify-between transition-colors">
+                      <div>
+                        <span className="text-[9px] font-black text-slate-600 tracking-widest mr-2">STEP {String(item.step).padStart(2, "0")}</span>
+                        <span className="text-sm font-black text-white">{item.label}</span>
+                      </div>
+                      <span className="text-[11px] text-slate-500 hidden md:block ml-4 text-right max-w-xs">{item.sub}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Azerbaijan & CIS Strategy ── */}
+      <section className="border-t border-[#1E293B] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-3">Regional Intelligence</div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">
+                Azerbaijan as<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">CIS Coordination Node</span>
+              </h2>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                ChainTrack positions Azerbaijan as the gateway into the broader CIS market — a multilingual coordination hub bridging Dubai sourcing infrastructure with Central Asian distribution networks.
+              </p>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Local coordination support available in Baku. Broker onboarding in progress across Azerbaijan, Kazakhstan, Uzbekistan, Georgia, and Kyrgyzstan.
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {[
+                  { flag: "🇦🇿", country: "Azerbaijan", role: "Regional Node · Baku Hub" },
+                  { flag: "🇰🇿", country: "Kazakhstan", role: "12k units/mo · Almaty" },
+                  { flag: "🇺🇿", country: "Uzbekistan", role: "9k units/mo · Tashkent" },
+                  { flag: "🇬🇪", country: "Georgia", role: "4k units/mo · Tbilisi" },
+                  { flag: "🇰🇬", country: "Kyrgyzstan", role: "3k units/mo · Bishkek" },
+                  { flag: "🌐", country: "CIS Region", role: "134k+ units/mo total" },
+                ].map((m, i) => (
+                  <div key={i} className="flex items-center gap-2.5 bg-[#0D1424] border border-[#1E293B] rounded-xl px-4 py-3">
+                    <span className="text-xl">{m.flag}</span>
+                    <div>
+                      <div className="text-xs font-black text-white">{m.country}</div>
+                      <div className="text-[10px] text-slate-500">{m.role}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <a href="https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20become%20a%20ChainTrack%20broker%20in%20the%20CIS%20region" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest text-xs gap-2">
+                  <SiWhatsapp className="w-4 h-4" /> Apply as CIS Broker
+                </Button>
+              </a>
+            </div>
+            <div className="space-y-4">
+              <div className="bg-[#0D1424] border border-purple-500/20 rounded-2xl p-6">
+                <div className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3">Emerging Air-Sea Corridor</div>
+                <h3 className="text-lg font-black text-white mb-3">Dubai → Gawadar → Central Asia → CIS</h3>
+                <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                  ChainTrack coordinates cargo across the emerging multimodal trade corridor — air charter from DWC, sea port at Gawadar, onward via INSTC rail to CIS destinations.
+                </p>
+                <div className="grid grid-cols-3 gap-3 text-center">
+                  {[
+                    { label: "Air Charter", sub: "DWC → GYD/ALA", icon: Plane },
+                    { label: "Sea Freight", sub: "Gawadar Port", icon: Anchor },
+                    { label: "INSTC Rail", sub: "Central Asia onward", icon: Route },
+                  ].map((m, i) => {
+                    const Icon = m.icon;
+                    return (
+                      <div key={i} className="bg-[#070B14] border border-[#1E293B] rounded-xl p-3">
+                        <Icon className="w-4 h-4 text-cyan-400 mx-auto mb-1.5" />
+                        <div className="text-xs font-black text-white">{m.label}</div>
+                        <div className="text-[10px] text-slate-500">{m.sub}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-purple-900/20 to-cyan-900/10 border border-purple-500/20 rounded-2xl p-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <Languages className="w-5 h-5 text-purple-400" />
+                  <span className="text-sm font-black text-white">Multilingual Support</span>
+                </div>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Local coordination available in English, Arabic, Russian, Azerbaijani, and Uzbek. Our CIS broker network provides on-ground support across all major distribution hubs.
+                </p>
+                <div className="flex gap-2 mt-3 flex-wrap">
+                  {["🇬🇧 English", "🇦🇪 Arabic", "🇷🇺 Russian", "🇦🇿 Azerbaijani", "🇺🇿 Uzbek"].map(l => (
+                    <span key={l} className="text-[10px] px-2 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300">{l}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Telegram Agentic Ecosystem ── */}
+      <section className="border-t border-[#1E293B] bg-[#060A15] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-sky-400 mb-3">Telegram Ecosystem</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Telegram as Trade Infrastructure</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">Our Telegram ecosystem functions as a live sourcing feed, broker network, trust engine, and operational dashboard — all in one channel.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+            {[
+              {
+                icon: Radio,
+                title: "Live Sourcing Feed",
+                desc: "New lots, bids, and sourcing requests posted automatically to the channel. Stay ahead of the market in real time.",
+                badge: "Automated",
+                color: "text-sky-400",
+                bg: "bg-sky-500/10 border-sky-500/20",
+              },
+              {
+                icon: Bot,
+                title: "Telegram Bot",
+                desc: "Our broker bot handles onboarding, sourcing requests, logistics inquiries, and membership applications via Telegram commands.",
+                badge: "AI-Powered",
+                color: "text-blue-400",
+                bg: "bg-blue-500/10 border-blue-500/20",
+              },
+              {
+                icon: Users,
+                title: "Broker Network",
+                desc: "Regional brokers coordinate directly through the Telegram group. Lead distribution, lot alerts, and commission tracking.",
+                badge: "Active",
+                color: "text-cyan-400",
+                bg: "bg-cyan-500/10 border-cyan-500/20",
+              },
+              {
+                icon: Shield,
+                title: "Trust Engine",
+                desc: "Daily inspection videos, packing footage, and shipment updates shared on the channel build institutional trust remotely.",
+                badge: "Daily Updates",
+                color: "text-emerald-400",
+                bg: "bg-emerald-500/10 border-emerald-500/20",
+              },
+              {
+                icon: TrendingUp,
+                title: "Market Intelligence",
+                desc: "CIS demand signals, price movements, and corridor intelligence broadcast automatically to the trader community.",
+                badge: "Live Data",
+                color: "text-amber-400",
+                bg: "bg-amber-500/10 border-amber-500/20",
+              },
+              {
+                icon: CreditCard,
+                title: "Membership Upsell",
+                desc: "Automated membership upgrade prompts triggered by volume and engagement signals. Self-sustaining revenue loop.",
+                badge: "Automated",
+                color: "text-purple-400",
+                bg: "bg-purple-500/10 border-purple-500/20",
+              },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Card key={i} className={`bg-[#0D1424] border-[#1E293B] hover:border-sky-500/20 transition-colors p-5`}>
+                  <div className={`w-10 h-10 rounded-xl border ${item.bg} flex items-center justify-center mb-4`}>
+                    <Icon className={`w-5 h-5 ${item.color}`} />
+                  </div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm font-black text-white">{item.title}</span>
+                    <Badge className={`border ${item.bg} ${item.color} text-[9px] uppercase tracking-wider`}>{item.badge}</Badge>
+                  </div>
+                  <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                </Card>
+              );
+            })}
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-sky-500 hover:bg-sky-400 text-white font-black uppercase tracking-widest text-xs gap-2">
+                <SiTelegram className="w-4 h-4" /> Join ChainTrack Channel
+              </Button>
+            </a>
+            <a href="https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20join%20the%20ChainTrack%20broker%20Telegram" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs gap-2">
+                <SiWhatsapp className="w-4 h-4" /> WhatsApp to Get Invited
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Verified by ChainTrack Trust Infrastructure ── */}
+      <section className="border-t border-[#1E293B] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-4 py-2 mb-6">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm font-black text-emerald-400 uppercase tracking-widest">Verified by ChainTrack</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">
+                Trust is the<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Core Product</span>
+              </h2>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                We run a recurring operational proof system — daily uploads of inspection videos, packing footage, grading screenshots, cargo coordination visuals, and shipment updates — so remote importers experience institutional confidence.
+              </p>
+              <div className="space-y-3 mb-8">
+                {[
+                  { label: "Daily inspection video uploads", icon: Video },
+                  { label: "Packing and seal footage", icon: Eye },
+                  { label: "Certified grading screenshots", icon: FileCheck },
+                  { label: "Cargo coordination visuals", icon: Plane },
+                  { label: "Supplier KYC verification", icon: UserCheck },
+                  { label: "Shipment tracking updates", icon: Truck },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                      <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                        <Icon className="w-3.5 h-3.5 text-emerald-400" />
+                      </div>
+                      {item.label}
+                    </div>
+                  );
+                })}
+              </div>
+              <Link href="/chaintrack-grading">
+                <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-xs gap-2">
+                  <Shield className="w-4 h-4" /> View Grading Infrastructure
+                </Button>
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {/* AI Automation Modules */}
+              <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-6">
+                <div className="text-[10px] font-black text-cyan-400 uppercase tracking-widest mb-4">AI Automation Modules</div>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { label: "Lead Scoring", icon: Target },
+                    { label: "Product Matching", icon: Search },
+                    { label: "Broker Matching", icon: Network },
+                    { label: "Logistics Estimation", icon: Truck },
+                    { label: "Caption Generation", icon: MessageSquare },
+                    { label: "Multilingual Translation", icon: Languages },
+                    { label: "Membership Upselling", icon: CreditCard },
+                    { label: "Follow-up Automation", icon: Send },
+                  ].map((mod, i) => {
+                    const Icon = mod.icon;
+                    return (
+                      <div key={i} className="flex items-center gap-2 bg-[#070B14] border border-[#1E293B] rounded-xl px-3 py-2.5">
+                        <Icon className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                        <span className="text-xs text-slate-300 font-medium">{mod.label}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              {/* Revenue streams */}
+              <div className="bg-gradient-to-br from-emerald-900/20 to-cyan-900/10 border border-emerald-500/20 rounded-2xl p-6">
+                <div className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Self-Sustaining Revenue Model</div>
+                <div className="space-y-2">
+                  {[
+                    "Membership subscriptions",
+                    "Sourcing coordination commissions",
+                    "Inspection & grading fees",
+                    "Broker commission network",
+                    "Logistics coordination margins",
+                    "Featured supplier placements",
+                  ].map((r, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-400">
+                      <div className="w-1 h-1 rounded-full bg-emerald-400" />
+                      {r}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 text-[10px] font-black text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-3 py-2 text-center uppercase tracking-wider">
+                  Zero Inventory Risk · Recurring Revenue
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Agent Widget */}
+      <ChainTrackAIAgent />
 
     </div>
   );

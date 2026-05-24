@@ -387,6 +387,77 @@ Source: Website Concierge Page
   // Register ChainTrack export-import compliance routes
   app.use("/api/chaintrack", chaintrackRoutes);
 
+  // AI Qualification Agent for ChainTrack
+  app.post("/api/chaintrack/qualify", async (req, res) => {
+    const { message, sessionId, history = [] } = req.body;
+    if (!message) return res.status(400).json({ error: "message required" });
+
+    const systemPrompt = `You are ChainTrack's AI sourcing intelligence agent. ChainTrack is a broker-powered, AI-assisted remote sourcing and verification ecosystem for refurbished electronics — connecting Dubai wholesalers, certified grading infrastructure, logistics coordination, and CIS distribution networks.
+
+Your job is to qualify leads and guide them toward the right next step. Be concise, professional, and trader-focused. Never use generic consumer language.
+
+Classify users into one of: importer, wholesaler, phone_flipper, reseller, broker, logistics_partner.
+
+For each response:
+- Ask focused questions to understand country, business type, products needed, monthly volume, logistics needs, inspection requirements
+- After 2-3 exchanges, recommend the right membership tier or service
+- Always end with a WhatsApp CTA or a specific next step
+- Keep replies under 80 words
+- Offer 2-4 quick reply options when possible
+
+Membership tiers:
+- Free Explorer: public listings, Telegram access
+- Trader: priority sourcing, broker access, inspection assistance
+- Premium Importer: dedicated sourcing, remote inspections, certified grading reports, priority cargo
+- Broker Pro: commission access, importer matching, regional exclusivity
+
+Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawadar-CIS corridor), escrow.`;
+
+    const chatHistory = (history as { role: string; text: string }[]).map(m => ({
+      role: m.role === "agent" ? "assistant" : "user" as "assistant" | "user",
+      content: m.text,
+    }));
+
+    try {
+      if (!openai) {
+        return res.json({
+          reply: "Our sourcing team is ready to assist you. Let me connect you directly via WhatsApp for fastest response.",
+          cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai" },
+        });
+      }
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...chatHistory,
+          { role: "user", content: message },
+        ],
+        max_tokens: 200,
+        temperature: 0.7,
+      });
+
+      const reply = completion.choices[0]?.message?.content || "Let me connect you with our sourcing team.";
+
+      // Parse options from reply if it contains bullet-list style options
+      const optionLines = reply.match(/^\d\.\s.+$/gm) || [];
+      const options = optionLines.length >= 2
+        ? optionLines.map((l: string) => l.replace(/^\d\.\s/, "").trim()).slice(0, 4)
+        : undefined;
+
+      // Add WhatsApp CTA if reply contains keywords suggesting readiness
+      const shouldAddCTA = /whatsapp|ready|contact|apply|join|membership|source now/i.test(reply);
+      const cta = shouldAddCTA ? { label: "Continue on WhatsApp →", href: "https://wa.me/971523946311?text=Hi%2C%20ChainTrack%20AI%20Agent%20sent%20me" } : undefined;
+
+      return res.json({ reply, options, cta });
+    } catch (err) {
+      return res.json({
+        reply: "Let me connect you with our sourcing team directly.",
+        cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523946311" },
+      });
+    }
+  });
+
   // Register Logistics Corridor Intelligence routes
   app.use("/api/logistics", logisticsIntelligenceRoutes);
 

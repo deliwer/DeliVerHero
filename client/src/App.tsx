@@ -129,6 +129,8 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
+const ChainTrackGradingPage = lazy(() => import("@/pages/chaintrack-grading"));
+const ChainTrackSourcingPage = lazy(() => import("@/pages/chaintrack-sourcing"));
 const FreightBrokerPage = lazy(() => import("@/pages/freight-broker"));
 const LogisticsFunnelPage = lazy(() => import("@/pages/logistics-funnel"));
 const FulfillmentByDeliWer = lazy(() => import("@/pages/fulfillment-by-deliwer"));
@@ -478,6 +480,14 @@ function Router() {
 
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />
+
+        {/* ChainTrack Certified Grading Infrastructure */}
+        <Route path="/chaintrack-grading" component={ChainTrackGradingPage} />
+        <Route path="/grading" component={ChainTrackGradingPage} />
+
+        {/* ChainTrack Remote Sourcing Marketplace */}
+        <Route path="/chaintrack-sourcing" component={ChainTrackSourcingPage} />
+        <Route path="/sourcing" component={ChainTrackSourcingPage} />
 
         {/* /chaintrack-logistics → scroll to Phone Flipper onboarding on /partners */}
         <Route path="/chaintrack-logistics" component={() => {
