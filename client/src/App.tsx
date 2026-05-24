@@ -479,6 +479,14 @@ function Router() {
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />
 
+        {/* /chaintrack-logistics → scroll to Phone Flipper onboarding on /partners */}
+        <Route path="/chaintrack-logistics" component={() => {
+          useEffect(() => {
+            window.location.replace("/partners#phone-flipper-track");
+          }, []);
+          return null;
+        }} />
+
         {/* Fulfillment by DeliWer */}
         <Route path="/fulfillment" component={FulfillmentByDeliWer} />
 
