@@ -22,7 +22,7 @@ import {
   Award, Lock, ChevronUp, Layers, Truck, Activity, Radio, ExternalLink,
   Target, BarChart2, Smartphone, Weight, FileCheck, Anchor, Route
 } from "lucide-react";
-import { SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { SiLinkedin, SiWhatsapp, SiTelegram } from "react-icons/si";
 import warehouseImage from "@assets/stock_images/modern_warehouse_ful_49a92694.jpg";
 import cargoPlaneImage from "@assets/stock_images/hero_cargo_plane.jpg";
 import dubaiHubImage from "@assets/stock_images/dubai_air_hub.jpg";
@@ -528,6 +528,12 @@ export default function ChainTrackPage() {
                 WhatsApp
               </Button>
             </a>
+            <a href="https://t.me/chaintracklogistics" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="ghost" className="gap-2 text-sky-400 hover:text-sky-300 hover:bg-sky-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-telegram-chaintrack-hero">
+                <SiTelegram className="w-4 h-4" />
+                Telegram
+              </Button>
+            </a>
           </div>
 
           {/* Stats bar */}
@@ -792,6 +798,168 @@ export default function ChainTrackPage() {
                 </ul>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Industry Media & Technology Spotlight ── */}
+      <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-4">
+            <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Industry Intelligence</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Grading Technology & Market News</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mb-6">
+              The global refurbished device industry is undergoing rapid automation. ChainTrack integrates with the same class of inspection technology shown below — targeting prospective operational partnerships with leading grading facilities.
+            </p>
+            {/* Disclaimer */}
+            <div className="inline-flex gap-2 items-start bg-amber-500/8 border border-amber-500/25 rounded-xl px-5 py-3 max-w-3xl mx-auto text-left">
+              <span className="text-amber-400 text-xs shrink-0 mt-0.5">⚠</span>
+              <p className="text-[10px] text-amber-300/70 leading-relaxed">
+                <span className="font-black text-amber-400">Disclaimer:</span> All media, footage, and technology demonstrations on this page are shown for illustrative purposes only. All brand names, trademarks, logos, and company names belong to their respective owners. ChainTrack / DeliWer is not affiliated with, endorsed by, or in any formal partnership with any facility, company, or entity featured. Any references represent examples of industry technology and potential future partnership prospects under exploratory discussion only.
+              </p>
+            </div>
+          </div>
+
+          {/* Video / Technology Cards */}
+          <div className="grid md:grid-cols-3 gap-5 mt-10 mb-12">
+            {[
+              {
+                searchQuery: "automated+smartphone+testing+plant+grading",
+                title: "Automated Device Testing Lines",
+                desc: "High-throughput stations run 200+ diagnostics per unit in under 90 seconds — IMEI, network lock, touch, camera, battery health. Used by leading ITAD and refurb facilities globally.",
+                tag: "Grading Tech",
+                tagColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+                icon: Cpu,
+                accentColor: "border-cyan-500/30",
+              },
+              {
+                searchQuery: "bulk+iPhone+refurbishment+factory+processing",
+                title: "Bulk Batch Refurbishment",
+                desc: "Modern facilities process 5,000–50,000 units per shift using robotic conveyor and cosmetic AI grading. Computer vision classifies A/B/C/ASIS grades with 97%+ consistency.",
+                tag: "Factory Ops",
+                tagColor: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+                icon: Warehouse,
+                accentColor: "border-purple-500/30",
+              },
+              {
+                searchQuery: "ITAD+electronics+recycling+resale+automation",
+                title: "ITAD Re-Market Automation",
+                desc: "IT asset disposition networks re-grade, wipe, and re-certify returned and traded devices at scale. ChainTrack sources from certified ITAD suppliers in the US, China and India.",
+                tag: "Supply Chain",
+                tagColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+                icon: RefreshCw,
+                accentColor: "border-amber-500/30",
+              },
+            ].map((card, i) => (
+              <a
+                key={i}
+                href={`https://www.youtube.com/results?search_query=${card.searchQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group block rounded-2xl border ${card.accentColor} bg-[#0D1424] overflow-hidden hover:border-opacity-70 transition-all`}
+                data-testid={`card-media-${i}`}
+              >
+                {/* Thumbnail placeholder */}
+                <div className="relative bg-[#0A0F1E] h-44 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/40 to-slate-900/80" />
+                  <div className="relative z-10 flex flex-col items-center gap-3">
+                    <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-all">
+                      <svg className="w-6 h-6 text-white ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">Watch on YouTube</span>
+                  </div>
+                  <card.icon className="absolute bottom-3 right-3 w-5 h-5 text-white/10" />
+                </div>
+                <div className="p-5">
+                  <span className={`inline-flex items-center text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border mb-3 ${card.tagColor}`}>{card.tag}</span>
+                  <div className="font-black text-white text-sm mb-2">{card.title}</div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">{card.desc}</p>
+                  <div className="flex items-center gap-1 mt-4 text-[10px] font-black text-slate-500 group-hover:text-slate-300 transition-colors">
+                    <ExternalLink className="w-3 h-3" /> Search related footage →
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Industry News Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                source: "IDC Research · 2025",
+                headline: "Global refurbished smartphone market projected to reach $65B by 2028",
+                body: "IDC forecasts CAGR of 10.2% through 2028, driven by CIS, Southeast Asia and Sub-Saharan Africa demand for affordable iOS devices.",
+                color: "border-blue-500/25 bg-blue-500/5",
+                dot: "bg-blue-400",
+              },
+              {
+                source: "DAFZA Trade Intelligence · Q1 2026",
+                headline: "Dubai cements position as #1 electronics re-export hub for Central Asia",
+                body: "DAFZA-based electronics re-exports to CIS corridor up 41% YoY. Used iPhone lots represent largest single SKU category by value.",
+                color: "border-emerald-500/25 bg-emerald-500/5",
+                dot: "bg-emerald-400",
+              },
+              {
+                source: "GSMA Mobile Economy Report · 2025",
+                headline: "CIS refurbished iPhone demand surges 34% as network upgrades accelerate",
+                body: "Kazakhstan, Uzbekistan and Azerbaijan lead adoption growth as LTE/5G expansion makes used iPhone hardware more compatible with local networks.",
+                color: "border-purple-500/25 bg-purple-500/5",
+                dot: "bg-purple-400",
+              },
+              {
+                source: "Blancco Technology Group · 2025",
+                headline: "AI-powered cosmetic grading now deployed in 68% of tier-1 ITAD facilities",
+                body: "Computer vision reduces grading labour cost by up to 62% and improves lot consistency scores — directly impacting auction reserve accuracy.",
+                color: "border-amber-500/25 bg-amber-500/5",
+                dot: "bg-amber-400",
+              },
+              {
+                source: "Reuters Trade Wire · Apr 2026",
+                headline: "India's RODTEP rebate scheme drives surge in refurbished iPhone export",
+                body: "India exporters leveraging 2% RODTEP rebate to undercut Chinese suppliers on A-grade lots — widening supply competition on ChainTrack-style platforms.",
+                color: "border-orange-500/25 bg-orange-500/5",
+                dot: "bg-orange-400",
+              },
+              {
+                source: "TechCrunch · Mar 2026",
+                headline: "Reverse-auction B2B marketplaces cut wholesale iPhone procurement costs by 18–27%",
+                body: "Analysis of B2B electronics auction platforms shows consistent price advantage over traditional wholesale channels, with highest savings on 13/14 Pro models.",
+                color: "border-cyan-500/25 bg-cyan-500/5",
+                dot: "bg-cyan-400",
+              },
+            ].map((news, i) => (
+              <div key={i} className={`rounded-xl border p-4 ${news.color}`} data-testid={`card-news-${i}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${news.dot}`} />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-slate-500">{news.source}</span>
+                </div>
+                <div className="font-black text-white text-[12px] leading-snug mb-2">{news.headline}</div>
+                <p className="text-[11px] text-slate-400 leading-relaxed">{news.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Prospective Partnership Note */}
+          <div className="mt-10 rounded-2xl border border-[#1E293B] bg-[#0D1424] p-6 text-center">
+            <div className="text-[10px] font-black uppercase tracking-widest text-sky-400 mb-2">Partnership Pipeline</div>
+            <h3 className="font-black text-white text-lg mb-2">ChainTrack is Actively Seeking Grading Facility Partners</h3>
+            <p className="text-slate-400 text-sm max-w-2xl mx-auto mb-5">
+              We are in exploratory discussions with automated testing and ITAD facilities in the US, China, India and UAE. If your facility processes 1,000+ used devices per day, we want to integrate your inventory directly into ChainTrack's reverse auction feed.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20represent%20a%20grading%20facility%20and%20want%20to%20discuss%20a%20partnership." target="_blank" rel="noopener noreferrer">
+                <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest gap-2 text-xs" data-testid="button-partnership-whatsapp">
+                  <SiWhatsapp className="w-3.5 h-3.5" />
+                  WhatsApp Our Team
+                </Button>
+              </a>
+              <a href="https://t.me/chaintracklogistics" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2 text-xs" data-testid="button-partnership-telegram">
+                  <SiTelegram className="w-3.5 h-3.5" />
+                  Telegram Channel
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -1142,6 +1310,12 @@ export default function ChainTrackPage() {
                   <Button variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-whatsapp">
                     <SiWhatsapp className="w-4 h-4" />
                     WhatsApp to Apply
+                  </Button>
+                </a>
+                <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-telegram">
+                    <SiTelegram className="w-4 h-4" />
+                    Telegram to Apply
                   </Button>
                 </a>
               </div>
