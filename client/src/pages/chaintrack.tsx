@@ -824,58 +824,61 @@ export default function ChainTrackPage() {
           <div className="grid md:grid-cols-3 gap-5 mt-10 mb-12">
             {[
               {
-                searchQuery: "automated+smartphone+testing+plant+grading",
+                videoId: "kLtcgg9gyPE",
+                videoUrl: "https://youtu.be/kLtcgg9gyPE",
                 title: "Automated Device Testing Lines",
                 desc: "High-throughput stations run 200+ diagnostics per unit in under 90 seconds — IMEI, network lock, touch, camera, battery health. Used by leading ITAD and refurb facilities globally.",
                 tag: "Grading Tech",
                 tagColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
-                icon: Cpu,
                 accentColor: "border-cyan-500/30",
               },
               {
-                searchQuery: "bulk+iPhone+refurbishment+factory+processing",
+                videoId: "e2WQSD90rsc",
+                videoUrl: "https://youtu.be/e2WQSD90rsc",
                 title: "Bulk Batch Refurbishment",
                 desc: "Modern facilities process 5,000–50,000 units per shift using robotic conveyor and cosmetic AI grading. Computer vision classifies A/B/C/ASIS grades with 97%+ consistency.",
                 tag: "Factory Ops",
                 tagColor: "text-purple-400 bg-purple-500/10 border-purple-500/20",
-                icon: Warehouse,
                 accentColor: "border-purple-500/30",
               },
               {
-                searchQuery: "ITAD+electronics+recycling+resale+automation",
+                videoId: "LXpOSUTH5sQ",
+                videoUrl: "https://youtu.be/LXpOSUTH5sQ",
                 title: "ITAD Re-Market Automation",
                 desc: "IT asset disposition networks re-grade, wipe, and re-certify returned and traded devices at scale. ChainTrack sources from certified ITAD suppliers in the US, China and India.",
                 tag: "Supply Chain",
                 tagColor: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-                icon: RefreshCw,
                 accentColor: "border-amber-500/30",
               },
             ].map((card, i) => (
               <a
                 key={i}
-                href={`https://www.youtube.com/results?search_query=${card.searchQuery}`}
+                href={card.videoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group block rounded-2xl border ${card.accentColor} bg-[#0D1424] overflow-hidden hover:border-opacity-70 transition-all`}
                 data-testid={`card-media-${i}`}
               >
-                {/* Thumbnail placeholder */}
-                <div className="relative bg-[#0A0F1E] h-44 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-slate-800/40 to-slate-900/80" />
-                  <div className="relative z-10 flex flex-col items-center gap-3">
-                    <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-all">
+                {/* Real YouTube thumbnail */}
+                <div className="relative h-44 overflow-hidden bg-[#0A0F1E]">
+                  <img
+                    src={`https://img.youtube.com/vi/${card.videoId}/hqdefault.jpg`}
+                    alt={card.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/80 via-transparent to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-black/60 border border-white/30 flex items-center justify-center group-hover:bg-red-600/80 transition-all">
                       <svg className="w-6 h-6 text-white ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                     </div>
-                    <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">Watch on YouTube</span>
                   </div>
-                  <card.icon className="absolute bottom-3 right-3 w-5 h-5 text-white/10" />
                 </div>
                 <div className="p-5">
                   <span className={`inline-flex items-center text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border mb-3 ${card.tagColor}`}>{card.tag}</span>
                   <div className="font-black text-white text-sm mb-2">{card.title}</div>
                   <p className="text-[11px] text-slate-400 leading-relaxed">{card.desc}</p>
-                  <div className="flex items-center gap-1 mt-4 text-[10px] font-black text-slate-500 group-hover:text-slate-300 transition-colors">
-                    <ExternalLink className="w-3 h-3" /> Search related footage →
+                  <div className="flex items-center gap-1 mt-4 text-[10px] font-black text-slate-500 group-hover:text-red-400 transition-colors">
+                    <ExternalLink className="w-3 h-3" /> Watch on YouTube →
                   </div>
                 </div>
               </a>

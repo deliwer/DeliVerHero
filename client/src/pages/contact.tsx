@@ -3,7 +3,7 @@ import { ContactForm } from "@/components/contact-form";
 import { 
   Mail, Phone, MapPin, Clock, MessageCircle, Globe, Instagram, 
   Twitter, Linkedin, Youtube, Facebook, TrendingUp, Briefcase,
-  Gamepad2, Leaf
+  Gamepad2, Leaf, Send
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { contactInfo } from "@/lib/contact-info";
@@ -133,6 +133,30 @@ export default function ContactPage() {
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-white mb-4">Connect With Us</h3>
                 <p className="text-gray-400 text-sm mb-4">Follow our sustainability journey and get instant updates:</p>
+                {/* Telegram — primary backup channel */}
+                <div className="grid grid-cols-1 gap-2 mb-4">
+                  <a
+                    href="https://t.me/chaintracklogistics"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-sky-500/10 border border-sky-500/30 hover:bg-sky-500/20 text-sky-400 hover:text-sky-300 text-sm font-black px-4 py-2.5 rounded-xl transition-colors"
+                    data-testid="link-contact-telegram-channel"
+                  >
+                    <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    @chaintracklogistics — Channel
+                  </a>
+                  <a
+                    href="https://t.me/+971523946311"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-sky-500/10 border border-sky-500/30 hover:bg-sky-500/20 text-sky-400 hover:text-sky-300 text-sm font-black px-4 py-2.5 rounded-xl transition-colors"
+                    data-testid="link-contact-telegram-dm"
+                  >
+                    <Send className="w-4 h-4 shrink-0" />
+                    Direct Message — Hassan
+                  </a>
+                </div>
+
                 <div className="grid grid-cols-2 gap-3">
                   <a href={contactInfo.social.facebook} className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors" target="_blank">
                     <Facebook className="w-4 h-4" /> Facebook
@@ -172,10 +196,12 @@ export default function ContactPage() {
                     {contactInfo.founders.map((founder, idx) => (
                       <div key={idx} className="text-sm">
                         <p className="text-white font-medium">{founder.name} - {founder.title}</p>
-                        <div className="flex gap-2 mt-1">
+                        <div className="flex flex-wrap gap-2 mt-1">
                           <a href={`mailto:${founder.email}`} className="text-emerald-400 hover:text-emerald-300 text-xs">Email</a>
                           <span className="text-gray-600">•</span>
                           <a href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}`} target="_blank" className="text-emerald-400 hover:text-emerald-300 text-xs">WhatsApp</a>
+                          <span className="text-gray-600">•</span>
+                          <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer" className="text-sky-400 hover:text-sky-300 text-xs">Telegram</a>
                         </div>
                       </div>
                     ))}
