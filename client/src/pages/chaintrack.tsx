@@ -501,7 +501,6 @@ export default function ChainTrackPage() {
         dateModified="2026-05-23"
       />
       <LiveTicker />
-
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -572,7 +571,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Main marketplace ── */}
       <section className="container mx-auto px-4 pb-20 max-w-7xl">
 
@@ -746,7 +744,6 @@ export default function ChainTrackPage() {
           </TabsContent>
         </Tabs>
       </section>
-
       {/* ── How It Works ── */}
       <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -776,7 +773,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Source Countries ── */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -823,7 +819,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Industry Media & Technology Spotlight ── */}
       <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -988,7 +983,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Target Markets — all collapsible ── */}
       <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -996,7 +990,7 @@ export default function ChainTrackPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-10">
             <div>
               <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-3">Target Markets</div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">34 Markets Covered from Dubai</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">50 Markets Covered from Dubai</h2>
               <p className="text-slate-400 leading-relaxed">
                 Dubai DAFZA & Commercity serve as the zero-tariff re-export hub for ChainTrack's network across CIS, Europe, Africa and South Asia. Click any region to explore demand data.
               </p>
@@ -1106,7 +1100,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Grading Standards ── */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1143,7 +1136,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Logistics & Escrow ── */}
       <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1249,7 +1241,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Trust Signal & Subscription Conversion ── */}
       <section className="border-t border-emerald-500/20 bg-gradient-to-br from-[#020608] via-[#070B14] to-[#020608] py-20 relative overflow-hidden">
         {/* Background glow */}
@@ -1380,7 +1371,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Membership tiers ── */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1421,7 +1411,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Real Customer Reviews ── */}
       <section className="py-20 bg-[#0A0F1E] border-t border-[#1E293B]">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1547,7 +1536,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Phone Flipper Track Gateway ── */}
       <section className="border-t border-purple-500/20 bg-gradient-to-br from-purple-950/40 via-[#0A0F1E] to-violet-950/30 py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1621,7 +1609,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Agentic Order Flow ── */}
       <section className="border-t border-[#1E293B] py-20 bg-[#060A15]">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1679,7 +1666,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Azerbaijan & CIS Strategy ── */}
       <section className="border-t border-[#1E293B] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1762,7 +1748,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Telegram Agentic Ecosystem ── */}
       <section className="border-t border-[#1E293B] bg-[#060A15] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1851,7 +1836,6 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* ── Verified by ChainTrack Trust Infrastructure ── */}
       <section className="border-t border-[#1E293B] py-20">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -1945,10 +1929,8 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-
       {/* AI Agent Widget */}
       <ChainTrackAIAgent />
-
     </div>
   );
 }
