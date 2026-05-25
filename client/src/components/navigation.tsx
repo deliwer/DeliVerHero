@@ -55,10 +55,10 @@ const deliwerNavItems = [
 
 // ── Broker / Partner nav items ────────────────────────────────────────────────
 const brokerNavItems = [
-  { path: "/logistics",                              label: "Logistics",       id: "ct-logistics", icon: Anchor,       external: false },
-  { path: "/broker-onboard",                          label: "Broker Portal",  id: "ct-broker",    icon: Briefcase,    external: false },
+  { path: "/logistics",                              label: "Corridor",        id: "ct-logistics", icon: Anchor,       external: false },
+  { path: "/broker-onboard",                         label: "Broker Portal",   id: "ct-broker",    icon: Briefcase,    external: false },
   { path: "/partners",                               label: "Partner Program", id: "ct-partners",  icon: Users,        external: false },
-  { path: "/freight-broker",                         label: "Freight Broker",  id: "ct-freight",   icon: Route,        external: false },
+  { path: "/freight-broker",                         label: "Freight Hub",     id: "ct-freight",   icon: Route,        external: false },
   { path: "/partner-dashboard",                      label: "Dashboard",       id: "ct-dashboard", icon: LayoutGrid,   external: false },
   { path: "https://www.youtube.com/@vdeliwer",       label: "Training",        id: "ct-training",  icon: Youtube,      external: true  },
 ];
@@ -75,24 +75,24 @@ const managementNavItems = [
 
 // ── ChainTrack deep-nav (phone marketplace only) ─────────────────────────────
 const chaintrackNavItems = [
-  { path: "/chaintrack",       label: "Marketplace", id: "ct-marketplace", icon: LayoutGrid },
-  { path: "/bulk-purchasing",  label: "Bulk Buy",    id: "ct-bulk",        icon: Package },
-  { path: "/fulfillment",      label: "Fulfillment", id: "ct-fulfillment", icon: Truck },
-  { path: "/corporate",        label: "Corporate",   id: "ct-corporate",   icon: Building2 },
-  { path: "/logistics",        label: "Logistics →", id: "ct-logistics",   icon: Anchor },
-  { path: "/partners",         label: "← Brokers",  id: "ct-back",        icon: Users },
+  { path: "/chaintrack",       label: "Marketplace",    id: "ct-marketplace", icon: LayoutGrid },
+  { path: "/bulk-purchasing",  label: "Bulk Buy",       id: "ct-bulk",        icon: Package },
+  { path: "/fulfillment",      label: "Fulfillment",    id: "ct-fulfillment", icon: Truck },
+  { path: "/corporate",        label: "Corporate",      id: "ct-corporate",   icon: Building2 },
+  { path: "/logistics",        label: "Corridor →",     id: "ct-logistics",   icon: Anchor },
+  { path: "/partners",         label: "Brokers",        id: "ct-back",        icon: Users },
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
 const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics"];
 
 const logisticsNavItems = [
-  { path: "/chaintrack",       label: "Marketplace",    id: "lg-marketplace",  icon: LayoutGrid },
-  { path: "/logistics",        label: "Corridor",       id: "lg-corridor",     icon: Anchor },
-  { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics", icon: Package },
-  { path: "/freight-broker",   label: "Freight Hub",    id: "lg-freight",      icon: Route },
-  { path: "/logistics-funnel", label: "Join Network",   id: "lg-funnel",       icon: Zap },
-  { path: "/partners",         label: "← Brokers",     id: "lg-back",         icon: Users },
+  { path: "/logistics",        label: "Corridor",        id: "lg-corridor",     icon: Anchor },
+  { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics",  icon: Package },
+  { path: "/freight-broker",   label: "Freight Hub",     id: "lg-freight",      icon: Route },
+  { path: "/logistics-funnel", label: "Join Network",    id: "lg-funnel",       icon: Zap },
+  { path: "/chaintrack",       label: "Marketplace",     id: "lg-marketplace",  icon: LayoutGrid },
+  { path: "/partners",         label: "Partners",        id: "lg-partners",     icon: Users },
 ];
 
 // Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)
@@ -148,10 +148,10 @@ export function Navigation() {
     }
   };
 
-  // Two-way switcher: Home Service (consumer) ↔ Brokers (B2B)
+  // Two-way switcher: Home Service (consumer) ↔ ChainTrack Logistics (B2B)
   const switchMode = (mode: "b2c" | "b2b") => {
     if (mode === "b2c") setLocation("/");
-    else setLocation("/partners");
+    else setLocation("/logistics");
     setIsMobileMenuOpen(false);
   };
 
@@ -163,11 +163,9 @@ export function Navigation() {
       {!isBrokerSide && <EmergencyBanner />}
       {/* ── Main Nav Bar ── */}
       <nav className={`backdrop-blur-md border-b px-4 py-3 transition-colors duration-300 ${
-        isLogisticsSide
+        isBrokerSide
           ? "bg-amber-950/95 border-amber-500/20"
-          : isBrokerSide
-            ? "bg-indigo-950/95 border-purple-500/20"
-            : "bg-slate-900/95 border-white/5"
+          : "bg-slate-900/95 border-white/5"
       }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
 
@@ -180,24 +178,24 @@ export function Navigation() {
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              {isLogisticsSide ? (
+              {isBrokerSide && !isManagementSide ? (
                 <div className="flex items-baseline gap-1">
                   <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack</span>
                   <span className="font-black text-xl tracking-widest uppercase text-white">Logistics</span>
                 </div>
               ) : (
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
-                  isBrokerSide ? "text-purple-300" : "text-white"
+                  isManagementSide ? "text-amber-300" : "text-white"
                 }`}>
-                  {isManagementSide ? "DeliWer" : isBrokerSide ? "ChainTrack" : "DeliWer"}
+                  {isManagementSide ? "ChainTrack" : "DeliWer"}
                 </span>
               )}
               {isManagementSide && (
-                <span className="text-[8px] font-black uppercase tracking-widest text-purple-400/70">
+                <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
                   Partner Admin
                 </span>
               )}
-              {isLogisticsSide && (
+              {isBrokerSide && !isManagementSide && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
                   Air Charter · Trade Corridor
                 </span>
@@ -222,11 +220,9 @@ export function Navigation() {
                       : isLogisticsPrimary
                       ? "bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-[0_0_10px_-2px_rgba(245,158,11,0.4)] hover:bg-amber-500/30 hover:text-amber-200"
                       : isActive(item.path)
-                      ? isLogisticsSide
+                      ? isBrokerSide
                         ? "bg-amber-500/15 text-amber-300"
-                        : isBrokerSide
-                          ? "bg-purple-500/15 text-purple-300"
-                          : "bg-emerald-500/10 text-emerald-400"
+                        : "bg-emerald-500/10 text-emerald-400"
                       : "text-gray-400 hover:text-white"
                   }`}
                   data-testid={`nav-${item.id}`}
@@ -265,10 +261,10 @@ export function Navigation() {
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
                     currentMode === "b2b"
-                      ? "bg-purple-500 text-white shadow-md"
+                      ? "bg-amber-500 text-slate-950 shadow-md"
                       : "text-slate-300 hover:text-white hover:bg-slate-800"
                   }`}
-                  title="ChainTrack — Broker & Business Opportunity"
+                  title="ChainTrack Logistics — Dubai Gateway to the Middle East"
                   data-testid="mode-b2b"
                 >Brokers</button>
               </div>
@@ -317,11 +313,9 @@ export function Navigation() {
               variant="ghost"
               size="icon"
               className={`rounded-xl shrink-0 ${
-                isLogisticsSide
+                isBrokerSide
                   ? "text-amber-400 hover:text-amber-300 hover:bg-amber-500/10"
-                  : isBrokerSide
-                    ? "text-purple-400 hover:text-purple-300 hover:bg-purple-500/10"
-                    : "text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10"
+                  : "text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10"
               }`}
               title="WhatsApp"
               onClick={() => window.open('https://wa.me/971523946311', '_blank')}
@@ -352,8 +346,8 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-      {/* ── Logistics Corridor Bar — logistics pages only ── */}
-      {isLogisticsSide && (
+      {/* ── ChainTrack Logistics corridor bar — all broker/chaintrack pages ── */}
+      {isBrokerSide && !isManagementSide && (
         <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
@@ -361,17 +355,13 @@ export function Navigation() {
           </span>
           <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
           <span className="hidden sm:inline text-[11px] font-bold text-amber-100/50">
-            Dubai ↔ Gawadar · Relocation &amp; Commercial Charter
+            Dubai Gateway · Jebel Ali Alternative · CPEC &amp; INSTC Corridors
           </span>
           <span className="hidden sm:inline text-amber-600/60 text-[11px]">·</span>
           <a href="/logistics-funnel" className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-amber-400 hover:text-amber-300 transition-colors">
             Join as Freight Broker →
           </a>
         </div>
-      )}
-      {/* ── Logistics CTA Bar — broker non-logistics pages only ── */}
-      {isBrokerSide && !isManagementSide && !isLogisticsSide && (
-        <LogisticsCTABar variant={isDeepChaintrack ? "chaintrack" : "banner"} />
       )}
       {/* ── Management breadcrumb bar — admin/marketing paths only ── */}
       {isManagementSide && (
@@ -422,20 +412,18 @@ export function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className={`md:hidden absolute top-full left-0 right-0 border-b p-6 space-y-3 z-[70] shadow-2xl ${
-              isLogisticsSide
+              isBrokerSide
                 ? "bg-amber-950 border-amber-500/20"
-                : isBrokerSide
-                  ? "bg-indigo-950 border-purple-500/20"
-                  : "bg-slate-900 border-white/10"
+                : "bg-slate-900 border-white/10"
             }`}
           >
-            {/* Logistics section label for mobile */}
-            {isLogisticsSide && (
+            {/* ChainTrack Logistics label for mobile — all broker pages */}
+            {isBrokerSide && !isManagementSide && (
               <div className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
                 <Anchor className="w-4 h-4 text-amber-400" />
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-amber-300">DeliWer Logistics</p>
-                  <p className="text-[9px] text-amber-500/60">Dubai · Gawadar Corridor</p>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-amber-300">ChainTrack Logistics</p>
+                  <p className="text-[9px] text-amber-500/60">Dubai Gateway · Gawadar Corridor</p>
                 </div>
               </div>
             )}
@@ -489,16 +477,14 @@ export function Navigation() {
                   (item as any).external
                     ? "text-red-400 hover:text-red-300 hover:bg-red-500/10"
                     : isActive(item.path)
-                    ? isLogisticsSide
+                    ? isBrokerSide
                       ? "bg-amber-500/15 text-amber-300"
-                      : isBrokerSide
-                        ? "bg-purple-500/15 text-purple-300"
-                        : "bg-emerald-500/10 text-emerald-400"
+                      : "bg-emerald-500/10 text-emerald-400"
                     : "text-gray-400"
                 }`}
                 data-testid={`nav-mobile-${item.id}`}
               >
-                <item.icon className={`w-5 h-5 mr-3 ${(item as any).external ? "text-red-500" : isLogisticsSide ? "text-amber-500" : isBrokerSide ? "text-purple-500" : "text-emerald-500"}`} />
+                <item.icon className={`w-5 h-5 mr-3 ${(item as any).external ? "text-red-500" : isBrokerSide ? "text-amber-500" : "text-emerald-500"}`} />
                 {item.label}
               </Button>
             ))}
@@ -550,11 +536,9 @@ export function Navigation() {
 
             <Button
               className={`w-full h-14 font-black rounded-xl uppercase tracking-widest text-xs ${
-                isLogisticsSide
+                isBrokerSide
                   ? "bg-amber-600 hover:bg-amber-500 text-slate-950"
-                  : isBrokerSide
-                    ? "bg-purple-700 hover:bg-purple-600 text-white"
-                    : "bg-emerald-600 hover:bg-emerald-500 text-white"
+                  : "bg-emerald-600 hover:bg-emerald-500 text-white"
               }`}
               onClick={() => {
                 window.open('https://wa.me/971523946311', '_blank');
