@@ -225,7 +225,7 @@ function Router() {
       return;
     }
     if ((hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
-      setLocation('/chaintrack');
+      setLocation('/logistics');
       return;
     }
 
