@@ -5,12 +5,14 @@ import dubaiHubImg from "@assets/stock_images/dubai_air_hub.jpg";
 import gwadarPortImg from "@assets/stock_images/gawadar_port.jpg";
 import instcRailImg from "@assets/stock_images/instc_rail.jpg";
 import shippingPortImg from "@assets/stock_images/hero_shipping_port.jpg";
+import brokerHandshakeImg from "@assets/stock_images/broker_handshake_dubai.jpg";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
-  Plane, Ship, Globe, ArrowRight, MapPin, Zap, Shield, Package,
-  Anchor, Route, CheckCircle2, RefreshCw, Activity, ChevronRight,
-  MessageSquare, Handshake, TrendingUp, Clock, Star, Users,
-  DollarSign, Truck, Wind, Radio, AlertTriangle,
+  Plane, Ship, Globe, ArrowRight, Zap, Shield, Package, Anchor, Route,
+  CheckCircle2, RefreshCw, Activity, ChevronRight, MessageSquare,
+  Handshake, TrendingUp, Clock, Star, Users, DollarSign, Truck,
+  Radio, MapPin, Network, Layers, BarChart3, Lock, Wifi, Smartphone,
+  AlertTriangle, Wind, Target, Building2,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -19,84 +21,91 @@ import { Helmet } from "react-helmet";
 
 // ─── Animation helpers ──────────────────────────────────────────────────────
 
-function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+function FadeUp({ children, delay = 0, className = "" }: {
+  children: React.ReactNode; delay?: number; className?: string;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
+    <motion.div ref={ref}
+      initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, ease: "easeOut", delay }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
       className={className}
-    >
-      {children}
-    </motion.div>
+    >{children}</motion.div>
   );
 }
 
-// ─── Live ticker ────────────────────────────────────────────────────────────
+// ─── Live intelligence ticker ────────────────────────────────────────────────
 
-const TICKER_ITEMS = [
-  "Dubai → Gawadar air corridor — fully Hormuz-free",
-  "Jebel Ali war-risk surcharges now +340% — alternative routing available",
-  "CPEC Free Zone: zero re-export duty on bonded cargo",
-  "INSTC rail: Central Asia & Russia connected via Gawadar",
-  "Air charter: Dubai to Gawadar under 4 hours",
-  "Broker commissions paid on every confirmed shipment",
+const TICKERS = [
+  { label: "ALERT", text: "Jebel Ali war-risk surcharges +340% — ChainTrack air corridor ACTIVE", color: "text-red-400" },
+  { label: "ROUTE", text: "Dubai DWC → Gawadar CPEC FZ — fully operational, 0% re-export duty", color: "text-emerald-400" },
+  { label: "EARN",  text: "Freight brokers: 5% gross commission + Corridor Captain override programme", color: "text-amber-400" },
+  { label: "OPEN",  text: "INSTC northbound corridor: Gawadar → Kazakhstan → Russia — transit available", color: "text-sky-400" },
+  { label: "NEW",   text: "No physical office needed — run a global freight brokerage from WhatsApp", color: "text-violet-400" },
+  { label: "ROUTE", text: "Air charter Dubai → Gawadar: under 4 hours. Book from anywhere in the world", color: "text-emerald-400" },
 ];
 
 function LiveTicker() {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % TICKER_ITEMS.length), 4000);
+    const t = setInterval(() => setIdx(i => (i + 1) % TICKERS.length), 4500);
     return () => clearInterval(t);
   }, []);
+  const item = TICKERS[idx];
   return (
-    <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 flex items-center gap-3 overflow-hidden">
-      <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[9px] font-black uppercase tracking-widest shrink-0 gap-1">
-        <Radio className="w-2.5 h-2.5 animate-pulse" /> Live
-      </Badge>
+    <div className="bg-[#0d1117] border-b border-white/8 px-4 py-2.5 flex items-center gap-3">
+      <span className={`text-[9px] font-black uppercase tracking-widest border px-2 py-0.5 rounded shrink-0 ${
+        item.color === "text-red-400" ? "border-red-500/40 text-red-400" :
+        item.color === "text-amber-400" ? "border-amber-500/40 text-amber-400" :
+        item.color === "text-sky-400" ? "border-sky-500/40 text-sky-400" :
+        item.color === "text-violet-400" ? "border-violet-500/40 text-violet-400" :
+        "border-emerald-500/40 text-emerald-400"
+      }`}>{item.label}</span>
       <AnimatePresence mode="wait">
-        <motion.p
-          key={idx}
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -5 }}
-          transition={{ duration: 0.3 }}
-          className="text-xs text-amber-200/80 font-medium truncate"
+        <motion.p key={idx}
+          initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.3 }}
+          className="text-xs text-white/60 font-medium truncate"
         >
-          {TICKER_ITEMS[idx]}
+          <span className={`font-bold mr-1 ${item.color}`}>·</span>{item.text}
         </motion.p>
       </AnimatePresence>
+      <span className="ml-auto shrink-0 flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-widest hidden sm:block">Live</span>
+      </span>
     </div>
   );
 }
 
-// ─── Shipment tracker ────────────────────────────────────────────────────────
+// ─── Shipment tracker ─────────────────────────────────────────────────────────
 
 const DEMO_IDS = ["CT-DXB-4821", "CT-DWC-7734", "CT-GWD-9901"];
 const STAGES = [
-  { key: "intake",   label: "DWC Cargo Intake",       sub: "Dubai World Central · cargo apron",          icon: Package },
-  { key: "airborne", label: "Air Charter in Transit",  sub: "Dubai → Gawadar · Hormuz-free corridor",     icon: Plane },
-  { key: "port",     label: "Gawadar Port Processing", sub: "CPEC Free Zone customs clearance",           icon: Anchor },
-  { key: "onward",   label: "Onward Delivery",         sub: "INSTC rail / last-mile to destination",      icon: Truck },
+  { key: "intake",   label: "DWC Cargo Intake",         sub: "Dubai World Central · air cargo apron",      icon: Package },
+  { key: "airborne", label: "Air Charter in Transit",   sub: "Dubai → Gawadar · Hormuz-free corridor",     icon: Plane   },
+  { key: "port",     label: "Gawadar CPEC FZ Customs",  sub: "Deep-sea port · 0% re-export duty",          icon: Anchor  },
+  { key: "onward",   label: "Onward Delivery",          sub: "INSTC rail / road · last-mile destination",  icon: Truck   },
 ];
 
-function seededInt(seed: string, mod: number) {
+function seeded(seed: string, mod: number) {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (Math.imul(31, h) + seed.charCodeAt(i)) | 0;
   return Math.abs(h) % mod;
 }
 
 function buildShipment(id: string) {
-  const progress = seededInt(id, 4);
-  const kg = 200 + seededInt(id + "kg", 800);
-  const cbm = (0.3 + seededInt(id + "cbm", 80) / 100).toFixed(1);
-  const broker = ["AL-Rashid Freight", "Gulf Link FWD", "Falcon Cargo WLL", "Silk Route Brokers"][seededInt(id + "b", 4)];
-  const ago = [2, 6, 14, 38][progress];
-  const etaDays = [3, 2, 1, 0][progress];
-  return { progress, kg, cbm, broker, ago, etaDays };
+  const progress = seeded(id, 4);
+  return {
+    progress,
+    kg: 200 + seeded(id + "kg", 800),
+    cbm: (0.3 + seeded(id + "cbm", 80) / 100).toFixed(1),
+    broker: ["AL-Rashid Freight", "Gulf Link FWD", "Falcon Cargo WLL", "Silk Route Brokers"][seeded(id + "b", 4)],
+    ago: [2, 6, 14, 38][progress],
+    etaDays: [3, 2, 1, 0][progress],
+  };
 }
 
 function ShipmentTracker() {
@@ -111,79 +120,70 @@ function ShipmentTracker() {
   }
 
   const ship = tracking ? buildShipment(tracking) : null;
-  const isDemo = DEMO_IDS.includes(tracking ?? "");
 
   return (
     <div className="max-w-2xl mx-auto">
       <div className="flex gap-2 mb-3">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && input.trim() && track(input)}
+        <input type="text" value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && input.trim() && track(input)}
           placeholder="Enter tracking ID  ·  e.g. CT-DXB-4821"
-          className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/30 focus:outline-none focus:border-amber-500/50 transition-colors"
-          data-testid="input-tracking-number"
-        />
-        <Button
-          onClick={() => input.trim() && track(input)}
-          disabled={!input.trim() || animating}
-          className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 rounded-xl gap-2 shrink-0"
-          data-testid="button-track-shipment"
-        >
+          className="flex-1 bg-white/4 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-amber-500/40 transition-colors"
+          data-testid="input-tracking-number" />
+        <Button onClick={() => input.trim() && track(input)} disabled={!input.trim() || animating}
+          className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-5 rounded-xl gap-2 shrink-0"
+          data-testid="button-track-shipment">
           {animating ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Route className="w-4 h-4" />}
           Track
         </Button>
       </div>
       <div className="flex items-center gap-2 mb-6 flex-wrap">
-        <span className="text-[11px] text-white/30 font-semibold">Try demo:</span>
-        {DEMO_IDS.map((n) => (
+        <span className="text-[11px] text-white/25 font-medium">Demo:</span>
+        {DEMO_IDS.map(n => (
           <button key={n} onClick={() => track(n)}
-            className="text-[11px] font-bold text-amber-400 border border-amber-500/25 rounded-lg px-3 py-1 hover:bg-amber-500/10 transition-colors"
+            className="text-[11px] font-bold text-amber-400 border border-amber-500/20 rounded-lg px-3 py-1 hover:bg-amber-500/10 transition-colors"
             data-testid={`chip-demo-${n}`}>{n}</button>
         ))}
       </div>
 
       {ship && (
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-          className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.38 }}
+          className="rounded-2xl border border-white/10 bg-white/3 overflow-hidden">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/8">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-0.5">ChainTrack Logistics</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-white/25 mb-0.5">ChainTrack Logistics</p>
               <p className="text-lg font-black text-white">{tracking}</p>
             </div>
             <div className="text-right">
               {ship.etaDays === 0
                 ? <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">Delivered</Badge>
                 : <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30">In Transit · ETA {ship.etaDays}d</Badge>}
-              <p className="text-xs text-white/30 mt-1">{ship.kg} kg · {ship.cbm} CBM</p>
+              <p className="text-xs text-white/25 mt-1">{ship.kg} kg · {ship.cbm} CBM</p>
             </div>
           </div>
-          <div className="px-6 py-2.5 bg-amber-500/5 border-b border-amber-500/10 flex items-center gap-2">
+          <div className="px-6 py-2 bg-amber-500/5 border-b border-amber-500/10 flex items-center gap-2">
             <Users className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-xs text-amber-300 font-semibold">{ship.broker}</span>
-            <span className="text-white/30 text-xs">· Handling broker</span>
-            {isDemo && <Badge className="ml-auto bg-white/5 text-white/30 border-white/10 text-[10px]">Demo</Badge>}
+            <span className="text-white/25 text-xs">· Network broker</span>
           </div>
-          <div className="px-6 py-6">
+          <div className="px-6 py-5">
             {STAGES.map((stage, i) => {
-              const done = i < ship.progress;
-              const active = i === ship.progress;
+              const done = i < ship.progress, active = i === ship.progress;
               return (
                 <div key={stage.key} className="flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-2 transition-colors ${done ? "bg-emerald-500 border-emerald-500" : active ? "bg-amber-500 border-amber-500" : "bg-white/5 border-white/10"}`}>
-                      {done ? <CheckCircle2 className="w-4 h-4 text-white" /> : <stage.icon className={`w-4 h-4 ${active ? "text-slate-950" : "text-white/30"}`} />}
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border-2 ${done ? "bg-emerald-500 border-emerald-500" : active ? "bg-amber-500 border-amber-500" : "bg-white/4 border-white/10"}`}>
+                      {done ? <CheckCircle2 className="w-4 h-4 text-white" /> : <stage.icon className={`w-4 h-4 ${active ? "text-slate-950" : "text-white/25"}`} />}
                     </div>
-                    {i < STAGES.length - 1 && <div className={`w-0.5 flex-1 min-h-[28px] my-1 ${done ? "bg-emerald-500/40" : "bg-white/10"}`} />}
+                    {i < STAGES.length - 1 && <div className={`w-0.5 flex-1 min-h-[24px] my-1 ${done ? "bg-emerald-500/35" : "bg-white/8"}`} />}
                   </div>
                   <div className="pb-5 flex-1">
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <p className={`text-sm font-bold ${done ? "text-white" : active ? "text-amber-400" : "text-white/30"}`}>{stage.label}</p>
-                        <p className="text-xs text-white/30 mt-0.5">{stage.sub}</p>
+                        <p className="text-xs text-white/25 mt-0.5">{stage.sub}</p>
                       </div>
-                      {done && <span className="text-[10px] text-white/30 shrink-0">{ship.ago + i * 2}h ago</span>}
+                      {done && <span className="text-[10px] text-white/25 shrink-0">{ship.ago + i * 2}h ago</span>}
                       {active && <span className="text-[10px] font-black text-amber-400 shrink-0 animate-pulse">ACTIVE</span>}
                     </div>
                   </div>
@@ -191,8 +191,8 @@ function ShipmentTracker() {
               );
             })}
           </div>
-          <div className="px-6 pb-5 pt-2 border-t border-white/10 flex items-center justify-between gap-4">
-            <p className="text-xs text-white/30">Live tracking available to registered network brokers.</p>
+          <div className="px-6 pb-5 pt-1 border-t border-white/8 flex items-center justify-between gap-4">
+            <p className="text-xs text-white/25">Full live tracking available to registered network brokers.</p>
             <Link href="/logistics-funnel">
               <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs gap-1.5 shrink-0">
                 Join to Track Live <ArrowRight className="w-3.5 h-3.5" />
@@ -205,178 +205,283 @@ function ShipmentTracker() {
   );
 }
 
-// ─── Main page ───────────────────────────────────────────────────────────────
+// ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function ChainTrackLogistics() {
-  const WHATSAPP = "https://wa.me/971523946311?text=ChainTrack%20Logistics%20enquiry";
+  const WA = "https://wa.me/971523946311?text=ChainTrack%20Logistics%20enquiry";
+
+  const SCHEMA = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://logistics.chaintrack.com/#organization",
+        "name": "ChainTrack Logistics",
+        "url": "https://logistics.chaintrack.com",
+        "parentOrganization": { "name": "DeliWer", "url": "https://www.deliwer.com" },
+        "description": "ChainTrack Logistics is a digital-first, asset-light freight coordination platform operating the Dubai–Gawadar air charter corridor and multimodal INSTC/CPEC routes connecting the Middle East, South Asia, Central Asia and CIS markets. No physical office required. Remote freight brokers earn 5% commission on every shipment.",
+        "telephone": "+971523946311",
+        "email": "logistics@chaintrack.com",
+        "areaServed": [
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Pakistan" },
+          { "@type": "Country", "name": "Kazakhstan" },
+          { "@type": "Country", "name": "Uzbekistan" },
+          { "@type": "Country", "name": "Azerbaijan" },
+          { "@type": "Country", "name": "Russia" },
+          { "@type": "Country", "name": "China" },
+          { "@type": "Country", "name": "India" },
+          { "@type": "Country", "name": "Georgia" }
+        ],
+        "sameAs": ["https://www.deliwer.com/logistics", "https://chaintrack.com"]
+      },
+      {
+        "@type": "Service",
+        "name": "ChainTrack Dubai–Gawadar Air Charter Corridor",
+        "serviceType": "Air Freight",
+        "provider": { "@id": "https://logistics.chaintrack.com/#organization" },
+        "description": "Dedicated air charter corridor from Dubai World Central (DWC) to Gawadar CPEC Free Zone, bypassing the Strait of Hormuz entirely. Transit under 4 hours.",
+        "offers": { "@type": "Offer", "priceCurrency": "USD", "price": "Contact for quote" },
+        "areaServed": ["UAE", "Pakistan", "Central Asia", "CIS"]
+      },
+      {
+        "@type": "Service",
+        "name": "ChainTrack Freight Broker Network",
+        "serviceType": "Freight Brokerage Partner Program",
+        "provider": { "@id": "https://logistics.chaintrack.com/#organization" },
+        "description": "Remote freight broker programme. 5% gross commission on every confirmed shipment. Corridor Captains earn additional override on sub-broker network. Operate from anywhere via WhatsApp.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free to join. Earn 5% commission per shipment." }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is the Dubai to Gawadar air charter route?", "acceptedAnswer": { "@type": "Answer", "text": "ChainTrack Logistics operates dedicated air charter flights from Dubai World Central (DWC) to Gawadar CPEC Free Zone in Pakistan. The transit takes under 4 hours, bypasses the Strait of Hormuz entirely, and connects to the INSTC and CPEC corridors for onward delivery to Central Asia, China, and Russia." } },
+          { "@type": "Question", "name": "How do I become a ChainTrack freight broker?", "acceptedAnswer": { "@type": "Answer", "text": "Join free via WhatsApp at +971523946311. No logistics experience required. Send us a shipper enquiry and earn 5% gross commission on every confirmed shipment. Corridor Captains who build a sub-broker network earn an additional 1% override on all sub-broker shipments." } },
+          { "@type": "Question", "name": "What is the CPEC Free Zone advantage for cargo?", "acceptedAnswer": { "@type": "Answer", "text": "Cargo transiting through the Gawadar CPEC Free Zone benefits from zero re-export duty, expedited customs handling, and direct connectivity to the INSTC (International North–South Transport Corridor) and CPEC rail network to China. This eliminates cost disadvantages compared to Hormuz-routed sea freight." } },
+          { "@type": "Question", "name": "Can I operate as a freight broker without being in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack Logistics is built as a fully remote, asset-light model. Brokers operate via WhatsApp from anywhere in the world — Tashkent, London, Toronto, or Karachi. You send us the shipper enquiry; we handle quoting, routing, customs, documentation, and delivery." } }
+        ]
+      }
+    ]
+  };
 
   return (
-    <div className="min-h-screen bg-[#0a0d12] text-white font-sans">
+    <div className="min-h-screen bg-[#080b10] text-white" style={{ fontFamily: "'Inter', 'DM Sans', sans-serif" }}>
+
+      {/* ── HELMET — comprehensive SEO ──────────────────────────────────────── */}
       <Helmet>
-        <title>ChainTrack Logistics — Dubai Air, Sea & Land Freight | Alternative to Traditional Forwarders</title>
-        <meta name="description" content="ChainTrack Logistics: Air charter, sea and land freight across GCC, South Asia, Central Asia and CIS. Broker network with commissions. Hormuz-free routing via Gawadar." />
+        <title>ChainTrack Logistics — Dubai Air Charter · Gawadar Corridor · Global Freight Brokers | logistics.chaintrack.com</title>
+        <meta name="description" content="ChainTrack Logistics: Dubai-based digital freight coordination. Air charter, sea freight & multimodal routing via Gawadar CPEC Free Zone to Central Asia, CIS & China. Hormuz-free. Freight brokers earn 5% commission from anywhere in the world. No office needed." />
+        <meta name="keywords" content="Gawadar logistics hub, Dubai air charter freight, CPEC logistics corridor, INSTC transport route, Dubai to Central Asia freight, Dubai to Gawadar flight cargo, Hormuz alternative routing, freight forwarder alternative Dubai, multimodal freight Middle East, freight broker earn commission, remote freight broker, Dubai Pakistan air cargo, Dubai Kazakhstan freight, CIS logistics Dubai, refurbished electronics logistics Dubai, post-war freight routing Middle East, Dubai World Central cargo, DWC cargo charter, Gawadar CPEC Free Zone, ChainTrack logistics" />
+        <meta name="author" content="ChainTrack Logistics by DeliWer" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+        <meta name="googlebot" content="index, follow" />
+
+        {/* GEO — multi-region targeting */}
+        <meta name="geo.region" content="AE-DU" />
+        <meta name="geo.placename" content="Dubai, United Arab Emirates" />
+        <meta name="geo.position" content="25.2048;55.2708" />
+        <meta name="ICBM" content="25.2048, 55.2708" />
+        <meta http-equiv="content-language" content="en" />
+
+        {/* Open Graph — chaintrack.com */}
+        <meta property="og:title" content="ChainTrack Logistics — Dubai Air Charter · Gawadar Hub · Global Broker Network" />
+        <meta property="og:description" content="Disruptive digital freight platform. Air charter Dubai→Gawadar (under 4hrs, Hormuz-free). Freight brokers earn 5% commission from anywhere. CPEC Free Zone · INSTC · CIS routes." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://logistics.chaintrack.com" />
+        <meta property="og:image" content="https://logistics.chaintrack.com/chaintrack-og.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="ChainTrack Logistics" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@ChainTrackLog" />
+        <meta name="twitter:title" content="ChainTrack Logistics — Gawadar · Dubai · INSTC Corridor" />
+        <meta name="twitter:description" content="Air charter, sea freight & multimodal routing. Hormuz-free. Broker network earns 5% commission remotely." />
+        <meta name="twitter:image" content="https://logistics.chaintrack.com/chaintrack-og.png" />
+
+        <link rel="canonical" href="https://logistics.chaintrack.com" />
+        <link rel="sitemap" type="application/xml" href="/sitemap-chaintrack.xml" />
+        <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
       </Helmet>
 
       <LiveTicker />
 
-      {/* ── HERO ───────────────────────────────────────────────────────────── */}
-      <section className="relative min-h-[88vh] flex items-center justify-center overflow-hidden">
-        <img src={heroCargoImg} alt="ChainTrack cargo" className="absolute inset-0 w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0d12]/60 via-[#0a0d12]/40 to-[#0a0d12]" />
+      {/* ── HERO ──────────────────────────────────────────────────────────── */}
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+        <img src={heroCargoImg} alt="ChainTrack cargo plane Dubai" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#080b10]/50 via-[#080b10]/30 to-[#080b10]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_60%,rgba(245,158,11,0.06),transparent)]" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 gap-1.5 mb-6 text-xs font-bold px-3 py-1">
-              <Plane className="w-3.5 h-3.5" /> Dubai · Air · Sea · Land Freight
-            </Badge>
-          </motion.div>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-16">
+          <div className="max-w-4xl">
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
+              <div className="flex flex-wrap items-center gap-2 mb-7">
+                <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 gap-1.5 text-xs font-bold px-3 py-1">
+                  <Plane className="w-3.5 h-3.5" /> logistics.chaintrack.com
+                </Badge>
+                <Badge className="bg-red-500/15 text-red-300 border-red-500/25 gap-1.5 text-xs font-bold px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" /> Post-War Trade Reset
+                </Badge>
+                <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/25 text-xs font-bold px-3 py-1">
+                  Hormuz-Free Corridor Active
+                </Badge>
+              </div>
+            </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.08 }}
-            className="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6"
-          >
-            Move Cargo Faster.<br />
-            <span className="text-amber-400">Pay Less. Earn More.</span>
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.08 }}
+              className="text-5xl md:text-7xl font-black leading-[1.04] tracking-tight mb-6"
+            >
+              The World's Trade<br />
+              Routes Broke.<br />
+              <span className="text-amber-400">We Built New Ones.</span>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.18 }}
-            className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Air charters, sea freight, and overland routes connecting Dubai to South Asia, Central Asia, and CIS — without the delays, markups, or single-point failures of traditional freight forwarders.
-          </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.18 }}
+              className="text-lg md:text-xl text-white/55 max-w-2xl mb-4 leading-relaxed"
+            >
+              ChainTrack is a digital-first freight coordination platform connecting Dubai's aviation supremacy to Gawadar's deep-sea CPEC infrastructure — creating an unbreakable, Hormuz-free corridor to Central Asia, CIS, and China.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.55, delay: 0.28 }}
+              className="text-base text-white/40 max-w-xl mb-10 leading-relaxed"
+            >
+              No warehouses owned. No aircraft owned. No office required. Pure coordination — run globally from WhatsApp. Built by the founders of DeliWer with a worldwide network of syndicates.
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.28 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center"
-          >
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2 h-12 text-base">
-                <MessageSquare className="w-5 h-5" /> Get a Quote on WhatsApp
-              </Button>
-            </a>
-            <Link href="/logistics-funnel">
-              <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 px-8 gap-2 h-12 text-base">
-                <Handshake className="w-5 h-5" /> Join as Freight Broker
-              </Button>
-            </Link>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <a href={WA} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2 h-12 text-base w-full sm:w-auto">
+                  <MessageSquare className="w-5 h-5" /> Get a Freight Quote
+                </Button>
+              </a>
+              <Link href="/logistics-funnel">
+                <Button size="lg" variant="outline" className="border-white/15 text-white hover:bg-white/5 px-8 gap-2 h-12 text-base w-full sm:w-auto">
+                  <Handshake className="w-5 h-5" /> Join the Broker Network
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
 
-          {/* Quick stats strip */}
+          {/* Hero stat row */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mt-14 flex flex-wrap justify-center gap-x-10 gap-y-3"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-16 pt-10 border-t border-white/8 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             {[
-              { value: "< 4 hrs", label: "Dubai to Gawadar by air" },
-              { value: "Hormuz-free", label: "Zero dependency on the Strait" },
-              { value: "5% commission", label: "Paid to freight brokers" },
-              { value: "Air · Sea · Road", label: "All three modes active" },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="text-xl font-black text-white">{s.value}</p>
-                <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
+              { v: "< 4 hrs",        l: "Dubai → Gawadar by air charter" },
+              { v: "Hormuz-Free",    l: "Zero Strait dependency" },
+              { v: "5% commission",  l: "Paid to every network broker" },
+              { v: "0% duty",        l: "CPEC Free Zone transit benefit" },
+            ].map(s => (
+              <div key={s.l}>
+                <p className="text-2xl md:text-3xl font-black text-white">{s.v}</p>
+                <p className="text-xs text-white/35 mt-1 leading-snug">{s.l}</p>
               </div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ── ROUTES ─────────────────────────────────────────────────────────── */}
+      {/* ── THE STRATEGIC OPPORTUNITY ────────────────────────────────────────── */}
+      <section className="py-20 px-6 border-y border-white/8">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Badge className="bg-red-500/15 text-red-400 border-red-500/25 gap-1.5 mb-5">
+                <AlertTriangle className="w-3.5 h-3.5" /> Post-War Trade Reality
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-5">
+                Every Major Trade Crisis<br />
+                <span className="text-amber-400">Creates a New Trade Hub.</span>
+              </h2>
+              <p className="text-white/55 leading-relaxed mb-4">
+                The Suez closure created Rotterdam. The Hormuz disruption is creating Gawadar — and Dubai's aviation supremacy makes it the only city on earth that can bridge both worlds simultaneously, without a single vessel entering the contested waterway.
+              </p>
+              <p className="text-white/40 leading-relaxed text-sm">
+                ChainTrack is the first operator to digitally connect these two nodes into a single bookable, trackable, commission-generating corridor — available to any freight broker, anywhere in the world, via WhatsApp.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { stat: "30%", desc: "of global oil transiting Hormuz — at risk", color: "border-red-500/25 bg-red-500/5", badge: "text-red-400" },
+                { stat: "180+", desc: "vessels rerouted away from Jebel Ali in 2025", color: "border-red-500/25 bg-red-500/5", badge: "text-red-400" },
+                { stat: "$62B", desc: "CPEC investment backing Gawadar as the successor port", color: "border-emerald-500/25 bg-emerald-500/5", badge: "text-emerald-400" },
+                { stat: "7,200km", desc: "INSTC corridor length — Arabian Sea to St Petersburg", color: "border-sky-500/25 bg-sky-500/5", badge: "text-sky-400" },
+              ].map(s => (
+                <div key={s.stat} className={`border ${s.color} rounded-2xl p-5`}>
+                  <p className={`text-2xl font-black ${s.badge} mb-1`}>{s.stat}</p>
+                  <p className="text-xs text-white/45 leading-snug">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── THE FOUR-NODE CORRIDOR ────────────────────────────────────────────── */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <FadeUp className="text-center mb-12">
-            <Badge className="bg-sky-500/15 text-sky-400 border-sky-500/25 mb-4">Active Routes</Badge>
+            <Badge className="bg-sky-500/15 text-sky-400 border-sky-500/25 mb-4">The Corridor Architecture</Badge>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-              Where We Move Cargo Today
+              Four Nodes. One Unbreakable Chain.
             </h2>
-            <p className="text-white/50 max-w-xl mx-auto text-base">
-              Established corridors — not aspirational plans. Bookings open.
+            <p className="text-white/45 max-w-xl mx-auto text-sm leading-relaxed">
+              Each node is a precision-engineered handoff. Together they form a logistics arc that bypasses every Western-controlled chokepoint.
             </p>
           </FadeUp>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Node connector visual */}
+          <div className="grid md:grid-cols-4 gap-0 mb-10">
             {[
-              {
-                icon: Plane,
-                mode: "Air Charter",
-                route: "Dubai (DWC) → Gawadar",
-                time: "Under 4 hours",
-                ideal: "Electronics, pharma, time-critical",
-                color: "amber",
-                img: dubaiHubImg,
-              },
-              {
-                icon: Ship,
-                mode: "Sea Freight",
-                route: "Jebel Ali / Karachi → CIS ports",
-                time: "12–22 days",
-                ideal: "Bulk, FMCG, machinery",
-                color: "sky",
-                img: shippingPortImg,
-              },
-              {
-                icon: Anchor,
-                mode: "Air-Sea Multimodal",
-                route: "DWC → Gawadar → Central Asia",
-                time: "6–10 days total",
-                ideal: "Refurb electronics, mixed cargo",
-                color: "emerald",
-                img: gwadarPortImg,
-              },
-              {
-                icon: Truck,
-                mode: "Overland / INSTC",
-                route: "Gawadar → Kazakhstan · Russia",
-                time: "8–14 days",
-                ideal: "Heavy goods, project cargo",
-                color: "violet",
-                img: instcRailImg,
-              },
-            ].map((r) => {
-              const colorMap: Record<string, string> = {
-                amber: "border-amber-500/30 bg-amber-500/5",
-                sky: "border-sky-500/30 bg-sky-500/5",
-                emerald: "border-emerald-500/30 bg-emerald-500/5",
-                violet: "border-violet-500/30 bg-violet-500/5",
+              { num: "01", city: "Dubai (DWC)", role: "Air Freight Hub", desc: "World's largest cargo airport by capacity. 100% land-side — zero Hormuz exposure.", icon: Plane, img: dubaiHubImg, color: "amber" },
+              { num: "02", city: "Air Charter", role: "Hormuz Bypass", desc: "Dedicated charter lanes fly direct Dubai→Gawadar. Under 4 hours. No Strait dependency.", icon: Wind, img: heroCargoImg, color: "sky" },
+              { num: "03", city: "Gawadar CPEC FZ", role: "Deep-Sea Anchor", desc: "Pakistani deep-sea port backed by $62B CPEC. 0% re-export duty. Outside Hormuz.", icon: Anchor, img: gwadarPortImg, color: "emerald" },
+              { num: "04", city: "INSTC / CPEC", role: "Inland Distribution", desc: "North-South corridor to Russia, Central Asia, China. New Silk Road — fully operational.", icon: Route, img: instcRailImg, color: "violet" },
+            ].map((n, i) => {
+              const cm: Record<string, { badge: string; dot: string; num: string }> = {
+                amber: { badge: "bg-amber-500/15 text-amber-300 border-amber-500/25", dot: "bg-amber-500", num: "text-amber-400" },
+                sky: { badge: "bg-sky-500/15 text-sky-300 border-sky-500/25", dot: "bg-sky-500", num: "text-sky-400" },
+                emerald: { badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25", dot: "bg-emerald-500", num: "text-emerald-400" },
+                violet: { badge: "bg-violet-500/15 text-violet-300 border-violet-500/25", dot: "bg-violet-500", num: "text-violet-400" },
               };
-              const iconMap: Record<string, string> = {
-                amber: "bg-amber-500/20 text-amber-400",
-                sky: "bg-sky-500/20 text-sky-400",
-                emerald: "bg-emerald-500/20 text-emerald-400",
-                violet: "bg-violet-500/20 text-violet-400",
-              };
-              const badgeMap: Record<string, string> = {
-                amber: "bg-amber-500/15 text-amber-300 border-amber-500/25",
-                sky: "bg-sky-500/15 text-sky-300 border-sky-500/25",
-                emerald: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25",
-                violet: "bg-violet-500/15 text-violet-300 border-violet-500/25",
-              };
+              const c = cm[n.color];
               return (
-                <FadeUp key={r.route}>
-                  <div className={`border ${colorMap[r.color]} rounded-2xl overflow-hidden h-full flex flex-col`}>
-                    <div className="relative h-36 overflow-hidden">
-                      <img src={r.img} alt={r.route} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d12] via-[#0a0d12]/40 to-transparent" />
-                      <div className={`absolute top-3 left-3 w-9 h-9 rounded-xl ${iconMap[r.color]} flex items-center justify-center`}>
-                        <r.icon className="w-4.5 h-4.5" />
+                <FadeUp key={n.city} delay={i * 0.1} className="relative">
+                  {/* Connector line */}
+                  {i < 3 && (
+                    <div className="hidden md:block absolute top-[90px] right-0 w-full h-[1px] bg-gradient-to-r from-white/10 to-white/5 z-10" />
+                  )}
+                  <div className="relative overflow-hidden rounded-2xl mx-1 group">
+                    <div className="h-[180px] relative overflow-hidden">
+                      <img src={n.img} alt={n.city} className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#080b10] via-[#080b10]/50 to-transparent" />
+                      <div className={`absolute top-3 left-3 w-8 h-8 rounded-xl ${c.dot}/20 flex items-center justify-center`}>
+                        <n.icon className={`w-4 h-4 ${c.num}`} />
                       </div>
+                      <span className={`absolute top-3 right-3 text-xs font-black ${c.num} opacity-60`}>{n.num}</span>
                     </div>
-                    <div className="p-5 flex flex-col gap-2 flex-1">
-                      <Badge className={`text-[10px] self-start ${badgeMap[r.color]}`}>{r.mode}</Badge>
-                      <p className="font-bold text-white text-sm leading-snug">{r.route}</p>
-                      <div className="flex items-center gap-1.5 text-xs text-white/50">
-                        <Clock className="w-3.5 h-3.5 shrink-0" /> {r.time}
-                      </div>
-                      <p className="text-xs text-white/40 mt-auto pt-2 border-t border-white/5">{r.ideal}</p>
+                    <div className="p-4">
+                      <Badge className={`text-[10px] mb-2 ${c.badge}`}>{n.role}</Badge>
+                      <p className="font-bold text-white text-sm mb-1">{n.city}</p>
+                      <p className="text-xs text-white/40 leading-relaxed">{n.desc}</p>
                     </div>
                   </div>
                 </FadeUp>
@@ -384,20 +489,22 @@ export default function ChainTrackLogistics() {
             })}
           </div>
 
-          {/* Destination grid */}
-          <FadeUp className="mt-10">
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
-              <p className="text-xs font-black uppercase tracking-widest text-white/30 mb-4">Destinations served</p>
+          {/* Destinations */}
+          <FadeUp>
+            <div className="rounded-2xl border border-white/8 bg-white/2 p-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                <p className="text-xs font-black uppercase tracking-widest text-white/30">Active destination markets</p>
+                <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-[10px] self-start sm:self-auto">Bookings open</Badge>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "🇵🇰 Pakistan", "🇦🇿 Azerbaijan", "🇰🇿 Kazakhstan", "🇺🇿 Uzbekistan",
-                  "🇷🇺 Russia", "🇬🇪 Georgia", "🇰🇬 Kyrgyzstan", "🇹🇯 Tajikistan",
-                  "🇨🇳 China (Xinjiang)", "🇮🇳 India (select)", "🇦🇫 Afghanistan (transit)",
-                  "🇮🇷 Iran INSTC", "🇺🇦 Ukraine (routed)", "🇸🇦 Saudi Arabia",
-                ].map((d) => (
-                  <span key={d} className="text-xs text-white/60 bg-white/5 border border-white/8 rounded-lg px-3 py-1.5 font-medium">
-                    {d}
-                  </span>
+                  "🇦🇪 UAE (origin)", "🇵🇰 Pakistan", "🇦🇿 Azerbaijan",
+                  "🇰🇿 Kazakhstan", "🇺🇿 Uzbekistan", "🇷🇺 Russia",
+                  "🇬🇪 Georgia", "🇰🇬 Kyrgyzstan", "🇹🇯 Tajikistan",
+                  "🇨🇳 China (Xinjiang–CPEC)", "🇮🇳 India (select lanes)",
+                  "🇦🇫 Afghanistan (transit)", "🇸🇦 Saudi Arabia", "🇮🇷 Iran (INSTC only)",
+                ].map(d => (
+                  <span key={d} className="text-xs text-white/55 bg-white/4 border border-white/8 rounded-lg px-3 py-1.5 font-medium">{d}</span>
                 ))}
               </div>
             </div>
@@ -405,319 +512,100 @@ export default function ChainTrackLogistics() {
         </div>
       </section>
 
-      {/* ── BROKER PROGRAM ─────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 border-y border-white/8 bg-gradient-to-br from-amber-950/30 via-[#0a0d12] to-[#0a0d12]">
+      {/* ── SYNDICATE BROKER NETWORK ─────────────────────────────────────────── */}
+      <section className="py-20 px-6 border-y border-white/8 bg-gradient-to-br from-amber-950/25 via-[#080b10] to-[#080b10]">
         <div className="max-w-6xl mx-auto">
-          <FadeUp className="mb-12">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-              <div>
-                <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 gap-1.5 mb-4">
-                  <Handshake className="w-3.5 h-3.5" /> Freight Broker Network
-                </Badge>
-                <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-                  Earn on Every Shipment<br />
-                  <span className="text-amber-400">You Bring In</span>
-                </h2>
-                <p className="text-white/50 max-w-lg text-base leading-relaxed">
-                  No investment. No stock. No warehouse. Connect shippers to ChainTrack's corridors and collect a commission on every confirmed booking — air, sea, or overland.
-                </p>
+          <FadeUp className="grid lg:grid-cols-2 gap-12 items-center mb-14">
+            <div>
+              <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 gap-1.5 mb-5">
+                <Users className="w-3.5 h-3.5" /> Worldwide Syndicate Network
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-5">
+                An Army of Freight Brokers.<br />
+                <span className="text-amber-400">You Command It from Anywhere.</span>
+              </h2>
+              <p className="text-white/55 leading-relaxed mb-4">
+                ChainTrack's growth engine is not a sales team. It's a worldwide network of freight brokers and Corridor Captains — each earning on every shipment they introduce, regardless of where they sit on earth.
+              </p>
+              <p className="text-white/40 text-sm leading-relaxed">
+                From Tashkent to Toronto. Karachi to Kuala Lumpur. If you know a shipper, you earn. No logistics degree. No Dubai residency. No upfront investment. WhatsApp is your office.
+              </p>
+            </div>
+            <div className="relative rounded-2xl overflow-hidden h-64 lg:h-full min-h-[240px]">
+              <img src={brokerHandshakeImg} alt="Freight broker network" className="absolute inset-0 w-full h-full object-cover opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080b10]/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-1">Syndicate model</p>
+                <p className="text-white text-sm font-semibold">Refer once. Earn every time they ship.</p>
               </div>
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="shrink-0">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-7 gap-2">
-                  <MessageSquare className="w-5 h-5" /> Apply as Broker
-                </Button>
-              </a>
             </div>
           </FadeUp>
 
+          {/* Tier cards */}
           <div className="grid md:grid-cols-3 gap-5 mb-8">
             {[
               {
-                icon: DollarSign,
-                title: "5% Gross Commission",
-                desc: "On every shipment you introduce — air charter, sea freight, or multimodal. Paid monthly, no cap.",
-                accent: "text-amber-400",
-                bg: "bg-amber-500/8",
-              },
-              {
-                icon: TrendingUp,
-                title: "Recurring Revenue",
-                desc: "Regular shippers keep moving cargo. Your commission becomes a steady monthly income stream — not a one-off.",
-                accent: "text-emerald-400",
-                bg: "bg-emerald-500/8",
-              },
-              {
-                icon: Globe,
-                title: "No Logistics Experience Needed",
-                desc: "You bring the enquiry. ChainTrack handles quoting, routing, customs, docs, and delivery end-to-end.",
-                accent: "text-sky-400",
-                bg: "bg-sky-500/8",
-              },
-            ].map((b) => (
-              <FadeUp key={b.title}>
-                <div className={`${b.bg} border border-white/8 rounded-2xl p-6 h-full`}>
-                  <div className={`w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4`}>
-                    <b.icon className={`w-5 h-5 ${b.accent}`} />
-                  </div>
-                  <h3 className="font-bold text-white mb-2">{b.title}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{b.desc}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-
-          {/* How it works */}
-          <FadeUp>
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-6">
-              <p className="text-xs font-black uppercase tracking-widest text-white/30 mb-5">How it works</p>
-              <div className="grid sm:grid-cols-4 gap-4">
-                {[
-                  { step: "01", label: "Register", desc: "Join free on WhatsApp or web. No contract, no fee." },
-                  { step: "02", label: "Send Enquiry", desc: "Share a shipper's requirements — origin, destination, weight, cargo type." },
-                  { step: "03", label: "We Quote & Close", desc: "ChainTrack sends a competitive quote. You get CC'd on every step." },
-                  { step: "04", label: "Earn Commission", desc: "5% of gross freight value, paid within 30 days of cargo delivery." },
-                ].map((s) => (
-                  <div key={s.step} className="flex gap-3">
-                    <span className="text-2xl font-black text-amber-500/30 leading-none shrink-0 w-8">{s.step}</span>
-                    <div>
-                      <p className="font-bold text-white text-sm mb-1">{s.label}</p>
-                      <p className="text-xs text-white/40 leading-relaxed">{s.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ── WHY CHAINTRACK ─────────────────────────────────────────────────── */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeUp className="text-center mb-12">
-            <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/25 mb-4">Why ChainTrack Wins</Badge>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-              Built to Beat Traditional Forwarders
-            </h2>
-            <p className="text-white/50 max-w-xl mx-auto">
-              Legacy freight forwarders are slow, opaque, and Hormuz-dependent. ChainTrack is none of those things.
-            </p>
-          </FadeUp>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {[
-              {
-                icon: Zap,
-                title: "Air Charter on Demand",
-                desc: "Dedicated charter capacity on the Dubai–Gawadar corridor — bypassing the Strait of Hormuz entirely. Move what needs to move, when it needs to move, without being subject to liner schedules.",
-                badge: "Hormuz-free · <4 hrs",
-                color: "amber",
-              },
-              {
-                icon: Shield,
-                title: "Alternative When Others Fail",
-                desc: "Jebel Ali disrupted. Carrier blank sailings. War-risk surcharges at +340%. ChainTrack's multimodal model means your cargo always has a viable route — air if sea fails, road if ports close.",
-                badge: "Crisis-resilient routing",
-                color: "rose",
-              },
-              {
-                icon: Activity,
-                title: "Full Digital Track & Trace",
-                desc: "Every shipment tracked across all corridor nodes from DWC intake to final-mile delivery. Brokers and shippers both get live visibility — no black holes, no 'we'll check and call you back'.",
-                badge: "Live across all legs",
-                color: "sky",
-              },
-              {
-                icon: Globe,
-                title: "CPEC Free Zone Access",
-                desc: "Cargo transiting Gawadar under CPEC Free Zone status avoids re-export duty and benefits from expedited customs handling. That's a cost advantage no traditional sea carrier out of Jebel Ali can match.",
-                badge: "Zero re-export duty",
-                color: "emerald",
-              },
-              {
-                icon: Users,
-                title: "Broker-Powered Distribution",
-                desc: "An army of freight brokers across the GCC, South Asia, and CIS markets source enquiries and route them into ChainTrack. This is how we grow volume faster than a traditional sales team ever could.",
-                badge: "Commission-incentivised",
-                color: "violet",
-              },
-              {
-                icon: Package,
-                title: "One Contract, All Modes",
-                desc: "Air, sea, multimodal, overland — unified under a single contract, single track-and-trace number, and single point of accountability. No finger-pointing between air and sea agents.",
-                badge: "Unified documentation",
-                color: "amber",
-              },
-            ].map((c) => {
-              const colorMap: Record<string, { border: string; icon: string; badge: string }> = {
-                amber: { border: "border-amber-500/20", icon: "text-amber-400 bg-amber-500/10", badge: "bg-amber-500/15 text-amber-300 border-amber-500/25" },
-                rose: { border: "border-rose-500/20", icon: "text-rose-400 bg-rose-500/10", badge: "bg-rose-500/15 text-rose-300 border-rose-500/25" },
-                sky: { border: "border-sky-500/20", icon: "text-sky-400 bg-sky-500/10", badge: "bg-sky-500/15 text-sky-300 border-sky-500/25" },
-                emerald: { border: "border-emerald-500/20", icon: "text-emerald-400 bg-emerald-500/10", badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25" },
-                violet: { border: "border-violet-500/20", icon: "text-violet-400 bg-violet-500/10", badge: "bg-violet-500/15 text-violet-300 border-violet-500/25" },
-              };
-              const cm = colorMap[c.color];
-              return (
-                <FadeUp key={c.title}>
-                  <div className={`border ${cm.border} bg-white/2 rounded-2xl p-7 h-full flex flex-col gap-4 hover:bg-white/4 transition-colors`}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className={`w-10 h-10 rounded-xl ${cm.icon} flex items-center justify-center shrink-0`}>
-                        <c.icon className="w-5 h-5" />
-                      </div>
-                      <Badge className={`text-[10px] ${cm.badge}`}>{c.badge}</Badge>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-white mb-2">{c.title}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed">{c.desc}</p>
-                    </div>
-                  </div>
-                </FadeUp>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CARGO TYPES ────────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 border-y border-white/8 bg-white/2">
-        <div className="max-w-6xl mx-auto">
-          <FadeUp className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-2">What We Move</h2>
-            <p className="text-white/40 text-sm">Commercial and relocation cargo across every category</p>
-          </FadeUp>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: "📱", title: "Refurbished Electronics", sub: "iPhones · Laptops · Tablets" },
-              { icon: "🏠", title: "Relocation Cargo", sub: "Household · Personal effects" },
-              { icon: "💊", title: "Pharma & Cold-Chain", sub: "GDP-compliant · Reefer" },
-              { icon: "📦", title: "FMCG & Consumer Goods", sub: "Bulk consolidation · LCL/FCL" },
-              { icon: "⚙️", title: "Machinery & Spares", sub: "Project cargo · Breakbulk" },
-              { icon: "🚗", title: "Vehicles", sub: "Bonded transit · CPEC FZ" },
-              { icon: "🌿", title: "Perishables", sub: "Fresh produce · Reefer chain" },
-              { icon: "🏗️", title: "Construction Materials", sub: "Bulk · Heavy lift available" },
-            ].map((g) => (
-              <FadeUp key={g.title}>
-                <div className="border border-white/8 rounded-xl p-4 flex items-start gap-3 hover:bg-white/4 transition-colors">
-                  <span className="text-xl shrink-0 mt-0.5">{g.icon}</span>
-                  <div>
-                    <p className="font-semibold text-white text-sm">{g.title}</p>
-                    <p className="text-xs text-white/35 mt-0.5">{g.sub}</p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── DISRUPTION ADVANTAGE (compact) ─────────────────────────────────── */}
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <FadeUp>
-            <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-8 flex flex-col md:flex-row gap-8 items-center">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-                  <span className="text-xs font-black uppercase tracking-widest text-red-400">Route Disruption Status</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-black text-white mb-3">
-                  Jebel Ali Disrupted. DWC Open.<br />Hormuz Contested. Gawadar Clear.
-                </h3>
-                <p className="text-white/50 text-sm leading-relaxed max-w-lg">
-                  War-risk surcharges on Hormuz-routed vessels now exceed +340%. Blank sailings from major lines. 180+ vessels rerouted. ChainTrack's air charter and Gawadar corridor was built for exactly this — and it's operational now.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-3 shrink-0">
-                {[
-                  { label: "Jebel Ali", status: "disrupted" },
-                  { label: "Strait of Hormuz", status: "disrupted" },
-                  { label: "Dubai World Central", status: "clear" },
-                  { label: "Gawadar Port", status: "clear" },
-                ].map((r) => (
-                  <div key={r.label} className={`rounded-xl border px-4 py-3 text-center ${r.status === "disrupted" ? "border-red-500/30 bg-red-500/8" : "border-emerald-500/30 bg-emerald-500/8"}`}>
-                    <div className={`w-2 h-2 rounded-full mx-auto mb-2 ${r.status === "disrupted" ? "bg-red-400 animate-pulse" : "bg-emerald-400"}`} />
-                    <p className={`text-[11px] font-black uppercase ${r.status === "disrupted" ? "text-red-300" : "text-emerald-300"}`}>
-                      {r.status === "disrupted" ? "Disrupted" : "Operational"}
-                    </p>
-                    <p className="text-[10px] text-white/40 mt-0.5">{r.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ── TRACKER ────────────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 border-y border-white/8 bg-white/2">
-        <div className="max-w-6xl mx-auto">
-          <FadeUp className="text-center mb-8">
-            <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 mb-3 gap-1.5 text-xs">
-              <Route className="w-3.5 h-3.5" /> Shipment Tracker
-            </Badge>
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-2">Track Your Cargo</h2>
-            <p className="text-white/40 text-sm">Live across all four corridor nodes — intake to delivery</p>
-          </FadeUp>
-          <FadeUp>
-            <ShipmentTracker />
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ── PARTNER TIERS ──────────────────────────────────────────────────── */}
-      <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeUp className="text-center mb-10">
-            <Badge className="bg-violet-500/15 text-violet-400 border-violet-500/25 mb-4">Partnership Tiers</Badge>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Choose Your Role</h2>
-            <p className="text-white/50 max-w-lg mx-auto text-sm">Every tier earns. Pick the one that fits your business.</p>
-          </FadeUp>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              {
+                icon: MessageSquare,
                 tier: "Freight Broker",
-                tagline: "Refer & Earn",
-                desc: "Bring us enquiries. We handle everything else. Best for individuals, travel agents, and relocation consultants.",
-                items: ["5% commission on every shipment", "No logistics expertise required", "WhatsApp-based workflow", "Instant onboarding"],
-                cta: "Join Free",
+                tagline: "Join Free · Earn Immediately",
+                commission: "5% gross",
+                how: "Send a shipper enquiry via WhatsApp. We quote, route, and close. You get 5% of the gross freight value — paid within 30 days of delivery.",
+                ideal: "Anyone with trade contacts: travel agents, relocation consultants, expat advisors, trade fair attendees, bank trade-finance officers",
+                items: ["No logistics experience required", "WhatsApp-only workflow", "Commission on air, sea & multimodal", "Paid monthly, no cap"],
+                cta: "Join as Broker",
                 highlight: false,
+                color: "border-white/10",
               },
               {
-                tier: "Freight Forwarder",
-                tagline: "Block-Space Partner",
-                desc: "Access our charter slots and port handling. Resell to your existing client base with your own margins.",
-                items: ["Block-space agreement on charter flights", "Port handling at Gawadar included", "API track & trace integration", "Dedicated account manager"],
-                cta: "Apply as Partner",
+                icon: Star,
+                tier: "Corridor Captain",
+                tagline: "Build Your Sub-Broker Army",
+                commission: "5% + 1% override",
+                how: "Recruit sub-brokers in your region. Earn your own 5% on direct shipments plus a 1% override on every shipment your sub-brokers close. The network compounds.",
+                ideal: "Freight industry veterans, trade association members, chamber of commerce contacts, logistics company directors, import/export agents",
+                items: ["5% on own shipments", "1% override on sub-broker network", "Priority charter slot access", "Named in ChainTrack corridor reports", "Market intelligence briefings"],
+                cta: "Apply as Captain",
                 highlight: true,
+                color: "border-amber-500/40",
               },
               {
-                tier: "Origin Consolidator",
-                tagline: "Dubai-Based",
-                desc: "Collect and consolidate cargo in Dubai or other UAE hubs. ChainTrack handles everything from the cargo gate onward.",
-                items: ["DXB / DWC cargo acceptance", "Consolidation & palletisation", "Same-day uplift access", "Customs clearance support"],
-                cta: "Apply as Consolidator",
+                icon: Building2,
+                tier: "Freight Forwarder",
+                tagline: "White-Label the Corridor",
+                commission: "Block-space margin",
+                how: "Access ChainTrack's charter slots and Gawadar port handling at wholesale rates. Resell to your existing clients under your own brand and margin.",
+                ideal: "Established freight companies wanting Hormuz-free routing, UAE-based forwarders needing Gawadar access, CIS forwarders needing Dubai gateway",
+                items: ["Wholesale block-space pricing", "Gawadar port handling included", "API track & trace integration", "Dedicated account manager", "Co-branded documentation"],
+                cta: "Apply as Forwarder",
                 highlight: false,
+                color: "border-white/10",
               },
-            ].map((t) => (
+            ].map(t => (
               <FadeUp key={t.tier}>
-                <div className={`rounded-2xl p-7 h-full flex flex-col gap-4 ${t.highlight ? "border border-amber-500/50 bg-amber-500/8" : "border border-white/8 bg-white/3"}`}>
-                  {t.highlight && <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[10px] self-start">Most Popular</Badge>}
-                  <div>
-                    <p className="text-xs text-white/40 font-semibold mb-1">{t.tagline}</p>
-                    <h3 className="text-lg font-black text-white">{t.tier}</h3>
+                <div className={`border ${t.color} ${t.highlight ? "bg-amber-500/6" : "bg-white/2"} rounded-2xl p-7 h-full flex flex-col gap-4`}>
+                  {t.highlight && (
+                    <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[10px] self-start">Most Lucrative</Badge>
+                  )}
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${t.highlight ? "bg-amber-500/15 text-amber-400" : "bg-white/5 text-white/50"}`}>
+                    <t.icon className="w-5 h-5" />
                   </div>
-                  <p className="text-sm text-white/50 leading-relaxed">{t.desc}</p>
-                  <ul className="space-y-2 flex-1">
-                    {t.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-white/60">
-                        <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${t.highlight ? "text-amber-400" : "text-white/30"}`} />
+                  <div>
+                    <p className="text-xs text-white/35 font-semibold mb-0.5">{t.tagline}</p>
+                    <h3 className="text-lg font-black text-white">{t.tier}</h3>
+                    <p className={`text-sm font-black mt-1 ${t.highlight ? "text-amber-400" : "text-white/60"}`}>{t.commission} commission</p>
+                  </div>
+                  <p className="text-sm text-white/45 leading-relaxed">{t.how}</p>
+                  <p className="text-[11px] text-white/30 italic leading-relaxed border-t border-white/8 pt-3">{t.ideal}</p>
+                  <ul className="space-y-2">
+                    {t.items.map(item => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-white/55">
+                        <CheckCircle2 className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${t.highlight ? "text-amber-400" : "text-white/25"}`} />
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-                    <Button className={`w-full font-bold gap-2 ${t.highlight ? "bg-amber-500 hover:bg-amber-400 text-slate-950" : "bg-white/8 hover:bg-white/12 text-white border border-white/10"}`}
+                  <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-auto">
+                    <Button className={`w-full font-bold gap-2 ${t.highlight ? "bg-amber-500 hover:bg-amber-400 text-slate-950" : "bg-white/6 hover:bg-white/10 text-white border border-white/10"}`}
                       data-testid={`button-tier-${t.tier.toLowerCase().replace(/\s+/g, "-")}`}>
                       {t.cta} <ArrowRight className="w-4 h-4" />
                     </Button>
@@ -726,37 +614,287 @@ export default function ChainTrackLogistics() {
               </FadeUp>
             ))}
           </div>
+
+          {/* How it works row */}
+          <FadeUp>
+            <div className="rounded-2xl border border-white/8 bg-white/2 p-6">
+              <p className="text-xs font-black uppercase tracking-widest text-white/25 mb-5">How a broker closes their first shipment</p>
+              <div className="grid sm:grid-cols-5 gap-4">
+                {[
+                  { step: "1", act: "Register",       desc: "WhatsApp +971523946311. Free. 2 minutes." },
+                  { step: "2", act: "Find a shipper", desc: "Anyone moving cargo from/to our corridors." },
+                  { step: "3", act: "Send enquiry",   desc: "Origin, destination, weight, cargo type. That's all." },
+                  { step: "4", act: "We close it",    desc: "ChainTrack quotes, routes, clears customs, delivers." },
+                  { step: "5", act: "You get paid",   desc: "5% within 30 days of cargo delivery. No delays." },
+                ].map((s, i) => (
+                  <div key={s.step} className="flex gap-3 items-start">
+                    <span className="text-xl font-black text-amber-500/30 shrink-0 w-6 leading-none mt-0.5">{s.step}</span>
+                    <div>
+                      <p className="font-bold text-white text-sm">{s.act}</p>
+                      <p className="text-xs text-white/35 mt-0.5 leading-relaxed">{s.desc}</p>
+                    </div>
+                    {i < 4 && <ChevronRight className="w-4 h-4 text-white/15 shrink-0 hidden sm:block mt-1" />}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
 
-      {/* ── FINAL CTA ──────────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 border-t border-white/8 bg-gradient-to-b from-[#0a0d12] to-amber-950/20">
+      {/* ── WORK FROM ANYWHERE ────────────────────────────────────────────────── */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="text-center mb-12">
+            <Badge className="bg-violet-500/15 text-violet-400 border-violet-500/25 gap-1.5 mb-4">
+              <Wifi className="w-3.5 h-3.5" /> Remote-First Logistics
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+              No Visa. No Office. No Inventory.<br />
+              <span className="text-violet-400">Just Connections That Pay.</span>
+            </h2>
+            <p className="text-white/45 max-w-xl mx-auto text-sm leading-relaxed">
+              Traditional freight companies need warehouses, staff, and local licences. ChainTrack runs as pure coordination intelligence — the physical assets are already in place. You plug in your network and earn.
+            </p>
+          </FadeUp>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: Wifi,        title: "WhatsApp Is Your Office",        desc: "Every deal, every update, every commission confirmation happens on WhatsApp. No CRM. No email threads. No login required.", color: "violet" },
+              { icon: Globe,       title: "Operate in Any Time Zone",        desc: "Route a Dubai-to-Tashkent shipment from a café in Tbilisi. Confirm a charter booking from your phone in London. Geography is irrelevant.", color: "sky" },
+              { icon: Lock,        title: "No UAE Residency Needed",         desc: "You don't need a UAE visa, Emirates ID, or local company to earn as a ChainTrack broker. Your network is your licence.", color: "amber" },
+              { icon: Layers,      title: "Asset-Light, Network-Heavy",      desc: "We own zero aircraft and zero warehouses. The value is in the connections — between charter operators, port authorities, and shippers. That's where you come in.", color: "emerald" },
+              { icon: Smartphone,  title: "Digital Documentation",           desc: "eAWB, eFBL, digital customs manifests. No paper trail. No courier delays. Documentation moves as fast as the cargo.", color: "rose" },
+              { icon: BarChart3,   title: "Commission Compounds Over Time",  desc: "Recurring shippers keep shipping. Your first client becomes a monthly income line. Corridor Captains see exponential growth as their sub-network grows.", color: "amber" },
+            ].map(c => {
+              const cm: Record<string, string> = {
+                violet: "bg-violet-500/8 border-violet-500/20 text-violet-400",
+                sky: "bg-sky-500/8 border-sky-500/20 text-sky-400",
+                amber: "bg-amber-500/8 border-amber-500/20 text-amber-400",
+                emerald: "bg-emerald-500/8 border-emerald-500/20 text-emerald-400",
+                rose: "bg-rose-500/8 border-rose-500/20 text-rose-400",
+              };
+              return (
+                <FadeUp key={c.title}>
+                  <div className={`border rounded-2xl p-6 h-full ${cm[c.color]}`} style={{ background: "rgba(255,255,255,0.02)" }}>
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center mb-4 ${cm[c.color]}`} style={{ background: "rgba(255,255,255,0.04)" }}>
+                      <c.icon className="w-4.5 h-4.5" />
+                    </div>
+                    <h3 className="font-bold text-white mb-2 text-sm">{c.title}</h3>
+                    <p className="text-xs text-white/45 leading-relaxed">{c.desc}</p>
+                  </div>
+                </FadeUp>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FREIGHT MODES ────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 border-y border-white/8 bg-white/[0.015]">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-2">Three Modes. Every Cargo Category.</h2>
+            <p className="text-white/40 text-sm">Mix and match based on urgency, weight, and cost.</p>
+          </FadeUp>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: Plane, mode: "Air Charter", img: heroCargoImg,
+                time: "Under 4 hours DXB→GWD", cost: "Premium speed, competitive vs war-risk sea",
+                best: ["Time-critical cargo", "Refurbished electronics", "Pharma & cold-chain", "High-value parcels", "Stranded sea cargo rerouted"],
+                badge: "bg-amber-500/15 text-amber-300 border-amber-500/25",
+              },
+              {
+                icon: Ship, mode: "Sea Freight", img: shippingPortImg,
+                time: "12–22 days Jebel Ali / Karachi → CIS", cost: "Lowest cost for bulk volume",
+                best: ["Bulk FMCG", "Construction materials", "Machinery & project cargo", "Non-urgent full containers", "Karachi overflow routing"],
+                badge: "bg-sky-500/15 text-sky-300 border-sky-500/25",
+              },
+              {
+                icon: Truck, mode: "Overland / INSTC Rail", img: instcRailImg,
+                time: "8–16 days Gawadar → Central Asia", cost: "Mid-range, INSTC-bonded",
+                best: ["Heavy goods", "Post-Gawadar onward delivery", "Kazakhstan & Uzbekistan", "Russia northbound", "Afghan reconstruction lanes"],
+                badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25",
+              },
+            ].map(m => (
+              <FadeUp key={m.mode}>
+                <div className="rounded-2xl overflow-hidden border border-white/8 h-full flex flex-col">
+                  <div className="relative h-36">
+                    <img src={m.img} alt={m.mode} className="absolute inset-0 w-full h-full object-cover opacity-50" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#080b10] to-transparent" />
+                    <div className="absolute top-3 left-3">
+                      <Badge className={`text-[10px] gap-1 ${m.badge}`}><m.icon className="w-3 h-3" />{m.mode}</Badge>
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col gap-3 flex-1">
+                    <div className="flex items-center gap-2 text-xs text-white/40">
+                      <Clock className="w-3.5 h-3.5 shrink-0" />{m.time}
+                    </div>
+                    <p className="text-xs text-white/30 italic">{m.cost}</p>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-white/25 pt-2 border-t border-white/8">Best for</p>
+                    <ul className="space-y-1.5">
+                      {m.best.map(b => (
+                        <li key={b} className="flex items-center gap-2 text-xs text-white/50">
+                          <CheckCircle2 className="w-3 h-3 text-white/20 shrink-0" />{b}
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-auto pt-3">
+                      <Button size="sm" variant="outline" className="w-full border-white/10 text-white/60 hover:bg-white/5 text-xs gap-1.5">
+                        Get Quote <ArrowRight className="w-3.5 h-3.5" />
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONFLICT-TO-OPPORTUNITY ───────────────────────────────────────────── */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div>
+                <Badge className="bg-rose-500/15 text-rose-400 border-rose-500/25 gap-1.5 mb-4">
+                  <Target className="w-3.5 h-3.5" /> Crisis to Opportunity
+                </Badge>
+                <h2 className="text-2xl md:text-3xl font-black text-white">
+                  When Trade Breaks — We Find the Route
+                </h2>
+              </div>
+              <p className="text-white/40 text-sm max-w-xs leading-relaxed">Each disruption creates a window. ChainTrack turns windows into corridors.</p>
+            </div>
+          </FadeUp>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { crisis: "Hormuz blockade", opp: "Air charter becomes price-competitive vs war-risk sea insurance", icon: "🚁", color: "border-red-500/20 bg-red-500/4" },
+              { crisis: "Jebel Ali blank sailings", opp: "Stranded cargo rerouted via DWC air in 24 hours — premium fees, premium margins", icon: "⚡", color: "border-amber-500/20 bg-amber-500/4" },
+              { crisis: "Sanctions compliance squeeze", opp: "CPEC Free Zone offers legal, sanctions-clear routing alternatives with full compliance documentation", icon: "🛡️", color: "border-emerald-500/20 bg-emerald-500/4" },
+              { crisis: "Reconstruction demand surge", opp: "Post-conflict reconstruction cargo floods — ChainTrack brokers first in line for Afghanistan, Sudan, Yemen lanes", icon: "🏗️", color: "border-sky-500/20 bg-sky-500/4" },
+            ].map(c => (
+              <FadeUp key={c.crisis}>
+                <div className={`border ${c.color} rounded-2xl p-5 h-full`}>
+                  <span className="text-2xl mb-3 block">{c.icon}</span>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-2">{c.crisis}</p>
+                  <p className="text-sm text-white/60 leading-relaxed">{c.opp}</p>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+
+          {/* Live route status */}
+          <FadeUp className="mt-8">
+            <div className="rounded-2xl border border-white/8 bg-white/2 p-5">
+              <p className="text-xs font-black uppercase tracking-widest text-white/25 mb-4">Current route status</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  { label: "Jebel Ali", status: "disrupted" },
+                  { label: "Strait of Hormuz", status: "disrupted" },
+                  { label: "Dubai World Central", status: "clear" },
+                  { label: "Gawadar Port (CPEC FZ)", status: "clear" },
+                ].map(r => (
+                  <div key={r.label} className={`rounded-xl border px-4 py-3 text-center ${r.status === "disrupted" ? "border-red-500/25 bg-red-500/5" : "border-emerald-500/25 bg-emerald-500/5"}`}>
+                    <div className={`w-2 h-2 rounded-full mx-auto mb-2 ${r.status === "disrupted" ? "bg-red-400 animate-pulse" : "bg-emerald-400"}`} />
+                    <p className={`text-[11px] font-black uppercase ${r.status === "disrupted" ? "text-red-300" : "text-emerald-300"}`}>
+                      {r.status === "disrupted" ? "Disrupted" : "Operational"}
+                    </p>
+                    <p className="text-[10px] text-white/30 mt-0.5">{r.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* ── SHIPMENT TRACKER ─────────────────────────────────────────────────── */}
+      <section className="py-16 px-6 border-y border-white/8 bg-white/[0.015]">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="text-center mb-8">
+            <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 mb-3 gap-1.5 text-xs">
+              <Route className="w-3.5 h-3.5" /> Live Shipment Tracker
+            </Badge>
+            <h2 className="text-2xl font-black text-white mb-2">Track Across All Four Nodes</h2>
+            <p className="text-white/35 text-sm">From DWC intake to last-mile delivery — full corridor visibility</p>
+          </FadeUp>
+          <FadeUp><ShipmentTracker /></FadeUp>
+        </div>
+      </section>
+
+      {/* ── WHAT WE MOVE ─────────────────────────────────────────────────────── */}
+      <section className="py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="text-center mb-8">
+            <h2 className="text-2xl font-black text-white mb-2">Every Cargo Category. One Corridor.</h2>
+          </FadeUp>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {[
+              { e: "📱", t: "Refurbished Electronics", s: "iPhones, laptops, tablets" },
+              { e: "🏠", t: "Relocation Cargo",        s: "Household, personal effects" },
+              { e: "💊", t: "Pharma & Cold-Chain",     s: "GDP-compliant, reefer" },
+              { e: "📦", t: "FMCG & Consumer Goods",   s: "LCL / FCL consolidation" },
+              { e: "⚙️", t: "Machinery & Spares",      s: "Project cargo, breakbulk" },
+              { e: "🚗", t: "Vehicles",                 s: "Bonded CPEC FZ transit" },
+              { e: "🌿", t: "Perishables",              s: "Reefer, fresh produce" },
+              { e: "🏗️", t: "Construction Materials",  s: "Reconstruction lanes" },
+              { e: "💎", t: "High-Value Parcels",       s: "Insured, priority handling" },
+              { e: "🛢️", t: "Industrial Chemicals",    s: "Compliant tanker routing" },
+              { e: "🎮", t: "E-Commerce Batches",       s: "Micro-fulfilment, B2C" },
+              { e: "🧰", t: "Humanitarian Aid",         s: "NGO & UN supply chains" },
+            ].map(g => (
+              <FadeUp key={g.t}>
+                <div className="border border-white/8 rounded-xl p-4 flex items-start gap-3 hover:bg-white/4 transition-colors">
+                  <span className="text-xl shrink-0">{g.e}</span>
+                  <div>
+                    <p className="font-semibold text-white text-xs leading-snug">{g.t}</p>
+                    <p className="text-[11px] text-white/30 mt-0.5">{g.s}</p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-6 border-t border-white/8 bg-gradient-to-b from-[#080b10] to-amber-950/15">
         <div className="max-w-3xl mx-auto text-center">
           <FadeUp>
-            <Star className="w-8 h-8 text-amber-400 mx-auto mb-5 opacity-80" />
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/25 flex items-center justify-center mx-auto mb-6">
+              <Network className="w-6 h-6 text-amber-400" />
+            </div>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Ready to Move Cargo<br />or Earn as a Broker?
+              Move Cargo. Earn Commissions.<br />
+              <span className="text-amber-400">Change the Trade Map.</span>
             </h2>
-            <p className="text-white/50 mb-8 text-base leading-relaxed">
-              One WhatsApp message is all it takes. Tell us your cargo details or ask about joining the broker network — we respond within the hour.
+            <p className="text-white/45 mb-8 text-base leading-relaxed max-w-lg mx-auto">
+              One WhatsApp message. Freight quote within the hour. Broker commission confirmed on every booking. The post-war trade corridor is open. Get on it.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2 h-12 text-base"
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+              <a href={WA} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2 h-12 text-base w-full sm:w-auto"
                   data-testid="button-final-whatsapp">
-                  <MessageSquare className="w-5 h-5" /> WhatsApp Us Now
+                  <MessageSquare className="w-5 h-5" /> WhatsApp Now
                 </Button>
               </a>
               <a href="mailto:logistics@chaintrack.com">
-                <Button size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 px-8 gap-2 h-12 text-base"
+                <Button size="lg" variant="outline" className="border-white/15 text-white/70 hover:bg-white/5 px-8 gap-2 h-12 text-base w-full sm:w-auto"
                   data-testid="button-final-email">
                   logistics@chaintrack.com
                 </Button>
               </a>
             </div>
-            <p className="text-white/25 text-xs mt-6">
-              Dubai World Central · Gawadar CPEC Free Zone · INSTC Corridor · Available 7 days
-            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-xs text-white/25">
+              {["Dubai World Central", "Gawadar CPEC Free Zone", "INSTC Corridor", "CPEC Rail Network", "Remote-first · No office needed"].map(t => (
+                <span key={t} className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-white/20" />{t}
+                </span>
+              ))}
+            </div>
           </FadeUp>
         </div>
       </section>
