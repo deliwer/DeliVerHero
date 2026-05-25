@@ -31,9 +31,20 @@ export default function MoveToDubai() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
-      <SEOMeta 
-        title="Moving to Dubai | Complete Move-In Checklist | DeliWer"
-        description="Plan your move to Dubai. DeliWer handles Ejari, DEWA, water setup, and home readiness. Your complete move-in solution."
+      <SEOMeta
+        title="Moving to Dubai | Expat Move-In Concierge | DeliWer"
+        description="Moving to Dubai? DeliWer coordinates Ejari registration, DEWA activation, movers, cleaning, internet setup, and water filtration — all via WhatsApp. Your complete Dubai move-in handled end-to-end."
+        canonical="https://www.deliwer.com/move-to-dubai"
+        keywords="moving to Dubai, move to Dubai checklist, Dubai expat move-in, how to move to Dubai, Dubai relocation guide, Ejari DEWA setup Dubai, Dubai apartment setup, expat relocation Dubai, Dubai move-in concierge, DeliWer move to Dubai"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Move to Dubai", url: "/move-to-dubai" }]}
+        faqs={[
+          { question: "What do I need to set up when I move to Dubai?", answer: "When moving to Dubai you need to register your tenancy contract (Ejari), activate DEWA (electricity and water), set up internet, arrange movers, and get your apartment cleaned and ready. DeliWer coordinates all of this in one WhatsApp conversation." },
+          { question: "How quickly can DeliWer set up my new Dubai apartment?", answer: "DeliWer can coordinate your full move-in setup — Ejari, DEWA, movers, cleaning, and internet — within 3–5 business days of arrival, depending on your building and DEWA processing time." },
+          { question: "Do I need to be in Dubai to arrange my move-in?", answer: "No. Many DeliWer clients coordinate their entire Dubai move-in remotely before arriving. We can handle document submissions, service bookings, and apartment setup while you're still abroad." },
+          { question: "How much does a full Dubai move-in package cost?", answer: "DeliWer's move-in packages start from AED 320 for a basic setup (Ejari + DEWA coordination). Full concierge packages including movers, cleaning, internet, and water setup are available — message us on WhatsApp for a custom quote." },
+        ]}
+        serviceSchema={{ name: "Dubai Move-In Concierge", description: "DeliWer coordinates the complete Dubai move-in: Ejari registration, DEWA activation, professional movers, cleaning, internet setup, and water filtration. All via WhatsApp for expats and new residents.", price: "AED 320" }}
       />
       <Navigation />
 

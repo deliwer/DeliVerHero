@@ -239,8 +239,19 @@ export default function ChainTrackSourcingPage() {
   return (
     <div className="min-h-screen bg-[#050910] text-white">
       <SEOMeta
-        title="Remote Sourcing Marketplace | ChainTrack"
-        description="Broker-assisted remote sourcing for refurbished electronics from Dubai. Source iPhones, tablets, laptops and consumer electronics with certified grading and logistics coordination."
+        title="Remote Electronics Sourcing Dubai | ChainTrack Marketplace"
+        description="Source certified refurbished iPhones, tablets, and laptops from Dubai remotely. ChainTrack's broker-assisted marketplace delivers A/B/C graded electronics to CIS, Gulf, and African buyers with full inspection reports and logistics coordination."
+        canonical="https://www.deliwer.com/chaintrack-sourcing"
+        keywords="remote electronics sourcing Dubai, buy refurbished iPhone Dubai, ChainTrack marketplace, bulk electronics Dubai, CIS electronics supplier UAE, refurbished phones Dubai wholesale, B2B electronics Dubai, source electronics from Dubai, ChainTrack sourcing, refurbished MacBook Dubai"
+        webPageType="CollectionPage"
+        breadcrumbs={[{ name: "ChainTrack", url: "/chaintrack" }, { name: "Sourcing", url: "/chaintrack-sourcing" }]}
+        faqs={[
+          { question: "How does ChainTrack remote sourcing work?", answer: "You submit a sourcing request specifying the device model, grade preference, and quantity. ChainTrack's broker network locates matching inventory in Dubai's market, performs certified grading and inspection, then coordinates logistics to your destination country." },
+          { question: "What countries does ChainTrack ship refurbished electronics to?", answer: "ChainTrack ships to CIS countries (Russia, Kazakhstan, Uzbekistan, Azerbaijan), Gulf states, and East Africa. Custom logistics corridors are available for other destinations — contact us to discuss your route." },
+          { question: "Can I buy in bulk from ChainTrack?", answer: "Yes. ChainTrack specializes in volume lot sourcing for B2B buyers — typically 10 to 500+ devices per order. Bulk pricing, consolidated grading reports, and palletized shipping are all available." },
+          { question: "How do I know the grades are accurate when sourcing remotely?", answer: "Every ChainTrack order includes a standardized grading report, photo documentation, battery health data, and video inspection walkthrough. IMEI verification is included for all smartphone purchases." },
+        ]}
+        serviceSchema={{ name: "ChainTrack Remote Electronics Sourcing", description: "ChainTrack's Dubai-based broker marketplace connects remote buyers in CIS, Gulf, and African markets with certified refurbished iPhones, tablets, and laptops — complete with grading reports and logistics." }}
       />
 
       {/* Breadcrumb nav */}

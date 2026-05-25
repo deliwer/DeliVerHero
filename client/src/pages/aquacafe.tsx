@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { SEOMeta } from "@/components/seo-meta";
 import { Star, MessageCircle, Gift, CheckCircle, Zap, Shield, Award, Heart, Home, Users, Rocket, Target, Eye, MapPin, Clock, ChefHat } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -95,6 +96,21 @@ export default function AquaCafe() {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-gradient-to-br from-emerald-50 to-cyan-50">
+      <SEOMeta
+        title="AquaCafe Dubai | Premium Water Delivery & Filtration | DeliWer"
+        description="AquaCafe delivers premium Icelandic Glacial water and installs whole-home filtration systems across Dubai. Subscription plans from AED 99/month. Same-day delivery available. Used by thousands of Dubai residents."
+        canonical="https://www.deliwer.com/aquacafe"
+        keywords="AquaCafe Dubai, water delivery Dubai, Icelandic Glacial Dubai, water filtration Dubai, whole home water filter Dubai, shower filter Dubai, drinking water delivery Dubai, water subscription Dubai, AquaCafe subscription, clean water Dubai"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "AquaCafe", url: "/aquacafe" }]}
+        faqs={[
+          { question: "What is AquaCafe?", answer: "AquaCafe is DeliWer's premium water service for Dubai residents — offering Icelandic Glacial water delivery, under-sink filtration systems, whole-home filter installation, and shower filters. All installations are handled by our in-house team." },
+          { question: "How does AquaCafe water delivery work in Dubai?", answer: "Choose a subscription plan, confirm your Dubai address on WhatsApp, and we deliver Icelandic Glacial water bottles on a regular schedule. Same-day delivery is available for most Dubai areas." },
+          { question: "What water filtration systems does AquaCafe install?", answer: "AquaCafe installs under-sink drinking water filters, whole-home inline filters, and shower filters. All systems use multi-stage filtration to reduce chlorine, heavy metals, and sediment from Dubai tap water." },
+          { question: "Does AquaCafe cover my area in Dubai?", answer: "AquaCafe delivers and installs across all major Dubai areas including JVC, Dubai Marina, Business Bay, Downtown, Al Barsha, Deira, International City, Al Nahda, JLT, Dubai Hills, and more." },
+        ]}
+        serviceSchema={{ name: "AquaCafe Water Delivery & Filtration Dubai", description: "AquaCafe by DeliWer delivers Icelandic Glacial water and installs home filtration systems across Dubai. Subscription-based with same-day delivery available.", price: "AED 99" }}
+      />
       {/* Navigation Bar */}
       <div className="w-full max-w-7xl mx-auto px-4 py-4 flex items-center justify-between bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-md">
         <Link href="/" className="flex items-center gap-2 text-emerald-800 hover:text-emerald-600 transition-colors" data-testid="link-back-home">

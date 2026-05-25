@@ -31,9 +31,20 @@ export default function EjariRenewal() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
-      <SEOMeta 
-        title="Ejari Renewal Dubai | Tenancy Contract Renewal | DeliWer"
-        description="Renew your Ejari contract smoothly. DeliWer coordinates renewal through official channels in Dubai."
+      <SEOMeta
+        title="Ejari Renewal Dubai | Renew Tenancy Contract Fast | DeliWer"
+        description="Ejari must be renewed every year your Dubai tenancy contract is renewed. DeliWer coordinates the renewal through RERA-authorized Trustee Centers — documents checked, submitted, and delivered. No queue, no hassle."
+        canonical="https://www.deliwer.com/ejari-renewal"
+        keywords="Ejari renewal Dubai, renew Ejari Dubai, Ejari expired Dubai, Ejari renewal fee, tenancy renewal Dubai, RERA contract renewal Dubai, how to renew Ejari Dubai, Ejari renewal documents, DeliWer Ejari renewal"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Ejari Renewal", url: "/ejari-renewal" }]}
+        faqs={[
+          { question: "When must I renew my Ejari in Dubai?", answer: "Ejari must be renewed whenever your tenancy contract is renewed, typically annually. You should initiate renewal within 30 days of signing the new contract to avoid DEWA-related complications." },
+          { question: "What documents do I need to renew Ejari?", answer: "You need the renewed tenancy contract, your Emirates ID, the landlord's Emirates ID or passport, and the original or previous Ejari certificate. DeliWer will verify your documents before submission." },
+          { question: "How much does Ejari renewal cost in Dubai?", answer: "The RERA Ejari renewal fee is AED 220 (including VAT), the same as the initial registration fee. DeliWer's coordination service is charged separately — message us on WhatsApp for pricing." },
+          { question: "What happens if I don't renew my Ejari on time?", answer: "An expired Ejari can cause issues with DEWA, prevent you from obtaining new utility connections, and may complicate visa renewals. Renewing promptly after signing a new contract is strongly advised." },
+        ]}
+        serviceSchema={{ name: "Ejari Renewal Dubai", description: "DeliWer coordinates annual Ejari renewal for Dubai tenants through RERA-authorized Trustee Centers. Documents verified, submitted, and the updated Ejari certificate delivered digitally.", price: "AED 220" }}
       />
       <Navigation />
 

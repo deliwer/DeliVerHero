@@ -90,8 +90,19 @@ export default function ChainTrackGradingPage() {
   return (
     <div className="min-h-screen bg-[#050910] text-white">
       <SEOMeta
-        title="Certified Grading Infrastructure | ChainTrack"
-        description="Remote sourcing confidence powered by institutional grading standards. Automated diagnostics, standardized cosmetic grading, battery testing, and video inspection delivery."
+        title="Certified Electronics Grading | ChainTrack Dubai | A/B/C Grade Standards"
+        description="ChainTrack's certified grading infrastructure gives remote buyers institutional-grade confidence. Automated diagnostics, standardized A/B/C cosmetic grading, battery health testing, and video inspection — all from Dubai's refurbished electronics hub."
+        canonical="https://www.deliwer.com/chaintrack-grading"
+        keywords="ChainTrack grading, certified electronics grading Dubai, refurbished iPhone grading UAE, A grade iPhone Dubai, B grade electronics UAE, battery health test Dubai, remote electronics sourcing, IMEI check Dubai, electronics inspection Dubai, ChainTrack certified"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "ChainTrack", url: "/chaintrack" }, { name: "Grading", url: "/chaintrack-grading" }]}
+        faqs={[
+          { question: "What does ChainTrack's A/B/C grading system mean?", answer: "Grade A devices show minimal to no cosmetic wear — screen and body are pristine with battery health above 85%. Grade B devices have light scratches visible under direct light with battery above 80%. Grade C devices have noticeable wear but are fully functional. All grades pass full diagnostic testing." },
+          { question: "How does ChainTrack verify battery health?", answer: "Every device goes through automated battery diagnostics using industry-standard tools that measure actual capacity against rated capacity. Battery health percentage is disclosed in every grading report and video inspection." },
+          { question: "Can I buy electronics remotely without inspecting them myself?", answer: "Yes. ChainTrack's grading infrastructure is specifically designed for remote buyers — CIS and Gulf markets especially. Video inspection walkthroughs, IMEI verification, and standardized grade reports replace the need for in-person inspection." },
+          { question: "What electronics does ChainTrack grade?", answer: "ChainTrack grades iPhones, Samsung Galaxy devices, iPads, MacBooks, laptops, and consumer electronics sourced through Dubai's refurbished market. Volume lot grading for B2B buyers is also available." },
+        ]}
+        serviceSchema={{ name: "ChainTrack Certified Electronics Grading", description: "ChainTrack provides institutional-grade electronics inspection and certification in Dubai — covering cosmetic grading, battery testing, IMEI verification, and video inspection for remote B2B buyers." }}
       />
 
       {/* Breadcrumb nav */}

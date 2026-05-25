@@ -17,9 +17,20 @@ const getWhatsAppLink = (service: string) => {
 export default function MoveOutPackagePage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30 font-sans">
-      <SEOMeta 
-        title="Move-Out Package | Smooth Dubai Exit & Handover"
-        description="Leave clean, disconnect right, and avoid penalties. Furniture removal, e-waste, and utility disconnections fully coordinated."
+      <SEOMeta
+        title="Move-Out Package Dubai | Deposit-Safe Exit & Handover | DeliWer"
+        description="Leave your Dubai apartment clean and compliant. DeliWer's move-out package covers deep cleaning, furniture removal, e-waste collection, DEWA disconnection, and key handover — protecting your security deposit."
+        canonical="https://www.deliwer.com/move-out-package"
+        keywords="move out package Dubai, apartment handover Dubai, deep cleaning move out Dubai, DEWA disconnection Dubai, deposit refund Dubai, furniture removal Dubai, e-waste Dubai, move out checklist Dubai, DeliWer move out, apartment exit Dubai"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Move-Out Package", url: "/move-out-package" }]}
+        faqs={[
+          { question: "What does the DeliWer move-out package include?", answer: "The move-out package covers: professional deep cleaning, DEWA final meter reading and disconnection coordination, furniture and bulky item removal, e-waste collection, Ejari cancellation coordination, and handover documentation." },
+          { question: "How does DeliWer help protect my security deposit?", answer: "DeliWer's deep cleaning service is specifically calibrated for apartment handover in Dubai — matching the standard expected by most landlords and property managers. We also document the apartment's condition before and after cleaning." },
+          { question: "How long does a Dubai move-out take with DeliWer?", answer: "A standard move-out can be completed in 2–3 business days: cleaning and furniture removal on day 1, DEWA disconnection coordination on day 2, and key handover on day 3. Express packages are also available." },
+          { question: "Can I book just the cleaning without the full package?", answer: "Yes. DeliWer offers standalone deep cleaning, furniture removal, or DEWA disconnection coordination. You can also combine any services — message us on WhatsApp to build a custom package." },
+        ]}
+        serviceSchema={{ name: "Dubai Move-Out Package", description: "DeliWer's move-out package covers deposit-protecting deep cleaning, furniture removal, e-waste collection, DEWA disconnection, and Ejari cancellation for Dubai apartment exits." }}
       />
 
       <section className="relative py-24 px-4 overflow-hidden border-b border-white/5">

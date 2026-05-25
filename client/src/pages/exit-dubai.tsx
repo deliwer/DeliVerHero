@@ -37,7 +37,18 @@ export default function ExitDubaiPage() {
     <div className="min-h-screen bg-slate-950 text-white">
       <SEOMeta
         title="Exit Dubai Concierge | Leave Dubai Without the Chaos | DeliWer"
-        description="Leaving Dubai quickly? DeliWer coordinates movers, storage, apartment clearance, Ejari cancellation, DEWA closure, and key handover. Exit concierge from 900 AED."
+        description="Leaving Dubai? DeliWer coordinates your full exit: Ejari cancellation, DEWA closure, movers, apartment deep clean, furniture removal, and key handover. Deposit protection guaranteed. Exit packages from AED 900."
+        canonical="https://www.deliwer.com/exit-dubai"
+        keywords="exit Dubai, leaving Dubai checklist, Ejari cancellation Dubai, DEWA closure Dubai, move out Dubai, Dubai exit concierge, deposit refund Dubai, apartment handover Dubai, Dubai move out package, DeliWer exit Dubai"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Exit Dubai", url: "/exit-dubai" }]}
+        faqs={[
+          { question: "How do I cancel Ejari when leaving Dubai?", answer: "To cancel Ejari in Dubai you must submit a cancellation request through a RERA-authorized Trustee Center with the original Ejari certificate and proof of tenancy termination. DeliWer handles this entire process on your behalf." },
+          { question: "How long before I leave should I start the exit process?", answer: "Ideally 2–3 weeks before your departure. Ejari cancellation, DEWA closure, apartment cleaning, and final inspection all take time. DeliWer can compress this to 5–7 business days with the right coordination." },
+          { question: "Will DeliWer help me get my deposit back?", answer: "Yes. DeliWer's exit concierge includes a deposit-protection deep clean, punch-list inspection, and documentation to maximize your chances of a full deposit refund from your landlord." },
+          { question: "What does DeliWer's exit concierge package include?", answer: "The exit package covers: Ejari cancellation coordination, DEWA final meter reading and closure, movers, deep cleaning, furniture disposal or donation, e-waste collection, and key handover paperwork. Packages from AED 900." },
+        ]}
+        serviceSchema={{ name: "Dubai Exit Concierge Service", description: "DeliWer coordinates the complete Dubai apartment exit: Ejari cancellation, DEWA closure, movers, deep cleaning, furniture removal, and key handover. Deposit protection included.", price: "AED 900" }}
       />
 
       {/* Hero */}

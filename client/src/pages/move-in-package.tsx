@@ -15,9 +15,20 @@ const getWhatsAppLink = (service: string) => {
 export default function MoveInPackagePage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/40 font-sans">
-      <SEOMeta 
-        title="Move-In Package | Your Home Fully Ready Dubai"
-        description="Prepare your Dubai home fully before you unpack. AC servicing, water setup, and essentials coordinated end-to-end."
+      <SEOMeta
+        title="Move-In Package Dubai | Home Setup & Activation | DeliWer"
+        description="Get your Dubai apartment fully ready before you unpack. DeliWer's move-in package covers AC servicing, water filtration, deep cleaning, DEWA activation, and internet setup — coordinated end-to-end via WhatsApp."
+        canonical="https://www.deliwer.com/move-in-package"
+        keywords="move in package Dubai, apartment setup Dubai, home setup Dubai, DEWA setup Dubai, AC service Dubai, water filter Dubai, deep cleaning Dubai, apartment activation Dubai, DeliWer move-in package, home ready Dubai"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Move-In Package", url: "/move-in-package" }]}
+        faqs={[
+          { question: "What is included in DeliWer's move-in package?", answer: "DeliWer's move-in package covers DEWA electricity and water activation, AC servicing and filter cleaning, water filtration system installation, professional deep cleaning, internet setup coordination, and optional assembly services." },
+          { question: "How soon can my apartment be ready after I get the keys?", answer: "Most move-in setups are completed within 2–4 business days of key collection, depending on DEWA processing time. AC and cleaning services can often be arranged same-day or next-day." },
+          { question: "Do you offer move-in packages for furnished apartments?", answer: "Yes — DeliWer's move-in package works for both furnished and unfurnished apartments. For furnished units we focus on cleaning, AC service, and utility activation. For unfurnished units we can include assembly and water filtration installation." },
+          { question: "Can I book a move-in package for a specific Dubai area?", answer: "DeliWer covers all major Dubai areas including JVC, Dubai Marina, Business Bay, Downtown, Al Barsha, Al Nahda, Deira, JLT, Dubai Hills, Palm Jumeirah, and more." },
+        ]}
+        serviceSchema={{ name: "Dubai Move-In Package", description: "DeliWer's move-in package covers DEWA activation, AC servicing, water filtration, deep cleaning, and internet setup for new Dubai apartments. Coordinated via WhatsApp.", price: "AED 320" }}
       />
 
       <section className="px-4 py-3 border-b border-white/10 bg-black/40 sticky top-0 z-[60] backdrop-blur-sm">

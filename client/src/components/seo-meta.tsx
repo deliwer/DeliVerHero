@@ -5,6 +5,16 @@ interface FAQItem {
   answer: string;
 }
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
 interface SEOMetaProps {
   title: string;
   description: string;
@@ -21,6 +31,15 @@ interface SEOMetaProps {
     area?: string;
   };
   dateModified?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  webPageType?: "WebPage" | "AboutPage" | "ServicePage" | "FAQPage" | "CollectionPage" | "ContactPage" | "Article";
+  howTo?: {
+    name: string;
+    description: string;
+    steps: HowToStep[];
+    totalTime?: string;
+    estimatedCost?: string;
+  };
 }
 
 const SITE_NAME = "DeliWer";
@@ -220,6 +239,56 @@ function buildServiceSchema(service: NonNullable<SEOMetaProps["serviceSchema"]>)
   });
 }
 
+function buildBreadcrumbSchema(breadcrumbs: BreadcrumbItem[]) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      ...breadcrumbs.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: b.name,
+        item: b.url.startsWith("http") ? b.url : `${BASE_URL}${b.url}`,
+      })),
+    ],
+  });
+}
+
+function buildWebPageSchema(type: string, title: string, description: string, url: string, modDate: string) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    isPartOf: { "@id": `${BASE_URL}/#website` },
+    publisher: { "@id": `${BASE_URL}/#organization` },
+    inLanguage: "en-AE",
+    dateModified: modDate,
+  });
+}
+
+function buildHowToSchema(howTo: NonNullable<SEOMetaProps["howTo"]>) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: howTo.name,
+    description: howTo.description,
+    ...(howTo.totalTime && { totalTime: howTo.totalTime }),
+    ...(howTo.estimatedCost && {
+      estimatedCost: { "@type": "MonetaryAmount", currency: "AED", value: howTo.estimatedCost },
+    }),
+    step: howTo.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  });
+}
+
 export function SEOMeta({
   title,
   description,
@@ -231,13 +300,16 @@ export function SEOMeta({
   faqs,
   serviceSchema,
   dateModified,
+  breadcrumbs,
+  webPageType,
+  howTo,
 }: SEOMetaProps) {
   const url =
     canonical ||
     (typeof window !== "undefined" ? window.location.href : BASE_URL);
 
   const fullTitle = title.includes("DeliWer") ? title : `${title} | ${SITE_NAME} Dubai`;
-  const modDate = dateModified || "2026-05-12";
+  const modDate = dateModified || "2026-05-25";
 
   return (
     <Helmet>
@@ -312,6 +384,21 @@ export function SEOMeta({
       {/* Service structured data */}
       {serviceSchema && (
         <script type="application/ld+json">{buildServiceSchema(serviceSchema)}</script>
+      )}
+
+      {/* BreadcrumbList */}
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <script type="application/ld+json">{buildBreadcrumbSchema(breadcrumbs)}</script>
+      )}
+
+      {/* WebPage entity */}
+      {webPageType && (
+        <script type="application/ld+json">{buildWebPageSchema(webPageType, fullTitle, description, url, modDate)}</script>
+      )}
+
+      {/* HowTo */}
+      {howTo && (
+        <script type="application/ld+json">{buildHowToSchema(howTo)}</script>
       )}
     </Helmet>
   );
