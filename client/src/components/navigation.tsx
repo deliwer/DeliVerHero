@@ -266,7 +266,7 @@ export function Navigation() {
                   }`}
                   title="ChainTrack Logistics — Dubai Gateway to the Middle East"
                   data-testid="mode-b2b"
-                >Brokers</button>
+                >Logistics</button>
               </div>
             </div>
 
