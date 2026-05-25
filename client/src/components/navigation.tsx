@@ -75,11 +75,11 @@ const managementNavItems = [
 
 // ── ChainTrack deep-nav (phone marketplace only) ─────────────────────────────
 const chaintrackNavItems = [
+  { path: "/logistics",        label: "Logistics",      id: "ct-logistics",   icon: Anchor },
   { path: "/chaintrack",       label: "Marketplace",    id: "ct-marketplace", icon: LayoutGrid },
   { path: "/bulk-purchasing",  label: "Bulk Buy",       id: "ct-bulk",        icon: Package },
   { path: "/fulfillment",      label: "Fulfillment",    id: "ct-fulfillment", icon: Truck },
   { path: "/corporate",        label: "Corporate",      id: "ct-corporate",   icon: Building2 },
-  { path: "/logistics",        label: "Corridor →",     id: "ct-logistics",   icon: Anchor },
   { path: "/partners",         label: "Brokers",        id: "ct-back",        icon: Users },
 ];
 
