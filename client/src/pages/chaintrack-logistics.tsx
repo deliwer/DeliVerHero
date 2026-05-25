@@ -264,10 +264,10 @@ function AnimatedItem({ children, className = "" }: { children: React.ReactNode;
 }
 
 const STATS = [
-  { value: "4,800km", label: "Dubai → Gawadar Air Corridor", icon: Plane },
-  { value: "62%", label: "Cost Savings vs. Strait of Hormuz Routes", icon: TrendingUp },
-  { value: "48hr", label: "Door-to-Port Delivery Window", icon: Clock },
-  { value: "$62B", label: "CPEC Infrastructure Investment", icon: Building2 },
+  { value: "30%", label: "Global Oil & LNG transiting Hormuz — now at risk", icon: AlertTriangle },
+  { value: "180+", label: "Vessels reported stranded or rerouted in Q1 2025", icon: Ship },
+  { value: "4,800km", label: "Dubai → Gawadar Air Corridor — fully Hormuz-free", icon: Plane },
+  { value: "$62B", label: "CPEC Infrastructure backing Gawadar as successor port", icon: Building2 },
 ];
 
 const ROUTE_MILESTONES = [
@@ -315,30 +315,30 @@ const ROUTE_MILESTONES = [
 
 const ADVANTAGES = [
   {
-    title: "Hormuz-Free Routing",
-    desc: "The Strait of Hormuz handles ~21% of global oil and a significant share of cargo. Ongoing Middle East conflict has made shippers acutely aware of this single point of failure. The Dubai–Gawadar corridor makes it irrelevant.",
-    icon: Shield,
+    title: "Jebel Ali: Disrupted. DWC: Open.",
+    desc: "The Hormuz conflict has directly impacted Jebel Ali's vessel throughput — the world's 9th-largest port now faces rerouting delays, insurance surcharges, and blank sailings. Dubai World Central's air-cargo apron, however, operates at full capacity and is 100% land-side. ChainTrack moves your cargo out while ships wait.",
+    icon: AlertTriangle,
     accent: "text-amber-600 dark:text-amber-400",
     bg: "bg-amber-50 dark:bg-amber-950/30",
   },
   {
-    title: "Jebel Ali Succession",
-    desc: "With Jebel Ali's regular commercial operations severely disrupted by regional hostilities, Gawadar — backed by $62B in Chinese CPEC investment — has emerged as the ready-built alternative deep-water port on the Arabian Sea.",
+    title: "Gawadar: The Successor Port",
+    desc: "Backed by $62 billion in Chinese CPEC investment, Gawadar deep-sea port was purpose-built as a strategic alternative to Hormuz-dependent Gulf ports. It sits outside the conflict zone, offers bonded CPEC Free Zone status, and connects directly to China, Central Asia and the INSTC rail network. Ships stranded off Jebel Ali can discharge at Gawadar instead.",
     icon: Anchor,
     accent: "text-emerald-600 dark:text-emerald-400",
     bg: "bg-emerald-50 dark:bg-emerald-950/30",
   },
   {
-    title: "CPEC & INSTC Convergence",
-    desc: "The China–Pakistan Economic Corridor and the International North–South Transport Corridor converge at Gawadar — creating the first multi-modal interchange directly linking East Asia, South Asia, Central Asia, and the Gulf in a single logistics chain.",
+    title: "CPEC + INSTC: The New Silk Roads",
+    desc: "The China–Pakistan Economic Corridor (CPEC) links Gawadar north to Xinjiang and onward to China. The International North–South Transport Corridor (INSTC) connects the Arabian Sea to Russia, Central Asia and Europe via Iran and the Caspian. Together they form the first multi-modal interchange bypassing both Hormuz and the Suez — a permanent structural shift in global trade geography.",
     icon: Network,
     accent: "text-sky-600 dark:text-sky-400",
     bg: "bg-sky-50 dark:bg-sky-950/30",
   },
   {
-    title: "Air-to-Sea Feeder Model",
-    desc: "High-value, time-sensitive cargo flies Dubai–Gawadar via dedicated charter. At Gawadar it transfers to deep-sea vessels for onward routing at ocean-freight cost. A two-speed supply chain that was never possible before.",
-    icon: Layers,
+    title: "Dubai as Gateway to the Middle East",
+    desc: "In an era of port disruption, Dubai's neutral geopolitical status, world-class aviation infrastructure (DXB + DWC), and free-zone re-export ecosystem make it the undisputed pivot for East–West trade. Goods flow IN through Dubai; ChainTrack routes them OUT through the Gawadar corridor. Dubai stops being a destination and becomes a gateway.",
+    icon: Globe,
     accent: "text-violet-600 dark:text-violet-400",
     bg: "bg-violet-50 dark:bg-violet-950/30",
   },
@@ -774,11 +774,11 @@ export default function ChainTrackLogisticsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
       <Helmet>
-        <title>ChainTrack Logistics — Dubai–Gawadar Air Cargo Corridor | DeliWer Group</title>
-        <meta name="description" content="ChainTrack by DeliWer: Dubai–Gawadar air cargo and charter logistics. CPEC Free Zone access, Hormuz-free routing, freight broker network across UAE, Pakistan, and CIS markets." />
-        <meta name="keywords" content="Dubai Gawadar air cargo, ChainTrack logistics, freight broker Dubai, CPEC corridor shipping, charter logistics UAE, DeliWer logistics, Dubai cargo corridor, Pakistan freight" />
-        <meta property="og:title" content="ChainTrack Logistics — Dubai–Gawadar Corridor | DeliWer Group" />
-        <meta property="og:description" content="Air cargo, charter freight, and corridor logistics between Dubai and Gawadar. CPEC Free Zone access. Freight broker network." />
+        <title>ChainTrack Logistics — Dubai Gateway | Jebel Ali Alternative · CPEC · INSTC</title>
+        <meta name="description" content="Jebel Ali disrupted? ChainTrack routes cargo out of Dubai via DWC air charter to Gawadar — bypassing Hormuz entirely. CPEC/INSTC onward to China, Central Asia & Europe. Stranded ships, urgent rerouting, freight broker network." />
+        <meta name="keywords" content="Jebel Ali alternative, Hormuz blockade logistics, Dubai cargo rerouting, Gawadar port CPEC, INSTC corridor, stranded ships Dubai, air sea logistics Dubai, ChainTrack logistics, Dubai gateway Middle East, freight broker Dubai" />
+        <meta property="og:title" content="ChainTrack Logistics — Dubai Gateway to the Middle East | Jebel Ali Alternative" />
+        <meta property="og:description" content="When Jebel Ali is disrupted, ChainTrack routes your cargo via Dubai World Central → Gawadar (CPEC) → INSTC. Hormuz-free. Operational now." />
         <meta property="og:url" content="https://www.deliwer.com/logistics" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://www.deliwer.com/logistics" />
@@ -863,30 +863,36 @@ export default function ChainTrackLogisticsPage() {
         <div className="relative max-w-6xl mx-auto text-center">
           <AnimatedSection>
             <AnimatedItem>
-              <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 px-4 py-1.5 text-sm font-medium mb-6 inline-flex">
-                <Zap className="w-3.5 h-3.5 mr-1.5" />
-                Dubai to CIS Charter Logistics &amp; Emerging Trade Corridors
-              </Badge>
+              <div className="flex flex-wrap justify-center gap-3 mb-6">
+                <Badge className="bg-red-500/20 text-red-400 border-red-500/30 px-4 py-1.5 text-sm font-black gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                  Jebel Ali Disrupted
+                </Badge>
+                <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 px-4 py-1.5 text-sm font-medium gap-1.5">
+                  <Zap className="w-3.5 h-3.5" />
+                  Hormuz-Free Alternative · Operational Now
+                </Badge>
+              </div>
             </AnimatedItem>
 
             <AnimatedItem>
               <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-none">
-                <span className="block text-white">Dubai to CIS Charter</span>
+                <span className="block text-white">When Hormuz Shuts,</span>
                 <span className="block bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent mt-2">
-                  Logistics &amp; Electronics Movement
+                  Dubai Reroutes.
                 </span>
               </h1>
             </AnimatedItem>
 
             <AnimatedItem>
               <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-4">
-                Air cargo, charter logistics, sourcing support, remote inspections, and cross-border movement coordination for refurbished electronics, urgent cargo, and relocation support.
+                Jebel Ali faces vessel backlogs, blank sailings, and war-risk surcharges. ChainTrack moves your cargo out of <strong className="text-white">Dubai World Central</strong> by air to <strong className="text-white">Gawadar</strong> — connecting to the <strong className="text-white">CPEC</strong> and <strong className="text-white">INSTC</strong> corridors for onward delivery to China, Central Asia, Russia, and Europe.
               </p>
             </AnimatedItem>
 
             <AnimatedItem>
               <p className="text-lg text-amber-300 font-semibold max-w-3xl mx-auto mb-10">
-                ChainTrack Logistics is the first integrated air-charter-to-deep-sea feeder operator on this corridor — launching now.
+                Dubai is not a bottleneck — it is the Gateway to the Middle East. ChainTrack is the only operator connecting DXB/DWC to Gawadar deep-sea on a single contract.
               </p>
             </AnimatedItem>
 
@@ -996,13 +1002,13 @@ export default function ChainTrackLogisticsPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs font-black uppercase tracking-widest text-amber-300">
             {[
-              "Dubai Logistics Coordination",
-              "Charter Cargo Support",
-              "CIS Shipment Assistance",
-              "Remote Inspection Support",
-              "Broker Distribution Network",
-              "Azerbaijan Local Contact Available",
-              "Gawadar Air-Sea Corridor Access",
+              "Jebel Ali Alternative Routing",
+              "Stranded Cargo Rerouting",
+              "DWC Air Charter to Gawadar",
+              "CPEC Free Zone Access",
+              "INSTC Northbound Corridor",
+              "Ships Trapped? Air-Sea Pivot",
+              "Dubai Gateway — East & West",
             ].map((item) => (
               <span key={item} className="flex items-center gap-2">
                 <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
@@ -1010,6 +1016,98 @@ export default function ChainTrackLogisticsPage() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── CRISIS DISRUPTION DASHBOARD ── */}
+      <section className="py-14 px-6 bg-slate-950 border-b border-red-900/30">
+        <div className="max-w-6xl mx-auto">
+          <AnimatedSection>
+            <AnimatedItem>
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-widest text-red-400">Disruption Status — Live</span>
+              </div>
+            </AnimatedItem>
+            <AnimatedSection className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[
+                {
+                  status: "disrupted",
+                  route: "Jebel Ali Port (JEBEL ALI)",
+                  detail: "Vessel throughput impacted. War-risk premiums +340%. Blank sailings from 6 major carriers. 180+ vessels rerouted.",
+                  action: "Reroute via DWC air charter →",
+                  color: "border-red-500/30 bg-red-500/5",
+                  dot: "bg-red-400 animate-pulse",
+                  badge: "text-red-300",
+                },
+                {
+                  status: "disrupted",
+                  route: "Strait of Hormuz",
+                  detail: "Contested waterway. 30% of global oil + significant cargo volume transiting under threat. Insurance surcharges active.",
+                  action: "Bypass via Gawadar corridor →",
+                  color: "border-red-500/30 bg-red-500/5",
+                  dot: "bg-red-400 animate-pulse",
+                  badge: "text-red-300",
+                },
+                {
+                  status: "limited",
+                  route: "Bandar Abbas (Iran)",
+                  detail: "Sanctions-exposed. Carrier avoidance increasing. INSTC transit possible but subject to compliance screening.",
+                  action: "Compliance screening required →",
+                  color: "border-amber-500/30 bg-amber-500/5",
+                  dot: "bg-amber-400",
+                  badge: "text-amber-300",
+                },
+                {
+                  status: "operational",
+                  route: "Dubai World Central (DWC)",
+                  detail: "Fully operational. World's largest cargo airport by capacity. 100% land-side — zero Hormuz exposure. ChainTrack active.",
+                  action: "Book cargo intake →",
+                  color: "border-emerald-500/30 bg-emerald-500/5",
+                  dot: "bg-emerald-400",
+                  badge: "text-emerald-300",
+                },
+                {
+                  status: "operational",
+                  route: "Gawadar Port (CPEC FZ)",
+                  detail: "Deep-sea port fully operational. CPEC Free Zone status. Direct onward connectivity to China (CPEC), Central Asia & Russia (INSTC).",
+                  action: "Access via ChainTrack corridor →",
+                  color: "border-emerald-500/30 bg-emerald-500/5",
+                  dot: "bg-emerald-400",
+                  badge: "text-emerald-300",
+                },
+                {
+                  status: "operational",
+                  route: "Karachi Port (alternative)",
+                  detail: "Active as overflow port. Longer surface transit than Gawadar but available for LCL and bulk breakbulk. ChainTrack partner handling.",
+                  action: "Request LCL slot →",
+                  color: "border-sky-500/30 bg-sky-500/5",
+                  dot: "bg-sky-400",
+                  badge: "text-sky-300",
+                },
+              ].map((item) => (
+                <AnimatedItem key={item.route}>
+                  <div className={`rounded-2xl border ${item.color} p-5 h-full flex flex-col gap-3`}>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-black text-white uppercase tracking-wide">{item.route}</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`w-2 h-2 rounded-full ${item.dot}`} />
+                        <span className={`text-[10px] font-black uppercase ${item.badge}`}>
+                          {item.status === "disrupted" ? "Disrupted" : item.status === "limited" ? "Limited" : "Operational"}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-slate-400 leading-relaxed flex-1">{item.detail}</p>
+                    <Link href="/logistics-funnel">
+                      <span className={`text-[11px] font-black ${item.badge} hover:opacity-80 transition-opacity cursor-pointer flex items-center gap-1`}>
+                        {item.action} <ChevronRight className="w-3 h-3" />
+                      </span>
+                    </Link>
+                  </div>
+                </AnimatedItem>
+              ))}
+            </AnimatedSection>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -1214,17 +1312,17 @@ export default function ChainTrackLogisticsPage() {
             <AnimatedItem>
               <Badge className="bg-red-500/20 text-red-400 border-red-500/30 mb-4 gap-1">
                 <AlertTriangle className="w-3.5 h-3.5" />
-                The Geopolitical Shift
+                The Jebel Ali Crisis &amp; The Dubai Opportunity
               </Badge>
             </AnimatedItem>
             <AnimatedItem>
               <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-                Why This Window Is Opening Now
+                The World's Trade Map Has Redrawn.
               </h2>
             </AnimatedItem>
             <AnimatedItem>
-              <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                A confluence of four structural forces has permanently altered the global trade map — and created the single largest logistics opportunity of the decade.
+              <p className="text-slate-400 text-lg max-w-3xl mx-auto">
+                The Hormuz blockade has exposed what shipping executives privately feared for years: the entire Gulf trade system is built on a single chokepoint. Jebel Ali — handling 14.5 million TEUs per year — now faces vessel backlog, war-risk premium explosions, and blank sailings from every major line. ChainTrack was built for exactly this moment.
               </p>
             </AnimatedItem>
           </AnimatedSection>
@@ -1248,9 +1346,9 @@ export default function ChainTrackLogisticsPage() {
             <AnimatedItem>
               <div className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-10 text-center">
                 <p className="text-2xl md:text-3xl font-bold text-white leading-relaxed max-w-4xl mx-auto">
-                  "For the first time in history, Dubai's aviation supremacy and Gawadar's deep-water access can be fused into a single, Hormuz-independent supply chain that is faster, cheaper, and more resilient than anything that has come before."
+                  "Every port crisis in history has created a new trade hub. The Suez closure created Rotterdam. The Hormuz disruption is creating Gawadar — and Dubai's aviation supremacy means it is the only city on earth that can bridge both worlds without a single vessel entering the Strait."
                 </p>
-                <p className="text-amber-400 mt-6 font-semibold">— ChainTrack Logistics Founding Strategy, 2025</p>
+                <p className="text-amber-400 mt-6 font-semibold">— ChainTrack Logistics · Dubai Gateway Strategy, 2025</p>
               </div>
             </AnimatedItem>
           </AnimatedSection>

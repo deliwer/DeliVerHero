@@ -173,7 +173,7 @@ export function Navigation() {
 
           {/* LEFT: Logo */}
           <Link
-            href={isLogisticsSide ? "/logistics" : isBrokerSide ? "/partners" : "/"}
+            href={isLogisticsSide || isBrokerSide ? "/logistics" : "/"}
             className="flex items-center gap-3 group order-1 mr-auto md:mr-0"
           >
             <div className="h-10 flex items-center justify-center group-hover:scale-105 transition-transform">
