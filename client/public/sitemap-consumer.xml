@@ -14,7 +14,12 @@
   -->
 
   <!-- ══ CORE / HOMEPAGE ══ -->
-  <url><loc>https://www.deliwer.com/</loc><lastmod>2026-05-12</lastmod><changefreq>daily</changefreq><priority>1.0</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/</loc><lastmod>2026-05-25</lastmod><changefreq>daily</changefreq><priority>1.0</priority><mobile:mobile/></url>
+
+  <!-- ══ SEO PILLAR CONTENT — high-authority long-form guides ══ -->
+  <url><loc>https://www.deliwer.com/dubai-relocation-guide</loc><lastmod>2026-05-25</lastmod><changefreq>weekly</changefreq><priority>0.98</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/private-jet</loc><lastmod>2026-05-25</lastmod><changefreq>monthly</changefreq><priority>0.88</priority><mobile:mobile/></url>
+  <url><loc>https://www.deliwer.com/move-to-dubai</loc><lastmod>2026-05-25</lastmod><changefreq>weekly</changefreq><priority>0.92</priority><mobile:mobile/></url>
 
   <!-- ══ EJARI — highest consumer traffic ══ -->
   <url><loc>https://www.deliwer.com/ejari-dubai</loc><lastmod>2026-05-12</lastmod><changefreq>weekly</changefreq><priority>0.95</priority><mobile:mobile/></url>

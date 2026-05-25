@@ -131,6 +131,8 @@ const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const AirCharterPage = lazy(() => import("@/pages/air-charter"));
 const PrivateJetPage = lazy(() => import("@/pages/private-jet"));
+const DubaiRelocationGuide = lazy(() => import("@/pages/dubai-relocation-guide"));
+const MiddleEastLogisticsHub = lazy(() => import("@/pages/middle-east-logistics-hub"));
 const ChainTrackGradingPage = lazy(() => import("@/pages/chaintrack-grading"));
 const ChainTrackSourcingPage = lazy(() => import("@/pages/chaintrack-sourcing"));
 const FreightBrokerPage = lazy(() => import("@/pages/freight-broker"));
@@ -480,6 +482,10 @@ function Router() {
 
         {/* DeliWer Private Jet — 1FLT collaboration */}
         <Route path="/private-jet" component={PrivateJetPage} />
+
+        {/* SEO Pillar Pages */}
+        <Route path="/dubai-relocation-guide" component={DubaiRelocationGuide} />
+        <Route path="/middle-east-logistics-hub" component={MiddleEastLogisticsHub} />
 
         {/* ChainTrack Freight Broker Network */}
         <Route path="/freight-broker" component={FreightBrokerPage} />
