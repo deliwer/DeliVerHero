@@ -51,6 +51,7 @@ const deliwerNavItems = [
   { path: "/exit-dubai",       label: "Move-Out",        id: "move-out",       icon: LogOut },
   { path: "/home-services",    label: "Home Service",    id: "home-service",   icon: Star },
   { path: "/errand",           label: "Errand",          id: "errand",         icon: ClipboardList },
+  { path: "/private-jet",      label: "Private Jet",     id: "private-jet",    icon: Crown },
 ];
 
 // ── Broker / Partner nav items ────────────────────────────────────────────────
@@ -84,14 +85,14 @@ const chaintrackNavItems = [
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
-const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics"];
+const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics", "/air-charter"];
 
 const logisticsNavItems = [
   { path: "/logistics",        label: "Corridor",        id: "lg-corridor",     icon: Anchor },
   { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics",  icon: Package },
+  { path: "/air-charter",      label: "Air Charter",     id: "lg-air-charter",  icon: Plane },
   { path: "/freight-broker",   label: "Freight Hub",     id: "lg-freight",      icon: Route },
   { path: "/logistics-funnel", label: "Join Network",    id: "lg-funnel",       icon: Zap },
-  { path: "/chaintrack",       label: "Marketplace",     id: "lg-marketplace",  icon: LayoutGrid },
   { path: "/partners",         label: "Partners",        id: "lg-partners",     icon: Users },
 ];
 
