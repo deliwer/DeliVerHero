@@ -121,13 +121,6 @@
 
   <!-- ══ SERVICES ══ -->
   <url>
-    <loc>https://logistics.chaintrack.com/air-charter</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.88</priority>
-    <mobile:mobile/>
-  </url>
-  <url>
     <loc>https://logistics.chaintrack.com/sea-freight</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
