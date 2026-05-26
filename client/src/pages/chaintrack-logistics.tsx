@@ -584,12 +584,12 @@ export default function ChainTrackLogistics() {
         <div className="max-w-6xl mx-auto">
           <FadeUp className="grid lg:grid-cols-2 gap-12 items-center mb-14">
             <div>
-              <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 gap-1.5 mb-5">
-                <TrendingUp className="w-3.5 h-3.5" /> Electronics Trade Opportunity
+              <Badge className="bg-rose-500/15 text-rose-300 border-rose-500/25 gap-1.5 mb-5">
+                <Activity className="w-3.5 h-3.5" /> Global Trade Reset
               </Badge>
               <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-5">
-                Every Trade Disruption<br />
-                <span className="text-amber-400">Opens a New Electronics Corridor.</span>
+                Where Supply Chains Break,<br />
+                <span className="text-amber-400">Recommerce Wins.</span>
               </h2>
               <p className="text-white/55 leading-relaxed mb-4">
                 Sanctions, port disruptions, and shifting trade alliances have fractured traditional electronics supply chains — creating a vacuum that recommerce networks and independent brokers are rushing to fill. Dubai sits at the exact intersection of every emerging corridor: Europe, Africa, CIS, South Asia, and the Gulf.
