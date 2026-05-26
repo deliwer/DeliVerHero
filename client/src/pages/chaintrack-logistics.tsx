@@ -420,39 +420,166 @@ export default function ChainTrackLogistics() {
         </div>
       </section>
 
-      {/* ── THE STRATEGIC OPPORTUNITY ────────────────────────────────────────── */}
+      {/* ── RECOMMERCE SERVICES ──────────────────────────────────────────────── */}
       <section className="py-20 px-6 border-y border-white/8">
         <div className="max-w-6xl mx-auto">
-          <FadeUp className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <Badge className="bg-red-500/15 text-red-400 border-red-500/25 gap-1.5 mb-5">
-                <AlertTriangle className="w-3.5 h-3.5" /> Post-War Trade Reality
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-5">
-                Every Major Trade Crisis<br />
-                <span className="text-amber-400">Creates a New Trade Hub.</span>
-              </h2>
-              <p className="text-white/55 leading-relaxed mb-4">
-                The Suez closure created Rotterdam. The Hormuz disruption is creating Gawadar — and Dubai's aviation supremacy makes it the only city on earth that can bridge both worlds simultaneously, without a single vessel entering the contested waterway.
+
+          {/* Section header */}
+          <FadeUp className="mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div>
+                <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 gap-1.5 mb-5">
+                  <Smartphone className="w-3.5 h-3.5" /> ReCommerce Services
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
+                  iPhones, Electronics &amp;<br />
+                  <span className="text-amber-400">Reverse Supply Chains.</span>
+                </h2>
+              </div>
+              <p className="text-white/40 text-sm max-w-xs leading-relaxed">
+                From remote sourcing and certified grading to escrow-protected delivery across global recommerce corridors.
               </p>
-              <p className="text-white/40 leading-relaxed text-sm">
-                ChainTrack is the first operator to digitally connect these two nodes into a single bookable, trackable, commission-generating corridor — available to any freight broker, anywhere in the world, via WhatsApp.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { stat: "30%", desc: "of global oil transiting Hormuz — at risk", color: "border-red-500/25 bg-red-500/5", badge: "text-red-400" },
-                { stat: "180+", desc: "vessels rerouted away from Jebel Ali in 2025", color: "border-red-500/25 bg-red-500/5", badge: "text-red-400" },
-                { stat: "$62B", desc: "CPEC investment backing Gawadar as the successor port", color: "border-emerald-500/25 bg-emerald-500/5", badge: "text-emerald-400" },
-                { stat: "7,200km", desc: "INSTC corridor length — Arabian Sea to St Petersburg", color: "border-sky-500/25 bg-sky-500/5", badge: "text-sky-400" },
-              ].map(s => (
-                <div key={s.stat} className={`border ${s.color} rounded-2xl p-5`}>
-                  <p className={`text-2xl font-black ${s.badge} mb-1`}>{s.stat}</p>
-                  <p className="text-xs text-white/45 leading-snug">{s.desc}</p>
-                </div>
-              ))}
             </div>
           </FadeUp>
+
+          {/* Service flow — 4 stages */}
+          <div className="grid md:grid-cols-4 gap-4 mb-10">
+            {[
+              {
+                step: "01",
+                icon: Target,
+                title: "Remote Sourcing",
+                desc: "We locate refurbished iPhones, laptops, tablets, and mixed-lot electronics from verified suppliers across the UAE, Europe, and CIS — without you leaving your desk.",
+                tags: ["iPhones A/B/C Grade", "Mixed Pallet Lots", "Wholesale Batches"],
+                color: "amber",
+              },
+              {
+                step: "02",
+                icon: Shield,
+                title: "Inspection & Grading",
+                desc: "Every device is inspected, IMEI-checked, cosmetically graded, and functionally verified before shipment. Certified grading reports issued per lot.",
+                tags: ["IMEI Verification", "Grade Report Issued", "Functional Testing"],
+                color: "sky",
+              },
+              {
+                step: "03",
+                icon: Lock,
+                title: "Escrow Coordination",
+                desc: "Funds held in escrow until buyer confirms receipt and grade compliance. Full dispute resolution support. No wire fraud risk for either party.",
+                tags: ["Escrow Protected", "Grade-Gated Release", "Dispute Resolution"],
+                color: "violet",
+              },
+              {
+                step: "04",
+                icon: Globe,
+                title: "Global Delivery",
+                desc: "Air cargo via DXB or DWC to Europe, Africa, CIS, Central Asia, and emerging markets. DDP or EXW terms available. Full documentation included.",
+                tags: ["DXB & DWC Gateways", "DDP / EXW Terms", "Full Documentation"],
+                color: "emerald",
+              },
+            ].map((s, i) => {
+              const cm: Record<string, { num: string; badge: string; icon: string; tag: string }> = {
+                amber:  { num: "text-amber-400",  badge: "bg-amber-500/15 text-amber-300 border-amber-500/25",  icon: "bg-amber-500/10 text-amber-400",  tag: "bg-amber-500/8 border-amber-500/20 text-amber-300" },
+                sky:    { num: "text-sky-400",    badge: "bg-sky-500/15 text-sky-300 border-sky-500/25",        icon: "bg-sky-500/10 text-sky-400",      tag: "bg-sky-500/8 border-sky-500/20 text-sky-300" },
+                violet: { num: "text-violet-400", badge: "bg-violet-500/15 text-violet-300 border-violet-500/25", icon: "bg-violet-500/10 text-violet-400", tag: "bg-violet-500/8 border-violet-500/20 text-violet-300" },
+                emerald:{ num: "text-emerald-400",badge: "bg-emerald-500/15 text-emerald-300 border-emerald-500/25", icon: "bg-emerald-500/10 text-emerald-400", tag: "bg-emerald-500/8 border-emerald-500/20 text-emerald-300" },
+              };
+              const c = cm[s.color];
+              return (
+                <FadeUp key={s.step} delay={i * 0.08}>
+                  <div className="border border-white/8 rounded-2xl p-6 h-full flex flex-col gap-4 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                    <div className="flex items-start justify-between">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${c.icon}`}>
+                        <s.icon className="w-5 h-5" />
+                      </div>
+                      <span className={`text-xs font-black ${c.num} opacity-40`}>{s.step}</span>
+                    </div>
+                    <div>
+                      <h3 className="font-black text-white text-base mb-2">{s.title}</h3>
+                      <p className="text-xs text-white/45 leading-relaxed">{s.desc}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-white/6">
+                      {s.tags.map(tag => (
+                        <span key={tag} className={`text-[10px] font-semibold border rounded-full px-2.5 py-0.5 ${c.tag}`}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </FadeUp>
+              );
+            })}
+          </div>
+
+          {/* Grading tiers + stats row */}
+          <FadeUp>
+            <div className="grid lg:grid-cols-2 gap-5">
+
+              {/* Grading tiers */}
+              <div className="border border-white/8 rounded-2xl p-6 bg-white/[0.02]">
+                <p className="text-[10px] font-black uppercase tracking-widest text-white/25 mb-4">Device Grading Standards</p>
+                <div className="space-y-3">
+                  {[
+                    { grade: "Grade A", label: "Like New", desc: "Fully functional. Minimal cosmetic wear. Screen pristine. Battery health ≥85%.", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
+                    { grade: "Grade B", label: "Good",     desc: "Fully functional. Minor visible scratches. Screen no cracks. Battery health ≥80%.", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
+                    { grade: "Grade C", label: "Fair",     desc: "Fully functional. Noticeable wear or light screen marks. Battery health ≥70%.", color: "text-sky-400 bg-sky-500/10 border-sky-500/25" },
+                    { grade: "FAULTY",  label: "Parts / Repair", desc: "Non-functional or specific component failure. Priced for repair market.", color: "text-rose-400 bg-rose-500/10 border-rose-500/25" },
+                  ].map(g => (
+                    <div key={g.grade} className="flex items-start gap-3">
+                      <span className={`text-[11px] font-black border rounded-lg px-2 py-0.5 shrink-0 mt-0.5 ${g.color}`}>{g.grade}</span>
+                      <div>
+                        <p className="text-xs font-bold text-white/70">{g.label}</p>
+                        <p className="text-[11px] text-white/35 leading-relaxed">{g.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ReCommerce stats + device types */}
+              <div className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { v: "50+",      l: "Verified recommerce suppliers",   color: "border-amber-500/25 bg-amber-500/5 text-amber-400" },
+                    { v: "Escrow",   l: "Protected on every transaction",  color: "border-violet-500/25 bg-violet-500/5 text-violet-400" },
+                    { v: "DXB/DWC", l: "Dual Dubai gateway access",        color: "border-sky-500/25 bg-sky-500/5 text-sky-400" },
+                    { v: "30+",      l: "Destination markets active",       color: "border-emerald-500/25 bg-emerald-500/5 text-emerald-400" },
+                  ].map(s => (
+                    <div key={s.l} className={`border rounded-2xl p-4 ${s.color}`}>
+                      <p className={`text-xl font-black mb-0.5 ${s.color.split(" ")[2]}`}>{s.v}</p>
+                      <p className="text-[11px] text-white/40 leading-snug">{s.l}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="border border-white/8 rounded-2xl p-5 bg-white/[0.02] flex-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-white/25 mb-3">Device Categories We Move</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      "📱 iPhones (all models)", "💻 MacBooks & Laptops", "⌚ Apple Watch",
+                      "🎧 AirPods & Earbuds",   "📟 iPads & Tablets",   "🖥️ Monitors",
+                      "🎮 Gaming Consoles",       "📸 Camera Equipment",   "🔌 Accessories & Spares",
+                    ].map(d => (
+                      <span key={d} className="text-[11px] text-white/50 bg-white/4 border border-white/8 rounded-lg px-2.5 py-1">{d}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* WhatsApp CTA strip */}
+          <FadeUp className="mt-6">
+            <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <p className="font-black text-white text-sm">Source, inspect, and ship electronics — all coordinated via WhatsApp.</p>
+                <p className="text-white/40 text-xs mt-0.5">No MOQ minimums on enquiries. Escrow available from the first transaction.</p>
+              </div>
+              <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0">
+                <Button className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold gap-2 whitespace-nowrap" data-testid="button-recommerce-whatsapp">
+                  <MessageSquare className="w-4 h-4" /> Start a ReCommerce Enquiry
+                </Button>
+              </a>
+            </div>
+          </FadeUp>
+
         </div>
       </section>
 
