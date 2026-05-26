@@ -1198,105 +1198,30 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-      {/* ── Logistics & Escrow ── */}
-      <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
+      {/* ── Logistics Bridge ── */}
+      <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-12">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-10">
-
-            {/* DAFZA/Commercity */}
-            <Card className="bg-[#0D1424] border-[#1E293B] p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
-                  <Warehouse className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="font-black text-white text-lg">DAFZA & Commercity Escrow</h3>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400">Dubai Freezone Warehousing</div>
-                </div>
-              </div>
-              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-                All lots are held in bonded Dubai freezone warehouses under ChainTrack's escrow. Funds are released only after buyer confirms receipt and grade compliance.
-              </p>
-              <div className="space-y-3">
-                {[
-                  "Zero-duty re-export from Dubai freeones",
-                  "Bonded warehouse — no UAE import duty",
-                  "SWIFT escrow — funds held by ChainTrack",
-                  "Same-day customs clearance at DAFZA",
-                  "Integrated with /logistics for shipment tracking",
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-[12px] text-slate-300">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <Link href="/chaintrack-logistics">
-                <Button className="mt-6 w-full bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-black uppercase tracking-widest text-xs" data-testid="button-view-logistics">
-                  Track Shipments →
-                </Button>
-              </Link>
-            </Card>
-
-            {/* 1FLT Charter */}
-            <Card className="bg-[#0D1424] border-[#1E293B] p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-              <div className="flex items-center gap-3 mb-6 relative">
-                <div className="w-12 h-12 rounded-2xl bg-blue-400/10 border border-blue-400/20 flex items-center justify-center">
-                  <Plane className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <h3 className="font-black text-white text-lg">1FLT Charter Logistics</h3>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-blue-400">iFLT.com · Integrated Supply Chain</div>
-                </div>
-              </div>
-              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-                For high-value or bulk lots, ChainTrack integrates with <strong className="text-blue-300">1FLT Aviation DMCC</strong> (Jumeirah Lake Towers, Dubai) for dedicated air charter. Airbus A320F freighter — up to 21.4T payload, 1,850 NM range.
-              </p>
-              <div className="grid grid-cols-2 gap-3 mb-6">
-                {[
-                  { label: "A320F Capacity", value: "21.4T / 158m³" },
-                  { label: "Route Range", value: "Up to 1,850 NM" },
-                  { label: "Key Routes", value: "DXB → GYD, ALA, TAS" },
-                  { label: "Min. Lot Value", value: "$250,000 USD" },
-                ].map((s, i) => (
-                  <div key={i} className="bg-[#070B14] border border-[#1E293B] rounded-xl p-3">
-                    <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-0.5">{s.label}</div>
-                    <div className="text-sm font-black text-blue-300">{s.value}</div>
-                  </div>
-                ))}
-              </div>
-              <a href="mailto:charters@1flt.com" target="_blank" rel="noopener noreferrer">
-                <Button className="w-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 font-black uppercase tracking-widest text-xs" data-testid="button-charter-1flt">
-                  <Plane className="w-3.5 h-3.5 mr-1.5" />
-                  Contact 1FLT — charters@1flt.com
-                </Button>
-              </a>
-            </Card>
-
-          </div>
-
-          {/* iFLT.com supply chain banner */}
-          <div className="mt-8 bg-gradient-to-r from-[#0D1424] via-[#0D1930] to-[#0D1424] border border-blue-500/20 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
-            <div className="flex items-center gap-4 flex-1">
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
-                <Route className="w-6 h-6 text-blue-400" />
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-[#0D1424] border border-cyan-500/20 rounded-2xl p-8">
+            <div className="flex items-center gap-5">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
+                <Plane className="w-6 h-6 text-cyan-400" />
               </div>
               <div>
-                <div className="font-black text-white">iFLT.com Integrated Supply Chain</div>
-                <div className="text-[12px] text-slate-400 mt-0.5">End-to-end visibility from source factory to CIS retail shelf. IATA partner · AWB stockholder · DG certified · 24/7 ops</div>
+                <h3 className="font-black text-white text-lg mb-1">Lot secured. We handle the rest.</h3>
+                <p className="text-slate-400 text-sm">DAFZA escrow · 1FLT air charter · 0% re-export duty · CIS & global delivery</p>
               </div>
             </div>
             <div className="flex gap-3 shrink-0">
-              <a href="https://1flt.com" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 font-black text-xs uppercase tracking-widest gap-2" data-testid="button-iflt">
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  iFLT.com
+              <Link href="/logistics">
+                <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2" data-testid="button-arrange-delivery">
+                  <Truck className="w-3.5 h-3.5" />
+                  Arrange Delivery →
                 </Button>
-              </a>
-              <a href="mailto:info@1flt.com">
-                <Button className="bg-blue-500 hover:bg-blue-400 text-slate-950 font-black text-xs uppercase tracking-widest" data-testid="button-contact-iflt">
-                  Get Quote
+              </Link>
+              <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20won%20a%20lot%20and%20need%20logistics" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-[#1E293B] text-slate-400 hover:text-white font-black uppercase tracking-widest text-xs gap-2" data-testid="button-logistics-whatsapp">
+                  <SiWhatsapp className="w-3.5 h-3.5 text-emerald-400" />
+                  WhatsApp
                 </Button>
               </a>
             </div>
