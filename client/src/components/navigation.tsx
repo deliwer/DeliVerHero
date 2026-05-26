@@ -182,7 +182,6 @@ export function Navigation() {
               {isBrokerSide && !isManagementSide ? (
                 <div className="flex items-baseline gap-1">
                   <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack Logistics</span>
-                  <span className="font-black text-xl tracking-widest uppercase text-white">Logistics</span>
                 </div>
               ) : (
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
