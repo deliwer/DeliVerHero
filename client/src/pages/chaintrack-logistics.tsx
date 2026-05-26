@@ -269,9 +269,9 @@ export default function ChainTrackLogistics() {
 
       {/* ── HELMET — comprehensive SEO ──────────────────────────────────────── */}
       <Helmet>
-        <title>ChainTrack Logistics — Dubai Air Charter · Gawadar Corridor · Global Freight Brokers | logistics.chaintrack.com</title>
-        <meta name="description" content="ChainTrack Logistics: Dubai-based digital freight coordination. Air charter, sea freight & multimodal routing via Gawadar CPEC Free Zone to Central Asia, CIS & China. Hormuz-free. Freight brokers earn 5% commission from anywhere in the world. No office needed." />
-        <meta name="keywords" content="Gawadar logistics hub, Dubai air charter freight, CPEC logistics corridor, INSTC transport route, Dubai to Central Asia freight, Dubai to Gawadar flight cargo, Hormuz alternative routing, freight forwarder alternative Dubai, multimodal freight Middle East, freight broker earn commission, remote freight broker, Dubai Pakistan air cargo, Dubai Kazakhstan freight, CIS logistics Dubai, refurbished electronics logistics Dubai, post-war freight routing Middle East, Dubai World Central cargo, DWC cargo charter, Gawadar CPEC Free Zone, ChainTrack logistics" />
+        <title>ChainTrack Logistics — Dubai Electronics Logistics · Recommerce · DXB & DWC Cargo Coordination | logistics.chaintrack.com</title>
+        <meta name="description" content="ChainTrack: Remote sourcing, inspections, escrow coordination, and global logistics support for refurbished electronics, recommerce inventory, household goods, and reverse supply chains moving through Dubai's DXB & DWC gateways across Europe, Asia, Africa, CIS, and emerging trade corridors." />
+        <meta name="keywords" content="Dubai electronics logistics, refurbished iPhone sourcing, recommerce logistics Dubai, DXB cargo coordination, DWC logistics Dubai, CIS electronics trade, reverse logistics Dubai, remote sourcing Dubai, electronics cargo coordination, refurbished electronics export, recommerce supply chain, Dubai DWC freight, Azerbaijan electronics trade, household goods Dubai logistics, broker-powered trade network, escrow coordination logistics, remote inspection electronics, certified grading Dubai, cargo consolidation Dubai, cross-border electronics distribution, ChainTrack logistics" />
         <meta name="author" content="ChainTrack Logistics by DeliWer" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
         <meta name="googlebot" content="index, follow" />
@@ -284,8 +284,8 @@ export default function ChainTrackLogistics() {
         <meta http-equiv="content-language" content="en" />
 
         {/* Open Graph — chaintrack.com */}
-        <meta property="og:title" content="ChainTrack Logistics — Dubai Air Charter · Gawadar Hub · Global Broker Network" />
-        <meta property="og:description" content="Disruptive digital freight platform. Air charter Dubai→Gawadar (under 4hrs, Hormuz-free). Freight brokers earn 5% commission from anywhere. CPEC Free Zone · INSTC · CIS routes." />
+        <meta property="og:title" content="ChainTrack Logistics — Dubai Electronics Logistics · Recommerce · DXB & DWC Cargo" />
+        <meta property="og:description" content="Remote sourcing, inspections, escrow coordination, and global logistics support for refurbished electronics, recommerce inventory, and reverse supply chains via Dubai's DXB & DWC gateways." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://logistics.chaintrack.com" />
         <meta property="og:image" content="https://logistics.chaintrack.com/chaintrack-og.png" />
@@ -297,8 +297,8 @@ export default function ChainTrackLogistics() {
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@ChainTrackLog" />
-        <meta name="twitter:title" content="ChainTrack Logistics — Gawadar · Dubai · INSTC Corridor" />
-        <meta name="twitter:description" content="Air charter, sea freight & multimodal routing. Hormuz-free. Broker network earns 5% commission remotely." />
+        <meta name="twitter:title" content="ChainTrack Logistics — Dubai Electronics Logistics · Recommerce · DXB & DWC Cargo" />
+        <meta name="twitter:description" content="Remote sourcing, inspections, escrow coordination, and logistics for refurbished electronics and recommerce inventory moving through Dubai's DXB & DWC gateways." />
         <meta name="twitter:image" content="https://logistics.chaintrack.com/chaintrack-og.png" />
 
         <link rel="canonical" href="https://logistics.chaintrack.com" />
@@ -319,13 +319,13 @@ export default function ChainTrackLogistics() {
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
               <div className="flex flex-wrap items-center gap-2 mb-7">
                 <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 gap-1.5 text-xs font-bold px-3 py-1">
-                  <Plane className="w-3.5 h-3.5" /> logistics.chaintrack.com
+                  <Smartphone className="w-3.5 h-3.5" /> Recommerce Logistics
                 </Badge>
-                <Badge className="bg-red-500/15 text-red-300 border-red-500/25 gap-1.5 text-xs font-bold px-3 py-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" /> Post-War Trade Reset
+                <Badge className="bg-sky-500/15 text-sky-300 border-sky-500/25 gap-1.5 text-xs font-bold px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" /> DXB & DWC Cargo Active
                 </Badge>
                 <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/25 text-xs font-bold px-3 py-1">
-                  Hormuz-Free Corridor Active
+                  Broker-Powered Trade Network
                 </Badge>
               </div>
             </motion.div>
@@ -336,9 +336,8 @@ export default function ChainTrackLogistics() {
               transition={{ duration: 0.65, delay: 0.08 }}
               className="text-5xl md:text-7xl font-black leading-[1.04] tracking-tight mb-6"
             >
-              The World's Trade<br />
-              Routes Broke.<br />
-              <span className="text-amber-400">We Built New Ones.</span>
+              From Devices<br />
+              <span className="text-amber-400">to Destinations.</span>
             </motion.h1>
 
             <motion.p
@@ -347,7 +346,7 @@ export default function ChainTrackLogistics() {
               transition={{ duration: 0.6, delay: 0.18 }}
               className="text-lg md:text-xl text-white/55 max-w-2xl mb-4 leading-relaxed"
             >
-              ChainTrack is a digital-first freight coordination platform connecting Dubai's aviation supremacy to Gawadar's deep-sea CPEC infrastructure — creating an unbreakable, Hormuz-free corridor to Central Asia, CIS, and China.
+              Remote sourcing, inspections, escrow coordination, and global logistics support for refurbished electronics, recommerce inventory, household goods, and reverse supply chains moving through Dubai's DXB & DWC gateways across Europe, Asia, Africa, CIS, and emerging trade corridors.
             </motion.p>
             <motion.p
               initial={{ opacity: 0 }}
@@ -355,7 +354,7 @@ export default function ChainTrackLogistics() {
               transition={{ duration: 0.55, delay: 0.28 }}
               className="text-base text-white/40 max-w-xl mb-10 leading-relaxed"
             >
-              No warehouses owned. No aircraft owned. No office required. Pure coordination — run globally from WhatsApp. Built by the founders of DeliWer with a worldwide network of syndicates.
+              Integrated sourcing, verification, and logistics coordination for global recommerce and redistribution networks.
             </motion.p>
 
             <motion.div
@@ -365,36 +364,58 @@ export default function ChainTrackLogistics() {
               className="flex flex-col sm:flex-row gap-3"
             >
               <a href={WA} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2 h-12 text-base w-full sm:w-auto">
-                  <MessageSquare className="w-5 h-5" /> Get a Freight Quote
+                <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 gap-2 h-12 text-base w-full sm:w-auto" data-testid="button-request-logistics">
+                  <MessageSquare className="w-5 h-5" /> Request Logistics Support
                 </Button>
               </a>
               <Link href="/logistics-funnel">
-                <Button size="lg" variant="outline" className="border-white/15 text-white hover:bg-white/5 px-8 gap-2 h-12 text-base w-full sm:w-auto">
-                  <Handshake className="w-5 h-5" /> Join the Broker Network
+                <Button size="lg" variant="outline" className="border-white/15 text-white hover:bg-white/5 px-8 gap-2 h-12 text-base w-full sm:w-auto" data-testid="button-broker-partner">
+                  <Handshake className="w-5 h-5" /> Become a Broker Partner
                 </Button>
               </Link>
             </motion.div>
+
+            {/* Feature pills */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.55, delay: 0.44 }}
+              className="flex flex-wrap gap-2 mt-6"
+            >
+              {["Remote Sourcing", "Certified Grading", "Inspection Support", "Cargo Consolidation", "Charter Logistics", "Reverse Supply Chains", "Cross-Border Distribution"].map(pill => (
+                <span key={pill} className="text-[11px] font-semibold text-white/45 border border-white/10 rounded-full px-3 py-1 bg-white/3">
+                  {pill}
+                </span>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Hero stat row */}
+          {/* Trust strip */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 pt-10 border-t border-white/8 grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="mt-14 pt-8 border-t border-white/8 overflow-hidden"
           >
-            {[
-              { v: "< 4 hrs",        l: "Dubai → Gawadar by air charter" },
-              { v: "Hormuz-Free",    l: "Zero Strait dependency" },
-              { v: "5% commission",  l: "Paid to every network broker" },
-              { v: "0% duty",        l: "CPEC Free Zone transit benefit" },
-            ].map(s => (
-              <div key={s.l}>
-                <p className="text-2xl md:text-3xl font-black text-white">{s.v}</p>
-                <p className="text-xs text-white/35 mt-1 leading-snug">{s.l}</p>
-              </div>
-            ))}
+            <div className="flex gap-6 overflow-x-auto pb-2 scrollbar-hide no-scrollbar" style={{ scrollbarWidth: "none" }}>
+              {[
+                { icon: Plane,      label: "DXB & DWC Cargo Coordination" },
+                { icon: Smartphone, label: "Refurbished Electronics Logistics" },
+                { icon: Target,     label: "Remote Inspections" },
+                { icon: Lock,       label: "Escrow Coordination" },
+                { icon: Network,    label: "Broker-Powered Trade Network" },
+                { icon: Package,    label: "Household Goods Shipments" },
+                { icon: RefreshCw,  label: "Recommerce & Reverse Logistics" },
+                { icon: MapPin,     label: "Azerbaijan Local Coordination" },
+                { icon: Globe,      label: "CIS & Central Asia Trade Support" },
+                { icon: Route,      label: "Emerging Air-Sea Corridor Access" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2 shrink-0 text-white/40 hover:text-white/70 transition-colors">
+                  <Icon className="w-3.5 h-3.5 text-amber-400/70 shrink-0" />
+                  <span className="text-xs font-semibold whitespace-nowrap">{label}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>

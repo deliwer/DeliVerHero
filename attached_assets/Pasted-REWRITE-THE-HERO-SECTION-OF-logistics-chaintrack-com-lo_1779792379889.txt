@@ -1,0 +1,151 @@
+REWRITE THE HERO SECTION OF:
+logistics.chaintrack.com/logistics
+
+DO NOT change:
+
+* structure
+* layout
+* routing
+* animations
+* responsiveness
+* theme system
+* existing component hierarchy
+
+Only refine and replace the hero content and supporting messaging.
+
+==================================================
+NEW HERO SECTION
+================
+
+HEADING:
+From Devices to Destinations
+
+SUBHEADING:
+Remote sourcing, inspections, escrow coordination, and global logistics support for refurbished electronics, recommerce inventory, household goods, and reverse supply chains moving through Dubai’s DXB & DWC gateways across Europe, Asia, Africa, CIS, and emerging trade corridors.
+
+==================================================
+CTA BUTTONS
+===========
+
+Primary CTA:
+“Request Logistics Support”
+
+Secondary CTA:
+“Become a Broker Partner”
+
+WhatsApp CTA:
+https://wa.me/971523946311
+
+==================================================
+TRUST STRIP
+===========
+
+Add horizontally scrolling or responsive trust strip below hero:
+
+* DXB & DWC Cargo Coordination
+* Refurbished Electronics Logistics
+* Remote Inspections
+* Escrow Coordination
+* Broker-Powered Trade Network
+* Household Goods Shipments
+* Recommerce & Reverse Logistics
+* Azerbaijan Local Coordination
+* CIS & Central Asia Trade Support
+* Emerging Air-Sea Corridor Access
+
+==================================================
+BACKGROUND VISUAL DIRECTION
+===========================
+
+Keep current visual style but enhance with subtle overlays representing:
+
+* aviation cargo
+* logistics movement
+* global routing
+* electronics recommerce
+* trade corridors
+* warehouse verification
+* Dubai airport infrastructure
+
+Visual tone:
+
+* premium
+* operational
+* futuristic
+* movement-oriented
+* infrastructure-focused
+
+==================================================
+SUPPORTING MICROCOPY
+====================
+
+Add small supporting text below CTA section:
+
+“Integrated sourcing, verification, and logistics coordination for global recommerce and redistribution networks.”
+
+==================================================
+OPTIONAL SMALL FEATURE PILLS
+============================
+
+Add modular feature pills:
+
+* Remote Sourcing
+* Certified Grading
+* Inspection Support
+* Cargo Consolidation
+* Charter Logistics
+* Reverse Supply Chains
+* Cross-Border Distribution
+
+==================================================
+SEO OPTIMIZATION
+================
+
+Optimize hero section for:
+
+* Dubai electronics logistics
+* refurbished iPhone sourcing
+* recommerce logistics
+* DXB cargo coordination
+* DWC logistics
+* CIS electronics trade
+* reverse logistics Dubai
+* remote sourcing Dubai
+* electronics cargo coordination
+
+Ensure semantic heading structure:
+H1 = Heading
+H2 = Supporting infrastructure/logistics themes
+
+==================================================
+MOBILE EXPERIENCE
+=================
+
+Ensure:
+
+* mobile-first rendering
+* compressed hero layout
+* readable typography
+* fast loading performance
+* CTA visibility above fold
+* WhatsApp quick access
+
+==================================================
+FINAL POSITIONING
+=================
+
+The hero should immediately communicate:
+
+ChainTrack is a:
+
+* trusted logistics coordination platform
+* remote sourcing ecosystem
+* recommerce infrastructure layer
+* broker-powered trade network
+* cross-border movement platform
+
+NOT:
+
+* a generic freight company
+* a courier website
+* or a simple cargo broker.
