@@ -257,7 +257,7 @@ export function Navigation() {
                   }`}
                   title="DeliWer — Home Services for residents"
                   data-testid="mode-b2c"
-                >Relocation</button>
+                >Relocations</button>
                 <button
                   onClick={() => switchMode("b2b")}
                   className={`text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all ${
