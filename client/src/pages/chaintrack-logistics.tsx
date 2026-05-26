@@ -578,6 +578,105 @@ export default function ChainTrackLogistics() {
 
         </div>
       </section>
+
+      {/* ── THE STRATEGIC OPPORTUNITY ────────────────────────────────────────── */}
+      <section className="py-20 px-6 border-y border-white/8">
+        <div className="max-w-6xl mx-auto">
+          <FadeUp className="grid lg:grid-cols-2 gap-12 items-center mb-14">
+            <div>
+              <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/25 gap-1.5 mb-5">
+                <TrendingUp className="w-3.5 h-3.5" /> Electronics Trade Opportunity
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-5">
+                Every Trade Disruption<br />
+                <span className="text-amber-400">Opens a New Electronics Corridor.</span>
+              </h2>
+              <p className="text-white/55 leading-relaxed mb-4">
+                Sanctions, port disruptions, and shifting trade alliances have fractured traditional electronics supply chains — creating a vacuum that recommerce networks and independent brokers are rushing to fill. Dubai sits at the exact intersection of every emerging corridor: Europe, Africa, CIS, South Asia, and the Gulf.
+              </p>
+              <p className="text-white/40 leading-relaxed text-sm mb-6">
+                ChainTrack connects verified refurbished electronics suppliers to wholesale buyers across 30+ markets — using Dubai's DXB and DWC gateways as the central redistribution hub for the global recommerce economy.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href={WA} target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold gap-2" data-testid="button-opportunity-sourcing">
+                    <Smartphone className="w-4 h-4" /> Source Electronics Now
+                  </Button>
+                </a>
+                <a href={WA} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-white/15 text-white hover:bg-white/5 gap-2" data-testid="button-opportunity-broker">
+                    <Handshake className="w-4 h-4" /> Become a Trade Broker
+                  </Button>
+                </a>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { stat: "$100B+", desc: "Global recommerce electronics market by 2027", color: "border-amber-500/25 bg-amber-500/5", badge: "text-amber-400" },
+                { stat: "40M+",   desc: "Used iPhones traded annually across MENA, CIS & Asia", color: "border-amber-500/25 bg-amber-500/5", badge: "text-amber-400" },
+                { stat: "DXB/DWC", desc: "Dual Dubai gateways connecting 240+ destinations", color: "border-sky-500/25 bg-sky-500/5", badge: "text-sky-400" },
+                { stat: "30+",    desc: "Active recommerce destination markets via ChainTrack", color: "border-emerald-500/25 bg-emerald-500/5", badge: "text-emerald-400" },
+              ].map(s => (
+                <div key={s.stat} className={`border ${s.color} rounded-2xl p-5`}>
+                  <p className={`text-2xl font-black ${s.badge} mb-1`}>{s.stat}</p>
+                  <p className="text-xs text-white/45 leading-snug">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </FadeUp>
+
+          {/* Crisis → corridor cards */}
+          <FadeUp>
+            <p className="text-[10px] font-black uppercase tracking-widest text-white/25 mb-5">How global disruptions unlock new electronics trade routes</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  icon: "🚢",
+                  crisis: "Red Sea & Suez Disruption",
+                  opp: "European buyers now source refurbished iPhones via Dubai air corridors — faster and cheaper than rerouted container shipping.",
+                  cta: "Source from Europe via Dubai",
+                  color: "border-red-500/20 bg-red-500/4",
+                },
+                {
+                  icon: "🌍",
+                  crisis: "CIS Sanctions Squeeze",
+                  opp: "Azerbaijan, Kazakhstan, and Georgia have emerged as the primary redistribution hubs for refurbished electronics entering Russia and Central Asia.",
+                  cta: "Open CIS Trade Lane",
+                  color: "border-violet-500/20 bg-violet-500/4",
+                },
+                {
+                  icon: "📱",
+                  crisis: "China Export Restrictions",
+                  opp: "Recommerce fills the gap — certified refurbished iPhones and Samsung units replace new device supply across Africa and South Asia at 30–50% lower cost.",
+                  cta: "Access Africa & Asia",
+                  color: "border-sky-500/20 bg-sky-500/4",
+                },
+                {
+                  icon: "✈️",
+                  crisis: "Air Cargo Capacity Surplus",
+                  opp: "DWC freighter availability means express electronics shipments — same-week delivery from inspection to buyer doorstep across 30+ markets.",
+                  cta: "Book Air Cargo Slot",
+                  color: "border-emerald-500/20 bg-emerald-500/4",
+                },
+              ].map(c => (
+                <FadeUp key={c.crisis}>
+                  <div className={`border ${c.color} rounded-2xl p-5 h-full flex flex-col gap-3`}>
+                    <span className="text-2xl">{c.icon}</span>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-white/30">{c.crisis}</p>
+                    <p className="text-sm text-white/60 leading-relaxed flex-1">{c.opp}</p>
+                    <a href={WA} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="w-full border-white/10 text-white/55 hover:bg-white/5 text-xs gap-1.5 mt-1" data-testid={`button-crisis-${c.crisis.toLowerCase().replace(/\s+/g, "-").slice(0, 20)}`}>
+                        {c.cta} <ArrowRight className="w-3 h-3" />
+                      </Button>
+                    </a>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+
       {/* ── THE FOUR-NODE CORRIDOR ────────────────────────────────────────────── */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
