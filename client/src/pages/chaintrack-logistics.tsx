@@ -266,7 +266,6 @@ export default function ChainTrackLogistics() {
 
   return (
     <div className="min-h-screen bg-[#080b10] text-white" style={{ fontFamily: "'Inter', 'DM Sans', sans-serif" }}>
-
       {/* ── HELMET — comprehensive SEO ──────────────────────────────────────── */}
       <Helmet>
         <title>ChainTrack Logistics — Dubai Electronics Logistics · Recommerce · DXB & DWC Cargo Coordination | logistics.chaintrack.com</title>
@@ -305,9 +304,7 @@ export default function ChainTrackLogistics() {
         <link rel="sitemap" type="application/xml" href="/sitemap-chaintrack.xml" />
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
       </Helmet>
-
       <LiveTicker />
-
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <img src={heroCargoImg} alt="ChainTrack cargo plane Dubai" className="absolute inset-0 w-full h-full object-cover opacity-25" />
@@ -419,7 +416,6 @@ export default function ChainTrackLogistics() {
           </motion.div>
         </div>
       </section>
-
       {/* ── RECOMMERCE SERVICES ──────────────────────────────────────────────── */}
       <section className="py-20 px-6 border-y border-white/8">
         <div className="max-w-6xl mx-auto">
@@ -433,7 +429,7 @@ export default function ChainTrackLogistics() {
                 </Badge>
                 <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">
                   iPhones, Electronics &amp;<br />
-                  <span className="text-amber-400">Reverse Supply Chains.</span>
+                  <span className="text-amber-400">Reverse Auctions.</span>
                 </h2>
               </div>
               <p className="text-white/40 text-sm max-w-xs leading-relaxed">
@@ -582,7 +578,6 @@ export default function ChainTrackLogistics() {
 
         </div>
       </section>
-
       {/* ── THE FOUR-NODE CORRIDOR ────────────────────────────────────────────── */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -659,7 +654,6 @@ export default function ChainTrackLogistics() {
           </FadeUp>
         </div>
       </section>
-
       {/* ── SYNDICATE BROKER NETWORK ─────────────────────────────────────────── */}
       <section className="py-20 px-6 border-y border-white/8 bg-gradient-to-br from-amber-950/25 via-[#080b10] to-[#080b10]">
         <div className="max-w-6xl mx-auto">
@@ -789,7 +783,6 @@ export default function ChainTrackLogistics() {
           </FadeUp>
         </div>
       </section>
-
       {/* ── WORK FROM ANYWHERE ────────────────────────────────────────────────── */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -837,7 +830,6 @@ export default function ChainTrackLogistics() {
           </div>
         </div>
       </section>
-
       {/* ── FREIGHT MODES ────────────────────────────────────────────────────── */}
       <section className="py-20 px-6 border-y border-white/8 bg-white/[0.015]">
         <div className="max-w-6xl mx-auto">
@@ -900,7 +892,6 @@ export default function ChainTrackLogistics() {
           </div>
         </div>
       </section>
-
       {/* ── CONFLICT-TO-OPPORTUNITY ───────────────────────────────────────────── */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -958,7 +949,6 @@ export default function ChainTrackLogistics() {
           </FadeUp>
         </div>
       </section>
-
       {/* ── SHIPMENT TRACKER ─────────────────────────────────────────────────── */}
       <section className="py-16 px-6 border-y border-white/8 bg-white/[0.015]">
         <div className="max-w-6xl mx-auto">
@@ -972,7 +962,6 @@ export default function ChainTrackLogistics() {
           <FadeUp><ShipmentTracker /></FadeUp>
         </div>
       </section>
-
       {/* ── WHAT WE MOVE ─────────────────────────────────────────────────────── */}
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
@@ -1007,7 +996,6 @@ export default function ChainTrackLogistics() {
           </div>
         </div>
       </section>
-
       {/* ── FINAL CTA ─────────────────────────────────────────────────────────── */}
       <section className="py-20 px-6 border-t border-white/8 bg-gradient-to-b from-[#080b10] to-amber-950/15">
         <div className="max-w-3xl mx-auto text-center">
