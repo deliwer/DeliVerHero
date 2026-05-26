@@ -39,12 +39,14 @@ function FadeUp({ children, delay = 0, className = "" }: {
 // ─── Live intelligence ticker ────────────────────────────────────────────────
 
 const TICKERS = [
-  { label: "ALERT", text: "Jebel Ali war-risk surcharges +340% — ChainTrack air corridor ACTIVE", color: "text-red-400" },
-  { label: "ROUTE", text: "Dubai DWC → Gawadar CPEC FZ — fully operational, 0% re-export duty", color: "text-emerald-400" },
-  { label: "EARN",  text: "Freight brokers: 5% gross commission + Corridor Captain override programme", color: "text-amber-400" },
-  { label: "OPEN",  text: "INSTC northbound corridor: Gawadar → Kazakhstan → Russia — transit available", color: "text-sky-400" },
-  { label: "NEW",   text: "No physical office needed — run a global freight brokerage from WhatsApp", color: "text-violet-400" },
-  { label: "ROUTE", text: "Air charter Dubai → Gawadar: under 4 hours. Book from anywhere in the world", color: "text-emerald-400" },
+  { label: "INTEL", text: "iPhone 15 Pro Max 256GB Grade A — DAFZA landed $489 · Almaty retail $720 · margin window ~47%", color: "text-cyan-400" },
+  { label: "ROUTE", text: "DXB → GYD (Baku) electronics air corridor: <4h transit · 0% re-export duty · lot clearance under 48h", color: "text-emerald-400" },
+  { label: "DEMAND", text: "CIS demand up 34% on Grade A/B iPhone 13–15 Pro — Kazakhstan & Uzbekistan lead absorption", color: "text-violet-400" },
+  { label: "INTEL", text: "India RODTEP scheme: 2% export rebate on IMEI-verified refurb devices — lowest landed cost in corridor", color: "text-amber-400" },
+  { label: "ALERT", text: "China refurb iPhone re-export tightening — US & India ITAD supply preferred through Dubai hub", color: "text-red-400" },
+  { label: "ROUTE", text: "DAFZA → Karachi sea lane: 40k units/mo Pakistani demand active · 2-day customs window", color: "text-emerald-400" },
+  { label: "INTEL", text: "Grade C iPhone 12 mix lots trading $89–$105/unit at Commercity — $40 above secondary breakout floor", color: "text-sky-400" },
+  { label: "NEW",   text: "US carrier ITAD lots airfreighted to DAFZA within 72h of IMEI clearance — pipeline now open", color: "text-violet-400" },
 ];
 
 function LiveTicker() {

@@ -105,13 +105,15 @@ const SOUTHASIA_MARKETS = [
 ];
 
 const TICKER_ITEMS = [
-  "🔴 LIVE: CT-CN-8843 iPhone 12 Mix — new bid $142 · 47 bids",
-  "✅ CLOSED: CT-US-3301 iPhone 15 Pro Max — won at $481 by Almaty buyer",
-  "🟡 ENDING SOON: CT-IN-2291 iPhone 13 Pro — 1h 58m left",
-  "🔴 LIVE: CT-US-4821 iPhone 15 Pro Max — 18 suppliers competing",
-  "🚀 NEW LOT: CT-CN-9912 iPhone 16 128GB · 2000 units · Listing in 30min",
-  "✅ ESCROW RELEASED: CT-DXB-7701 — $248,000 wired to Tashkent buyer",
-  "🛩️ CHARTER: 1FLT A320F departing DWC → GYD (Baku) — 3 lots onboard",
+  "🔴 LIVE: CT-CN-8843 iPhone 12 Mix 3000 units — new bid $142 · 47 suppliers competing · 28 min left",
+  "⚡ OUTBID: Almaty buyer overtaken on CT-US-4821 — $484 now leads · 18 bids",
+  "✅ CLOSED: CT-US-3301 iPhone 15 Pro Max 500 units — won at $481 · saved $19.5k vs wholesale",
+  "🟡 ENDING SOON: CT-IN-2291 iPhone 13 Pro 800 units — 1h 58m · Grade B · RODTEP eligible",
+  "🚀 NEW LOT: CT-CN-9912 iPhone 16 128GB · 2,000 units · Grade A/B · going live in 30 min",
+  "✅ ESCROW RELEASED: CT-DXB-7701 — $248,000 wired to Tashkent buyer · 94h from bid to delivery",
+  "👁 WATCHING: CT-US-5519 iPhone 16 Pro Max 512GB — 61 buyers watching · Grade A+ · 22h left",
+  "🛩️ CHARTER: 1FLT A320F departing DWC → GYD (Baku) — 3 lots onboard · 14.2T electronics cargo",
+  "🔴 LIVE: CT-IN-3367 iPhone 15 128GB 600 units — Grade A · bid $341 · 6h 11m remaining",
 ];
 
 const GRADES = [
@@ -433,7 +435,7 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
               <div className="text-[10px] text-slate-500 mb-0.5">Best Bid</div>
               <div className="text-2xl font-black text-cyan-400" data-testid={`text-bid-${lot.id}`}>${lot.currentBid}</div>
               <div className="text-[10px] text-slate-500 line-through">${lot.startBid}</div>
-              <div className="text-[10px] text-emerald-400 font-bold">−{savings}%</div>
+              <div className="text-[10px] text-emerald-400 font-bold">−{savings}% · Save ${(lot.startBid - lot.currentBid).toFixed(0)}/u</div>
             </div>
           </div>
 
@@ -441,14 +443,21 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1 text-[11px] text-slate-400">
                 <Users className="w-3 h-3 text-purple-400" />
-                <span className="font-bold text-purple-300">{lot.bids}</span> suppliers
+                <span className="font-bold text-purple-300">{lot.bids}</span>
+                <span className="text-purple-400/70"> suppliers</span>
               </div>
               <div className="flex items-center gap-1 text-[11px] text-slate-400">
-                <Warehouse className="w-3 h-3 text-slate-500" />
-                {lot.warehouse}
+                <Eye className="w-3 h-3 text-slate-600" />
+                <span className="text-slate-500">{lot.bids * 3 + 7}</span>
               </div>
             </div>
             <CountdownBadge hoursLeft={lot.hoursLeft} minutesLeft={lot.minutesLeft} />
+          </div>
+          <div className="text-[10px] text-slate-600 mb-2 flex items-center gap-1">
+            <Warehouse className="w-3 h-3" />{lot.warehouse}
+            <span className="mx-1">·</span>
+            <Shield className="w-3 h-3 text-emerald-700" />
+            <span className="text-emerald-700">Escrow protected</span>
           </div>
 
           <div className="w-full bg-[#070B14] rounded-full h-1 mb-3">
@@ -536,10 +545,12 @@ export default function ChainTrackPage() {
 
           <div className="flex flex-wrap gap-3 mb-12">
             <ListLotDialog />
-            <Button size="lg" variant="outline" className="gap-2 border-[#1E293B] text-slate-300 hover:text-white hover:border-slate-600 font-bold uppercase tracking-widest text-xs" data-testid="button-register-buyer">
-              <Shield className="w-4 h-4" />
-              Register as Buyer
-            </Button>
+            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-register-buyer">
+                <Shield className="w-4 h-4" />
+                Register as Buyer
+              </Button>
+            </a>
             <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-whatsapp-chaintrack">
                 <SiWhatsapp className="w-4 h-4" />
@@ -571,11 +582,62 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
+      {/* ── Intent + Urgency strip ── */}
+      <div className="border-y border-[#1E293B] bg-[#0A0F1E]">
+        {/* Buyer / Seller funnel selector */}
+        <div className="container mx-auto px-4 max-w-7xl py-5">
+          <div className="grid md:grid-cols-2 gap-4">
+            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots" target="_blank" rel="noopener noreferrer" className="group" data-testid="funnel-buyer">
+              <div className="flex items-center gap-4 bg-cyan-500/8 border border-cyan-500/25 hover:border-cyan-500/50 rounded-2xl p-5 transition-all cursor-pointer">
+                <div className="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                  <Gavel className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-black text-white text-sm">I want to buy electronics lots</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Register as a verified buyer · bid on live auctions · DAFZA escrow protected</div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-cyan-400 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+            <div className="group cursor-pointer" data-testid="funnel-seller">
+              <div className="flex items-center gap-4 bg-amber-500/8 border border-amber-500/25 hover:border-amber-500/50 rounded-2xl p-5 transition-all">
+                <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <Package className="w-5 h-5 text-amber-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-black text-white text-sm">I want to list inventory for auction</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Submit a lot · we grade, photograph & run the auction · you receive best market price</div>
+                </div>
+                <ListLotDialog />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Urgency bar */}
+        <div className="border-t border-[#1E293B] bg-[#070B14] px-4 py-2.5">
+          <div className="container mx-auto max-w-7xl flex flex-wrap items-center gap-x-6 gap-y-1">
+            <span className="flex items-center gap-1.5 text-[11px] font-black text-red-400 uppercase tracking-widest shrink-0">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" /> 3 lots closing &lt;1 hour
+            </span>
+            {[
+              { id: "CT-CN-8843", label: "iPhone 12 Mix", time: "28m", color: "text-red-400 border-red-500/30 bg-red-500/10" },
+              { id: "CT-IN-2291", label: "iPhone 13 Pro", time: "1h 58m", color: "text-amber-400 border-amber-500/30 bg-amber-500/10" },
+              { id: "CT-CN-6621", label: "iPhone 11 Lot", time: "4h 49m", color: "text-amber-400 border-amber-500/30 bg-amber-500/10" },
+            ].map(lot => (
+              <span key={lot.id} className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded border text-[10px] font-black ${lot.color}`}>
+                <Timer className="w-2.5 h-2.5" />{lot.label} · {lot.time}
+              </span>
+            ))}
+            <span className="ml-auto text-[10px] text-slate-600 hidden sm:block">Scroll down to bid →</span>
+          </div>
+        </div>
+      </div>
+
       {/* ── Main marketplace ── */}
       <section className="container mx-auto px-4 pb-20 max-w-7xl">
 
         {/* Toolbar */}
-        <div className="flex flex-col md:flex-row gap-3 mb-6">
+        <div className="flex flex-col md:flex-row gap-3 mb-6 mt-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
             <Input
@@ -1683,6 +1745,30 @@ export default function ChainTrackPage() {
       </section>
       {/* AI Agent Widget */}
       <ChainTrackAIAgent />
+
+      {/* ── Sticky mobile CTA ── */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden border-t border-[#1E293B] bg-[#070B14]/95 backdrop-blur-md p-3 flex gap-3" data-testid="sticky-mobile-cta">
+        <a
+          href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1"
+        >
+          <button className="w-full bg-cyan-500 text-slate-950 font-black uppercase tracking-widest text-[11px] rounded-xl py-3 flex items-center justify-center gap-2">
+            <Gavel className="w-4 h-4" /> Register as Buyer
+          </button>
+        </a>
+        <a
+          href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot%20for%20auction"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1"
+        >
+          <button className="w-full bg-amber-500 text-slate-950 font-black uppercase tracking-widest text-[11px] rounded-xl py-3 flex items-center justify-center gap-2">
+            <Plus className="w-4 h-4" /> List a Lot
+          </button>
+        </a>
+      </div>
     </div>
   );
 }
