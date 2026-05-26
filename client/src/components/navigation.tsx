@@ -180,7 +180,7 @@ export function Navigation() {
             </div>
             <div className="flex flex-col leading-none">
               {isBrokerSide && !isManagementSide ? (
-                <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack</span>
+                <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack Logistics</span>
               ) : (
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
                   isManagementSide ? "text-amber-300" : "text-white"
