@@ -188,7 +188,7 @@ export function Navigation() {
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
                   isManagementSide ? "text-amber-300" : "text-white"
                 }`}>
-                  {isManagementSide ? "ChainTrack" : "DeliWer Relocation"}
+                  {isManagementSide ? "ChainTrack" : "DeliWer Relocations"}
                 </span>
               )}
               {isManagementSide && (
