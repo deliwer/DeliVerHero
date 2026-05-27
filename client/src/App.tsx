@@ -130,6 +130,9 @@ const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const ChainTrackRoutePage = lazy(() => import("@/pages/chaintrack-route"));
+const MarketingIntelPage = lazy(() => import("@/pages/marketing/intel"));
+const IntelPostPage = lazy(() => import("@/pages/intel-post"));
+const IntelIndexPage = lazy(() => import("@/pages/intel-index"));
 const AirCharterPage = lazy(() => import("@/pages/air-charter"));
 const PrivateJetPage = lazy(() => import("@/pages/private-jet"));
 const DubaiRelocationGuide = lazy(() => import("@/pages/dubai-relocation-guide"));
@@ -292,6 +295,7 @@ function Router() {
         <Route path="/marketing/partners" component={MarketingPartners} />
         <Route path="/marketing/control" component={MarketingControl} />
         <Route path="/marketing/recruit" component={MarketingRecruit} />
+        <Route path="/marketing/intel" component={MarketingIntelPage} />
         <Route path="/marketing/social" component={MarketingSocial} />
         <Route path="/marketing/attribution" component={MarketingAttribution} />
         <Route path="/marketing/tenant-leads" component={MarketingTenantLeads} />
@@ -511,6 +515,8 @@ function Router() {
         <Route path="/refurbished-iphone-sourcing-dubai" component={ChainTrackRoutePage} />
         <Route path="/dubai-cis-electronics-logistics" component={ChainTrackRoutePage} />
         <Route path="/dubai-charter-cargo-cis" component={ChainTrackRoutePage} />
+        <Route path="/intel" component={IntelIndexPage} />
+        <Route path="/intel/:slug" component={IntelPostPage} />
 
         {/* /chaintrack-logistics → scroll to Phone Flipper onboarding on /partners */}
         <Route path="/chaintrack-logistics" component={() => {

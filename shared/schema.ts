@@ -2026,3 +2026,24 @@ export const brokerFunnelEvents = pgTable("broker_funnel_events", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 export type BrokerFunnelEvent = typeof brokerFunnelEvents.$inferSelect;
+
+// ── Trade Intel Posts ─────────────────────────────────────────────────────────────────────────
+// Admin-created, AI-generated trade intelligence articles published to /intel/:slug
+export const intelPosts = pgTable("intel_posts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  metaDescription: text("meta_description").notNull(),
+  keywords: text("keywords").notNull(),
+  body: text("body").notNull(),
+  faqs: jsonb("faqs").$type<Array<{q: string; a: string}>>().notNull().default([]),
+  brief: text("brief").notNull(),
+  route: text("route"),
+  readTime: integer("read_time").notNull().default(5),
+  status: text("status").notNull().default("draft"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  publishedAt: timestamp("published_at"),
+});
+export const insertIntelPostSchema = createInsertSchema(intelPosts).omit({ id: true, createdAt: true });
+export type IntelPost = typeof intelPosts.$inferSelect;
+export type InsertIntelPost = z.infer<typeof insertIntelPostSchema>;
