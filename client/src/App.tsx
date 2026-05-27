@@ -129,6 +129,7 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
+const ChainTrackRoutePage = lazy(() => import("@/pages/chaintrack-route"));
 const AirCharterPage = lazy(() => import("@/pages/air-charter"));
 const PrivateJetPage = lazy(() => import("@/pages/private-jet"));
 const DubaiRelocationGuide = lazy(() => import("@/pages/dubai-relocation-guide"));
@@ -500,6 +501,16 @@ function Router() {
         {/* ChainTrack Remote Sourcing Marketplace */}
         <Route path="/chaintrack-sourcing" component={ChainTrackSourcingPage} />
         <Route path="/sourcing" component={ChainTrackSourcingPage} />
+
+        {/* ChainTrack Programmatic SEO — Long-tail regional route pages */}
+        <Route path="/dubai-to-baku-electronics-logistics" component={ChainTrackRoutePage} />
+        <Route path="/dubai-to-almaty-electronics-cargo" component={ChainTrackRoutePage} />
+        <Route path="/dubai-to-tashkent-electronics-logistics" component={ChainTrackRoutePage} />
+        <Route path="/dubai-to-moscow-electronics-logistics" component={ChainTrackRoutePage} />
+        <Route path="/dubai-to-gawadar-logistics" component={ChainTrackRoutePage} />
+        <Route path="/refurbished-iphone-sourcing-dubai" component={ChainTrackRoutePage} />
+        <Route path="/dubai-cis-electronics-logistics" component={ChainTrackRoutePage} />
+        <Route path="/dubai-charter-cargo-cis" component={ChainTrackRoutePage} />
 
         {/* /chaintrack-logistics → scroll to Phone Flipper onboarding on /partners */}
         <Route path="/chaintrack-logistics" component={() => {

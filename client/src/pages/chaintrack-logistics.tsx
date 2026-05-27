@@ -307,6 +307,19 @@ export default function ChainTrackLogistics() {
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
       </Helmet>
       <LiveTicker />
+      {/* ── Pipeline indicator ── */}
+      <div className="bg-[#080b10] border-b border-white/6">
+        <div className="max-w-6xl mx-auto px-6 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+          <Link href="/chaintrack">
+            <span className="text-white/35 hover:text-amber-400 transition-colors cursor-pointer">① Source on ChainTrack</span>
+          </Link>
+          <span className="text-white/15 mx-2">→</span>
+          <span className="text-white/90 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            ② Ship
+          </span>
+        </div>
+      </div>
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <img src={heroCargoImg} alt="ChainTrack cargo plane Dubai" className="absolute inset-0 w-full h-full object-cover opacity-25" />

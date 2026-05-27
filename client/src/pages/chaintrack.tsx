@@ -510,6 +510,19 @@ export default function ChainTrackPage() {
         dateModified="2026-05-23"
       />
       <LiveTicker />
+      {/* ── Pipeline indicator ── */}
+      <div className="bg-[#070B14] border-b border-[#1E293B]">
+        <div className="container mx-auto max-w-7xl px-4 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+          <span className="text-white/90 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+            ① Source
+          </span>
+          <span className="text-slate-600 mx-2">→</span>
+          <Link href="/logistics">
+            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">② Ship via Logistics</span>
+          </Link>
+        </div>
+      </div>
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
