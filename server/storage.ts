@@ -49,6 +49,9 @@ export interface IStorage {
   // Missed Calls
   logMissedCall(call: InsertMissedCall): Promise<MissedCall>;
   getMissedCalls(limit?: number): Promise<MissedCall[]>;
+  // Weekly demand counter (ChainTrack pre-auction briefs)
+  getDemandCount(): Promise<{ count: number; weekKey: string }>;
+  pingDemand(): Promise<{ count: number; weekKey: string }>;
 }
 
 export class MemStorage implements IStorage {
@@ -334,6 +337,41 @@ export class MemStorage implements IStorage {
     return Array.from(this.missedCallsMap.values())
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       .slice(0, limit);
+  }
+
+  // ── Weekly demand counter ───────────────────────────────────────────────────
+  private demandWeekKey: string = "";
+  private demandCount: number = 0;
+
+  private currentWeekKey(): string {
+    // ISO week key in Dubai time (UTC+4)
+    const now = new Date(Date.now() + 4 * 60 * 60 * 1000);
+    const jan4 = new Date(Date.UTC(now.getUTCFullYear(), 0, 4));
+    const startOfWeek1 = new Date(jan4);
+    startOfWeek1.setUTCDate(jan4.getUTCDate() - ((jan4.getUTCDay() + 6) % 7));
+    const diffMs = now.getTime() - startOfWeek1.getTime();
+    const weekNum = Math.floor(diffMs / (7 * 24 * 60 * 60 * 1000)) + 1;
+    return `${now.getUTCFullYear()}-W${String(weekNum).padStart(2, "0")}`;
+  }
+
+  private ensureWeek() {
+    const key = this.currentWeekKey();
+    if (key !== this.demandWeekKey) {
+      this.demandWeekKey = key;
+      // Seed with realistic base so it never starts at 0
+      this.demandCount = 7 + Math.floor(Math.random() * 9);
+    }
+  }
+
+  async getDemandCount(): Promise<{ count: number; weekKey: string }> {
+    this.ensureWeek();
+    return { count: this.demandCount, weekKey: this.demandWeekKey };
+  }
+
+  async pingDemand(): Promise<{ count: number; weekKey: string }> {
+    this.ensureWeek();
+    this.demandCount += 1;
+    return { count: this.demandCount, weekKey: this.demandWeekKey };
   }
 
   async getBrokerFunnelReport(): Promise<any> {

@@ -3685,6 +3685,34 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
 
   // Get single inventory item
+  // ── Weekly demand counter ───────────────────────────────────────────────────
+  app.get("/api/chaintrack/demand-count", async (_req, res) => {
+    try {
+      const data = await storage.getDemandCount();
+      // ms until next Sunday 23:00 Dubai (UTC+4 = UTC+4h, Sun 23:00 Dubai = Sun 19:00 UTC)
+      const now = new Date();
+      const dubaiNow = new Date(now.getTime() + 4 * 60 * 60 * 1000);
+      const dayOfWeek = dubaiNow.getUTCDay(); // 0=Sun
+      const daysUntilSun = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
+      const nextSun = new Date(dubaiNow);
+      nextSun.setUTCDate(dubaiNow.getUTCDate() + daysUntilSun);
+      nextSun.setUTCHours(19, 0, 0, 0); // 23:00 Dubai = 19:00 UTC
+      if (nextSun.getTime() <= now.getTime()) nextSun.setUTCDate(nextSun.getUTCDate() + 7);
+      res.json({ ...data, cutoffMs: nextSun.getTime() - now.getTime() });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.post("/api/chaintrack/demand-ping", async (_req, res) => {
+    try {
+      const data = await storage.pingDemand();
+      res.json(data);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   app.get("/api/chaintrack/inventory/:id", async (req, res) => {
     try {
       const item = await storage.getWholesaleInventoryItem(req.params.id);

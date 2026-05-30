@@ -698,6 +698,41 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
   );
 }
 
+function CutoffTimer({ cutoffMs }: { cutoffMs: number }) {
+  const [remaining, setRemaining] = useState(cutoffMs);
+  useEffect(() => {
+    setRemaining(cutoffMs);
+    const id = setInterval(() => setRemaining(r => Math.max(0, r - 1000)), 1000);
+    return () => clearInterval(id);
+  }, [cutoffMs]);
+
+  const totalH = Math.floor(remaining / 3_600_000);
+  const mins   = Math.floor((remaining % 3_600_000) / 60_000);
+  const days   = Math.floor(totalH / 24);
+  const hours  = totalH % 24;
+
+  const label = days > 0
+    ? `${days}d ${hours}h left`
+    : totalH > 0
+    ? `${hours}h ${mins}m left`
+    : mins > 0
+    ? `${mins}m left`
+    : "Cutoff passed";
+
+  const color = days === 0 && totalH < 4
+    ? "text-red-400 border-red-500/30 bg-red-500/10"
+    : days === 0 && totalH < 24
+    ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
+    : "text-slate-400 border-slate-600/30 bg-slate-800/30";
+
+  return (
+    <div className={`flex items-center gap-1 text-[9px] font-black px-2 py-0.5 rounded border ${color}`}>
+      <Clock className="w-2.5 h-2.5 shrink-0" />
+      {label}
+    </div>
+  );
+}
+
 type FeedItem = { ref: string; model: string; grade: string; qty: number; price: number; region: string; updated: string; tag: string; tier: string };
 
 function FeedTable({ label, flag, accentClass, items, refreshedAgo, testPrefix }: {
@@ -790,6 +825,17 @@ export default function ChainTrackPage() {
   const [demandGrade, setDemandGrade] = useState("");
   const [demandPrice, setDemandPrice] = useState("");
   const [demandNotes, setDemandNotes] = useState("");
+  const [demandSent, setDemandSent] = useState(false);
+
+  const { data: demandData, refetch: refetchDemand } = useQuery<{ count: number; weekKey: string; cutoffMs: number }>({
+    queryKey: ["/api/chaintrack/demand-count"],
+    refetchInterval: 60_000,
+  });
+
+  const demandPingMutation = useMutation({
+    mutationFn: () => apiRequest("POST", "/api/chaintrack/demand-ping"),
+    onSuccess: () => { refetchDemand(); },
+  });
 
   const filteredLots = LIVE_LOTS.filter(lot => {
     if (searchQuery && !lot.model.toLowerCase().includes(searchQuery.toLowerCase()) && !lot.id.toLowerCase().includes(searchQuery.toLowerCase())) return false;
@@ -1251,9 +1297,22 @@ export default function ChainTrackPage() {
 
                   {/* Demand aggregation callout + form */}
                   <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-3">
-                    <div className="flex items-center gap-1.5 mb-2">
-                      <Zap className="w-3.5 h-3.5 text-cyan-400" />
-                      <div className="text-[9px] font-black uppercase tracking-widest text-cyan-400">Optimal Demand Window</div>
+                    <div className="flex items-center justify-between gap-2 mb-2 flex-wrap">
+                      <div className="flex items-center gap-1.5">
+                        <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                        <div className="text-[9px] font-black uppercase tracking-widest text-cyan-400">Optimal Demand Window</div>
+                      </div>
+                      {/* Live counter badge */}
+                      {demandData && (
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 bg-[#0A0F1E] border border-cyan-500/30 rounded-lg px-2.5 py-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+                            <span className="text-[10px] font-black text-cyan-300">{demandData.count}</span>
+                            <span className="text-[9px] text-slate-500">requests this week</span>
+                          </div>
+                          <CutoffTimer cutoffMs={demandData.cutoffMs} />
+                        </div>
+                      )}
                     </div>
                     <p className="text-[11px] text-slate-300 leading-relaxed mb-3">
                       Submit your lot requests to ChainTrack <span className="font-black text-cyan-300">by Sunday 11pm Dubai time</span>. We aggregate buyer demand before US markets open Monday — giving maximum leverage entering the week's first auction rounds.
@@ -1386,11 +1445,12 @@ export default function ChainTrackPage() {
                               <Button
                                 size="sm"
                                 disabled={!demandModel || !demandQty || !demandGrade || !demandPrice}
+                                onClick={() => { demandPingMutation.mutate(); setDemandSent(true); }}
                                 className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-[10px] uppercase tracking-widest h-8 gap-1.5 mt-1"
                                 data-testid="button-demand-send"
                               >
                                 <SiWhatsapp className="w-3.5 h-3.5" />
-                                Send Demand Brief via WhatsApp
+                                {demandSent ? "Brief Sent — WhatsApp Opening…" : "Send Demand Brief via WhatsApp"}
                               </Button>
                             </a>
                             <p className="text-[9px] text-slate-600 text-center">Opens WhatsApp with a pre-filled structured message · Your brief is confidential</p>
