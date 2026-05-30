@@ -976,7 +976,7 @@ export default function ChainTrackPage() {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
           <div className="overflow-x-auto -mx-1 px-1 pb-1">
-            <TabsList className="border border-[#1E293B] p-1 w-max min-w-full bg-[#0D1424]">
+            <TabsList className="inline-flex h-10 items-center justify-center rounded-md text-muted-foreground border border-[#1E293B] p-1 w-max min-w-full bg-[#ffffff]">
               <TabsTrigger value="live" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-live">
                 <Radio className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
                 <span>Live Auctions</span>
