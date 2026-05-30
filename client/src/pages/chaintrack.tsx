@@ -126,22 +126,24 @@ const GRADES = [
 ];
 
 // ── Supplier Feed Data ─────────────────────────────────────────────────────────
-const WSC_FEED = [
-  { sku: "WSC-IP16PM-512-AB", model: "iPhone 16 Pro Max 512GB", grade: "A/B", qty: 320, price: 618, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "12m ago", tag: "Graded" },
-  { sku: "WSC-IP15P-256-A", model: "iPhone 15 Pro 256GB", grade: "A", qty: 180, price: 412, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "34m ago", tag: "Graded" },
-  { sku: "WSC-IP14-128-B", model: "iPhone 14 128GB Mix Lot", grade: "B", qty: 750, price: 263, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "1h ago", tag: "ASIS" },
-  { sku: "WSC-IP13P-256-A", model: "iPhone 13 Pro 256GB", grade: "A", qty: 400, price: 291, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "2h ago", tag: "RODTEP" },
-  { sku: "WSC-IP12-64-C", model: "iPhone 12 64GB Lot", grade: "C", qty: 2200, price: 98, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "3h ago", tag: "ASIS" },
-  { sku: "WSC-IP15-128-A", model: "iPhone 15 128GB", grade: "A", qty: 560, price: 348, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "4h ago", tag: "Graded" },
+// NOTE: Supplier identities are masked for trade secrecy.
+// Internal ref IDs are ChainTrack-assigned and do not encode supplier naming.
+const NA_FEED = [
+  { ref: "CT-NA-4412", model: "iPhone 16 Pro Max 512GB", grade: "A/B", qty: 320, price: 618, region: "North America", updated: "12m ago", tag: "Graded", tier: "standard" },
+  { ref: "CT-NA-3891", model: "iPhone 15 Pro 256GB", grade: "A", qty: 180, price: 412, region: "North America", updated: "34m ago", tag: "Graded", tier: "standard" },
+  { ref: "CT-NA-2274", model: "iPhone 14 128GB Mix Lot", grade: "B", qty: 750, price: 263, region: "North America", updated: "1h ago", tag: "ASIS", tier: "standard" },
+  { ref: "CT-NA-1103", model: "iPhone 13 Pro 256GB", grade: "A", qty: 400, price: 291, region: "North America", updated: "2h ago", tag: "Graded", tier: "standard" },
+  { ref: "CT-NA-0987", model: "iPhone 12 64GB Lot", grade: "C", qty: 2200, price: 98, region: "North America", updated: "3h ago", tag: "ASIS", tier: "priority" },
+  { ref: "CT-NA-0541", model: "iPhone 15 128GB", grade: "A", qty: 560, price: 348, region: "North America", updated: "4h ago", tag: "Graded", tier: "standard" },
 ];
 
-const KTC_FEED = [
-  { sku: "KTC-IP16-256-A", model: "iPhone 16 256GB Dual SIM", grade: "A", qty: 800, price: 441, source: "KT Corp", origin: "🇰🇷 Korea", updated: "8m ago", tag: "Charter" },
-  { sku: "KTC-IP15PM-256-AP", model: "iPhone 15 Pro Max 256GB", grade: "A+", qty: 220, price: 589, source: "KT Corp", origin: "🇰🇷 Korea", updated: "25m ago", tag: "Graded" },
-  { sku: "KTC-IP14P-512-A", model: "iPhone 14 Plus 512GB", grade: "A", qty: 370, price: 319, source: "KT Corp", origin: "🇰🇷 Korea", updated: "50m ago", tag: "Graded" },
-  { sku: "KTC-IP13-128-AB", model: "iPhone 13 128GB A/B Mix", grade: "A/B", qty: 1400, price: 198, source: "KT Corp", origin: "🇰🇷 Korea", updated: "1h ago", tag: "ASIS" },
-  { sku: "KTC-IP12M-256-B", model: "iPhone 12 Mini 256GB", grade: "B", qty: 600, price: 142, source: "KT Corp", origin: "🇰🇷 Korea", updated: "2h ago", tag: "ASIS" },
-  { sku: "KTC-IP11-64-C", model: "iPhone 11 64GB Lot", grade: "C", qty: 3000, price: 87, source: "KT Corp", origin: "🇰🇷 Korea", updated: "3h ago", tag: "ASIS" },
+const EA_FEED = [
+  { ref: "CT-EA-7821", model: "iPhone 16 256GB Dual SIM", grade: "A", qty: 800, price: 441, region: "East Asia", updated: "8m ago", tag: "Charter", tier: "priority" },
+  { ref: "CT-EA-6634", model: "iPhone 15 Pro Max 256GB", grade: "A+", qty: 220, price: 589, region: "East Asia", updated: "25m ago", tag: "Graded", tier: "priority" },
+  { ref: "CT-EA-5509", model: "iPhone 14 Plus 512GB", grade: "A", qty: 370, price: 319, region: "East Asia", updated: "50m ago", tag: "Graded", tier: "standard" },
+  { ref: "CT-EA-4418", model: "iPhone 13 128GB A/B Mix", grade: "A/B", qty: 1400, price: 198, region: "East Asia", updated: "1h ago", tag: "ASIS", tier: "standard" },
+  { ref: "CT-EA-3302", model: "iPhone 12 Mini 256GB", grade: "B", qty: 600, price: 142, region: "East Asia", updated: "2h ago", tag: "ASIS", tier: "standard" },
+  { ref: "CT-EA-2187", model: "iPhone 11 64GB Lot", grade: "C", qty: 3000, price: 87, region: "East Asia", updated: "3h ago", tag: "ASIS", tier: "standard" },
 ];
 
 // Lot inspection video stubs — in production would come from DB
@@ -696,6 +698,83 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
   );
 }
 
+type FeedItem = { ref: string; model: string; grade: string; qty: number; price: number; region: string; updated: string; tag: string; tier: string };
+
+function FeedTable({ label, flag, accentClass, items, refreshedAgo, testPrefix }: {
+  label: string; flag: string; accentClass: "blue" | "purple"; items: FeedItem[]; refreshedAgo: string; testPrefix: string;
+}) {
+  const accent = accentClass === "blue"
+    ? { border: "border-blue-500/30", bg: "bg-blue-500/10", text: "text-blue-400", light: "text-blue-300", pulse: "bg-blue-400", price: "text-cyan-400", bid: "bg-cyan-500 hover:bg-cyan-400 text-slate-950" }
+    : { border: "border-purple-500/30", bg: "bg-purple-500/10", text: "text-purple-400", light: "text-purple-300", pulse: "bg-purple-400", price: "text-purple-400", bid: "bg-purple-500 hover:bg-purple-400 text-white" };
+
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-4">
+        <div className={`flex items-center gap-2 ${accent.bg} border ${accent.border} rounded-xl px-4 py-2`}>
+          <Globe className={`w-4 h-4 ${accent.text}`} />
+          <span className="font-black text-white text-sm">{flag} {label}</span>
+          <span className={`w-1.5 h-1.5 rounded-full ${accent.pulse} animate-pulse ml-1`} />
+        </div>
+        <span className="text-[10px] text-slate-500">{items.length} lots · refreshed {refreshedAgo}</span>
+      </div>
+      <div className="overflow-x-auto rounded-xl border border-[#1E293B]">
+        <table className="w-full min-w-[640px]">
+          <thead>
+            <tr className="border-b border-[#1E293B] bg-[#070B14]">
+              {["Ref", "Model", "Grade", "Qty", "Price/Unit", "Region", "Type", "Updated", "Action"].map(h => (
+                <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item, i) => (
+              <tr key={item.ref} className="border-b border-[#1E293B] bg-[#0D1424] hover:bg-[#1a2540] transition-colors" data-testid={`feed-row-${testPrefix}-${i}`}>
+                <td className="px-4 py-3">
+                  <span className="text-[10px] font-mono text-slate-500">{item.ref}</span>
+                  {item.tier === "priority" && (
+                    <span className="ml-1.5 text-[8px] font-black px-1 py-0.5 rounded bg-amber-500/20 border border-amber-500/30 text-amber-400 uppercase">Priority</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 text-[13px] font-bold text-white">{item.model}</td>
+                <td className="px-4 py-3">
+                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${
+                    item.grade === "A+" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" :
+                    item.grade === "A"  ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
+                    item.grade === "A/B"? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                    item.grade === "B"  ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                    "text-amber-400 bg-amber-500/10 border-amber-500/30"
+                  }`}>{item.grade}</span>
+                </td>
+                <td className="px-4 py-3 text-[13px] font-bold text-white">{item.qty.toLocaleString()}</td>
+                <td className={`px-4 py-3 text-[14px] font-black ${accent.price}`}>${item.price}</td>
+                <td className="px-4 py-3 text-[11px] text-slate-400">{item.region}</td>
+                <td className="px-4 py-3">
+                  <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-700/50 border border-slate-600/40 text-slate-300">{item.tag}</span>
+                </td>
+                <td className="px-4 py-3 text-[10px] text-slate-600">{item.updated}</td>
+                <td className="px-4 py-3">
+                  <div className="flex gap-1.5">
+                    <a href={`https://wa.me/971523906019?text=ChainTrack%20Feed%20Bid%20-%20Ref%20${encodeURIComponent(item.ref)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" className={`${accent.bid} font-black text-[9px] uppercase px-2 py-1 h-auto`} data-testid={`btn-${testPrefix}-bid-${i}`}>
+                        Bid
+                      </Button>
+                    </a>
+                    <a href={`https://wa.me/971523906019?text=ChainTrack%20Straight%20Buy%20-%20Ref%20${encodeURIComponent(item.ref)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-${testPrefix}-buy-${i}`}>
+                        Buy
+                      </Button>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
 export default function ChainTrackPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterGrade, setFilterGrade] = useState("all");
@@ -1014,20 +1093,61 @@ export default function ChainTrackPage() {
           </TabsContent>
 
           <TabsContent value="feeds" className="mt-6">
-            <div className="space-y-8">
-              {/* Header */}
+            <div className="space-y-6">
+
+              {/* ── Private Access Banner ── */}
+              <div className="flex items-start gap-3 rounded-xl border border-amber-500/30 bg-amber-500/8 px-5 py-4">
+                <Lock className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-amber-400">Members-Only Module</span>
+                    <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300">Private · Not Public</span>
+                  </div>
+                  <p className="text-[11px] text-amber-300/70 mt-1 leading-relaxed">
+                    Supplier identities and product references are masked for trade secrecy. Pricing visibility and feed priority are governed by your membership tier. Do not reproduce or share feed data outside of ChainTrack.
+                  </p>
+                </div>
+              </div>
+
+              {/* ── Tier Access Key ── */}
+              <div className="grid sm:grid-cols-3 gap-3">
+                {[
+                  { tier: "Explorer", badge: "bg-slate-700/60 border-slate-600/50 text-slate-300", icon: Eye, desc: "Browse model categories and region availability. Pricing masked.", cta: false },
+                  { tier: "Standard Member", badge: "bg-cyan-500/10 border-cyan-500/30 text-cyan-300", icon: Rss, desc: "Full model listings, live pricing, and bid/buy access on Standard-tier lots.", cta: false },
+                  { tier: "Priority Member", badge: "bg-amber-500/10 border-amber-500/30 text-amber-300", icon: Zap, desc: "All Standard access plus Priority-tier lots, AUCNET & incoming feeds first-look.", cta: true },
+                ].map((t, i) => (
+                  <div key={i} className={`rounded-xl border p-4 ${t.badge.includes("slate") ? "border-slate-600/40 bg-slate-800/30" : t.badge.includes("cyan") ? "border-cyan-500/20 bg-cyan-500/5" : "border-amber-500/20 bg-amber-500/5"}`}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <t.icon className={`w-3.5 h-3.5 ${t.badge.includes("slate") ? "text-slate-400" : t.badge.includes("cyan") ? "text-cyan-400" : "text-amber-400"}`} />
+                      <span className={`text-[9px] font-black px-1.5 py-0.5 rounded border ${t.badge}`}>{t.tier}</span>
+                    </div>
+                    <p className="text-[11px] text-slate-400 leading-relaxed">{t.desc}</p>
+                    {t.cta && (
+                      <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20upgrade%20to%20Priority%20Membership" target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" className="mt-3 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 font-black text-[9px] uppercase tracking-widest h-7 px-3" data-testid="button-upgrade-priority">
+                          Request Access →
+                        </Button>
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* ── Header ── */}
               <div className="flex items-start justify-between gap-4 flex-wrap">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Live Feed — Updated continuously</span>
                   </div>
-                  <h3 className="text-xl font-black text-white">Direct Supplier Inventory Feeds</h3>
-                  <p className="text-sm text-slate-400 mt-1">Live availability from Wesellcellular (USA) and KT Corp (Korea). Prices in USD/unit. Request a lot to trigger reverse auction or buy straight.</p>
+                  <h3 className="text-xl font-black text-white">Member Inventory Feeds</h3>
+                  <p className="text-sm text-slate-400 mt-1">
+                    Live availability from verified supplier networks across North America and East Asia. Prices in USD/unit. Supplier identities are not disclosed — enquire via ChainTrack only.
+                  </p>
                 </div>
                 <div className="flex gap-2 shrink-0">
                   <XlsxUploadDialog />
-                  <a href="https://wa.me/971523906019?text=ChainTrack%20Feed%20-%20I%20want%20to%20enquire%20about%20a%20supplier%20feed%20item" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/971523906019?text=ChainTrack%20Member%20Feed%20-%20I%20want%20to%20enquire%20about%20a%20lot" target="_blank" rel="noopener noreferrer">
                     <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-xs gap-1.5" data-testid="button-feed-enquire">
                       <SiWhatsapp className="w-3.5 h-3.5" />
                       Enquire via WhatsApp
@@ -1036,136 +1156,57 @@ export default function ChainTrackPage() {
                 </div>
               </div>
 
-              {/* Wesellcellular Feed */}
+              {/* ── North America Feed ── */}
+              <FeedTable
+                label="North America Feed"
+                flag="🇺🇸"
+                accentClass="blue"
+                items={NA_FEED}
+                refreshedAgo="8m ago"
+                testPrefix="na"
+              />
+
+              {/* ── East Asia Feed ── */}
+              <FeedTable
+                label="East Asia Feed"
+                flag="🇰🇷"
+                accentClass="purple"
+                items={EA_FEED}
+                refreshedAgo="3m ago"
+                testPrefix="ea"
+              />
+
+              {/* ── Upcoming Feeds ── */}
               <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-xl px-4 py-2">
-                    <Building className="w-4 h-4 text-blue-400" />
-                    <span className="font-black text-white text-sm">Wesellcellular</span>
-                    <span className="text-[10px] text-blue-300">🇺🇸 USA Feed</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse ml-1" />
-                  </div>
-                  <span className="text-[10px] text-slate-500">{WSC_FEED.length} items · refreshed 8m ago</span>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Coming Soon — Priority Members First-Look</span>
                 </div>
-                <div className="overflow-x-auto rounded-xl border border-[#1E293B]">
-                  <table className="w-full min-w-[700px]">
-                    <thead>
-                      <tr className="border-b border-[#1E293B] bg-[#070B14]">
-                        {["SKU", "Model", "Grade", "Qty", "Price/Unit", "Source", "Type", "Updated", "Action"].map(h => (
-                          <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {WSC_FEED.map((item, i) => (
-                        <tr key={item.sku} className="border-b border-[#1E293B] bg-[#0D1424] hover:bg-[#1a2540] transition-colors" data-testid={`feed-row-wsc-${i}`}>
-                          <td className="px-4 py-3 text-[10px] font-mono text-slate-500">{item.sku}</td>
-                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.model}</td>
-                          <td className="px-4 py-3">
-                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${
-                              item.grade === "A+" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" :
-                              item.grade === "A" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
-                              item.grade === "A/B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
-                              item.grade === "B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
-                              "text-amber-400 bg-amber-500/10 border-amber-500/30"
-                            }`}>{item.grade}</span>
-                          </td>
-                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.qty.toLocaleString()}</td>
-                          <td className="px-4 py-3 text-[14px] font-black text-cyan-400">${item.price}</td>
-                          <td className="px-4 py-3 text-[11px] text-slate-400">{item.origin}</td>
-                          <td className="px-4 py-3">
-                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-700/50 border border-slate-600/40 text-slate-300">{item.tag}</span>
-                          </td>
-                          <td className="px-4 py-3 text-[10px] text-slate-600">{item.updated}</td>
-                          <td className="px-4 py-3">
-                            <div className="flex gap-1.5">
-                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Feed%20Enquiry%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-feed-bid-${i}`}>
-                                  Bid
-                                </Button>
-                              </a>
-                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Straight%20Buy%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-feed-buy-${i}`}>
-                                  Buy
-                                </Button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="grid sm:grid-cols-3 gap-3">
+                  {[
+                    { region: "Japan / Auction Network", flag: "🇯🇵", desc: "High-grade auction-sourced lots. A+ dominant. Priority tier first-look.", color: "border-rose-500/20 bg-rose-500/5", badge: "text-rose-300 border-rose-500/30 bg-rose-500/10" },
+                    { region: "South Asia Feed", flag: "🇮🇳", desc: "RODTEP-eligible lots, dual-SIM spec. CIS-optimised models. Launching Q3.", color: "border-orange-500/20 bg-orange-500/5", badge: "text-orange-300 border-orange-500/30 bg-orange-500/10" },
+                    { region: "Europe Refurb Network", flag: "🇩🇪", desc: "Carrier de-fleet and insurance-return lots. High grade mix. Launching Q4.", color: "border-violet-500/20 bg-violet-500/5", badge: "text-violet-300 border-violet-500/30 bg-violet-500/10" },
+                  ].map((f, i) => (
+                    <div key={i} className={`rounded-xl border p-4 ${f.color}`}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">{f.flag}</span>
+                        <span className={`text-[9px] font-black px-1.5 py-0.5 rounded border ${f.badge}`}>{f.region}</span>
+                      </div>
+                      <p className="text-[11px] text-slate-400 leading-relaxed">{f.desc}</p>
+                      <div className="mt-2 flex items-center gap-1 text-[9px] font-black text-slate-600 uppercase tracking-widest">
+                        <Lock className="w-2.5 h-2.5" /> Priority access only
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* KT Corp Feed */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-xl px-4 py-2">
-                    <Building className="w-4 h-4 text-purple-400" />
-                    <span className="font-black text-white text-sm">KT Corp</span>
-                    <span className="text-[10px] text-purple-300">🇰🇷 Korea Feed</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse ml-1" />
-                  </div>
-                  <span className="text-[10px] text-slate-500">{KTC_FEED.length} items · refreshed 3m ago</span>
-                </div>
-                <div className="overflow-x-auto rounded-xl border border-[#1E293B]">
-                  <table className="w-full min-w-[700px]">
-                    <thead>
-                      <tr className="border-b border-[#1E293B] bg-[#070B14]">
-                        {["SKU", "Model", "Grade", "Qty", "Price/Unit", "Source", "Type", "Updated", "Action"].map(h => (
-                          <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {KTC_FEED.map((item, i) => (
-                        <tr key={item.sku} className="border-b border-[#1E293B] bg-[#0D1424] hover:bg-[#1a2540] transition-colors" data-testid={`feed-row-ktc-${i}`}>
-                          <td className="px-4 py-3 text-[10px] font-mono text-slate-500">{item.sku}</td>
-                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.model}</td>
-                          <td className="px-4 py-3">
-                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${
-                              item.grade === "A+" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" :
-                              item.grade === "A" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
-                              item.grade === "A/B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
-                              item.grade === "B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
-                              "text-amber-400 bg-amber-500/10 border-amber-500/30"
-                            }`}>{item.grade}</span>
-                          </td>
-                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.qty.toLocaleString()}</td>
-                          <td className="px-4 py-3 text-[14px] font-black text-purple-400">${item.price}</td>
-                          <td className="px-4 py-3 text-[11px] text-slate-400">{item.origin}</td>
-                          <td className="px-4 py-3">
-                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-700/50 border border-slate-600/40 text-slate-300">{item.tag}</span>
-                          </td>
-                          <td className="px-4 py-3 text-[10px] text-slate-600">{item.updated}</td>
-                          <td className="px-4 py-3">
-                            <div className="flex gap-1.5">
-                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Feed%20Enquiry%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" className="bg-purple-500 hover:bg-purple-400 text-white font-black text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-ktc-bid-${i}`}>
-                                  Bid
-                                </Button>
-                              </a>
-                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Straight%20Buy%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
-                                <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-ktc-buy-${i}`}>
-                                  Buy
-                                </Button>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* How feeds work */}
+              {/* ── How feeds work ── */}
               <div className="grid md:grid-cols-3 gap-4">
                 {[
-                  { icon: Rss, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20", title: "Live Inventory Feed", desc: "Wesellcellular and KT Corp push updated stock levels directly. Quantities and prices refresh continuously." },
+                  { icon: Rss, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20", title: "Live Inventory Feed", desc: "Verified supplier partners push updated stock levels directly into ChainTrack. Quantities and prices refresh continuously. Supplier identities remain confidential." },
                   { icon: Gavel, color: "text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/20", title: "Bid or Buy Straight", desc: "Place a reverse auction bid to compete on price, or request a straight buy at the listed rate. ChainTrack coordinates grading and escrow either way." },
-                  { icon: FileSpreadsheet, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20", title: "Upload Your Wishlist", desc: "Have a large order? Upload an XLSX with your model requirements and quantities — we match against both feeds and live lots automatically." },
+                  { icon: FileSpreadsheet, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20", title: "Upload Your Wishlist", desc: "Have a large order? Upload an XLSX with your model requirements and quantities — we match against all active feeds and live lots automatically." },
                 ].map((item, i) => (
                   <div key={i} className={`rounded-xl border p-4 ${item.bg}`}>
                     <item.icon className={`w-5 h-5 ${item.color} mb-2`} />
@@ -1174,6 +1215,7 @@ export default function ChainTrackPage() {
                   </div>
                 ))}
               </div>
+
             </div>
           </TabsContent>
 
