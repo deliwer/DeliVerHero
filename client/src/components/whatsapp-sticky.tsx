@@ -26,7 +26,7 @@ export function WhatsAppSticky() {
 
   const handleTelegram = () => {
     const isChainTrack = location.startsWith("/chaintrack") || location.startsWith("/logistics") || location.startsWith("/freight");
-    const url = isChainTrack ? "https://t.me/chaintracklogistics" : "https://t.me/+971523906019";
+    const url = isChainTrack ? "https://t.me/chaintracklogistics" : "https://t.me/+971523946311";
     window.open(url, "_blank");
   };
 
