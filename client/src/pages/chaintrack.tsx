@@ -784,6 +784,12 @@ export default function ChainTrackPage() {
   const [activeTab, setActiveTab] = useState("live");
   const [showFilters, setShowFilters] = useState(false);
   const [openMarketBlocks, setOpenMarketBlocks] = useState<Record<string, boolean>>({});
+  const [showDemandForm, setShowDemandForm] = useState(false);
+  const [demandModel, setDemandModel] = useState("");
+  const [demandQty, setDemandQty] = useState("");
+  const [demandGrade, setDemandGrade] = useState("");
+  const [demandPrice, setDemandPrice] = useState("");
+  const [demandNotes, setDemandNotes] = useState("");
 
   const filteredLots = LIVE_LOTS.filter(lot => {
     if (searchQuery && !lot.model.toLowerCase().includes(searchQuery.toLowerCase()) && !lot.id.toLowerCase().includes(searchQuery.toLowerCase())) return false;
@@ -1243,21 +1249,155 @@ export default function ChainTrackPage() {
                     </div>
                   </div>
 
-                  {/* Demand aggregation callout */}
+                  {/* Demand aggregation callout + form */}
                   <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-3">
                     <div className="flex items-center gap-1.5 mb-2">
                       <Zap className="w-3.5 h-3.5 text-cyan-400" />
                       <div className="text-[9px] font-black uppercase tracking-widest text-cyan-400">Optimal Demand Window</div>
                     </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed mb-2">
-                      Submit your lot requests to ChainTrack <span className="font-black text-cyan-300">by Sunday 11pm Dubai time</span>. We aggregate buyer demand before US markets open Monday morning — giving us maximum leverage entering the week's first auction rounds.
+                    <p className="text-[11px] text-slate-300 leading-relaxed mb-3">
+                      Submit your lot requests to ChainTrack <span className="font-black text-cyan-300">by Sunday 11pm Dubai time</span>. We aggregate buyer demand before US markets open Monday — giving maximum leverage entering the week's first auction rounds.
                     </p>
-                    <a href="https://wa.me/971523906019?text=ChainTrack%20Sunday%20Demand%20-%20I%20want%20to%20submit%20my%20lot%20request%20for%20this%20week" target="_blank" rel="noopener noreferrer">
-                      <Button size="sm" className="bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/30 text-cyan-300 font-black text-[9px] uppercase tracking-widest h-7 px-3 gap-1.5" data-testid="button-demand-window">
-                        <SiWhatsapp className="w-3 h-3" />
-                        Submit This Week's Request
-                      </Button>
-                    </a>
+
+                    {/* Toggle form */}
+                    <Button
+                      size="sm"
+                      onClick={() => setShowDemandForm(v => !v)}
+                      className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[9px] uppercase tracking-widest h-7 px-3 gap-1.5 w-full justify-between"
+                      data-testid="button-demand-window"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Send className="w-3 h-3" />
+                        Submit This Week's Lot Request
+                      </span>
+                      {showDemandForm ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                    </Button>
+
+                    {/* Collapsible form */}
+                    <AnimatePresence>
+                      {showDemandForm && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-3 space-y-2.5 border-t border-cyan-500/20 pt-3">
+                            <div className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Pre-Auction Demand Brief</div>
+
+                            {/* Model */}
+                            <div>
+                              <Label className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1 block">
+                                Model / Device <span className="text-cyan-400">*</span>
+                              </Label>
+                              <Input
+                                value={demandModel}
+                                onChange={e => setDemandModel(e.target.value)}
+                                placeholder="e.g. iPhone 15 Pro Max 256GB"
+                                className="bg-[#0A0F1E] border-[#1E293B] text-white text-[11px] h-8 placeholder:text-slate-600"
+                                data-testid="input-demand-model"
+                              />
+                            </div>
+
+                            {/* Qty + Grade row */}
+                            <div className="grid grid-cols-2 gap-2">
+                              <div>
+                                <Label className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1 block">
+                                  Quantity (units) <span className="text-cyan-400">*</span>
+                                </Label>
+                                <Input
+                                  value={demandQty}
+                                  onChange={e => setDemandQty(e.target.value)}
+                                  placeholder="e.g. 500"
+                                  type="number"
+                                  min="1"
+                                  className="bg-[#0A0F1E] border-[#1E293B] text-white text-[11px] h-8 placeholder:text-slate-600"
+                                  data-testid="input-demand-qty"
+                                />
+                              </div>
+                              <div>
+                                <Label className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1 block">
+                                  Min Grade <span className="text-cyan-400">*</span>
+                                </Label>
+                                <Select value={demandGrade} onValueChange={setDemandGrade}>
+                                  <SelectTrigger className="bg-[#0A0F1E] border-[#1E293B] text-white text-[11px] h-8" data-testid="select-demand-grade">
+                                    <SelectValue placeholder="Select grade" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                                    <SelectItem value="A+">A+ — Pristine</SelectItem>
+                                    <SelectItem value="A">A — Excellent</SelectItem>
+                                    <SelectItem value="A/B">A/B — Mixed</SelectItem>
+                                    <SelectItem value="B">B — Good</SelectItem>
+                                    <SelectItem value="C">C — Fair</SelectItem>
+                                    <SelectItem value="ASIS">ASIS — Uninspected</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+
+                            {/* Target price */}
+                            <div>
+                              <Label className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1 block">
+                                Target Price (USD / unit) <span className="text-cyan-400">*</span>
+                              </Label>
+                              <Input
+                                value={demandPrice}
+                                onChange={e => setDemandPrice(e.target.value)}
+                                placeholder="e.g. 420"
+                                type="number"
+                                min="1"
+                                className="bg-[#0A0F1E] border-[#1E293B] text-white text-[11px] h-8 placeholder:text-slate-600"
+                                data-testid="input-demand-price"
+                              />
+                            </div>
+
+                            {/* Notes */}
+                            <div>
+                              <Label className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1 block">
+                                Additional Requirements
+                              </Label>
+                              <Textarea
+                                value={demandNotes}
+                                onChange={e => setDemandNotes(e.target.value)}
+                                placeholder="e.g. Factory unlocked only, no Verizon locked. Dual-SIM preferred. DAFZA delivery."
+                                rows={2}
+                                className="bg-[#0A0F1E] border-[#1E293B] text-white text-[11px] placeholder:text-slate-600 resize-none"
+                                data-testid="input-demand-notes"
+                              />
+                            </div>
+
+                            {/* Send button */}
+                            <a
+                              href={`https://wa.me/971523906019?text=${encodeURIComponent(
+                                `ChainTrack Pre-Auction Demand Brief\n` +
+                                `──────────────────────────\n` +
+                                `Model: ${demandModel || "—"}\n` +
+                                `Quantity: ${demandQty ? Number(demandQty).toLocaleString() + " units" : "—"}\n` +
+                                `Min Grade: ${demandGrade || "—"}\n` +
+                                `Target Price: ${demandPrice ? "$" + demandPrice + "/unit" : "—"}\n` +
+                                (demandNotes ? `Notes: ${demandNotes}\n` : "") +
+                                `──────────────────────────\n` +
+                                `Submitted via ChainTrack member demand window.`
+                              )}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Button
+                                size="sm"
+                                disabled={!demandModel || !demandQty || !demandGrade || !demandPrice}
+                                className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-[10px] uppercase tracking-widest h-8 gap-1.5 mt-1"
+                                data-testid="button-demand-send"
+                              >
+                                <SiWhatsapp className="w-3.5 h-3.5" />
+                                Send Demand Brief via WhatsApp
+                              </Button>
+                            </a>
+                            <p className="text-[9px] text-slate-600 text-center">Opens WhatsApp with a pre-filled structured message · Your brief is confidential</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
