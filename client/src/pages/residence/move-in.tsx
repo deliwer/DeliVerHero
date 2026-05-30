@@ -6,7 +6,7 @@ import { MessageCircle, CheckCircle, ShieldCheck, Zap, ArrowRight, Home } from "
 import { Link } from "wouter";
 
 export default function MoveInSubpage() {
-  const WHATSAPP_NUMBER = "+971523906019";
+  const WHATSAPP_NUMBER = "+971523946311";
   
   const getWhatsAppLink = (service: string) => {
     const text = `Hello DeliWer, I am interested in the Move-In service for: ${service}`;

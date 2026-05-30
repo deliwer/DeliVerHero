@@ -621,7 +621,7 @@ export default function ErrandPage() {
                     data-testid="link-whatsapp-hassan-1"
                   >
                     <Phone className="w-4 h-4" />
-                    +971 52 390 6019
+                    +971 52 394 6311
                   </a>
                   <a 
                     href="https://wa.me/971523906019" 
@@ -631,7 +631,7 @@ export default function ErrandPage() {
                     data-testid="link-whatsapp-hassan-2"
                   >
                     <Phone className="w-4 h-4" />
-                    +971 52 390 6019
+                    +971 52 394 6311
                   </a>
                 </div>
               </CardContent>

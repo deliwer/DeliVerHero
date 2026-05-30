@@ -190,7 +190,7 @@ export default function EjariDubai() {
     "@type": "LocalBusiness",
     name: "DeliWer – Ejari Registration & Move-In Coordination",
     url: "https://deliwer.com/ejari-dubai",
-    telephone: "+971523906019",
+    telephone: "+971523946311",
     email: "info@deliwer.com",
     address: {
       "@type": "PostalAddress",

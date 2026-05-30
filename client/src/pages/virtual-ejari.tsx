@@ -374,7 +374,7 @@ export default function VirtualEjariPage() {
                 className="flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 text-gray-400 hover:text-white font-semibold px-7 py-3.5 rounded-2xl transition-all text-sm">
                 Chat with an advisor
               </a>
-              <p className="text-center text-gray-700 text-xs mt-1">+971 52 390 6019 · info@deliwer.com</p>
+              <p className="text-center text-gray-700 text-xs mt-1">+971 52 394 6311 · info@deliwer.com</p>
             </div>
           </div>
         </motion.div>

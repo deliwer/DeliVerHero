@@ -1440,7 +1440,7 @@ export default function FlexibleRentalsPage() {
                         <Building2 className="w-5 h-5" /> List a Property
                       </button>
                     </div>
-                    <p className="text-gray-700 text-xs mt-6">+971 52 390 6019 · +971 52 390 6019 · info@deliwer.com</p>
+                    <p className="text-gray-700 text-xs mt-6">+971 52 394 6311 · +971 52 394 6311 · info@deliwer.com</p>
                   </div>
                 </motion.div>
               </section>

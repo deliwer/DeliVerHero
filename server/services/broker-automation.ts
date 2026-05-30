@@ -235,7 +235,7 @@ function buildInitialEmail(name: string, partnerLink: string): string {
         <a href="${partnerLink}">Start Here — It's Free</a>
       </div>
       <p>Try it with just 2 tenants this week.</p>
-      <p style="margin-top: 28px;">WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 390 6019</a></p>
+      <p style="margin-top: 28px;">WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 394 6311</a></p>
       <p style="color: #6b7280;">– DeliWer Team</p>
     </div>
     <div class="footer">

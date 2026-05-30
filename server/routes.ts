@@ -183,7 +183,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Initialize founders
   await storage.initializeFounders([
-    { name: "Hassan Jawad", phone: "971523906019" },
+    { name: "Hassan Jawad", phone: "971523946311" },
     { name: "Rubab Hassan", phone: "971567148381" }
   ]);
 
@@ -270,7 +270,7 @@ Source: Website Concierge Page
               },
               body: JSON.stringify({
                 messaging_product: "whatsapp",
-                to: process.env.ALERT_PHONE || "971523906019",
+                to: process.env.ALERT_PHONE || "971523946311",
                 type: "text",
                 text: { body: leadMessage },
               }),
@@ -2604,7 +2604,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
 
       <p style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 8px;">Questions? Reach us directly:</p>
       <p style="color:#374151;font-size:15px;margin:0;">
-        WhatsApp: <a href="https://wa.me/971523906019" style="color:#10b981;font-weight:700;">+971 52 390 6019</a>
+        WhatsApp: <a href="https://wa.me/971523906019" style="color:#10b981;font-weight:700;">+971 52 394 6311</a>
       </p>
 
       <p style="color:#9ca3af;font-size:13px;margin:32px 0 0;">— DeliWer Partnerships Team</p>

@@ -54,12 +54,12 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
           </Link>
           <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
           <a 
-            href="tel:+971523906019"
+            href="tel:+971523946311"
             className={`flex items-center gap-2 ${textClass} hover:text-white transition-colors`}
             data-testid="link-phone"
           >
             <Phone className={`w-4 h-4 ${iconClass}`} />
-            <span>+971 52 390 6019</span>
+            <span>+971 52 394 6311</span>
           </a>
           <a 
             href="mailto:info@deliwer.com"

@@ -1228,7 +1228,7 @@ export default function LandingPage() {
             </Button>
           </a>
           <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
-            <span>WhatsApp: +971 52 390 6019</span>
+            <span>WhatsApp: +971 52 394 6311</span>
             <span>·</span>
             <span>info@deliwer.com</span>
           </div>

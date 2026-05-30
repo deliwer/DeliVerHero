@@ -8,7 +8,7 @@ import { SEOMeta } from "@/components/seo-meta";
 
 import { DirhamSymbol } from "@/components/dirham-symbol";
 
-const WHATSAPP_NUMBER = "+971523906019";
+const WHATSAPP_NUMBER = "+971523946311";
 const getWhatsAppLink = (service: string) => {
   const text = `Hi, I'm interested in the Move-Out Package regarding: ${service}`;
   return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`;
@@ -227,7 +227,7 @@ export default function MoveOutPackagePage() {
               Closing a flat, villa, or office? Items that can't be taken can be cleared as part of the move-out process.
             </p>
             <div className="text-gray-500 text-[10px] font-black uppercase tracking-widest">
-              WhatsApp Contact: +971 52 390 6019
+              WhatsApp Contact: +971 52 394 6311
             </div>
           </div>
         </div>

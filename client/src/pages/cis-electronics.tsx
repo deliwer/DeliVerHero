@@ -419,7 +419,7 @@ export default function CisElectronicsPage() {
             <a href={WA_BASE} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
                 <MessageSquare className="w-5 h-5" />
-                WhatsApp: +971 52 390 6019
+                WhatsApp: +971 52 394 6311
               </Button>
             </a>
             <Link href="/broker-onboard">

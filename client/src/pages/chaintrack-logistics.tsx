@@ -222,7 +222,7 @@ export default function ChainTrackLogistics() {
         "url": "https://logistics.chaintrack.com",
         "parentOrganization": { "name": "DeliWer", "url": "https://www.deliwer.com" },
         "description": "ChainTrack Logistics is a digital-first, asset-light freight coordination platform operating the Dubai–Gawadar air charter corridor and multimodal INSTC/CPEC routes connecting the Middle East, South Asia, Central Asia and CIS markets. No physical office required. Remote freight brokers earn 5% commission on every shipment.",
-        "telephone": "+971523906019",
+        "telephone": "+971523946311",
         "email": "logistics@chaintrack.com",
         "areaServed": [
           { "@type": "Country", "name": "United Arab Emirates" },

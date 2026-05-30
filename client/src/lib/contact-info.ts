@@ -2,7 +2,7 @@ export const contactInfo = {
   company: {
     email: "info@deliwer.com",
     service: "support@deliwer.com",
-    phone: "+971 52 390 6019",
+    phone: "+971 52 394 6311",
     whatsapp: "971523906019",
     whatsappSecondary: "971523946311",
     phoneSecondary: "+971 52 394 6311",
@@ -23,8 +23,8 @@ export const contactInfo = {
       name: "Hassan Jawad",
       title: "Founder",
       email: "formatix@deliwer.com",
-      phone: "+971 52 390 6019",
-      whatsapp: "+971 52 390 6019",
+      phone: "+971 52 394 6311",
+      whatsapp: "+971 52 394 6311",
       whatsappLink: "971523906019",
       linkedin: "https://linkedin.com/in/formatix"
     },

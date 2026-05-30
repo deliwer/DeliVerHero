@@ -21,7 +21,7 @@ import { SiWhatsapp, SiTelegram } from "react-icons/si";
 
 const WHATSAPP_URL = "https://wa.me/971523906019?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai";
 const TELEGRAM_URL = "https://t.me/chaintrack_sourcing";
-const BOTIM_NUMBER = "tel:+971523906019";
+const BOTIM_NUMBER = "tel:+971523946311";
 const ZOOM_URL = "mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20-%20ChainTrack%20Remote%20Sourcing%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20to%20inspect%20a%20sourcing%20lot.";
 const TEAMS_URL = "https://teams.microsoft.com/l/chat/0/0?users=formatix%40hotmail.com";
 
@@ -496,7 +496,7 @@ export default function ChainTrackSourcingPage() {
                   </Button>
                 </a>
               </div>
-              <p className="text-[11px] text-slate-600 mt-3">Remote inspection: <span className="text-slate-500">Zoom / Teams → formatix@hotmail.com</span> · Botim backup: <span className="text-slate-500">+971 52 390 6019</span></p>
+              <p className="text-[11px] text-slate-600 mt-3">Remote inspection: <span className="text-slate-500">Zoom / Teams → formatix@hotmail.com</span> · Botim backup: <span className="text-slate-500">+971 52 394 6311</span></p>
             </div>
           </FadeIn>
           {/* Page navigation row */}

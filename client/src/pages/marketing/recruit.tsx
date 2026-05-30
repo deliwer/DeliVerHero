@@ -1498,7 +1498,7 @@ We'll activate your referral link as soon as you confirm. 🔗
 Your referral link is being generated now. You'll receive it in the next message.
 
 In the meantime:
-• Save this number: +971 52 390 6019 (DeliWer Ops)
+• Save this number: +971 52 394 6311 (DeliWer Ops)
 • Mention DeliWer to every tenant signing a contract
 • Services we handle: Ejari, DEWA, movers, water filter
 

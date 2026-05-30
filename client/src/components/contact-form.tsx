@@ -282,7 +282,7 @@ export function ContactForm({ type = "general", prefilledSubject }: ContactFormP
               Need immediate assistance?
             </p>
             <div className="flex justify-center gap-4 text-sm">
-              <a href="tel:+971523906019" className="text-emerald-400 hover:text-emerald-300">📞 +971 52 390 6019</a>
+              <a href="tel:+971523946311" className="text-emerald-400 hover:text-emerald-300">📞 +971 52 394 6311</a>
               <a href="mailto:support@deliwer.com" className="text-blue-400 hover:text-blue-300">
                 ✉️ support@deliwer.com
               </a>

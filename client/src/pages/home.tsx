@@ -71,7 +71,7 @@ export default function Home() {
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+971523906019",
+            "telephone": "+971523946311",
             "contactType": "customer service",
             "areaServed": "AE",
             "availableLanguage": ["English"]

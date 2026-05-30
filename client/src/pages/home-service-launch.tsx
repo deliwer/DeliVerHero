@@ -348,7 +348,7 @@ export default function HomeServiceLaunch() {
                   className="flex items-center justify-center md:justify-start gap-3 text-lg font-medium text-primary hover:underline"
                 >
                   <SiWhatsapp className="w-6 h-6" />
-                  +971 52 390 6019
+                  +971 52 394 6311
                 </a>
                 <p className="text-muted-foreground text-lg">
                   Website: <a href="https://www.deliwer.com" className="hover:underline font-semibold">www.deliwer.com</a>

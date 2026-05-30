@@ -94,7 +94,7 @@ const SCHEMA_ORG = JSON.stringify({
       image: `${BASE_URL}/deliwer-og-image.png`,
       description:
         "DeliWer is Dubai's all-in-one move-in and relocation platform — handling Ejari registration through RERA-authorized Trustee Centers, DEWA activation, movers, professional cleaning, internet setup, water filtration, flexible monthly accommodation (rooms, shared villas, studios, bed spaces with no annual contract), Dubai business setup in Free Zones, and full relocation concierge for expats and entrepreneurs.",
-      telephone: "+971523906019",
+      telephone: "+971523946311",
       email: "info@deliwer.com",
       foundingDate: "2023",
       areaServed: [
@@ -111,7 +111,7 @@ const SCHEMA_ORG = JSON.stringify({
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+971523906019",
+          telephone: "+971523946311",
           contactType: "customer service",
           areaServed: "AE",
           availableLanguage: ["English", "Arabic"],

@@ -272,10 +272,10 @@ export default function Terms() {
                   className="bg-hero-green-500 hover:bg-hero-green-600 text-black px-6 py-3 rounded-lg font-medium transition-colors"
                 >admin@deliwer.com</a>
                 <a 
-                  href="tel:+971523906019"
+                  href="tel:+971523946311"
                   className="bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 >
-                  +971 52 390 6019
+                  +971 52 394 6311
                 </a>
               </div>
               

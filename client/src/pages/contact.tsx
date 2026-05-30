@@ -15,7 +15,7 @@ const CHANNELS = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    handle: "+971 52 390 6019",
+    handle: "+971 52 394 6311",
     href: "https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20need%20help%20with%20my%20move.",
     color: "emerald",
     bgClass: "bg-emerald-500 hover:bg-emerald-400",
@@ -78,8 +78,8 @@ const CHANNELS = [
   {
     id: "botim",
     name: "Botim",
-    handle: "+971 52 390 6019",
-    href: "tel:+971523906019",
+    handle: "+971 52 394 6311",
+    href: "tel:+971523946311",
     color: "purple",
     bgClass: "bg-purple-700 hover:bg-purple-600",
     textClass: "text-white",
@@ -239,7 +239,7 @@ export default function ContactPage() {
               { q: "I want to inspect a ChainTrack lot remotely", a: "Zoom or Teams (book via email)", color: "text-blue-300" },
               { q: "I'm a corporate buyer / enterprise client", a: "Microsoft Teams", color: "text-indigo-300" },
               { q: "I want ChainTrack lot alerts automatically", a: "Join @chaintracklogistics on Telegram", color: "text-sky-300" },
-              { q: "I can't reach WhatsApp or Telegram at all", a: "Call / Botim +971 52 390 6019", color: "text-purple-300" },
+              { q: "I can't reach WhatsApp or Telegram at all", a: "Call / Botim +971 52 394 6311", color: "text-purple-300" },
               { q: "I prefer email / formal written inquiry", a: "Zoom or Teams (formatix@hotmail.com)", color: "text-blue-300" },
             ].map(({ q, a, color }) => (
               <div key={q} className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-4">

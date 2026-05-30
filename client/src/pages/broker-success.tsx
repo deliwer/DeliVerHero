@@ -96,7 +96,7 @@ export default function BrokerSuccessPage() {
             rel="noopener noreferrer"
             className="text-purple-400 underline underline-offset-2"
           >
-            +971 52 390 6019
+            +971 52 394 6311
           </a>
         </p>
       </div>

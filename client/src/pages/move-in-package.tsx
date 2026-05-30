@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { TrustStrip } from "@/components/trust-strip";
 import { SEOMeta } from "@/components/seo-meta";
 
-const WHATSAPP_NUMBER = "+971523906019";
+const WHATSAPP_NUMBER = "+971523946311";
 const getWhatsAppLink = (service: string) => {
   const text = `Hi, I'm interested in the Move-In Package regarding: ${service}`;
   return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`;
@@ -175,7 +175,7 @@ export default function MoveInPackagePage() {
             </Button>
           </Link>
           <div className="pt-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
-            WhatsApp Contact: +971 52 390 6019
+            WhatsApp Contact: +971 52 394 6311
           </div>
         </div>
       </section>

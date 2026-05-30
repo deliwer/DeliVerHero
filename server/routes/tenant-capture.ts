@@ -122,7 +122,7 @@ async function seedSampleReferrer() {
     if (existing.length === 0) {
       await db.insert(tenantReferrers).values({
         name: "DeliWer Demo (Building Guard)",
-        whatsapp: "+971523906019",
+        whatsapp: "+971523946311",
         refId: "DEMO01",
       });
       console.log("[tenant-capture] Sample referrer seeded: DEMO01");
