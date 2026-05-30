@@ -27,7 +27,7 @@ import maintenanceCardBg from "@/assets/images/maintenance-card-bg.jpg";
 import conciergeCardBg from "@/assets/images/concierge-card-bg.jpg";
 import { Navigation } from "@/components/navigation";
 
-const WHATSAPP_NUMBER = "+971523946311";
+const WHATSAPP_NUMBER = "+971523906019";
 
 export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);
@@ -127,7 +127,7 @@ export default function Residents() {
                 </div>
                 <Button 
                   className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest py-6"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20help%20with%20my%20Ejari%20and%20move-in%20planning.', '_blank')}
+                  onClick={() => window.open('https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20need%20help%20with%20my%20Ejari%20and%20move-in%20planning.', '_blank')}
                 >
                   Start Ejari Setup
                 </Button>
@@ -153,7 +153,7 @@ export default function Residents() {
                 <Button 
                   variant="outline"
                   className="w-full border-emerald-500 text-emerald-500 hover:bg-emerald-500/10 font-black uppercase tracking-widest py-6"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20support%20with%20my%20apartment%20handover.', '_blank')}
+                  onClick={() => window.open('https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20need%20support%20with%20my%20apartment%20handover.', '_blank')}
                 >
                   Book Handover
                 </Button>
@@ -180,7 +180,7 @@ export default function Residents() {
                 </div>
                 <Button 
                   className="w-full bg-slate-950 hover:bg-slate-900 text-white font-black uppercase tracking-widest py-6"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20want%20to%20book%20a%20Home%20Activation%20visit.', '_blank')}
+                  onClick={() => window.open('https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20want%20to%20book%20a%20Home%20Activation%20visit.', '_blank')}
                 >
                   Activate My Home
                 </Button>
@@ -226,7 +226,7 @@ export default function Residents() {
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Deep AC servicing, gas refill, full duct cleaning, extra hardware beyond listed scope</p>
               </div>
               <Button 
-                onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) and water setup.")}`, '_blank')}
+                onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer, I want to book the Move-In Activation (AED 399) and water setup.")}`, '_blank')}
                 className="w-full h-20 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest rounded-3xl shadow-2xl shadow-blue-900/40 text-xl"
               >
                 Book Move-In Activation

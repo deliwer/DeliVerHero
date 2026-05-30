@@ -34,13 +34,13 @@ export default function Home() {
     const text = serviceName 
       ? `Hi DeliWer, I just signed a lease in Dubai and need move-in support for ${serviceName}`
       : "Hi DeliWer, I just signed a lease in Dubai and need move-in support";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   const handleBundleWhatsApp = () => {
     const size = BUNDLE_SIZES.find(s => s.key === selectedSize) ?? BUNDLE_SIZES[1];
     const text = `Hi DeliWer, I just signed a lease in Dubai and I'd like to book the Starter Move-In Bundle for a ${size.rooms} apartment. Estimated vendor cost: AED ${size.cost.toLocaleString()}. Please coordinate.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -71,7 +71,7 @@ export default function Home() {
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+971523946311",
+            "telephone": "+971523906019",
             "contactType": "customer service",
             "areaServed": "AE",
             "availableLanguage": ["English"]
@@ -711,7 +711,7 @@ export default function Home() {
             <img src="/deliwer-logo.png" alt="DeliWer Logo" className="h-12 w-auto brightness-110" />
           </div>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-            <a href="https://wa.me/971523946311" className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:underline">WhatsApp Support</a>
+            <a href="https://wa.me/971523906019" className="text-emerald-400 font-black uppercase tracking-widest text-sm hover:underline">WhatsApp Support</a>
             <a href="mailto:service@deliwer.com" className="text-gray-400 font-bold hover:text-white">service@deliwer.com</a>
             <span className="text-gray-600 text-sm font-bold uppercase tracking-tight">Dubai, United Arab Emirates</span>
           </div>

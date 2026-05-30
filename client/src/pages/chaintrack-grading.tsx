@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 
-const WHATSAPP_URL = "https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20learn%20about%20ChainTrack%20certified%20grading";
+const WHATSAPP_URL = "https://wa.me/971523906019?text=Hi%2C%20I%20want%20to%20learn%20about%20ChainTrack%20certified%20grading";
 const TELEGRAM_URL = "https://t.me/chaintracklogistics";
 const BOTIM_NUMBER = "+971523906019";
 const ZOOM_URL = "mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20-%20ChainTrack%20Remote%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20for%20a%20remote%20lot%20inspection.";

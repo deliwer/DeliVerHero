@@ -75,7 +75,7 @@ export default function Residence() {
               size="lg" 
               variant="outline" 
               className="border-white/40 text-white backdrop-blur-md bg-white/10 px-12 h-20 text-xl font-black rounded-full hover:bg-white/20"
-              onClick={() => window.open('https://wa.me/971523946311?text=Hi, I need help with residence services in Dubai.', '_blank')}
+              onClick={() => window.open('https://wa.me/971523906019?text=Hi, I need help with residence services in Dubai.', '_blank')}
             >
               <MessageCircle className="w-8 h-8 mr-3" />
               WhatsApp Us
@@ -160,7 +160,7 @@ export default function Residence() {
           <Button 
             size="lg" 
             className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-full px-16 h-20 text-2xl shadow-2xl transition-all hover:scale-105"
-            onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am a JVC resident and I want to claim the move-in offer.', '_blank')}
+            onClick={() => window.open('https://wa.me/971523906019?text=Hi, I am a JVC resident and I want to claim the move-in offer.', '_blank')}
           >
             <MessageCircle className="w-10 h-10 mr-4 animate-bounce" />
             Claim on WhatsApp
@@ -210,7 +210,7 @@ export default function Residence() {
           <div className="flex flex-wrap justify-center gap-6">
             <Button 
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black px-12 h-20 text-xl rounded-full shadow-2xl transition-all hover:scale-105"
-              onClick={() => window.open('https://wa.me/971523946311?text=Hi, I am ready to start my residence journey.', '_blank')}
+              onClick={() => window.open('https://wa.me/971523906019?text=Hi, I am ready to start my residence journey.', '_blank')}
             >
               <MessageCircle className="w-8 h-8 mr-3" />
               WhatsApp Us

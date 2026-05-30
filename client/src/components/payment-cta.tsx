@@ -3,7 +3,7 @@ import { Building2, MessageCircle, CreditCard, ExternalLink } from "lucide-react
 
 const PAYPAL_EMAIL = "formatix@deliwer.com";
 const PAYPAL_LINK = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(PAYPAL_EMAIL)}&currency_code=AED&item_name=DeliWer+Services`;
-const WHATSAPP_LINK = "https://wa.me/971523946311";
+const WHATSAPP_LINK = "https://wa.me/971523906019";
 
 interface PaymentCTAProps {
   variant?: "banner" | "card" | "inline" | "footer";

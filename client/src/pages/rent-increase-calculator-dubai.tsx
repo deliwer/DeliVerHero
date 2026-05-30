@@ -58,7 +58,7 @@ export default function RentIncreaseCalculatorDubai() {
 
   const handleWhatsApp = () => {
     const msg = `Hi DeliWer — I used the Rent Increase Calculator.\nArea: ${area} | Apartment: ${aptType}\nCurrent rent: AED ${current.toLocaleString()}/yr\nEstimated market: AED ${marketEst.toLocaleString()}/yr\nRera cap: ${cap.label}\nI'd like to explore moving instead.`;
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent(msg), "_blank");
   };
 
   return (

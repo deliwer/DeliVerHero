@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet";
 import heroPhoneImg from "@assets/Hero_iPhone_1755786821791.avif";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_BASE = `https://wa.me/${WA_NUMBER}`;
 
 const fadeUp = {
@@ -419,7 +419,7 @@ export default function CisElectronicsPage() {
             <a href={WA_BASE} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
                 <MessageSquare className="w-5 h-5" />
-                WhatsApp: +971 52 394 6311
+                WhatsApp: +971 52 390 6019
               </Button>
             </a>
             <Link href="/broker-onboard">

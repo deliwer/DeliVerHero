@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 import membershipCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755482696304.png";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_STARTER = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit. Can you help me get started?")}`;
 const buildWAPlan = (name: string, price: number) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${name} (AED ${price.toLocaleString()}). Please share more details!`)}`;
@@ -460,7 +460,7 @@ export function AquaCafeTab() {
               ORDER - AED 99
             </a>
             <a 
-              href="https://wa.me/971523946311"
+              href="https://wa.me/971523906019"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center border-2 border-hero-green-500 text-hero-green-500 hover:bg-hero-green-500 hover:text-white px-8 sm:px-12 py-3 sm:py-4 rounded-xl font-bold text-lg sm:text-xl transition-all"

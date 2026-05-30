@@ -23,7 +23,7 @@ function FadeUp({ children, delay = 0, className = "" }: {
   );
 }
 
-const WA = "https://wa.me/971523946311?text=Air%20Charter%20freight%20enquiry%20via%20ChainTrack";
+const WA = "https://wa.me/971523906019?text=Air%20Charter%20freight%20enquiry%20via%20ChainTrack";
 
 export default function AirCharterPage() {
   return (

@@ -4,21 +4,27 @@
   <!--
     DeliWer Sitemap Index
     https://www.deliwer.com/sitemap.xml
-    Last updated: 2026-05-23
+    Last updated: 2026-05-30
 
-    Two audience-separated child sitemaps:
+    Three audience-separated child sitemaps:
     1. sitemap-consumer.xml — tenants, expats, residents (B2C)
-    2. sitemap-broker.xml  — RERA brokers, partners, B2B (ChainTrack Logistics & Electronics)
+    2. sitemap-broker.xml  — RERA brokers, partners, B2B
+    3. sitemap-chaintrack.xml — ChainTrack Logistics & Electronics Marketplace
   -->
 
   <sitemap>
     <loc>https://www.deliwer.com/sitemap-consumer.xml</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-30</lastmod>
   </sitemap>
 
   <sitemap>
     <loc>https://www.deliwer.com/sitemap-broker.xml</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-30</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://www.deliwer.com/sitemap-chaintrack.xml</loc>
+    <lastmod>2026-05-30</lastmod>
   </sitemap>
 
 </sitemapindex>

@@ -13,7 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { captureReferral, buildWhatsAppMessage, openWhatsApp } from "@/lib/referral";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 function getParam(name: string): string {
   if (typeof window === "undefined") return "";

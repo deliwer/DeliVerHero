@@ -614,14 +614,14 @@ export default function ErrandPage() {
                 </div>
                 <div className="space-y-2">
                   <a 
-                    href="https://wa.me/971523946311" 
+                    href="https://wa.me/971523906019" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors"
                     data-testid="link-whatsapp-hassan-1"
                   >
                     <Phone className="w-4 h-4" />
-                    +971 52 394 6311
+                    +971 52 390 6019
                   </a>
                   <a 
                     href="https://wa.me/971523906019" 
@@ -772,7 +772,7 @@ export default function ErrandPage() {
             <p className="text-xs text-muted-foreground mb-3">Prefer to chat first?</p>
             <div className="flex justify-center gap-3">
               <a 
-                href="https://wa.me/971523946311" 
+                href="https://wa.me/971523906019" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-sm text-green-600 dark:text-green-400 hover:underline font-medium"

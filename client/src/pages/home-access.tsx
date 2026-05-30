@@ -50,7 +50,7 @@ import logoDIB from "@assets/bank-logos/dib.png";
 import logoENBD from "@assets/bank-logos/emirates-nbd.png";
 import logoHSBC from "@assets/bank-logos/hsbc.png";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 // ─── Mortgage Partners ───────────────────────────────────────────────────────
 const MORTGAGE_PARTNERS = [

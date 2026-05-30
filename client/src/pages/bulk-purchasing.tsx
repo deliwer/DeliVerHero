@@ -983,7 +983,7 @@ export default function BulkPurchasingPage() {
                 </Button>
               </Link>
               <a
-                href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20want%20to%20submit%20a%20bulk%20purchase%20request."
+                href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20want%20to%20submit%20a%20bulk%20purchase%20request."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1057,7 +1057,7 @@ export default function BulkPurchasingPage() {
             <p className="text-slate-400 mb-8 max-w-lg mx-auto">Join 200+ verified buyers sourcing from the world's best iPhone supply through ChainTrack.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20want%20to%20start%20buying%20iPhones%20in%20bulk."
+                href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20want%20to%20start%20buying%20iPhones%20in%20bulk."
                 target="_blank"
                 rel="noopener noreferrer"
               >

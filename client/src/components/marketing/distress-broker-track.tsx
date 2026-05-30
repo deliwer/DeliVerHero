@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { ArrowRight, Crown, TrendingDown, Lock, Sparkles } from "lucide-react";
 
 const WA_LINK =
-  "https://wa.me/971523946311?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20distress%20inventory%20through%20DeliWer.%20Please%20share%20details.";
+  "https://wa.me/971523906019?text=Hi%2C%20I%E2%80%99m%20a%20Dubai%20broker.%20Interested%20in%20accessing%20below-market%20DAMAC%20distress%20inventory%20through%20DeliWer.%20Please%20share%20details.";
 
 export function DistressBrokerTrack({
   variant = "dark",

@@ -196,7 +196,7 @@ export default function Capture() {
   }, [step, resetTimer]);
 
   // ── Abandon WhatsApp URL (no form data required) ────────────────────────────
-  const abandonWaUrl = `https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help setting up my new home in Dubai. Can you assist?")}`;
+  const abandonWaUrl = `https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer, I need help setting up my new home in Dubai. Can you assist?")}`;
 
   const submitMutation = useMutation({
     mutationFn: (body: any) => apiRequest("POST", "/api/tenant-capture/leads", body),

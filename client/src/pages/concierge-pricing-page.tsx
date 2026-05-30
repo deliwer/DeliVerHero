@@ -42,7 +42,7 @@ export default function ConciergePricingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
             <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20discuss%20which%20package%20suits%20my%20situation."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20want%20to%20discuss%20which%20package%20suits%20my%20situation."
               target="_blank"
               rel="noopener noreferrer"
             >

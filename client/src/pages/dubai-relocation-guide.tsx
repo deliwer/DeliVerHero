@@ -66,7 +66,7 @@ const FAQS = [
   { q: "What areas does DeliWer cover?", a: "DeliWer covers all 55+ Dubai areas including: JVC, Dubai Marina, Business Bay, Downtown Dubai, Al Barsha, Deira, Bur Dubai, JLT, International City, Discovery Gardens, Jumeirah, Al Nahda, Al Furjan, Mirdif, Dubai Silicon Oasis, Palm Jumeirah, Dubai Hills Estate, Arabian Ranches, DAMAC Hills, Motor City, Sports City, Al Quoz, Al Wasl, Al Satwa, Karama, Jumeirah Beach Residence (JBR), DIFC, and more." },
   { q: "How do I leave Dubai (move out)?", a: "Key steps: (1) Give notice to landlord (30–90 days as per contract). (2) Cancel Ejari. (3) Final DEWA reading and security deposit return. (4) Professional move-out cleaning. (5) Cancel UAE services (bank, phone, etc.). (6) Return visa/Emirates ID. DeliWer's Move-Out Concierge coordinates steps 2–4 and can advise on the full exit checklist." },
   { q: "Is Dubai safe for expats?", a: "Dubai consistently ranks as one of the world's safest cities. UAE crime rate is among the lowest globally. Political stability, strong rule of law, and active policing contribute. The Numbeo Safety Index consistently places Dubai in the top 5–10 globally. For regional emergency preparedness, DeliWer's Emergency Exit planning service is available at deliwer.com/wartime-readiness." },
-  { q: "How do I travel to Dubai by private jet?", a: "DeliWer partners with 1FLT for private jet arrivals into Dubai (DXB, DWC, or Sharjah). The unique service: your Ejari, DEWA, and apartment move-in are coordinated to complete before you land, so you walk into a live home the same day. WhatsApp +971523946311 or visit deliwer.com/private-jet for same-day arrival packages." },
+  { q: "How do I travel to Dubai by private jet?", a: "DeliWer partners with 1FLT for private jet arrivals into Dubai (DXB, DWC, or Sharjah). The unique service: your Ejari, DEWA, and apartment move-in are coordinated to complete before you land, so you walk into a live home the same day. WhatsApp +971523906019 or visit deliwer.com/private-jet for same-day arrival packages." },
   { q: "What internet providers are available in Dubai?", a: "Dubai has two licensed internet providers: eand (formerly Etisalat) and du. Both offer fibre-to-home packages from AED 299/month. Home internet setup requires an Ejari certificate and Emirates ID. DeliWer can book the installation appointment and coordinate the signup process as part of the move-in package." },
   { q: "Can I bring my belongings to Dubai from abroad?", a: "Yes. Household goods can be shipped by sea (most cost-effective for full containers) or by air (faster, higher cost). Customs clearance requires your UAE residence visa and a packing list. DeliWer coordinates inbound relocation cargo for clients arriving from the UK, Pakistan, India, Russia, and other countries via its ChainTrack logistics network." },
 ];
@@ -82,7 +82,7 @@ const AREAS = [
   { a: "Al Nahda",               rent: "AED 3,000–6,000/mo",  vibe: "Affordable · Bustling", transport: "Metro" },
 ];
 
-const WA = "https://wa.me/971523946311?text=Dubai%20Relocation%20Enquiry";
+const WA = "https://wa.me/971523906019?text=Dubai%20Relocation%20Enquiry";
 
 const SCHEMA = {
   "@context": "https://schema.org",

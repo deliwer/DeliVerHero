@@ -13,7 +13,7 @@ import {
   getAreaBySlug, getOtherAreas,
 } from "@/data/move-in-areas";
 
-const WHATSAPP_NUMBER = "971523946311";
+const WHATSAPP_NUMBER = "971523906019";
 
 function buildWhatsAppLink(area: string, ref: string, source: string, propertyType?: string) {
   const propText = propertyType ? ` (${propertyType.toUpperCase()})` : "";

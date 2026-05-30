@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 
 export const BROKER_WA_LINK =
-  "https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker.%20Interested%20in%20your%20commission-only%20rental%20%2B%20distress-sale%20referral%20network%20across%20all%20major%20Dubai%20developers.";
+  "https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker.%20Interested%20in%20your%20commission-only%20rental%20%2B%20distress-sale%20referral%20network%20across%20all%20major%20Dubai%20developers.";
 
 export function BrokerAccessBanner({ compact = false }: { compact?: boolean }) {
   return (

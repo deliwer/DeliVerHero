@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function RelocationForFounders() {
   const handleWhatsApp = () => {
     const text = "Hi DeliWer, I'm a founder relocating to Dubai and need AquaCafe Move-In Welcome support.";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (

@@ -26,7 +26,7 @@ export default function Welcome() {
     ? `Hi DeliWer, I was referred by ${refName.toUpperCase()} for ${campaign.toUpperCase()} support.`
     : "Hi DeliWer, I'm interested in your services.";
     
-  const whatsappUrl = `https://wa.me/971523946311?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/971523906019?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">

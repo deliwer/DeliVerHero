@@ -50,7 +50,7 @@ export default function AreYouOverpayingRentDubai() {
 
   const handleWhatsApp = () => {
     const msg = `Hi DeliWer — I used the Overpayment Detector.\nArea: ${area} | Apartment: ${aptType} | Building: ${buildingType}\nMy current rent: AED ${current.toLocaleString()}/yr\nEstimated market average: AED ${marketEst.toLocaleString()}/yr\n${isOverpaying ? `I appear to be overpaying by AED ${diff.toLocaleString()}/yr.\n` : ""}Please help me plan a move to a better apartment.`;
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent(msg), "_blank");
   };
 
   return (

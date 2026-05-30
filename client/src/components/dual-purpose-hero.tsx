@@ -121,7 +121,7 @@ export function DualPurposeHero() {
             <Button
               variant="outline"
               className="w-full max-w-md border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 px-10 py-8 text-lg font-bold rounded-2xl backdrop-blur-md transition-all flex items-center justify-center gap-3"
-              onClick={() => window.open('https://wa.me/971523946311', '_blank')}
+              onClick={() => window.open('https://wa.me/971523906019', '_blank')}
               data-testid="button-whatsapp-ecosystem-cta"
             >
               <MessageCircle className="w-6 h-6" />

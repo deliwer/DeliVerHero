@@ -210,7 +210,7 @@ function ShipmentTracker() {
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function ChainTrackLogistics() {
-  const WA = "https://wa.me/971523946311?text=ChainTrack%20Logistics%20enquiry";
+  const WA = "https://wa.me/971523906019?text=ChainTrack%20Logistics%20enquiry";
 
   const SCHEMA = {
     "@context": "https://schema.org",
@@ -222,7 +222,7 @@ export default function ChainTrackLogistics() {
         "url": "https://logistics.chaintrack.com",
         "parentOrganization": { "name": "DeliWer", "url": "https://www.deliwer.com" },
         "description": "ChainTrack Logistics is a digital-first, asset-light freight coordination platform operating the Dubai–Gawadar air charter corridor and multimodal INSTC/CPEC routes connecting the Middle East, South Asia, Central Asia and CIS markets. No physical office required. Remote freight brokers earn 5% commission on every shipment.",
-        "telephone": "+971523946311",
+        "telephone": "+971523906019",
         "email": "logistics@chaintrack.com",
         "areaServed": [
           { "@type": "Country", "name": "United Arab Emirates" },
@@ -258,7 +258,7 @@ export default function ChainTrackLogistics() {
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "What is the Dubai to Gawadar air charter route?", "acceptedAnswer": { "@type": "Answer", "text": "ChainTrack Logistics operates dedicated air charter flights from Dubai World Central (DWC) to Gawadar CPEC Free Zone in Pakistan. The transit takes under 4 hours, bypasses the Strait of Hormuz entirely, and connects to the INSTC and CPEC corridors for onward delivery to Central Asia, China, and Russia." } },
-          { "@type": "Question", "name": "How do I become a ChainTrack freight broker?", "acceptedAnswer": { "@type": "Answer", "text": "Join free via WhatsApp at +971523946311. No logistics experience required. Send us a shipper enquiry and earn 5% gross commission on every confirmed shipment. Corridor Captains who build a sub-broker network earn an additional 1% override on all sub-broker shipments." } },
+          { "@type": "Question", "name": "How do I become a ChainTrack freight broker?", "acceptedAnswer": { "@type": "Answer", "text": "Join free via WhatsApp at +971523906019. No logistics experience required. Send us a shipper enquiry and earn 5% gross commission on every confirmed shipment. Corridor Captains who build a sub-broker network earn an additional 1% override on all sub-broker shipments." } },
           { "@type": "Question", "name": "What is the CPEC Free Zone advantage for cargo?", "acceptedAnswer": { "@type": "Answer", "text": "Cargo transiting through the Gawadar CPEC Free Zone benefits from zero re-export duty, expedited customs handling, and direct connectivity to the INSTC (International North–South Transport Corridor) and CPEC rail network to China. This eliminates cost disadvantages compared to Hormuz-routed sea freight." } },
           { "@type": "Question", "name": "Can I operate as a freight broker without being in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack Logistics is built as a fully remote, asset-light model. Brokers operate via WhatsApp from anywhere in the world — Tashkent, London, Toronto, or Karachi. You send us the shipper enquiry; we handle quoting, routing, customs, documentation, and delivery." } }
         ]
@@ -814,7 +814,7 @@ export default function ChainTrackLogistics() {
               <p className="text-xs font-black uppercase tracking-widest text-white/25 mb-5">How a broker closes their first shipment</p>
               <div className="grid sm:grid-cols-5 gap-4">
                 {[
-                  { step: "1", act: "Register",       desc: "WhatsApp +971523946311. Free. 2 minutes." },
+                  { step: "1", act: "Register",       desc: "WhatsApp +971523906019. Free. 2 minutes." },
                   { step: "2", act: "Find a shipper", desc: "Anyone moving cargo from/to our corridors." },
                   { step: "3", act: "Send enquiry",   desc: "Origin, destination, weight, cargo type. That's all." },
                   { step: "4", act: "We close it",    desc: "ChainTrack quotes, routes, clears customs, delivers." },

@@ -150,7 +150,7 @@ export default function BusinessSetup() {
           canonical="https://www.deliwer.com/business-setup"
           keywords="Business Setup Dubai, Dubai company formation, Free Zone Dubai, DAFZA company setup, Dubai South free zone, mainland trade license Dubai, PRO services Dubai, Golden Visa Dubai, visa assistance Dubai, company registration Dubai, DeliWer business setup"
           faqs={[
-            { question: "How do I set up a company in Dubai?", answer: "To set up a company in Dubai you choose between a Free Zone license (DAFZA, Dubai South, Commercity, etc.) or a mainland trade license. DeliWer guides you through selecting the right structure, prepares the documents, and coordinates with the relevant authorities. WhatsApp +971523946311 to start." },
+            { question: "How do I set up a company in Dubai?", answer: "To set up a company in Dubai you choose between a Free Zone license (DAFZA, Dubai South, Commercity, etc.) or a mainland trade license. DeliWer guides you through selecting the right structure, prepares the documents, and coordinates with the relevant authorities. WhatsApp +971523906019 to start." },
             { question: "What is the difference between Free Zone and mainland in Dubai?", answer: "A Dubai Free Zone company is 100% foreign-owned and ideal for international business, but restricted from trading directly within the UAE market. A mainland company can trade anywhere in the UAE but requires a local service agent or partner for some license types. DeliWer helps you choose the right structure." },
             { question: "How long does Dubai business setup take?", answer: "Free Zone company formation in Dubai can take 3–7 business days with correct documents. Mainland licenses typically take 5–14 business days. DeliWer fast-tracks the process by coordinating all filings and follow-ups." },
             { question: "Can I get a UAE Golden Visa through business setup?", answer: "Yes. Qualifying business owners and investors in Dubai can apply for a 5–10 year UAE Golden (Investor) Visa. DeliWer can coordinate both the company setup and the Golden Visa application simultaneously." }
@@ -247,7 +247,7 @@ export default function BusinessSetup() {
                       Learn About Virtual Ejari →
                     </Button>
                   </Link>
-                  <a href="https://wa.me/971523946311?text=Hello%20DeliWer%20%F0%9F%91%8B%0A%0AI%20need%20a%20Virtual%20Ejari%20for%20my%20commercial%20license.%0A%0ALicense%20type%20%2F%20authority%3A%0ACompany%20name%3A" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/971523906019?text=Hello%20DeliWer%20%F0%9F%91%8B%0A%0AI%20need%20a%20Virtual%20Ejari%20for%20my%20commercial%20license.%0A%0ALicense%20type%20%2F%20authority%3A%0ACompany%20name%3A" target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 flex items-center gap-2">
                       WhatsApp for Quick Quote
                     </Button>

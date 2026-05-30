@@ -16,7 +16,7 @@ import { TrustStrip } from "@/components/trust-strip";
 import { ConciergePricing } from "@/components/concierge-pricing";
 import homeConciergeBg from "@/assets/images/home-concierge-bg.jpg";
 
-const WHATSAPP_NUMBER = "971523946311";
+const WHATSAPP_NUMBER = "971523906019";
 
 export default function ResidentSupportConcierge() {
   const handleWhatsApp = (context: string) => {

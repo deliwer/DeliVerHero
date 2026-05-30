@@ -38,7 +38,7 @@ export function BuildingSEOBlock({ building, community, ref: refCode }: Building
         </div>
 
         <div className="flex flex-col sm:flex-row gap-2">
-          <a href={`https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%27m%20moving%20to%20${encodeURIComponent(building)}%20and%20need%20move-in%20support`} target="_blank" rel="noopener noreferrer">
+          <a href={`https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27m%20moving%20to%20${encodeURIComponent(building)}%20and%20need%20move-in%20support`} target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold h-10">
               <MessageSquare className="w-4 h-4 mr-2" />
               Book on WhatsApp

@@ -22,7 +22,7 @@ import { buildWhatsAppMessage, openWhatsApp, getReferral } from "@/lib/referral"
 import { trackFunnel } from "@/lib/funnel-track";
 import heroPartnersImg from "@assets/generated_images/diverse_business_team_in_dubai_office_meeting.png";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 // ─────────────────────────────────────────────
 // Sub-navigation
@@ -1338,7 +1338,7 @@ export default function PartnersPage() {
                     <a href={sidebarWaUrl} target="_blank" rel="noopener noreferrer" data-testid="link-sidebar-whatsapp-direct" onClick={() => trackFunnel("sidebar_wa_direct", { page: "/partners", track: selectedTrack })}>
                       <Button data-testid="button-whatsapp-direct" className="bg-green-600 hover:bg-green-500 font-black w-full h-11 rounded-xl">
                         <MessageCircle className="w-4 h-4 mr-2" />
-                        {selectedTrack ? `WhatsApp — Join ${selectedTrack === "real-estate" ? "Real Estate" : selectedTrack === "home-services" ? "Home Services" : "Phone Flipper"} Track` : "WhatsApp: +971 52 394 6311"}
+                        {selectedTrack ? `WhatsApp — Join ${selectedTrack === "real-estate" ? "Real Estate" : selectedTrack === "home-services" ? "Home Services" : "Phone Flipper"} Track` : "WhatsApp: +971 52 390 6019"}
                       </Button>
                     </a>
                   );

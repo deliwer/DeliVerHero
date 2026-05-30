@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import aquacafeLogo from "@assets/AquaCafe_Logo_1756289482990.png";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const buildWAUrl = (planName: string, price: number) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${planName} (AED ${price.toLocaleString()}). Please share more details!`)}`;
 

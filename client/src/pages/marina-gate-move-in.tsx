@@ -26,7 +26,7 @@ export default function MarinaGateMoveIn() {
     const referralData = localStorage.getItem("deliwer_ref");
     const referral = referralData ? JSON.parse(referralData) : {};
     const message = `Hello DeliWer,\n\nI'm moving into Marina Gate and need move-in activation.\n\nReferral Partner: ${referral.partner || 'Direct'}\n\nPlease assist me.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

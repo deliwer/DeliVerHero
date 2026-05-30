@@ -10,7 +10,7 @@ import {
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 function openWA(msg: string) {
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
@@ -369,12 +369,12 @@ export default function VirtualEjariPage() {
                 <MessageCircle className="w-4 h-4" /> Start on WhatsApp →
               </button>
               <a
-                href="https://wa.me/971523946311"
+                href="https://wa.me/971523906019"
                 target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 border border-white/10 hover:border-white/20 text-gray-400 hover:text-white font-semibold px-7 py-3.5 rounded-2xl transition-all text-sm">
                 Chat with an advisor
               </a>
-              <p className="text-center text-gray-700 text-xs mt-1">+971 52 394 6311 · info@deliwer.com</p>
+              <p className="text-center text-gray-700 text-xs mt-1">+971 52 390 6019 · info@deliwer.com</p>
             </div>
           </div>
         </motion.div>

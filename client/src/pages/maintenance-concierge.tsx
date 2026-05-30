@@ -12,7 +12,7 @@ import { TrustStrip } from "@/components/trust-strip";
 import { ConciergePricing } from "@/components/concierge-pricing";
 import maintenanceHero from "@/assets/images/maintenance-hero.jpg";
 
-const WHATSAPP_NUMBER = "971523946311";
+const WHATSAPP_NUMBER = "971523906019";
 
 export default function MaintenanceConcierge() {
   const handleWhatsApp = (issue: string) => {

@@ -21,7 +21,7 @@ import {
   Gift,
 } from "lucide-react";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 // ── Referral code helpers ──────────────────────────────────────────────────
 const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

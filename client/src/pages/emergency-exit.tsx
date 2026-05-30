@@ -92,7 +92,7 @@ const EMERGENCY_NUMBERS = [
   { label: "Dubai Airport Ops", number: "+971 4 224 5555", icon: Plane, color: "text-blue-400" },
   { label: "Dubai Port Authority", number: "+971 4 881 5454", icon: Anchor, color: "text-cyan-400" },
   { label: "UAE IVR Helpline", number: "800 4673", icon: Phone, color: "text-emerald-400" },
-  { label: "WhatsApp DeliWer Emergency", number: "+971523946311", icon: Phone, color: "text-green-400" },
+  { label: "WhatsApp DeliWer Emergency", number: "+971523906019", icon: Phone, color: "text-green-400" },
 ];
 
 const CHECKLIST_HOURS = [

@@ -16,7 +16,7 @@ import { Navigation } from "@/components/navigation";
 import { PartnerStrip } from "@/components/trust-strip";
 
 export default function ActivatePage() {
-  const WHATSAPP_LINK = "https://wa.me/971523946311?text=Hi,%20I%20just%20signed%20a%20lease%20and%20want%20my%20apartment%20activated.";
+  const WHATSAPP_LINK = "https://wa.me/971523906019?text=Hi,%20I%20just%20signed%20a%20lease%20and%20want%20my%20apartment%20activated.";
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/40">

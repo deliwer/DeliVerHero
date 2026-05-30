@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export default function CampaignDeBacciPage() {
-  const WHATSAPP_NUMBER = "+971523946311";
+  const WHATSAPP_NUMBER = "+971523906019";
   const REF_CODE = "DEBACCI20";
   
   // Targeted WhatsApp messages for different scenarios

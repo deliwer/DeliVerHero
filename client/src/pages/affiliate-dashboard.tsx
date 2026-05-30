@@ -120,7 +120,7 @@ export default function AffiliateDashboard() {
                 </Button>
               </div>
               <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-                Don't have a code? <a href="https://wa.me/971523946311?text=Hi+DeliWer%2C+I%27d+like+to+join+the+affiliate+program" target="_blank" rel="noreferrer" className="text-emerald-500 hover:underline">Join the program on WhatsApp</a>
+                Don't have a code? <a href="https://wa.me/971523906019?text=Hi+DeliWer%2C+I%27d+like+to+join+the+affiliate+program" target="_blank" rel="noreferrer" className="text-emerald-500 hover:underline">Join the program on WhatsApp</a>
               </p>
             </CardContent>
           </Card>
@@ -194,7 +194,7 @@ export default function AffiliateDashboard() {
                     <Clock className="w-8 h-8 text-gray-600 mx-auto" />
                     <p className="text-gray-500 font-black uppercase text-sm tracking-tight">No leads yet — share your referral link to start earning.</p>
                     <Button
-                      onClick={() => window.open(`https://wa.me/971523946311?text=Hi+DeliWer%2C+I+want+to+share+my+referral+link+${data.referralLink}`, '_blank')}
+                      onClick={() => window.open(`https://wa.me/971523906019?text=Hi+DeliWer%2C+I+want+to+share+my+referral+link+${data.referralLink}`, '_blank')}
                       className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-10 px-5 uppercase tracking-widest text-xs"
                     >
                       <MessageSquare className="w-4 h-4 mr-2" /> Share via WhatsApp

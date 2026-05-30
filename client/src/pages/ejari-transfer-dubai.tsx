@@ -81,7 +81,7 @@ export default function EjariTransferDubaiPage() {
             <Button data-testid="button-ejari-transfer-funnel" size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl px-10 h-14 text-lg" onClick={() => setFunnelOpen(true)}>
               Start My Ejari Transfer
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hello, I need help with Ejari transfer when moving apartments in Dubai."), "_blank")}>
+            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hello, I need help with Ejari transfer when moving apartments in Dubai."), "_blank")}>
               <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
             </Button>
           </div>

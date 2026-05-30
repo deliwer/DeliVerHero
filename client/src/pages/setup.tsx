@@ -11,7 +11,7 @@ import { SiWhatsapp } from "react-icons/si";
 import heroBg from "@assets/stock_images/dubai_skyline_modern_806b4a5e.jpg";
 import dubaiCorpBg from "@assets/stock_images/dubai_business_corpo_60a4c0bf.jpg";
 
-const WHATSAPP = "https://wa.me/971523946311?text=Business%20Setup%20%26%20Visa%20enquiry%20%E2%80%93%20I%27d%20like%20to%20learn%20more";
+const WHATSAPP = "https://wa.me/971523906019?text=Business%20Setup%20%26%20Visa%20enquiry%20%E2%80%93%20I%27d%20like%20to%20learn%20more";
 
 const freezones = [
   {

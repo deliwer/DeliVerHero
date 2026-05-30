@@ -76,7 +76,7 @@ export default function FindAPlace() {
             className="bg-green-600 hover:bg-green-500 text-white font-bold px-8 py-6 rounded-xl"
             onClick={() => {
               const message = encodeURIComponent("Hi DeliWer, I need help with residence in Dubai.\nI’ve submitted the form and would like guidance.");
-              window.open(`https://wa.me/971523946311?text=${message}`, "_blank");
+              window.open(`https://wa.me/971523906019?text=${message}`, "_blank");
             }}
           >
             <MessageCircle className="w-5 h-5 mr-2" />

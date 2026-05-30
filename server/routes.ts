@@ -183,7 +183,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Initialize founders
   await storage.initializeFounders([
-    { name: "Hassan Jawad", phone: "971523946311" },
+    { name: "Hassan Jawad", phone: "971523906019" },
     { name: "Rubab Hassan", phone: "971567148381" }
   ]);
 
@@ -270,7 +270,7 @@ Source: Website Concierge Page
               },
               body: JSON.stringify({
                 messaging_product: "whatsapp",
-                to: process.env.ALERT_PHONE || "971523946311",
+                to: process.env.ALERT_PHONE || "971523906019",
                 type: "text",
                 text: { body: leadMessage },
               }),
@@ -424,7 +424,7 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
       if (!openai) {
         return res.json({
           reply: "Our sourcing team is ready to assist you. Let me connect you directly via WhatsApp for fastest response.",
-          cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523946311?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai" },
+          cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523906019?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai" },
         });
       }
 
@@ -449,13 +449,13 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
 
       // Add WhatsApp CTA if reply contains keywords suggesting readiness
       const shouldAddCTA = /whatsapp|ready|contact|apply|join|membership|source now/i.test(reply);
-      const cta = shouldAddCTA ? { label: "Continue on WhatsApp →", href: "https://wa.me/971523946311?text=Hi%2C%20ChainTrack%20AI%20Agent%20sent%20me" } : undefined;
+      const cta = shouldAddCTA ? { label: "Continue on WhatsApp →", href: "https://wa.me/971523906019?text=Hi%2C%20ChainTrack%20AI%20Agent%20sent%20me" } : undefined;
 
       return res.json({ reply, options, cta });
     } catch (err) {
       return res.json({
         reply: "Let me connect you with our sourcing team directly.",
-        cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523946311" },
+        cta: { label: "Chat on WhatsApp →", href: "https://wa.me/971523906019" },
       });
     }
   });
@@ -1029,7 +1029,7 @@ Reply DONE when completed.`;
     const { from, text } = req.body;
     
     // Production-ready setup for DeliWer WhatsApp-first conversion flow
-    // WhatsApp Business Number: +971523946311
+    // WhatsApp Business Number: +971523906019
     
     const response = {
       to: from,
@@ -2604,7 +2604,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
 
       <p style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 8px;">Questions? Reach us directly:</p>
       <p style="color:#374151;font-size:15px;margin:0;">
-        WhatsApp: <a href="https://wa.me/971523946311" style="color:#10b981;font-weight:700;">+971 52 394 6311</a>
+        WhatsApp: <a href="https://wa.me/971523906019" style="color:#10b981;font-weight:700;">+971 52 390 6019</a>
       </p>
 
       <p style="color:#9ca3af;font-size:13px;margin:32px 0 0;">— DeliWer Partnerships Team</p>

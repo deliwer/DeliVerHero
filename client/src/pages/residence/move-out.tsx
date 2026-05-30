@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import moveOutHero from "@/assets/images/move-out-hero.jpg";
 
 export default function MoveOutSubpage() {
-  const WHATSAPP_NUMBER = "+971523946311";
+  const WHATSAPP_NUMBER = "+971523906019";
   
   const getWhatsAppLink = (service: string) => {
     const text = `Hi, I’m planning a move-out and want to book a Smooth Exit assessment.`;

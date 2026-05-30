@@ -456,7 +456,7 @@ export default function PartnerDashboard() {
                 </Link>
                 <Button size="lg" variant="outline"
                   className="border-slate-600 text-gray-300 hover:bg-slate-800 font-black rounded-xl h-12 px-8"
-                  onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi DeliWer, I have a question about my partner dashboard."), "_blank")}
+                  onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi DeliWer, I have a question about my partner dashboard."), "_blank")}
                   data-testid="button-dashboard-whatsapp">
                   <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Support
                 </Button>

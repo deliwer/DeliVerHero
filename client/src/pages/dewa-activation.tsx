@@ -26,7 +26,7 @@ export default function DewaActivation() {
     const referralData = localStorage.getItem("deliwer_ref");
     const referral = referralData ? JSON.parse(referralData) : {};
     const message = `Hello DeliWer,\n\nI need help with DEWA activation.\n\nReferral Partner: ${referral.partner || 'Direct'}\n\nPlease assist me.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -37,7 +37,7 @@ export default function DewaActivation() {
         canonical="https://www.deliwer.com/dewa-activation"
         keywords="DEWA Activation Dubai, DEWA electricity setup Dubai, DEWA connection Dubai, DEWA meter Dubai, DEWA registration new tenant, DEWA move-in Dubai, electricity activation Dubai, DEWA AED deposit, DeliWer DEWA"
         faqs={[
-          { question: "How do I activate DEWA for a new apartment in Dubai?", answer: "To activate DEWA (Dubai Electricity and Water Authority) for a new apartment, you need a valid Ejari certificate, Emirates ID, and the property details. DeliWer handles the full DEWA activation process on your behalf — WhatsApp +971523946311 to start." },
+          { question: "How do I activate DEWA for a new apartment in Dubai?", answer: "To activate DEWA (Dubai Electricity and Water Authority) for a new apartment, you need a valid Ejari certificate, Emirates ID, and the property details. DeliWer handles the full DEWA activation process on your behalf — WhatsApp +971523906019 to start." },
           { question: "How long does DEWA activation take in Dubai?", answer: "DEWA activation typically takes 1–3 business days after document submission. DeliWer coordinates the process and follows up on your behalf for faster resolution." },
           { question: "What is the DEWA security deposit in Dubai?", answer: "DEWA charges a refundable security deposit when connecting a new account. The amount varies by property type (apartment vs. villa) and is refunded when you close the DEWA account on moving out." },
           { question: "Do I need Ejari before DEWA activation?", answer: "Yes. A valid Ejari certificate is required to activate DEWA in Dubai. DeliWer can coordinate both Ejari registration and DEWA activation together as part of the move-in concierge." }

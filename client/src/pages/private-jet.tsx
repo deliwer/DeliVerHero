@@ -23,7 +23,7 @@ function FadeUp({ children, delay = 0, className = "" }: {
   );
 }
 
-const WA = "https://wa.me/971523946311?text=Private%20Jet%20enquiry%20via%20DeliWer%20%C3%97%201FLT";
+const WA = "https://wa.me/971523906019?text=Private%20Jet%20enquiry%20via%20DeliWer%20%C3%97%201FLT";
 
 export default function PrivateJetPage() {
   return (

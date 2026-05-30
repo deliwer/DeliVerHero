@@ -221,7 +221,7 @@ function RouteNotFound() {
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 export default function ChainTrackRoutePage() {
-  const WA = "https://wa.me/971523946311?text=ChainTrack%20logistics%20enquiry";
+  const WA = "https://wa.me/971523906019?text=ChainTrack%20logistics%20enquiry";
   const TG = "https://t.me/chaintracklogistics";
 
   const [location] = useLocation();

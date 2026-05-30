@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 
-const WHATSAPP_NUMBER = "971523946311";
+const WHATSAPP_NUMBER = "971523906019";
 const wa = (msg: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 

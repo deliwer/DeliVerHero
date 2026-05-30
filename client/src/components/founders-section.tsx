@@ -39,12 +39,12 @@ export function FoundersSection() {
                 formatix@deliwer.com
               </a>
               <a
-                href="tel:+971523946311"
+                href="tel:+971523906019"
                 className="inline-flex items-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full justify-center"
                 data-testid="link-hassan-phone"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                +971 52 394 6311
+                +971 52 390 6019
               </a>
             </div>
           </div>

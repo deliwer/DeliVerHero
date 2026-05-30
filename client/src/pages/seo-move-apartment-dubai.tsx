@@ -48,7 +48,7 @@ export default function MoveApartmentDubaiPage() {
             <Button data-testid="button-move-apt-start" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-2xl" onClick={() => setFunnelOpen(true)}>
               Start My Move Plan <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button data-testid="button-move-apt-whatsapp" size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-16" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi, I need help moving my apartment in Dubai."), "_blank")}>
+            <Button data-testid="button-move-apt-whatsapp" size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-16" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi, I need help moving my apartment in Dubai."), "_blank")}>
               <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Us
             </Button>
           </div>

@@ -49,7 +49,7 @@ const colorMap: Record<string, string> = {
 export default function DubaiMovingTrends() {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/971523946311?text=" +
+      "https://wa.me/971523906019?text=" +
         encodeURIComponent("Hi DeliWer — I'd like to discuss my relocation options in Dubai based on current moving trends. Please help."),
       "_blank"
     );

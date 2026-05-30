@@ -26,7 +26,7 @@ export default function EjariCancellationDubaiPage() {
 
   const handleWhatsApp = (msg?: string) => {
     const text = msg ?? "Hello, I need to cancel my Ejari in Dubai and need help with the exit coordination process.";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (

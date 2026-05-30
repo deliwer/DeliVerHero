@@ -51,7 +51,7 @@ const TIERS = [
     who: ["Real estate brokerages", "Typing centers", "Corporate relocation teams", "Building management"],
     why: "They bring direct tenant relationships, high-intent leads, and volume consistency.",
     cta: "Activate Partner Account",
-    href: "https://wa.me/971523946311?text=Hi,%20I%20want%20to%20become%20a%20Strategic%20Partner%20(35%25%20tier).",
+    href: "https://wa.me/971523906019?text=Hi,%20I%20want%20to%20become%20a%20Strategic%20Partner%20(35%25%20tier).",
   },
   {
     label: "Broker / Agent Tier",
@@ -60,7 +60,7 @@ const TIERS = [
     who: ["Individual brokers", "Leasing agents"],
     why: "Convert your tenant conversations into an additional income stream.",
     cta: "Get My Referral Link",
-    href: "https://wa.me/971523946311?text=Hi,%20I%27m%20a%20broker%20and%20want%20a%20referral%20link.",
+    href: "https://wa.me/971523906019?text=Hi,%20I%27m%20a%20broker%20and%20want%20a%20referral%20link.",
   },
   {
     label: "Influencer / Community",
@@ -69,7 +69,7 @@ const TIERS = [
     who: ["Influencers", "WhatsApp group admins", "Community leaders"],
     why: "Help your audience save money and earn per qualified referral.",
     cta: "Join Community Network",
-    href: "https://wa.me/971523946311?text=Hi,%20I%27m%20a%20community%20leader%20and%20want%20to%20refer%20tenants.",
+    href: "https://wa.me/971523906019?text=Hi,%20I%27m%20a%20community%20leader%20and%20want%20to%20refer%20tenants.",
   },
   {
     label: "General Referral",
@@ -78,7 +78,7 @@ const TIERS = [
     who: ["Anyone with a network"],
     why: "Share a link. Earn when someone you know uses DeliWer.",
     cta: "Start Earning Now",
-    href: "https://wa.me/971523946311?text=Hi,%20I%20want%20to%20refer%20people%20and%20earn.",
+    href: "https://wa.me/971523906019?text=Hi,%20I%20want%20to%20refer%20people%20and%20earn.",
   },
 ];
 
@@ -175,7 +175,7 @@ export default function AffiliateManagement() {
             DeliWer helps you provide all three — while creating an additional income stream from your existing network.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://wa.me/971523946311?text=Hi,%20I%20want%20to%20become%20a%20DeliWer%20partner." target="_blank">
+            <a href="https://wa.me/971523906019?text=Hi,%20I%20want%20to%20become%20a%20DeliWer%20partner." target="_blank">
               <Button className="h-14 px-8 bg-emerald-600 hover:bg-emerald-500 font-black uppercase tracking-widest text-base rounded-2xl">
                 Activate Your Network <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -513,7 +513,7 @@ export default function AffiliateManagement() {
               </div>
             ))}
           </div>
-          <a href="https://wa.me/971523946311?text=Hi,%20I%27d%20like%20to%20learn%20more%20about%20partnering%20with%20DeliWer." target="_blank">
+          <a href="https://wa.me/971523906019?text=Hi,%20I%27d%20like%20to%20learn%20more%20about%20partnering%20with%20DeliWer." target="_blank">
             <Button className="h-16 px-10 bg-emerald-600 hover:bg-emerald-500 font-black uppercase tracking-widest text-lg rounded-2xl">
               <MessageSquare className="mr-3 h-6 w-6" />
               Talk to the Team on WhatsApp

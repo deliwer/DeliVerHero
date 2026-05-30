@@ -79,7 +79,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 // ─── Main page ────────────────────────────────────────────────────────────────
 export default function IntelPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const WA = "https://wa.me/971523946311?text=ChainTrack%20trade%20intel%20enquiry";
+  const WA = "https://wa.me/971523906019?text=ChainTrack%20trade%20intel%20enquiry";
   const TG = "https://t.me/chaintracklogistics";
 
   const { data: post, isLoading, isError } = useQuery<IntelPost>({

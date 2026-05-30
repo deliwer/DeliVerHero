@@ -8,7 +8,7 @@ import { SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 
 export default function BrokerSupportDubai() {
-  const whatsappLink = "https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20am%20a%20broker%20and%20need%20move-in%20support%20for%20my%20client.";
+  const whatsappLink = "https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20am%20a%20broker%20and%20need%20move-in%20support%20for%20my%20client.";
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">

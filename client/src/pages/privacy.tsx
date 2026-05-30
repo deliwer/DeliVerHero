@@ -233,10 +233,10 @@ export default function Privacy() {
                 privacy@deliwer.com
               </a>
               <a 
-                href="tel:+971523946311"
+                href="tel:+971523906019"
                 className="bg-dubai-blue-500 hover:bg-dubai-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
-                +971 52 394 6311
+                +971 52 390 6019
               </a>
             </div>
           </CardContent>

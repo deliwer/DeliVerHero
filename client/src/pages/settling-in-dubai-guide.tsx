@@ -5,7 +5,7 @@ import { CheckCircle2, MessageCircle, MapPin, Compass, ShieldCheck, HelpCircle }
 import { motion } from "framer-motion";
 
 export default function SettlingInDubaiGuide() {
-  const whatsappLink = "https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20just%20arrived%20in%20Dubai%20and%20need%20help%20settling%20in.";
+  const whatsappLink = "https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20just%20arrived%20in%20Dubai%20and%20need%20help%20settling%20in.";
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">

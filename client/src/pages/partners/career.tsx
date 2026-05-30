@@ -372,7 +372,7 @@ export default function PartnerCareerPage() {
 
             <div className="flex flex-wrap gap-4 pt-2">
               <a
-                href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20join%20the%20partner%20career%20program%20and%20start%20earning%20from%20my%20tenants."
+                href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20want%20to%20join%20the%20partner%20career%20program%20and%20start%20earning%20from%20my%20tenants."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -521,7 +521,7 @@ export default function PartnerCareerPage() {
           {/* Apply CTA */}
           <div className="flex flex-col md:flex-row gap-4 justify-center pt-2">
             <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NCA%20%2F%20NDA%20%2F%20Non-Compete%20to%20get%20started."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NCA%20%2F%20NDA%20%2F%20Non-Compete%20to%20get%20started."
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -715,7 +715,7 @@ export default function PartnerCareerPage() {
                   </Button>
                 </Link>
                 <a
-                  href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20offer%20my%20tenants%20the%20AED%2099%20AquaCafe%20deal%20and%20earn%20as%20a%20partner."
+                  href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20want%20to%20offer%20my%20tenants%20the%20AED%2099%20AquaCafe%20deal%20and%20earn%20as%20a%20partner."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full"
@@ -1005,7 +1005,7 @@ export default function PartnerCareerPage() {
                 ))}
               </div>
               <a
-                href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20learn%20about%20becoming%20a%20Kangen%20Enagic%20distributor%20through%20the%20partner%20network."
+                href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20want%20to%20learn%20about%20becoming%20a%20Kangen%20Enagic%20distributor%20through%20the%20partner%20network."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1159,7 +1159,7 @@ export default function PartnerCareerPage() {
 
           <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
             <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20want%20to%20join%20the%20Planet%20Heroes%20partner%20career%20program%20and%20start%20building%20my%20team."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20want%20to%20join%20the%20Planet%20Heroes%20partner%20career%20program%20and%20start%20building%20my%20team."
               target="_blank"
               rel="noopener noreferrer"
             >

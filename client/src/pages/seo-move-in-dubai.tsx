@@ -59,7 +59,7 @@ export default function MoveInDubaiPage() {
               size="lg"
               variant="outline"
               className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-16"
-              onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi, I need move-in coordination in Dubai."), "_blank")}
+              onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi, I need move-in coordination in Dubai."), "_blank")}
             >
               <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Us
             </Button>

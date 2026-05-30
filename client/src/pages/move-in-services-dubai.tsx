@@ -5,7 +5,7 @@ import { CheckCircle2, MessageCircle, Home, Wrench, Shield } from "lucide-react"
 import { motion } from "framer-motion";
 
 export default function MoveInServices() {
-  const whatsappLink = "https://wa.me/971523946311?text=Hi%20DeliWer,%20I%20need%20move-in%20services%20support.";
+  const whatsappLink = "https://wa.me/971523906019?text=Hi%20DeliWer,%20I%20need%20move-in%20services%20support.";
 
   return (
     <div className="min-h-screen bg-dubai-gradient text-white selection:bg-emerald-500/30">

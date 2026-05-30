@@ -58,7 +58,7 @@ export function buildTrackedWhatsAppUrl(scenario: string, extra?: Record<string,
   if (extra?.date) parts.push(`Date: ${extra.date}`);
   parts.push(`Referral: ${ref?.code || "direct"}`);
   parts.push(`Page: ${typeof window !== "undefined" ? window.location.pathname : ""}`);
-  return `https://wa.me/971523946311?text=${encodeURIComponent(parts.join("\n"))}`;
+  return `https://wa.me/971523906019?text=${encodeURIComponent(parts.join("\n"))}`;
 }
 
 export function openTrackedWhatsApp(scenario: string, extra?: Record<string, string>): void {

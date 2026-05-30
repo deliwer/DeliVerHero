@@ -41,7 +41,7 @@ const CHECKLIST = [
 
 export default function TenancyRenewalDubaiGuide() {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi DeliWer — my tenancy is coming up for renewal and I need help deciding whether to move or renew. Please advise."), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi DeliWer — my tenancy is coming up for renewal and I need help deciding whether to move or renew. Please advise."), "_blank");
   };
 
   return (

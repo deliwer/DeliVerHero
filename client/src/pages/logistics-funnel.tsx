@@ -559,7 +559,7 @@ export default function LogisticsFunnelPage() {
                 <ArrowLeft className="w-3.5 h-3.5" /> Back to Broker Hub
               </Button>
             </Link>
-            <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
               <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">
                 Talk to Us
               </Button>
@@ -928,7 +928,7 @@ export default function LogisticsFunnelPage() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
                       <Button className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2">
                         WhatsApp Our Freight Desk <ArrowRight className="w-4 h-4" />
                       </Button>

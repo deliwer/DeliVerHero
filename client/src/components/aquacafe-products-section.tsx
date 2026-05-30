@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types/cart";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const buildWAProduct = (name: string, price: number) =>
   `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Hi DeliWer! I'm interested in the ${name} (AED ${price}). Can you help me order it?`)}`;
 
@@ -188,7 +188,7 @@ export function AquaCafeProductsSection() {
               </a>
               <button
                 onClick={() => {
-                  const affiliateLink = `https://wa.me/971523946311?text=Hi! I'm interested in AquaCafe products and the Chill & Grill AED100 Kangen Water voucher offer. Can you help me choose the right system?`;
+                  const affiliateLink = `https://wa.me/971523906019?text=Hi! I'm interested in AquaCafe products and the Chill & Grill AED100 Kangen Water voucher offer. Can you help me choose the right system?`;
                   const shareText = `💧 Need expert advice on water systems? Chat with DeliWer experts and get FREE Chill & Grill AED100 Kangen Water voucher! ${affiliateLink}`;
                   
                   if (navigator.share) {

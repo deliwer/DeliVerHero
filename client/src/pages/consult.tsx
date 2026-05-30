@@ -16,7 +16,7 @@ import {
 import { SiWhatsapp } from "react-icons/si";
 import heroBg from "@assets/stock_images/dubai_skyline_sunset_21b85db0.jpg";
 
-const WHATSAPP = "https://wa.me/971523946311?text=I%27d%20like%20to%20book%20a%20Relocation%20Consultation%20session";
+const WHATSAPP = "https://wa.me/971523906019?text=I%27d%20like%20to%20book%20a%20Relocation%20Consultation%20session";
 
 const situations = [
   {

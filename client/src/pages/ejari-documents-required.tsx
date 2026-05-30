@@ -88,7 +88,7 @@ export default function EjariDocumentsRequiredPage() {
             <Button data-testid="button-ejari-docs-funnel" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-lg" onClick={() => setFunnelOpen(true)}>
               Start Ejari Setup
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hello, I have all my Ejari documents ready. Can you help me submit?"), "_blank")}>
+            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hello, I have all my Ejari documents ready. Can you help me submit?"), "_blank")}>
               <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
             </Button>
           </div>

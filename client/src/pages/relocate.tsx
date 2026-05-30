@@ -210,7 +210,7 @@ export default function Relocate() {
           {/* Main CTA */}
           <div className="max-w-xl mx-auto text-center">
             <Button
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I just signed my lease and want help coordinating my move-in (Ejari, DEWA, movers, and water filter).")}`, '_blank')}
+              onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer, I just signed my lease and want help coordinating my move-in (Ejari, DEWA, movers, and water filter).")}`, '_blank')}
               className="w-full h-20 bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest rounded-2xl text-xl shadow-2xl transition-all active:scale-95"
               data-testid="button-activate-home"
             >
@@ -331,7 +331,7 @@ export default function Relocate() {
           <div className="flex flex-col md:flex-row gap-4 justify-center pt-4">
             <Button
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-8 h-14 text-base uppercase tracking-widest"
-              onClick={() => window.open(`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer, I need help planning my move-in coordination.")}`, '_blank')}
+              onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer, I need help planning my move-in coordination.")}`, '_blank')}
               data-testid="button-plan-movein"
             >
               <MessageSquare className="w-4 h-4 mr-2" /> Plan Your Move-In

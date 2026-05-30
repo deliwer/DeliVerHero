@@ -301,7 +301,7 @@ export default function ReviewsPage() {
                 data-testid="button-whatsapp-review"
               >
                 <a
-                  href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20share%20a%20review"
+                  href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20share%20a%20review"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

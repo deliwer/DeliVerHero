@@ -6,8 +6,8 @@ import relocationHeroPng from "@assets/generated_images/professional_dubai_reloc
 import apartmentKeysPng from "@assets/generated_images/empty_dubai_apartment_interior_with_keys..png";
 
 export default function ExitConciergePage() {
-  const whatsappLink = "https://wa.me/971523946311?text=I%20am%20contacting%20from%20DeBacci%20Group%20Community.%20I%20need%20to%20start%20my%20exit%20concierge%20process.%20Please%20guide%20me%20through%20DEWA%2C%20Ejari%20and%20Deposit%20recovery.";
-  const coordinationLink = "https://wa.me/971523946311?text=I%20need%20to%20speak%20with%20your%20coordination%20desk%20about%20exit%20and%20relocation%20support.";
+  const whatsappLink = "https://wa.me/971523906019?text=I%20am%20contacting%20from%20DeBacci%20Group%20Community.%20I%20need%20to%20start%20my%20exit%20concierge%20process.%20Please%20guide%20me%20through%20DEWA%2C%20Ejari%20and%20Deposit%20recovery.";
+  const coordinationLink = "https://wa.me/971523906019?text=I%20need%20to%20speak%20with%20your%20coordination%20desk%20about%20exit%20and%20relocation%20support.";
 
   return (
     <div className="min-h-screen bg-slate-950 pb-24">
@@ -141,7 +141,7 @@ export default function ExitConciergePage() {
       <footer className="py-12 px-4 border-t border-white/5 mt-12">
         <div className="max-w-4xl mx-auto text-center text-gray-500">
           <div className="flex flex-wrap justify-center gap-8 mb-6">
-            <a href="https://wa.me/971523946311" className="hover:text-emerald-500 font-bold">WhatsApp</a>
+            <a href="https://wa.me/971523906019" className="hover:text-emerald-500 font-bold">WhatsApp</a>
             <a href="mailto:service@deliwer.com" className="hover:text-white">Email</a>
             <span>Dubai, United Arab Emirates</span>
           </div>

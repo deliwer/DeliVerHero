@@ -1498,7 +1498,7 @@ We'll activate your referral link as soon as you confirm. 🔗
 Your referral link is being generated now. You'll receive it in the next message.
 
 In the meantime:
-• Save this number: +971 52 394 6311 (DeliWer Ops)
+• Save this number: +971 52 390 6019 (DeliWer Ops)
 • Mention DeliWer to every tenant signing a contract
 • Services we handle: Ejari, DEWA, movers, water filter
 
@@ -1730,7 +1730,7 @@ Questions? Reply here anytime.
           };
           const DOT_OFF = "bg-slate-800 border-slate-700 hover:border-slate-500";
 
-          const WA_NUM = "971523946311";
+          const WA_NUM = "971523906019";
           const WA_MSGS: Record<number, (b: TrackedBroker) => string> = {
             0: (b) => `Hi ${b.name}! 👋 Following up on your DeliWer broker registration.\n\nPlease reply with your profile details:\n• Full name\n• RERA license no.\n• Agency / brokerage\n• Area of focus\n\n— DeliWer Team`,
             1: (b) => `Hi ${b.name}! ✅ Please confirm you accept the DeliWer partner terms by replying:\n\n"I confirm and accept the DeliWer partner terms"\n\n— DeliWer Team`,

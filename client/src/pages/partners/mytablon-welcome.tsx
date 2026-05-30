@@ -122,7 +122,7 @@ export default function MytablonWelcome() {
           </div>
 
           <p className="text-gray-400 text-sm">Questions? Contact us on WhatsApp</p>
-          <a href="https://wa.me/971523946311">
+          <a href="https://wa.me/971523906019">
             <Button variant="outline" className="border-emerald-500/50 text-emerald-300">
               <MessageSquare className="w-4 h-4 mr-2" />
               WhatsApp Support

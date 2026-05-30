@@ -31,7 +31,7 @@ export default function MoveVsRenewDubai() {
 
   const handleWhatsApp = () => {
     const msg = `Hi DeliWer — I used the Move vs Renew calculator.\nCurrent rent: AED ${current.toLocaleString()}/yr\nRenewal rent: AED ${renewal.toLocaleString()}/yr\nEstimated moving cost: AED ${moving.toLocaleString()}\nResult: Moving could save AED ${result.netFirstYear.toLocaleString()} in year one.\nPlease help me coordinate my move.`;
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent(msg), "_blank");
   };
 
   return (

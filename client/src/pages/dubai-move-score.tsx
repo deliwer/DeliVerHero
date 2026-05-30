@@ -92,7 +92,7 @@ export default function DubaiMoveScore() {
 
   const handleWhatsApp = () => {
     const msg = `Hi DeliWer — I used the Move Score tool.\nArea: ${area} | Apartment: ${aptSize}\nCurrent rent: AED ${parseFloat(currentRent).toLocaleString()}/yr\nRenewal offer: AED ${parseFloat(renewalRent).toLocaleString()}/yr\nMove Score: ${result?.score}/100\nPlease help me plan my move.`;
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent(msg), "_blank");
   };
 
   return (

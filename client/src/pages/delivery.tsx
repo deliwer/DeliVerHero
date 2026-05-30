@@ -362,8 +362,8 @@ export default function Delivery() {
                 <div>
                   <Phone className="w-8 h-8 text-dubai-blue-500 mx-auto mb-3" />
                   <h3 className="font-bold text-white mb-2">Emergency Support</h3>
-                  <a href="tel:+971523946311" className="text-dubai-blue-500 hover:underline">
-                    +971 52 394 6311
+                  <a href="tel:+971523906019" className="text-dubai-blue-500 hover:underline">
+                    +971 52 390 6019
                   </a>
                   <p className="text-sm text-gray-400 mt-1">24/7 Hotline</p>
                 </div>
@@ -380,7 +380,7 @@ export default function Delivery() {
                 <div>
                   <AlertCircle className="w-8 h-8 text-amber-500 mx-auto mb-3" />
                   <h3 className="font-bold text-white mb-2">Report Issues</h3>
-                  <a href="https://wa.me/971523946311" className="text-amber-500 hover:underline">
+                  <a href="https://wa.me/971523906019" className="text-amber-500 hover:underline">
                     WhatsApp Support
                   </a>
                   <p className="text-sm text-gray-400 mt-1">Instant messaging</p>

@@ -23,7 +23,7 @@ const QUICK_STARTERS = [
   "How does membership work?",
 ];
 
-const WHATSAPP_URL = "https://wa.me/971523946311";
+const WHATSAPP_URL = "https://wa.me/971523906019";
 
 export default function ChainTrackAIAgent() {
   const [open, setOpen] = useState(false);

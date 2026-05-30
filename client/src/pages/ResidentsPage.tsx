@@ -186,7 +186,7 @@ export default function ResidentsPage() {
           <Button 
             size="lg"
             className="bg-emerald-600 hover:bg-emerald-500 text-white px-16 h-24 text-2xl font-black uppercase tracking-widest rounded-3xl shadow-2xl active:scale-95 transition-all w-full md:w-auto"
-            onClick={() => window.open('https://wa.me/971523946311?text=Hi,%20I%20am%20a%20current%20resident%20and%20need%20home%20optimization%20support.', '_blank')}
+            onClick={() => window.open('https://wa.me/971523906019?text=Hi,%20I%20am%20a%20current%20resident%20and%20need%20home%20optimization%20support.', '_blank')}
           >
             <MessageSquare className="w-8 h-8 mr-4 fill-current" />
             WhatsApp Resident Desk

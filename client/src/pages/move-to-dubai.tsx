@@ -26,7 +26,7 @@ export default function MoveToDubai() {
     const referralData = localStorage.getItem("deliwer_ref");
     const referral = referralData ? JSON.parse(referralData) : {};
     const message = `Hello DeliWer,\n\nI'm planning to move to Dubai. I need a complete move-in setup.\n\nReferral Partner: ${referral.partner || 'Direct'}\n\nPlease help me.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

@@ -15,8 +15,8 @@ const CHANNELS = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    handle: "+971 52 394 6311",
-    href: "https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%20need%20help%20with%20my%20move.",
+    handle: "+971 52 390 6019",
+    href: "https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20need%20help%20with%20my%20move.",
     color: "emerald",
     bgClass: "bg-emerald-500 hover:bg-emerald-400",
     textClass: "text-white",
@@ -36,8 +36,8 @@ const CHANNELS = [
   {
     id: "telegram-dm",
     name: "Telegram DM",
-    handle: "t.me/+971523946311",
-    href: "https://t.me/+971523946311",
+    handle: "t.me/+971523906019",
+    href: "https://t.me/+971523906019",
     color: "sky",
     bgClass: "bg-[#229ED9] hover:bg-[#1a8bbf]",
     textClass: "text-white",
@@ -290,7 +290,7 @@ export default function ContactPage() {
                         <a href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-emerald-400 transition-colors" title="WhatsApp">
                           <MessageCircle className="w-4 h-4" />
                         </a>
-                        <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-sky-400 transition-colors" title="Telegram DM">
+                        <a href="https://t.me/+971523906019" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-sky-400 transition-colors" title="Telegram DM">
                           <Send className="w-4 h-4" />
                         </a>
                       </div>

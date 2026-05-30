@@ -6,13 +6,15 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <!--
-    ChainTrack Logistics Sitemap
+    ChainTrack Logistics + Marketplace Sitemap
     Primary domain: logistics.chaintrack.com (chaintrack.com → redirects here)
     Parent: deliwer.com (ChainTrack Logistics is a DeliWer product)
-    Audience: International freight brokers, shippers, freight forwarders, trade operators
-    Geo: UAE (AE-DU), Pakistan (PK), Kazakhstan (KZ), Uzbekistan (UZ), Azerbaijan (AZ), Russia (RU), China (CN)
-    Keywords: Gawadar logistics, Dubai air charter, CPEC corridor, INSTC freight, Hormuz alternative, freight broker earn commission
-    Last updated: 2026-05-25
+    Audience: International freight brokers, shippers, freight forwarders, trade operators, iPhone wholesalers
+    Geo: UAE (AE-DU), Pakistan (PK), Kazakhstan (KZ), Uzbekistan (UZ), Azerbaijan (AZ), Russia (RU), China (CN), Korea (KR), USA (US)
+    Keywords: Gawadar logistics, Dubai air charter, CPEC corridor, INSTC freight, Hormuz alternative, freight broker earn commission,
+              reverse auction iPhones Dubai, Wesellcellular Dubai, KT Corp iPhone supplier, used iPhone wholesale UAE, DAFZA electronics escrow,
+              B2B iPhone auction, iPhone sourcing Dubai, live inspection video iPhones, XLSX inventory upload ChainTrack
+    Last updated: 2026-05-30
   -->
 
   <!-- ══ PRIMARY ENTRY POINTS ══ -->
@@ -273,6 +275,103 @@
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.78</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- ══ CHAINTRACK MARKETPLACE — REVERSE AUCTION & SOURCING ══ -->
+  <url>
+    <loc>https://www.deliwer.com/chaintrack</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.98</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack#marketplace</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack#supplier-feeds</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.93</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack-sourcing</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack-grading</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- ══ SUPPLIER FEED LANDINGS — WESELLCELLULAR / KT CORP ══ -->
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/supplier/wesellcellular</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/supplier/kt-corp</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- ══ MARKET-SPECIFIC AUCTION PAGES ══ -->
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/iphone-wholesale-dubai</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/iphone-export-cis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/iphone-sourcing-dafza</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/refurbished-iphone-wholesale-uae</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.87</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/reverse-auction-used-iphones</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/chaintrack/phone-flipper-track</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
     <mobile:mobile/>
   </url>
 

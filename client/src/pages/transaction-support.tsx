@@ -10,7 +10,7 @@ import {
   FileText, Home, Layers, ShieldCheck, Clock, Briefcase, Star, Zap,
 } from "lucide-react";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_MSG = encodeURIComponent(
   "I've finalized or am close to finalizing a property and need help with the move and setup"
 );

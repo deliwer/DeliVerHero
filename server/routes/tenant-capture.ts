@@ -18,7 +18,7 @@ router.post("/leads", async (req, res) => {
 
     const [lead] = await db.insert(tenantLeads).values({ ...data, score }).returning();
 
-    let waNumber = "971523946311";
+    let waNumber = "971523906019";
     if (data.referrerId) {
       const refs = await db.select().from(tenantReferrers).where(eq(tenantReferrers.refId, data.referrerId));
       if (refs[0]?.whatsapp) waNumber = refs[0].whatsapp.replace(/\D/g, "");
@@ -122,7 +122,7 @@ async function seedSampleReferrer() {
     if (existing.length === 0) {
       await db.insert(tenantReferrers).values({
         name: "DeliWer Demo (Building Guard)",
-        whatsapp: "+971523946311",
+        whatsapp: "+971523906019",
         refId: "DEMO01",
       });
       console.log("[tenant-capture] Sample referrer seeded: DEMO01");

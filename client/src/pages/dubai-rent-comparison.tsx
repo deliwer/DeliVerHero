@@ -68,7 +68,7 @@ export default function DubaiRentComparison() {
     const msg = from
       ? `Hi DeliWer — I'm considering moving from ${from} to ${to} to save approximately AED ${saving?.toLocaleString()} per year. Please help me coordinate the move.`
       : "Hi DeliWer — I'd like to explore moving to a cheaper area in Dubai. Please help me plan my move.";
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent(msg), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent(msg), "_blank");
   };
 
   return (

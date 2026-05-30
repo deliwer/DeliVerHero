@@ -32,7 +32,7 @@ export default function ExitDubaiApartmentPage() {
             <Button data-testid="button-exit-apt-start" size="lg" className="bg-amber-600 hover:bg-amber-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-2xl" onClick={() => setFunnelOpen(true)}>
               Start Exit Coordination <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button data-testid="button-exit-apt-whatsapp" size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-16" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi, I need exit coordination for my Dubai apartment."), "_blank")}>
+            <Button data-testid="button-exit-apt-whatsapp" size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-16" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi, I need exit coordination for my Dubai apartment."), "_blank")}>
               <MessageCircle className="w-5 h-5 mr-2" /> WhatsApp Us
             </Button>
           </div>

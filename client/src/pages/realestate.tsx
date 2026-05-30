@@ -62,7 +62,7 @@ import logoADCB from "@assets/bank-logos/adcb.png";
 import logoFAB from "@assets/bank-logos/fab.png";
 import logoMashreq from "@assets/bank-logos/mashreq.png";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 
 type FinancePartner = {
   name: string;

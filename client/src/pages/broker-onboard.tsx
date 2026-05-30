@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Helmet } from "react-helmet";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 function openWA(msg: string) {
   window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
 }

@@ -75,7 +75,7 @@ const btnColorMap: Record<string, string> = {
 export default function MoveDubai() {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/971523946311?text=" +
+      "https://wa.me/971523906019?text=" +
         encodeURIComponent(
           "Hi DeliWer — I need help planning my move in Dubai. Please help me get started."
         ),

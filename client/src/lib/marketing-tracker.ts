@@ -36,7 +36,7 @@ export function buildWhatsAppURL(
   const message = encodeURIComponent(
     `Hi DeliWer,\nI want help with my move.\n\nSource: ${ref}\nIntent: ${intent}${name ? `\nName: ${name}` : ""}`
   );
-  return `https://wa.me/971523946311?text=${message}`;
+  return `https://wa.me/971523906019?text=${message}`;
 }
 
 export interface LeadPayload {

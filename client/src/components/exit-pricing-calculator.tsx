@@ -26,7 +26,7 @@ export function ExitPricingCalculator({ isMoveIn }: { isMoveIn?: boolean }) {
   const handleWhatsApp = () => {
     const type = isMoveIn ? "Move-In" : "Exit";
     const text = `Hello DeliWer, I used the ${type} Calculator for my ${apartmentSize} apartment. Quote: Dirham ${totalPrice}. I'd like to proceed.`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (

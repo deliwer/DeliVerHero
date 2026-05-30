@@ -120,7 +120,7 @@ function HabtoorSection() {
       qc.invalidateQueries({ queryKey: ["/api/habtoor/inventory"] });
       setActiveModal(null);
       const msg = `Lead Claim — Ref: ${data.deliwerRefCode}\nBroker: ${name} (${phone})\nProperty: ${selectedProp?.unitType} ${selectedProp?.structureType} | ${selectedProp?.views}\nClient: ${claimClient.name || "TBC"}\n\nThis claim is logged and protected under NDA/NCA. DeliWer will coordinate access.`;
-      window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+      window.open(`https://wa.me/971523906019?text=${encodeURIComponent(msg)}`, "_blank");
       toast({ title: "Lead claimed!", description: `Ref: ${data.deliwerRefCode}. WhatsApp confirmation sent to DeliWer.` });
       setClaimClient({ name: "", phone: "", nationality: "", budget: "", notes: "" });
     },
@@ -607,7 +607,7 @@ function HabtoorSection() {
 
 // ── WhatsApp Agentic Onboarding Wizard ─────────────────────────────────────
 
-const WA_OB = "971523946311";
+const WA_OB = "971523906019";
 
 interface OBData {
   name: string; phone: string; rera: string; brokerage: string; area: string;
@@ -1473,7 +1473,7 @@ export default function BrokerPartnerPage() {
     if (remaining === 0) return;
     setClaimedSlots(prev => ({ ...prev, [opp.id]: (prev[opp.id] || 0) + 1 }));
     const msg = `Hi DeliWer — I'm a broker and I want to claim opportunity ${opp.id} (${opp.type} · ${opp.area}). My referral code: ${generatedRef || "pending"}`;
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(msg)}`, "_blank");
   }
 
   function handleJoinWhatsApp() {
@@ -1748,7 +1748,7 @@ export default function BrokerPartnerPage() {
             {/* SAMANA */}
             <a
               data-testid="community-card-samana"
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20SAMANA%20community%20inventory%20access.%20Please%20share%20the%20NDA."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20SAMANA%20community%20inventory%20access.%20Please%20share%20the%20NDA."
               target="_blank"
               rel="noopener noreferrer"
               className="group text-left text-[#ffffff] bg-slate-900 border border-sky-500/25 hover:border-sky-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-sky-500/5 hover:shadow-lg hover:shadow-sky-900/20 block"
@@ -1776,7 +1776,7 @@ export default function BrokerPartnerPage() {
             {/* MEYDAN */}
             <a
               data-testid="community-card-meydan"
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20MEYDAN%20community%20inventory%20access.%20Please%20share%20the%20NDA."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%27m%20a%20broker%20interested%20in%20MEYDAN%20community%20inventory%20access.%20Please%20share%20the%20NDA."
               target="_blank"
               rel="noopener noreferrer"
               className="group text-left text-[#ffffff] bg-slate-900 border border-emerald-500/25 hover:border-emerald-400/60 rounded-2xl p-5 space-y-4 transition-all hover:bg-emerald-500/5 hover:shadow-lg hover:shadow-emerald-900/20 block"
@@ -1844,7 +1844,7 @@ export default function BrokerPartnerPage() {
 
             <button
               data-testid="button-action-track-earnings"
-              onClick={() => window.open("https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20want%20to%20check%20my%20earnings%20and%20commission%20status.", "_blank")}
+              onClick={() => window.open("https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%20want%20to%20check%20my%20earnings%20and%20commission%20status.", "_blank")}
               className="group bg-slate-900 border border-amber-500/25 hover:border-amber-400/60 rounded-2xl p-5 text-left transition-all hover:bg-amber-500/5 space-y-3 text-[#ffffff]"
             >
               <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
@@ -1897,7 +1897,7 @@ export default function BrokerPartnerPage() {
                   if (!captureForm.clientType) { toast({ title: "Select client type", variant: "destructive" }); return; }
                   const lid = generateLeadId();
                   const msg = `Deal Capture — ${lid}\nType: ${captureForm.clientType}\nPhone: ${captureForm.phone || "TBC"}\nUnit: ${captureForm.unit || "TBC"}\nBroker ref: ${generatedRef || "pending"}`;
-                  window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+                  window.open(`https://wa.me/971523906019?text=${encodeURIComponent(msg)}`, "_blank");
                   toast({ title: `Deal captured! Ref: ${lid}`, description: "DeliWer will coordinate within 2 hours." });
                   setShowCapture(false);
                   setCaptureForm({ clientType: "", phone: "", unit: "" });
@@ -1958,7 +1958,7 @@ export default function BrokerPartnerPage() {
                 <MessageCircle className="w-4 h-4 text-green-400 shrink-0" />
                 <div className="flex-1">
                   <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest">WhatsApp Tracking Link</p>
-                  <code className="text-green-300 text-xs font-mono">wa.me/971523946311?text={leadId}</code>
+                  <code className="text-green-300 text-xs font-mono">wa.me/971523906019?text={leadId}</code>
                 </div>
               </div>
 
@@ -2134,7 +2134,7 @@ export default function BrokerPartnerPage() {
                 <p className="font-black text-white text-sm uppercase tracking-tight">+ 24 More Opportunities This Week</p>
                 <p className="text-gray-500 text-xs">Inner Circle members get full deal flow — residential, commercial, DAMAC distress.</p>
               </div>
-              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20Inner%20Circle%20access%20to%20the%20full%20opportunity%20feed." target="_blank" rel="noopener noreferrer" className="shrink-0 text-[#ffffff]">
+              <a href="https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%E2%80%99m%20a%20broker%20and%20want%20Inner%20Circle%20access%20to%20the%20full%20opportunity%20feed." target="_blank" rel="noopener noreferrer" className="shrink-0 text-[#ffffff]">
                 <Button data-testid="button-more-opps" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl h-10 px-6 text-sm shadow-lg shadow-amber-900/30">
                   <Crown className="w-4 h-4 mr-2" /> Unlock Full Feed
                 </Button>
@@ -2305,7 +2305,7 @@ export default function BrokerPartnerPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NDA%20to%20get%20started." target="_blank" rel="noopener noreferrer" className="text-[#ffffff]">
+            <a href="https://wa.me/971523906019?text=Hi%20DeliWer%20Realty%20%E2%80%94%20I%E2%80%99m%20a%20RERA%20broker%20applying%20to%20the%20Inner%20Circle%20Track.%20Please%20share%20the%20NDA%20to%20get%20started." target="_blank" rel="noopener noreferrer" className="text-[#ffffff]">
               <Button data-testid="button-inner-circle-apply" size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black h-13 px-10 text-sm rounded-2xl shadow-2xl shadow-amber-900/40">
                 <Crown className="w-5 h-5 mr-2" /> Apply for Inner Circle · Sign NDA
               </Button>
@@ -2550,7 +2550,7 @@ export default function BrokerPartnerPage() {
                         <Building2 className="w-4 h-4 mr-2" /> Realty Engine
                       </Button>
                     </Link>
-                    <a href="https://wa.me/971523946311?text=Hi%20DeliWer%20%E2%80%94%20I%20just%20applied%20as%20a%20broker%20and%20want%20to%20learn%20about%20the%20Inner%20Circle." target="_blank" rel="noopener noreferrer" className="flex-1 text-[#ffffff]">
+                    <a href="https://wa.me/971523906019?text=Hi%20DeliWer%20%E2%80%94%20I%20just%20applied%20as%20a%20broker%20and%20want%20to%20learn%20about%20the%20Inner%20Circle." target="_blank" rel="noopener noreferrer" className="flex-1 text-[#ffffff]">
                       <Button variant="outline" className="w-full border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-black rounded-xl h-10 text-xs">
                         <Crown className="w-4 h-4 mr-2" /> Inner Circle
                       </Button>

@@ -209,7 +209,7 @@ function PricingCalculator() {
             disabled={selected.length === 0}
             size="lg" 
             className="w-full bg-[#14b491] hover:bg-[#14b491]/90 text-white py-6 rounded-2xl font-black text-lg shadow-xl"
-            onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+            onClick={() => window.open("https://wa.me/971523906019", "_blank")}
           >
             Get Final Quote on WhatsApp
             <ArrowRight className="ml-2 w-5 h-5" />
@@ -273,7 +273,7 @@ export default function MoveInServices() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white px-10 py-8 text-xl font-bold rounded-2xl shadow-2xl transition-all w-full sm:w-auto" 
-              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+              onClick={() => window.open("https://wa.me/971523906019", "_blank")}
             >
               <SiWhatsapp className="mr-2 w-6 h-6" />
               Set up my JVC residence
@@ -496,7 +496,7 @@ export default function MoveInServices() {
             <Button 
               size="lg" 
               className="bg-emerald-600 hover:bg-emerald-500 text-white px-12 py-10 text-2xl font-black rounded-[2rem] shadow-2xl transition-all w-full sm:w-auto" 
-              onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+              onClick={() => window.open("https://wa.me/971523906019", "_blank")}
             >
               <SiWhatsapp className="mr-3 w-8 h-8" />
               <div className="flex flex-col items-start">

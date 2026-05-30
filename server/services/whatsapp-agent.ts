@@ -7,7 +7,7 @@ const openai: OpenAI | null = openaiApiKey ? new OpenAI({
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
 }) : null;
 
-const CUSTOMER_SERVICE_NUMBERS = ["+971504547110", "+971523946311", "+971567148381"];
+const CUSTOMER_SERVICE_NUMBERS = ["+971504547110", "+971523906019", "+971567148381"];
 const WHATSAPP_API_URL = `https://graph.facebook.com/v18.0/${process.env.PHONE_NUMBER_ID}/messages`;
 
 export class WhatsAppAgentService {

@@ -144,7 +144,7 @@ export function AIConcierge() {
     }
     
     if (option === 'WhatsApp info') {
-      const whatsappLink = `https://wa.me/971523946311?text=Hi! I'm interested in the Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Chill & Grill partnership?`;
+      const whatsappLink = `https://wa.me/971523906019?text=Hi! I'm interested in the Ambassador Program. Can you share details about earning AED 4,200+ monthly and the Chill & Grill partnership?`;
       window.open(whatsappLink, '_blank');
       return;
     }

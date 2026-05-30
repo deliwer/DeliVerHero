@@ -53,7 +53,7 @@ router.post("/referrers", async (req, res) => {
     const refCode = await generateRefCode();
     const data = insertMarketingReferrerSchema.parse({ ...req.body, refCode });
     const [row] = await db.insert(marketingReferrers).values(data).returning();
-    const waUrl = `https://wa.me/971523946311?text=${encodeURIComponent(`Hi, I am interested in the water solution. Code: ${refCode}`)}`;
+    const waUrl = `https://wa.me/971523906019?text=${encodeURIComponent(`Hi, I am interested in the water solution. Code: ${refCode}`)}`;
     res.json({ referrer: row, waUrl });
   } catch (err: any) {
     res.status(400).json({ error: err.message });

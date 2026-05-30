@@ -19,7 +19,7 @@ import heroFlexImg from "@assets/generated_images/happy_family_in_modern_dubai_l
 
 // ── Constants ──────────────────────────────────────────────────────────────────
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_NUMBER_2 = "971523906019";
 
 const TYPE_PILLS: { label: string; value: PropertyType | "all"; icon: React.ReactNode }[] = [
@@ -1305,7 +1305,7 @@ export default function FlexibleRentalsPage() {
                     {/* CTA */}
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                       <button
-                        onClick={() => openWA("971523946311", "Hello DeliWer 👋\n\nI'm interested in a Virtual Ejari contract for my commercial license.\n\nLicense type / authority:\nCompany name:\n\nPlease advise on next steps.")}
+                        onClick={() => openWA("971523906019", "Hello DeliWer 👋\n\nI'm interested in a Virtual Ejari contract for my commercial license.\n\nLicense type / authority:\nCompany name:\n\nPlease advise on next steps.")}
                         className="flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1fbd5a] active:scale-95 text-white font-bold px-7 py-3.5 rounded-xl transition-all shadow-[0_0_20px_rgba(37,211,102,0.25)] text-sm">
                         <MessageCircle className="w-4 h-4" /> Get Virtual Ejari — WhatsApp
                       </button>
@@ -1440,7 +1440,7 @@ export default function FlexibleRentalsPage() {
                         <Building2 className="w-5 h-5" /> List a Property
                       </button>
                     </div>
-                    <p className="text-gray-700 text-xs mt-6">+971 52 394 6311 · +971 52 390 6019 · info@deliwer.com</p>
+                    <p className="text-gray-700 text-xs mt-6">+971 52 390 6019 · +971 52 390 6019 · info@deliwer.com</p>
                   </div>
                 </motion.div>
               </section>

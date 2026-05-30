@@ -98,7 +98,7 @@ export default function DubaiTenancyChecklistPage() {
         <div className="max-w-2xl mx-auto space-y-6">
           <h2 className="text-4xl font-black uppercase tracking-tighter text-white">DeliWer Handles Both Sides</h2>
           <p className="text-gray-400 font-medium">Move-in or move-out — one coordinator handles Ejari, utilities, movers, and cleaning.</p>
-          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-14 text-lg" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hello, I need help with my Dubai tenancy — Ejari and relocation coordination."), "_blank")}>
+          <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-14 text-lg" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hello, I need help with my Dubai tenancy — Ejari and relocation coordination."), "_blank")}>
             <MessageCircle className="w-5 h-5 mr-2" /> Chat on WhatsApp
           </Button>
         </div>

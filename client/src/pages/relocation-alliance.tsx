@@ -189,7 +189,7 @@ export default function RelocationAlliance() {
             </p>
 
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <a href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20partnership%20opportunities%20for%20move-in%20services">
+              <a href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27m%20interested%20in%20partnership%20opportunities%20for%20move-in%20services">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-500 font-black h-14 px-12 text-lg">
                   <MessageSquare className="w-5 h-5 mr-2" />
                   Chat on WhatsApp

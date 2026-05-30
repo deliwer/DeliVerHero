@@ -345,7 +345,7 @@ export default function BuildingPartnerPage() {
             data-testid="button-building-whatsapp-final"
             size="lg"
             className="bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl px-12 h-14 text-xl"
-            onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi, I'm a building security / concierge team interested in the DeliWer partner referral program."), "_blank")}
+            onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi, I'm a building security / concierge team interested in the DeliWer partner referral program."), "_blank")}
           >
             <MessageCircle className="w-5 h-5 mr-2" />
             WhatsApp DeliWer

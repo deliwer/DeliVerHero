@@ -485,7 +485,7 @@ export default function PartnerGrowthKit() {
               size="lg"
               variant="outline"
               className="border-slate-600 text-gray-300 hover:bg-slate-800 font-black rounded-xl h-12 px-8"
-              onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi DeliWer, I'd like to get my referral code and join the partner network."), "_blank")}
+              onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi DeliWer, I'd like to get my referral code and join the partner network."), "_blank")}
               data-testid="button-kit-whatsapp"
             >
               <MessageCircle className="w-4 h-4 mr-2" />

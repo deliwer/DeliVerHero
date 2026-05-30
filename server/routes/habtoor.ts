@@ -370,7 +370,7 @@ router.post("/vr-request", async (req: Request, res: Response) => {
       success: true,
       requestId: request.id,
       property: prop ? maskProperty(prop) : null,
-      whatsappUrl: `https://wa.me/971523946311?text=${encodeURIComponent(
+      whatsappUrl: `https://wa.me/971523906019?text=${encodeURIComponent(
         `VR Tour Request — Ref: ${request.id.slice(0, 8).toUpperCase()}\nBroker: ${data.brokerName} (${data.brokerPhone})\nProperty: ${prop?.unitType || ""} ${prop?.structureType || ""} | ${prop?.views || ""} | AED ${prop?.salePrice?.toLocaleString() || ""}\nTour Type: ${data.tourType}\nPreferred: ${data.preferredDate || "Flexible"} ${data.preferredTime || ""}\nClient: ${data.clientName || "TBC"}`
       )}`,
     });

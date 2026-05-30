@@ -100,7 +100,7 @@ export function FloatingErrandTips() {
   };
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/971523946311", "_blank");
+    window.open("https://wa.me/971523906019", "_blank");
   };
 
   if (!isRelevantPage || !isOpen) {

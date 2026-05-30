@@ -110,7 +110,7 @@ async function sendUserConfirmationEmail(data: LeadData): Promise<boolean> {
         <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 15px; margin: 30px 0;">
           <p style="color: #065f46; margin: 0; font-weight: bold;">Need immediate assistance?</p>
           <p style="color: #047857; margin: 5px 0 0 0;">
-            WhatsApp: <a href="https://wa.me/971523946311" style="color: #047857;">+971 52 394 6311</a>
+            WhatsApp: <a href="https://wa.me/971523906019" style="color: #047857;">+971 52 390 6019</a>
           </p>
         </div>
 

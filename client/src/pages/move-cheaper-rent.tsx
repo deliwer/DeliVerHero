@@ -36,7 +36,7 @@ export default function MoveCheaperRentPage() {
 
   const handleWhatsApp = (msg?: string) => {
     const text = msg ?? "Hi DeliWer, I am paying too much rent and want to move apartments in Dubai. I need full coordination — movers, Ejari transfer, utilities, and cleaning.";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (

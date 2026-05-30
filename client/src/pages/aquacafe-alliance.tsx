@@ -24,7 +24,7 @@ import aquacafeCard from "@assets/Aquacafe_byDeliWer_Card_Corners_1755485915603.
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 import bannerAquaCafe from "@assets/Banner_AquaCafe_1755270492134.jpg";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_STARTER_MSG = encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit — ionic shower filter + Chill & Grill voucher + 20% water discount. Please help me get started!");
 const openAquaCafeWhatsApp = () => window.open(`https://wa.me/${WA_NUMBER}?text=${WA_STARTER_MSG}`, "_blank");
 

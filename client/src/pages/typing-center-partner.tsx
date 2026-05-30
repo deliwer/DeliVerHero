@@ -323,7 +323,7 @@ export default function TypingCenterPartnerPage() {
             data-testid="button-typing-whatsapp-direct"
             size="lg"
             className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-12 h-14 text-xl"
-            onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi, I run an Ejari typing center and I'm interested in the DeliWer partner referral program."), "_blank")}
+            onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi, I run an Ejari typing center and I'm interested in the DeliWer partner referral program."), "_blank")}
           >
             <MessageCircle className="w-5 h-5 mr-2" />
             WhatsApp DeliWer

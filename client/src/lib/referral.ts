@@ -157,7 +157,7 @@ export function openWhatsApp(message: string): void {
     action: "whatsapp_click",
   });
   window.open(
-    `https://wa.me/971523946311?text=${encodeURIComponent(message)}`,
+    `https://wa.me/971523906019?text=${encodeURIComponent(message)}`,
     "_blank"
   );
 }

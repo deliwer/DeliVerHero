@@ -32,7 +32,7 @@ import { Badge } from "@/components/ui/badge";
 import aquacafeTradeIn from "@assets/without_text_1756065010951.jpg";
 import washingFace from "@assets/washing-face-01 (1)_1756065010952.jpg";
 
-const WA_NUMBER = "971523946311";
+const WA_NUMBER = "971523906019";
 const WA_HOME_INSTALL_MSG = encodeURIComponent(
   "Hi DeliWer! I'd like to book a Kangen Water setup consultation for my home/restaurant. Please share availability and pricing.",
 );

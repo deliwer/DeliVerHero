@@ -581,7 +581,7 @@ export default function FreightBrokerPage() {
                         View Logistics Overview
                       </Button>
                     </Link>
-                    <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+                    <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
                       <Button className="bg-emerald-600 hover:bg-emerald-500 text-white gap-2">
                         WhatsApp Our Team
                         <ArrowRight className="w-4 h-4" />

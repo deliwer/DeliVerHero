@@ -91,12 +91,12 @@ export default function BrokerSuccessPage() {
           Questions? WhatsApp us at{" "}
           <a
             data-testid="link-success-wa-number"
-            href="https://wa.me/971523946311"
+            href="https://wa.me/971523906019"
             target="_blank"
             rel="noopener noreferrer"
             className="text-purple-400 underline underline-offset-2"
           >
-            +971 52 394 6311
+            +971 52 390 6019
           </a>
         </p>
       </div>

@@ -40,7 +40,7 @@ export default function NewApartmentDubaiGuidePage() {
             <Button data-testid="button-new-apt-start" size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-14 text-lg" onClick={() => setFunnelOpen(true)}>
               Start My Move-In Setup <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hello, I just got a new apartment in Dubai and need help setting it up."), "_blank")}>
+            <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800 rounded-2xl px-10 h-14" onClick={() => window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hello, I just got a new apartment in Dubai and need help setting it up."), "_blank")}>
               <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
             </Button>
           </div>

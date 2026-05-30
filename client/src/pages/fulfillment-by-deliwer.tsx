@@ -541,7 +541,7 @@ export default function FulfillmentByDeliWer() {
               </Button>
             </Link>
             <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer!%20I%20want%20to%20learn%20about%20Fulfillment%20by%20DeliWer."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer!%20I%20want%20to%20learn%20about%20Fulfillment%20by%20DeliWer."
               target="_blank"
               rel="noopener noreferrer"
             >

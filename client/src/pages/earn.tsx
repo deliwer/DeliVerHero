@@ -192,7 +192,7 @@ export default function Earn() {
               {/* Single primary CTA — sub-nav above handles section navigation */}
               <div className="flex flex-wrap justify-center gap-3" data-testid="earn-hero-cta-row">
                 <a
-                  href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like the AquaCafe AED 99 Starter Kit — please activate my membership and referral link.")}`}
+                  href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer! I'd like the AquaCafe AED 99 Starter Kit — please activate my membership and referral link.")}`}
                   target="_blank" rel="noopener noreferrer"
                   data-testid="button-hero-wa"
                   className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-8 py-3.5 rounded-full text-sm sm:text-base shadow-2xl transition-all hover:scale-105">
@@ -261,7 +261,7 @@ export default function Earn() {
             </div>
             <div className="text-center">
               <a
-                href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like the AquaCafe AED 99 Starter Kit — please activate my membership and referral link.")}`}
+                href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer! I'd like the AquaCafe AED 99 Starter Kit — please activate my membership and referral link.")}`}
                 target="_blank" rel="noopener noreferrer" data-testid="button-bundle-wa"
                 className="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-10 py-4 rounded-full text-base sm:text-lg shadow-2xl transition-all hover:scale-105">
                 <Phone className="w-5 h-5 mr-2" />Get Started on WhatsApp · AED 99
@@ -426,7 +426,7 @@ export default function Earn() {
                 <MapPin className="w-3 h-3 inline mr-1" />Business Bay · Open Daily 9AM–11PM
               </p>
               <a
-                href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer — I run a restaurant in Dubai and would love to join the Planet Hero loyalty programme.")}`}
+                href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I run a restaurant in Dubai and would love to join the Planet Hero loyalty programme.")}`}
                 target="_blank" rel="noopener noreferrer" data-testid="button-restaurant-apply"
                 className="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-400 hover:text-white border border-slate-700 hover:border-slate-500 px-3 py-1.5 rounded-full transition whitespace-nowrap">
                 Add my restaurant <ArrowRight className="w-3 h-3" />
@@ -511,7 +511,7 @@ export default function Earn() {
             <p className="text-slate-500 text-xs">Join Dubai's growing community earning rewards while building a sustainable future.</p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <a href={`https://wa.me/971523946311?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit and join the Planet Heroes — please get me started.")}`}
+            <a href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer! I'd like to order the AquaCafe AED 99 Starter Kit and join the Planet Heroes — please get me started.")}`}
               target="_blank" rel="noopener noreferrer" data-testid="footer-cta-wa"
               className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-black px-6 py-2.5 rounded-full text-sm shadow-lg transition hover:scale-105">
               <Phone className="w-4 h-4" /> Order Starter Kit · AED 99

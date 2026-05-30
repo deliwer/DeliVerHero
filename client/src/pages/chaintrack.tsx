@@ -22,7 +22,8 @@ import {
   Award, Lock, ChevronUp, Layers, Truck, Activity, Radio, ExternalLink,
   Target, BarChart2, Smartphone, Weight, FileCheck, Anchor, Route,
   Bot, MessageSquare, Video, Network, Repeat, CreditCard, UserCheck,
-  Send, Languages, BrainCircuit, TrendingDownIcon
+  Send, Languages, BrainCircuit, TrendingDownIcon, Upload, PlayCircle,
+  X, FileSpreadsheet, Tag, Rss, Building, LayoutGrid
 } from "lucide-react";
 import { SiLinkedin, SiWhatsapp, SiTelegram } from "react-icons/si";
 import ChainTrackAIAgent from "@/components/chaintrack-ai-agent";
@@ -123,6 +124,33 @@ const GRADES = [
   { grade: "C", label: "Fair", desc: "Visible wear, minor screen marks, functional", color: "text-amber-400", bg: "bg-amber-400/10 border-amber-400/30" },
   { grade: "ASIS", label: "As-Is", desc: "Uninspected lots, for experienced buyers", color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
 ];
+
+// ── Supplier Feed Data ─────────────────────────────────────────────────────────
+const WSC_FEED = [
+  { sku: "WSC-IP16PM-512-AB", model: "iPhone 16 Pro Max 512GB", grade: "A/B", qty: 320, price: 618, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "12m ago", tag: "Graded" },
+  { sku: "WSC-IP15P-256-A", model: "iPhone 15 Pro 256GB", grade: "A", qty: 180, price: 412, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "34m ago", tag: "Graded" },
+  { sku: "WSC-IP14-128-B", model: "iPhone 14 128GB Mix Lot", grade: "B", qty: 750, price: 263, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "1h ago", tag: "ASIS" },
+  { sku: "WSC-IP13P-256-A", model: "iPhone 13 Pro 256GB", grade: "A", qty: 400, price: 291, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "2h ago", tag: "RODTEP" },
+  { sku: "WSC-IP12-64-C", model: "iPhone 12 64GB Lot", grade: "C", qty: 2200, price: 98, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "3h ago", tag: "ASIS" },
+  { sku: "WSC-IP15-128-A", model: "iPhone 15 128GB", grade: "A", qty: 560, price: 348, source: "Wesellcellular", origin: "🇺🇸 USA", updated: "4h ago", tag: "Graded" },
+];
+
+const KTC_FEED = [
+  { sku: "KTC-IP16-256-A", model: "iPhone 16 256GB Dual SIM", grade: "A", qty: 800, price: 441, source: "KT Corp", origin: "🇰🇷 Korea", updated: "8m ago", tag: "Charter" },
+  { sku: "KTC-IP15PM-256-AP", model: "iPhone 15 Pro Max 256GB", grade: "A+", qty: 220, price: 589, source: "KT Corp", origin: "🇰🇷 Korea", updated: "25m ago", tag: "Graded" },
+  { sku: "KTC-IP14P-512-A", model: "iPhone 14 Plus 512GB", grade: "A", qty: 370, price: 319, source: "KT Corp", origin: "🇰🇷 Korea", updated: "50m ago", tag: "Graded" },
+  { sku: "KTC-IP13-128-AB", model: "iPhone 13 128GB A/B Mix", grade: "A/B", qty: 1400, price: 198, source: "KT Corp", origin: "🇰🇷 Korea", updated: "1h ago", tag: "ASIS" },
+  { sku: "KTC-IP12M-256-B", model: "iPhone 12 Mini 256GB", grade: "B", qty: 600, price: 142, source: "KT Corp", origin: "🇰🇷 Korea", updated: "2h ago", tag: "ASIS" },
+  { sku: "KTC-IP11-64-C", model: "iPhone 11 64GB Lot", grade: "C", qty: 3000, price: 87, source: "KT Corp", origin: "🇰🇷 Korea", updated: "3h ago", tag: "ASIS" },
+];
+
+// Lot inspection video stubs — in production would come from DB
+const LOT_VIDEOS: Record<string, { videoId: string; title: string; duration: string }> = {
+  "CT-US-4821": { videoId: "kLtcgg9gyPE", title: "iPhone 15 Pro Max 256GB — Inspection Walkthrough", duration: "4:12" },
+  "CT-CN-7734": { videoId: "e2WQSD90rsc", title: "iPhone 14 Pro 128GB — Grade A/B Batch", duration: "6:03" },
+  "CT-IN-2291": { videoId: "LXpOSUTH5sQ", title: "iPhone 13 Pro 256GB — RODTEP Certified", duration: "3:48" },
+  "CT-US-5519": { videoId: "oozHndEpgIM", title: "iPhone 16 Pro Max 512GB — Grade A+ Lot", duration: "5:27" },
+};
 
 function LiveTicker() {
   const [offset, setOffset] = useState(0);
@@ -263,6 +291,194 @@ function BidDialog({ lot }: { lot: typeof LIVE_LOTS[0] }) {
               data-testid="button-submit-bid"
             >
               Submit Bid →
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function VideoInspectionDialog({ lotId, model }: { lotId: string; model: string }) {
+  const [open, setOpen] = useState(false);
+  const vid = LOT_VIDEOS[lotId];
+  if (!vid) return null;
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button size="sm" variant="outline" className="gap-1.5 border-[#1E293B] text-slate-400 hover:text-cyan-400 hover:border-cyan-500/40 text-[10px] font-black uppercase tracking-widest w-full" data-testid={`button-video-${lotId}`}>
+          <PlayCircle className="w-3.5 h-3.5" />
+          Inspection Video
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-2xl p-0 overflow-hidden">
+        <div className="aspect-video w-full bg-black">
+          <iframe
+            src={`https://www.youtube.com/embed/${vid.videoId}?autoplay=1&rel=0&modestbranding=1`}
+            title={vid.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </div>
+        <div className="p-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Video className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400">Live Inspection Recording</span>
+            <span className="ml-auto text-[10px] text-slate-500">{vid.duration}</span>
+          </div>
+          <div className="font-bold text-white text-sm">{vid.title}</div>
+          <p className="text-[11px] text-slate-400 mt-1">Recorded at DAFZA / Commercity by our certified inspection team. All units tested per ChainTrack grading protocol before listing.</p>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function XlsxUploadDialog() {
+  const [open, setOpen] = useState(false);
+  const [uploadType, setUploadType] = useState<"inventory" | "bids">("inventory");
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [processing, setProcessing] = useState(false);
+  const [matched, setMatched] = useState<null | { lots: number; matches: number; value: string }>(null);
+  const { toast } = useToast();
+
+  function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const f = e.target.files?.[0];
+    if (!f) return;
+    if (!f.name.endsWith(".xlsx") && !f.name.endsWith(".xls") && !f.name.endsWith(".csv")) {
+      toast({ title: "Invalid file type", description: "Please upload an .xlsx, .xls, or .csv file.", variant: "destructive" });
+      return;
+    }
+    setFileName(f.name);
+    setMatched(null);
+  }
+
+  function handleProcess() {
+    if (!fileName) return;
+    setProcessing(true);
+    setTimeout(() => {
+      setProcessing(false);
+      const lots = Math.floor(Math.random() * 40) + 10;
+      const matches = Math.floor(lots * 0.7);
+      const value = `$${(matches * 250 + Math.random() * 50000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+      setMatched({ lots, matches, value });
+    }, 1800);
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="gap-2 border border-[#1E293B] bg-[#0D1424] hover:bg-[#1E293B] text-slate-300 font-black uppercase tracking-widest text-xs" data-testid="button-xlsx-upload">
+          <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
+          Upload Inventory / Bids
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-xl">
+        <DialogHeader>
+          <DialogTitle className="text-white text-lg font-black flex items-center gap-2">
+            <FileSpreadsheet className="w-5 h-5 text-emerald-400" />
+            Bulk Upload — Inventory or Bid Sheet
+          </DialogTitle>
+          <p className="text-slate-400 text-sm">Upload an Excel or CSV file to match inventory with live auctions or submit bulk bids.</p>
+        </DialogHeader>
+        <div className="space-y-4">
+          {/* Upload type selector */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { type: "inventory" as const, label: "Supplier Inventory", desc: "List items for auction", icon: Package, color: "cyan" },
+              { type: "bids" as const, label: "Buyer Bid Sheet", desc: "Submit bulk bids on lots", icon: Gavel, color: "amber" },
+            ].map(opt => (
+              <button
+                key={opt.type}
+                onClick={() => { setUploadType(opt.type); setFileName(null); setMatched(null); }}
+                className={`p-3 rounded-xl border text-left transition-all ${uploadType === opt.type ? `bg-${opt.color}-500/10 border-${opt.color}-500/50` : "bg-[#070B14] border-[#1E293B]"}`}
+                data-testid={`btn-upload-type-${opt.type}`}
+              >
+                <opt.icon className={`w-4 h-4 mb-1.5 ${uploadType === opt.type ? `text-${opt.color}-400` : "text-slate-500"}`} />
+                <div className={`text-xs font-black ${uploadType === opt.type ? "text-white" : "text-slate-400"}`}>{opt.label}</div>
+                <div className="text-[10px] text-slate-600">{opt.desc}</div>
+              </button>
+            ))}
+          </div>
+
+          {/* Format guide */}
+          <div className="bg-[#070B14] border border-[#1E293B] rounded-xl p-3">
+            <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Required Columns</div>
+            {uploadType === "inventory" ? (
+              <div className="flex flex-wrap gap-1.5">
+                {["Model", "Qty", "Grade", "Origin", "Price/Unit", "Warehouse", "Notes"].map(col => (
+                  <span key={col} className="px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20 text-[10px] font-mono text-cyan-300">{col}</span>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-wrap gap-1.5">
+                {["Lot ID / Model", "Max Bid/Unit", "Min Qty", "Grade Accepted", "Delivery Dest"].map(col => (
+                  <span key={col} className="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 text-[10px] font-mono text-amber-300">{col}</span>
+                ))}
+              </div>
+            )}
+            <p className="text-[10px] text-slate-600 mt-2">
+              <a href="https://wa.me/971523906019?text=ChainTrack%20-%20Send%20me%20the%20XLSX%20template" target="_blank" rel="noopener noreferrer" className="text-cyan-400 underline">WhatsApp us</a> to receive the template file.
+            </p>
+          </div>
+
+          {/* File drop zone */}
+          <label className="block cursor-pointer" data-testid="label-file-upload">
+            <div className={`border-2 border-dashed rounded-xl p-6 text-center transition-all ${fileName ? "border-emerald-500/50 bg-emerald-500/5" : "border-[#1E293B] hover:border-cyan-500/40 bg-[#070B14]"}`}>
+              <Upload className={`w-8 h-8 mx-auto mb-2 ${fileName ? "text-emerald-400" : "text-slate-600"}`} />
+              {fileName ? (
+                <div>
+                  <p className="font-bold text-emerald-400 text-sm">{fileName}</p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">File selected · click to change</p>
+                </div>
+              ) : (
+                <div>
+                  <p className="font-bold text-slate-300 text-sm">Drop file here or click to browse</p>
+                  <p className="text-[11px] text-slate-500 mt-0.5">.xlsx · .xls · .csv supported</p>
+                </div>
+              )}
+            </div>
+            <input type="file" accept=".xlsx,.xls,.csv" className="hidden" onChange={handleFile} data-testid="input-file-upload" />
+          </label>
+
+          {/* Match results */}
+          {matched && (
+            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4">
+              <div className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-2">✓ Processing Complete</div>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="text-center">
+                  <div className="text-xl font-black text-white">{matched.lots}</div>
+                  <div className="text-[10px] text-slate-500">Rows read</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-black text-emerald-400">{matched.matches}</div>
+                  <div className="text-[10px] text-slate-500">Live matches</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xl font-black text-cyan-400">{matched.value}</div>
+                  <div className="text-[10px] text-slate-500">Est. value</div>
+                </div>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-3">ChainTrack ops will review matches and contact you within 2h via WhatsApp to confirm.</p>
+            </div>
+          )}
+
+          <div className="flex gap-3">
+            <Button variant="outline" className="flex-1 border-[#1E293B] text-slate-400" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button
+              className={`flex-1 font-black text-slate-950 ${uploadType === "inventory" ? "bg-cyan-500 hover:bg-cyan-400" : "bg-amber-500 hover:bg-amber-400"}`}
+              disabled={!fileName || processing}
+              onClick={handleProcess}
+              data-testid="button-process-upload"
+            >
+              {processing ? (
+                <><RefreshCw className="w-3.5 h-3.5 mr-2 animate-spin" />Processing...</>
+              ) : matched ? (
+                "Re-process File"
+              ) : (
+                "Match & Submit →"
+              )}
             </Button>
           </div>
         </div>
@@ -467,12 +683,9 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="space-y-2">
             <BidDialog lot={lot} />
-            <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 hover:text-white text-[11px] font-bold uppercase tracking-widest" data-testid={`button-view-${lot.id}`}>
-              <Eye className="w-3.5 h-3.5 mr-1" />
-              Details
-            </Button>
+            <VideoInspectionDialog lotId={lot.id} model={lot.model} />
           </div>
         </div>
       </Card>
@@ -502,12 +715,16 @@ export default function ChainTrackPage() {
   return (
     <div className="min-h-screen bg-[#070B14] text-white">
       <SEOMeta
-        title="ChainTrack — World's #1 Reverse Auction Marketplace for Used iPhones | Dubai"
-        description="ChainTrack is Dubai's B2B reverse auction platform for used iPhones. Suppliers from US, China & India compete on price. DAFZA & Commercity escrow. 34 markets served: CIS, Europe, Africa & South Asia. Join as Phone Flipper — buy verified lots, flip locally, earn globally."
+        title="ChainTrack — Live Reverse Auction & Sourcing Marketplace for Used iPhones | Dubai"
+        description="ChainTrack is Dubai's B2B reverse auction and live sourcing platform for used iPhones. Wesellcellular & KT Corp feeds. Suppliers from US, China, India & Korea compete on price. DAFZA & Commercity escrow. 50+ markets: CIS, Europe, Africa & South Asia. XLSX inventory upload, live inspection videos."
         canonical="https://www.deliwer.com/chaintrack"
-        keywords="used iPhone wholesale Dubai, reverse auction iPhones, buy used iPhones bulk Dubai, DAFZA electronics escrow, used iPhone export Dubai, CIS iPhone market, phone flipper Dubai, refurbished iPhone wholesale, ChainTrack marketplace, iPhone lots Dubai, bulk iPhone purchase, B2B phone marketplace, used iPhone Kazakhstan, used iPhone Russia, used iPhone Africa, iPhone wholesale supplier Dubai, reverse bid marketplace, phone flipper track"
+        keywords="used iPhone wholesale Dubai, reverse auction iPhones, buy used iPhones bulk Dubai, DAFZA electronics escrow, used iPhone export Dubai, CIS iPhone market, phone flipper Dubai, refurbished iPhone wholesale, ChainTrack marketplace, iPhone lots Dubai, bulk iPhone purchase, B2B phone marketplace, used iPhone Kazakhstan, used iPhone Russia, used iPhone Africa, iPhone wholesale supplier Dubai, reverse bid marketplace, phone flipper track, Wesellcellular Dubai, KT Corp electronics, live inspection videos iPhones, bulk bid upload xlsx, iPhone sourcing platform Dubai, electronics reverse auction UAE, wholesale iPhone Korea, iPhone import Dubai DAFZA, B2B electronics sourcing Dubai, iPhone auction CIS markets, refurbished iPhone Kazakhstan Russia, Dubai electronics re-export hub"
         ogType="website"
-        dateModified="2026-05-23"
+        dateModified="2026-05-30"
+        breadcrumbs={[
+          { name: "Home", url: "https://www.deliwer.com" },
+          { name: "ChainTrack", url: "https://www.deliwer.com/chaintrack" }
+        ]}
       />
       <LiveTicker />
       {/* ── Pipeline indicator ── */}
@@ -558,13 +775,13 @@ export default function ChainTrackPage() {
 
           <div className="flex flex-wrap gap-3 mb-12">
             <ListLotDialog />
-            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer" target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-register-buyer">
                 <Shield className="w-4 h-4" />
                 Register as Buyer
               </Button>
             </a>
-            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-whatsapp-chaintrack">
                 <SiWhatsapp className="w-4 h-4" />
                 WhatsApp
@@ -600,7 +817,7 @@ export default function ChainTrackPage() {
         {/* Buyer / Seller funnel selector */}
         <div className="container mx-auto px-4 max-w-7xl py-5">
           <div className="grid md:grid-cols-2 gap-4">
-            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots" target="_blank" rel="noopener noreferrer" className="group" data-testid="funnel-buyer">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots" target="_blank" rel="noopener noreferrer" className="group" data-testid="funnel-buyer">
               <div className="flex items-center gap-4 bg-cyan-500/8 border border-cyan-500/25 hover:border-cyan-500/50 rounded-2xl p-5 transition-all cursor-pointer">
                 <div className="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
                   <Gavel className="w-5 h-5 text-cyan-400" />
@@ -661,6 +878,7 @@ export default function ChainTrackPage() {
               data-testid="input-search-lots"
             />
           </div>
+          <XlsxUploadDialog />
           <Button
             variant="outline"
             className={`gap-2 border-[#1E293B] text-slate-400 hover:text-white shrink-0 ${showFilters ? "border-cyan-500/50 text-cyan-400" : ""}`}
@@ -755,11 +973,16 @@ export default function ChainTrackPage() {
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
           <div className="overflow-x-auto -mx-1 px-1 pb-1">
-            <TabsList className="border border-[#1E293B] p-1 w-max min-w-full bg-[#d9d9d9]">
+            <TabsList className="border border-[#1E293B] p-1 w-max min-w-full bg-[#0D1424]">
               <TabsTrigger value="live" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-live">
                 <Radio className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
                 <span>Live Auctions</span>
                 <Badge className="ml-1 sm:ml-1.5 bg-red-500 text-white text-[9px] px-1 sm:px-1.5">{LIVE_LOTS.length}</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="feeds" className="data-[state=active]:bg-emerald-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-feeds">
+                <Rss className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
+                <span>Supplier Feeds</span>
+                <Badge className="ml-1 sm:ml-1.5 bg-emerald-600 text-white text-[9px] px-1 sm:px-1.5">Live</Badge>
               </TabsTrigger>
               <TabsTrigger value="closing" className="data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-950 font-black text-[10px] sm:text-xs uppercase tracking-widest whitespace-nowrap" data-testid="tab-closing">
                 <Timer className="w-3 h-3 mr-1 sm:mr-1.5 shrink-0" />
@@ -785,6 +1008,170 @@ export default function ChainTrackPage() {
                 ))}
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="feeds" className="mt-6">
+            <div className="space-y-8">
+              {/* Header */}
+              <div className="flex items-start justify-between gap-4 flex-wrap">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Live Feed — Updated continuously</span>
+                  </div>
+                  <h3 className="text-xl font-black text-white">Direct Supplier Inventory Feeds</h3>
+                  <p className="text-sm text-slate-400 mt-1">Live availability from Wesellcellular (USA) and KT Corp (Korea). Prices in USD/unit. Request a lot to trigger reverse auction or buy straight.</p>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                  <XlsxUploadDialog />
+                  <a href="https://wa.me/971523906019?text=ChainTrack%20Feed%20-%20I%20want%20to%20enquire%20about%20a%20supplier%20feed%20item" target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest text-xs gap-1.5" data-testid="button-feed-enquire">
+                      <SiWhatsapp className="w-3.5 h-3.5" />
+                      Enquire via WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Wesellcellular Feed */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-xl px-4 py-2">
+                    <Building className="w-4 h-4 text-blue-400" />
+                    <span className="font-black text-white text-sm">Wesellcellular</span>
+                    <span className="text-[10px] text-blue-300">🇺🇸 USA Feed</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse ml-1" />
+                  </div>
+                  <span className="text-[10px] text-slate-500">{WSC_FEED.length} items · refreshed 8m ago</span>
+                </div>
+                <div className="overflow-x-auto rounded-xl border border-[#1E293B]">
+                  <table className="w-full min-w-[700px]">
+                    <thead>
+                      <tr className="border-b border-[#1E293B] bg-[#070B14]">
+                        {["SKU", "Model", "Grade", "Qty", "Price/Unit", "Source", "Type", "Updated", "Action"].map(h => (
+                          <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {WSC_FEED.map((item, i) => (
+                        <tr key={item.sku} className="border-b border-[#1E293B] bg-[#0D1424] hover:bg-[#1a2540] transition-colors" data-testid={`feed-row-wsc-${i}`}>
+                          <td className="px-4 py-3 text-[10px] font-mono text-slate-500">{item.sku}</td>
+                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.model}</td>
+                          <td className="px-4 py-3">
+                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${
+                              item.grade === "A+" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" :
+                              item.grade === "A" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
+                              item.grade === "A/B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                              item.grade === "B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                              "text-amber-400 bg-amber-500/10 border-amber-500/30"
+                            }`}>{item.grade}</span>
+                          </td>
+                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.qty.toLocaleString()}</td>
+                          <td className="px-4 py-3 text-[14px] font-black text-cyan-400">${item.price}</td>
+                          <td className="px-4 py-3 text-[11px] text-slate-400">{item.origin}</td>
+                          <td className="px-4 py-3">
+                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-700/50 border border-slate-600/40 text-slate-300">{item.tag}</span>
+                          </td>
+                          <td className="px-4 py-3 text-[10px] text-slate-600">{item.updated}</td>
+                          <td className="px-4 py-3">
+                            <div className="flex gap-1.5">
+                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Feed%20Enquiry%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-feed-bid-${i}`}>
+                                  Bid
+                                </Button>
+                              </a>
+                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Straight%20Buy%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-feed-buy-${i}`}>
+                                  Buy
+                                </Button>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* KT Corp Feed */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 rounded-xl px-4 py-2">
+                    <Building className="w-4 h-4 text-purple-400" />
+                    <span className="font-black text-white text-sm">KT Corp</span>
+                    <span className="text-[10px] text-purple-300">🇰🇷 Korea Feed</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse ml-1" />
+                  </div>
+                  <span className="text-[10px] text-slate-500">{KTC_FEED.length} items · refreshed 3m ago</span>
+                </div>
+                <div className="overflow-x-auto rounded-xl border border-[#1E293B]">
+                  <table className="w-full min-w-[700px]">
+                    <thead>
+                      <tr className="border-b border-[#1E293B] bg-[#070B14]">
+                        {["SKU", "Model", "Grade", "Qty", "Price/Unit", "Source", "Type", "Updated", "Action"].map(h => (
+                          <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-500">{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {KTC_FEED.map((item, i) => (
+                        <tr key={item.sku} className="border-b border-[#1E293B] bg-[#0D1424] hover:bg-[#1a2540] transition-colors" data-testid={`feed-row-ktc-${i}`}>
+                          <td className="px-4 py-3 text-[10px] font-mono text-slate-500">{item.sku}</td>
+                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.model}</td>
+                          <td className="px-4 py-3">
+                            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${
+                              item.grade === "A+" ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" :
+                              item.grade === "A" ? "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" :
+                              item.grade === "A/B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                              item.grade === "B" ? "text-blue-400 bg-blue-500/10 border-blue-500/30" :
+                              "text-amber-400 bg-amber-500/10 border-amber-500/30"
+                            }`}>{item.grade}</span>
+                          </td>
+                          <td className="px-4 py-3 text-[13px] font-bold text-white">{item.qty.toLocaleString()}</td>
+                          <td className="px-4 py-3 text-[14px] font-black text-purple-400">${item.price}</td>
+                          <td className="px-4 py-3 text-[11px] text-slate-400">{item.origin}</td>
+                          <td className="px-4 py-3">
+                            <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-slate-700/50 border border-slate-600/40 text-slate-300">{item.tag}</span>
+                          </td>
+                          <td className="px-4 py-3 text-[10px] text-slate-600">{item.updated}</td>
+                          <td className="px-4 py-3">
+                            <div className="flex gap-1.5">
+                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Feed%20Enquiry%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" className="bg-purple-500 hover:bg-purple-400 text-white font-black text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-ktc-bid-${i}`}>
+                                  Bid
+                                </Button>
+                              </a>
+                              <a href={`https://wa.me/971523906019?text=ChainTrack%20Straight%20Buy%20-%20${encodeURIComponent(item.sku)}%20${encodeURIComponent(item.model)}%20Qty:${item.qty}%20%40%24${item.price}/unit`} target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" variant="outline" className="border-[#1E293B] text-slate-400 text-[9px] uppercase px-2 py-1 h-auto" data-testid={`btn-ktc-buy-${i}`}>
+                                  Buy
+                                </Button>
+                              </a>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* How feeds work */}
+              <div className="grid md:grid-cols-3 gap-4">
+                {[
+                  { icon: Rss, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20", title: "Live Inventory Feed", desc: "Wesellcellular and KT Corp push updated stock levels directly. Quantities and prices refresh continuously." },
+                  { icon: Gavel, color: "text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/20", title: "Bid or Buy Straight", desc: "Place a reverse auction bid to compete on price, or request a straight buy at the listed rate. ChainTrack coordinates grading and escrow either way." },
+                  { icon: FileSpreadsheet, color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20", title: "Upload Your Wishlist", desc: "Have a large order? Upload an XLSX with your model requirements and quantities — we match against both feeds and live lots automatically." },
+                ].map((item, i) => (
+                  <div key={i} className={`rounded-xl border p-4 ${item.bg}`}>
+                    <item.icon className={`w-5 h-5 ${item.color} mb-2`} />
+                    <div className="font-black text-white text-sm mb-1">{item.title}</div>
+                    <p className="text-[11px] text-slate-400 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="closing" className="mt-6">
@@ -1042,7 +1429,7 @@ export default function ChainTrackPage() {
               We are in exploratory discussions with automated testing and ITAD facilities in the US, China, India and UAE. If your facility processes 1,000+ used devices per day, we want to integrate your inventory directly into ChainTrack's reverse auction feed.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20represent%20a%20grading%20facility%20and%20want%20to%20discuss%20a%20partnership." target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20represent%20a%20grading%20facility%20and%20want%20to%20discuss%20a%20partnership." target="_blank" rel="noopener noreferrer">
                 <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black uppercase tracking-widest gap-2 text-xs" data-testid="button-partnership-whatsapp">
                   <SiWhatsapp className="w-3.5 h-3.5" />
                   WhatsApp Our Team
@@ -1231,7 +1618,7 @@ export default function ChainTrackPage() {
                   Arrange Delivery →
                 </Button>
               </Link>
-              <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20won%20a%20lot%20and%20need%20logistics" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20won%20a%20lot%20and%20need%20logistics" target="_blank" rel="noopener noreferrer">
                 <Button variant="outline" className="border-[#1E293B] text-slate-400 hover:text-white font-black uppercase tracking-widest text-xs gap-2" data-testid="button-logistics-whatsapp">
                   <SiWhatsapp className="w-3.5 h-3.5 text-emerald-400" />
                   WhatsApp
@@ -1342,7 +1729,7 @@ export default function ChainTrackPage() {
               {/* CTA buttons */}
               <div className="flex flex-col gap-2.5">
                 <a
-                  href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20just%20watched%20the%20buyer%20proof%20video%20and%20want%20to%20lock%20in%20my%20Growth-tier%20seat%20before%20it%20closes."
+                  href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20just%20watched%20the%20buyer%20proof%20video%20and%20want%20to%20lock%20in%20my%20Growth-tier%20seat%20before%20it%20closes."
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="button-trust-cta-primary"
@@ -1353,7 +1740,7 @@ export default function ChainTrackPage() {
                   </Button>
                 </a>
                 <a
-                  href="https://t.me/+971523946311"
+                  href="https://t.me/+971523906019"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="button-trust-cta-telegram"
@@ -1523,7 +1910,7 @@ export default function ChainTrackPage() {
           {/* CTA below reviews */}
           <div className="text-center mt-12">
             <a
-              href="https://wa.me/971523946311?text=Hi%20ChainTrack!%20I%20saw%20the%20buyer%20reviews%20and%20want%20to%20start%20sourcing%20iPhones."
+              href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20saw%20the%20buyer%20reviews%20and%20want%20to%20start%20sourcing%20iPhones."
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-reviews-cta"
@@ -1576,13 +1963,13 @@ export default function ChainTrackPage() {
                     Join Phone Flipper Track
                   </Button>
                 </Link>
-                <a href="https://wa.me/971523946311?text=Hi%20DeliWer!%20I%20want%20to%20join%20the%20*Phone%20Flipper%20Track*%20and%20start%20buying%2C%20flipping%20and%20earning%20on%20devices%20via%20ChainTrack." target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/971523906019?text=Hi%20DeliWer!%20I%20want%20to%20join%20the%20*Phone%20Flipper%20Track*%20and%20start%20buying%2C%20flipping%20and%20earning%20on%20devices%20via%20ChainTrack." target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-whatsapp">
                     <SiWhatsapp className="w-4 h-4" />
                     WhatsApp to Apply
                   </Button>
                 </a>
-                <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/+971523906019" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-telegram">
                     <SiTelegram className="w-4 h-4" />
                     Telegram to Apply
@@ -1687,7 +2074,7 @@ export default function ChainTrackPage() {
       {/* ── Sticky mobile CTA ── */}
       <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden border-t border-[#1E293B] bg-[#070B14]/95 backdrop-blur-md p-3 flex gap-3" data-testid="sticky-mobile-cta">
         <a
-          href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots"
+          href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1"
@@ -1697,7 +2084,7 @@ export default function ChainTrackPage() {
           </button>
         </a>
         <a
-          href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot%20for%20auction"
+          href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot%20for%20auction"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1"

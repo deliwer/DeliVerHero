@@ -31,7 +31,7 @@ const FAQ = [
 
 export default function DubaiRentIncreaseRules() {
   const handleWhatsApp = () => {
-    window.open("https://wa.me/971523946311?text=" + encodeURIComponent("Hi DeliWer — I received a rent increase notice and want to know my options. Please help."), "_blank");
+    window.open("https://wa.me/971523906019?text=" + encodeURIComponent("Hi DeliWer — I received a rent increase notice and want to know my options. Please help."), "_blank");
   };
 
   return (

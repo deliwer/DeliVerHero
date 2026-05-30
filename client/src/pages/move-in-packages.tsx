@@ -120,7 +120,7 @@ export default function MoveInPackages() {
                 </div>
                 <Button 
                   className={`w-full bg-${pkg.color}-600 hover:bg-${pkg.color}-500 text-white py-8 rounded-2xl font-black text-lg shadow-xl`}
-                  onClick={() => window.open("https://wa.me/971523946311", "_blank")}
+                  onClick={() => window.open("https://wa.me/971523906019", "_blank")}
                 >
                   {pkg.cta}
                   <ArrowRight className="ml-2 w-5 h-5" />

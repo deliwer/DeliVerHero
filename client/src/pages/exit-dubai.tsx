@@ -30,7 +30,7 @@ export default function ExitDubaiPage() {
 
   const handleWhatsApp = (msg?: string) => {
     const text = msg ?? "I need exit concierge coordination. I am leaving Dubai and need help with movers, Ejari cancellation, DEWA closure, and apartment clearance.";
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(text)}`, "_blank");
   };
 
   return (

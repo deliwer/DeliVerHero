@@ -342,13 +342,13 @@ export default function HomeServiceLaunch() {
               <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
               <div className="space-y-4">
                 <a 
-                  href="https://wa.me/971523946311" 
+                  href="https://wa.me/971523906019" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center justify-center md:justify-start gap-3 text-lg font-medium text-primary hover:underline"
                 >
                   <SiWhatsapp className="w-6 h-6" />
-                  +971 52 394 6311
+                  +971 52 390 6019
                 </a>
                 <p className="text-muted-foreground text-lg">
                   Website: <a href="https://www.deliwer.com" className="hover:underline font-semibold">www.deliwer.com</a>

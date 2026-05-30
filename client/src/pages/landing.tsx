@@ -69,7 +69,7 @@ export default function LandingPage() {
           { question: "What does DeliWer do?", answer: "DeliWer is Dubai's all-in-one move-in and relocation platform. We coordinate Ejari registration through RERA-authorized Trustee Centers, DEWA activation, professional movers, cleaning, internet setup, water filtration, and flexible monthly accommodation — all via WhatsApp. One contact, no complicated forms." },
           { question: "How much does Ejari registration cost in Dubai?", answer: "The official RERA Ejari registration fee is AED 220 including VAT. DeliWer coordinates the full process — document collection, submission, and digital delivery — so you never have to visit a Trustee Center yourself." },
           { question: "Can I find a monthly room in Dubai without an annual contract?", answer: "Yes. DeliWer's Flex Living service offers rooms, shared villas, studios, and bed spaces in Dubai on a month-to-month basis with no annual contract. Prices from AED 550/month. Available in JVC, Al Barsha, Deira, International City, and more." },
-          { question: "How do I start with DeliWer?", answer: "WhatsApp DeliWer at +971523946311. Tell us what you need — Ejari, DEWA, movers, a monthly room, or business setup — and we'll coordinate everything on your behalf. Most requests receive a response within minutes." },
+          { question: "How do I start with DeliWer?", answer: "WhatsApp DeliWer at +971523906019. Tell us what you need — Ejari, DEWA, movers, a monthly room, or business setup — and we'll coordinate everything on your behalf. Most requests receive a response within minutes." },
           { question: "What areas of Dubai does DeliWer cover?", answer: "DeliWer covers all Dubai areas including JVC, Dubai Marina, Business Bay, Downtown Dubai, Al Barsha, Al Nahda, Deira, JLT, Dubai Hills, Palm Jumeirah, International City, Karama, Bur Dubai, Mirdif, Silicon Oasis, Al Furjan, and 35+ more neighbourhoods." },
           { question: "Does DeliWer help with business setup in Dubai?", answer: "Yes. DeliWer coordinates Dubai Free Zone and mainland company formation, PRO services, trade license applications, visa assistance, and document clearing. Popular options include DAFZA, Dubai South, and IFZA Free Zones." },
         ]}
@@ -151,7 +151,7 @@ export default function LandingPage() {
           >
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
-                href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+                href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="cta-whatsapp-main-hero"
@@ -161,7 +161,7 @@ export default function LandingPage() {
                 </Button>
               </a>
               <a
-                href="https://t.me/+971523946311"
+                href="https://t.me/+971523906019"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="cta-telegram-main-hero"
@@ -587,7 +587,7 @@ export default function LandingPage() {
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+              href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-bundle-start"
@@ -597,7 +597,7 @@ export default function LandingPage() {
               </Button>
             </a>
             <a
-              href="https://t.me/+971523946311"
+              href="https://t.me/+971523906019"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-bundle-telegram"
@@ -792,7 +792,7 @@ export default function LandingPage() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="https://wa.me/971523946311?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
+              href="https://wa.me/971523906019?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-emerald-900/30"
@@ -801,7 +801,7 @@ export default function LandingPage() {
               <MessageCircle className="w-4 h-4" /> Get My Move-In Plan
             </a>
             <a
-              href="https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20want%20a%20free%20rental%20analysis%20for%20my%20apartment"
+              href="https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20want%20a%20free%20rental%20analysis%20for%20my%20apartment"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="cta-rental-analysis"
@@ -846,7 +846,7 @@ export default function LandingPage() {
                 <Button 
                   size="lg" 
                   className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl transition-all group"
-                  onClick={() => window.open('https://wa.me/971523946311?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
+                  onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
                   data-testid="button-just-got-keys"
                 >
                   <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
@@ -997,7 +997,7 @@ export default function LandingPage() {
               <p className="text-gray-500 text-[11px] mt-1">Ask us about current availability when you start your move-in on WhatsApp.</p>
             </div>
             <a
-              href="https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20know%20about%20distress%20deal%20vacancies%20available%20now."
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20know%20about%20distress%20deal%20vacancies%20available%20now."
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 relative z-10"
@@ -1243,7 +1243,7 @@ export default function LandingPage() {
         </div>
         <div className="relative z-10 flex flex-col items-center gap-4">
           <a
-            href="https://wa.me/971523946311?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+            href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
             target="_blank"
             rel="noopener noreferrer"
             data-testid="button-final-cta"
@@ -1257,7 +1257,7 @@ export default function LandingPage() {
             </Button>
           </a>
           <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
-            <span>WhatsApp: +971 52 394 6311</span>
+            <span>WhatsApp: +971 52 390 6019</span>
             <span>·</span>
             <span>info@deliwer.com</span>
           </div>
@@ -1285,7 +1285,7 @@ export default function LandingPage() {
       {/* MOBILE STICKY BOTTOM BAR */}
       <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-slate-950/95 backdrop-blur-md border-t border-white/10 p-4 pb-safe">
         <a
-          href="https://wa.me/971523946311?text=I%20found%20a%20property%20and%20need%20move-in%20support"
+          href="https://wa.me/971523906019?text=I%20found%20a%20property%20and%20need%20move-in%20support"
           target="_blank"
           rel="noopener noreferrer"
           data-testid="cta-mobile-sticky"

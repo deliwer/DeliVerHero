@@ -10,7 +10,7 @@ export default function RelocateExitPage() {
   const searchParams = new URLSearchParams(window.location.search);
   const refCode = searchParams.get("ref") || "";
 
-  const WHATSAPP_NUMBER = "+971523946311";
+  const WHATSAPP_NUMBER = "+971523906019";
   const CEO_NUMBER = "+971523906019";
   
   const getWhatsAppLink = (message: string) => {

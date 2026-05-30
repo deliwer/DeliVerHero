@@ -94,7 +94,7 @@ export default function MoveInPlan() {
       "Name:",
     ].filter((l) => l !== undefined).join("\n").trim();
 
-    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (
