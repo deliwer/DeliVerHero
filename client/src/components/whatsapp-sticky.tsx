@@ -37,14 +37,7 @@ export function WhatsAppSticky() {
 
   if (isBrokerSurface) return null;
 
-  const isChainTrack =
-    location.startsWith("/chaintrack") ||
-    location.startsWith("/logistics") ||
-    location.startsWith("/freight");
-
-  const telegramUrl = isChainTrack
-    ? "https://t.me/chaintracklogistics"
-    : "https://t.me/+971523946311";
+  const telegramUrl = "https://t.me/+971523946311";
 
   const handleWhatsApp = () => {
     const currentClicks = parseInt(localStorage.getItem("wa_clicks") || "0");
