@@ -1078,6 +1078,200 @@ export default function ChainTrackPage() {
           </div>
 
           <TabsContent value="live" className="mt-6">
+
+            {/* ── Member-Only: US Carrier Auction Calendar ── */}
+            <div className="mb-8 rounded-2xl border border-[#1E293B] bg-[#070B14] overflow-hidden">
+              {/* Header */}
+              <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-[#1E293B]">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <Lock className="w-3.5 h-3.5 text-amber-400" />
+                    <span className="text-[9px] font-black uppercase tracking-widest text-amber-400">Members Only</span>
+                    <span className="text-[8px] font-black px-1.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300">Private · Not Public</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5 text-[9px] text-slate-500">
+                  <Clock className="w-3 h-3" />
+                  <span>All times Dubai (GST / UTC+4)</span>
+                </div>
+              </div>
+              <div className="px-5 pt-4 pb-2">
+                <div className="flex items-center gap-2 mb-1">
+                  <LayoutGrid className="w-4 h-4 text-cyan-400" />
+                  <h4 className="font-black text-white text-sm">US Source Auction Calendar</h4>
+                </div>
+                <p className="text-[11px] text-slate-400 mb-4">Weekly auction windows from major US carrier and ITAD liquidation channels. Use this to plan demand aggregation and lot request timing.</p>
+
+                {/* Weekly grid */}
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[720px] mb-4">
+                    <thead>
+                      <tr>
+                        {[
+                          { day: "Mon", label: "Monday" },
+                          { day: "Tue", label: "Tuesday" },
+                          { day: "Wed", label: "Wednesday" },
+                          { day: "Thu", label: "Thursday" },
+                          { day: "Fri", label: "Friday" },
+                          { day: "Sat", label: "Saturday" },
+                          { day: "Sun", label: "Sunday" },
+                        ].map(({ day, label }) => (
+                          <th key={day} className="pb-2 px-2 text-center">
+                            <div className="text-[9px] font-black uppercase tracking-widest text-slate-500">{label}</div>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Row 1 — Carrier B-Stock windows */}
+                      <tr className="align-top">
+                        {/* Mon */}
+                        <td className="px-2 pb-3">
+                          <div className="space-y-1.5">
+                            <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-blue-300 mb-0.5">AT&T Mobility</div>
+                              <div className="text-[9px] text-slate-400">B-Stock open · 8am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Postpaid returns · Grade A/B</div>
+                            </div>
+                            <div className="rounded-lg border border-amber-500/20 bg-amber-500/8 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-amber-300 mb-0.5">HYLA Mobile</div>
+                              <div className="text-[9px] text-slate-400">Trade-in intake closes</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">New lot preview opens</div>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Tue */}
+                        <td className="px-2 pb-3">
+                          <div className="space-y-1.5">
+                            <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-red-300 mb-0.5">Verizon Wireless</div>
+                              <div className="text-[9px] text-slate-400">B-Stock primary · 9am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">A+ / A grade · CDMA unlock</div>
+                            </div>
+                            <div className="rounded-lg border border-slate-600/40 bg-slate-800/30 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-slate-300 mb-0.5">Ingram Micro ITAD</div>
+                              <div className="text-[9px] text-slate-400">Feed refresh · 10am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Enterprise off-lease lots</div>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Wed */}
+                        <td className="px-2 pb-3">
+                          <div className="space-y-1.5">
+                            <div className="rounded-lg border border-purple-500/30 bg-purple-500/10 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-purple-300 mb-0.5">T-Mobile / Sprint</div>
+                              <div className="text-[9px] text-slate-400">B-Stock + secondary · 9am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Unlocked · mix lots available</div>
+                            </div>
+                            <div className="rounded-lg border border-blue-500/30 bg-blue-500/10 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-blue-300 mb-0.5">AT&T FirstNet</div>
+                              <div className="text-[9px] text-slate-400">ASIS surplus · 11am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Gov/fleet returns</div>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Thu */}
+                        <td className="px-2 pb-3">
+                          <div className="space-y-1.5">
+                            <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-red-300 mb-0.5">Verizon ASIS Lots</div>
+                              <div className="text-[9px] text-slate-400">Secondary round · 10am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">High volume · uninspected</div>
+                            </div>
+                            <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-emerald-300 mb-0.5">Cox / Charter MVNO</div>
+                              <div className="text-[9px] text-slate-400">Clearance lots · 9am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">B/C grade bulk</div>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Fri */}
+                        <td className="px-2 pb-3">
+                          <div className="space-y-1.5">
+                            <div className="rounded-lg border border-slate-600/40 bg-slate-800/30 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-slate-300 mb-0.5">Ingram Micro</div>
+                              <div className="text-[9px] text-slate-400">End-of-week ITAD lots</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Clearance · all grades</div>
+                            </div>
+                            <div className="rounded-lg border border-amber-500/20 bg-amber-500/8 px-2.5 py-2">
+                              <div className="text-[9px] font-black text-amber-300 mb-0.5">HYLA Mobile</div>
+                              <div className="text-[9px] text-slate-400">Lot release · 11am ET</div>
+                              <div className="text-[8px] text-slate-600 mt-0.5">Graded trade-in stock live</div>
+                            </div>
+                          </div>
+                        </td>
+                        {/* Sat */}
+                        <td className="px-2 pb-3">
+                          <div className="rounded-lg border border-slate-700/40 bg-slate-800/20 px-2.5 py-2">
+                            <div className="text-[9px] font-black text-slate-500 mb-0.5">Low Activity</div>
+                            <div className="text-[9px] text-slate-600">Most US auctions paused</div>
+                            <div className="text-[8px] text-slate-700 mt-0.5">Good day to review lots</div>
+                          </div>
+                        </td>
+                        {/* Sun */}
+                        <td className="px-2 pb-3">
+                          <div className="rounded-lg border border-cyan-500/20 bg-cyan-500/8 px-2.5 py-2">
+                            <div className="text-[9px] font-black text-cyan-400 mb-0.5">⚡ Demand Window</div>
+                            <div className="text-[9px] text-slate-400">Submit lot requests</div>
+                            <div className="text-[8px] text-cyan-600 mt-0.5 font-bold">By 11pm Dubai → Mon ET open</div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Legend + Demand window callout */}
+                <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                  {/* Legend */}
+                  <div className="rounded-xl border border-[#1E293B] bg-[#0D1424] p-3">
+                    <div className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-2">Source Key</div>
+                    <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+                      {[
+                        { color: "bg-blue-400", label: "AT&T Mobility" },
+                        { color: "bg-red-400", label: "Verizon Wireless" },
+                        { color: "bg-purple-400", label: "T-Mobile / Sprint" },
+                        { color: "bg-amber-400", label: "HYLA Mobile" },
+                        { color: "bg-slate-400", label: "Ingram Micro ITAD" },
+                        { color: "bg-emerald-400", label: "Cox / Charter MVNO" },
+                      ].map((s, i) => (
+                        <div key={i} className="flex items-center gap-1.5">
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${s.color}`} />
+                          <span className="text-[10px] text-slate-400">{s.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Demand aggregation callout */}
+                  <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-3">
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                      <div className="text-[9px] font-black uppercase tracking-widest text-cyan-400">Optimal Demand Window</div>
+                    </div>
+                    <p className="text-[11px] text-slate-300 leading-relaxed mb-2">
+                      Submit your lot requests to ChainTrack <span className="font-black text-cyan-300">by Sunday 11pm Dubai time</span>. We aggregate buyer demand before US markets open Monday morning — giving us maximum leverage entering the week's first auction rounds.
+                    </p>
+                    <a href="https://wa.me/971523906019?text=ChainTrack%20Sunday%20Demand%20-%20I%20want%20to%20submit%20my%20lot%20request%20for%20this%20week" target="_blank" rel="noopener noreferrer">
+                      <Button size="sm" className="bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/30 text-cyan-300 font-black text-[9px] uppercase tracking-widest h-7 px-3 gap-1.5" data-testid="button-demand-window">
+                        <SiWhatsapp className="w-3 h-3" />
+                        Submit This Week's Request
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Fine print */}
+                <div className="flex items-start gap-2 bg-slate-800/30 border border-slate-700/30 rounded-lg px-3 py-2 mb-4">
+                  <AlertCircle className="w-3 h-3 text-slate-500 shrink-0 mt-0.5" />
+                  <p className="text-[9px] text-slate-500 leading-relaxed">
+                    Auction schedules are indicative and subject to change by source operators. All carrier and platform names are trademarks of their respective owners. ChainTrack is not affiliated with any carrier or liquidation platform listed. This schedule is provided as member intelligence only and must not be reproduced or shared.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Lot Grid ── */}
             {filteredLots.length === 0 ? (
               <div className="text-center py-16 text-slate-500">
                 <Search className="w-12 h-12 mx-auto mb-4 opacity-30" />
