@@ -5549,6 +5549,172 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── Missed Call Auto-Reply ─────────────────────────────────────────────────
+  // Webhook URL to configure in Twilio (or any telephony provider):
+  //   POST https://<your-domain>/api/webhooks/missed-call
+  // Twilio sends CallStatus=no-answer|busy|failed, From=caller, To=called
+  app.post("/api/webhooks/missed-call", async (req, res) => {
+    // Support both Twilio form-encoded and JSON bodies
+    const body = req.body || {};
+    const callerPhone: string = (body.From || body.from || body.caller || "").toString().trim();
+    const calledNumber: string = (body.To || body.to || body.called || "+971523946311").toString().trim();
+    const callSid: string | undefined = (body.CallSid || body.callSid || body.call_sid || "").toString().trim() || undefined;
+    const callStatus: string = (body.CallStatus || body.callStatus || body.call_status || "no-answer").toString().toLowerCase();
+
+    // Only act on unanswered/busy/failed calls
+    const MISSED_STATUSES = ["no-answer", "busy", "failed", "no_answer"];
+    if (!MISSED_STATUSES.includes(callStatus)) {
+      return res.status(200).send("<Response></Response>"); // TwiML-compatible empty response
+    }
+
+    if (!callerPhone) {
+      return res.status(400).json({ error: "Missing caller phone number" });
+    }
+
+    const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
+    const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID || process.env.PHONE_NUMBER_ID;
+    const WHATSAPP_API_URL = `https://graph.facebook.com/v18.0/${PHONE_NUMBER_ID}/messages`;
+
+    const serviceMenu = `Hi 👋 You just called DeliWer — Dubai's move-in & home concierge. We missed your call but we're here to help!
+
+Reply with a number to get started:
+
+1️⃣ Ejari & DEWA setup (new move-in)
+2️⃣ Home maintenance & repairs
+3️⃣ Cleaning (move-in / move-out / regular)
+4️⃣ Water filter installation
+5️⃣ Furniture disposal or moving
+6️⃣ Something else
+
+Or just describe what you need in a message. A team member will respond shortly 🙏
+
+📞 +971 52 394 6311 | deliwer.com`;
+
+    let replySent = false;
+    let replyMode = "simulated";
+    let replyError: string | undefined;
+
+    if (WHATSAPP_TOKEN && PHONE_NUMBER_ID) {
+      try {
+        const waRes = await fetch(WHATSAPP_API_URL, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${WHATSAPP_TOKEN}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            messaging_product: "whatsapp",
+            to: callerPhone.replace(/^\+/, ""),
+            type: "text",
+            text: { body: serviceMenu },
+          }),
+        });
+        if (waRes.ok) {
+          replySent = true;
+          replyMode = "sent";
+          console.log(`[MISSED-CALL] ✅ WhatsApp reply sent to ${callerPhone}`);
+        } else {
+          const errBody = await waRes.json().catch(() => ({}));
+          replyError = JSON.stringify(errBody);
+          replyMode = "failed";
+          console.error(`[MISSED-CALL] ❌ WhatsApp API error for ${callerPhone}:`, errBody);
+        }
+      } catch (err: any) {
+        replyError = err.message;
+        replyMode = "failed";
+        console.error(`[MISSED-CALL] ❌ Exception sending WhatsApp to ${callerPhone}:`, err.message);
+      }
+    } else {
+      console.log(`[MISSED-CALL] [SIMULATED] Would send WhatsApp to ${callerPhone}:\n${serviceMenu}`);
+      replySent = true;
+      replyMode = "simulated";
+    }
+
+    await storage.logMissedCall({
+      callerPhone,
+      calledNumber,
+      callSid: callSid || null,
+      replySent,
+      replyMode,
+      replyError: replyError || null,
+      source: "webhook",
+    });
+
+    // Return TwiML-compatible empty response so Twilio doesn't error
+    res.set("Content-Type", "text/xml");
+    res.status(200).send("<Response></Response>");
+  });
+
+  // Manual trigger — for testing from the admin UI
+  app.post("/api/missed-call/test", async (req, res) => {
+    const { phone } = req.body;
+    if (!phone) return res.status(400).json({ error: "phone is required" });
+    // Re-use the same webhook logic by simulating a request
+    const testBody = { From: phone, To: "+971523946311", CallStatus: "no-answer", CallSid: `TEST_${Date.now()}` };
+    const fakeReq = { body: testBody } as any;
+    const results: any = {};
+
+    const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
+    const PHONE_NUMBER_ID = process.env.WHATSAPP_PHONE_NUMBER_ID || process.env.PHONE_NUMBER_ID;
+    const WHATSAPP_API_URL = `https://graph.facebook.com/v18.0/${PHONE_NUMBER_ID}/messages`;
+
+    const serviceMenu = `Hi 👋 You just called DeliWer — Dubai's move-in & home concierge. We missed your call but we're here to help!
+
+Reply with a number to get started:
+
+1️⃣ Ejari & DEWA setup (new move-in)
+2️⃣ Home maintenance & repairs
+3️⃣ Cleaning (move-in / move-out / regular)
+4️⃣ Water filter installation
+5️⃣ Furniture disposal or moving
+6️⃣ Something else
+
+Or just describe what you need in a message. A team member will respond shortly 🙏
+
+📞 +971 52 394 6311 | deliwer.com`;
+
+    let replySent = false;
+    let replyMode = "simulated";
+    let replyError: string | undefined;
+
+    if (WHATSAPP_TOKEN && PHONE_NUMBER_ID) {
+      try {
+        const waRes = await fetch(WHATSAPP_API_URL, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${WHATSAPP_TOKEN}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ messaging_product: "whatsapp", to: phone.replace(/^\+/, ""), type: "text", text: { body: serviceMenu } }),
+        });
+        if (waRes.ok) { replySent = true; replyMode = "sent"; }
+        else { const e = await waRes.json().catch(() => ({})); replyError = JSON.stringify(e); replyMode = "failed"; }
+      } catch (err: any) { replyError = err.message; replyMode = "failed"; }
+    } else {
+      replySent = true; replyMode = "simulated";
+    }
+
+    const logged = await storage.logMissedCall({
+      callerPhone: phone,
+      calledNumber: "+971523946311",
+      callSid: `TEST_${Date.now()}`,
+      replySent,
+      replyMode,
+      replyError: replyError || null,
+      source: "manual",
+    });
+
+    res.json({ success: true, replyMode, replySent, replyError, logged });
+  });
+
+  // Get missed call log for admin UI
+  app.get("/api/missed-calls", async (req, res) => {
+    const limit = Math.min(parseInt((req.query.limit as string) || "100"), 500);
+    const calls = await storage.getMissedCalls(limit);
+    const total = calls.length;
+    const sent = calls.filter(c => c.replySent).length;
+    const simulated = calls.filter(c => c.replyMode === "simulated").length;
+    const failed = calls.filter(c => c.replyMode === "failed").length;
+    res.json({ calls, stats: { total, sent, simulated, failed } });
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

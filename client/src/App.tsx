@@ -216,6 +216,7 @@ const AdminBrokerMasterPage = lazy(() => import("@/pages/admin-broker-master"));
 const FlexRentalsAdminPage = lazy(() => import("@/pages/admin/flex-rentals-admin"));
 const CapturePage = lazy(() => import("@/pages/capture"));
 const CaptureAdmin = lazy(() => import("@/pages/capture-admin"));
+const MissedCallAdmin = lazy(() => import("@/pages/missed-call-admin"));
 const HabtoorAdmin = lazy(() => import("@/pages/partner-dashboard"));
 const CaptureReferrers = lazy(() => import("@/pages/capture-referrers"));
 const MarketingTenantLeads = lazy(() => import("@/pages/marketing/tenant-leads"));
@@ -314,6 +315,7 @@ function Router() {
         <Route path="/admin/flex-rentals" component={FlexRentalsAdminPage} />
         <Route path="/capture" component={CapturePage} />
         <Route path="/capture-admin" component={CaptureAdmin} />
+        <Route path="/admin/missed-calls" component={MissedCallAdmin} />
         <Route path="/habtoor-admin" component={HabtoorAdmin} />
         <Route path="/capture-referrers" component={CaptureReferrers} />
         <Route path="/affiliate-dashboard"><Redirect to="/partner-dashboard" /></Route>

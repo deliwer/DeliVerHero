@@ -2027,6 +2027,22 @@ export const brokerFunnelEvents = pgTable("broker_funnel_events", {
 });
 export type BrokerFunnelEvent = typeof brokerFunnelEvents.$inferSelect;
 
+// ── Missed Call Auto-Reply Log ────────────────────────────────────────────────────────────────
+export const missedCalls = pgTable("missed_calls", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  callerPhone: text("caller_phone").notNull(),
+  calledNumber: text("called_number").notNull().default("+971523946311"),
+  callSid: text("call_sid"),
+  replySent: boolean("reply_sent").notNull().default(false),
+  replyMode: text("reply_mode").notNull().default("simulated"),
+  replyError: text("reply_error"),
+  source: text("source").notNull().default("webhook"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export const insertMissedCallSchema = createInsertSchema(missedCalls).omit({ id: true, createdAt: true });
+export type MissedCall = typeof missedCalls.$inferSelect;
+export type InsertMissedCall = z.infer<typeof insertMissedCallSchema>;
+
 // ── Trade Intel Posts ─────────────────────────────────────────────────────────────────────────
 // Admin-created, AI-generated trade intelligence articles published to /intel/:slug
 export const intelPosts = pgTable("intel_posts", {

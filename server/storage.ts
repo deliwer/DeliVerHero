@@ -5,6 +5,7 @@ import {
   users, heroes, tradeIns, impactStats, referrals, contacts,
   conciergeConversations, founderStreaks,
   flexListings, flexListingReviews, viewingRequests,
+  type MissedCall, type InsertMissedCall,
 } from "@shared/schema";
 import {
   type User, type InsertUser,
@@ -45,6 +46,9 @@ export interface IStorage {
   createViewingRequest(request: InsertViewingRequest): Promise<ViewingRequest>;
   getViewingRequests(status?: string): Promise<ViewingRequest[]>;
   updateViewingRequestStatus(id: string, status: string): Promise<ViewingRequest | undefined>;
+  // Missed Calls
+  logMissedCall(call: InsertMissedCall): Promise<MissedCall>;
+  getMissedCalls(limit?: number): Promise<MissedCall[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -57,6 +61,7 @@ export class MemStorage implements IStorage {
   private flexListingsMap: Map<string, FlexListing>;
   private flexListingReviewsMap: Map<string, FlexListingReview>;
   private viewingRequestsMap: Map<string, ViewingRequest>;
+  private missedCallsMap: Map<string, MissedCall>;
   sessionStore: any;
 
   constructor() {
@@ -69,6 +74,7 @@ export class MemStorage implements IStorage {
     this.flexListingsMap = new Map();
     this.flexListingReviewsMap = new Map();
     this.viewingRequestsMap = new Map();
+    this.missedCallsMap = new Map();
   }
 
   async getFlexListings(status?: string): Promise<FlexListing[]> {
@@ -300,6 +306,34 @@ export class MemStorage implements IStorage {
     const id = `fe_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
     this.brokerFunnelEventsList.push({ ...evt, id, createdAt: new Date() });
     if (this.brokerFunnelEventsList.length > 2000) this.brokerFunnelEventsList.shift();
+  }
+
+  async logMissedCall(call: InsertMissedCall): Promise<MissedCall> {
+    const id = `mc_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    const entry: MissedCall = {
+      id,
+      callerPhone: call.callerPhone,
+      calledNumber: call.calledNumber ?? "+971523946311",
+      callSid: call.callSid ?? null,
+      replySent: call.replySent ?? false,
+      replyMode: call.replyMode ?? "simulated",
+      replyError: call.replyError ?? null,
+      source: call.source ?? "webhook",
+      createdAt: new Date(),
+    };
+    this.missedCallsMap.set(id, entry);
+    if (this.missedCallsMap.size > 500) {
+      const oldest = Array.from(this.missedCallsMap.entries())
+        .sort((a, b) => new Date(a[1].createdAt).getTime() - new Date(b[1].createdAt).getTime())[0];
+      if (oldest) this.missedCallsMap.delete(oldest[0]);
+    }
+    return entry;
+  }
+
+  async getMissedCalls(limit = 100): Promise<MissedCall[]> {
+    return Array.from(this.missedCallsMap.values())
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, limit);
   }
 
   async getBrokerFunnelReport(): Promise<any> {
