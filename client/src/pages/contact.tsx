@@ -36,8 +36,8 @@ const CHANNELS = [
   {
     id: "telegram-dm",
     name: "Telegram DM",
-    handle: "t.me/+971523906019",
-    href: "https://t.me/+971523906019",
+    handle: "t.me/+971523946311",
+    href: "https://t.me/+971523946311",
     color: "sky",
     bgClass: "bg-[#229ED9] hover:bg-[#1a8bbf]",
     textClass: "text-white",
@@ -290,7 +290,7 @@ export default function ContactPage() {
                         <a href={`${contactInfo.ctas.whatsappBase}${founder.whatsappLink}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-emerald-400 transition-colors" title="WhatsApp">
                           <MessageCircle className="w-4 h-4" />
                         </a>
-                        <a href="https://t.me/+971523906019" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-sky-400 transition-colors" title="Telegram DM">
+                        <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-sky-400 transition-colors" title="Telegram DM">
                           <Send className="w-4 h-4" />
                         </a>
                       </div>

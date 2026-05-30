@@ -161,7 +161,7 @@ export default function LandingPage() {
                 </Button>
               </a>
               <a
-                href="https://t.me/+971523906019"
+                href="https://t.me/+971523946311"
                 target="_blank"
                 rel="noopener noreferrer"
                 data-testid="cta-telegram-main-hero"
@@ -597,7 +597,7 @@ export default function LandingPage() {
               </Button>
             </a>
             <a
-              href="https://t.me/+971523906019"
+              href="https://t.me/+971523946311"
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-bundle-telegram"

@@ -1743,7 +1743,7 @@ export default function ChainTrackPage() {
                   </Button>
                 </a>
                 <a
-                  href="https://t.me/+971523906019"
+                  href="https://t.me/+971523946311"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="button-trust-cta-telegram"
@@ -1972,7 +1972,7 @@ export default function ChainTrackPage() {
                     WhatsApp to Apply
                   </Button>
                 </a>
-                <a href="https://t.me/+971523906019" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-telegram">
                     <SiTelegram className="w-4 h-4" />
                     Telegram to Apply
