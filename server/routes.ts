@@ -5519,6 +5519,36 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── SEO Ping — manual trigger & status ──────────────────────────────────────
+  app.post("/api/admin/seo-ping", async (req, res) => {
+    const secret = req.headers["x-admin-secret"] || req.body?.secret;
+    const adminSecret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (secret !== adminSecret) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      const { runSeoPing } = await import("./services/seo-ping.js");
+      const result = await runSeoPing();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  app.get("/api/admin/seo-ping/status", async (req, res) => {
+    const secret = req.headers["x-admin-secret"] || req.query?.secret;
+    const adminSecret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (secret !== adminSecret) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      const { getLastPingReport } = await import("./services/seo-ping.js");
+      res.json(getLastPingReport());
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

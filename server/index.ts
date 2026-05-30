@@ -5,6 +5,7 @@ import "./instagram-sniffer";
 import { whatsappAgent } from "./services/whatsapp-agent";
 import { runDailyAutomation, runFollowUpAutomation } from "./services/broker-automation";
 import { runDailyTipsBroadcast } from "./services/tips-alert-service";
+import { runSeoPing } from "./services/seo-ping";
 
 const app = express();
 app.use(express.json({ limit: '50mb' }));
@@ -70,6 +71,19 @@ setInterval(() => {
 setTimeout(() => {
   runFollowUpAutomation().catch((err) => console.error('[CRON] Initial follow-up error:', err));
 }, 30000);
+
+// ── SEO Ping — weekly sitemap & IndexNow submission ───────────────────────────
+const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+
+// First run 90s after boot so server is fully ready and URLs are reachable
+setTimeout(() => {
+  runSeoPing().catch((err) => console.error('[SEO] Initial ping error:', err));
+}, 90_000);
+
+// Then repeat every 7 days
+setInterval(() => {
+  runSeoPing().catch((err) => console.error('[SEO] Weekly ping error:', err));
+}, SEVEN_DAYS);
 
 app.use((req, res, next) => {
   const start = Date.now();

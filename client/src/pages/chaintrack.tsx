@@ -311,7 +311,10 @@ function VideoInspectionDialog({ lotId, model }: { lotId: string; model: string 
           Inspection Video
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-2xl p-0 overflow-hidden">
+      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-2xl p-0 overflow-hidden" aria-describedby={undefined}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>{vid.title}</DialogTitle>
+        </DialogHeader>
         <div className="aspect-video w-full bg-black">
           <iframe
             src={`https://www.youtube.com/embed/${vid.videoId}?autoplay=1&rel=0&modestbranding=1`}
@@ -374,7 +377,7 @@ function XlsxUploadDialog() {
           Upload Inventory / Bids
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-xl">
+      <DialogContent className="bg-[#0D1424] border-[#1E293B] text-white max-w-xl" aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle className="text-white text-lg font-black flex items-center gap-2">
             <FileSpreadsheet className="w-5 h-5 text-emerald-400" />
