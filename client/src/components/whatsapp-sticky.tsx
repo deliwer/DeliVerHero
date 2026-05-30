@@ -81,7 +81,6 @@ export function WhatsAppSticky() {
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
-
       {/*
         Mobile  → WA on top (primary), TG below (backup)
         Desktop → TG on top (primary — WA Web is unreliable), WA below (backup)
@@ -98,7 +97,6 @@ export function WhatsAppSticky() {
           {WAButton}
         </>
       )}
-
       {/* Botim — tertiary backup channel */}
       <a
         href="tel:+971523946311"
@@ -107,9 +105,8 @@ export function WhatsAppSticky() {
         className="inline-flex items-center gap-2 bg-[#1a1a2e] hover:bg-[#2a2a4e] border border-purple-500/40 text-purple-300 font-semibold px-4 py-3 rounded-full shadow-lg shadow-purple-900/20 transition-transform hover:scale-105 active:scale-95"
       >
         <Phone className="w-4 h-4" />
-        <span className="hidden sm:inline whitespace-nowrap text-xs">Botim +971 52 394 6311</span>
+        <span className="hidden sm:inline whitespace-nowrap text-xs">Botim +971 52 3906019</span>
       </a>
-
     </div>
   );
 }
