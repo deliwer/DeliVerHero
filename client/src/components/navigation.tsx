@@ -85,15 +85,16 @@ const chaintrackNavItems = [
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
-const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics", "/air-charter"];
+const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics", "/air-charter", "/pricing-logistics"];
 
 const logisticsNavItems = [
-  { path: "/logistics",        label: "Corridor",        id: "lg-corridor",     icon: Anchor },
-  { path: "/cis-electronics",  label: "CIS Electronics", id: "lg-electronics",  icon: Package },
-  { path: "/air-charter",      label: "Air Charter",     id: "lg-air-charter",  icon: Plane },
-  { path: "/freight-broker",   label: "Freight Hub",     id: "lg-freight",      icon: Route },
-  { path: "/logistics-funnel", label: "Join Network",    id: "lg-funnel",       icon: Zap },
-  { path: "/partners",         label: "Partners",        id: "lg-partners",     icon: Users },
+  { path: "/logistics",          label: "Corridor",        id: "lg-corridor",     icon: Anchor },
+  { path: "/cis-electronics",    label: "CIS Electronics", id: "lg-electronics",  icon: Package },
+  { path: "/air-charter",        label: "Air Charter",     id: "lg-air-charter",  icon: Plane },
+  { path: "/freight-broker",     label: "Freight Hub",     id: "lg-freight",      icon: Route },
+  { path: "/pricing-logistics",  label: "Pricing",         id: "lg-pricing",      icon: DollarSign },
+  { path: "/logistics-funnel",   label: "Join Network",    id: "lg-funnel",       icon: Zap },
+  { path: "/partners",           label: "Partners",        id: "lg-partners",     icon: Users },
 ];
 
 // Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)

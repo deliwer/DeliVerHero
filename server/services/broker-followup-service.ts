@@ -49,7 +49,7 @@ function buildFollowUp1Email(name: string, partnerLink: string): string {
         <p style="color: #047857; font-size: 13px; margin: 0 0 12px 0; word-break: break-all;">${partnerLink}</p>
         <a href="${partnerLink}">Get Started — 2 minutes</a>
       </div>
-      <p>WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 394 6311</a></p>
+      <p>WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 390 6019</a></p>
       <p style="color: #6b7280;">– DeliWer Team</p>
     </div>
     <div class="footer">
@@ -94,7 +94,7 @@ function buildFollowUp2Email(name: string, partnerLink: string): string {
         <p style="color: #047857; font-size: 13px; margin: 0 0 12px 0; word-break: break-all;">${partnerLink}</p>
         <a href="${partnerLink}">Use My Link Now</a>
       </div>
-      <p>Questions? WhatsApp us: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 394 6311</a></p>
+      <p>Questions? WhatsApp us: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 390 6019</a></p>
       <p style="color: #6b7280;">– DeliWer Team</p>
     </div>
     <div class="footer">
@@ -145,7 +145,7 @@ function buildFollowUp3Email(name: string, partnerLink: string): string {
         <p style="color: #047857; font-size: 13px; margin: 0 0 12px 0; word-break: break-all;">${partnerLink}</p>
         <a href="${partnerLink}">Claim My Earnings Now</a>
       </div>
-      <p>Still have questions? We're on WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 394 6311</a></p>
+      <p>Still have questions? We're on WhatsApp: <a href="https://wa.me/971523906019" style="color: #10b981;">+971 52 390 6019</a></p>
       <p style="color: #6b7280;">– DeliWer Partnerships Team</p>
     </div>
     <div class="footer">

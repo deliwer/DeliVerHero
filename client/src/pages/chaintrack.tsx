@@ -1238,20 +1238,40 @@ export default function ChainTrackPage() {
                   <h4 className="font-black text-white text-sm">US Source Auction Calendar</h4>
                 </div>
                 <p className="text-[11px] text-slate-400 mb-4">Weekly auction windows from major US carrier and ITAD liquidation channels — available to verified ChainTrack members.</p>
-                {/* REDACTED TABLE PLACEHOLDER */}
-                <div className="relative rounded-xl border border-[#1E293B] bg-[#0A0F1E] overflow-hidden mb-4" style={{height: 80}}>
-                  <div className="absolute inset-0 flex items-center justify-center gap-3">
-                    <Lock className="w-4 h-4 text-slate-600" />
-                    <span className="text-[11px] text-slate-600 font-black uppercase tracking-widest">Full calendar visible to members only</span>
-                  </div>
-                  {/* Blurred row hints */}
-                  <div className="absolute inset-0 opacity-10 pointer-events-none flex flex-col gap-1 p-3">
-                    {[1,2,3].map(i => <div key={i} className="h-4 rounded bg-slate-500 blur-sm w-full" />)}
-                  </div>
+                {/* ── Weekly Auction Calendar — tier-gated ── */}
+                <div className="overflow-x-auto rounded-xl border border-[#1E293B] bg-[#0A0F1E] mb-4">
+                  <table className="w-full text-[11px]">
+                    <thead>
+                      <tr className="border-b border-[#1E293B]">
+                        <th className="text-left px-4 py-2.5 text-slate-500 font-black uppercase tracking-widest">Day (GST)</th>
+                        <th className="text-left px-4 py-2.5 text-slate-500 font-black uppercase tracking-widest">Window</th>
+                        <th className="text-left px-4 py-2.5 text-slate-500 font-black uppercase tracking-widest">Source</th>
+                        <th className="text-left px-4 py-2.5 text-slate-500 font-black uppercase tracking-widest">Lot Type</th>
+                        <th className="text-left px-4 py-2.5 text-slate-500 font-black uppercase tracking-widest">Access</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#1E293B]">
+                      {[
+                        { day: "Monday", window: "10:00 – 14:00", source: "T-Mobile ITAD", lot: "iPhone 13–15 Series, Grade A/B", tier: "Standard", tierColor: "text-cyan-300 bg-cyan-500/10 border-cyan-500/30" },
+                        { day: "Tuesday", window: "09:00 – 13:00", source: "Verizon Liquidation", lot: "iPhone 14 Pro Max 256GB, Bulk Mix", tier: "Standard", tierColor: "text-cyan-300 bg-cyan-500/10 border-cyan-500/30" },
+                        { day: "Wednesday", window: "11:00 – 16:00", source: "AT&T Carrier De-fleet", lot: "iPhone 15 Pro, Grade A Premium", tier: "Priority", tierColor: "text-amber-300 bg-amber-500/10 border-amber-500/30" },
+                        { day: "Thursday", window: "08:00 – 12:00", source: "ITAD Consortium", lot: "Mixed iOS / Android, Insurance Return", tier: "Standard", tierColor: "text-cyan-300 bg-cyan-500/10 border-cyan-500/30" },
+                        { day: "Friday", window: "10:00 – 15:00", source: "US Carrier Pool (Private)", lot: "iPhone 15 Pro Max, Sealed Lots", tier: "Priority", tierColor: "text-amber-300 bg-amber-500/10 border-amber-500/30" },
+                        { day: "Saturday", window: "12:00 – 17:00", source: "AUCNET US", lot: "A-Grade Premium Lots — First-look", tier: "Priority", tierColor: "text-amber-300 bg-amber-500/10 border-amber-500/30" },
+                      ].map((row, i) => (
+                        <tr key={i} className="hover:bg-white/[0.02] transition-colors">
+                          <td className="px-4 py-3 font-black text-white">{row.day}</td>
+                          <td className="px-4 py-3 text-slate-300">{row.window}</td>
+                          <td className="px-4 py-3 text-slate-400">{row.source}</td>
+                          <td className="px-4 py-3 text-slate-400">{row.lot}</td>
+                          <td className="px-4 py-3">
+                            <span className={`text-[9px] font-black px-1.5 py-0.5 rounded border ${row.tierColor}`}>{row.tier}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-
-                {/* ── REDACTED WEEKLY GRID (members only) ── */}
-                {/* table hidden – members only */}
                 {/* ── Unlock: WhatsApp CTA ── */}
                 <div className="flex flex-col sm:flex-row items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3">
                   <div className="flex-1">
@@ -1998,46 +2018,7 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
-      {/* ── Membership tiers ── */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-14">
-            <div className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-3">Access</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Buyer Membership Tiers</h2>
-            <p className="text-slate-400 max-w-xl mx-auto">Lower fees, priority access to new lots, and dedicated account managers for high-volume buyers.</p>
-          </div>
-          <div className="grid md:grid-cols-4 gap-5">
-            {[
-              { name: "On-Demand", price: "Free", fee: "0.5%", lots: "Standard", features: ["Bid on all public lots", "Standard lot access", "Email support"], color: "border-[#1E293B]", badge: "" },
-              { name: "Starter", price: "$299/mo", fee: "0.3%", lots: "Priority 1h", features: ["Early lot access (1h)", "Dedicated WhatsApp support", "Monthly market report"], color: "border-blue-500/30", badge: "" },
-              { name: "Growth", price: "$799/mo", fee: "0.25%", lots: "Priority 3h", features: ["Early access (3h)", "Exclusive lot previews", "Account manager", "Charter coordination"], color: "border-purple-500/40", badge: "POPULAR" },
-              { name: "Enterprise", price: "Custom", fee: "0.2%", lots: "Exclusive 24h", features: ["24h exclusive preview", "Custom lots sourced", "Dedicated ops team", "1FLT charter included"], color: "border-amber-500/40", badge: "BEST" },
-            ].map((tier, i) => (
-              <Card key={i} className={`bg-[#0D1424] border ${tier.color} p-6 relative`} data-testid={`card-tier-${tier.name.toLowerCase()}`}>
-                {tier.badge && (
-                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 text-[9px] font-black uppercase tracking-widest rounded-full ${tier.badge === "POPULAR" ? "bg-purple-500 text-white" : "bg-amber-500 text-slate-950"}`}>
-                    {tier.badge}
-                  </div>
-                )}
-                <div className="font-black text-white text-lg mb-1">{tier.name}</div>
-                <div className="text-2xl font-black text-cyan-400 mb-1">{tier.price}</div>
-                <div className="text-[11px] text-slate-500 mb-4">Platform fee: <span className="text-slate-300 font-bold">{tier.fee}</span></div>
-                <ul className="space-y-2 mb-6">
-                  {tier.features.map((f, j) => (
-                    <li key={j} className="flex items-start gap-2 text-[11px] text-slate-400">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full bg-[#0A0F1E] hover:bg-[#1E293B] text-slate-300 border border-[#1E293B] font-black text-xs uppercase tracking-widest" data-testid={`button-tier-${tier.name.toLowerCase()}`}>
-                  {tier.price === "Custom" ? "Contact Sales" : "Get Started"}
-                </Button>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Membership tiers → moved to /pricing-logistics ── */}
       {/* ── Real Customer Reviews ── */}
       <section className="py-20 bg-[#0A0F1E] border-t border-[#1E293B]">
         <div className="container mx-auto px-4 max-w-7xl">
