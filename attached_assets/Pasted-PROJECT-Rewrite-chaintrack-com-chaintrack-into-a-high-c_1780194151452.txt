@@ -1,0 +1,279 @@
+PROJECT: Rewrite chaintrack.com/chaintrack into a high-conversion B2B Remote Sourcing and Reverse Bidding platform for wholesale used smartphones.
+
+OBJECTIVE
+
+Transform the current page into a trust-first marketplace without inventory ownership.
+
+ChainTrack must be positioned as:
+
+"Dubai-based Remote Sourcing, Inspection, Reverse Bidding and Export Logistics Platform connecting international buyers with verified wholesale smartphone inventory from leading suppliers."
+
+TARGET USERS
+
+Primary:
+
+* Azerbaijan mobile wholesalers
+* Kazakhstan distributors
+* Uzbekistan traders
+* Russian phone resellers
+* CIS smartphone importers
+* Repair shop chains
+* Marketplace sellers
+
+Secondary:
+
+* Suppliers seeking international buyers
+* Logistics customers
+
+CORE VALUE PROPOSITION
+
+Buy wholesale smartphone inventory remotely with:
+
+✓ Live Video Inspection
+✓ Reverse Bidding
+✓ Independent Verification
+✓ IMEI Sample Checks
+✓ Battery Health Sampling
+✓ Export Logistics Support
+✓ Dubai-Based Trade Facilitation
+
+NO INVENTORY OWNERSHIP
+
+The platform should clearly state:
+
+"ChainTrack does not own inventory. We help buyers source, inspect, negotiate and move inventory from verified suppliers."
+
+PAGE STRUCTURE
+
+SECTION 1 — HERO
+
+Headline:
+
+Remote Sourcing & Reverse Bidding for Wholesale Smartphones
+
+Subheadline:
+
+Access verified wholesale iPhone and smartphone inventory from trusted suppliers. Request live inspections, submit bids and arrange export logistics through Dubai.
+
+Primary CTA:
+Request Inventory
+
+Secondary CTA:
+Join Buyer Network
+
+Include WhatsApp CTA:
++971523946311
+
+SECTION 2 — HOW IT WORKS
+
+Step 1
+Browse Available Inventory
+
+Step 2
+Request Live Inspection
+
+Step 3
+Submit Reverse Bid
+
+Step 4
+Supplier Reviews Offer
+
+Step 5
+Arrange Export Logistics
+
+Step 6
+Receive Inventory
+
+Visual workflow timeline required.
+
+SECTION 3 — LIVE INVENTORY BOARD
+
+Create dynamic inventory table with:
+
+* Model
+* Grade
+* Quantity
+* Supplier
+* Region
+* Asking Price
+* Bid Now button
+
+Add filtering:
+
+* Apple
+* Samsung
+* Tablets
+* Mixed Lots
+
+Inventory data should be configurable through JSON.
+
+SECTION 4 — REMOTE INSPECTION
+
+Create service cards:
+
+Live Video Inspection
+
+Includes:
+
+* Cosmetic sampling
+* Battery verification
+* Functional testing
+* Packaging review
+
+IMEI Verification
+
+Includes:
+
+* Sample checks
+* Activation status
+* MDM review
+
+Lot Verification
+
+Includes:
+
+* Quantity confirmation
+* Grade confirmation
+* Photo documentation
+
+CTA:
+Book Inspection
+
+SECTION 5 — REVERSE BIDDING ENGINE
+
+Create interface:
+
+Supplier Asking Price
+
+Buyer Bid Price
+
+Potential Savings
+
+Submit Bid button
+
+Include explanatory graphic:
+
+Supplier → ChainTrack → Buyer
+
+SECTION 6 — TRUST SECTION
+
+Display metrics:
+
+* Dubai-based operations
+* International logistics experience
+* Remote sourcing support
+* Multi-country trade network
+
+Add testimonials placeholder.
+
+SECTION 7 — BUYER NETWORK
+
+Lead capture form:
+
+Name
+Company
+Country
+WhatsApp
+Interested Products
+
+Countries dropdown:
+
+Russia
+Azerbaijan
+Kazakhstan
+Uzbekistan
+Georgia
+Armenia
+UAE
+Other
+
+SECTION 8 — SUPPLIER PARTNERS
+
+Create supplier showcase cards.
+
+Initial placeholders:
+
+KT Corp Worldwide
+WeSellCellular
+
+Display as sourcing partners only.
+
+No logos unless permission exists.
+
+SECTION 9 — EXPORT LOGISTICS
+
+Show:
+
+USA → UAE → CIS
+
+USA → Direct Export
+
+Supplier → Buyer
+
+Include shipment tracking visuals.
+
+SECTION 10 — CONTENT HUB
+
+Create sections:
+
+Inspection Videos
+Supplier Visits
+Market Reports
+Auction Results
+Buying Guides
+
+SEO TARGET KEYWORDS
+
+wholesale iphones
+used iphone lots
+iphone wholesale supplier
+bulk smartphones
+remote sourcing dubai
+reverse bidding smartphones
+wholesale electronics dubai
+used mobile phones wholesale
+iphone distributor
+export smartphones
+
+TECHNICAL REQUIREMENTS
+
+* Mobile-first responsive
+* Fast loading
+* SEO optimized
+* Schema markup
+* WhatsApp floating button
+* Telegram floating button
+* Lead tracking
+* Google Analytics integration
+* Structured metadata
+* Vercel compatible
+
+CONVERSION GOAL
+
+Convert visitors into:
+
+1. Buyer network registrations
+2. Inspection requests
+3. Reverse bidding requests
+4. WhatsApp inquiries
+5. Logistics quote requests
+
+DESIGN STYLE
+
+Premium B2B marketplace.
+
+Inspired by:
+
+* Alibaba Pro Supplier Pages
+* Freight brokerage platforms
+* B2B commodity exchanges
+
+Avoid consumer ecommerce appearance.
+
+Focus on trust, transparency, verification and trade facilitation.
+
+SUCCESS METRIC
+
+A trader arriving on the page should immediately understand:
+
+"I can source wholesale smartphone inventory remotely, verify it before purchase, negotiate pricing through ChainTrack, and arrange export logistics without travelling."

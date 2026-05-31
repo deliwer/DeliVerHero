@@ -810,6 +810,86 @@ function FeedTable({ label, flag, accentClass, items, refreshedAgo, testPrefix }
   );
 }
 
+function BuyerNetworkForm() {
+  const { toast } = useToast();
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", company: "", country: "", whatsapp: "", products: "", volume: "" });
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name || !form.whatsapp) {
+      toast({ title: "Required fields missing", description: "Please fill in your name and WhatsApp number.", variant: "destructive" });
+      return;
+    }
+    const msg = encodeURIComponent(
+      `ChainTrack Buyer Network Registration\n\nName: ${form.name}\nCompany: ${form.company}\nCountry: ${form.country}\nWhatsApp: ${form.whatsapp}\nProducts: ${form.products}\nMonthly Volume: ${form.volume}`
+    );
+    window.open(`https://wa.me/971523946311?text=${msg}`, "_blank");
+    setSent(true);
+  }
+
+  if (sent) {
+    return (
+      <div className="bg-[#0D1424] border border-emerald-500/30 rounded-2xl p-8 text-center">
+        <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+        <div className="font-black text-white text-lg mb-2">Request Sent!</div>
+        <p className="text-slate-400 text-sm">Our team will review your application and respond on WhatsApp within 24 hours.</p>
+        <Button variant="ghost" className="mt-4 text-slate-500 text-xs" onClick={() => setSent(false)}>Submit another request</Button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-6 space-y-4" data-testid="form-buyer-network">
+      <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-2">Buyer Registration Form</div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">Full Name *</Label>
+          <Input value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} placeholder="Your name" className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="input-buyer-name" />
+        </div>
+        <div>
+          <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">Company</Label>
+          <Input value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))} placeholder="Company name" className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="input-buyer-company" />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">Country</Label>
+          <Input value={form.country} onChange={e => setForm(p => ({ ...p, country: e.target.value }))} placeholder="e.g. Azerbaijan" className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="input-buyer-country" />
+        </div>
+        <div>
+          <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">WhatsApp *</Label>
+          <Input value={form.whatsapp} onChange={e => setForm(p => ({ ...p, whatsapp: e.target.value }))} placeholder="+7 / +994 / +998..." className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="input-buyer-whatsapp" />
+        </div>
+      </div>
+      <div>
+        <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">Products Interested In</Label>
+        <Input value={form.products} onChange={e => setForm(p => ({ ...p, products: e.target.value }))} placeholder="e.g. iPhone 15 Pro, Samsung S24, Mixed lots" className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="input-buyer-products" />
+      </div>
+      <div>
+        <Label className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1 block">Monthly Volume (units)</Label>
+        <Select value={form.volume} onValueChange={v => setForm(p => ({ ...p, volume: v }))}>
+          <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-sm h-9" data-testid="select-buyer-volume">
+            <SelectValue placeholder="Select volume range" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="under_50">Under 50 units</SelectItem>
+            <SelectItem value="50_200">50 – 200 units</SelectItem>
+            <SelectItem value="200_500">200 – 500 units</SelectItem>
+            <SelectItem value="500_1000">500 – 1,000 units</SelectItem>
+            <SelectItem value="1000_plus">1,000+ units</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <Button type="submit" className="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2 py-5" data-testid="button-buyer-form-submit">
+        <SiWhatsapp className="w-4 h-4" />
+        Submit via WhatsApp
+      </Button>
+      <p className="text-center text-[10px] text-slate-600">Submitting opens WhatsApp with your details pre-filled. KYC review within 24 hours.</p>
+    </form>
+  );
+}
+
 export default function ChainTrackPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterGrade, setFilterGrade] = useState("all");
@@ -883,7 +963,7 @@ export default function ChainTrackPage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,209,255,0.08),transparent_60%)]" />
 
         <div className="relative container mx-auto px-4 pt-14 pb-16 max-w-7xl">
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-6 flex-wrap">
             <div className="flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
               <Radio className="w-3 h-3 animate-pulse" />
               Live Auctions
@@ -892,33 +972,47 @@ export default function ChainTrackPage() {
               <Globe className="w-3 h-3" />
               US · China · India → CIS & Central Asia
             </div>
+            <div className="flex items-center gap-2 bg-slate-700/40 border border-slate-600/40 text-slate-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
+              <Shield className="w-3 h-3" />
+              Dubai-based · No Inventory Owned
+            </div>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 tracking-tight">
-            <span className="text-white">World's #1</span>{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Reverse Auction</span>
+            <span className="text-white">Remote Sourcing &</span>
             <br />
-            <span className="text-white">for Used iPhones</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Reverse Bidding</span>
+            <br />
+            <span className="text-white">for Wholesale Smartphones</span>
           </h1>
 
-          <p className="text-lg text-slate-400 max-w-2xl mb-8 leading-relaxed">
-            Retailers bypass wholesalers. Exporters list lots. Suppliers compete on price.
-            Dubai DAFZA & Commercity escrow. 1FLT charter logistics for bulk volumes.
-            Built for CIS & Central Asian retail channels.
+          <p className="text-lg text-slate-400 max-w-2xl mb-4 leading-relaxed">
+            Access verified wholesale iPhone and smartphone inventory from trusted suppliers. Request live inspections, submit reverse bids and arrange export logistics through Dubai.
           </p>
+          <div className="flex items-center gap-2 mb-8 px-4 py-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 max-w-2xl">
+            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+            <p className="text-[11px] text-amber-300/80 leading-relaxed">
+              <span className="font-black text-amber-400">No inventory ownership.</span> ChainTrack does not own inventory. We help buyers source, inspect, negotiate and move inventory from verified suppliers.
+            </p>
+          </div>
 
           <div className="flex flex-wrap gap-3 mb-12">
-            <ListLotDialog />
-            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-register-buyer">
-                <Shield className="w-4 h-4" />
-                Register as Buyer
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20request%20inventory" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs" data-testid="button-request-inventory">
+                <Search className="w-4 h-4" />
+                Request Inventory
               </Button>
             </a>
-            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20list%20a%20lot" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20join%20the%20buyer%20network" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-join-buyer-network">
+                <Users className="w-4 h-4" />
+                Join Buyer Network
+              </Button>
+            </a>
+            <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-whatsapp-chaintrack">
                 <SiWhatsapp className="w-4 h-4" />
-                WhatsApp
+                +971 52 394 6311
               </Button>
             </a>
             <a href="https://t.me/chaintracklogistics" target="_blank" rel="noopener noreferrer">
@@ -929,13 +1023,31 @@ export default function ChainTrackPage() {
             </a>
           </div>
 
+          {/* Core value proposition chips */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {[
+              { icon: Video, label: "Live Video Inspection" },
+              { icon: TrendingDown, label: "Reverse Bidding" },
+              { icon: Shield, label: "Independent Verification" },
+              { icon: Smartphone, label: "IMEI Sample Checks" },
+              { icon: Activity, label: "Battery Health Sampling" },
+              { icon: Truck, label: "Export Logistics Support" },
+              { icon: Building2, label: "Dubai-Based Trade Facilitation" },
+            ].map((v, i) => (
+              <div key={i} className="flex items-center gap-1.5 bg-[#0D1424] border border-[#1E293B] rounded-full px-3 py-1.5">
+                <v.icon className="w-3 h-3 text-cyan-400 shrink-0" />
+                <span className="text-[11px] text-slate-300 font-bold">{v.label}</span>
+              </div>
+            ))}
+          </div>
+
           {/* Stats bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { value: "15,000+", label: "Verified Trades", icon: CheckCircle2, color: "text-emerald-400" },
               { value: "$280M+", label: "GMV Processed", icon: DollarSign, color: "text-cyan-400" },
               { value: "420+", label: "Active Suppliers", icon: Building2, color: "text-blue-400" },
-              { value: "12", label: "CIS Markets", icon: Globe, color: "text-purple-400" },
+              { value: "50+", label: "Markets Served", icon: Globe, color: "text-purple-400" },
             ].map((s, i) => (
               <div key={i} className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-4">
                 <s.icon className={`w-5 h-5 ${s.color} mb-2`} />
@@ -1650,24 +1762,25 @@ export default function ChainTrackPage() {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-14">
             <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Process</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">How Reverse Auctions Work</h2>
-            <p className="text-slate-400 max-w-xl mx-auto">Suppliers compete by bidding down. The lowest price wins — you save versus traditional wholesale every time.</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">How Remote Sourcing Works</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">From browsing verified inventory to receiving your shipment — fully remote. No travel required.</p>
           </div>
-          <div className="grid md:grid-cols-5 gap-4 items-start">
+          <div className="grid md:grid-cols-6 gap-3 items-start">
             {[
-              { icon: Plus, step: "01", title: "Buyer Posts Lot Request", desc: "Retailer or exporter specifies model, quantity, grade, and target price.", color: "text-cyan-400", bg: "bg-cyan-400/10 border-cyan-400/20" },
-              { icon: Gavel, step: "02", title: "Suppliers Compete", desc: "Verified suppliers from US, China & India submit competitive bids — price drives down.", color: "text-purple-400", bg: "bg-purple-400/10 border-purple-400/20" },
-              { icon: FileCheck, step: "03", title: "ChainTrack Grades", desc: "Our Dubai team inspects, photographs, and grades every lot before release.", color: "text-amber-400", bg: "bg-amber-400/10 border-amber-400/20" },
-              { icon: Warehouse, step: "04", title: "DAFZA Escrow", desc: "Lot moves into DAFZA or Commercity warehouse. Funds held in escrow until delivery.", color: "text-blue-400", bg: "bg-blue-400/10 border-blue-400/20" },
-              { icon: Plane, step: "05", title: "1FLT Delivers", desc: "Charter or consolidated air freight to CIS & Central Asian retail channels.", color: "text-emerald-400", bg: "bg-emerald-400/10 border-emerald-400/20" },
+              { icon: LayoutGrid, step: "01", title: "Browse Available Inventory", desc: "Explore verified wholesale lots from US, China and India suppliers — model, grade, qty, price.", color: "text-cyan-400", bg: "bg-cyan-400/10 border-cyan-400/20" },
+              { icon: Video, step: "02", title: "Request Live Inspection", desc: "Book a live video walk-through. Our Dubai team records cosmetic sampling, battery and IMEI checks.", color: "text-blue-400", bg: "bg-blue-400/10 border-blue-400/20" },
+              { icon: Gavel, step: "03", title: "Submit Reverse Bid", desc: "Name your price. Suppliers compete down — the lowest compliant bid wins the lot.", color: "text-purple-400", bg: "bg-purple-400/10 border-purple-400/20" },
+              { icon: UserCheck, step: "04", title: "Supplier Reviews Offer", desc: "The supplier accepts, counters, or passes. ChainTrack mediates and confirms final terms.", color: "text-amber-400", bg: "bg-amber-400/10 border-amber-400/20" },
+              { icon: Route, step: "05", title: "Arrange Export Logistics", desc: "ChainTrack coordinates DAFZA escrow, customs docs, and air charter or consolidated freight.", color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/20" },
+              { icon: Boxes, step: "06", title: "Receive Inventory", desc: "Lot delivered CIF to your country. Escrow released to supplier only on your delivery confirmation.", color: "text-emerald-400", bg: "bg-emerald-400/10 border-emerald-400/20" },
             ].map((step, i) => (
               <div key={i} className="relative">
-                {i < 4 && <div className="hidden md:block absolute top-8 left-[calc(50%+40px)] right-0 h-px border-t border-dashed border-[#1E293B]" />}
-                <div className={`rounded-2xl border p-5 ${step.bg}`}>
-                  <div className="text-[10px] font-black text-slate-600 tracking-widest mb-3">{step.step}</div>
-                  <step.icon className={`w-6 h-6 ${step.color} mb-3`} />
-                  <h3 className="font-black text-white text-sm mb-2">{step.title}</h3>
-                  <p className="text-[12px] text-slate-400 leading-relaxed">{step.desc}</p>
+                {i < 5 && <div className="hidden md:block absolute top-8 left-[calc(50%+36px)] right-0 h-px border-t border-dashed border-[#1E293B]" />}
+                <div className={`rounded-2xl border p-4 ${step.bg}`}>
+                  <div className="text-[10px] font-black text-slate-600 tracking-widest mb-2">{step.step}</div>
+                  <step.icon className={`w-5 h-5 ${step.color} mb-2`} />
+                  <h3 className="font-black text-white text-[12px] mb-1.5 leading-tight">{step.title}</h3>
+                  <p className="text-[11px] text-slate-400 leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -2435,6 +2548,268 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
+      {/* ── Remote Inspection Services ── */}
+      <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-amber-400 mb-3">Verification Services</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Remote Inspection</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">Every lot independently verified before your bid is final. Book any service or combine all three.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                icon: Video,
+                title: "Live Video Inspection",
+                color: "text-cyan-400",
+                border: "border-cyan-500/30",
+                bg: "bg-cyan-500/5",
+                items: ["Cosmetic sampling (screen, body, ports)", "Battery verification & cycle count", "Functional testing walkthrough", "Packaging and accessories review"],
+              },
+              {
+                icon: Smartphone,
+                title: "IMEI Verification",
+                color: "text-blue-400",
+                border: "border-blue-500/30",
+                bg: "bg-blue-500/5",
+                items: ["Sample IMEI blacklist checks", "Activation lock / MDM status", "Carrier lock status confirmed", "Blacklist-clean guarantee issued"],
+              },
+              {
+                icon: FileCheck,
+                title: "Lot Verification",
+                color: "text-emerald-400",
+                border: "border-emerald-500/30",
+                bg: "bg-emerald-500/5",
+                items: ["Physical quantity confirmation", "Grade consistency verification", "Photo documentation per unit", "Condition report issued to buyer"],
+              },
+            ].map((svc, i) => (
+              <div key={i} className={`rounded-2xl border ${svc.border} ${svc.bg} p-6`} data-testid={`card-inspection-${i}`}>
+                <div className={`w-10 h-10 rounded-xl ${svc.bg} border ${svc.border} flex items-center justify-center mb-4`}>
+                  <svc.icon className={`w-5 h-5 ${svc.color}`} />
+                </div>
+                <h3 className="font-black text-white text-base mb-4">{svc.title}</h3>
+                <ul className="space-y-2.5 mb-6">
+                  {svc.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-2 text-[12px] text-slate-400">
+                      <CheckCircle2 className={`w-3.5 h-3.5 ${svc.color} shrink-0 mt-0.5`} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <a href={`https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20book%20a%20${encodeURIComponent(svc.title)}`} target="_blank" rel="noopener noreferrer">
+                  <Button size="sm" className={`w-full font-black text-[10px] uppercase tracking-widest gap-1.5 ${svc.color === "text-cyan-400" ? "bg-cyan-500 hover:bg-cyan-400 text-slate-950" : svc.color === "text-blue-400" ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-emerald-600 hover:bg-emerald-500 text-white"}`} data-testid={`button-book-inspection-${i}`}>
+                    <SiWhatsapp className="w-3.5 h-3.5" />
+                    Book Inspection
+                  </Button>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Buyer Network Lead Capture ── */}
+      <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Join the Network</div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-5">Buyer Network Registration</h2>
+              <p className="text-slate-400 leading-relaxed mb-6">
+                Register as a verified buyer to access live auction lots, request inventory, and arrange export logistics. Buyers from Azerbaijan, Kazakhstan, Uzbekistan, Russia and all CIS markets welcome.
+              </p>
+              <div className="space-y-3">
+                {[
+                  { icon: Shield, color: "text-emerald-400", title: "KYC-verified access only", desc: "All buyers are manually verified. No anonymous accounts." },
+                  { icon: Lock, color: "text-cyan-400", title: "DAFZA escrow protection", desc: "Funds held by ChainTrack until delivery confirmed." },
+                  { icon: Globe, color: "text-blue-400", title: "50+ markets supported", desc: "Full CIS, Europe, Africa and South Asia logistics coverage." },
+                ].map((pt, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className={`w-8 h-8 rounded-lg bg-[#0D1424] border border-[#1E293B] flex items-center justify-center shrink-0 mt-0.5`}>
+                      <pt.icon className={`w-4 h-4 ${pt.color}`} />
+                    </div>
+                    <div>
+                      <div className="font-black text-white text-sm">{pt.title}</div>
+                      <div className="text-[11px] text-slate-500">{pt.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <BuyerNetworkForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Supplier Partners ── */}
+      <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Sourcing Partners</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Verified Supplier Partners</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">ChainTrack works with leading ITAD and wholesale suppliers. Shown as sourcing partners only — not endorsements or affiliations.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
+            {[
+              {
+                name: "KT Corp Worldwide",
+                type: "Enterprise ITAD · Korea & US",
+                desc: "One of the world's largest carrier-grade device resellers. Supplies certified refurbished smartphones to ChainTrack's auction feed from US and Korean carrier returns.",
+                tags: ["A+ / A Grade", "Carrier-Certified", "US & Korea"],
+                color: "border-blue-500/30 bg-blue-500/5",
+                badge: "text-blue-300 bg-blue-500/20 border-blue-500/30",
+              },
+              {
+                name: "WeSellCellular",
+                type: "Wholesale Liquidator · North America",
+                desc: "Major US-based wholesale cell phone liquidator providing ASIS and graded lots. Primary source for ChainTrack's North America Feed.",
+                tags: ["ASIS & Graded", "Bulk Lots", "US-Origin"],
+                color: "border-cyan-500/30 bg-cyan-500/5",
+                badge: "text-cyan-300 bg-cyan-500/20 border-cyan-500/30",
+              },
+            ].map((partner, i) => (
+              <div key={i} className={`rounded-2xl border p-6 ${partner.color}`} data-testid={`card-partner-${i}`}>
+                <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
+                  <div>
+                    <div className="font-black text-white text-base">{partner.name}</div>
+                    <div className="text-[11px] text-slate-500 mt-0.5">{partner.type}</div>
+                  </div>
+                  <span className={`text-[9px] font-black px-2 py-1 rounded border ${partner.badge}`}>Sourcing Partner</span>
+                </div>
+                <p className="text-[12px] text-slate-400 leading-relaxed mb-4">{partner.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {partner.tags.map((tag, j) => (
+                    <span key={j} className="text-[9px] font-black px-2 py-0.5 rounded bg-[#070B14] border border-[#1E293B] text-slate-400">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-[#0D1424] border border-[#1E293B] rounded-xl px-5 py-3 text-[11px] text-slate-500 max-w-2xl mx-auto">
+              <AlertCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+              Supplier identities and product references may be masked for trade secrecy. All supplier names are trademarks of their respective owners. ChainTrack is not formally affiliated with any supplier. Enquire via ChainTrack only.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Export Logistics ── */}
+      <section className="border-t border-[#1E293B] bg-[#0A0F1E] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-3">Logistics</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Export Logistics Routes</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">Dubai is the zero-tariff re-export hub. Every route is documented, escrowed and insured.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 mb-10">
+            {[
+              {
+                route: "USA → UAE → CIS",
+                icon: Route,
+                color: "text-cyan-400",
+                border: "border-cyan-500/30",
+                bg: "bg-cyan-500/5",
+                steps: ["Source from US carrier / ITAD", "Air freight to DAFZA Dubai", "Re-export to Kazakhstan, Uzbekistan, Azerbaijan, Russia"],
+                note: "Carrier unlocked · IMEI clean · 0% re-export duty",
+              },
+              {
+                route: "USA → Direct Export",
+                icon: Plane,
+                color: "text-blue-400",
+                border: "border-blue-500/30",
+                bg: "bg-blue-500/5",
+                steps: ["Source from US liquidator", "ChainTrack inspection at origin", "Direct air freight to buyer's country"],
+                note: "Faster for Grade A+ lots · FOB / CIF terms available",
+              },
+              {
+                route: "Supplier → Buyer",
+                icon: Truck,
+                color: "text-emerald-400",
+                border: "border-emerald-500/30",
+                bg: "bg-emerald-500/5",
+                steps: ["Supplier ships to DAFZA escrow warehouse", "ChainTrack grades and confirms lot", "Buyer approves → delivery arranged"],
+                note: "DAFZA escrow · grade-confirmed release · door delivery",
+              },
+            ].map((route, i) => (
+              <div key={i} className={`rounded-2xl border ${route.border} ${route.bg} p-6`} data-testid={`card-route-${i}`}>
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className={`w-9 h-9 rounded-lg ${route.bg} border ${route.border} flex items-center justify-center`}>
+                    <route.icon className={`w-4.5 h-4.5 ${route.color}`} />
+                  </div>
+                  <div className="font-black text-white text-sm">{route.route}</div>
+                </div>
+                <ol className="space-y-2.5 mb-4">
+                  {route.steps.map((step, j) => (
+                    <li key={j} className="flex items-start gap-2">
+                      <span className={`text-[9px] font-black w-4 h-4 rounded-full ${route.color} bg-[#0D1424] border border-[#1E293B] flex items-center justify-center shrink-0 mt-0.5`}>{j + 1}</span>
+                      <span className="text-[12px] text-slate-400">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+                <div className={`text-[10px] font-bold ${route.color} border-t ${route.border} pt-3`}>{route.note}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-[#0D1424] border border-cyan-500/20 rounded-2xl p-6">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0">
+                <Plane className="w-5 h-5 text-cyan-400" />
+              </div>
+              <div>
+                <div className="font-black text-white">1FLT Air Charter · DWC Airport Dubai</div>
+                <div className="text-[11px] text-slate-400">A320F dedicated electronics cargo · DAFZA to GYD Baku · ICT Tashkent · ALA Almaty · SVO Moscow</div>
+              </div>
+            </div>
+            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20need%20a%20logistics%20quote" target="_blank" rel="noopener noreferrer">
+              <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2 shrink-0" data-testid="button-logistics-quote">
+                <Truck className="w-3.5 h-3.5" />
+                Get Logistics Quote
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Content Hub ── */}
+      <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-14">
+            <div className="text-[10px] font-black uppercase tracking-widest text-purple-400 mb-3">Resources</div>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">Content Hub</h2>
+            <p className="text-slate-400 max-w-xl mx-auto">Market intelligence, inspection footage, and buying guides — all in one place for ChainTrack members.</p>
+          </div>
+          <div className="grid md:grid-cols-5 gap-4">
+            {[
+              { icon: Video, title: "Inspection Videos", desc: "Live footage from DAFZA grading sessions. Watch real-time cosmetic and functional checks before bidding.", color: "text-cyan-400", bg: "bg-cyan-500/5 border-cyan-500/20", cta: "Watch Videos" },
+              { icon: Eye, title: "Supplier Visits", desc: "On-site reports from verified supplier warehouses across US, China and India. Grade consistency reviews.", color: "text-blue-400", bg: "bg-blue-500/5 border-blue-500/20", cta: "View Reports" },
+              { icon: BarChart2, title: "Market Reports", desc: "Weekly CIS and global smartphone market pricing intelligence. Demand trends by model and grade.", color: "text-purple-400", bg: "bg-purple-500/5 border-purple-500/20", cta: "Read Reports" },
+              { icon: Gavel, title: "Auction Results", desc: "Historical reverse auction closing prices. See what lots cleared at — plan your bids with real data.", color: "text-amber-400", bg: "bg-amber-500/5 border-amber-500/20", cta: "See Results" },
+              { icon: BrainCircuit, title: "Buying Guides", desc: "IMEI check protocols, grade comparison standards, CIS import duties, escrow mechanics explained.", color: "text-emerald-400", bg: "bg-emerald-500/5 border-emerald-500/20", cta: "Read Guides" },
+            ].map((item, i) => (
+              <a key={i} href={`https://wa.me/971523946311?text=ChainTrack%20Content%20Hub%20-%20${encodeURIComponent(item.title)}`} target="_blank" rel="noopener noreferrer" className="group" data-testid={`card-content-${i}`}>
+                <div className={`rounded-2xl border ${item.bg} p-5 h-full flex flex-col hover:border-opacity-70 transition-all`}>
+                  <item.icon className={`w-6 h-6 ${item.color} mb-3`} />
+                  <div className="font-black text-white text-sm mb-2">{item.title}</div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed flex-1">{item.desc}</p>
+                  <div className={`mt-4 flex items-center gap-1 text-[10px] font-black ${item.color} group-hover:underline`}>
+                    {item.cta} <ArrowRight className="w-3 h-3" />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <div className="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/20 rounded-full px-4 py-2 text-[10px] font-black text-purple-300 uppercase tracking-widest">
+              <Lock className="w-3 h-3" />
+              Full content access requires ChainTrack membership · WhatsApp to request access
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Platform Navigation Hub ── */}
       <section className="border-t border-[#1E293B] py-16 bg-[#060A15]">
         <div className="container mx-auto px-4 max-w-7xl">

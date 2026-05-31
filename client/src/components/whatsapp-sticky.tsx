@@ -80,7 +80,7 @@ export function WhatsAppSticky() {
   );
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-5 right-5 z-[9999] flex flex-col items-end gap-2">
       {/*
         Mobile  → WA on top (primary), TG below (backup)
         Desktop → TG on top (primary — WA Web is unreliable), WA below (backup)
