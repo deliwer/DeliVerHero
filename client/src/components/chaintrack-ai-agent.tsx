@@ -216,7 +216,7 @@ export default function ChainTrackAIAgent() {
       {/* Launcher button */}
       <motion.button
         onClick={() => { setOpen(o => !o); setMinimized(false); }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
+        className="fixed bottom-52 right-5 z-[9998] w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/30 flex items-center justify-center hover:scale-105 active:scale-95 transition-transform"
         whileTap={{ scale: 0.92 }}
         title="ChainTrack AI Agent"
       >
