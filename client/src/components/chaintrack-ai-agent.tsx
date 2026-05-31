@@ -2,8 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Bot, X, Send, Minimize2, Maximize2, Zap, MessageSquare, ChevronRight } from "lucide-react";
+import { Bot, X, Send, Minimize2, Maximize2, ChevronRight, Video, ChevronDown, ChevronUp } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { apiRequest } from "@/lib/queryClient";
 
@@ -40,9 +39,18 @@ export default function ChainTrackAIAgent() {
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  // Request Inspection panel state
+  const [inspOpen, setInspOpen] = useState(false);
+  const [inspLotId, setInspLotId] = useState("");
+  const [inspModel, setInspModel] = useState("");
+  const [inspSent, setInspSent] = useState(false);
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  // Reset sent state when lot changes
+  useEffect(() => { setInspSent(false); }, [inspLotId, inspModel]);
 
   async function send(text: string) {
     if (!text.trim() || loading) return;
@@ -75,6 +83,18 @@ export default function ChainTrackAIAgent() {
     }
   }
 
+  function buildInspectionUrl() {
+    const lines = [
+      "ChainTrack — Live Video Inspection Request",
+      "──────────────────────────",
+      inspLotId ? `Lot ID: ${inspLotId}` : null,
+      inspModel ? `Model / Device: ${inspModel}` : null,
+      "──────────────────────────",
+      "Please schedule a live video call so I can inspect this lot before bidding.",
+    ].filter(Boolean).join("\n");
+    return `${WHATSAPP_URL}?text=${encodeURIComponent(lines)}`;
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -84,7 +104,7 @@ export default function ChainTrackAIAgent() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)]"
+            className="fixed bottom-[17.5rem] right-5 z-[9997] w-[360px] max-w-[calc(100vw-2rem)]"
           >
             <div className="bg-[#080D1C] border border-cyan-500/25 rounded-2xl shadow-2xl shadow-cyan-500/10 overflow-hidden flex flex-col" style={{ height: minimized ? "auto" : "520px" }}>
               {/* Header */}
@@ -180,6 +200,74 @@ export default function ChainTrackAIAgent() {
                     </div>
                   )}
 
+                  {/* ── Request Inspection Panel ── */}
+                  <div className="border-t border-[#1E293B]">
+                    <button
+                      onClick={() => setInspOpen(o => !o)}
+                      data-testid="button-inspection-toggle"
+                      className="w-full flex items-center gap-2 px-4 py-2.5 bg-violet-600/10 hover:bg-violet-600/20 transition-colors group"
+                    >
+                      <Video className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                      <span className="flex-1 text-left text-[11px] font-black uppercase tracking-widest text-violet-300">
+                        Request Live Video Inspection
+                      </span>
+                      {inspOpen
+                        ? <ChevronUp className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                        : <ChevronDown className="w-3.5 h-3.5 text-violet-400 shrink-0" />}
+                    </button>
+
+                    <AnimatePresence>
+                      {inspOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.18 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-4 pt-2 pb-3 space-y-2 bg-[#0A0514]">
+                            <p className="text-[10px] text-slate-500 leading-relaxed">
+                              Enter the lot ID (e.g. <span className="text-slate-400 font-mono">CT-CN-8843</span>) and/or device model. We'll open WhatsApp with a pre-filled inspection request.
+                            </p>
+                            <div className="flex gap-2">
+                              <Input
+                                value={inspLotId}
+                                onChange={e => setInspLotId(e.target.value)}
+                                placeholder="Lot ID (e.g. CT-CN-8843)"
+                                className="flex-1 bg-[#0D1424] border-[#1E293B] text-white text-[11px] h-8 placeholder:text-slate-600 font-mono"
+                                data-testid="input-inspection-lot-id"
+                              />
+                              <Input
+                                value={inspModel}
+                                onChange={e => setInspModel(e.target.value)}
+                                placeholder="Model (optional)"
+                                className="flex-1 bg-[#0D1424] border-[#1E293B] text-white text-[11px] h-8 placeholder:text-slate-600"
+                                data-testid="input-inspection-model"
+                              />
+                            </div>
+                            <a
+                              href={buildInspectionUrl()}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={!inspLotId && !inspModel ? "pointer-events-none opacity-40" : ""}
+                            >
+                              <button
+                                disabled={!inspLotId && !inspModel}
+                                onClick={() => setInspSent(true)}
+                                data-testid="button-inspection-send"
+                                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-black text-[10px] uppercase tracking-widest h-8 rounded-lg transition-colors"
+                              >
+                                <SiWhatsapp className="w-3.5 h-3.5" />
+                                {inspSent ? "WhatsApp Opening…" : "Send Inspection Request via WhatsApp"}
+                              </button>
+                            </a>
+                            <p className="text-[9px] text-slate-600 text-center">Opens WhatsApp · Our team schedules a call within 2 business hours</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
                   {/* Input */}
                   <div className="px-4 py-3 border-t border-[#1E293B] bg-[#070B14]">
                     <form
@@ -192,12 +280,14 @@ export default function ChainTrackAIAgent() {
                         placeholder="Type your question..."
                         className="flex-1 bg-[#0D1424] border-[#1E293B] text-white text-sm placeholder:text-slate-500 focus-visible:ring-cyan-500/30"
                         disabled={loading}
+                        data-testid="input-agent-chat"
                       />
                       <Button
                         type="submit"
                         size="icon"
                         disabled={!input.trim() || loading}
                         className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 shrink-0"
+                        data-testid="button-agent-send"
                       >
                         <Send className="w-4 h-4" />
                       </Button>
