@@ -17,7 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Package, TrendingDown, Shield, Zap, Building2, Globe, CheckCircle2,
   ArrowRight, Search, BarChart3, Plane, Clock, DollarSign, Users, Star,
-  Gavel, Plus, TrendingUp, AlertCircle, MapPin, Warehouse, ChevronDown,
+  ShoppingCart, Gavel, Plus, TrendingUp, AlertCircle, MapPin, Warehouse, ChevronDown,
   ChevronRight, Boxes, RefreshCw, Filter, Bell, Eye, Timer, Cpu,
   Award, Lock, ChevronUp, Layers, Truck, Activity, Radio, ExternalLink,
   Target, BarChart2, Smartphone, Weight, FileCheck, Anchor, Route,
@@ -955,14 +955,18 @@ export default function ChainTrackPage() {
       <LiveTicker />
       {/* ── Pipeline indicator ── */}
       <div className="bg-[#070B14] border-b border-[#1E293B]">
-        <div className="container mx-auto max-w-7xl px-4 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+        <div className="container mx-auto max-w-7xl px-4 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest flex-wrap">
+          <Link href="/bulk-purchasing">
+            <span className="text-slate-500 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5">① Plan &amp; Price on Bulk Purchasing</span>
+          </Link>
+          <span className="text-slate-600 mx-1">→</span>
           <span className="text-white/90 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            ① Source
+            ② Source on ChainTrack
           </span>
-          <span className="text-slate-600 mx-2">→</span>
+          <span className="text-slate-600 mx-1">→</span>
           <Link href="/logistics">
-            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">② Ship via Logistics</span>
+            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">③ Ship via Logistics</span>
           </Link>
         </div>
       </div>
@@ -1054,33 +1058,68 @@ export default function ChainTrackPage() {
       </section>
       {/* ── Intent + Urgency strip ── */}
       <div className="border-y border-[#1E293B] bg-[#0A0F1E]">
-        {/* Buyer / Seller funnel selector */}
+        {/* Buyer / Seller / Wholesale funnel selector */}
         <div className="container mx-auto px-4 max-w-7xl py-5">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-3">What brings you here today?</div>
+          <div className="grid md:grid-cols-3 gap-4">
             <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20register%20as%20a%20buyer%20and%20bid%20on%20lots" target="_blank" rel="noopener noreferrer" className="group" data-testid="funnel-buyer">
               <div className="flex items-center gap-4 bg-cyan-500/8 border border-cyan-500/25 hover:border-cyan-500/50 rounded-2xl p-5 transition-all cursor-pointer">
                 <div className="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
                   <Gavel className="w-5 h-5 text-cyan-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-black text-white text-sm">I want to buy electronics lots</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Register as a verified buyer · bid on live auctions · DAFZA escrow protected</div>
+                  <div className="font-black text-white text-sm">Bid on live auctions</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Register as buyer · bid on lots · DAFZA escrow</div>
                 </div>
                 <ArrowRight className="w-4 h-4 text-cyan-400 shrink-0 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
-            <div className="group cursor-pointer" data-testid="funnel-seller">
-              <div className="flex items-center gap-4 bg-amber-500/8 border border-amber-500/25 hover:border-amber-500/50 rounded-2xl p-5 transition-all">
+            <Link href="/bulk-purchasing" className="group" data-testid="funnel-wholesale">
+              <div className="flex items-center gap-4 bg-amber-500/8 border border-amber-500/25 hover:border-amber-500/50 rounded-2xl p-5 transition-all cursor-pointer">
                 <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
-                  <Package className="w-5 h-5 text-amber-400" />
+                  <ShoppingCart className="w-5 h-5 text-amber-400" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-black text-white text-sm">I want to list inventory for auction</div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">Submit a lot · we grade, photograph & run the auction · you receive best market price</div>
+                  <div className="font-black text-white text-sm">Buy at fixed wholesale price</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Browse inventory · submit BOQ · no auction wait</div>
+                </div>
+                <ArrowRight className="w-4 h-4 text-amber-400 shrink-0 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </Link>
+            <div className="group cursor-pointer" data-testid="funnel-seller">
+              <div className="flex items-center gap-4 bg-emerald-500/8 border border-emerald-500/25 hover:border-emerald-500/50 rounded-2xl p-5 transition-all">
+                <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0">
+                  <Package className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-black text-white text-sm">List inventory for auction</div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">Submit a lot · graded &amp; photographed · best price</div>
                 </div>
                 <ListLotDialog />
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      {/* ── New-buyer bridge ── */}
+      <div className="border-b border-[#1E293B] bg-[#070B14]">
+        <div className="container mx-auto px-4 max-w-7xl py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                <AlertCircle className="w-4 h-4 text-amber-400" />
+              </div>
+              <div>
+                <span className="text-sm font-black text-white">First time here?</span>
+                <span className="text-[11px] text-slate-400 ml-2">Build your BOQ, compare fixed vs auction pricing, and understand delivery timelines before you bid.</span>
+              </div>
+            </div>
+            <Link href="/bulk-purchasing">
+              <Button size="sm" variant="outline" className="border-amber-500/30 text-amber-300 hover:bg-amber-500/10 font-black uppercase tracking-widest text-[10px] gap-1.5 shrink-0" data-testid="button-new-buyer-bridge">
+                <ArrowRight className="w-3.5 h-3.5" />
+                Start on Bulk Purchasing
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

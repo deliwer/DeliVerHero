@@ -165,6 +165,24 @@ export default function BulkPurchasingPage() {
         </div>
       </section>
 
+      {/* ── BUYER FUNNEL STEPPER ── */}
+      <div className="bg-[#070B14] border-b border-[#1E293B]">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest flex-wrap">
+          <span className="text-white/90 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            ① Plan &amp; Price — Bulk Purchasing
+          </span>
+          <span className="text-slate-600 mx-1">→</span>
+          <Link href="/chaintrack">
+            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">② Execute on ChainTrack</span>
+          </Link>
+          <span className="text-slate-600 mx-1">→</span>
+          <Link href="/logistics">
+            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">③ Ship via Logistics</span>
+          </Link>
+        </div>
+      </div>
+
       {/* ── PROCUREMENT MODEL GATEWAY ── */}
       <section className="py-16 px-4 bg-[#0A0F1E]" id="procurement-gateway">
         <div className="max-w-7xl mx-auto">
@@ -606,6 +624,65 @@ export default function BulkPurchasingPage() {
         </div>
       </section>
 
+      {/* ── LIVE NOW ON CHAINTRACK TEASER ── */}
+      <section className="py-12 px-4 bg-[#070B14]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-red-400">Live on ChainTrack Right Now</span>
+              </div>
+              <h2 className="text-xl font-black text-white">Active Auction Lots — Bid &amp; Save 15–35%</h2>
+              <p className="text-[11px] text-slate-500 mt-1">These are live lots on ChainTrack you can bid on today. Auctions close within hours.</p>
+            </div>
+            <Link href="/chaintrack">
+              <Button className="bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest text-xs gap-2 shrink-0" data-testid="button-view-all-live-lots">
+                <Gavel className="w-4 h-4" />
+                View All Live Lots
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              { id: "CT-US-4821", model: "iPhone 15 Pro Max 256GB", origin: "🇺🇸 USA", qty: 500, grade: "A", currentBid: 489, hoursLeft: 3, minutesLeft: 42, gradeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" },
+              { id: "CT-US-5519", model: "iPhone 16 Pro Max 512GB", origin: "🇺🇸 USA", qty: 250, grade: "A+", currentBid: 671, hoursLeft: 22, minutesLeft: 5, gradeColor: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30" },
+              { id: "CT-IN-3367", model: "iPhone 15 128GB", origin: "🇮🇳 India", qty: 600, grade: "A", currentBid: 341, hoursLeft: 6, minutesLeft: 11, gradeColor: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30" },
+            ].map((lot) => (
+              <div key={lot.id} className="bg-[#0D1424] border border-[#1E293B] hover:border-cyan-500/30 transition-all rounded-2xl p-5" data-testid={`teaser-lot-${lot.id}`}>
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <div className="text-[9px] font-mono text-slate-600 mb-1">{lot.id}</div>
+                    <div className="font-black text-white text-sm leading-tight">{lot.model}</div>
+                    <div className="text-xs text-slate-500 mt-0.5">{lot.origin} · {lot.qty.toLocaleString()} units</div>
+                  </div>
+                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded border ${lot.gradeColor}`}>{lot.grade}</span>
+                </div>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-0.5">Current Bid</div>
+                    <div className="text-2xl font-black text-cyan-400">${lot.currentBid}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[9px] text-slate-600 uppercase tracking-widest mb-0.5">Closes In</div>
+                    <div className={`text-sm font-black ${lot.hoursLeft < 4 ? "text-red-400" : "text-amber-400"}`}>
+                      {lot.hoursLeft > 0 ? `${lot.hoursLeft}h ${lot.minutesLeft}m` : `${lot.minutesLeft}m`}
+                    </div>
+                  </div>
+                </div>
+                <Link href="/chaintrack">
+                  <Button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest text-xs gap-2" data-testid={`button-bid-teaser-${lot.id}`}>
+                    <Gavel className="w-3.5 h-3.5" />
+                    Bid on ChainTrack
+                  </Button>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── BOQ — BILL OF QUANTITIES ── */}
       <section className="py-16 px-4 bg-[#070B14]" id="boq">
         <div className="max-w-5xl mx-auto">
@@ -910,88 +987,57 @@ export default function BulkPurchasingPage() {
         </div>
       </section>
 
-      {/* ── REVERSE AUCTION REQUEST FORM ── */}
+      {/* ── EXECUTE ON CHAINTRACK BRIDGE ── */}
       <section className="py-16 px-4 bg-[#070B14]">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-            <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-3">Reverse Auction</div>
-            <h2 className="text-3xl font-black text-white mb-4">Can't Find What You Need? Post an Auction</h2>
-            <p className="text-slate-400 text-sm max-w-lg mx-auto">
-              Submit your requirements and let verified suppliers compete. Typically saves 15–35% vs fixed-price lots.
-            </p>
-          </div>
-          <div className="bg-[#0D1424] border border-[#1E293B] rounded-2xl p-8">
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">iPhone Model *</Label>
-                <Select>
-                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-model">
-                    <SelectValue placeholder="Select model" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
-                    {IPHONE_CATALOG.slice(0, 10).map((model) => (
-                      <SelectItem key={model.id} value={model.id}>{model.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+          <div className="bg-gradient-to-br from-[#0D1424] to-[#0a1020] border border-cyan-500/20 rounded-2xl overflow-hidden">
+            <div className="p-8">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                  <Gavel className="w-6 h-6 text-cyan-400" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-1">Step 2 of Your Buyer Journey</div>
+                  <h2 className="text-2xl font-black text-white mb-2">Ready to Execute? Go to ChainTrack</h2>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    You've planned your order above. Now take it live — browse real-time auction lots, submit reverse bids with suppliers competing down on price, or register as a verified buyer.
+                  </p>
+                </div>
               </div>
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Storage</Label>
-                <Select>
-                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-storage">
-                    <SelectValue placeholder="Select storage" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
-                    <SelectItem value="128GB">128GB</SelectItem>
-                    <SelectItem value="256GB">256GB</SelectItem>
-                    <SelectItem value="512GB">512GB</SelectItem>
-                    <SelectItem value="1TB">1TB</SelectItem>
-                  </SelectContent>
-                </Select>
+
+              <div className="grid md:grid-cols-3 gap-4 mb-7">
+                {[
+                  { icon: Gavel, title: "Bid on live lots", desc: "142+ active lots. Suppliers from US, India, China & Korea. Auctions close in hours.", color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
+                  { icon: TrendingDown, title: "Post a reverse auction", desc: "Can't find what you need? Post your BOQ as a reverse auction — suppliers compete to beat your target price.", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" },
+                  { icon: Shield, title: "DAFZA escrow on every deal", desc: "Funds held until you confirm receipt and grading. No payment risk, ever.", color: "text-purple-400 bg-purple-500/10 border-purple-500/20" },
+                ].map((c, i) => (
+                  <div key={i} className={`rounded-xl border p-4 ${c.color}`}>
+                    <c.icon className="w-5 h-5 mb-2" />
+                    <div className="font-black text-white text-sm mb-1">{c.title}</div>
+                    <div className="text-xs text-slate-400 leading-relaxed">{c.desc}</div>
+                  </div>
+                ))}
               </div>
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Condition *</Label>
-                <Select>
-                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white" data-testid="select-auction-condition">
-                    <SelectValue placeholder="Select condition" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
-                    <SelectItem value="new">New</SelectItem>
-                    <SelectItem value="like-new">Like New</SelectItem>
-                    <SelectItem value="refurbished">Refurbished</SelectItem>
-                  </SelectContent>
-                </Select>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/chaintrack" className="flex-1">
+                  <Button size="lg" className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-go-to-chaintrack">
+                    <Gavel className="w-5 h-5" />
+                    Go to ChainTrack — View Live Auctions
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <a
+                  href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20want%20to%20submit%20a%20bulk%20purchase%20request."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest gap-2 w-full sm:w-auto">
+                    <Phone className="w-4 h-4" />
+                    WhatsApp First
+                  </Button>
+                </a>
               </div>
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Quantity *</Label>
-                <Input type="number" placeholder="Minimum 50 units" min="50" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-quantity" />
-              </div>
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Target Price / Unit (USD)</Label>
-                <Input type="number" placeholder="Your max budget per unit" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-target-price" />
-              </div>
-              <div>
-                <Label className="text-slate-300 text-xs font-bold uppercase tracking-wider mb-1.5 block">Delivery Location</Label>
-                <Input placeholder="City, Country (e.g. Dubai, UAE)" className="bg-[#070B14] border-[#1E293B] text-white" data-testid="input-auction-delivery" />
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <Link href="/chaintrack" className="flex-1">
-                <Button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest gap-2 py-3" data-testid="button-submit-auction">
-                  <Gavel className="w-5 h-5" />
-                  Launch My Reverse Auction
-                </Button>
-              </Link>
-              <a
-                href="https://wa.me/971523906019?text=Hi%20ChainTrack!%20I%20want%20to%20submit%20a%20bulk%20purchase%20request."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest gap-2 py-3 px-5">
-                  <Phone className="w-4 h-4" />
-                  WhatsApp
-                </Button>
-              </a>
             </div>
           </div>
         </div>
@@ -1026,6 +1072,25 @@ export default function BulkPurchasingPage() {
                 <div className="p-4 text-xs text-slate-300 border-l border-[#1E293B]">{row.auction}</div>
               </div>
             ))}
+            <div className="grid grid-cols-3 bg-[#0D1424] border-t-2 border-[#1E293B]">
+              <div className="p-4 text-[10px] font-black uppercase tracking-widest text-slate-600 flex items-center">Get Started</div>
+              <div className="p-4 border-l border-[#1E293B]">
+                <a href="#procurement-gateway">
+                  <Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest text-[10px] gap-1.5 w-full">
+                    <ShoppingCart className="w-3.5 h-3.5" />
+                    Browse Fixed Lots
+                  </Button>
+                </a>
+              </div>
+              <div className="p-4 border-l border-[#1E293B]">
+                <Link href="/chaintrack">
+                  <Button size="sm" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest text-[10px] gap-1.5 w-full">
+                    <Gavel className="w-3.5 h-3.5" />
+                    Bid on ChainTrack
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
