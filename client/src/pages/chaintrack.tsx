@@ -691,6 +691,18 @@ function AuctionCard({ lot, index }: { lot: typeof LIVE_LOTS[0]; index: number }
           <div className="space-y-2">
             <BidDialog lot={lot} />
             <VideoInspectionDialog lotId={lot.id} model={lot.model} />
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("chaintrack-inspect", {
+                  detail: { lotId: lot.id, model: lot.model }
+                }));
+              }}
+              data-testid={`button-request-inspection-${lot.id}`}
+              className="w-full flex items-center justify-center gap-1.5 border border-violet-500/30 bg-violet-500/8 hover:bg-violet-500/20 hover:border-violet-500/60 text-violet-300 text-[10px] font-black uppercase tracking-widest h-8 rounded-lg transition-all"
+            >
+              <Video className="w-3 h-3" />
+              Request Live Inspection
+            </button>
           </div>
         </div>
       </Card>

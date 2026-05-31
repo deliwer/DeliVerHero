@@ -49,6 +49,23 @@ export default function ChainTrackAIAgent() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Listen for lot card "Request Live Inspection" clicks
+  useEffect(() => {
+    function onInspect(e: Event) {
+      const { lotId, model } = (e as CustomEvent<{ lotId: string; model: string }>).detail;
+      setInspLotId(lotId);
+      setInspModel(model);
+      setInspSent(false);
+      setOpen(true);
+      setMinimized(false);
+      setInspOpen(true);
+      // Scroll the agent panel into view after state settles
+      setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: "smooth" }), 120);
+    }
+    window.addEventListener("chaintrack-inspect", onInspect);
+    return () => window.removeEventListener("chaintrack-inspect", onInspect);
+  }, []);
+
   // Reset sent state when lot changes
   useEffect(() => { setInspSent(false); }, [inspLotId, inspModel]);
 
