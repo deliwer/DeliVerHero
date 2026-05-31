@@ -21,7 +21,7 @@ import { SiWhatsapp, SiTelegram } from "react-icons/si";
 
 const WHATSAPP_URL = "https://wa.me/971523906019?text=Hi%2C%20I%20want%20to%20source%20electronics%20from%20Dubai";
 const TELEGRAM_URL = "https://t.me/chaintrack_sourcing";
-const BOTIM_NUMBER = "tel:+971523946311";
+const BOTIM_NUMBER = "tel:+971523906019";
 const ZOOM_URL = "mailto:formatix@hotmail.com?subject=Zoom%20Meeting%20-%20ChainTrack%20Remote%20Sourcing%20Inspection&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20Zoom%20call%20to%20inspect%20a%20sourcing%20lot.";
 const TEAMS_URL = "https://teams.microsoft.com/l/chat/0/0?users=formatix%40hotmail.com";
 

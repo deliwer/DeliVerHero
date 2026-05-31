@@ -824,7 +824,7 @@ function BuyerNetworkForm() {
     const msg = encodeURIComponent(
       `ChainTrack Buyer Network Registration\n\nName: ${form.name}\nCompany: ${form.company}\nCountry: ${form.country}\nWhatsApp: ${form.whatsapp}\nProducts: ${form.products}\nMonthly Volume: ${form.volume}`
     );
-    window.open(`https://wa.me/971523946311?text=${msg}`, "_blank");
+    window.open(`https://wa.me/971523906019?text=${msg}`, "_blank");
     setSent(true);
   }
 
@@ -1009,7 +1009,7 @@ export default function ChainTrackPage() {
                 Join Buyer Network
               </Button>
             </a>
-            <a href="https://wa.me/971523946311" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-whatsapp-chaintrack">
                 <SiWhatsapp className="w-4 h-4" />
                 +971 52 394 6311
@@ -2292,7 +2292,7 @@ export default function ChainTrackPage() {
                   </Button>
                 </a>
                 <a
-                  href="https://t.me/+971523946311"
+                  href="https://t.me/+971523906019"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="button-trust-cta-telegram"
@@ -2521,7 +2521,7 @@ export default function ChainTrackPage() {
                     WhatsApp to Apply
                   </Button>
                 </a>
-                <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/+971523906019" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-telegram">
                     <SiTelegram className="w-4 h-4" />
                     Telegram to Apply
@@ -2596,7 +2596,7 @@ export default function ChainTrackPage() {
                     </li>
                   ))}
                 </ul>
-                <a href={`https://wa.me/971523946311?text=ChainTrack%20-%20I%20want%20to%20book%20a%20${encodeURIComponent(svc.title)}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20book%20a%20${encodeURIComponent(svc.title)}`} target="_blank" rel="noopener noreferrer">
                   <Button size="sm" className={`w-full font-black text-[10px] uppercase tracking-widest gap-1.5 ${svc.color === "text-cyan-400" ? "bg-cyan-500 hover:bg-cyan-400 text-slate-950" : svc.color === "text-blue-400" ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-emerald-600 hover:bg-emerald-500 text-white"}`} data-testid={`button-book-inspection-${i}`}>
                     <SiWhatsapp className="w-3.5 h-3.5" />
                     Book Inspection
@@ -2638,59 +2638,6 @@ export default function ChainTrackPage() {
             </div>
             <div>
               <BuyerNetworkForm />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Supplier Partners ── */}
-      <section className="border-t border-[#1E293B] bg-[#070B14] py-20">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-14">
-            <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Sourcing Partners</div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Verified Supplier Partners</h2>
-            <p className="text-slate-400 max-w-xl mx-auto">ChainTrack works with leading ITAD and wholesale suppliers. Shown as sourcing partners only — not endorsements or affiliations.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
-            {[
-              {
-                name: "KT Corp Worldwide",
-                type: "Enterprise ITAD · Korea & US",
-                desc: "One of the world's largest carrier-grade device resellers. Supplies certified refurbished smartphones to ChainTrack's auction feed from US and Korean carrier returns.",
-                tags: ["A+ / A Grade", "Carrier-Certified", "US & Korea"],
-                color: "border-blue-500/30 bg-blue-500/5",
-                badge: "text-blue-300 bg-blue-500/20 border-blue-500/30",
-              },
-              {
-                name: "WeSellCellular",
-                type: "Wholesale Liquidator · North America",
-                desc: "Major US-based wholesale cell phone liquidator providing ASIS and graded lots. Primary source for ChainTrack's North America Feed.",
-                tags: ["ASIS & Graded", "Bulk Lots", "US-Origin"],
-                color: "border-cyan-500/30 bg-cyan-500/5",
-                badge: "text-cyan-300 bg-cyan-500/20 border-cyan-500/30",
-              },
-            ].map((partner, i) => (
-              <div key={i} className={`rounded-2xl border p-6 ${partner.color}`} data-testid={`card-partner-${i}`}>
-                <div className="flex items-start justify-between mb-3 flex-wrap gap-2">
-                  <div>
-                    <div className="font-black text-white text-base">{partner.name}</div>
-                    <div className="text-[11px] text-slate-500 mt-0.5">{partner.type}</div>
-                  </div>
-                  <span className={`text-[9px] font-black px-2 py-1 rounded border ${partner.badge}`}>Sourcing Partner</span>
-                </div>
-                <p className="text-[12px] text-slate-400 leading-relaxed mb-4">{partner.desc}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {partner.tags.map((tag, j) => (
-                    <span key={j} className="text-[9px] font-black px-2 py-0.5 rounded bg-[#070B14] border border-[#1E293B] text-slate-400">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-[#0D1424] border border-[#1E293B] rounded-xl px-5 py-3 text-[11px] text-slate-500 max-w-2xl mx-auto">
-              <AlertCircle className="w-3.5 h-3.5 text-slate-600 shrink-0" />
-              Supplier identities and product references may be masked for trade secrecy. All supplier names are trademarks of their respective owners. ChainTrack is not formally affiliated with any supplier. Enquire via ChainTrack only.
             </div>
           </div>
         </div>
@@ -2763,7 +2710,7 @@ export default function ChainTrackPage() {
                 <div className="text-[11px] text-slate-400">A320F dedicated electronics cargo · DAFZA to GYD Baku · ICT Tashkent · ALA Almaty · SVO Moscow</div>
               </div>
             </div>
-            <a href="https://wa.me/971523946311?text=ChainTrack%20-%20I%20need%20a%20logistics%20quote" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20need%20a%20logistics%20quote" target="_blank" rel="noopener noreferrer">
               <Button className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs gap-2 shrink-0" data-testid="button-logistics-quote">
                 <Truck className="w-3.5 h-3.5" />
                 Get Logistics Quote
@@ -2789,7 +2736,7 @@ export default function ChainTrackPage() {
               { icon: Gavel, title: "Auction Results", desc: "Historical reverse auction closing prices. See what lots cleared at — plan your bids with real data.", color: "text-amber-400", bg: "bg-amber-500/5 border-amber-500/20", cta: "See Results" },
               { icon: BrainCircuit, title: "Buying Guides", desc: "IMEI check protocols, grade comparison standards, CIS import duties, escrow mechanics explained.", color: "text-emerald-400", bg: "bg-emerald-500/5 border-emerald-500/20", cta: "Read Guides" },
             ].map((item, i) => (
-              <a key={i} href={`https://wa.me/971523946311?text=ChainTrack%20Content%20Hub%20-%20${encodeURIComponent(item.title)}`} target="_blank" rel="noopener noreferrer" className="group" data-testid={`card-content-${i}`}>
+              <a key={i} href={`https://wa.me/971523906019?text=ChainTrack%20Content%20Hub%20-%20${encodeURIComponent(item.title)}`} target="_blank" rel="noopener noreferrer" className="group" data-testid={`card-content-${i}`}>
                 <div className={`rounded-2xl border ${item.bg} p-5 h-full flex flex-col hover:border-opacity-70 transition-all`}>
                   <item.icon className={`w-6 h-6 ${item.color} mb-3`} />
                   <div className="font-black text-white text-sm mb-2">{item.title}</div>
