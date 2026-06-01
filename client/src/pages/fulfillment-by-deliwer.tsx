@@ -137,7 +137,7 @@ export default function FulfillmentByDeliWer() {
                     </div>
                   ))}
                 </div>
-                <Link href="/bulk-purchasing">
+                <Link href="/wholesale">
                   <Button className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2 w-fit" data-testid="button-gateway-wholesale">
                     <Package className="w-4 h-4" />
                     Browse Fixed-Price Lots
@@ -318,7 +318,7 @@ export default function FulfillmentByDeliWer() {
                 desc: "Stop paying retail-plus to middlemen. Get the same stock they're selling you — direct from DAFZA, graded and documented.",
                 saving: "Save AED 80–150/unit vs middlemen",
                 cta: "Start Buying Direct",
-                href: "/bulk-purchasing",
+                href: "/wholesale",
                 color: "border-amber-500/30",
               },
               {
@@ -414,7 +414,7 @@ export default function FulfillmentByDeliWer() {
                           Auction
                         </Button>
                       </Link>
-                      <Link href="/bulk-purchasing" className="flex-1">
+                      <Link href="/wholesale" className="flex-1">
                         <Button size="sm" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black uppercase tracking-widest" data-testid={`button-quote-${model.name.toLowerCase().replace(/\s+/g, '-')}`}>
                           Buy
                         </Button>
@@ -425,7 +425,7 @@ export default function FulfillmentByDeliWer() {
               ))}
             </div>
             <div className="text-center mt-8 flex flex-wrap gap-4 justify-center">
-              <Link href="/bulk-purchasing">
+              <Link href="/wholesale">
                 <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-widest gap-2" data-testid="button-request-bulk-quote">
                   <Package className="w-5 h-5" />
                   Request Bulk Quote
@@ -550,7 +550,7 @@ export default function FulfillmentByDeliWer() {
                 WhatsApp to Start
               </Button>
             </a>
-            <Link href="/bulk-purchasing">
+            <Link href="/wholesale">
               <Button size="lg" variant="outline" className="border-amber-500/40 text-amber-300 hover:bg-amber-500/10 font-black uppercase tracking-widest gap-2 min-h-12" data-testid="button-cta-learn-more">
                 <Package className="w-5 h-5" />
                 Browse Wholesale Lots

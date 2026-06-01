@@ -278,6 +278,22 @@
     <mobile:mobile/>
   </url>
 
+  <!-- ══ BULK PURCHASING / WHOLESALE ══ -->
+  <url>
+    <loc>https://www.deliwer.com/wholesale</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/bulk-purchasing</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+    <mobile:mobile/>
+  </url>
+
   <!-- ══ CHAINTRACK MARKETPLACE — REVERSE AUCTION & SOURCING ══ -->
   <url>
     <loc>https://www.deliwer.com/chaintrack</loc>

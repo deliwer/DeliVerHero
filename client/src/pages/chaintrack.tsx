@@ -522,14 +522,14 @@ export default function ChainTrackPage() {
       {/* ── Pipeline indicator ── */}
       <div className="bg-[#070B14] border-b border-[#1E293B]">
         <div className="container mx-auto max-w-7xl px-4 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest flex-wrap">
-          <Link href="/bulk-purchasing">
-            <span className="text-slate-500 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5">① Plan &amp; Price on Bulk Purchasing</span>
-          </Link>
-          <span className="text-slate-600 mx-1">→</span>
           <span className="text-white/90 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-            ② Source on ChainTrack
+            ① Source on ChainTrack
           </span>
+          <span className="text-slate-600 mx-1">→</span>
+          <Link href="/wholesale">
+            <span className="text-slate-500 hover:text-amber-400 transition-colors cursor-pointer flex items-center gap-1.5">② Plan &amp; Price on Bulk Purchasing</span>
+          </Link>
           <span className="text-slate-600 mx-1">→</span>
           <Link href="/logistics">
             <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">③ Ship via Logistics</span>
@@ -654,7 +654,7 @@ export default function ChainTrackPage() {
                 Submit Requirement
               </Button>
             </a>
-            <Link href="/bulk-purchasing">
+            <Link href="/wholesale">
               <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-view-inventory">
                 <Eye className="w-4 h-4" />
                 View Available Inventory
@@ -722,7 +722,7 @@ export default function ChainTrackPage() {
                 <ArrowRight className="w-4 h-4 text-cyan-400 shrink-0 group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
-            <Link href="/bulk-purchasing" className="group" data-testid="funnel-wholesale">
+            <Link href="/wholesale" className="group" data-testid="funnel-wholesale">
               <div className="flex items-center gap-4 bg-amber-500/8 border border-amber-500/25 hover:border-amber-500/50 rounded-2xl p-5 transition-all cursor-pointer">
                 <div className="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
                   <ShoppingCart className="w-5 h-5 text-amber-400" />

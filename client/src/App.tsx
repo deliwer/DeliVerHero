@@ -361,6 +361,9 @@ function Router() {
         <Route path="/move-in-services">
           <Redirect to="/relocate" />
         </Route>
+        <Route path="/move-in">
+          <Redirect to="/relocate" />
+        </Route>
         <Route path="/home" component={Home} />
         <Route path="/relocate/business-setup" component={BusinessSetupPage} />
         <Route path="/business-setup" component={BusinessSetup} />
@@ -533,8 +536,9 @@ function Router() {
         {/* Fulfillment by DeliWer */}
         <Route path="/fulfillment" component={FulfillmentByDeliWer} />
 
-        {/* Bulk Purchasing */}
-        <Route path="/bulk-purchasing" component={BulkPurchasingPage} />
+        {/* Bulk Purchasing — canonical slug /wholesale, legacy redirect kept */}
+        <Route path="/wholesale" component={BulkPurchasingPage} />
+        <Route path="/bulk-purchasing"><Redirect to="/wholesale" /></Route>
 
         {/* Membership Plans */}
         <Route path="/membership-plans" component={MembershipPlansPage} />

@@ -169,14 +169,14 @@ export default function BulkPurchasingPage() {
       {/* ── BUYER FUNNEL STEPPER ── */}
       <div className="bg-[#070B14] border-b border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest flex-wrap">
+          <Link href="/chaintrack">
+            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">① Source on ChainTrack</span>
+          </Link>
+          <span className="text-slate-600 mx-1">→</span>
           <span className="text-white/90 flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            ① Plan &amp; Price — Bulk Purchasing
+            ② Plan &amp; Price — Bulk Purchasing
           </span>
-          <span className="text-slate-600 mx-1">→</span>
-          <Link href="/chaintrack">
-            <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">② Execute on ChainTrack</span>
-          </Link>
           <span className="text-slate-600 mx-1">→</span>
           <Link href="/logistics">
             <span className="text-slate-500 hover:text-cyan-400 transition-colors cursor-pointer">③ Ship via Logistics</span>
@@ -218,7 +218,7 @@ export default function BulkPurchasingPage() {
                 <div className="space-y-2 mb-6">
                   {[
                     "Price shown = price you pay. No surprises.",
-                    "Minimum 10 units per lot — cash or wire accepted",
+                    "25 or 50 pcs MOQ — cash, wire or escrow accepted",
                     "Goods at DAFZA within 48–72h of payment",
                     "Perfect for: shop owners, souq traders, small importers",
                   ].map((p, i) => (
@@ -578,8 +578,8 @@ export default function BulkPurchasingPage() {
                           </DialogHeader>
                           <div className="space-y-4 pt-2">
                             <div>
-                              <Label className="text-slate-300 text-xs">Quantity (min 10 units)</Label>
-                              <Input id="quote-quantity" type="number" placeholder="e.g. 50" min="10" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" data-testid="input-quote-quantity" />
+                              <Label className="text-slate-300 text-xs">Quantity (min 25 units)</Label>
+                              <Input id="quote-quantity" type="number" placeholder="e.g. 50" min="25" className="bg-[#070B14] border-[#1E293B] text-white mt-1.5" data-testid="input-quote-quantity" />
                             </div>
                             <div>
                               <Label className="text-slate-300 text-xs">Company / Shop Name</Label>
@@ -1064,7 +1064,7 @@ export default function BulkPurchasingPage() {
               { factor: "Price certainty", wholesale: "✓ Fixed — you know before you buy", auction: "Variable — competition drives it down" },
               { factor: "Potential savings", wholesale: "Listed price — fair market rate", auction: "15–35% below listed price" },
               { factor: "Speed to receive", wholesale: "48–72h from payment", auction: "72h–5 days (auction + logistics)" },
-              { factor: "Min. order qty", wholesale: "10 units", auction: "50 units" },
+              { factor: "Min. order qty", wholesale: "25 or 50 pcs", auction: "50 units" },
               { factor: "Ideal for", wholesale: "Shop restocking, urgent orders", auction: "Container loads, large imports" },
               { factor: "Payment method", wholesale: "Wire, cash, escrow", auction: "Escrow only (buyer protection)" },
               { factor: "Supplier transparency", wholesale: "Anonymous until purchase", auction: "Multiple suppliers, rated profiles" },

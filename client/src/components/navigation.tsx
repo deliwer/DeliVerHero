@@ -16,8 +16,8 @@ import logoPng from "@assets/deliwer logo_1755631850889.png";
 
 // ── Broker/ChainTrack side paths ─────────────────────────────────────────────
 const CHAINTRACK_PATHS = [
-  "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
-  "/fulfillment", "/membership-plans", "/corporate",
+  "/chaintrack", "/wholesale", "/bulk-purchasing", "/bulk-tradein",
+  "/cis-electronics", "/fulfillment", "/membership-plans", "/corporate",
   "/cobone-corporate", "/account-management",
   "/partners", "/broker-onboard", "/broker-onboarding", "/brokers",
   "/partner-program", "/partner-dashboard", "/corporate-partner-portal",
@@ -78,18 +78,18 @@ const managementNavItems = [
 const chaintrackNavItems = [
   { path: "/logistics",        label: "Logistics",      id: "ct-logistics",   icon: Anchor },
   { path: "/chaintrack",       label: "Marketplace",    id: "ct-marketplace", icon: LayoutGrid },
-  { path: "/bulk-purchasing",  label: "Bulk Buy",       id: "ct-bulk",        icon: Package },
+  { path: "/wholesale",        label: "Bulk Buy",       id: "ct-bulk",        icon: Package },
+  { path: "/cis-electronics",  label: "CIS Electronics",id: "ct-electronics", icon: Smartphone },
   { path: "/fulfillment",      label: "Fulfillment",    id: "ct-fulfillment", icon: Truck },
   { path: "/corporate",        label: "Corporate",      id: "ct-corporate",   icon: Building2 },
   { path: "/partners",         label: "Brokers",        id: "ct-back",        icon: Users },
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
-const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/cis-electronics", "/air-charter", "/pricing-logistics"];
+const LOGISTICS_PATHS = ["/logistics", "/freight-broker", "/logistics-funnel", "/air-charter", "/pricing-logistics"];
 
 const logisticsNavItems = [
-  { path: "/logistics",          label: "Corridor",        id: "lg-corridor",     icon: Anchor },
-  { path: "/cis-electronics",    label: "CIS Electronics", id: "lg-electronics",  icon: Package },
+  { path: "/chaintrack",         label: "Marketplace",     id: "lg-marketplace",  icon: LayoutGrid },
   { path: "/air-charter",        label: "Air Charter",     id: "lg-air-charter",  icon: Plane },
   { path: "/freight-broker",     label: "Freight Hub",     id: "lg-freight",      icon: Route },
   { path: "/pricing-logistics",  label: "Pricing",         id: "lg-pricing",      icon: DollarSign },
@@ -99,8 +99,8 @@ const logisticsNavItems = [
 
 // Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)
 const DEEP_CHAINTRACK_PATHS = [
-  "/chaintrack", "/bulk-purchasing", "/bulk-tradein",
-  "/fulfillment", "/membership-plans", "/corporate",
+  "/chaintrack", "/wholesale", "/bulk-purchasing", "/bulk-tradein",
+  "/cis-electronics", "/fulfillment", "/membership-plans", "/corporate",
   "/cobone-corporate",
 ];
 
