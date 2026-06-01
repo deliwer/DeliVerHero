@@ -32,6 +32,7 @@ import brokerHandshake from "@assets/stock_images/broker_handshake_dubai.jpg";
 import dubaiAirHub from "@assets/stock_images/dubai_air_hub.jpg";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { ChainTrackMarketplaceSection } from "@/components/chaintrack-marketplace-section";
 
 export default function BulkPurchasingPage() {
   const [selectedModel, setSelectedModel] = useState<string>("all");
@@ -309,6 +310,9 @@ export default function BulkPurchasingPage() {
           </div>
         </div>
       </section>
+
+      {/* ── LIVE MARKETPLACE: Auctions & Supplier Feeds ── */}
+      <ChainTrackMarketplaceSection />
 
       {/* ── VIDEO EXPLAINER: Reverse Auction ── */}
       <section className="py-16 px-4 bg-[#070B14]">
