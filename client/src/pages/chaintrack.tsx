@@ -902,6 +902,111 @@ function BuyerNetworkForm() {
   );
 }
 
+function HeroRequirementForm() {
+  const [model, setModel] = useState("");
+  const [grade, setGrade] = useState("");
+  const [qty, setQty] = useState("");
+  const [market, setMarket] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!model || !grade || !qty) return;
+    const msg = `ChainTrack — Procurement Requirement\n\nModel: ${model}\nGrade: ${grade}\nQuantity: ${qty} units\nDestination: ${market || "Not specified"}\n\nPlease send me matching supplier offers.`;
+    window.open(`https://wa.me/971523906019?text=${encodeURIComponent(msg)}`, "_blank");
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 4000);
+  }
+
+  return (
+    <div className="mb-10 max-w-2xl">
+      <div className="bg-[#0D1424] border border-cyan-500/30 rounded-2xl p-5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,209,255,0.04),transparent_70%)]" />
+        <div className="relative">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-widest text-cyan-400">Submit Your Requirement</span>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+              <div>
+                <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1.5 block">Model</label>
+                <Select value={model} onValueChange={setModel}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9 font-bold" data-testid="select-req-model">
+                    <SelectValue placeholder="iPhone model" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    {["iPhone 16 Pro Max", "iPhone 16 Pro", "iPhone 16", "iPhone 15 Pro Max", "iPhone 15 Pro", "iPhone 15", "iPhone 14 Pro Max", "iPhone 14 Pro", "iPhone 14", "iPhone 13 Pro Max", "iPhone 13 Pro", "iPhone 13", "iPhone 12 Pro Max", "iPhone 12 Pro", "iPhone 12"].map(m => (
+                      <SelectItem key={m} value={m}>{m}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1.5 block">Grade</label>
+                <Select value={grade} onValueChange={setGrade}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9 font-bold" data-testid="select-req-grade">
+                    <SelectValue placeholder="Grade" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    <SelectItem value="A+">A+ — Pristine</SelectItem>
+                    <SelectItem value="A">A — Excellent</SelectItem>
+                    <SelectItem value="B">B — Good</SelectItem>
+                    <SelectItem value="C">C — Fair</SelectItem>
+                    <SelectItem value="A/B Mix">A/B Mix</SelectItem>
+                    <SelectItem value="B/C Mix">B/C Mix</SelectItem>
+                    <SelectItem value="Any">Any Grade</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1.5 block">Quantity</label>
+                <Input
+                  type="number"
+                  min="1"
+                  value={qty}
+                  onChange={e => setQty(e.target.value)}
+                  placeholder="e.g. 500"
+                  className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9 font-bold placeholder:text-slate-600"
+                  data-testid="input-req-qty"
+                />
+              </div>
+              <div>
+                <label className="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1.5 block">Destination</label>
+                <Select value={market} onValueChange={setMarket}>
+                  <SelectTrigger className="bg-[#070B14] border-[#1E293B] text-white text-xs h-9 font-bold" data-testid="select-req-market">
+                    <SelectValue placeholder="Market" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#0D1424] border-[#1E293B] text-white">
+                    {["Russia", "Kazakhstan", "Uzbekistan", "Azerbaijan", "Georgia", "Pakistan", "Bangladesh", "Nigeria", "Egypt", "Kenya", "Turkey", "Germany", "United Kingdom", "Other / Global"].map(m => (
+                      <SelectItem key={m} value={m}>{m}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <Button
+              type="submit"
+              disabled={!model || !grade || !qty}
+              className="w-full bg-cyan-500 hover:bg-cyan-400 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-black uppercase tracking-widest text-xs gap-2 h-10"
+              data-testid="button-hero-req-submit"
+            >
+              {submitted ? (
+                <><CheckCircle2 className="w-4 h-4" />Sent — check WhatsApp</>
+              ) : (
+                <><Send className="w-4 h-4" />Send Requirement via WhatsApp</>
+              )}
+            </Button>
+          </form>
+          <p className="text-[10px] text-slate-600 mt-2.5 text-center">
+            Opens WhatsApp with your requirement pre-filled · We respond within 2 hours
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ChainTrackPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterGrade, setFilterGrade] = useState("all");
@@ -1107,6 +1212,9 @@ export default function ChainTrackPage() {
               </Button>
             </a>
           </div>
+
+          {/* Inline Submit Requirement form */}
+          <HeroRequirementForm />
 
           {/* Trust statement */}
           <div className="flex items-start gap-3 mb-10 px-5 py-4 rounded-2xl bg-[#0D1424] border border-[#1E293B] max-w-2xl">

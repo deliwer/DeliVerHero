@@ -291,11 +291,11 @@ export function Footer() {
               </a>
               {/* Botim backup */}
               <a
-                href="tel:+971523946311"
+                href="tel:+971523906019"
                 className="inline-flex items-center justify-center gap-1.5 bg-purple-500/10 border border-purple-500/30 hover:bg-purple-500/20 text-purple-300 px-3 py-2 rounded-lg font-black text-xs transition-colors"
                 title="Botim — backup channel if WhatsApp/Telegram unavailable"
               >
-                <Phone className="w-3 h-3" />Botim +971 52 394 6311
+                <Phone className="w-3 h-3" />Botim +971 52 390 6019
               </a>
               {/* Rubab WhatsApp */}
               <a

@@ -183,7 +183,7 @@ export function ChannelStatusBar({ className = "" }: { className?: string }) {
       <span className="text-gray-700 hidden sm:inline">·</span>
       <span className="flex items-center gap-1.5 text-[10px] text-gray-400 font-bold">
         <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" />
-        Botim · +971 52 394 6311
+        Botim · +971 52 390 6019
       </span>
     </div>
   );
