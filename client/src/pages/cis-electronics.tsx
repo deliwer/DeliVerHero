@@ -181,6 +181,107 @@ export default function CisElectronicsPage() {
         <meta name="geo.region" content="AE-DU" />
         <meta name="geo.placename" content="Dubai, UAE" />
         <meta name="robots" content="index, follow" />
+
+        {/* ── FAQPage JSON-LD — AI & search engine structured data ── */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can I source refurbished iPhones from Dubai for CIS markets?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Dubai is one of the world's top three electronics re-export hubs, processing over $3.2B in annual electronics re-exports (FCSA 2023). ChainTrack by DeliWer provides direct access to Dubai's refurbished iPhone supply chain for buyers in Azerbaijan, Kazakhstan, Uzbekistan, Russia, Georgia, and Kyrgyzstan — including remote inspection, charter air cargo, and DAFZA escrow protection on every deal."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the minimum order quantity for bulk iPhones from Dubai to CIS countries?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fixed-price wholesale lots start at 25 or 50 units depending on model and condition tier. Reverse auction lots on ChainTrack typically require a minimum of 50 units. For full pallet and container load orders (500+ units), contact the ChainTrack coordination desk via WhatsApp at +971 52 390 6019 or join the CIS Buyers Community at https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does air cargo from Dubai to Azerbaijan, Kazakhstan, or Uzbekistan work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ChainTrack coordinates express air freight from Dubai DXB and DWC airports to Baku (GYD), Almaty (ALA), and Tashkent (TAS) via direct and charter routes. The INSTC (International North–South Transport Corridor) has reduced Dubai–Almaty transit times by up to 40% versus sea-only routing (UNCTAD 2023). Typical air cargo transit is 24–72 hours door-to-airport. Customs documentation, RODTEP exemption support, and last-mile coordination are included."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What grades of refurbished iPhones are available from Dubai?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ChainTrack sources Grade A+ (Like New), Grade A (Excellent — minor cosmetic marks), and Grade B (Good — visible wear, fully functional) devices. Devices from US carriers (Wesellcellular) and Korean carriers (KT Corp, SK Telecom) are certified pre-owned (CPO) and meet UAE ESMA electronics standards. Every lot undergoes remote video inspection and grading verification at DAFZA before payment is released."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is payment safe when buying electronics wholesale from Dubai?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All transactions on ChainTrack use DAFZA escrow — funds are held by Dubai's free zone authority and released only after the buyer confirms receipt and grading. This protects buyers from fraudulent suppliers and ensures payment risk is zero. Wire transfers, bank escrow, and cash payments are accepted for fixed-price wholesale lots."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I become a broker partner for CIS electronics imports from Dubai?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ChainTrack offers revenue-sharing broker partnerships for CIS importers, resellers, and freight coordinators — no upfront capital required. Submit an inquiry at https://www.deliwer.com/cis-electronics or message the coordination team on WhatsApp at +971 52 390 6019. Local coordination support is available in Azerbaijan for last-mile distribution across the CIS region."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which iPhone models are most in demand in Kazakhstan and Azerbaijan?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "According to Counterpoint Research (Refurbished Smartphone Market 2024), iPhone 13 Pro Max, iPhone 15, and iPhone 14 Pro are the highest-demand refurbished models in CIS markets. Demand for refurbished iPhones in Kazakhstan and Azerbaijan grew 38% YoY in 2023, driven by USD-priced premium devices and strong local resale value versus new retail pricing."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I follow live lot alerts for Dubai iPhone auctions?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Join the ChainTrack Telegram channel at https://t.me/chaintracklogistics for live auction alerts, price movements, and corridor intel. CIS buyers can also join the ChainTrack WhatsApp Buyers Community at https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG for direct sourcing discussions, group pricing, and peer intelligence from Kazakhstan, Azerbaijan, Uzbekistan and Russia."
+              }
+            }
+          ]
+        })}</script>
+
+        {/* ── Organization + BreadcrumbList JSON-LD ── */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "ChainTrack CIS Electronics Supply — Dubai",
+          "provider": {
+            "@type": "Organization",
+            "name": "DeliWer",
+            "url": "https://www.deliwer.com",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+971523906019",
+              "contactType": "customer support",
+              "availableLanguage": ["English", "Russian", "Arabic"]
+            }
+          },
+          "serviceType": "Wholesale Electronics Sourcing & Logistics",
+          "areaServed": [
+            { "@type": "Country", "name": "Azerbaijan" },
+            { "@type": "Country", "name": "Kazakhstan" },
+            { "@type": "Country", "name": "Uzbekistan" },
+            { "@type": "Country", "name": "Russia" },
+            { "@type": "Country", "name": "Georgia" },
+            { "@type": "Country", "name": "Kyrgyzstan" }
+          ],
+          "description": "Refurbished iPhone and electronics sourcing from Dubai for CIS markets. Includes remote inspection, DAFZA escrow, air cargo, and broker partnerships.",
+          "url": "https://www.deliwer.com/cis-electronics"
+        })}</script>
       </Helmet>
 
       {/* ── HERO ── */}
