@@ -234,8 +234,8 @@ function Router() {
       setLocation('/logistics');
       return;
     }
-    if ((hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
-      setLocation('/logistics');
+    if ((hostname === 'chaintrack.chaintrack.com' || hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
+      setLocation('/chaintrack');
       return;
     }
 

@@ -973,20 +973,23 @@ export default function ChainTrackPage() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={cargoPlaneImage} alt="" className="w-full h-full object-cover opacity-[0.08]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#070B14]/60 via-[#070B14]/80 to-[#070B14]" />
+          <img src={electronicsImage} alt="" className="w-full h-full object-cover opacity-[0.06]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#070B14]/70 via-[#070B14]/85 to-[#070B14]" />
         </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,209,255,0.08),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,209,255,0.07),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(99,102,241,0.05),transparent_60%)]" />
 
         <div className="relative container mx-auto px-4 pt-14 pb-16 max-w-7xl">
-          <div className="flex items-center gap-3 mb-6 flex-wrap">
-            <div className="flex items-center gap-2 bg-red-500/20 border border-red-500/40 text-red-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
-              <Radio className="w-3 h-3 animate-pulse" />
-              Live Auctions
-            </div>
+
+          {/* Eyebrow badges */}
+          <div className="flex items-center gap-3 mb-7 flex-wrap">
             <div className="flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
-              <Globe className="w-3 h-3" />
-              US · China · India → CIS & Central Asia
+              <Target className="w-3 h-3" />
+              Demand-Driven Procurement
+            </div>
+            <div className="flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
+              <Smartphone className="w-3 h-3" />
+              iPhone 12 and Newer
             </div>
             <div className="flex items-center gap-2 bg-slate-700/40 border border-slate-600/40 text-slate-400 px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest">
               <Shield className="w-3 h-3" />
@@ -994,35 +997,101 @@ export default function ChainTrackPage() {
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-[0.95] mb-6 tracking-tight">
-            <span className="text-white">Remote Sourcing &</span>
+          {/* Main headline */}
+          <h1 className="text-4xl md:text-6xl lg:text-[4.5rem] font-black leading-[0.95] mb-6 tracking-tight max-w-4xl">
+            <span className="text-white">Never Search Multiple</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">Reverse Bidding</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">iPhone Suppliers</span>
             <br />
-            <span className="text-white">for Wholesale Smartphones</span>
+            <span className="text-white">Again.</span>
           </h1>
 
-          <p className="text-lg text-slate-400 max-w-2xl mb-4 leading-relaxed">
-            Access verified wholesale iPhone and smartphone inventory from trusted suppliers. Request live inspections, submit reverse bids and arrange export logistics through Dubai.
+          {/* Subheadline */}
+          <p className="text-lg text-slate-300 max-w-2xl mb-8 leading-relaxed">
+            Tell us the model, grade and quantity you need. ChainTrack continuously scans wholesale inventory and brings qualified supplier offers to you through reverse bidding — reducing procurement time, cost and uncertainty.
           </p>
-          <div className="flex items-center gap-2 mb-8 px-4 py-2.5 rounded-xl bg-amber-500/8 border border-amber-500/20 max-w-2xl">
-            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
-            <p className="text-[11px] text-amber-300/80 leading-relaxed">
-              <span className="font-black text-amber-400">No inventory ownership.</span> ChainTrack does not own inventory. We help buyers source, inspect, negotiate and move inventory from verified suppliers.
-            </p>
+
+          {/* Flow diagram: Traditional vs ChainTrack */}
+          <div className="grid md:grid-cols-2 gap-4 mb-10 max-w-3xl">
+            {/* Traditional */}
+            <div className="bg-[#0D1424] border border-red-500/20 rounded-2xl p-5">
+              <div className="text-[10px] font-black uppercase tracking-widest text-red-400 mb-4 flex items-center gap-1.5">
+                <X className="w-3 h-3" /> Traditional Model
+              </div>
+              <div className="flex flex-col gap-2">
+                {["Buyer chases inventory", "Multiple supplier portals", "Monitor auctions constantly", "Compare grades & specs", "Miss lots due to timing"].map((step, i) => (
+                  <div key={i} className="flex items-center gap-2.5">
+                    <div className="w-5 h-5 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center shrink-0">
+                      <span className="text-[9px] font-black text-red-400">{i + 1}</span>
+                    </div>
+                    <span className="text-[12px] text-slate-400">{step}</span>
+                  </div>
+                ))}
+                <div className="mt-2 pt-3 border-t border-red-500/15 text-[11px] font-black text-red-400 uppercase tracking-wider">
+                  = Procurement uncertainty
+                </div>
+              </div>
+            </div>
+
+            {/* ChainTrack */}
+            <div className="bg-[#0D1424] border border-cyan-500/30 rounded-2xl p-5 relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,209,255,0.04),transparent_70%)]" />
+              <div className="relative">
+                <div className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-4 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3 h-3" /> ChainTrack Model
+                </div>
+                <div className="flex flex-col gap-2">
+                  {[
+                    { step: "Submit your requirement", color: "cyan" },
+                    { step: "ChainTrack scans sourcing network", color: "cyan" },
+                    { step: "Suppliers compete via reverse bidding", color: "blue" },
+                    { step: "You receive multiple qualified offers", color: "indigo" },
+                    { step: "Choose best offer & arrange logistics", color: "indigo" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2.5">
+                      <div className="w-5 h-5 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                        <span className="text-[9px] font-black text-cyan-400">{i + 1}</span>
+                      </div>
+                      <span className="text-[12px] text-slate-200">{item.step}</span>
+                    </div>
+                  ))}
+                  <div className="mt-2 pt-3 border-t border-cyan-500/20 text-[11px] font-black text-cyan-400 uppercase tracking-wider">
+                    = The market comes to you
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-wrap gap-3 mb-12">
-            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20request%20inventory" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs" data-testid="button-request-inventory">
-                <Search className="w-4 h-4" />
-                Request Inventory
+          {/* Benefits */}
+          <div className="flex flex-wrap gap-x-6 gap-y-2 mb-9 max-w-2xl">
+            {[
+              "Continuous access to iPhone 12 and newer",
+              "Demand-driven — no more auction chasing",
+              "Multiple supplier offers per requirement",
+              "Reverse bidding improves pricing",
+              "One request reaches multiple inventory sources",
+              "Independent sourcing and logistics support",
+            ].map((b, i) => (
+              <div key={i} className="flex items-center gap-2 text-[12px] text-slate-300">
+                <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                {b}
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-3 mb-10">
+            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20submit%20a%20procurement%20requirement" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest text-xs" data-testid="button-submit-requirement">
+                <Send className="w-4 h-4" />
+                Submit Requirement
               </Button>
             </a>
-            <a href="https://wa.me/971523906019?text=ChainTrack%20-%20I%20want%20to%20join%20the%20buyer%20network" target="_blank" rel="noopener noreferrer">
-              <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-join-buyer-network">
-                <Users className="w-4 h-4" />
-                Join Buyer Network
+            <a href="#live-lots">
+              <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-view-inventory">
+                <Eye className="w-4 h-4" />
+                View Available Inventory
               </Button>
             </a>
             <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
@@ -1037,6 +1106,16 @@ export default function ChainTrackPage() {
                 Telegram
               </Button>
             </a>
+          </div>
+
+          {/* Trust statement */}
+          <div className="flex items-start gap-3 mb-10 px-5 py-4 rounded-2xl bg-[#0D1424] border border-[#1E293B] max-w-2xl">
+            <Network className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+            <p className="text-[12px] text-slate-400 leading-relaxed">
+              The same iPhone inventory exists across hundreds of suppliers, auctions and wholesalers.{" "}
+              <span className="text-slate-200 font-semibold">ChainTrack removes the need to monitor them individually.</span>{" "}
+              Submit your requirement once and receive competing supply offers from our sourcing network.
+            </p>
           </div>
 
           {/* Stats bar */}
