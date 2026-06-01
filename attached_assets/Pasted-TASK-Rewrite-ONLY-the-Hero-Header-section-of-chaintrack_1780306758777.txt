@@ -1,0 +1,127 @@
+TASK: Rewrite ONLY the Hero Header section of chaintrack.com/chaintrack.
+
+DO NOT redesign the entire website.
+
+The objective is to reposition ChainTrack around a unique procurement model for pre-owned iPhones.
+
+CURRENT MARKET PROBLEM
+
+Wholesale buyers spend significant time:
+
+* Monitoring multiple supplier portals
+* Watching auctions
+* Tracking inventory fluctuations
+* Contacting different wholesalers
+* Waiting for suitable lots to appear
+* Comparing grades and specifications
+* Missing opportunities due to timing
+
+This creates procurement uncertainty.
+
+CHAINTRACK'S UNIQUE ADVANTAGE
+
+ChainTrack continuously scans and aggregates inventory from multiple suppliers.
+
+Instead of buyers chasing inventory, buyers submit demand.
+
+Example:
+
+"I need 500 iPhone 13 units Grade B."
+
+ChainTrack searches available inventory and presents matching offers.
+
+Suppliers compete to fulfill the requirement.
+
+The buyer receives multiple offers through reverse bidding.
+
+The result:
+
+* Continuous supply availability
+* Reduced procurement effort
+* Faster sourcing cycles
+* Lower purchasing costs
+* Less dependence on individual suppliers
+
+CORE POSITIONING
+
+"Demand-Driven Procurement for Pre-Owned iPhones"
+
+ChainTrack transforms fragmented wholesale inventory into a continuously available sourcing network.
+
+The buyer no longer waits for the right lot to appear.
+
+The market comes to the buyer.
+
+HERO HEADLINE OPTIONS
+
+Option A:
+
+Stop Hunting for iPhone Lots
+
+Option B:
+
+Continuous Supply for iPhone 12 and Newer Models
+
+Option C:
+
+Submit Your Requirement. Let Suppliers Compete.
+
+Option D:
+
+Demand First. Inventory Follows.
+
+PRIMARY HEADLINE RECOMMENDATION
+
+Never Search Multiple iPhone Suppliers Again
+
+SUBHEADLINE
+
+Tell us the model, grade and quantity you need. ChainTrack continuously scans wholesale inventory and brings qualified supplier offers to you through reverse bidding, reducing procurement time, cost and uncertainty.
+
+SUPPORTING BENEFITS
+
+✓ Continuous access to iPhone 12 and newer models
+
+✓ Demand-driven sourcing instead of auction chasing
+
+✓ Multiple supplier offers for every requirement
+
+✓ Reverse bidding to improve pricing
+
+✓ Independent sourcing and logistics support
+
+✓ One request reaches multiple inventory sources
+
+PRIMARY CTA
+
+Submit Requirement
+
+SECONDARY CTA
+
+View Available Inventory
+
+TRUST STATEMENT
+
+The same iPhone inventory exists across hundreds of suppliers, auctions and wholesalers.
+
+ChainTrack removes the need to monitor them individually.
+
+Submit your requirement once and receive competing supply offers from our sourcing network.
+
+DESIGN DIRECTION
+
+The Hero section should visually communicate:
+
+Traditional Model:
+Buyer → Many Suppliers → Auctions → Multiple Platforms → Uncertainty
+
+ChainTrack Model:
+Buyer Requirement → ChainTrack Network → Competing Supplier Offers
+
+The visual should make it obvious that ChainTrack reduces procurement effort rather than simply listing inventory.
+
+SUCCESS CRITERIA
+
+A visitor should immediately understand:
+
+"I no longer need to spend time searching multiple wholesale sources for iPhone inventory. I can simply submit my requirement and let suppliers compete to fulfill it."
