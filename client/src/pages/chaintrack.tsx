@@ -654,12 +654,12 @@ export default function ChainTrackPage() {
                 Submit Requirement
               </Button>
             </a>
-            <a href="#live-lots">
+            <Link href="/bulk-purchasing">
               <Button size="lg" className="gap-2 bg-white text-slate-950 hover:bg-slate-100 font-black uppercase tracking-widest text-xs" data-testid="button-view-inventory">
                 <Eye className="w-4 h-4" />
                 View Available Inventory
               </Button>
-            </a>
+            </Link>
             <a href="https://wa.me/971523906019" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-whatsapp-chaintrack">
                 <SiWhatsapp className="w-4 h-4" />
