@@ -672,6 +672,12 @@ export default function ChainTrackPage() {
                 Telegram
               </Button>
             </a>
+            <a href="https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="ghost" className="gap-2 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold uppercase tracking-widest text-xs" data-testid="button-wa-community-hero">
+                <SiWhatsapp className="w-4 h-4" />
+                Buyers Community
+              </Button>
+            </a>
           </div>
 
           {/* Inline Submit Requirement form */}
@@ -985,6 +991,12 @@ export default function ChainTrackPage() {
                   Telegram Channel
                 </Button>
               </a>
+              <a href="https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest gap-2 text-xs" data-testid="button-wa-community-partnership">
+                  <SiWhatsapp className="w-3.5 h-3.5" />
+                  Join Buyers Community
+                </Button>
+              </a>
             </div>
           </div>
         </div>
@@ -1294,6 +1306,17 @@ export default function ChainTrackPage() {
                     Message Hassan on Telegram
                   </Button>
                 </a>
+                <a
+                  href="https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="button-trust-cta-wa-community"
+                >
+                  <Button variant="outline" className="w-full border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest text-xs gap-2">
+                    <SiWhatsapp className="w-3.5 h-3.5" />
+                    Join Buyers Community
+                  </Button>
+                </a>
                 <p className="text-center text-[10px] text-slate-600">
                   No commitment. Cancel anytime. Escrow protects every transaction.
                 </p>
@@ -1478,6 +1501,12 @@ export default function ChainTrackPage() {
                   <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-telegram">
                     <SiTelegram className="w-4 h-4" />
                     Telegram to Apply
+                  </Button>
+                </a>
+                <a href="https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-phone-flipper-gateway-wa-community">
+                    <SiWhatsapp className="w-4 h-4" />
+                    Join Community
                   </Button>
                 </a>
               </div>

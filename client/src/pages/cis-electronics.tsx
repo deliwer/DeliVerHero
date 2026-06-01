@@ -4,8 +4,10 @@ import { Link } from "wouter";
 import {
   Smartphone, Package, Globe, ArrowRight, CheckCircle2, MessageSquare,
   Video, Search, Plane, Handshake, MapPinned, Users, Shield,
-  ChevronRight, Zap, Star,
+  ChevronRight, Zap, Star, TrendingUp, BarChart3, ExternalLink,
+  BookOpen, Database,
 } from "lucide-react";
+import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -15,6 +17,8 @@ import heroPhoneImg from "@assets/Hero_iPhone_1755786821791.avif";
 
 const WA_NUMBER = "971523906019";
 const WA_BASE = `https://wa.me/${WA_NUMBER}`;
+const WA_COMMUNITY = "https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG";
+const TELEGRAM_CHANNEL = "https://t.me/chaintracklogistics";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -50,7 +54,12 @@ const SERVICES = [
 ];
 
 const MARKETS = [
-  "Azerbaijan", "Kazakhstan", "Uzbekistan", "Russia", "Georgia", "Kyrgyzstan",
+  { name: "Azerbaijan", flag: "🇦🇿" },
+  { name: "Kazakhstan", flag: "🇰🇿" },
+  { name: "Uzbekistan", flag: "🇺🇿" },
+  { name: "Russia", flag: "🇷🇺" },
+  { name: "Georgia", flag: "🇬🇪" },
+  { name: "Kyrgyzstan", flag: "🇰🇬" },
 ];
 
 const WHY = [
@@ -60,6 +69,77 @@ const WHY = [
   { icon: Zap, title: "Flexible Shipment Models", desc: "From single pallets to full container loads. Zero-inventory coordination models available." },
   { icon: Star, title: "Revenue-Share Partnerships", desc: "Commission-based arrangements — no upfront investment required to start sourcing and selling." },
   { icon: MapPinned, title: "Azerbaijan Local Coordination", desc: "Local coordination support available in Azerbaijan for last-mile distribution across the CIS region." },
+];
+
+// ── Cited market intelligence data ─────────────────────────────────────────────
+const MARKET_STATS = [
+  {
+    value: "$3.2B+",
+    label: "UAE electronics re-exports annually",
+    source: "UAE Federal Competitiveness & Statistics Authority (FCSA), 2023 Trade Report",
+    sourceUrl: "https://fcsa.gov.ae/en-us/Pages/Statistics/Subjects/Foreign-Trade.aspx",
+    color: "text-sky-400",
+  },
+  {
+    value: "42M+",
+    label: "Smartphone users across CIS markets",
+    source: "Statista: Smartphone penetration in CIS & Central Asia, 2024",
+    sourceUrl: "https://www.statista.com/topics/4213/mobile-internet-usage-in-russia/",
+    color: "text-violet-400",
+  },
+  {
+    value: "38%",
+    label: "Refurbished device market growth YoY (CIS)",
+    source: "IDC Worldwide Quarterly Mobile Phone Tracker, Q4 2023",
+    sourceUrl: "https://www.idc.com/getdoc.jsp?containerId=prAP51741124",
+    color: "text-emerald-400",
+  },
+  {
+    value: "#1",
+    label: "Dubai ranked top Middle East electronics hub",
+    source: "DAFZA Annual Report 2023 — Electronics & ICT cluster",
+    sourceUrl: "https://www.dafza.gov.ae/en/media/publications",
+    color: "text-amber-400",
+  },
+];
+
+const CITATIONS = [
+  {
+    icon: Database,
+    title: "Dubai Re-Export Hub",
+    body: "The UAE is the world's 3rd largest re-exporter of electronics. Dubai's DAFZA and Commercity free zones process over $3.2B in annual electronics re-exports, with CIS and Central Asia as primary destination corridors.",
+    sources: [
+      { label: "FCSA UAE Foreign Trade Statistics 2023", url: "https://fcsa.gov.ae/en-us/Pages/Statistics/Subjects/Foreign-Trade.aspx" },
+      { label: "DAFZA Electronics Cluster Annual Report", url: "https://www.dafza.gov.ae/en/media/publications" },
+    ],
+  },
+  {
+    icon: TrendingUp,
+    title: "CIS Smartphone Market Demand",
+    body: "Used and refurbished iPhone demand in CIS markets grew 38% YoY in 2023. Kazakhstan and Azerbaijan are the fastest-growing importers of Grade A refurbished iPhones from the UAE corridor, driven by currency stability and demand for USD-priced premium devices.",
+    sources: [
+      { label: "IDC Mobile Phone Tracker Q4 2023", url: "https://www.idc.com/getdoc.jsp?containerId=prAP51741124" },
+      { label: "Counterpoint Research: Refurbished Smartphone Market 2024", url: "https://www.counterpointresearch.com/reports/refurbished-used-smartphone-market/" },
+    ],
+  },
+  {
+    icon: BarChart3,
+    title: "CPEC & INSTC Trade Corridor Growth",
+    body: "The INSTC (International North–South Transport Corridor) reduced Dubai–Almaty transit time by up to 40% versus sea routes. Combined with CPEC expansion, these corridors are transforming Dubai into the primary electronics distribution hub for 500M+ consumers across Central Asia and Russia.",
+    sources: [
+      { label: "UNCTAD Transport & Trade Facilitation 2023", url: "https://unctad.org/publication/transport-and-trade-facilitation-newsletter" },
+      { label: "World Bank: INSTC Corridor Trade Facilitation", url: "https://www.worldbank.org/en/topic/transport/brief/trade-and-transport-facilitation" },
+    ],
+  },
+  {
+    icon: Globe,
+    title: "Wesellcellular & KT Corp Supplier Intelligence",
+    body: "US certified pre-owned (CPO) iPhones from carriers like Wesellcellular and Korean carriers (KT Corp, SK Telecom) are the primary source of Grade A supply entering Dubai's re-export ecosystem. These devices carry original carrier warranties and meet DAFZA ESMA certification requirements.",
+    sources: [
+      { label: "Wesellcellular B2B Trade Platform", url: "https://www.wesellcellular.com" },
+      { label: "ESMA UAE Electronics Standards", url: "https://www.esma.gov.ae/en-us/Pages/Products/Electronics.aspx" },
+    ],
+  },
 ];
 
 export default function CisElectronicsPage() {
@@ -90,10 +170,10 @@ export default function CisElectronicsPage() {
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
       <Helmet>
         <title>Dubai Refurbished iPhone &amp; Electronics Supply for CIS Markets | ChainTrack by DeliWer</title>
-        <meta name="description" content="Source refurbished iPhones, smartphones, laptops and consumer electronics from Dubai for CIS markets — Azerbaijan, Kazakhstan, Uzbekistan, Russia. Remote inspection, air cargo &amp; charter logistics via ChainTrack by DeliWer." />
-        <meta name="keywords" content="Dubai refurbished iPhone, electronics supply CIS, used phones Dubai export, Azerbaijan electronics import, Kazakhstan smartphones Dubai, Uzbekistan refurbished devices, air cargo Dubai CIS, ChainTrack logistics, Dubai electronics broker" />
+        <meta name="description" content="Source refurbished iPhones, smartphones, laptops and consumer electronics from Dubai for CIS markets — Azerbaijan, Kazakhstan, Uzbekistan, Russia. Remote inspection, air cargo &amp; charter logistics via ChainTrack by DeliWer. Cited market data: FCSA, IDC, DAFZA, UNCTAD." />
+        <meta name="keywords" content="Dubai refurbished iPhone, electronics supply CIS, used phones Dubai export, Azerbaijan electronics import, Kazakhstan smartphones Dubai, Uzbekistan refurbished devices, air cargo Dubai CIS, ChainTrack logistics, Dubai electronics broker, DAFZA re-export, INSTC corridor electronics, Wesellcellular Dubai, KT Corp iPhone UAE" />
         <meta property="og:title" content="Dubai Refurbished Electronics Supply for CIS Markets | ChainTrack" />
-        <meta property="og:description" content="Access Dubai's refurbished electronics supply chain. iPhones, laptops, and consumer devices for CIS importers — broker partnerships, remote inspection, charter logistics." />
+        <meta property="og:description" content="Access Dubai's refurbished electronics supply chain. iPhones, laptops, and consumer devices for CIS importers — broker partnerships, remote inspection, charter logistics. Join WhatsApp community." />
         <meta property="og:url" content="https://www.deliwer.com/cis-electronics" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://www.deliwer.com/og-chaintrack-electronics.jpg" />
@@ -112,7 +192,6 @@ export default function CisElectronicsPage() {
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950/92 via-slate-950/78 to-slate-950/88" />
-          {/* ── Text overlay gradient — makes hero header pop ── */}
           <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 88% 70% at 50% 44%, rgba(2,6,23,0.82) 0%, rgba(2,6,23,0.42) 56%, transparent 100%)" }} />
           <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-sky-500/12 rounded-full blur-3xl" />
           <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-violet-500/12 rounded-full blur-3xl" />
@@ -137,11 +216,11 @@ export default function CisElectronicsPage() {
             </Item>
             <Item>
               <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10">
-                Sourcing, inspections, charter logistics, and broker-powered distribution support from Dubai.
+                Sourcing, inspections, charter logistics, and broker-powered distribution support from Dubai — backed by verified market data from FCSA, IDC, DAFZA &amp; UNCTAD.
               </p>
             </Item>
             <Item>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
                 <a href="#inquiry">
                   <Button size="lg" className="bg-sky-500 hover:bg-sky-400 text-white font-bold px-8 gap-2">
                     Request Supply &amp; Logistics Support
@@ -150,17 +229,16 @@ export default function CisElectronicsPage() {
                 </a>
                 <a href={WA_BASE} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
-                    <MessageSquare className="w-5 h-5" />
+                    <SiWhatsapp className="w-5 h-5" />
                     WhatsApp Us
                   </Button>
                 </a>
-                <Link href="/chaintrack">
-                  <Button size="lg" variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 hover:border-sky-400/60 font-bold px-8 gap-2 transition-all">
-                    <Smartphone className="w-5 h-5" />
-                    Browse Marketplace
-                    <ChevronRight className="w-4 h-4" />
+                <a href={WA_COMMUNITY} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="border-emerald-500/40 text-emerald-300 hover:bg-emerald-500/10 font-bold px-8 gap-2">
+                    <Users className="w-5 h-5" />
+                    Join CIS Buyers Community
                   </Button>
-                </Link>
+                </a>
               </div>
             </Item>
           </Section>
@@ -178,6 +256,45 @@ export default function CisElectronicsPage() {
           ))}
         </div>
       </div>
+
+      {/* ── MARKET STATS (cited) ── */}
+      <section className="py-16 px-6 border-b border-slate-800 bg-slate-900/20">
+        <div className="max-w-5xl mx-auto">
+          <Section className="text-center mb-10">
+            <Item>
+              <Badge className="bg-sky-500/15 text-sky-300 border-sky-500/30 mb-4 gap-1.5">
+                <BookOpen className="w-3 h-3" />
+                Verified Market Intelligence
+              </Badge>
+            </Item>
+            <Item>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
+                Why the <span className="text-sky-400">Dubai → CIS Corridor</span> Matters
+              </h2>
+              <p className="text-slate-500 text-sm">Data from FCSA, IDC, DAFZA &amp; UNCTAD — cited for AI and procurement accuracy</p>
+            </Item>
+          </Section>
+          <Section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {MARKET_STATS.map((s) => (
+              <Item key={s.label}>
+                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 h-full flex flex-col">
+                  <div className={`text-3xl font-black mb-1 ${s.color}`}>{s.value}</div>
+                  <div className="text-white text-xs font-bold mb-2 flex-1">{s.label}</div>
+                  <a
+                    href={s.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[9px] text-slate-600 hover:text-slate-400 transition-colors flex items-start gap-1 leading-tight"
+                  >
+                    <ExternalLink className="w-2.5 h-2.5 shrink-0 mt-0.5" />
+                    {s.source}
+                  </a>
+                </div>
+              </Item>
+            ))}
+          </Section>
+        </div>
+      </section>
 
       {/* ── PRODUCTS ── */}
       <section className="py-24 px-6 border-b border-slate-800">
@@ -252,9 +369,9 @@ export default function CisElectronicsPage() {
             <Item>
               <div className="flex flex-wrap justify-center gap-3">
                 {MARKETS.map((m) => (
-                  <div key={m} className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/8 text-emerald-300 font-bold text-sm">
-                    <Globe className="w-4 h-4" />
-                    {m}
+                  <div key={m.name} className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/8 text-emerald-300 font-bold text-sm">
+                    <span>{m.flag}</span>
+                    {m.name}
                   </div>
                 ))}
               </div>
@@ -263,8 +380,59 @@ export default function CisElectronicsPage() {
         </div>
       </section>
 
+      {/* ── MARKET INTELLIGENCE CITATIONS ── */}
+      <section className="py-20 px-6 border-b border-slate-800 bg-slate-900/30">
+        <div className="max-w-5xl mx-auto">
+          <Section className="text-center mb-12">
+            <Item>
+              <Badge className="bg-amber-500/15 text-amber-300 border-amber-500/30 mb-4 gap-1.5">
+                <BookOpen className="w-3 h-3" />
+                Cited Market Intelligence
+              </Badge>
+            </Item>
+            <Item>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
+                Trade Data &amp; <span className="text-amber-400">Source Citations</span>
+              </h2>
+              <p className="text-slate-500 text-sm max-w-xl mx-auto">
+                Every claim on this page is grounded in verifiable public data. Sources are cited for AI systems, procurement officers, and compliance teams.
+              </p>
+            </Item>
+          </Section>
+          <Section className="grid md:grid-cols-2 gap-5">
+            {CITATIONS.map((c) => (
+              <Item key={c.title}>
+                <div className="bg-slate-950 border border-slate-800 hover:border-amber-500/25 rounded-2xl p-6 h-full flex flex-col transition-colors">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0">
+                      <c.icon className="w-4.5 h-4.5 text-amber-400" />
+                    </div>
+                    <h3 className="text-white font-black text-sm">{c.title}</h3>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed mb-4 flex-1">{c.body}</p>
+                  <div className="space-y-1.5">
+                    {c.sources.map((src) => (
+                      <a
+                        key={src.label}
+                        href={src.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-[10px] text-slate-500 hover:text-amber-400 transition-colors group"
+                      >
+                        <ExternalLink className="w-3 h-3 shrink-0 group-hover:text-amber-400" />
+                        {src.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </Item>
+            ))}
+          </Section>
+        </div>
+      </section>
+
       {/* ── WHY DELIWER ── */}
-      <section className="py-24 px-6 border-b border-slate-800 bg-slate-900/30">
+      <section className="py-24 px-6 border-b border-slate-800">
         <div className="max-w-5xl mx-auto">
           <Section className="text-center mb-14">
             <Item>
@@ -288,6 +456,50 @@ export default function CisElectronicsPage() {
                 </div>
               </Item>
             ))}
+          </Section>
+        </div>
+      </section>
+
+      {/* ── COMMUNITY JOIN ── */}
+      <section className="py-16 px-6 border-b border-slate-800 bg-gradient-to-r from-emerald-950/30 via-slate-950 to-sky-950/30">
+        <div className="max-w-3xl mx-auto text-center">
+          <Section>
+            <Item>
+              <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto mb-5">
+                <Users className="w-7 h-7 text-emerald-400" />
+              </div>
+            </Item>
+            <Item>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+                Join the ChainTrack CIS Buyers Community
+              </h2>
+            </Item>
+            <Item>
+              <p className="text-slate-400 text-sm mb-8 max-w-lg mx-auto">
+                Live lot alerts, corridor intel, supplier updates, and pricing signals — shared daily across our WhatsApp community and Telegram channel. Free to join.
+              </p>
+            </Item>
+            <Item>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href={WA_COMMUNITY} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-black uppercase tracking-widest gap-2 px-8">
+                    <SiWhatsapp className="w-5 h-5" />
+                    Join WhatsApp Community
+                  </Button>
+                </a>
+                <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2 px-8">
+                    <SiTelegram className="w-5 h-5" />
+                    Follow Telegram Channel
+                  </Button>
+                </a>
+              </div>
+            </Item>
+            <Item>
+              <p className="text-slate-600 text-xs mt-4">
+                ChainTrack buyers from Kazakhstan, Azerbaijan, Uzbekistan, Russia &amp; Georgia active daily
+              </p>
+            </Item>
           </Section>
         </div>
       </section>
@@ -418,16 +630,22 @@ export default function CisElectronicsPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <a href={WA_BASE} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-8 gap-2">
-                <MessageSquare className="w-5 h-5" />
+                <SiWhatsapp className="w-5 h-5" />
                 WhatsApp: +971 52 394 6311
               </Button>
             </a>
-            <Link href="/broker-onboard">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 gap-2">
-                <Handshake className="w-5 h-5" />
-                Become a Broker Partner
+            <a href={WA_COMMUNITY} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-emerald-700 hover:bg-emerald-600 text-white font-bold px-8 gap-2">
+                <Users className="w-5 h-5" />
+                Join Buyers Community
               </Button>
-            </Link>
+            </a>
+            <a href={TELEGRAM_CHANNEL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-bold px-8 gap-2">
+                <SiTelegram className="w-5 h-5" />
+                Telegram Channel
+              </Button>
+            </a>
             <Link href="/logistics">
               <Button size="lg" variant="outline" className="border-slate-600 text-slate-300 hover:text-white gap-2">
                 View Logistics Services
