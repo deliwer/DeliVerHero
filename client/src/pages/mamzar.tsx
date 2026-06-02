@@ -20,6 +20,7 @@ import {
   Handshake, Globe2, Phone, TrendingUp, Shield, Award,
   ChevronRight, Rocket, Share2, BadgeCheck, Sparkles,
   CalendarClock, Wallet, Home, TreePine, Dumbbell, Coffee,
+  Menu, X,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -66,6 +67,105 @@ const LOCATION_FACTS = [
   { label: "Al Ittihad Road", value: "4 min" },
   { label: "Sahara Centre", value: "6 min" },
 ];
+
+// ── DeliWer Lifestyle nav — Mamzar only ──────────────────────────────────────
+const LIFESTYLE_NAV = [
+  { label: "The Project",  href: "#overview"  },
+  { label: "Units",        href: "#units"      },
+  { label: "Virtual Tour", href: "#tour"       },
+  { label: "Location",     href: "#location"   },
+  { label: "For Brokers",  href: "#brokers"    },
+  { label: "Register EOI", href: "#eoi"        },
+];
+
+function MamzarNav() {
+  const [open, setOpen] = useState(false);
+
+  const go = (href: string) => {
+    setOpen(false);
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <nav className="sticky top-0 z-50 border-b border-cyan-900/40 bg-slate-950/95 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+        {/* Brand */}
+        <a href="/" className="flex items-center gap-2 shrink-0">
+          <Waves className="w-5 h-5 text-cyan-400" />
+          <span className="font-black text-white tracking-tight">DeliWer</span>
+          <span className="hidden sm:inline-block bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ml-1">
+            Lifestyle
+          </span>
+        </a>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-1">
+          {LIFESTYLE_NAV.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => go(item.href)}
+              className={`px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg transition-colors ${
+                item.label === "Register EOI"
+                  ? "bg-cyan-500 hover:bg-cyan-400 text-slate-950"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile: WhatsApp + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <Button
+            size="sm"
+            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs"
+            onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
+          >
+            <MessageCircle className="w-3.5 h-3.5 mr-1" /> WhatsApp
+          </Button>
+          <button
+            className="p-2 text-slate-400 hover:text-white"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* Desktop WhatsApp */}
+        <Button
+          size="sm"
+          className="hidden md:flex bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black ml-2"
+          onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
+        >
+          <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> WhatsApp
+        </Button>
+      </div>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden border-t border-cyan-900/30 bg-slate-950 px-4 py-3 space-y-1">
+          {LIFESTYLE_NAV.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => go(item.href)}
+              className={`w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl transition-colors ${
+                item.label === "Register EOI"
+                  ? "bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30"
+                  : "text-slate-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </nav>
+  );
+}
 
 const MARKET_STATS = [
   { v: "AED 18.5B", l: "Sharjah RE transactions Q1 2026" },
@@ -158,32 +258,7 @@ export default function MamzarBeach() {
       </Helmet>
 
       {/* ── STICKY NAV ──────────────────────────────────────────────── */}
-      <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
-          <div className="flex items-center gap-2">
-            <Waves className="w-5 h-5 text-cyan-400" />
-            <span className="font-black text-white tracking-tight">DeliWer</span>
-            <span className="text-slate-500 text-xs font-bold uppercase tracking-widest hidden sm:block">Real Estate</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button
-              size="sm"
-              variant="ghost"
-              className="text-slate-300 hover:text-white hidden sm:flex"
-              onClick={() => scrollTo("eoi")}
-            >
-              Register EOI
-            </Button>
-            <Button
-              size="sm"
-              className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
-              onClick={() => window.open(waUrl("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch."), "_blank")}
-            >
-              <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> WhatsApp
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <MamzarNav />
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-[92vh] flex flex-col justify-center">

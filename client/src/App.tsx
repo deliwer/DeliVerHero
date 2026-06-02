@@ -705,21 +705,40 @@ function MainShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+const MAMZAR_PATHS = ["/mamzar", "/mamzar-beach", "/linar"];
+
+function AppChrome() {
+  const [location] = useLocation();
+  const isMamzar = MAMZAR_PATHS.some(p => location === p || location.startsWith(p + "/"));
+
+  if (isMamzar) {
+    return (
+      <div className="min-h-screen bg-slate-950">
+        <Router />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-dubai-gradient">
+      <StickyNeonHeadline />
+      <Navigation />
+      <MainShell>
+        <Router />
+      </MainShell>
+      <Footer />
+      <WhatsAppSticky />
+      <FloatingErrandTips />
+      <BackToTop />
+    </div>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="min-h-screen bg-dubai-gradient">
-          <StickyNeonHeadline />
-          <Navigation />
-          <MainShell>
-            <Router />
-          </MainShell>
-          <Footer />
-          <WhatsAppSticky />
-          <FloatingErrandTips />
-          <BackToTop />
-        </div>
+        <AppChrome />
         <Toaster />
         <TooltipManager />
         <ImagePerformanceMonitor />
