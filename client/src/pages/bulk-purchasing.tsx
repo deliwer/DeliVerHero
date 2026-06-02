@@ -739,7 +739,7 @@ export default function BulkPurchasingPage() {
                   Telegram
                 </Button>
               </a>
-              <Link href="/brokers">
+              <Link href="/phone-flippers">
                 <Button variant="ghost" className="text-slate-400 hover:text-white font-bold uppercase tracking-widest text-xs gap-1.5">
                   Full Broker Details
                   <ArrowRight className="w-3.5 h-3.5" />

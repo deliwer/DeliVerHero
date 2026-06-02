@@ -176,6 +176,7 @@ const ConciergePricingPage = lazy(() => import("@/pages/concierge-pricing-page")
 const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dubai"));
 const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
 const BrokerOnboardPage = lazy(() => import("@/pages/broker-onboard"));
+const PhoneFlippersPage = lazy(() => import("@/pages/phone-flippers"));
 const CisElectronicsPage = lazy(() => import("@/pages/cis-electronics"));
 const CisAzerbaijanPage = lazy(() => import("@/pages/cis-azerbaijan"));
 const CisKazakhstanPage = lazy(() => import("@/pages/cis-kazakhstan"));
@@ -599,6 +600,7 @@ function Router() {
         <Route path="/brokers" component={BrokerPartnerPage} />
         <Route path="/broker-onboard" component={BrokerOnboardPage} />
         <Route path="/broker-onboarding" component={BrokerOnboardPage} />
+        <Route path="/phone-flippers" component={PhoneFlippersPage} />
         <Route path="/cis-electronics" component={CisElectronicsPage} />
         <Route path="/cis-azerbaijan" component={CisAzerbaijanPage} />
         <Route path="/cis-kazakhstan" component={CisKazakhstanPage} />

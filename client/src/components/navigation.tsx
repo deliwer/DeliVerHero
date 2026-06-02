@@ -25,6 +25,7 @@ const CHAINTRACK_PATHS = [
   "/partner-program", "/partner-dashboard", "/corporate-partner-portal",
   "/planet-hero-affiliates", "/affiliate-dashboard",
   "/logistics", "/freight-broker",
+  "/phone-flippers",
 ];
 
 // ── Management / Admin paths — live under the Partners (broker) side ──────────
@@ -105,7 +106,7 @@ const DEEP_CHAINTRACK_PATHS = [
   "/cis-electronics", "/cis-azerbaijan", "/cis-kazakhstan", "/cis-uzbekistan",
   "/cis-russia", "/cis-georgia", "/cis-kyrgyzstan",
   "/fulfillment", "/membership-plans", "/corporate",
-  "/cobone-corporate",
+  "/cobone-corporate", "/phone-flippers",
 ];
 
 export function Navigation() {
