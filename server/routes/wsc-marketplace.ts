@@ -339,4 +339,368 @@ router.post("/auth/register", async (req, res) => {
   }
 });
 
+// ════════════════════════════════════════════════════════════════════════════
+// ADMIN ROUTES  (/api/wsc/admin/*)
+// ════════════════════════════════════════════════════════════════════════════
+
+const ADMIN_PWD = process.env.ADMIN_PASSWORD || "deliwer2024";
+const ADMIN_TOKEN = Buffer.from("wsc-admin:" + ADMIN_PWD).toString("base64");
+
+function requireAdmin(req: any, res: any): boolean {
+  const auth = req.headers["x-wsc-admin-token"] || req.headers.authorization?.replace("Bearer ", "");
+  if (auth !== ADMIN_TOKEN) { res.status(401).json({ error: "Admin authentication required" }); return false; }
+  return true;
+}
+
+router.post("/admin/login", (req, res) => {
+  const { password } = req.body;
+  if (!password || password !== ADMIN_PWD) return res.status(401).json({ error: "Invalid admin password" });
+  res.json({ token: ADMIN_TOKEN, ok: true });
+});
+
+// ── Sessions list ─────────────────────────────────────────────────────────────
+router.get("/admin/sessions", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { status, source } = req.query;
+    const conditions: any[] = [];
+    if (status) conditions.push(eq(wscOfferSessions.status, status as string));
+    if (source) conditions.push(eq(wscOfferSessions.source, source as string));
+
+    const sessions = await db.select({
+      id: wscOfferSessions.id,
+      sessionRef: wscOfferSessions.sessionRef,
+      source: wscOfferSessions.source,
+      totalItems: wscOfferSessions.totalItems,
+      totalValue: wscOfferSessions.totalValue,
+      status: wscOfferSessions.status,
+      notes: wscOfferSessions.notes,
+      createdAt: wscOfferSessions.createdAt,
+      buyerId: wscOfferSessions.buyerId,
+      buyerEmail: buyBuyers.email,
+      buyerCompany: buyBuyers.companyName,
+      buyerContact: buyBuyers.contactName,
+      buyerKyc: buyBuyers.kycStatus,
+    })
+    .from(wscOfferSessions)
+    .leftJoin(buyBuyers, eq(wscOfferSessions.buyerId, buyBuyers.id))
+    .where(conditions.length ? and(...conditions) : undefined)
+    .orderBy(desc(wscOfferSessions.createdAt))
+    .limit(200);
+
+    res.json(sessions);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── Session detail ────────────────────────────────────────────────────────────
+router.get("/admin/sessions/:id", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const [session] = await db.select({
+      id: wscOfferSessions.id,
+      sessionRef: wscOfferSessions.sessionRef,
+      source: wscOfferSessions.source,
+      totalItems: wscOfferSessions.totalItems,
+      totalValue: wscOfferSessions.totalValue,
+      status: wscOfferSessions.status,
+      notes: wscOfferSessions.notes,
+      createdAt: wscOfferSessions.createdAt,
+      buyerId: wscOfferSessions.buyerId,
+      buyerEmail: buyBuyers.email,
+      buyerCompany: buyBuyers.companyName,
+      buyerContact: buyBuyers.contactName,
+      buyerPhone: buyBuyers.phone,
+      buyerKyc: buyBuyers.kycStatus,
+    })
+    .from(wscOfferSessions)
+    .leftJoin(buyBuyers, eq(wscOfferSessions.buyerId, buyBuyers.id))
+    .where(eq(wscOfferSessions.id, req.params.id))
+    .limit(1);
+
+    if (!session) return res.status(404).json({ error: "Session not found" });
+    const items = await db.select().from(wscOfferItems)
+      .where(eq(wscOfferItems.sessionId, session.id))
+      .orderBy(wscOfferItems.manufacturer, wscOfferItems.model);
+
+    res.json({ ...session, items });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── Update session status ────────────────────────────────────────────────────
+router.patch("/admin/sessions/:id/status", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { status } = req.body;
+    if (!status) return res.status(400).json({ error: "Status required" });
+    const [updated] = await db.update(wscOfferSessions)
+      .set({ status, updatedAt: new Date() })
+      .where(eq(wscOfferSessions.id, req.params.id))
+      .returning();
+    res.json(updated);
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// ── Update individual offer line (accept / reject / counter) ─────────────────
+router.patch("/admin/offer-items/:id", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { status, counterPrice, notes } = req.body;
+    const updates: any = {};
+    if (status) updates.status = status;
+    if (counterPrice !== undefined) updates.counterPrice = Math.round(parseFloat(counterPrice) * 100);
+    if (notes !== undefined) updates.notes = notes;
+
+    const [updated] = await db.update(wscOfferItems)
+      .set(updates)
+      .where(eq(wscOfferItems.id, req.params.id))
+      .returning();
+    res.json(updated);
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// ── Bulk accept / reject all lines in a session ───────────────────────────────
+router.post("/admin/sessions/:id/bulk", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { action, counterPct } = req.body;
+    if (!["accept", "reject"].includes(action)) return res.status(400).json({ error: "action must be accept or reject" });
+
+    if (action === "accept") {
+      await db.update(wscOfferItems).set({ status: "accepted" })
+        .where(and(eq(wscOfferItems.sessionId, req.params.id), eq(wscOfferItems.status, "pending")));
+      await db.update(wscOfferSessions).set({ status: "accepted", updatedAt: new Date() })
+        .where(eq(wscOfferSessions.id, req.params.id));
+    } else {
+      await db.update(wscOfferItems).set({ status: "rejected" })
+        .where(and(eq(wscOfferItems.sessionId, req.params.id), eq(wscOfferItems.status, "pending")));
+      await db.update(wscOfferSessions).set({ status: "rejected", updatedAt: new Date() })
+        .where(eq(wscOfferSessions.id, req.params.id));
+    }
+    res.json({ ok: true, action });
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// ── Admin stock list ──────────────────────────────────────────────────────────
+router.get("/admin/stock", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { source, status, search, page } = req.query;
+    const pageNum = Math.max(1, parseInt(page as string) || 1);
+    const pageSize = 200;
+    const offset = (pageNum - 1) * pageSize;
+
+    const conditions: any[] = [];
+    if (source) conditions.push(eq(wscStockItems.source, source as string));
+    if (status) conditions.push(eq(wscStockItems.status, status as string));
+    if (search) conditions.push(or(
+      ilike(wscStockItems.model, `%${search}%`),
+      ilike(wscStockItems.manufacturer, `%${search}%`),
+      ilike(wscStockItems.sku, `%${search}%`)
+    )!);
+
+    const [items, countRes] = await Promise.all([
+      db.select().from(wscStockItems)
+        .where(conditions.length ? and(...conditions) : undefined)
+        .orderBy(desc(wscStockItems.hasQtyAddedToday), wscStockItems.source, wscStockItems.manufacturer, wscStockItems.model)
+        .limit(pageSize).offset(offset),
+      db.select({ count: sql<number>`count(*)` }).from(wscStockItems)
+        .where(conditions.length ? and(...conditions) : undefined),
+    ]);
+
+    res.json({ items, total: Number(countRes[0].count), page: pageNum, pageSize });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── Update a stock item ───────────────────────────────────────────────────────
+router.patch("/admin/stock/:id", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { qtyAvailable, listPrice, status, hasQtyAddedToday } = req.body;
+    const updates: any = { updatedAt: new Date() };
+    if (qtyAvailable !== undefined) updates.qtyAvailable = parseInt(qtyAvailable);
+    if (listPrice !== undefined) updates.listPrice = Math.round(parseFloat(listPrice) * 100);
+    if (status) updates.status = status;
+    if (hasQtyAddedToday !== undefined) updates.hasQtyAddedToday = Boolean(hasQtyAddedToday);
+
+    const [updated] = await db.update(wscStockItems).set(updates)
+      .where(eq(wscStockItems.id, req.params.id)).returning();
+    res.json(updated);
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// ── Admin XLSX import (upsert stock) ─────────────────────────────────────────
+router.post("/admin/stock/import", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { fileBase64, source = "WSC", reportDate, markMissingDiscontinued = false } = req.body;
+    if (!fileBase64) return res.status(400).json({ error: "No file data" });
+
+    const buf = Buffer.from(fileBase64, "base64");
+    const wb = XLSX.read(buf, { type: "buffer" });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows: any[][] = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    const headers: string[] = rows[0] as string[];
+
+    const idx = (kw: string) => headers.findIndex(h => String(h).toLowerCase().includes(kw.toLowerCase()));
+    const iSku = idx("item");
+    const iWh = idx("warehouse");
+    const iCat = idx("category");
+    const iMfr2 = headers.findIndex((h, i) => i > 3 && String(h).toLowerCase().includes("manufacturer"));
+    const iMfr = iMfr2 > 0 ? iMfr2 : idx("manufacturer");
+    const iModel2 = headers.findIndex((h, i) => i > 3 && String(h).toLowerCase() === "model");
+    const iModel = iModel2 > 0 ? iModel2 : idx("model");
+    const iGrade = idx("grade");
+    const iCap = idx("cap");
+    const iCarrier = idx("carrier");
+    const iColor = idx("color");
+    const iLock = idx("lock");
+    const iModelNum = idx("modelnumber") > -1 ? idx("modelnumber") : idx("model number");
+    const iQty = idx("quantity");
+    const iPrice = idx("list price");
+    const iNew = idx("has qty");
+
+    const today = reportDate || new Date().toISOString().slice(0, 10);
+    const dataRows = rows.slice(1).filter(r => r[iQty] > 0);
+
+    let added = 0, updated = 0;
+    const importedSkus: string[] = [];
+
+    for (const r of dataRows) {
+      const sku = String(r[iSku] || "").trim();
+      if (!sku) continue;
+      importedSkus.push(sku);
+
+      const vals = {
+        source, reportDate: today, sku,
+        warehouse: String(r[iWh] || ""),
+        category: String(r[iCat] || "PHONES"),
+        manufacturer: String(r[iMfr] || ""),
+        model: String(r[iModel] || ""),
+        grade: String(r[iGrade] || ""),
+        capacity: String(r[iCap] || "") || null,
+        carrier: String(r[iCarrier] || "") || null,
+        color: String(r[iColor] || "") || null,
+        lockStatus: String(r[iLock] || "") || null,
+        modelNumber: iModelNum >= 0 ? (String(r[iModelNum] || "") || null) : null,
+        qtyAvailable: parseInt(String(r[iQty])) || 0,
+        listPrice: Math.round(parseFloat(String(r[iPrice] || "0")) * 100),
+        hasQtyAddedToday: String(r[iNew] || "").toLowerCase() === "yes",
+        status: "available",
+        updatedAt: new Date(),
+      };
+
+      const existing = await db.select({ id: wscStockItems.id }).from(wscStockItems)
+        .where(and(eq(wscStockItems.sku, sku), eq(wscStockItems.source, source))).limit(1);
+
+      if (existing.length > 0) {
+        await db.update(wscStockItems).set(vals).where(eq(wscStockItems.id, existing[0].id));
+        updated++;
+      } else {
+        await db.insert(wscStockItems).values(vals);
+        added++;
+      }
+    }
+
+    let discontinued = 0;
+    if (markMissingDiscontinued && importedSkus.length > 0) {
+      const result = await db.update(wscStockItems)
+        .set({ status: "discontinued", updatedAt: new Date() })
+        .where(and(
+          eq(wscStockItems.source, source),
+          sql`${wscStockItems.sku} NOT IN (${sql.join(importedSkus.map(s => sql`${s}`), sql`, `)})`,
+          eq(wscStockItems.status, "available")
+        )).returning();
+      discontinued = result.length;
+    }
+
+    res.json({ ok: true, added, updated, discontinued, total: dataRows.length });
+  } catch (err: any) {
+    res.status(400).json({ error: err.message || "Import failed" });
+  }
+});
+
+// ── Admin buyer list ──────────────────────────────────────────────────────────
+router.get("/admin/buyers", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const buyers = await db.select({
+      id: buyBuyers.id,
+      email: buyBuyers.email,
+      companyName: buyBuyers.companyName,
+      contactName: buyBuyers.contactName,
+      phone: buyBuyers.phone,
+      country: buyBuyers.country,
+      buyerTier: buyBuyers.buyerTier,
+      kycStatus: buyBuyers.kycStatus,
+      status: buyBuyers.status,
+      createdAt: buyBuyers.createdAt,
+    }).from(buyBuyers).orderBy(desc(buyBuyers.createdAt));
+    res.json(buyers);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.patch("/admin/buyers/:id", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const { kycStatus, buyerTier, status } = req.body;
+    const updates: any = {};
+    if (kycStatus) updates.kycStatus = kycStatus;
+    if (buyerTier) updates.buyerTier = buyerTier;
+    if (status) updates.status = status;
+    const [updated] = await db.update(buyBuyers).set(updates)
+      .where(eq(buyBuyers.id, req.params.id)).returning();
+    const { passwordHash: _, ...safe } = updated;
+    res.json(safe);
+  } catch (err: any) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// ── Admin dashboard stats ─────────────────────────────────────────────────────
+router.get("/admin/stats", async (req, res) => {
+  if (!requireAdmin(req, res)) return;
+  try {
+    const [sessionStats, stockStats, buyerStats] = await Promise.all([
+      db.select({
+        status: wscOfferSessions.status,
+        count: sql<number>`count(*)`,
+        totalValue: sql<number>`sum(${wscOfferSessions.totalValue})`,
+      }).from(wscOfferSessions).groupBy(wscOfferSessions.status),
+
+      db.select({
+        source: wscStockItems.source,
+        totalItems: sql<number>`count(*)`,
+        totalQty: sql<number>`sum(${wscStockItems.qtyAvailable})`,
+        available: sql<number>`sum(case when ${wscStockItems.status}='available' then 1 else 0 end)`,
+      }).from(wscStockItems).groupBy(wscStockItems.source),
+
+      db.select({
+        kycStatus: buyBuyers.kycStatus,
+        count: sql<number>`count(*)`,
+      }).from(buyBuyers).groupBy(buyBuyers.kycStatus),
+    ]);
+
+    res.json({ sessions: sessionStats, stock: stockStats, buyers: buyerStats });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
+

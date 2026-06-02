@@ -131,6 +131,7 @@ const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const BuyChaintrackPage = lazy(() => import("@/pages/buy-chaintrack"));
 const WscMarketplacePage = lazy(() => import("@/pages/wsc-marketplace"));
 const KtCorpMarketplacePage = lazy(() => import("@/pages/ktcorp-marketplace"));
+const WscAdminPage = lazy(() => import("@/pages/wsc-admin"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const PricingLogisticsPage = lazy(() => import("@/pages/pricing-logistics"));
 const ChainTrackRoutePage = lazy(() => import("@/pages/chaintrack-route"));
@@ -533,6 +534,8 @@ function Router() {
         <Route path="/buy/wsc" component={WscMarketplacePage} />
         {/* KT Corp Worldwide Buyer Portal — buy.ktcorpworldwide.com */}
         <Route path="/buy/ktcorp" component={KtCorpMarketplacePage} />
+        {/* WSC + KT Corp Seller Admin Panel */}
+        <Route path="/admin/wsc" component={WscAdminPage} />
 
         {/* ChainTrack Certified Grading Infrastructure */}
         <Route path="/chaintrack-grading" component={ChainTrackGradingPage} />

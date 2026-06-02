@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 
+// Paths that have their own auth and must NOT be caught by the global gate
+const PRIVATE_EXCLUSIONS = [
+  "/admin/wsc",
+];
+
 const PRIVATE_PREFIXES = [
   "/marketing",
   "/admin",
@@ -21,6 +26,7 @@ const TOKEN = "deliwer-admin-2026";
 const SESSION_KEY = "dw_founder_auth";
 
 function isPrivatePath(path: string) {
+  if (PRIVATE_EXCLUSIONS.some((excl) => path === excl || path.startsWith(excl + "/"))) return false;
   return PRIVATE_PREFIXES.some((prefix) => path === prefix || path.startsWith(prefix + "/"));
 }
 
