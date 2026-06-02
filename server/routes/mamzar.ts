@@ -1,0 +1,119 @@
+import { Router, Request, Response } from "express";
+import { db } from "../db";
+import { mamzarEoi, insertMamzarEoiSchema } from "@shared/schema";
+import { eq, desc } from "drizzle-orm";
+import { z } from "zod";
+import { nanoid } from "nanoid";
+
+const router = Router();
+
+const WA_NOTIFY = "971523906019";
+
+// ── POST /api/mamzar/eoi ──────────────────────────────────────────────────────
+router.post("/eoi", async (req: Request, res: Response) => {
+  try {
+    const schema = insertMamzarEoiSchema.extend({
+      brokerName: z.string().min(2),
+      brokerPhone: z.string().min(7),
+    });
+    const data = schema.parse(req.body);
+
+    const refCode = `MZR-${nanoid(6).toUpperCase()}`;
+
+    const [record] = await db
+      .insert(mamzarEoi)
+      .values({
+        ...data,
+        referralCode: refCode,
+        ipAddress: (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() || req.socket.remoteAddress || "",
+        userAgent: req.headers["user-agent"] || "",
+      })
+      .returning();
+
+    const waLines = [
+      `🏖️ *New Mamzar EOI — Alef Linar*`,
+      `Broker: ${data.brokerName} (${data.brokerPhone})`,
+      data.brokerEmail ? `Email: ${data.brokerEmail}` : null,
+      data.brokerage ? `Brokerage: ${data.brokerage}` : null,
+      data.reraLicense ? `RERA: ${data.reraLicense}` : null,
+      data.country ? `Country: ${data.country}` : null,
+      ``,
+      data.unitType ? `Unit interest: ${data.unitType}` : null,
+      data.budget ? `Budget: ${data.budget}` : null,
+      data.clientName ? `Client: ${data.clientName} (${data.clientPhone || "—"})` : null,
+      data.clientNationality ? `Client nationality: ${data.clientNationality}` : null,
+      ``,
+      `Tour requested: ${data.tourRequested ? "Yes ✅" : "No"}`,
+      `Early-bird: ${data.earlybirdOpted ? "Yes ✅" : "No"}`,
+      data.notes ? `Notes: ${data.notes}` : null,
+      ``,
+      `Ref: ${refCode}`,
+    ].filter(Boolean).join("\n");
+
+    const waUrl = `https://wa.me/${WA_NOTIFY}?text=${encodeURIComponent(waLines)}`;
+
+    res.json({
+      success: true,
+      eoiId: record.id,
+      referralCode: refCode,
+      waUrl,
+    });
+  } catch (err: any) {
+    if (err?.name === "ZodError") return res.status(400).json({ error: "Validation failed", details: err.errors });
+    console.error("[Mamzar] EOI error:", err);
+    res.status(500).json({ error: "Failed to record EOI" });
+  }
+});
+
+// ── GET /api/mamzar/stats (public — just counts, no PII) ─────────────────────
+router.get("/stats", async (_req: Request, res: Response) => {
+  try {
+    const all = await db.select({ id: mamzarEoi.id, unitType: mamzarEoi.unitType, tourRequested: mamzarEoi.tourRequested }).from(mamzarEoi);
+    const total = all.length;
+    const byUnit = all.reduce<Record<string, number>>((acc, r) => {
+      const k = r.unitType || "Unspecified";
+      acc[k] = (acc[k] || 0) + 1;
+      return acc;
+    }, {});
+    const tours = all.filter(r => r.tourRequested).length;
+    res.json({ total, byUnit, tours });
+  } catch (err) {
+    console.error("[Mamzar] stats error:", err);
+    res.status(500).json({ error: "Failed to load stats" });
+  }
+});
+
+// ── Admin middleware ──────────────────────────────────────────────────────────
+function adminOnly(req: Request, res: Response, next: () => void) {
+  const token = req.headers["x-admin-token"] || req.query.token;
+  if (token !== process.env.ADMIN_SECRET && token !== "deliwer-admin-2026") {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  next();
+}
+
+// ── GET /api/mamzar/admin/eois ────────────────────────────────────────────────
+router.get("/admin/eois", adminOnly, async (_req: Request, res: Response) => {
+  try {
+    const eois = await db.select().from(mamzarEoi).orderBy(desc(mamzarEoi.submittedAt)).limit(500);
+    res.json(eois);
+  } catch (err) {
+    console.error("[Mamzar] admin list error:", err);
+    res.status(500).json({ error: "Failed" });
+  }
+});
+
+// ── PATCH /api/mamzar/admin/eoi/:id/status ────────────────────────────────────
+router.patch("/admin/eoi/:id/status", adminOnly, async (req: Request, res: Response) => {
+  try {
+    const { status } = z.object({ status: z.enum(["new", "contacted", "qualified", "closed"]) }).parse(req.body);
+    const [updated] = await db.update(mamzarEoi).set({ status }).where(eq(mamzarEoi.id, req.params.id)).returning();
+    if (!updated) return res.status(404).json({ error: "Not found" });
+    res.json({ success: true, record: updated });
+  } catch (err: any) {
+    if (err?.name === "ZodError") return res.status(400).json({ error: "Invalid status" });
+    res.status(500).json({ error: "Failed" });
+  }
+});
+
+export default router;

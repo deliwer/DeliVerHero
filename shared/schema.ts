@@ -2198,6 +2198,37 @@ export const buyBuyers = pgTable("buy_buyers", {
   updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
 });
 
+// ── Alef Linar Mamzar Beach — Broker EOI ─────────────────────────────────────
+export const mamzarEoi = pgTable("mamzar_eoi", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brokerName: text("broker_name").notNull(),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerEmail: text("broker_email"),
+  brokerage: text("brokerage"),
+  reraLicense: text("rera_license"),
+  country: text("country"),
+  // Client interest
+  unitType: text("unit_type"), // '1BR','2BR','3BR','4BR/PH'
+  budget: text("budget"),
+  clientName: text("client_name"),
+  clientPhone: text("client_phone"),
+  clientNationality: text("client_nationality"),
+  // Funnel tracking
+  tourRequested: boolean("tour_requested").notNull().default(false),
+  earlybirdOpted: boolean("earlybird_opted").notNull().default(false),
+  referralCode: text("referral_code"),
+  referredBy: text("referred_by"),
+  notes: text("notes"),
+  status: text("status").notNull().default("new"), // new | contacted | qualified | closed
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  submittedAt: timestamp("submitted_at").notNull().default(sql`now()`),
+});
+
+export const insertMamzarEoiSchema = createInsertSchema(mamzarEoi).omit({ id: true, submittedAt: true });
+export type MamzarEoi = typeof mamzarEoi.$inferSelect;
+export type InsertMamzarEoi = z.infer<typeof insertMamzarEoiSchema>;
+
 export const buyOrders = pgTable("buy_orders", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   orderNumber: text("order_number").notNull().unique(),

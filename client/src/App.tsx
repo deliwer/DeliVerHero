@@ -28,6 +28,7 @@ import MaintenanceConcierge from "@/pages/maintenance-concierge";
 import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";
 import RealEstate from "@/pages/realestate";
+import MamzarBeach from "@/pages/mamzar";
 import HomeAccess from "@/pages/home-access";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
 import Residence from "@/pages/residence";
@@ -262,9 +263,9 @@ function Router() {
       return;
     }
 
-    // Domain-based routing for realestate.deliwer.com
+    // Domain-based routing for realestate.deliwer.com → Alef Linar Mamzar funnel
     if ((hostname === 'realestate.deliwer.com' || hostname === 'www.realestate.deliwer.com') && location === '/') {
-      setLocation('/realestate');
+      setLocation('/mamzar');
       return;
     }
 
@@ -345,6 +346,9 @@ function Router() {
         <Route path="/affiliate-dashboard"><Redirect to="/partner-dashboard" /></Route>
         <Route path="/home-access" component={HomeAccess} />
         <Route path="/finance" component={HomeAccess} />
+        <Route path="/mamzar" component={MamzarBeach} />
+        <Route path="/mamzar-beach" component={MamzarBeach} />
+        <Route path="/linar" component={MamzarBeach} />
         <Route path="/realestate" component={RealEstate} />
         <Route path="/real-estate" component={RealEstate} />
         <Route path="/damac" component={RealEstate} />
