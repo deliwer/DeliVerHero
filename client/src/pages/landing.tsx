@@ -1193,16 +1193,29 @@ export default function LandingPage() {
                   </Button>
                 </Link>
                 <a
+                  href="https://t.me/+971523946311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="cta-lifestyle-telegram"
+                >
+                  <Button className="bg-sky-500 hover:bg-sky-400 text-white font-black uppercase tracking-widest rounded-2xl h-12 px-7 text-sm">
+                    <SiTelegram className="w-4 h-4 mr-2" /> Telegram
+                  </Button>
+                </a>
+                <a
                   href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-testid="cta-lifestyle-whatsapp"
                 >
                   <Button variant="outline" className="border-cyan-500/40 text-cyan-400 hover:bg-cyan-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-7 text-sm">
-                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp Us
+                    <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
                   </Button>
                 </a>
               </div>
+              <p className="text-[11px] text-slate-600 font-bold uppercase tracking-widest pt-1">
+                Telegram preferred for CIS · Russia · Asia · Europe
+              </p>
             </div>
 
             {/* Right: stats card */}

@@ -24,9 +24,12 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import { SiTelegram } from "react-icons/si";
 
 const WA = "971523906019";
+const TG = "https://t.me/+971523946311";
 const waUrl = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+const tgUrl = (msg: string) => `${TG}?start=${encodeURIComponent(msg)}`;
 
 const UNIT_TYPES = ["1 Bedroom – from AED 849K", "2 Bedrooms – from AED 1.384M", "3 Bedrooms – from AED 2.249M", "4 Bedroom / Penthouse"];
 const BUDGETS = ["AED 750K – 1.2M", "AED 1.2M – 1.8M", "AED 1.8M – 2.5M", "AED 2.5M – 4M", "AED 4M+"];
@@ -117,14 +120,14 @@ function MamzarNav() {
           ))}
         </div>
 
-        {/* Mobile: WhatsApp + hamburger */}
+        {/* Mobile: Telegram + hamburger */}
         <div className="flex items-center gap-2 md:hidden">
           <Button
             size="sm"
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs"
-            onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
+            className="bg-sky-500 hover:bg-sky-400 text-white font-black text-xs"
+            onClick={() => window.open(TG, "_blank")}
           >
-            <MessageCircle className="w-3.5 h-3.5 mr-1" /> WhatsApp
+            <SiTelegram className="w-3.5 h-3.5 mr-1" /> Telegram
           </Button>
           <button
             className="p-2 text-slate-400 hover:text-white"
@@ -135,14 +138,24 @@ function MamzarNav() {
           </button>
         </div>
 
-        {/* Desktop WhatsApp */}
-        <Button
-          size="sm"
-          className="hidden md:flex bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black ml-2"
-          onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
-        >
-          <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> WhatsApp
-        </Button>
+        {/* Desktop: Telegram + WhatsApp */}
+        <div className="hidden md:flex items-center gap-2 ml-2">
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-sky-500/50 text-sky-400 hover:bg-sky-500/10 font-black"
+            onClick={() => window.open(TG, "_blank")}
+          >
+            <SiTelegram className="w-3.5 h-3.5 mr-1.5" /> Telegram
+          </Button>
+          <Button
+            size="sm"
+            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
+            onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
+          >
+            <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> WhatsApp
+          </Button>
+        </div>
       </div>
 
       {/* Mobile drawer */}
@@ -337,13 +350,25 @@ export default function MamzarBeach() {
               <Button
                 size="lg"
                 variant="outline"
+                className="h-13 px-6 border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
+                onClick={() => window.open(TG, "_blank")}
+              >
+                <SiTelegram className="w-4 h-4 mr-2" />
+                Telegram
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
                 className="h-13 px-6 border-slate-600 text-slate-200 hover:bg-slate-800 hover:text-white"
                 onClick={() => window.open(waUrl("Hi DeliWer — I want to book a virtual site tour for Alef Linar, Mamzar Beach."), "_blank")}
               >
-                <Video className="w-4 h-4 mr-2" />
-                Book Founder Site Tour
+                <MessageCircle className="w-4 h-4 mr-2" />
+                WhatsApp
               </Button>
             </div>
+            <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mt-1">
+              Telegram preferred for CIS · Russia · Asia · Global
+            </p>
           </div>
         </div>
       </section>
@@ -904,10 +929,20 @@ export default function MamzarBeach() {
           <h3 className="text-2xl sm:text-3xl font-bold mb-3">
             Questions? Talk to a DeliWer partner now.
           </h3>
-          <p className="text-slate-400 mb-6">
-            We're available on WhatsApp, 7 days a week. UAE business hours + global time zones covered.
+          <p className="text-slate-400 mb-2">
+            Available on Telegram &amp; WhatsApp — UAE business hours + all global time zones.
+          </p>
+          <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mb-6">
+            Telegram preferred for CIS · Russia · China · Southeast Asia · Europe
           </p>
           <div className="flex flex-wrap justify-center gap-3">
+            <Button
+              size="lg"
+              className="h-12 px-6 bg-sky-500 hover:bg-sky-400 text-white font-black"
+              onClick={() => window.open(TG, "_blank")}
+            >
+              <SiTelegram className="w-4 h-4 mr-2" /> Telegram a Partner
+            </Button>
             <Button
               size="lg"
               className="h-12 px-6 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
@@ -947,10 +982,19 @@ export default function MamzarBeach() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Waves className="w-4 h-4 text-cyan-400" />
-            <span className="font-black text-white">DeliWer Real Estate</span>
+            <span className="font-black text-white">DeliWer</span>
+            <span className="bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">Lifestyle</span>
+          </div>
+          <div className="flex justify-center gap-4 mb-4">
+            <a href={TG} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sky-400 hover:text-sky-300 text-xs font-bold transition-colors">
+              <SiTelegram className="w-4 h-4" /> Telegram
+            </a>
+            <a href={waUrl("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach.")} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 text-xs font-bold transition-colors">
+              <MessageCircle className="w-4 h-4" /> WhatsApp
+            </a>
           </div>
           <p className="text-[11px] text-slate-600 max-w-2xl mx-auto">
-            DeliWer Real Estate is a referral and concierge service. We are not a licensed real estate broker or developer. All transactions are direct between the buyer and Alef Group. Prices, availability and payment plans are subject to change without notice. Information on this page is general and does not constitute financial or investment advice. © {new Date().getFullYear()} DeliWer. All rights reserved.
+            DeliWer Lifestyle is a referral and concierge service. We are not a licensed real estate broker or developer. All transactions are direct between the buyer and Alef Group. Prices, availability and payment plans are subject to change without notice. Information on this page is general and does not constitute financial or investment advice. © {new Date().getFullYear()} DeliWer. All rights reserved.
           </p>
         </div>
       </footer>
