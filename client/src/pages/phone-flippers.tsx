@@ -109,8 +109,88 @@ export default function PhoneFlippersPage() {
       <SEOMeta
         title="Phone Flipper & Broker Programme — ChainTrack Dubai"
         description="Move 500+ iPhones per month? Join ChainTrack's Phone Flipper & Broker Programme — priority lot access, dedicated account manager, and 2–6% referral commission per order."
-        canonical="https://deliwer.com/phone-flippers"
+        canonical="https://www.deliwer.com/phone-flippers"
+        keywords="iPhone wholesale broker Dubai, phone flipper programme UAE, bulk iPhone reseller commission, ChainTrack broker programme, iPhone distributor Dubai, CIS iPhone wholesale broker, reverse auction broker, DAFZA iPhone wholesale, iPhone referral commission UAE, phone flipper earning programme"
+        webPageType="ServicePage"
+        serviceSchema={{
+          name: "ChainTrack Phone Flipper & Broker Programme",
+          description: "Revenue-share broker programme for high-volume iPhone resellers, distributors, and buying-group organisers moving 500+ units per month through ChainTrack's Dubai wholesale marketplace. Earn 2–6% referral commission per settled order.",
+          area: "Dubai, UAE — CIS, Africa, South Asia corridors",
+        }}
+        breadcrumbs={[
+          { name: "Home", url: "https://www.deliwer.com/" },
+          { name: "ChainTrack Marketplace", url: "https://www.deliwer.com/chaintrack" },
+          { name: "Wholesale Hub", url: "https://www.deliwer.com/wholesale" },
+          { name: "Phone Flipper & Broker Programme", url: "https://www.deliwer.com/phone-flippers" },
+        ]}
+        faqs={[
+          {
+            question: "What is the ChainTrack Phone Flipper & Broker Programme?",
+            answer: "It is a revenue-share programme for high-volume iPhone resellers, distributors, and buying-group organisers who move 500 or more units per month. Members receive a dedicated WhatsApp account manager, priority access to fixed-price lots before public listing, and a referral commission of 2–6% on every ChainTrack order they originate.",
+          },
+          {
+            question: "How much commission do brokers earn per order?",
+            answer: "Commission rates are tiered by monthly volume: Flipper tier (500–999 units/month) earns 2% of the total order value; Broker tier (1,000–2,499 units/month) earns 4%; Master Broker tier (2,500+ units/month) earns 6%. Commissions are paid monthly on all settled, confirmed orders you originate.",
+          },
+          {
+            question: "When and how are commissions paid out?",
+            answer: "Commissions are calculated at the end of each calendar month on all orders that have reached settlement (buyer confirmed receipt and grading). Payouts are made by bank wire or USDT within 5 business days of month-end. The minimum payout threshold is $200 with no upper cap.",
+          },
+          {
+            question: "How long does onboarding take?",
+            answer: "Onboarding takes 24 hours or less. Apply via WhatsApp with your company name, monthly volume and markets served. Our team verifies your trading profile and assigns your tier the same day. You receive your referral attribution ID and broker resource pack within 24 hours of approval.",
+          },
+          {
+            question: "How are my referrals tracked?",
+            answer: "Every WhatsApp message you send through the programme includes a unique attribution tag with your broker ID (e.g. [SOURCE: broker/YOUR-ID]). Orders originating from your conversations are matched to your ID at settlement. You can request a monthly breakdown from your account manager.",
+          },
+          {
+            question: "Do I need to be exclusive to ChainTrack?",
+            answer: "No. There is no exclusivity requirement at any tier. You are free to source from other suppliers. Commissions are paid only on orders placed through ChainTrack that you originate — your other business is entirely your own.",
+          },
+          {
+            question: "What is the Telegram broker community and how do I join?",
+            answer: "The ChainTrack broker Telegram channel has 200+ active members sharing live lot alerts, CIS market intelligence, weekly supply/demand reports, and pre-market lot previews 30 minutes before public listing. Access is granted to approved programme members as part of onboarding.",
+          },
+          {
+            question: "What is the Master Broker equity programme?",
+            answer: "Master Brokers moving 2,500+ units per month become eligible for the ChainTrack equity programme — a profit-share arrangement that goes beyond per-order commission. Details are discussed during onboarding at the Master Broker tier. Apply via WhatsApp to start the conversation.",
+          },
+        ]}
       />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "ChainTrack Phone Flipper & Broker Programme",
+        "serviceType": "Wholesale iPhone Broker Revenue-Share Programme",
+        "provider": {
+          "@type": "Organization",
+          "name": "ChainTrack by DeliWer",
+          "url": "https://www.deliwer.com/chaintrack",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Broker Onboarding",
+            "telephone": "+971523906019",
+            "contactOption": "WhatsApp",
+            "availableLanguage": ["English", "Arabic", "Russian"],
+          },
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Azerbaijan" },
+          { "@type": "Country", "name": "Kazakhstan" },
+          { "@type": "Country", "name": "Uzbekistan" },
+          { "@type": "Country", "name": "Russia" },
+          { "@type": "Country", "name": "Georgia" },
+          { "@type": "Country", "name": "Kyrgyzstan" },
+        ],
+        "offers": [
+          { "@type": "Offer", "name": "Flipper Tier", "description": "2% referral commission for brokers moving 500–999 units/month. Includes dedicated WhatsApp manager and priority lot access." },
+          { "@type": "Offer", "name": "Broker Tier", "description": "4% referral commission for brokers moving 1,000–2,499 units/month. Includes monthly volume allocation guarantee and 8–15% bundle pricing." },
+          { "@type": "Offer", "name": "Master Broker Tier", "description": "6% referral commission for brokers moving 2,500+ units/month. Includes direct supplier introductions, container freight coordination, and equity programme eligibility." },
+        ],
+        "url": "https://www.deliwer.com/phone-flippers",
+      })}</script>
       <div className="min-h-screen bg-[#070B14] text-white">
 
         {/* ── HERO ── */}
