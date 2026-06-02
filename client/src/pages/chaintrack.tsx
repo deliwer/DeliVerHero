@@ -522,12 +522,73 @@ export default function ChainTrackPage() {
           { question: "How do I become a phone flipper or broker partner on ChainTrack?", answer: "ChainTrack's Phone Flipper Track is a revenue-sharing broker programme — no upfront capital required. Apply via WhatsApp at +971 52 390 6019 or through the Brokers page. Partners earn a commission on every lot they coordinate. Local coordination roles are available in Azerbaijan and Kazakhstan." }
         ]}
         ogType="website"
+        webPageType="ServicePage"
         dateModified="2026-05-30"
+        serviceSchema={{
+          name: "ChainTrack — Live Reverse Auction & iPhone Sourcing Marketplace Dubai",
+          description: "Dubai's B2B reverse auction and live sourcing platform for used iPhones. Verified supplier network from US, China, India & Korea. DAFZA & Commercity escrow on every deal. Serving 50+ markets including all CIS countries. XLSX bulk upload, live inspection videos.",
+          area: "Dubai, UAE — serving CIS, Africa, South Asia, Eastern Europe, MENA",
+        }}
         breadcrumbs={[
           { name: "Home", url: "https://www.deliwer.com" },
           { name: "ChainTrack", url: "https://www.deliwer.com/chaintrack" }
         ]}
       />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "ChainTrack — Reverse Auction iPhone Sourcing Marketplace Dubai",
+        "serviceType": "B2B Used iPhone Reverse Auction & Wholesale Sourcing Platform",
+        "url": "https://www.deliwer.com/chaintrack",
+        "provider": {
+          "@type": "Organization",
+          "name": "ChainTrack by DeliWer",
+          "url": "https://www.deliwer.com/chaintrack",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Wholesale Procurement",
+            "telephone": "+971523906019",
+            "contactOption": "WhatsApp",
+            "availableLanguage": ["English", "Arabic", "Russian"],
+          },
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "India" },
+          { "@type": "Country", "name": "China" },
+          { "@type": "Country", "name": "South Korea" },
+          { "@type": "Country", "name": "Azerbaijan" },
+          { "@type": "Country", "name": "Kazakhstan" },
+          { "@type": "Country", "name": "Uzbekistan" },
+          { "@type": "Country", "name": "Russia" },
+          { "@type": "Country", "name": "Georgia" },
+          { "@type": "Country", "name": "Kyrgyzstan" },
+          { "@type": "Country", "name": "Pakistan" },
+          { "@type": "Country", "name": "Nigeria" },
+          { "@type": "Country", "name": "Kenya" },
+        ],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Reverse Auction Sourcing",
+            "description": "Post your iPhone requirement and have 200+ verified global suppliers compete on price. Average saving 15–35% vs listed prices. Minimum 50 units. DAFZA escrow required. Results in 24–72 hours.",
+            "priceCurrency": "USD",
+          },
+          {
+            "@type": "Offer",
+            "name": "Live Feed Lots (WSC & KTC)",
+            "description": "Fixed-price inventory sourced live from WSC (Wholesale Supplier Community) and KTC (Korea Trade Centre) carrier feeds. Grade A+/A/B certified. XLSX bulk upload supported.",
+            "priceCurrency": "USD",
+          },
+          {
+            "@type": "Offer",
+            "name": "Phone Flipper & Broker Track",
+            "description": "Revenue-sharing programme for resellers, buying-group organisers and CIS distributors. 2–6% commission per coordinated order. No upfront capital required.",
+            "priceCurrency": "USD",
+          },
+        ],
+      })}</script>
       <LiveTicker />
       {/* ── Pipeline indicator ── */}
       <div className="bg-[#070B14] border-b border-[#1E293B]">
