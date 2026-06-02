@@ -59,41 +59,52 @@ function fmt(cents: number) {
 }
 
 // ── Grade config ───────────────────────────────────────────────────────────────
-// Covers all grades found across WSC, Itochu, SupplierDirect sources
-const GRADE_CFG: Record<string, { label: string; bg: string; text: string; border: string; dot: string }> = {
-  // Itochu-style OBL grades
-  "A+":        { label: "A+",      bg: "bg-emerald-600", text: "text-white", border: "border-emerald-500", dot: "bg-emerald-400" },
-  "A":         { label: "A",       bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600", dot: "bg-emerald-500" },
-  "A-":        { label: "A−",      bg: "bg-teal-700",    text: "text-white", border: "border-teal-600",    dot: "bg-teal-400" },
-  "B+":        { label: "B+",      bg: "bg-sky-700",     text: "text-white", border: "border-sky-600",     dot: "bg-sky-400" },
-  "B":         { label: "B",       bg: "bg-blue-700",    text: "text-white", border: "border-blue-600",    dot: "bg-blue-400" },
-  "B-":        { label: "B−",      bg: "bg-blue-800",    text: "text-white", border: "border-blue-700",    dot: "bg-blue-500" },
-  "C":         { label: "C",       bg: "bg-amber-700",   text: "text-white", border: "border-amber-600",   dot: "bg-amber-400" },
-  "C+":        { label: "C+",      bg: "bg-amber-600",   text: "text-white", border: "border-amber-500",   dot: "bg-amber-400" },
-  // WSC grade codes
-  "PGL":       { label: "PGL",     bg: "bg-violet-700",  text: "text-white", border: "border-violet-600",  dot: "bg-violet-400" },
-  "PGA":       { label: "PGA",     bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600", dot: "bg-emerald-500" },
-  "PGB":       { label: "PGB",     bg: "bg-sky-700",     text: "text-white", border: "border-sky-600",     dot: "bg-sky-400" },
-  "PGC":       { label: "PGC",     bg: "bg-amber-700",   text: "text-white", border: "border-amber-600",   dot: "bg-amber-400" },
-  // Legacy/Itochu full names
-  "A-Stock":   { label: "A",       bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600", dot: "bg-emerald-500" },
-  "A1-Stock":  { label: "A1",      bg: "bg-emerald-600", text: "text-white", border: "border-emerald-500", dot: "bg-emerald-400" },
-  "A2-Stock":  { label: "A2",      bg: "bg-teal-700",    text: "text-white", border: "border-teal-600",    dot: "bg-teal-400" },
-  "A2":        { label: "A2",      bg: "bg-teal-700",    text: "text-white", border: "border-teal-600",    dot: "bg-teal-400" },
-  "AP":        { label: "A+",      bg: "bg-emerald-600", text: "text-white", border: "border-emerald-500", dot: "bg-emerald-400" },
-  "S":         { label: "S",       bg: "bg-yellow-600",  text: "text-white", border: "border-yellow-500",  dot: "bg-yellow-400" },
-  "B-Stock":   { label: "B",       bg: "bg-blue-700",    text: "text-white", border: "border-blue-600",    dot: "bg-blue-400" },
-  "B2-Stock":  { label: "B2",      bg: "bg-blue-800",    text: "text-white", border: "border-blue-700",    dot: "bg-blue-500" },
-  "C-Stock":   { label: "C",       bg: "bg-amber-700",   text: "text-white", border: "border-amber-600",   dot: "bg-amber-400" },
-  "KFLB":      { label: "KFLB",    bg: "bg-orange-700",  text: "text-white", border: "border-orange-600",  dot: "bg-orange-400" },
-  "S1-B+":     { label: "S1 B+",   bg: "bg-sky-700",     text: "text-white", border: "border-sky-600",     dot: "bg-sky-400" },
-  "S1-B":      { label: "S1 B",    bg: "bg-blue-700",    text: "text-white", border: "border-blue-600",    dot: "bg-blue-400" },
-  "S1-C":      { label: "S1 C",    bg: "bg-amber-700",   text: "text-white", border: "border-amber-600",   dot: "bg-amber-400" },
+// Colors tuned to match buy.wesellcellular.com visual reference
+const GRADE_CFG: Record<string, { label: string; chip: string; dot: string; bg: string; text: string; border: string }> = {
+  // ── Pristine / A tier ────────────────────────────────────────────────────────
+  "A+":        { label: "A+",        chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-400", bg: "bg-emerald-700", text: "text-white", border: "border-emerald-500" },
+  "AP":        { label: "A+",        chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-400", bg: "bg-emerald-700", text: "text-white", border: "border-emerald-500" },
+  "A":         { label: "A",         chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-500", bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600" },
+  "A-Stock":   { label: "A-Stock",   chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-500", bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600" },
+  "A1-Stock":  { label: "A1-Stock",  chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-400", bg: "bg-emerald-600", text: "text-white", border: "border-emerald-500" },
+  "A2-Stock":  { label: "A2-Stock",  chip: "bg-teal-500/20 border-teal-500/60 text-teal-300",           dot: "bg-teal-400",    bg: "bg-teal-700",    text: "text-white", border: "border-teal-600" },
+  "A2":        { label: "A2",        chip: "bg-teal-500/20 border-teal-500/60 text-teal-300",           dot: "bg-teal-400",    bg: "bg-teal-700",    text: "text-white", border: "border-teal-600" },
+  "A-":        { label: "A−",        chip: "bg-teal-500/20 border-teal-500/60 text-teal-300",           dot: "bg-teal-400",    bg: "bg-teal-700",    text: "text-white", border: "border-teal-600" },
+  "S":         { label: "S",         chip: "bg-yellow-500/20 border-yellow-500/60 text-yellow-300",     dot: "bg-yellow-400",  bg: "bg-yellow-600",  text: "text-white", border: "border-yellow-500" },
+  "PGA":       { label: "PGA",       chip: "bg-emerald-500/20 border-emerald-500/60 text-emerald-300",  dot: "bg-emerald-500", bg: "bg-emerald-700", text: "text-white", border: "border-emerald-600" },
+  "XFCE":      { label: "XFCE",      chip: "bg-violet-500/20 border-violet-500/60 text-violet-300",     dot: "bg-violet-400",  bg: "bg-violet-700",  text: "text-white", border: "border-violet-600" },
+  // ── B tier ───────────────────────────────────────────────────────────────────
+  "B+":        { label: "B+",        chip: "bg-sky-500/20 border-sky-500/60 text-sky-300",              dot: "bg-sky-400",     bg: "bg-sky-700",     text: "text-white", border: "border-sky-600" },
+  "B":         { label: "B",         chip: "bg-blue-500/20 border-blue-500/60 text-blue-300",           dot: "bg-blue-400",    bg: "bg-blue-700",    text: "text-white", border: "border-blue-600" },
+  "B-":        { label: "B−",        chip: "bg-blue-600/20 border-blue-600/60 text-blue-300",           dot: "bg-blue-500",    bg: "bg-blue-800",    text: "text-white", border: "border-blue-700" },
+  "B-Stock":   { label: "B-Stock",   chip: "bg-blue-500/20 border-blue-500/60 text-blue-300",           dot: "bg-blue-400",    bg: "bg-blue-700",    text: "text-white", border: "border-blue-600" },
+  "B1-Stock":  { label: "B1-Stock",  chip: "bg-sky-500/20 border-sky-500/60 text-sky-300",              dot: "bg-sky-400",     bg: "bg-sky-700",     text: "text-white", border: "border-sky-600" },
+  "B2-Stock":  { label: "B2-Stock",  chip: "bg-blue-600/20 border-blue-600/60 text-blue-300",           dot: "bg-blue-500",    bg: "bg-blue-800",    text: "text-white", border: "border-blue-700" },
+  "S1-B+":     { label: "S1-B+",     chip: "bg-sky-500/20 border-sky-500/60 text-sky-300",              dot: "bg-sky-400",     bg: "bg-sky-700",     text: "text-white", border: "border-sky-600" },
+  "S1-B":      { label: "S1-B",      chip: "bg-blue-500/20 border-blue-500/60 text-blue-300",           dot: "bg-blue-400",    bg: "bg-blue-700",    text: "text-white", border: "border-blue-600" },
+  "PGB":       { label: "PGB",       chip: "bg-sky-500/20 border-sky-500/60 text-sky-300",              dot: "bg-sky-400",     bg: "bg-sky-700",     text: "text-white", border: "border-sky-600" },
+  "RB2-Stock": { label: "RB2-Stock", chip: "bg-rose-500/20 border-rose-500/60 text-rose-300",           dot: "bg-rose-400",    bg: "bg-rose-800",    text: "text-white", border: "border-rose-700" },
+  // ── C tier ───────────────────────────────────────────────────────────────────
+  "C+":        { label: "C+",        chip: "bg-amber-400/20 border-amber-400/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-600",   text: "text-white", border: "border-amber-500" },
+  "C":         { label: "C",         chip: "bg-amber-500/20 border-amber-500/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-700",   text: "text-white", border: "border-amber-600" },
+  "C-Stock":   { label: "C-Stock",   chip: "bg-amber-500/20 border-amber-500/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-700",   text: "text-white", border: "border-amber-600" },
+  "C1-Stock":  { label: "C1-Stock",  chip: "bg-amber-400/20 border-amber-400/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-600",   text: "text-white", border: "border-amber-500" },
+  "C2-Stock":  { label: "C2-Stock",  chip: "bg-amber-600/20 border-amber-600/60 text-amber-400",        dot: "bg-amber-500",   bg: "bg-amber-800",   text: "text-white", border: "border-amber-700" },
+  "S1-C":      { label: "S1-C",      chip: "bg-amber-500/20 border-amber-500/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-700",   text: "text-white", border: "border-amber-600" },
+  "PGC":       { label: "PGC",       chip: "bg-amber-500/20 border-amber-500/60 text-amber-300",        dot: "bg-amber-400",   bg: "bg-amber-700",   text: "text-white", border: "border-amber-600" },
+  // ── Certified / special ──────────────────────────────────────────────────────
+  "PGL":       { label: "PGL",       chip: "bg-violet-500/20 border-violet-500/60 text-violet-300",     dot: "bg-violet-400",  bg: "bg-violet-700",  text: "text-white", border: "border-violet-600" },
+  "T2-Stock":  { label: "T2-Stock",  chip: "bg-slate-500/20 border-slate-500/60 text-slate-300",        dot: "bg-slate-400",   bg: "bg-slate-700",   text: "text-white", border: "border-slate-600" },
+  "E2-Stock":  { label: "E2-Stock",  chip: "bg-slate-500/20 border-slate-500/60 text-slate-300",        dot: "bg-slate-400",   bg: "bg-slate-700",   text: "text-white", border: "border-slate-600" },
+  // ── Damage / parts ───────────────────────────────────────────────────────────
+  "POS":       { label: "POS",       chip: "bg-orange-500/20 border-orange-500/60 text-orange-300",     dot: "bg-orange-400",  bg: "bg-orange-700",  text: "text-white", border: "border-orange-600" },
+  "PD":        { label: "PD",        chip: "bg-red-500/20 border-red-500/60 text-red-300",              dot: "bg-red-400",     bg: "bg-red-800",     text: "text-white", border: "border-red-700" },
+  "KFLB":      { label: "KFLB",      chip: "bg-orange-600/20 border-orange-600/60 text-orange-300",     dot: "bg-orange-400",  bg: "bg-orange-700",  text: "text-white", border: "border-orange-600" },
 };
-const defaultGrade = { label: "—", bg: "bg-slate-700", text: "text-white", border: "border-slate-600", dot: "bg-slate-500" };
+const defaultGrade = { label: "—", chip: "bg-slate-700/30 border-slate-600/50 text-slate-400", dot: "bg-slate-500", bg: "bg-slate-700", text: "text-white", border: "border-slate-600" };
 
 function gradeOf(g: string) {
-  return GRADE_CFG[g] || defaultGrade;
+  return GRADE_CFG[g] || { ...defaultGrade, label: g || "—" };
 }
 
 // ── Warehouse group mapping (source → numeric id like reference URL) ──────────
