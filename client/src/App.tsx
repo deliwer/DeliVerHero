@@ -128,6 +128,7 @@ const RestaurantRewards = lazy(() => import("@/pages/restaurant-rewards"));
 const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
+const BuyChaintrackPage = lazy(() => import("@/pages/buy-chaintrack"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const PricingLogisticsPage = lazy(() => import("@/pages/pricing-logistics"));
 const ChainTrackRoutePage = lazy(() => import("@/pages/chaintrack-route"));
@@ -243,6 +244,10 @@ function Router() {
     }
     if ((hostname === 'chaintrack.chaintrack.com' || hostname === 'www.chaintrack.com' || hostname === 'chaintrack.com') && location === '/') {
       setLocation('/chaintrack');
+      return;
+    }
+    if ((hostname === 'buy.chaintrack.com' || hostname === 'www.buy.chaintrack.com') && location === '/') {
+      setLocation('/buy');
       return;
     }
 
@@ -511,6 +516,9 @@ function Router() {
 
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />
+
+        {/* ChainTrack Buy Module — buy.chaintrack.com */}
+        <Route path="/buy" component={BuyChaintrackPage} />
 
         {/* ChainTrack Certified Grading Infrastructure */}
         <Route path="/chaintrack-grading" component={ChainTrackGradingPage} />

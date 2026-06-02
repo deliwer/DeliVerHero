@@ -2063,3 +2063,121 @@ export const intelPosts = pgTable("intel_posts", {
 export const insertIntelPostSchema = createInsertSchema(intelPosts).omit({ id: true, createdAt: true });
 export type IntelPost = typeof intelPosts.$inferSelect;
 export type InsertIntelPost = z.infer<typeof insertIntelPostSchema>;
+
+// ─── ChainTrack Buy Module (buy.chaintrack.com) ───────────────────────────────
+
+export const buyLots = pgTable("buy_lots", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  lotNumber: text("lot_number").notNull().unique(),
+  productName: text("product_name").notNull(),
+  productType: text("product_type").notNull(),
+  brand: text("brand").notNull(),
+  model: text("model").notNull(),
+  grade: text("grade").notNull(),
+  quantity: integer("quantity").notNull().default(0),
+  unitPrice: integer("unit_price").notNull().default(0),
+  lotPrice: integer("lot_price").notNull().default(0),
+  currency: text("currency").notNull().default("USD"),
+  originCountry: text("origin_country").notNull(),
+  supplierName: text("supplier_name").notNull(),
+  supplierId: varchar("supplier_id"),
+  hsCode: text("hs_code"),
+  condition: text("condition").notNull().default("refurbished"),
+  batteryHealth: integer("battery_health"),
+  functionalScore: integer("functional_score").notNull().default(90),
+  cosmeticScore: integer("cosmetic_score").notNull().default(85),
+  inspectionStatus: text("inspection_status").notNull().default("completed"),
+  inspectedBy: text("inspected_by"),
+  inspectedAt: timestamp("inspected_at"),
+  clearanceStatus: text("clearance_status").notNull().default("cleared"),
+  exportReady: boolean("export_ready").notNull().default(true),
+  minOrderQty: integer("min_order_qty").notNull().default(1),
+  availableQty: integer("available_qty").notNull().default(0),
+  lotType: text("lot_type").notNull().default("supplier_feed"),
+  auctionEndDate: timestamp("auction_end_date"),
+  startingBid: integer("starting_bid"),
+  currentBid: integer("current_bid"),
+  bidCount: integer("bid_count").notNull().default(0),
+  photos: text("photos").array().notNull().default(sql`'{}'::text[]`),
+  tags: text("tags").array().notNull().default(sql`'{}'::text[]`),
+  defects: text("defects").array().notNull().default(sql`'{}'::text[]`),
+  status: text("status").notNull().default("active"),
+  incoterms: text("incoterms").array().notNull().default(sql`'{}'::text[]`),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const buyBuyers = pgTable("buy_buyers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  companyName: text("company_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  phone: text("phone").notNull(),
+  country: text("country").notNull().default("UAE"),
+  tradeLicense: text("trade_license"),
+  vatNumber: text("vat_number"),
+  buyerTier: text("buyer_tier").notNull().default("standard"),
+  kycStatus: text("kyc_status").notNull().default("pending"),
+  verifiedAt: timestamp("verified_at"),
+  totalOrders: integer("total_orders").notNull().default(0),
+  totalSpend: integer("total_spend").notNull().default(0),
+  status: text("status").notNull().default("active"),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const buyOrders = pgTable("buy_orders", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  orderNumber: text("order_number").notNull().unique(),
+  buyerId: varchar("buyer_id").notNull().references(() => buyBuyers.id),
+  lotId: varchar("lot_id").notNull().references(() => buyLots.id),
+  orderType: text("order_type").notNull().default("direct"),
+  productName: text("product_name").notNull(),
+  quantity: integer("quantity").notNull().default(1),
+  unitPrice: integer("unit_price").notNull().default(0),
+  totalAmount: integer("total_amount").notNull().default(0),
+  currency: text("currency").notNull().default("USD"),
+  incoterm: text("incoterm").notNull().default("FOB"),
+  destinationCountry: text("destination_country").notNull(),
+  shippingAddress: jsonb("shipping_address").default({}),
+  inspectionStatus: text("inspection_status").notNull().default("passed"),
+  clearanceStatus: text("clearance_status").notNull().default("cleared"),
+  paymentStatus: text("payment_status").notNull().default("pending"),
+  escrowNumber: text("escrow_number"),
+  shipmentStatus: text("shipment_status").notNull().default("pending"),
+  trackingNumber: text("tracking_number"),
+  estimatedDelivery: text("estimated_delivery"),
+  status: text("status").notNull().default("confirmed"),
+  notes: text("notes"),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const buyBids = pgTable("buy_bids", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  lotId: varchar("lot_id").notNull().references(() => buyLots.id),
+  buyerId: varchar("buyer_id").notNull().references(() => buyBuyers.id),
+  bidAmount: integer("bid_amount").notNull(),
+  quantity: integer("quantity").notNull().default(1),
+  status: text("status").notNull().default("active"),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertBuyLotSchema = createInsertSchema(buyLots).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertBuyBuyerSchema = createInsertSchema(buyBuyers).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertBuyOrderSchema = createInsertSchema(buyOrders).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertBuyBidSchema = createInsertSchema(buyBids).omit({ id: true, createdAt: true });
+
+export type BuyLot = typeof buyLots.$inferSelect;
+export type InsertBuyLot = z.infer<typeof insertBuyLotSchema>;
+export type BuyBuyer = typeof buyBuyers.$inferSelect;
+export type InsertBuyBuyer = z.infer<typeof insertBuyBuyerSchema>;
+export type BuyOrder = typeof buyOrders.$inferSelect;
+export type InsertBuyOrder = z.infer<typeof insertBuyOrderSchema>;
+export type BuyBid = typeof buyBids.$inferSelect;
+export type InsertBuyBid = z.infer<typeof insertBuyBidSchema>;

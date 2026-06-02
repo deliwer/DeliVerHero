@@ -57,6 +57,7 @@ import wellnessJourneyRoutes from "./routes/wellness-journey";
 import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
+import buyChaintrackRoutes from "./routes/buy-chaintrack";
 import logisticsIntelligenceRoutes from "./routes/logistics-intelligence";
 import intelRoutes from "./routes/intel";
 import fulfillmentRoutes from "./routes/fulfillment";
@@ -387,6 +388,9 @@ Source: Website Concierge Page
 
   // Register ChainTrack export-import compliance routes
   app.use("/api/chaintrack", chaintrackRoutes);
+
+  // Register ChainTrack Buy Module (buy.chaintrack.com)
+  app.use("/api/buy", buyChaintrackRoutes);
   app.use("/api/intel", intelRoutes);
 
   // AI Qualification Agent for ChainTrack
