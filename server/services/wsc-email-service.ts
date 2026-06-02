@@ -374,3 +374,193 @@ export async function sendBuyerSessionUpdateNotification(session: {
   }
   return result;
 }
+
+// ── Buyer: Cross-Source RFQ Confirmation ──────────────────────────────────────
+export async function sendBuyerRFQConfirmation(session: {
+  sessionRef: string;
+  totalItems: number;
+  totalValue: number;
+  notes?: string | null;
+  createdAt?: Date | string;
+  breakdown: Record<string, { skus: number; qty: number; estValue: number }>;
+}, buyer: {
+  email: string;
+  companyName: string;
+  contactName: string;
+}) {
+  const sourceLabels: Record<string, string> = {
+    WSC: "WeSellCellular", ITOCHU: "Itochu Sourced", SUPPLIERDIRECT: "Supplier Direct",
+  };
+
+  const breakdownRows = Object.entries(session.breakdown).map(([src, d]) => `
+    <tr>
+      <td style="padding:10px 12px;color:#e2e8f0;font-weight:600;border-bottom:1px solid #1e293b;">${sourceLabels[src] || src}</td>
+      <td style="padding:10px 12px;color:#94a3b8;text-align:center;border-bottom:1px solid #1e293b;">${d.skus} SKUs</td>
+      <td style="padding:10px 12px;color:#94a3b8;text-align:center;border-bottom:1px solid #1e293b;">${d.qty} units</td>
+      <td style="padding:10px 12px;color:#60a5fa;font-weight:700;text-align:right;border-bottom:1px solid #1e293b;">${fmt(d.estValue)}</td>
+    </tr>`).join("");
+
+  const html = `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0f1a;font-family:'Segoe UI',Arial,sans-serif;color:#e2e8f0;">
+  <div style="max-width:600px;margin:0 auto;padding:32px 16px;">
+    <div style="background:linear-gradient(135deg,#1e1b4b 0%,#1e293b 100%);border-radius:16px 16px 0 0;padding:32px;text-align:center;border-bottom:2px solid #4f46e5;">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,#4f46e5,#7c3aed);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;">
+        <span style="color:white;font-weight:900;font-size:22px;">KT</span>
+      </div>
+      <h1 style="margin:0;color:white;font-size:22px;font-weight:800;letter-spacing:-0.5px;">Cross-Source RFQ Received</h1>
+      <p style="margin:8px 0 0;color:#a5b4fc;font-size:14px;">KT Corp Worldwide · Global Wholesale</p>
+    </div>
+
+    <div style="background:#0f172a;border:1px solid #1e293b;border-top:none;border-radius:0 0 16px 16px;padding:32px;">
+      <p style="color:#94a3b8;font-size:14px;margin:0 0 24px;">Hi ${buyer.contactName},</p>
+      <p style="color:#e2e8f0;font-size:15px;margin:0 0 24px;line-height:1.6;">
+        Your cross-source Request for Quote has been received. Our trading desk will review inventory across all selected sources and respond with competitive pricing within <strong style="color:white;">1 business day</strong>.
+      </p>
+
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:24px;margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+          <div>
+            <p style="margin:0 0 4px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">RFQ Reference</p>
+            <p style="margin:0;font-size:18px;font-weight:800;color:#a5b4fc;font-family:monospace;">${session.sessionRef}</p>
+          </div>
+          <div style="background:#312e81;color:#a5b4fc;border:1px solid #4338ca;padding:6px 14px;border-radius:9999px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">
+            Under Review
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div>
+            <p style="margin:0 0 4px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Total SKUs</p>
+            <p style="margin:0;font-size:20px;font-weight:800;color:#e2e8f0;">${session.totalItems}</p>
+          </div>
+          <div>
+            <p style="margin:0 0 4px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Est. Value at List</p>
+            <p style="margin:0;font-size:20px;font-weight:800;color:#60a5fa;">${fmt(session.totalValue)}</p>
+          </div>
+        </div>
+
+        <p style="margin:0 0 8px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Breakdown by Source</p>
+        <table style="width:100%;border-collapse:collapse;background:#0f172a;border-radius:8px;overflow:hidden;">
+          <thead>
+            <tr style="background:#1e293b;">
+              <th style="padding:8px 12px;text-align:left;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">Source</th>
+              <th style="padding:8px 12px;text-align:center;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">SKUs</th>
+              <th style="padding:8px 12px;text-align:center;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">Units</th>
+              <th style="padding:8px 12px;text-align:right;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">Est. Value</th>
+            </tr>
+          </thead>
+          <tbody>${breakdownRows}</tbody>
+        </table>
+
+        ${session.notes ? `
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid #334155;">
+          <p style="margin:0 0 4px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:1px;">Your Notes</p>
+          <p style="margin:0;font-size:13px;color:#94a3b8;font-style:italic;">${session.notes}</p>
+        </div>
+        ` : ""}
+      </div>
+
+      <div style="background:#0f2a1f;border:1px solid #166534;border-radius:10px;padding:20px;margin-bottom:24px;">
+        <p style="margin:0 0 12px;font-size:13px;color:#86efac;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">What happens next</p>
+        <ol style="margin:0;padding-left:20px;color:#94a3b8;font-size:13px;line-height:2;">
+          <li>Our trading desk cross-checks live inventory across all ${Object.keys(session.breakdown).length} sources</li>
+          <li>You receive a consolidated price sheet with best available pricing per line</li>
+          <li>You can accept, counter, or decline individual lines — no obligation</li>
+        </ol>
+      </div>
+
+      <p style="color:#64748b;font-size:12px;margin:0;line-height:1.6;">
+        Questions? WhatsApp us at <a href="https://wa.me/971523946311" style="color:#6366f1;">+971 52 390 6019</a><br>
+        Company: ${buyer.companyName}
+      </p>
+    </div>
+    <p style="text-align:center;color:#1e293b;font-size:11px;margin:16px 0 0;">KT Corp Worldwide · buy.ktcorpworldwide.com</p>
+  </div>
+</body>
+</html>`;
+
+  const result = await sendEmail({
+    to: buyer.email,
+    from: FROM,
+    subject: `RFQ Received — ${session.sessionRef} · ${session.totalItems} SKUs across ${Object.keys(session.breakdown).length} sources`,
+    html,
+    text: `Hi ${buyer.contactName},\n\nYour cross-source RFQ has been received.\n\nRef: ${session.sessionRef}\nTotal SKUs: ${session.totalItems}\nEst. Value: ${fmt(session.totalValue)}\n\nOur trading desk will respond within 1 business day.\n\nKT Corp Worldwide`,
+  });
+
+  if (result) {
+    console.log(`[WSC Email] RFQ confirmation sent → ${buyer.email} for ${session.sessionRef}`);
+  }
+  return result;
+}
+
+// ── Admin: RFQ Alert ──────────────────────────────────────────────────────────
+export async function sendAdminRFQAlert(session: {
+  sessionRef: string;
+  totalItems: number;
+  totalValue: number;
+  notes?: string | null;
+  id: string;
+  breakdown: Record<string, { skus: number; qty: number; estValue: number }>;
+}, buyer: {
+  email: string;
+  companyName: string;
+  contactName: string;
+  phone?: string;
+  country?: string;
+}) {
+  const sourceLabels: Record<string, string> = {
+    WSC: "WeSellCellular", ITOCHU: "Itochu Sourced", SUPPLIERDIRECT: "Supplier Direct",
+  };
+
+  const breakdownHtml = Object.entries(session.breakdown).map(([src, d]) =>
+    `<div style="display:inline-flex;flex-direction:column;align-items:center;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 16px;min-width:120px;">
+      <p style="margin:0;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">${sourceLabels[src] || src}</p>
+      <p style="margin:4px 0 0;font-size:22px;font-weight:800;color:white;">${d.skus}</p>
+      <p style="margin:2px 0 0;font-size:11px;color:#94a3b8;">SKUs · ${d.qty} units</p>
+      <p style="margin:4px 0 0;font-size:13px;font-weight:700;color:#60a5fa;">${fmt(d.estValue)}</p>
+    </div>`
+  ).join("");
+
+  const html = `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background:#0a0f1a;font-family:'Segoe UI',Arial,sans-serif;color:#e2e8f0;">
+  <div style="max-width:600px;margin:0 auto;padding:32px 16px;">
+    <div style="background:linear-gradient(135deg,#1e1b4b,#1e293b);border-radius:16px 16px 0 0;padding:24px 32px;border-bottom:2px solid #4f46e5;">
+      <p style="margin:0 0 4px;font-size:11px;color:#a5b4fc;text-transform:uppercase;letter-spacing:1px;">⚡ New Cross-Source RFQ</p>
+      <h1 style="margin:0;color:white;font-size:22px;font-weight:800;">${session.sessionRef}</h1>
+      <p style="margin:4px 0 0;font-size:14px;color:#94a3b8;">${buyer.companyName} · ${session.totalItems} SKUs · ${fmt(session.totalValue)} est. list value</p>
+    </div>
+    <div style="background:#0f172a;border:1px solid #1e293b;border-top:none;border-radius:0 0 16px 16px;padding:24px 32px;">
+      <p style="margin:0 0 16px;font-size:13px;color:#94a3b8;">Source breakdown:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;">${breakdownHtml}</div>
+
+      <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px;margin-bottom:20px;">
+        <p style="margin:0 0 4px;font-size:11px;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;">Buyer</p>
+        <p style="margin:0;font-size:15px;font-weight:700;color:white;">${buyer.companyName}</p>
+        <p style="margin:4px 0 0;font-size:13px;color:#94a3b8;">${buyer.contactName} · ${buyer.email}${buyer.phone ? ` · ${buyer.phone}` : ""}${buyer.country ? ` · ${buyer.country}` : ""}</p>
+        ${session.notes ? `<p style="margin:8px 0 0;font-size:13px;color:#a5b4fc;font-style:italic;">"${session.notes}"</p>` : ""}
+      </div>
+
+      <a href="${ADMIN_PANEL_URL}" style="display:inline-block;background:#4f46e5;color:white;text-decoration:none;padding:12px 24px;border-radius:10px;font-weight:700;font-size:14px;">
+        Review RFQ in Admin Panel →
+      </a>
+    </div>
+  </div>
+</body>
+</html>`;
+
+  const result = await sendEmail({
+    to: ADMIN_EMAIL,
+    from: FROM,
+    subject: `⚡ New RFQ: ${session.sessionRef} — ${buyer.companyName} · ${session.totalItems} SKUs`,
+    html,
+    text: `New cross-source RFQ from ${buyer.companyName}.\n\nRef: ${session.sessionRef}\nSKUs: ${session.totalItems}\nEst. Value: ${fmt(session.totalValue)}\nBuyer: ${buyer.contactName} <${buyer.email}>\n\nView: ${ADMIN_PANEL_URL}`,
+  });
+
+  if (result) {
+    console.log(`[WSC Email] Admin RFQ alert sent → ${ADMIN_EMAIL} for ${session.sessionRef}`);
+  }
+  return result;
+}

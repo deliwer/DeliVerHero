@@ -2114,6 +2114,7 @@ export const wscOfferItems = pgTable("wsc_offer_items", {
   capacity: text("capacity"),
   color: text("color"),
   carrier: text("carrier"),
+  source: text("source"),
   offerQty: integer("offer_qty").notNull().default(1),
   offerPrice: integer("offer_price").notNull().default(0),
   listPrice: integer("list_price").notNull().default(0),

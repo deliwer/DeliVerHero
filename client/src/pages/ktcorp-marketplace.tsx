@@ -11,9 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import {
   Search, Download, ShoppingCart, CheckCircle2, X, LogIn, UserPlus, RefreshCw,
-  Eye, EyeOff, Send, Sparkles, Package, Shield, Globe, Building2, History,
-  TrendingDown, Lock, Calendar, BarChart3, ChevronRight, Zap, SlidersHorizontal,
-  ChevronDown, ChevronUp, Filter
+  Eye, EyeOff, Send, Sparkles, Package, Shield, Globe, History,
+  TrendingDown, Lock, Calendar, Zap, SlidersHorizontal,
+  ChevronDown, ChevronUp, Filter, FileText, Layers, Percent, Plus, Minus,
+  ClipboardList
 } from "lucide-react";
 
 const API_BASE = "/api/wsc";
@@ -346,23 +347,215 @@ function CheckItem({ label, checked, onChange, dot, count }: { label: string; ch
   );
 }
 
+// ── RFQ Bar (floating bottom) ──────────────────────────────────────────────────
+function RFQBar({ selected, onReview, onClear }: {
+  selected: Map<string, { item: StockItem; qty: number }>;
+  onReview: () => void;
+  onClear: () => void;
+}) {
+  const count = selected.size;
+  const estValue = [...selected.values()].reduce((s, { item, qty }) => s + item.listPrice * qty, 0);
+  const sources = [...new Set([...selected.values()].map(({ item }) => item.source))];
+  const sourceLabels: Record<string, string> = { WSC: "WSC", ITOCHU: "Itochu", SUPPLIERDIRECT: "Direct" };
+
+  if (!count) return null;
+  return (
+    <motion.div initial={{ y: 80 }} animate={{ y: 0 }} exit={{ y: 80 }}
+      className="fixed bottom-0 left-0 right-0 z-40 bg-violet-950 border-t-2 border-violet-600 shadow-2xl">
+      <div className="max-w-full px-4 py-3 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4 min-w-0">
+          <div className="flex items-center gap-2 shrink-0">
+            <ClipboardList className="w-5 h-5 text-violet-400" />
+            <span className="text-white font-bold">{count} SKU{count !== 1 ? "s" : ""}</span>
+          </div>
+          <div className="hidden sm:flex gap-1.5">
+            {sources.map(s => (
+              <span key={s} className="text-[10px] bg-violet-900/50 border border-violet-700/40 text-violet-300 px-1.5 py-0.5 rounded">
+                {sourceLabels[s] || s}
+              </span>
+            ))}
+          </div>
+          <span className="text-violet-300 font-bold text-sm">{fmt(estValue)} <span className="text-violet-500 font-normal text-xs">est. list</span></span>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button onClick={onClear} className="text-xs text-violet-400 hover:text-white px-2 py-1.5">Clear</button>
+          <Button onClick={onReview} className="bg-violet-600 hover:bg-violet-500 text-white font-bold" data-testid="button-rfq-review">
+            <FileText className="w-4 h-4 mr-2" /> Review RFQ
+          </Button>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// ── RFQ Review Modal ──────────────────────────────────────────────────────────
+function RFQReviewModal({ selected, onClose, onSubmit, submitting }: {
+  selected: Map<string, { item: StockItem; qty: number }>;
+  onClose: () => void;
+  onSubmit: (notes: string, discPct: number) => void;
+  submitting: boolean;
+}) {
+  const [notes, setNotes] = useState("");
+  const [discPct, setDiscPct] = useState(0);
+  const sourceLabels: Record<string, string> = { WSC: "WeSellCellular", ITOCHU: "Itochu Sourced", SUPPLIERDIRECT: "Supplier Direct" };
+
+  const breakdown = useMemo(() => {
+    const map: Record<string, { skus: number; qty: number; estValue: number }> = {};
+    [...selected.values()].forEach(({ item, qty }) => {
+      const src = item.source;
+      if (!map[src]) map[src] = { skus: 0, qty: 0, estValue: 0 };
+      map[src].skus++;
+      map[src].qty += qty;
+      map[src].estValue += item.listPrice * qty;
+    });
+    return map;
+  }, [selected]);
+
+  const totalList = [...selected.values()].reduce((s, { item, qty }) => s + item.listPrice * qty, 0);
+  const targetValue = discPct > 0 ? Math.round(totalList * (1 - discPct / 100)) : totalList;
+  const saving = totalList - targetValue;
+  const sourceCount = Object.keys(breakdown).length;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/80 backdrop-blur-sm">
+      <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
+        className="bg-slate-900 border border-violet-800/50 rounded-t-2xl sm:rounded-2xl w-full sm:max-w-xl max-h-[90vh] overflow-y-auto">
+
+        {/* Header */}
+        <div className="sticky top-0 bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 bg-violet-700 rounded-xl flex items-center justify-center">
+              <ClipboardList className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-bold leading-none">Cross-Source RFQ</p>
+              <p className="text-violet-400 text-xs mt-0.5">{selected.size} SKUs · {sourceCount} source{sourceCount > 1 ? "s" : ""}</p>
+            </div>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
+        </div>
+
+        <div className="p-6 space-y-5">
+          {/* Source breakdown */}
+          <div className="space-y-2">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Breakdown by Source</p>
+            {Object.entries(breakdown).map(([src, d]) => {
+              const gcfg = src === "WSC" ? "bg-blue-900/30 border-blue-700/40 text-blue-300"
+                : src === "ITOCHU" ? "bg-purple-900/30 border-purple-700/40 text-purple-300"
+                : "bg-emerald-900/30 border-emerald-700/40 text-emerald-300";
+              return (
+                <div key={src} className={`flex items-center justify-between rounded-xl border px-4 py-3 ${gcfg}`}>
+                  <div>
+                    <p className="font-semibold text-sm">{sourceLabels[src] || src}</p>
+                    <p className="text-xs opacity-70">{d.skus} SKUs · {d.qty} units</p>
+                  </div>
+                  <p className="font-bold">{fmt(d.estValue)}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Target discount */}
+          <div>
+            <Label className="text-slate-300 text-xs mb-2 flex items-center gap-1.5">
+              <Percent className="w-3.5 h-3.5" /> Target Discount (% below list price — optional)
+            </Label>
+            <div className="flex items-center gap-3">
+              <button onClick={() => setDiscPct(p => Math.max(0, p - 1))} className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+                <Minus className="w-3.5 h-3.5" />
+              </button>
+              <div className="flex-1 text-center">
+                <span className="text-white font-bold text-2xl">{discPct}%</span>
+                {discPct > 0 && <p className="text-emerald-400 text-xs mt-0.5">Saving {fmt(saving)} · Target {fmt(targetValue)}</p>}
+                {discPct === 0 && <p className="text-slate-500 text-xs mt-0.5">No discount — requesting best price</p>}
+              </div>
+              <button onClick={() => setDiscPct(p => Math.min(30, p + 1))} className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+                <Plus className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Notes */}
+          <div>
+            <Label className="text-slate-300 text-xs mb-2 block">Notes to Trading Desk (optional)</Label>
+            <textarea value={notes} onChange={e => setNotes(e.target.value)}
+              placeholder="e.g. Need delivery to Dubai within 2 weeks. Prefer Grade A+ if available. Volume pricing expected..."
+              rows={3}
+              className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500 resize-none"
+              data-testid="textarea-rfq-notes" />
+          </div>
+
+          {/* Summary */}
+          <div className="bg-violet-950/30 border border-violet-800/30 rounded-xl p-4 flex items-center justify-between">
+            <div>
+              <p className="text-xs text-slate-400">Total SKUs</p>
+              <p className="text-white font-bold text-xl">{selected.size}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-xs text-slate-400">Est. List Value</p>
+              <p className="text-slate-300 font-bold">{fmt(totalList)}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs text-slate-400">Target Value</p>
+              <p className="text-violet-400 font-bold text-xl">{fmt(targetValue)}</p>
+            </div>
+          </div>
+
+          <Button onClick={() => onSubmit(notes, discPct)} disabled={submitting}
+            className="w-full bg-violet-600 hover:bg-violet-500 text-white font-bold h-12 text-base"
+            data-testid="button-rfq-submit">
+            {submitting ? <><RefreshCw className="w-4 h-4 animate-spin mr-2" /> Submitting…</> : <><Send className="w-4 h-4 mr-2" /> Submit Cross-Source RFQ</>}
+          </Button>
+
+          <p className="text-center text-xs text-slate-500">
+            Our trading desk will respond with competitive pricing within 1 business day.
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 // ── Stock List Row ─────────────────────────────────────────────────────────────
-function StockRow({ item, onOffer, inCart }: { item: StockItem; onOffer: () => void; inCart: boolean }) {
+function StockRow({ item, onOffer, inCart, rfqMode, rfqSelected, rfqQty, onRfqToggle, onRfqQtyChange }: {
+  item: StockItem; onOffer: () => void; inCart: boolean;
+  rfqMode: boolean;
+  rfqSelected: boolean;
+  rfqQty: number;
+  onRfqToggle: () => void;
+  onRfqQtyChange: (qty: number) => void;
+}) {
   const gcfg = gradeOf(item.grade);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}
-      className={`flex items-center gap-3 bg-slate-900 border rounded-xl px-3 py-3 hover:border-indigo-700/50 transition-colors
-        ${item.hasQtyAddedToday ? "border-emerald-800/40 bg-emerald-950/5" : "border-slate-800"}
-        ${inCart ? "border-indigo-700/60 bg-indigo-950/10" : ""}`}
+      onClick={rfqMode ? onRfqToggle : undefined}
+      className={`flex items-center gap-3 bg-slate-900 border rounded-xl px-3 py-3 transition-colors
+        ${rfqMode ? "cursor-pointer" : ""}
+        ${rfqMode && rfqSelected ? "border-violet-600/70 bg-violet-950/15" : ""}
+        ${rfqMode && !rfqSelected ? "hover:border-violet-700/40" : ""}
+        ${!rfqMode && item.hasQtyAddedToday ? "border-emerald-800/40 bg-emerald-950/5" : ""}
+        ${!rfqMode && inCart ? "border-indigo-700/60 bg-indigo-950/10" : ""}
+        ${!rfqMode && !inCart && !item.hasQtyAddedToday ? "border-slate-800 hover:border-indigo-700/50" : ""}`}
       data-testid={`row-kt-${item.sku}`}
     >
-      {/* Grade badge — dominant visual matching reference */}
-      <div className={`w-16 h-16 rounded-xl ${gcfg.bg} border ${gcfg.border} flex flex-col items-center justify-center shrink-0`}>
-        <span className={`text-sm font-black ${gcfg.text} leading-none`}>{gcfg.label}</span>
-        <span className={`text-[9px] ${gcfg.text} opacity-70 mt-0.5 uppercase tracking-wide`}>{item.source === "ITOCHU" ? "OBL" : item.source === "SUPPLIERDIRECT" ? "SD" : "WSC"}</span>
-      </div>
+      {/* RFQ checkbox OR grade badge */}
+      {rfqMode ? (
+        <div className={`w-16 h-16 rounded-xl border-2 flex items-center justify-center shrink-0 transition-all
+          ${rfqSelected ? "bg-violet-600 border-violet-500" : "bg-slate-800 border-slate-700"}`}
+          onClick={e => { e.stopPropagation(); onRfqToggle(); }}>
+          {rfqSelected
+            ? <CheckCircle2 className="w-7 h-7 text-white" />
+            : <div className="flex flex-col items-center"><span className={`text-sm font-black leading-none ${gcfg.text}`}>{gcfg.label}</span><span className="text-[9px] text-slate-400 mt-0.5">{item.source === "ITOCHU" ? "OBL" : item.source === "SUPPLIERDIRECT" ? "SD" : "WSC"}</span></div>
+          }
+        </div>
+      ) : (
+        <div className={`w-16 h-16 rounded-xl ${gcfg.bg} border ${gcfg.border} flex flex-col items-center justify-center shrink-0`}>
+          <span className={`text-sm font-black ${gcfg.text} leading-none`}>{gcfg.label}</span>
+          <span className={`text-[9px] ${gcfg.text} opacity-70 mt-0.5 uppercase tracking-wide`}>{item.source === "ITOCHU" ? "OBL" : item.source === "SUPPLIERDIRECT" ? "SD" : "WSC"}</span>
+        </div>
+      )}
 
       {/* Product info */}
       <div className="flex-1 min-w-0">
@@ -380,25 +573,41 @@ function StockRow({ item, onOffer, inCart }: { item: StockItem; onOffer: () => v
         <p className="text-[10px] font-mono text-slate-600 mt-0.5">{item.sku}</p>
       </div>
 
-      {/* Qty */}
-      <div className="text-center shrink-0 w-12 hidden sm:block">
-        <p className="text-xs text-slate-500 mb-0.5">Qty</p>
-        <p className="text-white font-bold">{item.qtyAvailable}</p>
-      </div>
+      {/* Qty — or editable qty spinner in RFQ mode when selected */}
+      {rfqMode && rfqSelected ? (
+        <div className="flex items-center gap-1 shrink-0" onClick={e => e.stopPropagation()}>
+          <button onClick={() => onRfqQtyChange(Math.max(1, rfqQty - 1))}
+            className="w-6 h-6 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+            <Minus className="w-3 h-3" />
+          </button>
+          <span className="text-white font-bold text-sm w-7 text-center">{rfqQty}</span>
+          <button onClick={() => onRfqQtyChange(Math.min(item.qtyAvailable, rfqQty + 1))}
+            className="w-6 h-6 rounded bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white">
+            <Plus className="w-3 h-3" />
+          </button>
+        </div>
+      ) : (
+        <div className="text-center shrink-0 w-12 hidden sm:block">
+          <p className="text-xs text-slate-500 mb-0.5">Qty</p>
+          <p className="text-white font-bold">{item.qtyAvailable}</p>
+        </div>
+      )}
 
       {/* Price */}
       <div className="text-right shrink-0 w-20">
         <p className="text-xs text-slate-500 mb-0.5">List</p>
-        <p className="text-indigo-400 font-black text-base leading-none">{fmt(item.listPrice)}</p>
+        <p className={`font-black text-base leading-none ${rfqMode && rfqSelected ? "text-violet-400" : "text-indigo-400"}`}>{fmt(item.listPrice)}</p>
         <p className="text-[10px] text-slate-600 mt-0.5">/unit</p>
       </div>
 
-      {/* Make Offer */}
-      <Button size="sm" onClick={onOffer}
-        className={`shrink-0 text-xs h-9 px-3 ${inCart ? "bg-emerald-700 hover:bg-emerald-600" : "bg-indigo-600 hover:bg-indigo-700"} text-white`}
-        data-testid={`button-kt-offer-${item.sku}`}>
-        {inCart ? <><CheckCircle2 className="w-3 h-3 mr-1" /> In Cart</> : "Make Offer"}
-      </Button>
+      {/* Action button */}
+      {!rfqMode && (
+        <Button size="sm" onClick={onOffer}
+          className={`shrink-0 text-xs h-9 px-3 ${inCart ? "bg-emerald-700 hover:bg-emerald-600" : "bg-indigo-600 hover:bg-indigo-700"} text-white`}
+          data-testid={`button-kt-offer-${item.sku}`}>
+          {inCart ? <><CheckCircle2 className="w-3 h-3 mr-1" /> In Cart</> : "Make Offer"}
+        </Button>
+      )}
     </motion.div>
   );
 }
@@ -422,6 +631,13 @@ export default function KtCorpMarketplace() {
   const [offerItem, setOfferItem] = useState<StockItem | null>(null);
   const [successSession, setSuccessSession] = useState<any>(null);
   const [mainTab, setMainTab] = useState<"marketplace" | "calendar" | "history">("marketplace");
+
+  // RFQ mode state
+  const [rfqMode, setRfqMode] = useState(false);
+  const [rfqSelected, setRfqSelected] = useState<Map<string, { item: StockItem; qty: number }>>(new Map());
+  const [rfqReviewOpen, setRfqReviewOpen] = useState(false);
+  const [rfqSuccess, setRfqSuccess] = useState<any>(null);
+
   const { toast } = useToast();
   const qc = useQueryClient();
 
@@ -460,6 +676,18 @@ export default function KtCorpMarketplace() {
     mutationFn: (data: any) => apiFetch("/offers", { method: "POST", body: JSON.stringify(data) }),
     onSuccess: d => { setSuccessSession(d); setCart([]); qc.invalidateQueries({ queryKey: ["/api/wsc/offers/kt"] }); },
     onError: (e: Error) => toast({ title: "Submit failed", description: e.message, variant: "destructive" }),
+  });
+
+  const rfqMut = useMutation({
+    mutationFn: (data: any) => apiFetch("/rfq", { method: "POST", body: JSON.stringify(data) }),
+    onSuccess: d => {
+      setRfqSuccess(d);
+      setRfqReviewOpen(false);
+      setRfqSelected(new Map());
+      setRfqMode(false);
+      qc.invalidateQueries({ queryKey: ["/api/wsc/offers/kt"] });
+    },
+    onError: (e: Error) => toast({ title: "RFQ failed", description: e.message, variant: "destructive" }),
   });
 
   const allItems: StockItem[] = stockData?.items || [];
@@ -525,6 +753,35 @@ export default function KtCorpMarketplace() {
 
   const clearFilters = () => { setSelGrades(new Set()); setSelMfrs(new Set()); setSelStorages(new Set()); setSelCarriers(new Set()); setOnlyNew(false); };
 
+  // RFQ handlers
+  const toggleRfqMode = () => {
+    setRfqMode(p => !p);
+    if (rfqMode) { setRfqSelected(new Map()); setRfqReviewOpen(false); }
+  };
+  const toggleRfqItem = (item: StockItem) => {
+    setRfqSelected(prev => {
+      const n = new Map(prev);
+      if (n.has(item.sku)) { n.delete(item.sku); } else { n.set(item.sku, { item, qty: 1 }); }
+      return n;
+    });
+  };
+  const setRfqQty = (sku: string, qty: number) => {
+    setRfqSelected(prev => {
+      const n = new Map(prev);
+      const entry = n.get(sku);
+      if (entry) n.set(sku, { ...entry, qty });
+      return n;
+    });
+  };
+  const handleRfqSubmit = (notes: string, discPct: number) => {
+    const items = [...rfqSelected.values()].map(({ item, qty }) => ({
+      sku: item.sku, manufacturer: item.manufacturer, model: item.model,
+      grade: item.grade, capacity: item.capacity || "", color: item.color || "",
+      carrier: item.carrier || "", source: item.source, listPrice: item.listPrice, offerQty: qty,
+    }));
+    rfqMut.mutate({ items, notes: notes || null, targetDiscountPct: discPct });
+  };
+
   if (!buyer) return <AuthGate onSuccess={handleAuth} />;
 
   const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
@@ -535,7 +792,7 @@ export default function KtCorpMarketplace() {
   }), { items: 0, qty: 0, newToday: 0 });
 
   return (
-    <div className="min-h-screen bg-[#060b16] text-white" style={{ paddingBottom: cart.length ? 76 : 0 }}>
+    <div className="min-h-screen bg-[#060b16] text-white" style={{ paddingBottom: (cart.length || rfqSelected.size) ? 76 : 0 }}>
       {/* ── Header ─────────────────────────────────────────────────────────── */}
       <header className="sticky top-0 z-40 bg-[#060b16]/95 backdrop-blur border-b border-slate-800">
         <div className="max-w-full px-4 h-14 flex items-center justify-between">
@@ -715,8 +972,33 @@ export default function KtCorpMarketplace() {
                 <option value="qty_desc">Qty: Most First</option>
               </select>
 
+              {/* RFQ Mode toggle */}
+              <button onClick={toggleRfqMode}
+                className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-lg border font-medium transition-all
+                  ${rfqMode
+                    ? "bg-violet-600/20 border-violet-600/60 text-violet-300"
+                    : "border-slate-700 text-slate-400 hover:border-violet-700/50 hover:text-violet-300"}`}
+                data-testid="button-rfq-mode">
+                <ClipboardList className="w-3.5 h-3.5" />
+                <span className="hidden sm:block">{rfqMode ? `RFQ (${rfqSelected.size})` : "Request Quote"}</span>
+                {rfqMode && <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />}
+              </button>
+
               <span className="text-xs text-slate-500 ml-1">{filteredItems.length.toLocaleString()} items</span>
             </div>
+
+            {/* RFQ mode hint banner */}
+            {rfqMode && (
+              <div className="bg-violet-950/30 border border-violet-800/40 rounded-xl px-4 py-2.5 mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <ClipboardList className="w-4 h-4 text-violet-400 shrink-0" />
+                  <p className="text-xs text-violet-300">
+                    <strong>RFQ Mode:</strong> tap any item to select it across all sources. Set qty per item, then submit one consolidated quote request.
+                  </p>
+                </div>
+                <button onClick={toggleRfqMode} className="text-violet-500 hover:text-violet-300 ml-3 shrink-0"><X className="w-3.5 h-3.5" /></button>
+              </div>
+            )}
 
             {/* Active filter chips */}
             {activeFilterCount > 0 && (
@@ -764,7 +1046,17 @@ export default function KtCorpMarketplace() {
             ) : (
               <div className="space-y-2">
                 {filteredItems.map(item => (
-                  <StockRow key={item.id} item={item} inCart={cartSkus.has(item.sku)} onOffer={() => setOfferItem(item)} />
+                  <StockRow
+                    key={item.id}
+                    item={item}
+                    inCart={cartSkus.has(item.sku)}
+                    onOffer={() => setOfferItem(item)}
+                    rfqMode={rfqMode}
+                    rfqSelected={rfqSelected.has(item.sku)}
+                    rfqQty={rfqSelected.get(item.sku)?.qty ?? 1}
+                    onRfqToggle={() => toggleRfqItem(item)}
+                    onRfqQtyChange={qty => setRfqQty(item.sku, qty)}
+                  />
                 ))}
               </div>
             )}
@@ -864,7 +1156,22 @@ export default function KtCorpMarketplace() {
         {offerItem && <OfferModal item={offerItem} onClose={() => setOfferItem(null)} onSubmit={addToCart} />}
       </AnimatePresence>
       <AnimatePresence>
-        {cart.length > 0 && <CartBar lines={cart} onRemove={removeFromCart} onSubmit={handleSubmit} submitting={submitMut.isPending} />}
+        {cart.length > 0 && !rfqMode && <CartBar lines={cart} onRemove={removeFromCart} onSubmit={handleSubmit} submitting={submitMut.isPending} />}
+      </AnimatePresence>
+      <AnimatePresence>
+        {rfqMode && rfqSelected.size > 0 && !rfqReviewOpen && (
+          <RFQBar selected={rfqSelected} onReview={() => setRfqReviewOpen(true)} onClear={() => setRfqSelected(new Map())} />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {rfqReviewOpen && (
+          <RFQReviewModal
+            selected={rfqSelected}
+            onClose={() => setRfqReviewOpen(false)}
+            onSubmit={handleRfqSubmit}
+            submitting={rfqMut.isPending}
+          />
+        )}
       </AnimatePresence>
       <AnimatePresence>
         {successSession && (
@@ -877,6 +1184,39 @@ export default function KtCorpMarketplace() {
                 <p className="text-xs text-slate-400 mt-1">{successSession.totalItems} items · {fmt(successSession.totalValue)}</p>
               </div>
               <Button onClick={() => setSuccessSession(null)} className="w-full bg-indigo-600 hover:bg-indigo-700" data-testid="button-kt-close-success">Done</Button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {rfqSuccess && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+              className="bg-slate-900 border border-violet-800/50 rounded-2xl p-8 max-w-md w-full text-center">
+              <div className="w-16 h-16 bg-violet-700/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <ClipboardList className="w-8 h-8 text-violet-400" />
+              </div>
+              <h3 className="text-white font-bold text-xl mb-1">RFQ Submitted!</h3>
+              <p className="text-slate-400 text-sm mb-4">Our trading desk will respond within 1 business day.</p>
+              <div className="bg-slate-800 rounded-xl p-4 mb-5 text-left space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-400">Reference</span>
+                  <span className="font-mono text-violet-400 font-bold text-sm">{rfqSuccess.sessionRef}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-slate-400">SKUs</span>
+                  <span className="text-white font-semibold">{rfqSuccess.totalItems}</span>
+                </div>
+                {rfqSuccess.breakdown && Object.entries(rfqSuccess.breakdown).map(([src, d]: [string, any]) => (
+                  <div key={src} className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">{src}</span>
+                    <span className="text-xs text-slate-300">{d.skus} SKUs · {d.qty} units · {fmt(d.estValue)}</span>
+                  </div>
+                ))}
+              </div>
+              <Button onClick={() => setRfqSuccess(null)} className="w-full bg-violet-600 hover:bg-violet-500" data-testid="button-rfq-close-success">
+                Done
+              </Button>
             </motion.div>
           </div>
         )}

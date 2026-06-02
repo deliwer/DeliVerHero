@@ -10,6 +10,8 @@ import {
   sendBuyerOfferConfirmation,
   sendAdminNewOfferAlert,
   sendBuyerSessionUpdateNotification,
+  sendBuyerRFQConfirmation,
+  sendAdminRFQAlert,
 } from "../services/wsc-email-service";
 
 const router = Router();
@@ -304,6 +306,123 @@ router.post("/offers", async (req, res) => {
     });
   } catch (err: any) {
     res.status(400).json({ error: err.message || "Failed to submit offers" });
+  }
+});
+
+// ── Cross-Source RFQ (multi-source bulk quote request) ────────────────────────
+router.post("/rfq", async (req, res) => {
+  try {
+    const buyer = await requireBuyer(req, res);
+    if (!buyer) return;
+
+    const { items, notes, targetDiscountPct = 0 } = req.body;
+    if (!items?.length) return res.status(400).json({ error: "No items in RFQ" });
+
+    // Build per-source breakdown
+    const breakdown: Record<string, { skus: number; qty: number; estValue: number }> = {};
+    for (const item of items) {
+      const src = item.source || "WSC";
+      if (!breakdown[src]) breakdown[src] = { skus: 0, qty: 0, estValue: 0 };
+      breakdown[src].skus++;
+      breakdown[src].qty += item.offerQty || 1;
+      breakdown[src].estValue += (item.listPrice || 0) * (item.offerQty || 1);
+    }
+
+    const sourceCount = Object.keys(breakdown).length;
+    const totalValue = items.reduce((s: number, i: any) => {
+      const list = i.listPrice || 0;
+      const disc = targetDiscountPct > 0 ? list * (1 - targetDiscountPct / 100) : list;
+      return s + Math.round(disc) * (i.offerQty || 1);
+    }, 0);
+
+    // Generate RFQ ref: KT/RFQ/YYYYMMDD/xxxxxx
+    const d = new Date();
+    const ymd = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+    const sessionRef = `KT/RFQ/${ymd}/${String(Math.floor(Math.random()*999999)).padStart(6,'0')}`;
+
+    const [session] = await db.insert(wscOfferSessions).values({
+      buyerId: buyer.id,
+      source: "MULTI",
+      sessionRef,
+      totalItems: items.length,
+      totalValue,
+      status: "submitted",
+      notes: notes || null,
+      metadata: { rfq: true, breakdown, sourceCount, targetDiscountPct },
+    }).returning();
+
+    // Resolve stock IDs
+    const skus = items.map((i: any) => i.sku).filter(Boolean);
+    const stockRows = skus.length
+      ? await db.select({ id: wscStockItems.id, sku: wscStockItems.sku })
+          .from(wscStockItems).where(inArray(wscStockItems.sku, skus))
+      : [];
+    const skuToId = new Map(stockRows.map(r => [r.sku, r.id]));
+
+    await db.insert(wscOfferItems).values(
+      items.map((i: any) => {
+        const list = i.listPrice || 0;
+        const offerPrice = targetDiscountPct > 0
+          ? Math.round(list * (1 - targetDiscountPct / 100))
+          : list;
+        return {
+          sessionId: session.id,
+          stockItemId: skuToId.get(i.sku) || null,
+          sku: i.sku || "",
+          manufacturer: i.manufacturer || "",
+          model: i.model || "",
+          grade: i.grade || null,
+          capacity: i.capacity || null,
+          color: i.color || null,
+          carrier: i.carrier || null,
+          source: i.source || null,
+          offerQty: i.offerQty || 1,
+          offerPrice,
+          listPrice: list,
+          status: "pending",
+        };
+      })
+    );
+
+    res.status(201).json({
+      sessionRef,
+      totalItems: items.length,
+      totalValue,
+      sourceCount,
+      breakdown,
+      status: "submitted",
+    });
+
+    // Fire-and-forget emails
+    setImmediate(async () => {
+      try {
+        const [buyerRow] = await db.select({
+          email: buyBuyers.email,
+          companyName: buyBuyers.companyName,
+          contactName: buyBuyers.contactName,
+          phone: buyBuyers.phone,
+          country: buyBuyers.country,
+          kycStatus: buyBuyers.kycStatus,
+        }).from(buyBuyers).where(eq(buyBuyers.id, buyer.id)).limit(1);
+
+        if (buyerRow) {
+          await Promise.allSettled([
+            sendBuyerRFQConfirmation(
+              { sessionRef, totalItems: items.length, totalValue, notes: notes || null, createdAt: session.createdAt, breakdown },
+              buyerRow,
+            ),
+            sendAdminRFQAlert(
+              { sessionRef, totalItems: items.length, totalValue, notes: notes || null, id: session.id, breakdown },
+              { ...buyerRow },
+            ),
+          ]);
+        }
+      } catch (e) {
+        console.error("[WSC Email] RFQ notification error:", e);
+      }
+    });
+  } catch (err: any) {
+    res.status(400).json({ error: err.message || "Failed to submit RFQ" });
   }
 });
 
