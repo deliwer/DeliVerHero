@@ -23,6 +23,7 @@ import {
   Waves,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { SiTelegram } from "react-icons/si";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
 import BeckyImg from "@assets/Becky_Choi_1776889041274.jpeg";

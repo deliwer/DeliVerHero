@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,6 +30,66 @@ const WA = "971523906019";
 const TG = "https://t.me/+971523946311";
 const waUrl = (msg: string) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 const tgUrl = (msg: string) => `${TG}?start=${encodeURIComponent(msg)}`;
+
+// ── i18n ──────────────────────────────────────────────────────────────────────
+type Lang = "en" | "ru" | "zh";
+
+const STRINGS = {
+  en: {
+    flag: "🇬🇧", label: "EN",
+    heroTagline: "Your window closes soon.",
+    heroDesc: "Six towers. 325m of Arabian Gulf waterfront. 360° uninterrupted sea views.",
+    heroDesc2: "AED 20K secures your unit on a 30/70 plan. Delivery 2030. DeliWer brokers get first access — now, before the public launch.",
+    num1BR: "1BR from", numBook: "Booking fee", numPlan: "Payment plan", numDel: "Delivery",
+    ctaEoi: "Register My EOI", ctaTg: "Telegram", ctaWa: "WhatsApp",
+    tgNote: "Telegram preferred for CIS · Russia · Asia · Global",
+    tourBtn: "Book Founder Site Tour",
+    finalH: "Questions? Talk to a DeliWer partner now.",
+    finalP: "Available on Telegram & WhatsApp — UAE business hours + all global time zones.",
+    finalTgNote: "Telegram preferred for CIS · Russia · China · Southeast Asia · Europe",
+    tgPartner: "Telegram a Partner", waPartner: "WhatsApp a Partner",
+    shareBtn: "Share with Brokers", shareWa: "Share on WhatsApp",
+    navEoi: "Register EOI",
+  },
+  ru: {
+    flag: "🇷🇺", label: "RU",
+    heroTagline: "Ваше окно закрывается скоро.",
+    heroDesc: "Шесть башен. 325 м береговой линии Аравийского залива. Панорамный вид 360°.",
+    heroDesc2: "AED 20K фиксирует вашу квартиру по схеме 30/70. Сдача 2030. Брокеры DeliWer получают приоритетный доступ до публичного запуска.",
+    num1BR: "1-комн. от", numBook: "Залог", numPlan: "Схема 30/70", numDel: "Сдача",
+    ctaEoi: "Зарегистрировать интерес", ctaTg: "Telegram", ctaWa: "WhatsApp",
+    tgNote: "Telegram — выбор для СНГ и России",
+    tourBtn: "Виртуальный тур с основателем",
+    finalH: "Вопросы? Свяжитесь с партнёром DeliWer.",
+    finalP: "Доступны в Telegram и WhatsApp — ОАЭ и все мировые часовые пояса.",
+    finalTgNote: "Telegram — предпочтительный канал для СНГ · России · Европы",
+    tgPartner: "Написать в Telegram", waPartner: "Написать в WhatsApp",
+    shareBtn: "Поделиться с брокерами", shareWa: "Поделиться в WhatsApp",
+    navEoi: "Регистрация",
+  },
+  zh: {
+    flag: "🇨🇳", label: "中文",
+    heroTagline: "机会窗口即将关闭。",
+    heroDesc: "六座塔楼，325米阿拉伯湾海岸线，360°无遮挡海景。",
+    heroDesc2: "仅需 AED 2万 即可锁定房源，30/70付款计划，2030年竣工交付。DeliWer 经纪人享有优先认购权。",
+    num1BR: "一居室起价", numBook: "预订金", numPlan: "30/70付款", numDel: "竣工",
+    ctaEoi: "登记意向书", ctaTg: "Telegram", ctaWa: "WhatsApp",
+    tgNote: "Telegram 是亚洲客户首选渠道",
+    tourBtn: "预约创始人现场导览",
+    finalH: "有疑问？立即联系 DeliWer 合作伙伴。",
+    finalP: "Telegram 和 WhatsApp 均可联系 — 覆盖全球所有时区。",
+    finalTgNote: "Telegram — 亚洲 · 东南亚 · 欧洲首选渠道",
+    tgPartner: "Telegram 联系", waPartner: "WhatsApp 联系",
+    shareBtn: "分享给经纪人", shareWa: "WhatsApp 分享",
+    navEoi: "登记意向",
+  },
+} as const;
+
+type Strings = typeof STRINGS.en;
+
+const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; s: Strings }>({
+  lang: "en", setLang: () => {}, s: STRINGS.en,
+});
 
 const UNIT_TYPES = ["1 Bedroom – from AED 849K", "2 Bedrooms – from AED 1.384M", "3 Bedrooms – from AED 2.249M", "4 Bedroom / Penthouse"];
 const BUDGETS = ["AED 750K – 1.2M", "AED 1.2M – 1.8M", "AED 1.8M – 2.5M", "AED 2.5M – 4M", "AED 4M+"];
@@ -72,17 +132,42 @@ const LOCATION_FACTS = [
 ];
 
 // ── DeliWer Lifestyle nav — Mamzar only ──────────────────────────────────────
-const LIFESTYLE_NAV = [
-  { label: "The Project",  href: "#overview"  },
-  { label: "Units",        href: "#units"      },
-  { label: "Virtual Tour", href: "#tour"       },
-  { label: "Location",     href: "#location"   },
-  { label: "For Brokers",  href: "#brokers"    },
-  { label: "Register EOI", href: "#eoi"        },
+const NAV_ITEMS_EN = [
+  { label: "The Project", href: "#overview" },
+  { label: "Units",       href: "#units"    },
+  { label: "Tour",        href: "#tour"     },
+  { label: "Location",    href: "#location" },
+  { label: "Brokers",     href: "#brokers"  },
 ];
+
+const LANG_FLAGS: Record<Lang, string> = { en: "🇬🇧", ru: "🇷🇺", zh: "🇨🇳" };
+const LANG_LABELS: Record<Lang, string> = { en: "EN", ru: "RU", zh: "中文" };
+
+function LangSwitcher({ compact = false }: { compact?: boolean }) {
+  const { lang, setLang } = useContext(LangCtx);
+  const langs: Lang[] = ["en", "ru", "zh"];
+  return (
+    <div className={`flex items-center ${compact ? "gap-0.5" : "gap-1"} bg-slate-900 border border-slate-800 rounded-lg p-0.5`}>
+      {langs.map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className={`px-2 py-1 text-[10px] font-black rounded-md transition-all ${
+            lang === l
+              ? "bg-cyan-500 text-slate-950"
+              : "text-slate-400 hover:text-white"
+          }`}
+        >
+          {LANG_FLAGS[l]} {LANG_LABELS[l]}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function MamzarNav() {
   const [open, setOpen] = useState(false);
+  const { s } = useContext(LangCtx);
 
   const go = (href: string) => {
     setOpen(false);
@@ -93,42 +178,58 @@ function MamzarNav() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-cyan-900/40 bg-slate-950/95 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 gap-2">
         {/* Brand */}
         <a href="/" className="flex items-center gap-2 shrink-0">
           <Waves className="w-5 h-5 text-cyan-400" />
           <span className="font-black text-white tracking-tight">DeliWer</span>
-          <span className="hidden sm:inline-block bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ml-1">
+          <span className="hidden sm:inline-block bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
             Lifestyle
           </span>
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
-          {LIFESTYLE_NAV.map((item) => (
+        {/* Desktop section links */}
+        <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+          {NAV_ITEMS_EN.map((item) => (
             <button
               key={item.href}
               onClick={() => go(item.href)}
-              className={`px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg transition-colors ${
-                item.label === "Register EOI"
-                  ? "bg-cyan-500 hover:bg-cyan-400 text-slate-950"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
-              }`}
+              className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
             >
               {item.label}
             </button>
           ))}
+          <button
+            onClick={() => go("#eoi")}
+            className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 transition-colors ml-1"
+          >
+            {s.navEoi}
+          </button>
         </div>
 
-        {/* Mobile: Telegram + hamburger */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* Desktop right: lang switcher + channels */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          <LangSwitcher compact />
           <Button
             size="sm"
-            className="bg-sky-500 hover:bg-sky-400 text-white font-black text-xs"
+            variant="outline"
+            className="border-sky-500/50 text-sky-400 hover:bg-sky-500/10 font-black"
             onClick={() => window.open(TG, "_blank")}
           >
-            <SiTelegram className="w-3.5 h-3.5 mr-1" /> Telegram
+            <SiTelegram className="w-3.5 h-3.5 mr-1.5" /> {s.ctaTg}
           </Button>
+          <Button
+            size="sm"
+            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
+            onClick={() => window.open(waUrl("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch."), "_blank")}
+          >
+            <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> {s.ctaWa}
+          </Button>
+        </div>
+
+        {/* Mobile: lang + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <LangSwitcher compact />
           <button
             className="p-2 text-slate-400 hover:text-white"
             onClick={() => setOpen(!open)}
@@ -137,43 +238,36 @@ function MamzarNav() {
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-
-        {/* Desktop: Telegram + WhatsApp */}
-        <div className="hidden md:flex items-center gap-2 ml-2">
-          <Button
-            size="sm"
-            variant="outline"
-            className="border-sky-500/50 text-sky-400 hover:bg-sky-500/10 font-black"
-            onClick={() => window.open(TG, "_blank")}
-          >
-            <SiTelegram className="w-3.5 h-3.5 mr-1.5" /> Telegram
-          </Button>
-          <Button
-            size="sm"
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
-            onClick={() => window.open(`https://wa.me/971523906019?text=${encodeURIComponent("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch.")}`, "_blank")}
-          >
-            <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> WhatsApp
-          </Button>
-        </div>
       </div>
 
       {/* Mobile drawer */}
       {open && (
         <div className="md:hidden border-t border-cyan-900/30 bg-slate-950 px-4 py-3 space-y-1">
-          {LIFESTYLE_NAV.map((item) => (
+          {NAV_ITEMS_EN.map((item) => (
             <button
               key={item.href}
               onClick={() => go(item.href)}
-              className={`w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl transition-colors ${
-                item.label === "Register EOI"
-                  ? "bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
-              }`}
+              className="w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
             >
               {item.label}
             </button>
           ))}
+          <button
+            onClick={() => go("#eoi")}
+            className="w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition-colors"
+          >
+            {s.navEoi}
+          </button>
+          <div className="flex gap-2 pt-2">
+            <Button size="sm" className="flex-1 bg-sky-500 hover:bg-sky-400 text-white font-black"
+              onClick={() => { setOpen(false); window.open(TG, "_blank"); }}>
+              <SiTelegram className="w-3.5 h-3.5 mr-1" /> {s.ctaTg}
+            </Button>
+            <Button size="sm" className="flex-1 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
+              onClick={() => { setOpen(false); window.open(waUrl("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach pre-launch."), "_blank"); }}>
+              <MessageCircle className="w-3.5 h-3.5 mr-1" /> {s.ctaWa}
+            </Button>
+          </div>
         </div>
       )}
     </nav>
@@ -225,6 +319,8 @@ export default function MamzarBeach() {
   const [form, setForm] = useState<EoiForm>(EMPTY);
   const [submitted, setSubmitted] = useState(false);
   const [eoiRef, setEoiRef] = useState("");
+  const [lang, setLang] = useState<Lang>("en");
+  const s = STRINGS[lang];
 
   const { data: stats } = useQuery({
     queryKey: ["/api/mamzar/stats"],
@@ -262,6 +358,7 @@ export default function MamzarBeach() {
   const shareMsg = `🏖️ Pre-Launch Opportunity — Alef Linar, Mamzar Beach Sharjah\n\n• 5 towers on a 325m waterfront\n• 360° Arabian Gulf views\n• 1BR from AED 849K | 30/70 plan | AED 20K to book\n• Ready 2030 | 9 min from Dubai Airport\n\nRegister your EOI now: ${window.location.href}\n\nVia DeliWer Real Estate`;
 
   return (
+    <LangCtx.Provider value={{ lang, setLang, s }}>
     <div className="min-h-screen bg-slate-950 text-white font-sans">
       <Helmet>
         <title>Alef Linar Mamzar Beach — Pre-Launch | DeliWer Real Estate</title>
@@ -314,22 +411,22 @@ export default function MamzarBeach() {
               <br />
               <span className="text-white">Mamzar Beach</span>
               <br />
-              <span className="text-slate-300 text-3xl sm:text-4xl lg:text-5xl font-bold">Your window closes soon.</span>
+              <span className="text-slate-300 text-3xl sm:text-4xl lg:text-5xl font-bold">{s.heroTagline}</span>
             </h1>
 
             <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mb-8 leading-relaxed">
-              Six towers. 325m of Arabian Gulf waterfront. 360° uninterrupted sea views.{" "}
-              <span className="text-white font-semibold">AED 20K secures your unit</span> on a 30/70 plan. 
-              Delivery 2030. DeliWer brokers get first access — now, before the public launch.
+              {s.heroDesc}{" "}
+              <span className="text-white font-semibold">AED 20K</span>{" "}
+              {s.heroDesc2}
             </p>
 
             {/* Key numbers bar */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
               {[
-                { v: "AED 849K", l: "1BR from" },
-                { v: "AED 20K", l: "Booking fee" },
-                { v: "30 / 70", l: "Payment plan" },
-                { v: "2030", l: "Delivery" },
+                { v: "AED 849K", l: s.num1BR },
+                { v: "AED 20K",  l: s.numBook },
+                { v: "30 / 70", l: s.numPlan },
+                { v: "2030",    l: s.numDel },
               ].map(({ v, l }) => (
                 <div key={l} className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 px-4 py-3 text-center">
                   <div className="text-xl sm:text-2xl font-black text-cyan-300">{v}</div>
@@ -345,7 +442,7 @@ export default function MamzarBeach() {
                 onClick={() => scrollTo("eoi")}
               >
                 <BadgeCheck className="w-5 h-5 mr-2" />
-                Register My EOI
+                {s.ctaEoi}
               </Button>
               <Button
                 size="lg"
@@ -354,7 +451,7 @@ export default function MamzarBeach() {
                 onClick={() => window.open(TG, "_blank")}
               >
                 <SiTelegram className="w-4 h-4 mr-2" />
-                Telegram
+                {s.ctaTg}
               </Button>
               <Button
                 size="lg"
@@ -363,11 +460,11 @@ export default function MamzarBeach() {
                 onClick={() => window.open(waUrl("Hi DeliWer — I want to book a virtual site tour for Alef Linar, Mamzar Beach."), "_blank")}
               >
                 <MessageCircle className="w-4 h-4 mr-2" />
-                WhatsApp
+                {s.ctaWa}
               </Button>
             </div>
             <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mt-1">
-              Telegram preferred for CIS · Russia · Asia · Global
+              {s.tgNote}
             </p>
           </div>
         </div>
@@ -927,13 +1024,13 @@ export default function MamzarBeach() {
       <section className="py-16 border-t border-slate-900 bg-gradient-to-r from-cyan-950/30 via-slate-950 to-blue-950/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-            Questions? Talk to a DeliWer partner now.
+            {s.finalH}
           </h3>
           <p className="text-slate-400 mb-2">
-            Available on Telegram &amp; WhatsApp — UAE business hours + all global time zones.
+            {s.finalP}
           </p>
           <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mb-6">
-            Telegram preferred for CIS · Russia · China · Southeast Asia · Europe
+            {s.finalTgNote}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Button
@@ -941,14 +1038,14 @@ export default function MamzarBeach() {
               className="h-12 px-6 bg-sky-500 hover:bg-sky-400 text-white font-black"
               onClick={() => window.open(TG, "_blank")}
             >
-              <SiTelegram className="w-4 h-4 mr-2" /> Telegram a Partner
+              <SiTelegram className="w-4 h-4 mr-2" /> {s.tgPartner}
             </Button>
             <Button
               size="lg"
               className="h-12 px-6 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black"
               onClick={() => window.open(waUrl("Hi DeliWer — I want to learn more about Alef Linar, Mamzar Beach Sharjah and the broker EOI programme."), "_blank")}
             >
-              <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp a Partner
+              <MessageCircle className="w-4 h-4 mr-2" /> {s.waPartner}
             </Button>
             <Button
               size="lg"
@@ -999,5 +1096,6 @@ export default function MamzarBeach() {
         </div>
       </footer>
     </div>
+    </LangCtx.Provider>
   );
 }
