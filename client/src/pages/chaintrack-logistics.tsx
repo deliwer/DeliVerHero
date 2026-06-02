@@ -255,12 +255,47 @@ export default function ChainTrackLogistics() {
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free to join. Earn 5% commission per shipment." }
       },
       {
+        "@type": "Service",
+        "name": "ChainTrack CIS Electronics Air Corridors",
+        "serviceType": "Air Cargo — Electronics & Refurbished iPhones",
+        "provider": { "@id": "https://logistics.chaintrack.com/#organization" },
+        "description": "Scheduled and charter air cargo from Dubai DXB/DWC to all six CIS gateway airports: Baku (GYD), Almaty (ALA), Tashkent (TAS), Moscow (SVO), Tbilisi (TBS), Bishkek (FRU). Specialising in refurbished iPhones, consumer electronics, and recommerce inventory.",
+        "areaServed": [
+          { "@type": "Country", "name": "Azerbaijan" },
+          { "@type": "Country", "name": "Kazakhstan" },
+          { "@type": "Country", "name": "Uzbekistan" },
+          { "@type": "Country", "name": "Russia" },
+          { "@type": "Country", "name": "Georgia" },
+          { "@type": "Country", "name": "Kyrgyzstan" }
+        ],
+        "offers": [
+          { "@type": "Offer", "name": "Dubai → Baku (GYD)", "description": "24h transit. DXB/DWC to Heydar Aliyev International.", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Dubai → Almaty (ALA)", "description": "36h transit. DXB/DWC to Almaty International. DAFZA-cleared electronics.", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Dubai → Tashkent (TAS)", "description": "36h transit. DXB/DWC to Islam Karimov International.", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Dubai → Moscow (SVO)", "description": "48h transit. DXB/DWC to Sheremetyevo International.", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Dubai → Tbilisi (TBS)", "description": "24h transit. DXB/DWC to Tbilisi International.", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Dubai → Bishkek (FRU)", "description": "48h transit. DXB/DWC to Manas International.", "priceCurrency": "USD" }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.deliwer.com/" },
+          { "@type": "ListItem", "position": 2, "name": "ChainTrack", "item": "https://www.deliwer.com/chaintrack" },
+          { "@type": "ListItem", "position": 3, "name": "ChainTrack Logistics", "item": "https://logistics.chaintrack.com" }
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": "What is the Dubai to Gawadar air charter route?", "acceptedAnswer": { "@type": "Answer", "text": "ChainTrack Logistics operates dedicated air charter flights from Dubai World Central (DWC) to Gawadar CPEC Free Zone in Pakistan. The transit takes under 4 hours, bypasses the Strait of Hormuz entirely, and connects to the INSTC and CPEC corridors for onward delivery to Central Asia, China, and Russia." } },
           { "@type": "Question", "name": "How do I become a ChainTrack freight broker?", "acceptedAnswer": { "@type": "Answer", "text": "Join free via WhatsApp at +971523906019. No logistics experience required. Send us a shipper enquiry and earn 5% gross commission on every confirmed shipment. Corridor Captains who build a sub-broker network earn an additional 1% override on all sub-broker shipments." } },
           { "@type": "Question", "name": "What is the CPEC Free Zone advantage for cargo?", "acceptedAnswer": { "@type": "Answer", "text": "Cargo transiting through the Gawadar CPEC Free Zone benefits from zero re-export duty, expedited customs handling, and direct connectivity to the INSTC (International North–South Transport Corridor) and CPEC rail network to China. This eliminates cost disadvantages compared to Hormuz-routed sea freight." } },
-          { "@type": "Question", "name": "Can I operate as a freight broker without being in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack Logistics is built as a fully remote, asset-light model. Brokers operate via WhatsApp from anywhere in the world — Tashkent, London, Toronto, or Karachi. You send us the shipper enquiry; we handle quoting, routing, customs, documentation, and delivery." } }
+          { "@type": "Question", "name": "Can I operate as a freight broker without being in Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack Logistics is built as a fully remote, asset-light model. Brokers operate via WhatsApp from anywhere in the world — Tashkent, London, Toronto, or Karachi. You send us the shipper enquiry; we handle quoting, routing, customs, documentation, and delivery." } },
+          { "@type": "Question", "name": "How long does air freight from Dubai to CIS countries take?", "acceptedAnswer": { "@type": "Answer", "text": "Typical transit times from Dubai DXB/DWC: Baku (GYD) 24 hours, Tbilisi (TBS) 24 hours, Almaty (ALA) 36 hours, Tashkent (TAS) 36 hours, Moscow (SVO) 48 hours, Bishkek (FRU) 48 hours. These are door-to-airport times including DAFZA clearance. The INSTC corridor has reduced transit times by up to 40% versus sea routing." } },
+          { "@type": "Question", "name": "Can I ship iPhone cargo from Dubai to Baku?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack ships refurbished iPhones and consumer electronics from Dubai to Baku (Heydar Aliyev International, GYD) on a 24-hour transit. All goods are DAFZA-cleared in Dubai before departure. Azerbaijan customs documentation and ASAN import compliance are handled by our broker network in Baku." } },
+          { "@type": "Question", "name": "What is the INSTC air corridor and how does it benefit UAE-CIS trade?", "acceptedAnswer": { "@type": "Answer", "text": "The International North–South Transport Corridor (INSTC) is a 7,200 km multimodal route linking India, Iran, Azerbaijan, Russia, and Central Asia. ChainTrack uses the air segment of INSTC — DXB/DWC through Gulf gateways to Baku, then onward — reducing transit time to Russia and Central Asia by 30–40% versus sea routes through the Suez Canal. It has become the primary corridor for electronics re-export from the UAE since 2022." } },
+          { "@type": "Question", "name": "Does ChainTrack handle customs documentation for electronics exports from Dubai?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. ChainTrack's broker network handles all customs documentation for electronics exports from DAFZA and Commercity free zones in Dubai. This includes commercial invoices, packing lists, certificates of origin, ESMA compliance paperwork, and destination country import declarations for CIS, South Asia, and African markets." } }
         ]
       }
     ]
