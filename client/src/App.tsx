@@ -177,6 +177,12 @@ const EjariCancellationDubai = lazy(() => import("@/pages/ejari-cancellation-dub
 const BrokerPartnerPage = lazy(() => import("@/pages/broker-partner"));
 const BrokerOnboardPage = lazy(() => import("@/pages/broker-onboard"));
 const CisElectronicsPage = lazy(() => import("@/pages/cis-electronics"));
+const CisAzerbaijanPage = lazy(() => import("@/pages/cis-azerbaijan"));
+const CisKazakhstanPage = lazy(() => import("@/pages/cis-kazakhstan"));
+const CisUzbekistanPage = lazy(() => import("@/pages/cis-uzbekistan"));
+const CisRussiaPage = lazy(() => import("@/pages/cis-russia"));
+const CisGeorgiaPage = lazy(() => import("@/pages/cis-georgia"));
+const CisKyrgyzstanPage = lazy(() => import("@/pages/cis-kyrgyzstan"));
 const BrokerSuccessPage = lazy(() => import("@/pages/broker-success"));
 const RefRedirectPage = lazy(() => import("@/pages/ref-redirect"));
 const HowToRegisterEjari = lazy(() => import("@/pages/how-to-register-ejari"));
@@ -594,6 +600,12 @@ function Router() {
         <Route path="/broker-onboard" component={BrokerOnboardPage} />
         <Route path="/broker-onboarding" component={BrokerOnboardPage} />
         <Route path="/cis-electronics" component={CisElectronicsPage} />
+        <Route path="/cis-azerbaijan" component={CisAzerbaijanPage} />
+        <Route path="/cis-kazakhstan" component={CisKazakhstanPage} />
+        <Route path="/cis-uzbekistan" component={CisUzbekistanPage} />
+        <Route path="/cis-russia" component={CisRussiaPage} />
+        <Route path="/cis-georgia" component={CisGeorgiaPage} />
+        <Route path="/cis-kyrgyzstan" component={CisKyrgyzstanPage} />
         <Route path="/join-as-broker" component={BrokerOnboardPage} />
         <Route path="/broker-earn" component={BrokerOnboardPage} />
         <Route path="/broker-success" component={BrokerSuccessPage} />

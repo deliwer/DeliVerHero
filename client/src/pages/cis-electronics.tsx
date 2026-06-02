@@ -133,10 +133,10 @@ const CITATIONS = [
   },
   {
     icon: Globe,
-    title: "Wesellcellular & KT Corp Supplier Intelligence",
-    body: "US certified pre-owned (CPO) iPhones from carriers like Wesellcellular and Korean carriers (KT Corp, SK Telecom) are the primary source of Grade A supply entering Dubai's re-export ecosystem. These devices carry original carrier warranties and meet DAFZA ESMA certification requirements.",
+    title: "WSC & KTC Supplier Intelligence",
+    body: "US certified pre-owned (CPO) iPhones from carriers like WSC and Korean carriers (KTC, SK Telecom) are the primary source of Grade A supply entering Dubai's re-export ecosystem. These devices carry original carrier warranties and meet DAFZA ESMA certification requirements.",
     sources: [
-      { label: "Wesellcellular B2B Trade Platform", url: "https://www.wesellcellular.com" },
+      { label: "WSC B2B Trade Platform", url: "https://www.wesellcellular.com" },
       { label: "ESMA UAE Electronics Standards", url: "https://www.esma.gov.ae/en-us/Pages/Products/Electronics.aspx" },
     ],
   },
@@ -171,7 +171,7 @@ export default function CisElectronicsPage() {
       <Helmet>
         <title>Dubai Refurbished iPhone &amp; Electronics Supply for CIS Markets | ChainTrack by DeliWer</title>
         <meta name="description" content="Source refurbished iPhones, smartphones, laptops and consumer electronics from Dubai for CIS markets — Azerbaijan, Kazakhstan, Uzbekistan, Russia. Remote inspection, air cargo &amp; charter logistics via ChainTrack by DeliWer. Cited market data: FCSA, IDC, DAFZA, UNCTAD." />
-        <meta name="keywords" content="Dubai refurbished iPhone, electronics supply CIS, used phones Dubai export, Azerbaijan electronics import, Kazakhstan smartphones Dubai, Uzbekistan refurbished devices, air cargo Dubai CIS, ChainTrack logistics, Dubai electronics broker, DAFZA re-export, INSTC corridor electronics, Wesellcellular Dubai, KT Corp iPhone UAE" />
+        <meta name="keywords" content="Dubai refurbished iPhone, electronics supply CIS, used phones Dubai export, Azerbaijan electronics import, Kazakhstan smartphones Dubai, Uzbekistan refurbished devices, air cargo Dubai CIS, ChainTrack logistics, Dubai electronics broker, DAFZA re-export, INSTC corridor electronics, WSC Dubai, KTC iPhone UAE" />
         <meta property="og:title" content="Dubai Refurbished Electronics Supply for CIS Markets | ChainTrack" />
         <meta property="og:description" content="Access Dubai's refurbished electronics supply chain. iPhones, laptops, and consumer devices for CIS importers — broker partnerships, remote inspection, charter logistics. Join WhatsApp community." />
         <meta property="og:url" content="https://www.deliwer.com/cis-electronics" />
@@ -216,7 +216,7 @@ export default function CisElectronicsPage() {
               "name": "What grades of refurbished iPhones are available from Dubai?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "ChainTrack sources Grade A+ (Like New), Grade A (Excellent — minor cosmetic marks), and Grade B (Good — visible wear, fully functional) devices. Devices from US carriers (Wesellcellular) and Korean carriers (KT Corp, SK Telecom) are certified pre-owned (CPO) and meet UAE ESMA electronics standards. Every lot undergoes remote video inspection and grading verification at DAFZA before payment is released."
+                "text": "ChainTrack sources Grade A+ (Like New), Grade A (Excellent — minor cosmetic marks), and Grade B (Good — visible wear, fully functional) devices. Devices from US carriers (WSC) and Korean carriers (KTC, SK Telecom) are certified pre-owned (CPO) and meet UAE ESMA electronics standards. Every lot undergoes remote video inspection and grading verification at DAFZA before payment is released."
               }
             },
             {
@@ -457,23 +457,37 @@ export default function CisElectronicsPage() {
 
       {/* ── TARGET MARKETS ── */}
       <section className="py-24 px-6 border-b border-slate-800">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <Section>
             <Item>
               <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30 mb-4">Target Markets</Badge>
             </Item>
             <Item>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-8">
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
                 We Ship Into <span className="text-emerald-400">These Markets</span>
               </h2>
+              <p className="text-slate-400 text-sm mb-10">Select a country for sourcing details, air routes, customs info and country-specific FAQs.</p>
             </Item>
             <Item>
-              <div className="flex flex-wrap justify-center gap-3">
-                {MARKETS.map((m) => (
-                  <div key={m.name} className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-emerald-500/25 bg-emerald-500/8 text-emerald-300 font-bold text-sm">
-                    <span>{m.flag}</span>
-                    {m.name}
-                  </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {[
+                  { flag: "🇦🇿", name: "Azerbaijan", sub: "Baku · GYD · 24h", slug: "/cis-azerbaijan", accent: "emerald" },
+                  { flag: "🇰🇿", name: "Kazakhstan", sub: "Almaty · ALA · 36–60h", slug: "/cis-kazakhstan", accent: "sky" },
+                  { flag: "🇺🇿", name: "Uzbekistan", sub: "Tashkent · TAS · 36–72h", slug: "/cis-uzbekistan", accent: "violet" },
+                  { flag: "🇷🇺", name: "Russia", sub: "Moscow · SVO · 48–96h", slug: "/cis-russia", accent: "amber" },
+                  { flag: "🇬🇪", name: "Georgia", sub: "Tbilisi · TBS · 24–48h", slug: "/cis-georgia", accent: "rose" },
+                  { flag: "🇰🇬", name: "Kyrgyzstan", sub: "Bishkek · FRU · 48–72h", slug: "/cis-kyrgyzstan", accent: "cyan" },
+                ].map((m) => (
+                  <Link key={m.name} href={m.slug}>
+                    <div className="group rounded-xl border border-slate-700 hover:border-emerald-500/50 bg-slate-900 hover:bg-slate-800 transition-all duration-200 p-5 text-left cursor-pointer">
+                      <div className="text-3xl mb-2">{m.flag}</div>
+                      <div className="font-black text-white text-sm mb-0.5 group-hover:text-emerald-300 transition-colors">{m.name}</div>
+                      <div className="text-slate-500 text-[11px] mb-3">{m.sub}</div>
+                      <div className="flex items-center gap-1 text-emerald-400 text-[11px] font-bold uppercase tracking-wider group-hover:gap-2 transition-all">
+                        View sourcing guide <ChevronRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </Item>

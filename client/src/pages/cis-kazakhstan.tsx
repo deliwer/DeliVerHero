@@ -1,0 +1,60 @@
+import CisCountryPage, { CountryPageConfig } from "./cis-country-page";
+import { Plane, Package, Shield, Zap, Globe, TrendingUp } from "lucide-react";
+
+const config: CountryPageConfig = {
+  country: "Kazakhstan",
+  flag: "🇰🇿",
+  capital: "Almaty",
+  airport: "Almaty International",
+  airportCode: "ALA",
+  slug: "cis-kazakhstan",
+  currency: "KZT",
+  region: "Central Asia · CIS",
+  transitTime: "36–60 hours",
+  tagline: "Dubai's Largest CIS Electronics Market",
+  heroDesc: "Kazakhstan is ChainTrack's highest-volume CIS destination — the largest refurbished iPhone market in Central Asia. The INSTC corridor has reduced Dubai–Almaty transit time by up to 40%, making Kazakhstan a tier-1 ChainTrack export market.",
+  stats: [
+    { value: "38%", label: "YoY refurbished iPhone market growth — CIS leader", color: "text-emerald-400" },
+    { value: "40%", label: "Faster Dubai–Almaty transit via INSTC vs sea routes (UNCTAD)", color: "text-sky-400" },
+    { value: "18M+", label: "Active smartphone users in Kazakhstan", color: "text-violet-400" },
+    { value: "ALA", label: "Almaty International — primary cargo gateway", color: "text-amber-400" },
+  ],
+  highlights: [
+    { icon: Plane, title: "INSTC Corridor Advantage", desc: "The International North–South Transport Corridor cuts Dubai–Almaty transit by up to 40% vs sea routing. Air freight averages 36–60 hours." },
+    { icon: TrendingUp, title: "Largest CIS Refurbished Market", desc: "Kazakhstan's refurbished iPhone demand grew 38% YoY in 2023. The Almaty and Nur-Sultan markets are ChainTrack's top CIS volume destinations." },
+    { icon: Globe, title: "DAFZA Dubai Re-Export Hub", desc: "Dubai processes $3.2B+ in annual electronics re-exports (FCSA 2023). Kazakhstan is a primary destination corridor for Grade A CPO devices." },
+    { icon: Package, title: "50–500+ Unit Wholesale Lots", desc: "ChainTrack serves Kazakhstan buyers from 50-unit reverse auction lots to full container loads (500+ units) with dedicated freight coordination." },
+    { icon: Shield, title: "DAFZA Escrow — Zero Risk", desc: "All transactions are protected by DAFZA escrow. Payment released only after Almaty buyer confirms grading. Full documentation for KZ customs." },
+    { icon: Zap, title: "Broker Programme — KZ", desc: "Almaty-based freight coordinators and resellers can join ChainTrack's broker programme. Revenue-share with no upfront capital required." },
+  ],
+  faqs: [
+    {
+      question: "How do I import wholesale iPhones from Dubai to Kazakhstan?",
+      answer: "Submit your lot requirement via WhatsApp to +971 52 390 6019. ChainTrack broadcasts to Dubai suppliers, who bid in reverse auction. Once you select an offer, DAFZA holds payment in escrow. Goods ship via express air cargo from Dubai DXB to Almaty ALA (36–60 hours). Full customs documentation (commercial invoice, packing list, COO) is provided.",
+    },
+    {
+      question: "What is the INSTC corridor and how does it affect Dubai–Kazakhstan shipping?",
+      answer: "The International North–South Transport Corridor (INSTC) is a multimodal freight route connecting India, Iran, Azerbaijan, Russia and Central Asia. For Dubai–Kazakhstan cargo, INSTC-integrated air and road routes have reduced transit times by up to 40% versus traditional sea-only routing (UNCTAD 2023). ChainTrack uses INSTC-optimised express air routes from DXB to ALA.",
+    },
+    {
+      question: "What customs documentation is required to import electronics to Kazakhstan?",
+      answer: "Kazakhstan is a member of the Eurasian Economic Union (EAEU). Importing electronics requires: commercial invoice, packing list, certificate of origin (DAFZA-issued), and a declaration of conformity (EAC mark). ChainTrack provides full DAFZA export documentation. Buyers should work with a licensed KZ customs broker for in-country clearance. Consult the EAEU unified tariff for current duty rates.",
+    },
+    {
+      question: "Which iPhone models move fastest in the Kazakhstan market?",
+      answer: "iPhone 14 Pro, iPhone 13, and iPhone 15 are the top three fastest-moving models in Kazakhstan's resale market. Grade A refurbished devices priced in USD equivalent (KZT 150,000–220,000 range) have the highest velocity. Almaty grey market is competitive, so DAFZA-documented CPO devices command a premium.",
+    },
+    {
+      question: "Is there a ChainTrack community for Kazakhstan buyers?",
+      answer: "Yes. Join the WhatsApp CIS Buyers Community at https://chat.whatsapp.com/LpJQy8fjkvlKmkt03tgZgG for live lot alerts, Kazakhstan-specific pricing discussions, and peer intelligence. The Telegram channel at https://t.me/chaintracklogistics posts auction alerts and corridor news.",
+    },
+  ],
+  seoTitle: "Buy Wholesale iPhones from Dubai to Kazakhstan | ChainTrack by DeliWer",
+  seoDesc: "Source refurbished iPhones wholesale from Dubai to Almaty, Kazakhstan. INSTC corridor air cargo (36–60h), DAFZA escrow, Grade A/B CPO lots. ChainTrack reverse auction — minimum 50 units.",
+  seoKeywords: "wholesale iPhone Kazakhstan, Dubai to Almaty electronics, refurbished iPhone Kazakhstan import, used iPhone Almaty, INSTC Dubai Kazakhstan cargo, ChainTrack Kazakhstan, ALA air cargo iPhone, DAFZA Kazakhstan, iPhone bulk Almaty, Grade A iPhone Kazakhstan, EAEU iPhone import",
+  canonical: "https://www.deliwer.com/cis-kazakhstan",
+};
+
+export default function CisKazakhstanPage() {
+  return <CisCountryPage config={config} />;
+}

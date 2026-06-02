@@ -17,7 +17,9 @@ import logoPng from "@assets/deliwer logo_1755631850889.png";
 // ── Broker/ChainTrack side paths ─────────────────────────────────────────────
 const CHAINTRACK_PATHS = [
   "/chaintrack", "/wholesale", "/bulk-purchasing", "/bulk-tradein",
-  "/cis-electronics", "/fulfillment", "/membership-plans", "/corporate",
+  "/cis-electronics", "/cis-azerbaijan", "/cis-kazakhstan", "/cis-uzbekistan",
+  "/cis-russia", "/cis-georgia", "/cis-kyrgyzstan",
+  "/fulfillment", "/membership-plans", "/corporate",
   "/cobone-corporate", "/account-management",
   "/partners", "/broker-onboard", "/broker-onboarding", "/brokers",
   "/partner-program", "/partner-dashboard", "/corporate-partner-portal",
@@ -100,7 +102,9 @@ const logisticsNavItems = [
 // Paths that are "deep" inside the ChainTrack phone marketplace (NOT logistics)
 const DEEP_CHAINTRACK_PATHS = [
   "/chaintrack", "/wholesale", "/bulk-purchasing", "/bulk-tradein",
-  "/cis-electronics", "/fulfillment", "/membership-plans", "/corporate",
+  "/cis-electronics", "/cis-azerbaijan", "/cis-kazakhstan", "/cis-uzbekistan",
+  "/cis-russia", "/cis-georgia", "/cis-kyrgyzstan",
+  "/fulfillment", "/membership-plans", "/corporate",
   "/cobone-corporate",
 ];
 

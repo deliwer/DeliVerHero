@@ -12,7 +12,7 @@
     Audience: International freight brokers, shippers, freight forwarders, trade operators, iPhone wholesalers
     Geo: UAE (AE-DU), Pakistan (PK), Kazakhstan (KZ), Uzbekistan (UZ), Azerbaijan (AZ), Russia (RU), China (CN), Korea (KR), USA (US)
     Keywords: Gawadar logistics, Dubai air charter, CPEC corridor, INSTC freight, Hormuz alternative, freight broker earn commission,
-              reverse auction iPhones Dubai, Wesellcellular Dubai, KT Corp iPhone supplier, used iPhone wholesale UAE, DAFZA electronics escrow,
+              reverse auction iPhones Dubai, WSC Dubai, KTC iPhone supplier, used iPhone wholesale UAE, DAFZA electronics escrow,
               B2B iPhone auction, iPhone sourcing Dubai, live inspection video iPhones, XLSX inventory upload ChainTrack
     Last updated: 2026-05-30
   -->
@@ -331,19 +331,70 @@
     <mobile:mobile/>
   </url>
 
-  <!-- ══ SUPPLIER FEED LANDINGS — WESELLCELLULAR / KT CORP ══ -->
+  <!-- ══ SUPPLIER FEED LANDINGS — WSC / KTC ══ -->
   <url>
-    <loc>https://www.deliwer.com/chaintrack/supplier/wesellcellular</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://www.deliwer.com/chaintrack/supplier/wsc</loc>
+    <lastmod>2026-06-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
     <mobile:mobile/>
   </url>
   <url>
-    <loc>https://www.deliwer.com/chaintrack/supplier/kt-corp</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://www.deliwer.com/chaintrack/supplier/ktc</loc>
+    <lastmod>2026-06-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+
+  <!-- ══ CIS COUNTRY ELECTRONICS PAGES ══ -->
+  <url>
+    <loc>https://www.deliwer.com/cis-electronics</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-azerbaijan</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-kazakhstan</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-uzbekistan</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-russia</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-georgia</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+    <mobile:mobile/>
+  </url>
+  <url>
+    <loc>https://www.deliwer.com/cis-kyrgyzstan</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
     <mobile:mobile/>
   </url>
 
