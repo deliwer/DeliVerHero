@@ -597,6 +597,160 @@ export default function BulkPurchasingPage() {
         </div>
       </section>
 
+      {/* ── PHONE FLIPPER / BROKER PROGRAMME ── */}
+      <section className="py-16 px-4 bg-[#0A0F1E] border-t border-[#1E293B]" id="broker-programme">
+        <div className="max-w-6xl mx-auto">
+
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/30 mb-4">
+                <Star className="w-3.5 h-3.5 text-purple-400" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-purple-300">500+ Units · High-Volume Buyers & Resellers</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
+                Phone Flipper &amp;
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400"> Broker Programme</span>
+              </h2>
+              <p className="text-slate-400 max-w-xl leading-relaxed text-sm">
+                If you're moving 500+ units per month — as a reseller, distributor, or buying-group organiser — you qualify for the ChainTrack Broker Programme. Dedicated account manager, priority lot allocation, tiered pricing, and a referral commission on every order you bring in.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <a
+                href={waLink("[SOURCE: wholesale/broker-programme]\n*BROKER PROGRAMME APPLICATION*\n\nI move 500+ units/month and want to apply for the ChainTrack Phone Flipper / Broker Programme.\n\nCompany:\nMonthly volume (units):\nMarkets served:\nWhatsApp:")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-broker-apply-wa">
+                  <SiWhatsapp className="w-5 h-5" />
+                  Apply via WhatsApp
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </a>
+            </div>
+          </div>
+
+          {/* Volume tiers */}
+          <div className="grid md:grid-cols-3 gap-5 mb-10">
+            {[
+              {
+                tier: "Flipper",
+                volume: "500–999 units/mo",
+                color: "border-amber-500/40 bg-amber-500/5",
+                badge: "text-amber-400 bg-amber-500/15 border-amber-500/30",
+                perks: [
+                  "Dedicated WhatsApp account manager",
+                  "24h priority response on all inquiries",
+                  "Fixed-price lots reserved before public listing",
+                  "2% referral commission on referred orders",
+                ],
+              },
+              {
+                tier: "Broker",
+                volume: "1,000–2,499 units/mo",
+                color: "border-purple-500/40 bg-purple-500/5",
+                badge: "text-purple-400 bg-purple-500/15 border-purple-500/30",
+                highlight: true,
+                perks: [
+                  "Everything in Flipper tier",
+                  "Monthly volume allocation guaranteed",
+                  "Custom BOQ pricing — 8–15% below Flipper rate",
+                  "4% referral commission + co-branding on quotes",
+                ],
+              },
+              {
+                tier: "Master Broker",
+                volume: "2,500+ units/mo",
+                color: "border-pink-500/40 bg-pink-500/5",
+                badge: "text-pink-400 bg-pink-500/15 border-pink-500/30",
+                perks: [
+                  "Everything in Broker tier",
+                  "Direct supplier introductions — remove intermediary",
+                  "Container-load freight coordination included",
+                  "6% commission + equity programme eligibility",
+                ],
+              },
+            ].map((t) => (
+              <div key={t.tier} className={`relative rounded-2xl border-2 p-6 ${t.color} ${t.highlight ? "ring-2 ring-purple-500/30" : ""}`}>
+                {t.highlight && (
+                  <div className="absolute -top-3 left-6">
+                    <span className="text-[9px] font-black uppercase tracking-widest bg-purple-600 text-white px-3 py-1 rounded-full">Most Popular</span>
+                  </div>
+                )}
+                <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[10px] font-black uppercase tracking-widest mb-4 ${t.badge}`}>
+                  <Star className="w-3 h-3" />
+                  {t.tier}
+                </div>
+                <div className="font-black text-white text-lg mb-1">{t.tier} Tier</div>
+                <div className="text-xs text-slate-500 mb-5">{t.volume}</div>
+                <ul className="space-y-2.5">
+                  {t.perks.map((p, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs text-slate-300">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Programme benefits strip */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {[
+              { icon: Zap, color: "text-amber-400", title: "Priority Allocation", desc: "First access to new lots before they're listed publicly. You see deals before the market does." },
+              { icon: Banknote, color: "text-emerald-400", title: "Referral Commissions", desc: "Earn 2–6% on every order placed by buyers you refer. Paid per transaction, no minimums." },
+              { icon: Users, color: "text-cyan-400", title: "Dedicated Manager", desc: "One WhatsApp contact who knows your buying profile and proactively sources what you move." },
+              { icon: Globe, color: "text-purple-400", title: "CIS Export Support", desc: "Full customs docs, RODTEP exemptions, and freight to Baku, Almaty, Tashkent — handled for you." },
+            ].map((b, i) => (
+              <div key={i} className="bg-[#0D1424] border border-[#1E293B] rounded-xl p-4">
+                <b.icon className={`w-5 h-5 mb-3 ${b.color}`} />
+                <div className="font-black text-white text-sm mb-1.5">{b.title}</div>
+                <div className="text-xs text-slate-400 leading-relaxed">{b.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA row */}
+          <div className="bg-[#0D1424] border border-purple-500/20 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div>
+              <div className="font-black text-white mb-1">Ready to apply for the Broker Programme?</div>
+              <p className="text-xs text-slate-400">Message us your monthly volume and the markets you serve. Onboarding takes 24–48 hours.</p>
+            </div>
+            <div className="flex flex-wrap gap-3 shrink-0">
+              <a
+                href={waLink("[SOURCE: wholesale/broker-programme-cta]\n*BROKER PROGRAMME APPLICATION*\n\nCompany:\nMonthly volume (units):\nMarkets (e.g. CIS, Africa, South Asia):\nCurrent supplier(s):\nWhatsApp:")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-broker-cta-wa">
+                  <SiWhatsapp className="w-4 h-4" />
+                  Apply — WhatsApp
+                </Button>
+              </a>
+              <a
+                href={`https://t.me/chaintracklogistics?text=${encodeURIComponent("[SOURCE: wholesale/broker-programme-telegram]\nBROKER PROGRAMME APPLICATION\n\nCompany:\nMonthly volume (units):\nMarkets served:\nWhatsApp:")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="border-sky-500/40 text-sky-300 hover:bg-sky-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-broker-cta-telegram">
+                  <SiTelegram className="w-4 h-4" />
+                  Telegram
+                </Button>
+              </a>
+              <Link href="/brokers">
+                <Button variant="ghost" className="text-slate-400 hover:text-white font-bold uppercase tracking-widest text-xs gap-1.5">
+                  Full Broker Details
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── CIS MARKET LINKS ── */}
       <section className="py-14 px-4 bg-[#0A0F1E] border-t border-[#1E293B]">
         <div className="max-w-6xl mx-auto">
