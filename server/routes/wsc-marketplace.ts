@@ -6,6 +6,11 @@ import { createHash } from "crypto";
 import * as XLSX from "xlsx";
 import { readFileSync } from "fs";
 import { join } from "path";
+import {
+  sendBuyerOfferConfirmation,
+  sendAdminNewOfferAlert,
+  sendBuyerSessionUpdateNotification,
+} from "../services/wsc-email-service";
 
 const router = Router();
 
@@ -268,6 +273,35 @@ router.post("/offers", async (req, res) => {
     );
 
     res.status(201).json({ ...session, itemCount: items.length });
+
+    // Fire-and-forget email notifications (don't block the response)
+    setImmediate(async () => {
+      try {
+        const [buyerRow] = await db.select({
+          email: buyBuyers.email,
+          companyName: buyBuyers.companyName,
+          contactName: buyBuyers.contactName,
+          phone: buyBuyers.phone,
+          country: buyBuyers.country,
+          kycStatus: buyBuyers.kycStatus,
+        }).from(buyBuyers).where(eq(buyBuyers.id, buyer.id)).limit(1);
+
+        if (buyerRow) {
+          await Promise.allSettled([
+            sendBuyerOfferConfirmation(
+              { sessionRef: session.sessionRef, source: session.source, totalItems: session.totalItems, totalValue: session.totalValue, notes: session.notes, createdAt: session.createdAt },
+              buyerRow,
+            ),
+            sendAdminNewOfferAlert(
+              { ...session },
+              { ...buyerRow },
+            ),
+          ]);
+        }
+      } catch (e) {
+        console.error("[WSC Email] Notification error:", e);
+      }
+    });
   } catch (err: any) {
     res.status(400).json({ error: err.message || "Failed to submit offers" });
   }
@@ -441,6 +475,45 @@ router.patch("/admin/sessions/:id/status", async (req, res) => {
       .where(eq(wscOfferSessions.id, req.params.id))
       .returning();
     res.json(updated);
+
+    // Notify buyer when session reaches a final state
+    if (["accepted", "rejected", "partial"].includes(status)) {
+      setImmediate(async () => {
+        try {
+          const sessionWithBuyer = await db.select({
+            sessionRef: wscOfferSessions.sessionRef,
+            source: wscOfferSessions.source,
+            totalItems: wscOfferSessions.totalItems,
+            totalValue: wscOfferSessions.totalValue,
+            status: wscOfferSessions.status,
+            buyerId: wscOfferSessions.buyerId,
+            buyerEmail: buyBuyers.email,
+            buyerCompany: buyBuyers.companyName,
+            buyerContact: buyBuyers.contactName,
+          }).from(wscOfferSessions)
+            .leftJoin(buyBuyers, eq(wscOfferSessions.buyerId, buyBuyers.id))
+            .where(eq(wscOfferSessions.id, req.params.id)).limit(1);
+
+          if (sessionWithBuyer[0]?.buyerEmail) {
+            const s = sessionWithBuyer[0];
+            const offerItems = await db.select({ status: wscOfferItems.status })
+              .from(wscOfferItems).where(eq(wscOfferItems.sessionId, req.params.id));
+            const accepted = offerItems.filter(i => i.status === "accepted").length;
+            const rejected = offerItems.filter(i => i.status === "rejected").length;
+            const countered = offerItems.filter(i => i.status === "counter").length;
+            const pending = offerItems.filter(i => i.status === "pending").length;
+
+            await sendBuyerSessionUpdateNotification(
+              { sessionRef: s.sessionRef, source: s.source, totalItems: s.totalItems, totalValue: s.totalValue, status },
+              { email: s.buyerEmail!, companyName: s.buyerCompany!, contactName: s.buyerContact! },
+              { accepted, rejected, countered, pending }
+            );
+          }
+        } catch (e) {
+          console.error("[WSC Email] Status notify error:", e);
+        }
+      });
+    }
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }
@@ -470,21 +543,52 @@ router.patch("/admin/offer-items/:id", async (req, res) => {
 router.post("/admin/sessions/:id/bulk", async (req, res) => {
   if (!requireAdmin(req, res)) return;
   try {
-    const { action, counterPct } = req.body;
+    const { action } = req.body;
     if (!["accept", "reject"].includes(action)) return res.status(400).json({ error: "action must be accept or reject" });
 
-    if (action === "accept") {
-      await db.update(wscOfferItems).set({ status: "accepted" })
-        .where(and(eq(wscOfferItems.sessionId, req.params.id), eq(wscOfferItems.status, "pending")));
-      await db.update(wscOfferSessions).set({ status: "accepted", updatedAt: new Date() })
-        .where(eq(wscOfferSessions.id, req.params.id));
-    } else {
-      await db.update(wscOfferItems).set({ status: "rejected" })
-        .where(and(eq(wscOfferItems.sessionId, req.params.id), eq(wscOfferItems.status, "pending")));
-      await db.update(wscOfferSessions).set({ status: "rejected", updatedAt: new Date() })
-        .where(eq(wscOfferSessions.id, req.params.id));
-    }
+    const finalStatus = action === "accept" ? "accepted" : "rejected";
+    const lineStatus = action === "accept" ? "accepted" : "rejected";
+
+    await db.update(wscOfferItems).set({ status: lineStatus })
+      .where(and(eq(wscOfferItems.sessionId, req.params.id), eq(wscOfferItems.status, "pending")));
+    await db.update(wscOfferSessions).set({ status: finalStatus, updatedAt: new Date() })
+      .where(eq(wscOfferSessions.id, req.params.id));
+
     res.json({ ok: true, action });
+
+    // Notify buyer of the bulk decision
+    setImmediate(async () => {
+      try {
+        const [sessionRow] = await db.select({
+          sessionRef: wscOfferSessions.sessionRef,
+          source: wscOfferSessions.source,
+          totalItems: wscOfferSessions.totalItems,
+          totalValue: wscOfferSessions.totalValue,
+          buyerEmail: buyBuyers.email,
+          buyerCompany: buyBuyers.companyName,
+          buyerContact: buyBuyers.contactName,
+        }).from(wscOfferSessions)
+          .leftJoin(buyBuyers, eq(wscOfferSessions.buyerId, buyBuyers.id))
+          .where(eq(wscOfferSessions.id, req.params.id)).limit(1);
+
+        if (sessionRow?.buyerEmail) {
+          const allItems = await db.select({ status: wscOfferItems.status })
+            .from(wscOfferItems).where(eq(wscOfferItems.sessionId, req.params.id));
+          const accepted = allItems.filter(i => i.status === "accepted").length;
+          const rejected = allItems.filter(i => i.status === "rejected").length;
+          const countered = allItems.filter(i => i.status === "counter").length;
+          const pending = allItems.filter(i => i.status === "pending").length;
+
+          await sendBuyerSessionUpdateNotification(
+            { sessionRef: sessionRow.sessionRef, source: sessionRow.source, totalItems: sessionRow.totalItems, totalValue: sessionRow.totalValue, status: finalStatus },
+            { email: sessionRow.buyerEmail!, companyName: sessionRow.buyerCompany!, contactName: sessionRow.buyerContact! },
+            { accepted, rejected, countered, pending }
+          );
+        }
+      } catch (e) {
+        console.error("[WSC Email] Bulk notify error:", e);
+      }
+    });
   } catch (err: any) {
     res.status(400).json({ error: err.message });
   }
