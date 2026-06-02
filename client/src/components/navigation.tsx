@@ -85,7 +85,7 @@ const chaintrackNavItems = [
   { path: "/cis-electronics",  label: "CIS Electronics",id: "ct-electronics", icon: Smartphone },
   { path: "/fulfillment",      label: "Fulfillment",    id: "ct-fulfillment", icon: Truck },
   { path: "/corporate",        label: "Corporate",      id: "ct-corporate",   icon: Building2 },
-  { path: "/partners",         label: "Brokers",        id: "ct-back",        icon: Users },
+  { path: "/phone-flippers",   label: "Flippers",       id: "ct-flippers",    icon: Star },
 ];
 
 // ── Dedicated ChainTrack Logistics nav (broker-side only) ────────────────────
