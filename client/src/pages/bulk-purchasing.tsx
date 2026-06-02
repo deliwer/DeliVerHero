@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { SEOMeta } from "@/components/seo-meta";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -80,6 +81,102 @@ export default function BulkPurchasingPage() {
   }
 
   return (
+    <>
+      <SEOMeta
+        title="Bulk iPhone Wholesale Dubai — Fixed Price & Reverse Auction | ChainTrack"
+        description="Buy iPhones in bulk from Dubai's wholesale procurement hub. Fixed-price lots from 25 units, reverse auctions from 50 units. DAFZA escrow on every deal. Deira traders, CIS importers and regional distributors welcome."
+        canonical="https://www.deliwer.com/wholesale"
+        keywords="bulk iPhone wholesale Dubai, iPhone wholesale supplier UAE, iPhone reverse auction Dubai, DAFZA iPhone escrow, buy iPhones bulk UAE, iPhone wholesale Deira, CIS iPhone importer Dubai, BOQ iPhone procurement, bulk iPhone fixed price, iPhone B2B wholesale platform"
+        webPageType="ServicePage"
+        serviceSchema={{
+          name: "ChainTrack Bulk iPhone Wholesale — Dubai",
+          description: "B2B iPhone wholesale procurement platform in Dubai. Fixed-price wholesale lots from 25 units and reverse auction sourcing from 50 units. DAFZA escrow protection on every transaction. Serving Deira traders, CIS importers, and regional distributors.",
+          area: "Dubai, UAE — Global supply corridors: USA, India, China, Europe, CIS",
+        }}
+        breadcrumbs={[
+          { name: "Home", url: "https://www.deliwer.com/" },
+          { name: "ChainTrack Marketplace", url: "https://www.deliwer.com/chaintrack" },
+          { name: "Bulk iPhone Wholesale", url: "https://www.deliwer.com/wholesale" },
+        ]}
+        faqs={[
+          {
+            question: "What is the minimum order quantity for bulk iPhone wholesale in Dubai?",
+            answer: "The minimum order quantity for fixed-price wholesale lots is 25 units. For reverse auction sourcing through ChainTrack, the minimum is 50 units. There is no maximum order cap — container loads and multi-thousand-unit BOQs are handled regularly.",
+          },
+          {
+            question: "How does DAFZA escrow protect my payment?",
+            answer: "All payments are held in a DAFZA (Dubai Airport Free Zone Authority) escrow account. Funds are only released to the supplier after you physically receive the goods and confirm that condition and grading match the invoice. If there is a discrepancy, the escrow is held pending resolution. This applies to every transaction on the platform.",
+          },
+          {
+            question: "What is the difference between fixed-price wholesale and a reverse auction?",
+            answer: "Fixed-price wholesale shows you the exact price per unit upfront — you confirm, pay, and goods ship within 48–72 hours. It is best for shop restocking and urgent orders of 25–100 units. Reverse auctions let you post your requirements and have verified global suppliers compete against each other to offer the lowest price — typically saving 15–35% versus listed prices. Best for orders of 100+ units where per-unit savings multiply.",
+          },
+          {
+            question: "What is a Bill of Quantities (BOQ) and why should I submit one?",
+            answer: "A BOQ is a structured list of every model, storage variant, condition grade and quantity you need. Submitting a BOQ rather than a vague inquiry signals serious buying intent to suppliers, who respond with 12–20% better pricing. It also triggers a formal procurement workflow and results in a signed pro-forma invoice with binding price and delivery terms — not a ballpark quote.",
+          },
+          {
+            question: "How quickly can I receive goods after payment?",
+            answer: "For fixed-price wholesale lots, goods are at DAFZA within 48–72 hours of payment confirmation. For CIS destinations — Baku, Almaty, Tashkent, Tbilisi — allow an additional 24–48 hours for air cargo transit. Reverse auction orders typically arrive within 72 hours to 5 days depending on supplier location and auction close time.",
+          },
+          {
+            question: "Which countries do you ship bulk iPhones to?",
+            answer: "We ship to 34+ countries. Primary corridors include the UAE and all six CIS markets: Azerbaijan (DXB–GYD, ~24h), Kazakhstan (DXB–ALA, ~36h), Uzbekistan (DXB–TAS, ~36h), Russia (DXB–SVO, ~48h), Georgia (DXB–TBS, ~24h), and Kyrgyzstan (DXB–FRU, ~48h). We also serve Pakistan, India, Africa and Southeast Asia.",
+          },
+          {
+            question: "What payment methods are accepted for wholesale purchases?",
+            answer: "Fixed-price wholesale accepts bank wire transfer, cash payment at DAFZA, and DAFZA escrow. Reverse auction orders require DAFZA escrow only — this provides full buyer protection for larger orders. Invoices are issued same day in USD.",
+          },
+          {
+            question: "How do I start the bulk iPhone purchasing process?",
+            answer: "For orders of 25–100 units, use the Quick WhatsApp Inquiry form on this page — select your model, storage, condition and quantity, then tap 'Send via WhatsApp'. For 100+ units or multi-model orders, use the BOQ Builder to list every SKU, then submit — it opens a pre-formatted WhatsApp message directly to our procurement team. Response within 1–4 business hours.",
+          },
+        ]}
+      />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "ChainTrack Bulk iPhone Wholesale — Dubai",
+        "serviceType": "B2B iPhone Wholesale Procurement Platform",
+        "provider": {
+          "@type": "Organization",
+          "name": "ChainTrack by DeliWer",
+          "url": "https://www.deliwer.com/chaintrack",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Wholesale Procurement",
+            "telephone": "+971523906019",
+            "contactOption": "WhatsApp",
+            "availableLanguage": ["English", "Arabic", "Russian"],
+          },
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "India" },
+          { "@type": "Country", "name": "Azerbaijan" },
+          { "@type": "Country", "name": "Kazakhstan" },
+          { "@type": "Country", "name": "Uzbekistan" },
+          { "@type": "Country", "name": "Russia" },
+          { "@type": "Country", "name": "Georgia" },
+          { "@type": "Country", "name": "Kyrgyzstan" },
+        ],
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Fixed-Price Wholesale Lots",
+            "description": "Buy iPhones at displayed fixed prices. Minimum 25 units. DAFZA escrow accepted. Delivery 48–72 hours.",
+            "priceCurrency": "USD",
+          },
+          {
+            "@type": "Offer",
+            "name": "Reverse Auction Sourcing",
+            "description": "Post your BOQ and have 200+ verified global suppliers compete down on price. Average saving 15–35% vs listed prices. Minimum 50 units. DAFZA escrow required.",
+            "priceCurrency": "USD",
+          },
+        ],
+        "url": "https://www.deliwer.com/wholesale",
+      })}</script>
     <div className="min-h-screen bg-[#070B14] text-white">
 
       {/* ── HERO ── */}
@@ -903,5 +1000,6 @@ export default function BulkPurchasingPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
