@@ -129,6 +129,8 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const BuyChaintrackPage = lazy(() => import("@/pages/buy-chaintrack"));
+const WscMarketplacePage = lazy(() => import("@/pages/wsc-marketplace"));
+const KtCorpMarketplacePage = lazy(() => import("@/pages/ktcorp-marketplace"));
 const ChainTrackLogisticsPage = lazy(() => import("@/pages/chaintrack-logistics"));
 const PricingLogisticsPage = lazy(() => import("@/pages/pricing-logistics"));
 const ChainTrackRoutePage = lazy(() => import("@/pages/chaintrack-route"));
@@ -248,6 +250,14 @@ function Router() {
     }
     if ((hostname === 'buy.chaintrack.com' || hostname === 'www.buy.chaintrack.com') && location === '/') {
       setLocation('/buy');
+      return;
+    }
+    if ((hostname === 'buy.wesellcellular.com' || hostname === 'www.buy.wesellcellular.com') && location === '/') {
+      setLocation('/buy/wsc');
+      return;
+    }
+    if ((hostname === 'buy.ktcorpworldwide.com' || hostname === 'www.buy.ktcorpworldwide.com') && location === '/') {
+      setLocation('/buy/ktcorp');
       return;
     }
 
@@ -519,6 +529,10 @@ function Router() {
 
         {/* ChainTrack Buy Module — buy.chaintrack.com */}
         <Route path="/buy" component={BuyChaintrackPage} />
+        {/* WeSellCellular Buyer Portal — buy.wesellcellular.com */}
+        <Route path="/buy/wsc" component={WscMarketplacePage} />
+        {/* KT Corp Worldwide Buyer Portal — buy.ktcorpworldwide.com */}
+        <Route path="/buy/ktcorp" component={KtCorpMarketplacePage} />
 
         {/* ChainTrack Certified Grading Infrastructure */}
         <Route path="/chaintrack-grading" component={ChainTrackGradingPage} />

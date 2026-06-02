@@ -58,6 +58,7 @@ import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
 import buyChaintrackRoutes from "./routes/buy-chaintrack";
+import wscMarketplaceRoutes from "./routes/wsc-marketplace";
 import logisticsIntelligenceRoutes from "./routes/logistics-intelligence";
 import intelRoutes from "./routes/intel";
 import fulfillmentRoutes from "./routes/fulfillment";
@@ -391,6 +392,8 @@ Source: Website Concierge Page
 
   // Register ChainTrack Buy Module (buy.chaintrack.com)
   app.use("/api/buy", buyChaintrackRoutes);
+  // WSC + KT Corp Wholesale Marketplace (buy.wesellcellular.com / buy.ktcorpworldwide.com)
+  app.use("/api/wsc", wscMarketplaceRoutes);
   app.use("/api/intel", intelRoutes);
 
   // AI Qualification Agent for ChainTrack

@@ -2064,6 +2064,74 @@ export const insertIntelPostSchema = createInsertSchema(intelPosts).omit({ id: t
 export type IntelPost = typeof intelPosts.$inferSelect;
 export type InsertIntelPost = z.infer<typeof insertIntelPostSchema>;
 
+// ─── WSC / KT Corp Wholesale Marketplace ─────────────────────────────────────
+
+export const wscStockItems = pgTable("wsc_stock_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  source: text("source").notNull().default("WSC"),
+  reportDate: text("report_date").notNull(),
+  sku: text("sku").notNull(),
+  warehouse: text("warehouse"),
+  category: text("category").notNull().default("PHONES"),
+  manufacturer: text("manufacturer").notNull(),
+  model: text("model").notNull(),
+  grade: text("grade").notNull(),
+  capacity: text("capacity"),
+  carrier: text("carrier"),
+  color: text("color"),
+  lockStatus: text("lock_status"),
+  modelNumber: text("model_number"),
+  qtyAvailable: integer("qty_available").notNull().default(0),
+  listPrice: integer("list_price").notNull().default(0),
+  hasQtyAddedToday: boolean("has_qty_added_today").notNull().default(false),
+  status: text("status").notNull().default("available"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const wscOfferSessions = pgTable("wsc_offer_sessions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  buyerId: varchar("buyer_id").notNull().references(() => buyBuyers.id),
+  source: text("source").notNull().default("WSC"),
+  sessionRef: text("session_ref").notNull().unique(),
+  totalItems: integer("total_items").notNull().default(0),
+  totalValue: integer("total_value").notNull().default(0),
+  status: text("status").notNull().default("submitted"),
+  notes: text("notes"),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+export const wscOfferItems = pgTable("wsc_offer_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sessionId: varchar("session_id").notNull().references(() => wscOfferSessions.id),
+  stockItemId: varchar("stock_item_id").references(() => wscStockItems.id),
+  sku: text("sku").notNull(),
+  manufacturer: text("manufacturer").notNull(),
+  model: text("model").notNull(),
+  grade: text("grade"),
+  capacity: text("capacity"),
+  color: text("color"),
+  carrier: text("carrier"),
+  offerQty: integer("offer_qty").notNull().default(1),
+  offerPrice: integer("offer_price").notNull().default(0),
+  listPrice: integer("list_price").notNull().default(0),
+  status: text("status").notNull().default("pending"),
+  counterPrice: integer("counter_price"),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertWscStockItemSchema = createInsertSchema(wscStockItems).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertWscOfferSessionSchema = createInsertSchema(wscOfferSessions).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertWscOfferItemSchema = createInsertSchema(wscOfferItems).omit({ id: true, createdAt: true });
+
+export type WscStockItem = typeof wscStockItems.$inferSelect;
+export type InsertWscStockItem = z.infer<typeof insertWscStockItemSchema>;
+export type WscOfferSession = typeof wscOfferSessions.$inferSelect;
+export type WscOfferItem = typeof wscOfferItems.$inferSelect;
+
 // ─── ChainTrack Buy Module (buy.chaintrack.com) ───────────────────────────────
 
 export const buyLots = pgTable("buy_lots", {
