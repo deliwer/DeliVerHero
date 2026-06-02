@@ -397,6 +397,13 @@
     <priority>0.88</priority>
     <mobile:mobile/>
   </url>
+  <url>
+    <loc>https://www.deliwer.com/phone-flippers</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <mobile:mobile/>
+  </url>
 
   <!-- ══ MARKET-SPECIFIC AUCTION PAGES ══ -->
   <url>
