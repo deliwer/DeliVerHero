@@ -1,5 +1,10 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "l-GOHZ8waY5HF3eMJjfz7"
+uri = "file://attached_assets/mamzar-hero.png"
+type = "image"
+title = "mamzar waterfront aerial hero"
 
 [[outputs]]
 id = "y5vZkTh-MTw1BLqoiRlXS"

@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet";
-import { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext, useEffect } from "react";
+import mamzarHeroImg from "@assets/mamzar-hero.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,13 +38,15 @@ type Lang = "en" | "ru" | "zh";
 const STRINGS = {
   en: {
     flag: "🇬🇧", label: "EN",
+    heroHeadline: "Discover Dubai's Next Waterfront Neighbourhood Before Global Attention Arrives",
+    heroSub: "Founder-guided virtual tours · Beachfront ownership from AED 849,000 · Priority access for investors and referral brokers",
     heroTagline: "Your window closes soon.",
     heroDesc: "Six towers. 325m of Arabian Gulf waterfront. 360° uninterrupted sea views.",
-    heroDesc2: "AED 20K secures your unit on a 30/70 plan. Delivery 2030. DeliWer brokers get first access — now, before the public launch.",
+    heroDesc2: "secures your unit on a 30/70 plan. Delivery 2030. Brokers get first access — now, before public launch.",
     num1BR: "1BR from", numBook: "Booking fee", numPlan: "Payment plan", numDel: "Delivery",
-    ctaEoi: "Register My EOI", ctaTg: "Telegram", ctaWa: "WhatsApp",
-    tgNote: "Telegram preferred for CIS · Russia · Asia · Global",
-    tourBtn: "Book Founder Site Tour",
+    ctaEoi: "Register Priority Access", ctaTg: "Join Telegram", ctaWa: "WhatsApp Us",
+    tgNote: "Telegram preferred · CIS · Russia · Asia · Global",
+    tourBtn: "Book Founder Virtual Tour",
     finalH: "Questions? Talk to a DeliWer partner now.",
     finalP: "Available on Telegram & WhatsApp — UAE business hours + all global time zones.",
     finalTgNote: "Telegram preferred for CIS · Russia · China · Southeast Asia · Europe",
@@ -53,11 +56,13 @@ const STRINGS = {
   },
   ru: {
     flag: "🇷🇺", label: "RU",
-    heroTagline: "Ваше окно закрывается скоро.",
+    heroHeadline: "Откройте следующий прибрежный район Дубая прежде, чем он привлечёт глобальное внимание",
+    heroSub: "Виртуальные туры с основателем · Собственность у моря от AED 849 000 · Приоритетный доступ для инвесторов и брокеров",
+    heroTagline: "Ваше окно возможностей закрывается.",
     heroDesc: "Шесть башен. 325 м береговой линии Аравийского залива. Панорамный вид 360°.",
-    heroDesc2: "AED 20K фиксирует вашу квартиру по схеме 30/70. Сдача 2030. Брокеры DeliWer получают приоритетный доступ до публичного запуска.",
-    num1BR: "1-комн. от", numBook: "Залог", numPlan: "Схема 30/70", numDel: "Сдача",
-    ctaEoi: "Зарегистрировать интерес", ctaTg: "Telegram", ctaWa: "WhatsApp",
+    heroDesc2: "фиксирует вашу квартиру по схеме 30/70. Сдача 2030. Брокеры получают приоритетный доступ до публичного запуска.",
+    num1BR: "1-комн. от", numBook: "Залог", numPlan: "30/70", numDel: "Сдача",
+    ctaEoi: "Приоритетный доступ", ctaTg: "Telegram", ctaWa: "WhatsApp",
     tgNote: "Telegram — выбор для СНГ и России",
     tourBtn: "Виртуальный тур с основателем",
     finalH: "Вопросы? Свяжитесь с партнёром DeliWer.",
@@ -69,13 +74,15 @@ const STRINGS = {
   },
   zh: {
     flag: "🇨🇳", label: "中文",
+    heroHeadline: "在全球关注到来之前，率先发现迪拜下一个滨水街区",
+    heroSub: "创始人亲导虚拟参观 · 海滨物业起价 AED 849,000 · 投资者与经纪人优先认购",
     heroTagline: "机会窗口即将关闭。",
     heroDesc: "六座塔楼，325米阿拉伯湾海岸线，360°无遮挡海景。",
-    heroDesc2: "仅需 AED 2万 即可锁定房源，30/70付款计划，2030年竣工交付。DeliWer 经纪人享有优先认购权。",
+    heroDesc2: "即可锁定房源，30/70付款计划，2030年竣工交付。经纪人享有优先认购权。",
     num1BR: "一居室起价", numBook: "预订金", numPlan: "30/70付款", numDel: "竣工",
-    ctaEoi: "登记意向书", ctaTg: "Telegram", ctaWa: "WhatsApp",
+    ctaEoi: "登记优先认购", ctaTg: "加入 Telegram", ctaWa: "WhatsApp 咨询",
     tgNote: "Telegram 是亚洲客户首选渠道",
-    tourBtn: "预约创始人现场导览",
+    tourBtn: "预约创始人虚拟导览",
     finalH: "有疑问？立即联系 DeliWer 合作伙伴。",
     finalP: "Telegram 和 WhatsApp 均可联系 — 覆盖全球所有时区。",
     finalTgNote: "Telegram — 亚洲 · 东南亚 · 欧洲首选渠道",
@@ -319,7 +326,16 @@ export default function MamzarBeach() {
   const [form, setForm] = useState<EoiForm>(EMPTY);
   const [submitted, setSubmitted] = useState(false);
   const [eoiRef, setEoiRef] = useState("");
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>(() => {
+    try {
+      const saved = localStorage.getItem("dw-mamzar-lang") as Lang | null;
+      return saved && ["en", "ru", "zh"].includes(saved) ? saved : "en";
+    } catch { return "en"; }
+  });
+  const setLang = (l: Lang) => {
+    try { localStorage.setItem("dw-mamzar-lang", l); } catch {}
+    setLangState(l);
+  };
   const s = STRINGS[lang];
 
   const { data: stats } = useQuery({
@@ -371,74 +387,72 @@ export default function MamzarBeach() {
       <MamzarNav />
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden min-h-[92vh] flex flex-col justify-center">
-        {/* Gradient background — ocean theme */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-cyan-950/40 to-blue-950/60" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(6,182,212,0.15)_0%,_transparent_60%)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-slate-950 to-transparent" />
-
-        {/* Floating wave lines */}
-        <div className="absolute top-32 right-0 w-96 h-96 opacity-10">
-          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 200 Q100 100 200 200 Q300 300 400 200" stroke="#06b6d4" strokeWidth="2" fill="none" />
-            <path d="M0 240 Q100 140 200 240 Q300 340 400 240" stroke="#06b6d4" strokeWidth="1.5" fill="none" />
-            <path d="M0 280 Q100 180 200 280 Q300 380 400 280" stroke="#06b6d4" strokeWidth="1" fill="none" />
-          </svg>
+      <section className="relative overflow-hidden min-h-[95vh] flex flex-col justify-end lg:justify-center">
+        {/* Full-bleed aerial photo */}
+        <div className="absolute inset-0">
+          <img
+            src={mamzarHeroImg}
+            alt="Alef Linar Mamzar Beach aerial view"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Multi-layer overlay: strong left for text legibility, gentle right to keep image visible */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/96 via-slate-950/75 to-slate-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
+          {/* Gold sunrise tint on the right */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_30%,_rgba(251,191,36,0.08)_0%,_transparent_60%)]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-          <div className="max-w-4xl">
-            {/* Pre-launch badge */}
-            <div className="flex flex-wrap items-center gap-2 mb-6">
-              <Badge className="bg-red-500/20 text-red-300 border-red-500/40 animate-pulse font-bold px-3 py-1">
-                <span className="w-2 h-2 rounded-full bg-red-400 inline-block mr-2 animate-ping" />
-                PRE-LAUNCH · EOI OPEN NOW
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 w-full">
+          <div className="max-w-2xl xl:max-w-3xl">
+            {/* Pre-launch badges */}
+            <div className="flex flex-wrap items-center gap-2 mb-7">
+              <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 font-bold px-3 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block mr-2 animate-ping" />
+                PRE-LAUNCH · EOI OPEN
               </Badge>
-              <Badge className="bg-cyan-500/15 text-cyan-300 border-cyan-500/30">
+              <Badge className="bg-white/10 text-white/80 border-white/20 backdrop-blur-sm">
                 <MapPin className="w-3 h-3 mr-1" /> Mamzar Beach, Sharjah
               </Badge>
+              <Badge className="bg-white/10 text-white/80 border-white/20 backdrop-blur-sm">
+                <Building2 className="w-3 h-3 mr-1" /> Alef Group · 6 Towers
+              </Badge>
               {stats && (stats as any).total > 0 && (
-                <Badge className="bg-emerald-500/15 text-emerald-300 border-emerald-500/30">
+                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40">
                   <Users className="w-3 h-3 mr-1" /> {(stats as any).total} brokers registered
                 </Badge>
               )}
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-5">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-cyan-400">
-                Alef Linar
-              </span>
-              <br />
-              <span className="text-white">Mamzar Beach</span>
-              <br />
-              <span className="text-slate-300 text-3xl sm:text-4xl lg:text-5xl font-bold">{s.heroTagline}</span>
+            {/* Main headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight mb-5 text-white drop-shadow-lg">
+              {s.heroHeadline}
             </h1>
 
-            <p className="text-slate-300 text-lg sm:text-xl max-w-2xl mb-8 leading-relaxed">
-              {s.heroDesc}{" "}
-              <span className="text-white font-semibold">AED 20K</span>{" "}
-              {s.heroDesc2}
+            {/* Subheadline */}
+            <p className="text-slate-300 text-base sm:text-lg max-w-xl mb-8 leading-relaxed font-medium">
+              {s.heroSub}
             </p>
 
             {/* Key numbers bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-8">
               {[
                 { v: "AED 849K", l: s.num1BR },
                 { v: "AED 20K",  l: s.numBook },
                 { v: "30 / 70", l: s.numPlan },
                 { v: "2030",    l: s.numDel },
               ].map(({ v, l }) => (
-                <div key={l} className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 px-4 py-3 text-center">
-                  <div className="text-xl sm:text-2xl font-black text-cyan-300">{v}</div>
-                  <div className="text-xs text-slate-400 uppercase tracking-widest mt-0.5">{l}</div>
+                <div key={l} className="rounded-xl border border-white/10 bg-slate-950/60 backdrop-blur-sm px-4 py-3 text-center">
+                  <div className="text-lg sm:text-xl font-black text-amber-300">{v}</div>
+                  <div className="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">{l}</div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3 mb-3">
               <Button
                 size="lg"
-                className="h-13 px-7 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-base"
+                className="h-12 px-7 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg shadow-amber-900/30"
                 onClick={() => scrollTo("eoi")}
               >
                 <BadgeCheck className="w-5 h-5 mr-2" />
@@ -446,8 +460,7 @@ export default function MamzarBeach() {
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="h-13 px-6 border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
+                className="h-12 px-6 bg-sky-500/90 hover:bg-sky-400 text-white font-black backdrop-blur-sm"
                 onClick={() => window.open(TG, "_blank")}
               >
                 <SiTelegram className="w-4 h-4 mr-2" />
@@ -456,18 +469,21 @@ export default function MamzarBeach() {
               <Button
                 size="lg"
                 variant="outline"
-                className="h-13 px-6 border-slate-600 text-slate-200 hover:bg-slate-800 hover:text-white"
-                onClick={() => window.open(waUrl("Hi DeliWer — I want to book a virtual site tour for Alef Linar, Mamzar Beach."), "_blank")}
+                className="h-12 px-6 border-white/20 text-white hover:bg-white/10 backdrop-blur-sm font-semibold"
+                onClick={() => window.open(waUrl("Hi DeliWer — I want to book a founder virtual tour for Alef Linar, Mamzar Beach."), "_blank")}
               >
-                <MessageCircle className="w-4 h-4 mr-2" />
-                {s.ctaWa}
+                <Video className="w-4 h-4 mr-2 text-cyan-400" />
+                {s.tourBtn}
               </Button>
             </div>
-            <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mt-1">
+            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
               {s.tgNote}
             </p>
           </div>
         </div>
+
+        {/* Bottom fade into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none" />
       </section>
 
       {/* ── MARKET PULSE ──────────────────────────────────────────────── */}
