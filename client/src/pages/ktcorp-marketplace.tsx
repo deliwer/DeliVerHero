@@ -1082,6 +1082,54 @@ export default function KtCorpMarketplace() {
       {/* ── Auction Calendar ────────────────────────────────────────────────── */}
       {mainTab === "calendar" && (
         <div className="max-w-4xl mx-auto px-4 py-6 space-y-5">
+
+          {/* ── Featured Lot Video ──────────────────────────────────────────── */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+            <div className="bg-indigo-950/50 border-b border-indigo-900/40 px-5 py-4 flex items-center justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                  </span>
+                  <span className="text-xs text-emerald-400 font-bold uppercase tracking-widest">Live Lot Preview</span>
+                </div>
+                <h3 className="text-white font-bold text-lg">Current Lot — KT Corp</h3>
+                <p className="text-slate-400 text-sm">Physical inspection footage of the active lot available for immediate offer.</p>
+              </div>
+              <a
+                href="https://wa.me/971523946311?text=KT+Corp+Lot+Inquiry"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:flex items-center gap-1.5 bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-2 rounded-lg shrink-0 ml-4"
+              >
+                Make Offer
+              </a>
+            </div>
+            <div className="relative bg-black">
+              <video
+                src="/ktcorp-lot.mp4"
+                className="w-full max-h-[480px] object-contain"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+              />
+            </div>
+            <div className="border-t border-slate-800 px-5 py-3 flex items-center justify-between">
+              <p className="text-xs text-slate-400">Lot footage updated when new inventory arrives. Contact us for grades, manifest, and pricing.</p>
+              <a
+                href="https://wa.me/971523946311?text=KT+Corp+Lot+Inquiry"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sm:hidden flex items-center gap-1.5 bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-2 rounded-lg"
+              >
+                Make Offer
+              </a>
+            </div>
+          </div>
+
           <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
             <div className="bg-indigo-950/50 border-b border-indigo-900/40 px-5 py-4">
               <div className="flex items-center gap-2 mb-1">
