@@ -345,7 +345,7 @@ function Router() {
         <Route path="/capture-referrers" component={CaptureReferrers} />
         <Route path="/affiliate-dashboard"><Redirect to="/partner-dashboard" /></Route>
         <Route path="/home-access" component={HomeAccess} />
-        <Route path="/finance" component={HomeAccess} />
+        <Route path="/finance" component={RealEstate} />
         <Route path="/mamzar" component={MamzarBeach} />
         <Route path="/mamzar-beach" component={MamzarBeach} />
         <Route path="/linar" component={MamzarBeach} />

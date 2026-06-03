@@ -471,13 +471,14 @@ type EoiForm = {
   tourRequested: boolean;
   earlybirdOpted: boolean;
   notes: string;
+  referredBy: string;
 };
 
 const EMPTY: EoiForm = {
   brokerName: "", brokerPhone: "", brokerEmail: "", brokerage: "",
   reraLicense: "", country: "", unitType: "", budget: "",
   clientName: "", clientPhone: "", clientNationality: "",
-  tourRequested: false, earlybirdOpted: true, notes: "",
+  tourRequested: false, earlybirdOpted: true, notes: "", referredBy: "",
 };
 
 function scrollTo(id: string) {
