@@ -183,9 +183,7 @@ router.get("/bids/:eventId/demand", async (req, res) => {
   }
 });
 
-// ── GET /api/reverse-auction/admin/bids/:eventId  — internal use only ──────────
-// This returns full bid details with no auth for internal admin use
-// In production: add admin token check
+// ── GET /api/reverse-auction/admin/bids/:eventId  — list all bids ─────────────
 router.get("/admin/bids/:eventId", async (req, res) => {
   try {
     const bids = await db.select()
@@ -194,6 +192,61 @@ router.get("/admin/bids/:eventId", async (req, res) => {
       .orderBy(desc(reverseAuctionBids.createdAt));
 
     res.json(bids);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── GET /api/reverse-auction/admin/events  — list all events ──────────────────
+router.get("/admin/events", async (req, res) => {
+  try {
+    const events = await db.select()
+      .from(reverseAuctionEvents)
+      .orderBy(desc(reverseAuctionEvents.createdAt));
+
+    res.json(events.map(sanitiseEvent));
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── PATCH /api/reverse-auction/admin/bids/:bidId  — update bid status ─────────
+router.patch("/admin/bids/:bidId", async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ["submitted", "reviewed", "allocated", "rejected"];
+    if (!status || !validStatuses.includes(status)) {
+      return res.status(400).json({ error: `status must be one of: ${validStatuses.join(", ")}` });
+    }
+
+    const [updated] = await db.update(reverseAuctionBids)
+      .set({ status })
+      .where(eq(reverseAuctionBids.id, req.params.bidId))
+      .returning();
+
+    if (!updated) return res.status(404).json({ error: "Bid not found" });
+    res.json(updated);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ── PATCH /api/reverse-auction/admin/events/:eventId  — close/cancel event ────
+router.patch("/admin/events/:eventId", async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ["active", "closed", "cancelled"];
+    if (!status || !validStatuses.includes(status)) {
+      return res.status(400).json({ error: `status must be one of: ${validStatuses.join(", ")}` });
+    }
+
+    const [updated] = await db.update(reverseAuctionEvents)
+      .set({ status, updatedAt: new Date() })
+      .where(eq(reverseAuctionEvents.id, req.params.eventId))
+      .returning();
+
+    if (!updated) return res.status(404).json({ error: "Event not found" });
+    res.json(sanitiseEvent(updated));
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }

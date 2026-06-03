@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 // Paths that have their own auth and must NOT be caught by the global gate
 const PRIVATE_EXCLUSIONS = [
   "/admin/wsc",
+  "/admin/reverse-auction",
 ];
 
 const PRIVATE_PREFIXES = [
