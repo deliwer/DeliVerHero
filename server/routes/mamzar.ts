@@ -106,6 +106,42 @@ router.post("/eoi", async (req: Request, res: Response) => {
   }
 });
 
+// ── GET /api/mamzar/leaderboard (public — anonymised sub-referral counts) ────
+router.get("/leaderboard", async (_req: Request, res: Response) => {
+  try {
+    const all = await db
+      .select({ id: mamzarEoi.id, brokerName: mamzarEoi.brokerName, referralCode: mamzarEoi.referralCode, referredBy: mamzarEoi.referredBy })
+      .from(mamzarEoi);
+
+    // count sub-referrals per referralCode
+    const counts: Record<string, number> = {};
+    for (const r of all) {
+      if (r.referredBy) counts[r.referredBy] = (counts[r.referredBy] || 0) + 1;
+    }
+
+    // build leaderboard from referrers who have at least 1 sub-referral
+    const rows = all
+      .filter(r => r.referralCode && (counts[r.referralCode] ?? 0) > 0)
+      .map(r => {
+        const parts = (r.brokerName ?? "").trim().split(/\s+/);
+        const first = parts[0] ?? "Broker";
+        const lastInitial = parts.length > 1 ? parts[parts.length - 1][0].toUpperCase() + "." : "";
+        return {
+          code: r.referralCode,
+          displayName: lastInitial ? `${first} ${lastInitial}` : first,
+          count: counts[r.referralCode!] ?? 0,
+        };
+      })
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+
+    res.json(rows);
+  } catch (err) {
+    console.error("[Mamzar] leaderboard error:", err);
+    res.status(500).json({ error: "Failed" });
+  }
+});
+
 // ── GET /api/mamzar/stats (public — just counts, no PII) ─────────────────────
 router.get("/stats", async (_req: Request, res: Response) => {
   try {

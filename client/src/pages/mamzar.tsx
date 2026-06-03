@@ -87,6 +87,7 @@ const STRINGS = {
     shareH: "Every broker you onboard earns you a trailing override.",
     shareP: "Register now. Share your referral code with other brokers. When they close, you earn too. Build your sub-network from Day 1 — no cost, no risk.",
     brokerCta: "Register & Get My Code", brokerShare: "Share via WhatsApp", brokerTg: "Share via Telegram",
+    lbLabel: "Live Leaderboard", lbH: "Top Brokers by Network Size", lbRefs: "referrals", lbYou: "That's you!", lbEmpty: "Be the first to introduce another broker.",
     // Location
     locationLabel: "Location",
     locationH: "Sharjah's calm.\nDubai's 9-minute door.",
@@ -161,6 +162,7 @@ const STRINGS = {
     shareH: "Каждый привлечённый брокер приносит вам надбавку.",
     shareP: "Зарегистрируйтесь. Поделитесь кодом с коллегами. Когда они заключат сделку — вы тоже заработаете. Стройте сеть с первого дня — без затрат и рисков.",
     brokerCta: "Зарегистрироваться и получить код", brokerShare: "Поделиться в WhatsApp", brokerTg: "Поделиться в Telegram",
+    lbLabel: "Таблица лидеров", lbH: "Топ брокеров по размеру сети", lbRefs: "рефералов", lbYou: "Это вы!", lbEmpty: "Станьте первым, кто привлечёт коллегу.",
     locationLabel: "Расположение",
     locationH: "Спокойствие Шарджи.\nДо Дубая — 9 минут.",
     locationP: "Прямой выезд на Al Wuheida Road с набережной и улицы Al Taawun.",
@@ -232,6 +234,7 @@ const STRINGS = {
     shareH: "您推荐的每位经纪人都为您带来超额奖励。",
     shareP: "立即注册，将您的推荐码分享给其他经纪人。他们成交，您也获益。从第一天起构建您的子网络——零成本、零风险。",
     brokerCta: "注册并获取我的专属码", brokerShare: "通过WhatsApp分享", brokerTg: "通过Telegram分享",
+    lbLabel: "实时排行榜", lbH: "网络规模最大的经纪人", lbRefs: "推荐人数", lbYou: "那就是您！", lbEmpty: "成为第一个介绍同行的经纪人。",
     locationLabel: "地理位置",
     locationH: "沙迦的宁静，\n迪拜九分钟通勤。",
     locationP: "从Corniche和Al Taawun街直达Al Wuheida路。",
@@ -543,6 +546,53 @@ function LiveBrokerCounter({ stats, lang }: { stats: { total: number; tours: num
   );
 }
 
+type LbRow = { code: string; displayName: string; count: number };
+
+const MEDAL = ["🥇", "🥈", "🥉"];
+
+function LiveLeaderboard({ rows, myCode, s }: { rows: LbRow[]; myCode: string; s: typeof STRINGS["en"] }) {
+  return (
+    <div className="mt-10 rounded-2xl border border-amber-500/15 bg-amber-950/10 p-6">
+      <div className="flex items-center gap-2 mb-1">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-60" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+        </span>
+        <p className="text-[10px] font-black uppercase tracking-widest text-amber-400">{s.lbLabel}</p>
+      </div>
+      <h3 className="text-base font-bold text-white mb-5">{s.lbH}</h3>
+
+      {rows.length === 0 ? (
+        <p className="text-slate-600 text-sm text-center py-6">{s.lbEmpty}</p>
+      ) : (
+        <div className="space-y-2">
+          {rows.map((row, i) => {
+            const isMe = myCode && row.code === myCode;
+            return (
+              <div
+                key={row.code}
+                className={`flex items-center gap-3 rounded-xl px-4 py-3 border transition ${isMe ? "border-amber-400/40 bg-amber-500/10" : "border-slate-800 bg-slate-900/40"}`}
+              >
+                <span className="text-xl w-7 shrink-0 text-center">
+                  {i < 3 ? MEDAL[i] : <span className="text-slate-600 text-sm font-bold">#{i + 1}</span>}
+                </span>
+                <span className={`flex-1 font-semibold text-sm ${isMe ? "text-amber-300" : "text-white"}`}>
+                  {row.displayName}
+                  {isMe && <span className="ml-2 text-[10px] font-black text-amber-400 bg-amber-400/10 border border-amber-400/30 px-1.5 py-0.5 rounded-full">{s.lbYou}</span>}
+                </span>
+                <div className="flex items-baseline gap-1 shrink-0">
+                  <span className={`text-xl font-black tabular-nums ${isMe ? "text-amber-300" : "text-emerald-300"}`}>{row.count}</span>
+                  <span className="text-[10px] text-slate-500">{s.lbRefs}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function fmtAED(n: number) {
   if (!n) return "Call for price";
   return "AED " + n.toLocaleString("en-AE");
@@ -568,6 +618,11 @@ export default function MamzarBeach() {
   const { data: stats } = useQuery({
     queryKey: ["/api/mamzar/stats"],
     refetchInterval: 30000,
+  });
+
+  const { data: lbRows = [] } = useQuery<LbRow[]>({
+    queryKey: ["/api/mamzar/leaderboard"],
+    refetchInterval: 60000,
   });
 
   const submitEoi = useMutation({
@@ -929,6 +984,11 @@ export default function MamzarBeach() {
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* ── Leaderboard ────────────────────────────────────────────── */}
+          <div className="max-w-lg mx-auto mt-4">
+            <LiveLeaderboard rows={lbRows} myCode={eoiRef} s={s} />
           </div>
         </div>
       </section>
