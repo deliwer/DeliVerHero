@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { useState, createContext, useContext, useEffect } from "react";
+import { useState, createContext, useContext, useEffect, useRef } from "react";
 import mamzarHeroImg from "@assets/mamzar-hero.png";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -485,6 +485,64 @@ function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function useCountUp(target: number, duration = 900) {
+  const [display, setDisplay] = useState(0);
+  const prev = useRef(0);
+  useEffect(() => {
+    if (target === prev.current) return;
+    const start = prev.current;
+    const diff = target - start;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const elapsed = Math.min(now - startTime, duration);
+      const progress = elapsed / duration;
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplay(Math.round(start + diff * eased));
+      if (elapsed < duration) requestAnimationFrame(tick);
+      else prev.current = target;
+    };
+    requestAnimationFrame(tick);
+  }, [target, duration]);
+  return display;
+}
+
+const TOUR_LABEL: Record<Lang, string> = {
+  en: "site tours booked",
+  ru: "туров запрошено",
+  zh: "场参观已预约",
+};
+const BROKER_LABEL: Record<Lang, string> = {
+  en: "brokers registered",
+  ru: "брокеров зарегистрировано",
+  zh: "名经纪人已注册",
+};
+
+function LiveBrokerCounter({ stats, lang }: { stats: { total: number; tours: number } | null; lang: Lang }) {
+  const total = useCountUp(stats?.total ?? 0);
+  const tours = useCountUp(stats?.tours ?? 0);
+  if (!stats || stats.total === 0) return null;
+  return (
+    <div className="mt-8 rounded-2xl border border-emerald-500/20 bg-emerald-950/30 px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-6">
+      <div className="flex items-center gap-2">
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+        </span>
+        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Live</span>
+      </div>
+      <div className="flex items-baseline gap-2">
+        <span className="text-4xl font-black text-white tabular-nums">{total}</span>
+        <span className="text-sm text-slate-400">{BROKER_LABEL[lang]}</span>
+      </div>
+      <div className="hidden sm:block w-px h-8 bg-slate-700" />
+      <div className="flex items-baseline gap-2">
+        <span className="text-4xl font-black text-fuchsia-300 tabular-nums">{tours}</span>
+        <span className="text-sm text-slate-400">{TOUR_LABEL[lang]}</span>
+      </div>
+    </div>
+  );
+}
+
 function fmtAED(n: number) {
   if (!n) return "Call for price";
   return "AED " + n.toLocaleString("en-AE");
@@ -788,11 +846,7 @@ export default function MamzarBeach() {
             <p className="text-slate-400 text-lg">
               {s.brokerP}
             </p>
-            {stats && (stats as any).total > 0 && (
-              <p className="mt-4 text-sm font-bold text-emerald-400">
-                {s.brokerCountPrefix} {(stats as any).total} {s.brokerCountSuffix}
-              </p>
-            )}
+            <LiveBrokerCounter stats={stats as any} lang={lang} />
           </div>
 
           {/* 3-step model */}
