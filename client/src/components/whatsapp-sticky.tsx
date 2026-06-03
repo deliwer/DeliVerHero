@@ -42,13 +42,7 @@ export function WhatsAppSticky() {
   const handleWhatsApp = () => {
     const currentClicks = parseInt(localStorage.getItem("wa_clicks") || "0");
     localStorage.setItem("wa_clicks", (currentClicks + 1).toString());
-    const searchParams = new URLSearchParams(window.location.search);
-    const source = searchParams.get("source") || "";
-    const intro =
-      source === "broker"
-        ? "Hi DeliWer, I'm a broker and need move-in/move-out support for my clients."
-        : "Hi DeliWer, I need help with my apartment.";
-    openWhatsApp(buildWhatsAppMessage({ intro }));
+    window.open("https://wa.me/+971523906019", "_blank");
   };
 
   const handleTelegram = () => {
