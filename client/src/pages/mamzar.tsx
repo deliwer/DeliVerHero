@@ -86,7 +86,7 @@ const STRINGS = {
     shareLabel: "Share & build your network",
     shareH: "Every broker you onboard earns you a trailing override.",
     shareP: "Register now. Share your referral code with other brokers. When they close, you earn too. Build your sub-network from Day 1 — no cost, no risk.",
-    brokerCta: "Register & Get My Code", brokerShare: "Share This Page",
+    brokerCta: "Register & Get My Code", brokerShare: "Share via WhatsApp", brokerTg: "Share via Telegram",
     // Location
     locationLabel: "Location",
     locationH: "Sharjah's calm.\nDubai's 9-minute door.",
@@ -160,7 +160,7 @@ const STRINGS = {
     shareLabel: "Делитесь и стройте свою сеть",
     shareH: "Каждый привлечённый брокер приносит вам надбавку.",
     shareP: "Зарегистрируйтесь. Поделитесь кодом с коллегами. Когда они заключат сделку — вы тоже заработаете. Стройте сеть с первого дня — без затрат и рисков.",
-    brokerCta: "Зарегистрироваться и получить код", brokerShare: "Поделиться страницей",
+    brokerCta: "Зарегистрироваться и получить код", brokerShare: "Поделиться в WhatsApp", brokerTg: "Поделиться в Telegram",
     locationLabel: "Расположение",
     locationH: "Спокойствие Шарджи.\nДо Дубая — 9 минут.",
     locationP: "Прямой выезд на Al Wuheida Road с набережной и улицы Al Taawun.",
@@ -231,7 +231,7 @@ const STRINGS = {
     shareLabel: "分享并建立您的网络",
     shareH: "您推荐的每位经纪人都为您带来超额奖励。",
     shareP: "立即注册，将您的推荐码分享给其他经纪人。他们成交，您也获益。从第一天起构建您的子网络——零成本、零风险。",
-    brokerCta: "注册并获取我的专属码", brokerShare: "分享此页面",
+    brokerCta: "注册并获取我的专属码", brokerShare: "通过WhatsApp分享", brokerTg: "通过Telegram分享",
     locationLabel: "地理位置",
     locationH: "沙迦的宁静，\n迪拜九分钟通勤。",
     locationP: "从Corniche和Al Taawun街直达Al Wuheida路。",
@@ -854,6 +854,15 @@ export default function MamzarBeach() {
                 >
                   <Button variant="outline" className="h-11 w-full border-slate-700 text-slate-300 hover:bg-slate-800">
                     <Share2 className="w-4 h-4 mr-2" /> {s.brokerShare}
+                  </Button>
+                </a>
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareMsg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" className="h-11 w-full border-sky-700/60 text-sky-400 hover:bg-sky-950/40">
+                    <SiTelegram className="w-4 h-4 mr-2" /> {s.brokerTg}
                   </Button>
                 </a>
               </div>
