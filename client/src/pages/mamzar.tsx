@@ -38,57 +38,225 @@ type Lang = "en" | "ru" | "zh";
 const STRINGS = {
   en: {
     flag: "🇬🇧", label: "EN",
+    // Nav
+    navEoi: "Register EOI",
+    // Hero
     heroHeadline: "Discover Dubai's Next Waterfront Neighbourhood Before Global Attention Arrives",
     heroSub: "Founder-guided virtual tours · Beachfront ownership from AED 849,000 · Priority access for investors and referral brokers",
-    heroTagline: "Your window closes soon.",
-    heroDesc: "Six towers. 325m of Arabian Gulf waterfront. 360° uninterrupted sea views.",
-    heroDesc2: "secures your unit on a 30/70 plan. Delivery 2030. Brokers get first access — now, before public launch.",
     num1BR: "1BR from", numBook: "Booking fee", numPlan: "Payment plan", numDel: "Delivery",
     ctaEoi: "Register Priority Access", ctaTg: "Join Telegram", ctaWa: "WhatsApp Us",
     tgNote: "Telegram preferred · CIS · Russia · Asia · Global",
+    brokersJoined: "brokers already registered",
+    // Overview
+    overviewLabel: "About the Project",
+    overviewH: "Six towers. 325 metres of waterfront. One defining moment.",
+    overviewP: "Alef Linar rises along the shores of Al Mamzar — Sharjah's most anticipated waterfront address — where the Arabian Gulf meets Dubai's skyline. Designed for families and investors who want Sharjah's calm with Dubai's nine-minute door.",
+    statWaterfront: "Waterfront", statViews: "Sea views", statResidences: "Residences", statDelivery: "Delivery",
+    // Units
+    unitsLabel: "Pricing & Units",
+    unitsH: "Pre-launch pricing. 30/70 plan.",
+    unitsP: "AED 20,000 books your unit. 70% only on handover in 2030.",
+    unitsFrom: "from",
+    payPlanLabel: "30 / 70 Payment Plan",
+    payPlanH: "AED 20,000 secures your unit today",
+    payPlanSub: "30% during build · 70% on 2030 handover",
+    payPlanBtn: "Secure My Unit",
+    // Tour
+    tourLabel: "Founder-Led Virtual Tour",
+    tourH: "We're on the ground.\nYour clients can see it live.",
+    tourP: "DeliWer founders are based at Mamzar Beach. We take your client on a live video walk of the site — the waterfront, the tower positions, the Dubai skyline. No flights. Close deals from anywhere.",
     tourBtn: "Book Founder Virtual Tour",
+    tourF1T: "30 minutes, any time zone", tourF1D: "Scheduled around your client — UAE, UK, Pakistan, India, China.",
+    tourF2T: "Arabic, English, Urdu, Hindi", tourF2D: "We match a founder to your client's language preference.",
+    tourF3T: "Registered brokers only", tourF3D: "This service is reserved for DeliWer EOI-registered partners.",
+    // Broker Platform
+    brokerLabel: "Broker Distribution Platform",
+    brokerH: "DeliWer is the infrastructure.\nYou are the distribution.",
+    brokerP: "Every broker who registers becomes a tracked distribution channel. We handle site tours, follow-up, and paperwork. You bring the client and collect the commission.",
+    brokerCountPrefix: "Join",
+    brokerCountSuffix: "brokers already on the platform",
+    step1Label: "Register", step1Desc: "Submit your EOI in 60 seconds. Get your unique broker tracking code instantly.",
+    step2Label: "Refer", step2Desc: "Share your link with clients and sub-brokers. Every click and lead traces back to you.",
+    step3Label: "Earn", step3Desc: "We close the deal on the ground. You earn direct commission plus sub-broker overrides.",
+    earningsLabel: "Indicative earnings",
+    earn1Unit: "1 Bedroom · AED 849K", earn1Note: "Direct commission",
+    earn2Unit: "2 Bedroom · AED 1.384M", earn2Note: "Direct commission",
+    earn3Unit: "Sub-broker close", earn3Note: "Trailing override (yours)",
+    earningsDisclaimer: "Subject to partnership agreement. Figures are illustrative.",
+    shareLabel: "Share & build your network",
+    shareH: "Every broker you onboard earns you a trailing override.",
+    shareP: "Register now. Share your referral code with other brokers. When they close, you earn too. Build your sub-network from Day 1 — no cost, no risk.",
+    brokerCta: "Register & Get My Code", brokerShare: "Share This Page",
+    // Location
+    locationLabel: "Location",
+    locationH: "Sharjah's calm.\nDubai's 9-minute door.",
+    locationP: "Direct access to Al Wuheida Road from Corniche and Al Taawun Street.",
+    // EOI Form
+    eoiLabel: "Priority Registration",
+    eoiH: "Register your interest",
+    eoiP: "60 seconds. You'll receive your broker code and a tour slot.",
+    eoiName: "Full name", eoiPhone: "WhatsApp number",
+    eoiUnit: "Unit interest", eoiUnitPh: "Which unit type?",
+    eoiTourLabel: "Book a founder virtual tour",
+    eoiTourDesc: "— live WhatsApp video from Mamzar Beach for your client",
+    eoiEarlybirdLabel: "Early-bird programme",
+    eoiEarlybirdDesc: "— first unit allocation, priority pricing, sub-broker overrides",
+    eoiSubmit: "Get My Broker Code",
+    eoiDisclaimer: "No commitment. All transactions are direct with Alef Group.",
+    eoiSuccessH: "You're in.",
+    eoiSuccessP: "A DeliWer partner will contact you on WhatsApp within 1 hour.",
+    eoiCodeLabel: "Your Broker Code",
+    eoiCodeNote: "Share this code — earn override on every sub-broker close",
+    eoiBookTour: "Book Tour Now", eoiShareEarn: "Share & Earn",
+    eoiRegisterAnother: "Register another →",
+    // Final CTA
     finalH: "Questions? Talk to a DeliWer partner now.",
     finalP: "Available on Telegram & WhatsApp — UAE business hours + all global time zones.",
     finalTgNote: "Telegram preferred for CIS · Russia · China · Southeast Asia · Europe",
     tgPartner: "Telegram a Partner", waPartner: "WhatsApp a Partner",
     shareBtn: "Share with Brokers", shareWa: "Share on WhatsApp",
-    navEoi: "Register EOI",
   },
   ru: {
     flag: "🇷🇺", label: "RU",
+    navEoi: "Регистрация",
     heroHeadline: "Откройте следующий прибрежный район Дубая прежде, чем он привлечёт глобальное внимание",
     heroSub: "Виртуальные туры с основателем · Собственность у моря от AED 849 000 · Приоритетный доступ для инвесторов и брокеров",
-    heroTagline: "Ваше окно возможностей закрывается.",
-    heroDesc: "Шесть башен. 325 м береговой линии Аравийского залива. Панорамный вид 360°.",
-    heroDesc2: "фиксирует вашу квартиру по схеме 30/70. Сдача 2030. Брокеры получают приоритетный доступ до публичного запуска.",
     num1BR: "1-комн. от", numBook: "Залог", numPlan: "30/70", numDel: "Сдача",
     ctaEoi: "Приоритетный доступ", ctaTg: "Telegram", ctaWa: "WhatsApp",
     tgNote: "Telegram — выбор для СНГ и России",
+    brokersJoined: "брокеров уже зарегистрировано",
+    overviewLabel: "О проекте",
+    overviewH: "Шесть башен. 325 метров береговой линии. Один ключевой момент.",
+    overviewP: "Alef Linar возвышается вдоль берегов Аль-Мамзар — самого ожидаемого прибрежного адреса Шарджи, где Аравийский залив встречается с горизонтом Дубая. Создан для семей и инвесторов, которые хотят спокойствия Шарджи и девяти минут до Дубая.",
+    statWaterfront: "Набережная", statViews: "Вид на море", statResidences: "Резиденций", statDelivery: "Сдача",
+    unitsLabel: "Цены и планировки",
+    unitsH: "Цены до запуска. Схема 30/70.",
+    unitsP: "AED 20 000 бронирует квартиру. 70% — только при получении ключей в 2030.",
+    unitsFrom: "от",
+    payPlanLabel: "Схема оплаты 30 / 70",
+    payPlanH: "AED 20 000 фиксирует вашу квартиру сегодня",
+    payPlanSub: "30% в период строительства · 70% при сдаче в 2030",
+    payPlanBtn: "Зафиксировать квартиру",
+    tourLabel: "Виртуальный тур с основателем",
+    tourH: "Мы на месте.\nВаши клиенты могут увидеть всё вживую.",
+    tourP: "Основатели DeliWer находятся рядом с Mamzar Beach. Мы проводим вашего клиента в прямом видеоэфире по территории — набережная, расположение башен, горизонт Дубая. Без перелётов. Закрывайте сделки откуда угодно.",
     tourBtn: "Виртуальный тур с основателем",
+    tourF1T: "30 минут, любой часовой пояс", tourF1D: "Время выбирается под клиента — ОАЭ, Великобритания, Пакистан, Индия, Китай.",
+    tourF2T: "Арабский, английский, урду, хинди", tourF2D: "Мы подбираем основателя по языковым предпочтениям вашего клиента.",
+    tourF3T: "Только для зарегистрированных брокеров", tourF3D: "Услуга доступна исключительно партнёрам DeliWer, зарегистрировавшим EOI.",
+    brokerLabel: "Платформа для брокеров",
+    brokerH: "DeliWer — инфраструктура.\nВы — дистрибуция.",
+    brokerP: "Каждый зарегистрированный брокер становится отслеживаемым каналом продаж. Мы ведём туры, переговоры и документы. Вы приводите клиента и получаете комиссию.",
+    brokerCountPrefix: "Уже присоединились",
+    brokerCountSuffix: "брокеров",
+    step1Label: "Регистрация", step1Desc: "Отправьте EOI за 60 секунд. Получите уникальный код отслеживания мгновенно.",
+    step2Label: "Привлечение", step2Desc: "Делитесь ссылкой с клиентами и суб-брокерами. Каждый клик и лид привязывается к вам.",
+    step3Label: "Заработок", step3Desc: "Мы закрываем сделку на месте. Вы получаете прямую комиссию и надбавки от суб-брокеров.",
+    earningsLabel: "Примерный заработок",
+    earn1Unit: "1-комн. · AED 849K", earn1Note: "Прямая комиссия",
+    earn2Unit: "2-комн. · AED 1.384M", earn2Note: "Прямая комиссия",
+    earn3Unit: "Сделка суб-брокера", earn3Note: "Ваша надбавка",
+    earningsDisclaimer: "На основании партнёрского соглашения. Цифры ориентировочные.",
+    shareLabel: "Делитесь и стройте свою сеть",
+    shareH: "Каждый привлечённый брокер приносит вам надбавку.",
+    shareP: "Зарегистрируйтесь. Поделитесь кодом с коллегами. Когда они заключат сделку — вы тоже заработаете. Стройте сеть с первого дня — без затрат и рисков.",
+    brokerCta: "Зарегистрироваться и получить код", brokerShare: "Поделиться страницей",
+    locationLabel: "Расположение",
+    locationH: "Спокойствие Шарджи.\nДо Дубая — 9 минут.",
+    locationP: "Прямой выезд на Al Wuheida Road с набережной и улицы Al Taawun.",
+    eoiLabel: "Приоритетная регистрация",
+    eoiH: "Зарегистрируйте интерес",
+    eoiP: "60 секунд. Получите брокерский код и слот для тура.",
+    eoiName: "Полное имя", eoiPhone: "Номер WhatsApp",
+    eoiUnit: "Тип квартиры", eoiUnitPh: "Выберите тип",
+    eoiTourLabel: "Заказать виртуальный тур с основателем",
+    eoiTourDesc: "— прямое видео с Mamzar Beach для вашего клиента",
+    eoiEarlybirdLabel: "Ранний доступ",
+    eoiEarlybirdDesc: "— первый выбор квартир, приоритетная цена, надбавки суб-брокерам",
+    eoiSubmit: "Получить брокерский код",
+    eoiDisclaimer: "Без обязательств. Все сделки — напрямую с Alef Group.",
+    eoiSuccessH: "Вы в системе.",
+    eoiSuccessP: "Партнёр DeliWer свяжется с вами в WhatsApp в течение 1 часа.",
+    eoiCodeLabel: "Ваш брокерский код",
+    eoiCodeNote: "Поделитесь кодом — получайте надбавку с каждой сделки суб-брокера",
+    eoiBookTour: "Записаться на тур", eoiShareEarn: "Поделиться и заработать",
+    eoiRegisterAnother: "Зарегистрировать ещё →",
     finalH: "Вопросы? Свяжитесь с партнёром DeliWer.",
     finalP: "Доступны в Telegram и WhatsApp — ОАЭ и все мировые часовые пояса.",
     finalTgNote: "Telegram — предпочтительный канал для СНГ · России · Европы",
     tgPartner: "Написать в Telegram", waPartner: "Написать в WhatsApp",
     shareBtn: "Поделиться с брокерами", shareWa: "Поделиться в WhatsApp",
-    navEoi: "Регистрация",
   },
   zh: {
     flag: "🇨🇳", label: "中文",
+    navEoi: "登记意向",
     heroHeadline: "在全球关注到来之前，率先发现迪拜下一个滨水街区",
     heroSub: "创始人亲导虚拟参观 · 海滨物业起价 AED 849,000 · 投资者与经纪人优先认购",
-    heroTagline: "机会窗口即将关闭。",
-    heroDesc: "六座塔楼，325米阿拉伯湾海岸线，360°无遮挡海景。",
-    heroDesc2: "即可锁定房源，30/70付款计划，2030年竣工交付。经纪人享有优先认购权。",
     num1BR: "一居室起价", numBook: "预订金", numPlan: "30/70付款", numDel: "竣工",
     ctaEoi: "登记优先认购", ctaTg: "加入 Telegram", ctaWa: "WhatsApp 咨询",
     tgNote: "Telegram 是亚洲客户首选渠道",
+    brokersJoined: "名经纪人已注册",
+    overviewLabel: "关于项目",
+    overviewH: "六座塔楼，325米海岸线，一个关键时刻。",
+    overviewP: "阿勒夫·利纳尔矗立于马姆扎尔海岸——沙迦最受期待的海滨地址，阿拉伯湾与迪拜天际线在此交汇。专为向往沙迦宁静、九分钟通达迪拜的家庭与投资者打造。",
+    statWaterfront: "海岸线", statViews: "海景", statResidences: "住宅", statDelivery: "竣工",
+    unitsLabel: "价格与户型",
+    unitsH: "预售价格，30/70付款计划。",
+    unitsP: "仅需 AED 2万 预订房源，70% 于2030年交付时支付。",
+    unitsFrom: "起价",
+    payPlanLabel: "30/70 付款计划",
+    payPlanH: "今日仅需 AED 2万 锁定您的房源",
+    payPlanSub: "建设期支付30% · 2030年交付时支付70%",
+    payPlanBtn: "立即锁定房源",
+    tourLabel: "创始人带领虚拟参观",
+    tourH: "我们在现场，\n您的客户可以实时参观。",
+    tourP: "DeliWer 创始人驻扎在马姆扎尔海滩，为您的客户提供实时视频参观——海滨、塔楼位置、迪拜天际线，无需出行即可成交。",
     tourBtn: "预约创始人虚拟导览",
+    tourF1T: "30分钟，适配任何时区", tourF1D: "根据您的客户时间安排——阿联酋、英国、巴基斯坦、印度、中国。",
+    tourF2T: "阿拉伯语、英语、乌尔都语、印地语", tourF2D: "我们根据您客户的语言偏好匹配合适的创始人。",
+    tourF3T: "仅限注册经纪人", tourF3D: "此服务专为 DeliWer EOI 注册合作伙伴保留。",
+    brokerLabel: "经纪人分销平台",
+    brokerH: "DeliWer 是基础设施，\n您是分销渠道。",
+    brokerP: "每位注册经纪人都成为可追踪的分销渠道。我们负责现场参观、跟进和文件处理，您负责带来客户并收取佣金。",
+    brokerCountPrefix: "已有",
+    brokerCountSuffix: "名经纪人加入平台",
+    step1Label: "注册", step1Desc: "60秒完成EOI提交，立即获得您的专属经纪人追踪码。",
+    step2Label: "推荐", step2Desc: "将您的链接分享给客户和子经纪人，每次点击和线索均追溯到您。",
+    step3Label: "赚取", step3Desc: "我们在现场完成交易，您获得直接佣金及子经纪人超额奖励。",
+    earningsLabel: "预计收益",
+    earn1Unit: "一居室 · AED 849K", earn1Note: "直接佣金",
+    earn2Unit: "两居室 · AED 1.384M", earn2Note: "直接佣金",
+    earn3Unit: "子经纪人成交", earn3Note: "您的超额奖励",
+    earningsDisclaimer: "以合作协议为准，数据仅供参考。",
+    shareLabel: "分享并建立您的网络",
+    shareH: "您推荐的每位经纪人都为您带来超额奖励。",
+    shareP: "立即注册，将您的推荐码分享给其他经纪人。他们成交，您也获益。从第一天起构建您的子网络——零成本、零风险。",
+    brokerCta: "注册并获取我的专属码", brokerShare: "分享此页面",
+    locationLabel: "地理位置",
+    locationH: "沙迦的宁静，\n迪拜九分钟通勤。",
+    locationP: "从Corniche和Al Taawun街直达Al Wuheida路。",
+    eoiLabel: "优先登记",
+    eoiH: "登记您的意向",
+    eoiP: "60秒完成，立即获得经纪人码和参观名额。",
+    eoiName: "姓名", eoiPhone: "WhatsApp号码",
+    eoiUnit: "意向户型", eoiUnitPh: "请选择户型",
+    eoiTourLabel: "预约创始人虚拟导览",
+    eoiTourDesc: "——为您的客户提供马姆扎尔海滩实时视频",
+    eoiEarlybirdLabel: "加入早鸟计划",
+    eoiEarlybirdDesc: "——优先选房、优先定价、子经纪人超额奖励",
+    eoiSubmit: "获取我的经纪人码",
+    eoiDisclaimer: "无任何承诺义务，所有交易直接与Alef集团进行。",
+    eoiSuccessH: "注册成功。",
+    eoiSuccessP: "DeliWer合作伙伴将在1小时内通过WhatsApp与您联系。",
+    eoiCodeLabel: "您的经纪人专属码",
+    eoiCodeNote: "分享此码——每笔子经纪人成交均可获得超额奖励",
+    eoiBookTour: "立即预约参观", eoiShareEarn: "分享并赚取",
+    eoiRegisterAnother: "再注册一位 →",
     finalH: "有疑问？立即联系 DeliWer 合作伙伴。",
     finalP: "Telegram 和 WhatsApp 均可联系 — 覆盖全球所有时区。",
     finalTgNote: "Telegram — 亚洲 · 东南亚 · 欧洲首选渠道",
     tgPartner: "Telegram 联系", waPartner: "WhatsApp 联系",
     shareBtn: "分享给经纪人", shareWa: "WhatsApp 分享",
-    navEoi: "登记意向",
   },
 } as const;
 
@@ -418,7 +586,7 @@ export default function MamzarBeach() {
               </Badge>
               {stats && (stats as any).total > 0 && (
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40">
-                  <Users className="w-3 h-3 mr-1" /> {(stats as any).total} brokers registered
+                  <Users className="w-3 h-3 mr-1" /> {(stats as any).total} {s.brokersJoined}
                 </Badge>
               )}
             </div>
@@ -490,21 +658,21 @@ export default function MamzarBeach() {
       <section id="overview" className="scroll-mt-20 py-24 lg:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-cyan-400 text-xs font-black uppercase tracking-widest mb-4">About the Project</p>
+            <p className="text-cyan-400 text-xs font-black uppercase tracking-widest mb-4">{s.overviewLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-snug">
-              Six towers. 325 metres of waterfront.<br className="hidden sm:block" /> One defining moment.
+              {s.overviewH}
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed">
-              Alef Linar rises along the shores of Al Mamzar — Sharjah's most anticipated waterfront address — where the Arabian Gulf meets Dubai's skyline. Designed for families and investors who want Sharjah's calm with Dubai's nine-minute door.
+              {s.overviewP}
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-800/60 rounded-2xl overflow-hidden border border-slate-800">
             {[
-              { icon: Waves, v: "325 m", l: "Waterfront" },
-              { icon: Eye,   v: "360°",  l: "Sea views" },
-              { icon: Home,  v: "500",   l: "Residences" },
-              { icon: Sun,   v: "2030",  l: "Delivery" },
+              { icon: Waves, v: "325 m", l: s.statWaterfront },
+              { icon: Eye,   v: "360°",  l: s.statViews },
+              { icon: Home,  v: "500",   l: s.statResidences },
+              { icon: Sun,   v: "2030",  l: s.statDelivery },
             ].map(({ icon: Icon, v, l }) => (
               <div key={l} className="bg-slate-950 flex flex-col items-center justify-center gap-2 py-10 px-6 text-center">
                 <Icon className="w-6 h-6 text-cyan-400" />
@@ -520,11 +688,11 @@ export default function MamzarBeach() {
       <section id="units" className="scroll-mt-20 py-24 border-t border-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-14">
-            <p className="text-violet-400 text-xs font-black uppercase tracking-widest mb-4">Pricing &amp; Units</p>
+            <p className="text-violet-400 text-xs font-black uppercase tracking-widest mb-4">{s.unitsLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Pre-launch pricing. 30/70 plan.
+              {s.unitsH}
             </h2>
-            <p className="text-slate-500">AED 20,000 books your unit. 70% only on handover in 2030.</p>
+            <p className="text-slate-500">{s.unitsP}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
@@ -542,7 +710,7 @@ export default function MamzarBeach() {
                   <div className="text-2xl font-black text-white mb-1">{type}</div>
                   <div className="text-xs text-slate-500 mb-4">{sqm} sqm · {units} units</div>
                   <div className="text-xl font-bold text-amber-300">{fmtAED(price)}</div>
-                  <div className="text-xs text-slate-500 mt-1">from</div>
+                  <div className="text-xs text-slate-500 mt-1">{s.unitsFrom}</div>
                 </div>
               </div>
             ))}
@@ -550,12 +718,12 @@ export default function MamzarBeach() {
 
           <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <div className="text-xs font-black uppercase tracking-widest text-emerald-400 mb-2">30 / 70 Payment Plan</div>
-              <div className="text-xl font-bold text-white">AED 20,000 secures your unit today</div>
-              <div className="text-sm text-slate-400 mt-1">30% during build · 70% on 2030 handover</div>
+              <div className="text-xs font-black uppercase tracking-widest text-emerald-400 mb-2">{s.payPlanLabel}</div>
+              <div className="text-xl font-bold text-white">{s.payPlanH}</div>
+              <div className="text-sm text-slate-400 mt-1">{s.payPlanSub}</div>
             </div>
             <Button className="h-12 px-8 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black shrink-0" onClick={() => scrollTo("eoi")}>
-              <Rocket className="w-4 h-4 mr-2" /> Secure My Unit
+              <Rocket className="w-4 h-4 mr-2" /> {s.payPlanBtn}
             </Button>
           </div>
         </div>
@@ -566,12 +734,14 @@ export default function MamzarBeach() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-fuchsia-400 text-xs font-black uppercase tracking-widest mb-4">Founder-Led Virtual Tour</p>
+              <p className="text-fuchsia-400 text-xs font-black uppercase tracking-widest mb-4">{s.tourLabel}</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-snug">
-                We're on the ground.<br />Your clients can see it live.
+                {s.tourH.split("\n").map((line, i, arr) => (
+                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                ))}
               </h2>
               <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                DeliWer founders are based at Mamzar Beach. We take your client on a live video walk of the site — the waterfront, the tower positions, the Dubai skyline. No flights. Close deals from anywhere.
+                {s.tourP}
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
@@ -585,9 +755,9 @@ export default function MamzarBeach() {
 
             <div className="space-y-4">
               {[
-                { icon: Clock,  t: "30 minutes, any time zone", d: "Scheduled around your client — UAE, UK, Pakistan, India, China." },
-                { icon: Globe2, t: "Arabic, English, Urdu, Hindi", d: "We match a founder to your client's language preference." },
-                { icon: Star,   t: "Registered brokers only", d: "This service is reserved for DeliWer EOI-registered partners." },
+                { icon: Clock,  t: s.tourF1T, d: s.tourF1D },
+                { icon: Globe2, t: s.tourF2T, d: s.tourF2D },
+                { icon: Star,   t: s.tourF3T, d: s.tourF3D },
               ].map(({ icon: Icon, t, d }) => (
                 <div key={t} className="flex gap-4 items-start">
                   <div className="w-10 h-10 rounded-xl bg-fuchsia-500/10 border border-fuchsia-500/20 flex items-center justify-center shrink-0">
@@ -608,21 +778,28 @@ export default function MamzarBeach() {
       <section id="brokers" className="scroll-mt-20 py-24 border-t border-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <p className="text-amber-400 text-xs font-black uppercase tracking-widest mb-4">Broker Distribution Platform</p>
+            <p className="text-amber-400 text-xs font-black uppercase tracking-widest mb-4">{s.brokerLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-snug">
-              DeliWer is the infrastructure.<br />You are the distribution.
+              {s.brokerH.split("\n").map((line, i, arr) => (
+                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+              ))}
             </h2>
             <p className="text-slate-400 text-lg">
-              Every broker who registers becomes a tracked distribution channel. We handle site tours, follow-up, and paperwork. You bring the client and collect the commission.
+              {s.brokerP}
             </p>
+            {stats && (stats as any).total > 0 && (
+              <p className="mt-4 text-sm font-bold text-emerald-400">
+                {s.brokerCountPrefix} {(stats as any).total} {s.brokerCountSuffix}
+              </p>
+            )}
           </div>
 
           {/* 3-step model */}
           <div className="grid sm:grid-cols-3 gap-px bg-slate-800/40 rounded-2xl overflow-hidden border border-slate-800 mb-16">
             {[
-              { step: "01", icon: BadgeCheck, label: "Register", color: "text-amber-400", desc: "Submit your EOI in 60 seconds. Get your unique broker tracking code instantly." },
-              { step: "02", icon: Share2,     label: "Refer",    color: "text-cyan-400",  desc: "Share your link with clients and sub-brokers. Every click and lead traces back to you." },
-              { step: "03", icon: Wallet,     label: "Earn",     color: "text-emerald-400", desc: "We close the deal on the ground. You earn direct commission plus sub-broker overrides." },
+              { step: "01", icon: BadgeCheck, label: s.step1Label, color: "text-amber-400", desc: s.step1Desc },
+              { step: "02", icon: Share2,     label: s.step2Label, color: "text-cyan-400",  desc: s.step2Desc },
+              { step: "03", icon: Wallet,     label: s.step3Label, color: "text-emerald-400", desc: s.step3Desc },
             ].map(({ step, icon: Icon, label, color, desc }) => (
               <div key={step} className="bg-slate-950 px-8 py-10 text-center">
                 <div className={`text-5xl font-black ${color} opacity-20 mb-4`}>{step}</div>
@@ -636,12 +813,12 @@ export default function MamzarBeach() {
           {/* Commission table + share */}
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-8">
-              <p className="text-xs font-black uppercase tracking-widest text-slate-500 mb-6">Indicative earnings</p>
+              <p className="text-xs font-black uppercase tracking-widest text-slate-500 mb-6">{s.earningsLabel}</p>
               <div className="space-y-4">
                 {[
-                  { unit: "1 Bedroom · AED 849K", comm: "~AED 25,000", note: "Direct commission" },
-                  { unit: "2 Bedroom · AED 1.384M", comm: "~AED 41,000", note: "Direct commission" },
-                  { unit: "Sub-broker close", comm: "~AED 5,000", note: "Trailing override (yours)" },
+                  { unit: s.earn1Unit, comm: "~AED 25,000", note: s.earn1Note },
+                  { unit: s.earn2Unit, comm: "~AED 41,000", note: s.earn2Note },
+                  { unit: s.earn3Unit, comm: "~AED 5,000",  note: s.earn3Note },
                 ].map(({ unit, comm, note }) => (
                   <div key={unit} className="flex items-center justify-between pb-4 border-b border-slate-800 last:border-0 last:pb-0">
                     <div>
@@ -652,23 +829,19 @@ export default function MamzarBeach() {
                   </div>
                 ))}
               </div>
-              <p className="text-[10px] text-slate-600 mt-5">Subject to partnership agreement. Figures are illustrative.</p>
+              <p className="text-[10px] text-slate-600 mt-5">{s.earningsDisclaimer}</p>
             </div>
 
             <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8">
-              <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-4">Share &amp; build your network</p>
-              <h3 className="text-xl font-bold text-white mb-3">
-                Every broker you onboard earns you a trailing override.
-              </h3>
-              <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-                Register now. Share your referral code with other brokers. When they close, you earn too. Build your sub-network from Day 1 — no cost, no risk.
-              </p>
+              <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-4">{s.shareLabel}</p>
+              <h3 className="text-xl font-bold text-white mb-3">{s.shareH}</h3>
+              <p className="text-slate-400 text-sm mb-6 leading-relaxed">{s.shareP}</p>
               <div className="flex flex-col gap-3">
                 <Button
                   className="h-11 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black"
                   onClick={() => scrollTo("eoi")}
                 >
-                  <BadgeCheck className="w-4 h-4 mr-2" /> Register &amp; Get My Code
+                  <BadgeCheck className="w-4 h-4 mr-2" /> {s.brokerCta}
                 </Button>
                 <Button
                   variant="outline"
@@ -682,7 +855,7 @@ export default function MamzarBeach() {
                     }
                   }}
                 >
-                  <Share2 className="w-4 h-4 mr-2" /> Share This Page
+                  <Share2 className="w-4 h-4 mr-2" /> {s.brokerShare}
                 </Button>
               </div>
             </div>
@@ -694,13 +867,13 @@ export default function MamzarBeach() {
       <section id="location" className="scroll-mt-20 py-24 border-t border-slate-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-14">
-            <p className="text-emerald-400 text-xs font-black uppercase tracking-widest mb-4">Location</p>
+            <p className="text-emerald-400 text-xs font-black uppercase tracking-widest mb-4">{s.locationLabel}</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Sharjah's calm.<br />Dubai's 9-minute door.
+              {s.locationH.split("\n").map((line, i, arr) => (
+                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+              ))}
             </h2>
-            <p className="text-slate-500">
-              Direct access to Al Wuheida Road from Corniche and Al Taawun Street.
-            </p>
+            <p className="text-slate-500">{s.locationP}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -718,13 +891,9 @@ export default function MamzarBeach() {
       <section id="eoi" className="scroll-mt-20 py-24 border-t border-slate-900">
         <div className="max-w-lg mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
-            <p className="text-amber-400 text-xs font-black uppercase tracking-widest mb-4">Priority Registration</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Register your interest
-            </h2>
-            <p className="text-slate-500">
-              60 seconds. You'll receive your broker code and a tour slot.
-            </p>
+            <p className="text-amber-400 text-xs font-black uppercase tracking-widest mb-4">{s.eoiLabel}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{s.eoiH}</h2>
+            <p className="text-slate-500">{s.eoiP}</p>
           </div>
 
           {submitted ? (
@@ -733,20 +902,20 @@ export default function MamzarBeach() {
                 <CheckCircle2 className="w-8 h-8 text-emerald-400" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">You're in.</h3>
-                <p className="text-slate-400">A DeliWer partner will contact you on WhatsApp within 1 hour.</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{s.eoiSuccessH}</h3>
+                <p className="text-slate-400">{s.eoiSuccessP}</p>
               </div>
               <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6">
-                <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-2">Your Broker Code</p>
+                <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-2">{s.eoiCodeLabel}</p>
                 <p className="text-3xl font-black text-white">{eoiRef}</p>
-                <p className="text-xs text-slate-500 mt-2">Share this code — earn override on every sub-broker close</p>
+                <p className="text-xs text-slate-500 mt-2">{s.eoiCodeNote}</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   className="flex-1 h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black"
                   onClick={() => window.open(waUrl(`Hi DeliWer — I just registered my EOI for Alef Linar Mamzar (ref: ${eoiRef}). When can we schedule the founder site tour?`), "_blank")}
                 >
-                  <Video className="w-4 h-4 mr-2" /> Book Tour Now
+                  <Video className="w-4 h-4 mr-2" /> {s.eoiBookTour}
                 </Button>
                 <Button
                   variant="outline"
@@ -756,17 +925,17 @@ export default function MamzarBeach() {
                     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
                   }}
                 >
-                  <Share2 className="w-4 h-4 mr-2" /> Share &amp; Earn
+                  <Share2 className="w-4 h-4 mr-2" /> {s.eoiShareEarn}
                 </Button>
               </div>
               <button onClick={() => setSubmitted(false)} className="text-xs text-slate-600 hover:text-slate-400 transition">
-                Register another →
+                {s.eoiRegisterAnother}
               </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">Full name *</Label>
+                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">{s.eoiName} *</Label>
                 <Input
                   required
                   value={form.brokerName}
@@ -777,7 +946,7 @@ export default function MamzarBeach() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">WhatsApp number *</Label>
+                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">{s.eoiPhone} *</Label>
                 <Input
                   required
                   type="tel"
@@ -789,10 +958,10 @@ export default function MamzarBeach() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">Unit interest</Label>
+                <Label className="text-xs font-bold uppercase tracking-widest text-slate-500">{s.eoiUnit}</Label>
                 <Select value={form.unitType} onValueChange={v => setForm(f => ({ ...f, unitType: v }))}>
                   <SelectTrigger className="bg-slate-900 border-slate-700 text-white h-12 rounded-xl">
-                    <SelectValue placeholder="Which unit type?" />
+                    <SelectValue placeholder={s.eoiUnitPh} />
                   </SelectTrigger>
                   <SelectContent className="bg-slate-900 border-slate-700 text-white">
                     {UNIT_TYPES.map(u => <SelectItem key={u} value={u} className="focus:bg-slate-800">{u}</SelectItem>)}
@@ -809,7 +978,7 @@ export default function MamzarBeach() {
                     className="mt-0.5 border-fuchsia-400"
                   />
                   <label htmlFor="tour" className="text-sm text-slate-400 cursor-pointer leading-snug">
-                    <span className="text-white font-semibold">Book a founder virtual tour</span> — live WhatsApp video from Mamzar Beach for your client
+                    <span className="text-white font-semibold">{s.eoiTourLabel}</span> {s.eoiTourDesc}
                   </label>
                 </div>
                 <div className="flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
@@ -820,7 +989,7 @@ export default function MamzarBeach() {
                     className="mt-0.5 border-amber-400"
                   />
                   <label htmlFor="earlybird" className="text-sm text-slate-400 cursor-pointer leading-snug">
-                    <span className="text-white font-semibold">Early-bird programme</span> — first unit allocation, priority pricing, sub-broker overrides
+                    <span className="text-white font-semibold">{s.eoiEarlybirdLabel}</span> {s.eoiEarlybirdDesc}
                   </label>
                 </div>
               </div>
@@ -833,11 +1002,11 @@ export default function MamzarBeach() {
                 {submitEoi.isPending ? (
                   <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 animate-spin" /> Registering…</span>
                 ) : (
-                  <span className="flex items-center gap-2"><Rocket className="w-4 h-4" /> Get My Broker Code</span>
+                  <span className="flex items-center gap-2"><Rocket className="w-4 h-4" /> {s.eoiSubmit}</span>
                 )}
               </Button>
               <p className="text-center text-[10px] text-slate-600 pt-1">
-                No commitment. All transactions are direct with Alef Group.
+                {s.eoiDisclaimer}
               </p>
             </form>
           )}
