@@ -72,6 +72,40 @@ router.post("/eoi", async (req: Request, res: Response) => {
             `Chain is growing 🚀`,
           ].filter(Boolean).join("\n");
           await sendWhatsApp(WA_NOTIFY, msg);
+
+          // ── Milestone congratulations to the parent broker ───────────────
+          const MILESTONES: Record<number, string> = {
+            3:  `🎉 *Mamzar Network — Milestone!*\n\nYou've just introduced 3 brokers to the Alef Linar network.\nYou're building real momentum — keep going!\n\nYour referral link keeps working 24/7. Every broker you onboard earns you a trailing override when they close. 💪`,
+            5:  `🏆 *Mamzar Network — Top Tier!*\n\nYou've hit 5 referrals! You're now in the top tier of our broker network.\n\nAlef Linar launches soon. Your network is already ahead of the curve. 🚀`,
+            10: `🌟 *Mamzar Network Champion!*\n\n10 referrals — you've built a serious sub-network.\nWhen Alef Linar opens sales, your chain earns with every deal that closes.\n\nThank you for growing the DeliWer broker community. We'll be in touch personally. 🤝`,
+          };
+          try {
+            // find the parent broker's phone
+            const [parent] = await db
+              .select({ brokerPhone: mamzarEoi.brokerPhone, brokerName: mamzarEoi.brokerName })
+              .from(mamzarEoi)
+              .where(eq(mamzarEoi.referralCode, data.referredBy))
+              .limit(1);
+
+            if (parent?.brokerPhone) {
+              // count how many sub-referrals they now have (including the one just inserted)
+              const allRefs = await db
+                .select({ id: mamzarEoi.id })
+                .from(mamzarEoi)
+                .where(eq(mamzarEoi.referredBy, data.referredBy));
+              const total = allRefs.length;
+
+              const milestoneMsg = MILESTONES[total];
+              if (milestoneMsg) {
+                // strip leading + or spaces, normalise to digits only
+                const phone = parent.brokerPhone.replace(/[^\d]/g, "");
+                await sendWhatsApp(phone, milestoneMsg);
+                console.log(`[Mamzar] Milestone ${total} sent to ${phone} (${parent.brokerName})`);
+              }
+            }
+          } catch (milestoneErr) {
+            console.error("[Mamzar] milestone notify error:", milestoneErr);
+          }
         } else {
           // Direct EOI: standard notification
           const msg = [
