@@ -838,26 +838,24 @@ export default function MamzarBeach() {
               <h3 className="text-xl font-bold text-white mb-3">{s.shareH}</h3>
               <p className="text-slate-400 text-sm mb-6 leading-relaxed">{s.shareP}</p>
               <div className="flex flex-col gap-3">
-                <Button
-                  className="h-11 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black"
-                  onClick={() => scrollTo("eoi")}
+                <a
+                  href={waUrl("Hi DeliWer — I'm a broker and want to register my EOI for Alef Linar Mamzar Beach and receive my referral code.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <BadgeCheck className="w-4 h-4 mr-2" /> {s.brokerCta}
-                </Button>
-                <Button
-                  variant="outline"
-                  className="h-11 border-slate-700 text-slate-300 hover:bg-slate-800"
-                  onClick={() => {
-                    if (navigator.share) {
-                      navigator.share({ title: "Alef Linar Mamzar Beach — Pre-Launch", text: shareMsg, url: window.location.href });
-                    } else {
-                      navigator.clipboard.writeText(shareMsg);
-                      toast({ title: "Copied!", description: "Share message copied to clipboard." });
-                    }
-                  }}
+                  <Button className="h-11 w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-black">
+                    <BadgeCheck className="w-4 h-4 mr-2" /> {s.brokerCta}
+                  </Button>
+                </a>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(shareMsg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Share2 className="w-4 h-4 mr-2" /> {s.brokerShare}
-                </Button>
+                  <Button variant="outline" className="h-11 w-full border-slate-700 text-slate-300 hover:bg-slate-800">
+                    <Share2 className="w-4 h-4 mr-2" /> {s.brokerShare}
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
