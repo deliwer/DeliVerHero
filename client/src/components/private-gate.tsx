@@ -5,6 +5,7 @@ import { useLocation } from "wouter";
 const PRIVATE_EXCLUSIONS = [
   "/admin/wsc",
   "/admin/reverse-auction",
+  "/admin/mamzar",
 ];
 
 const PRIVATE_PREFIXES = [

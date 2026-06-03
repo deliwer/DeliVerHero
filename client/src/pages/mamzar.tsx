@@ -592,13 +592,21 @@ export default function MamzarBeach() {
 
   const valid = form.brokerName.length >= 2 && form.brokerPhone.length >= 7;
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) setForm(f => ({ ...f, referredBy: ref }));
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!valid) return;
     submitEoi.mutate(form);
   };
 
-  const shareMsg = `🏖️ Pre-Launch Opportunity — Alef Linar, Mamzar Beach Sharjah\n\n• 5 towers on a 325m waterfront\n• 360° Arabian Gulf views\n• 1BR from AED 849K | 30/70 plan | AED 20K to book\n• Ready 2030 | 9 min from Dubai Airport\n\nRegister your EOI now: ${window.location.href}\n\nVia DeliWer Real Estate`;
+  const baseUrl = `${window.location.origin}/mamzar`;
+  const refUrl = eoiRef ? `${baseUrl}?ref=${eoiRef}` : baseUrl;
+  const shareMsg = `🏖️ Pre-Launch Opportunity — Alef Linar, Mamzar Beach Sharjah\n\n• 5 towers on a 325m waterfront\n• 360° Arabian Gulf views\n• 1BR from AED 849K | 30/70 plan | AED 20K to book\n• Ready 2030 | 9 min from Dubai Airport\n\nRegister your EOI now: ${refUrl}\n\nVia DeliWer Real Estate`;
 
   return (
     <LangCtx.Provider value={{ lang, setLang, s }}>
@@ -972,6 +980,33 @@ export default function MamzarBeach() {
                 <p className="text-3xl font-black text-white">{eoiRef}</p>
                 <p className="text-xs text-slate-500 mt-2">{s.eoiCodeNote}</p>
               </div>
+
+              {/* ── Personal referral link ── */}
+              <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/20 p-5 text-left">
+                <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-2">
+                  {lang === "ru" ? "Ваша реферальная ссылка" : lang === "zh" ? "您的专属推荐链接" : "Your referral link"}
+                </p>
+                <div className="flex items-center gap-2">
+                  <code className="flex-1 text-xs text-slate-300 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 truncate select-all">
+                    {refUrl}
+                  </code>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="shrink-0 border-slate-600 text-slate-300 hover:bg-slate-800"
+                    onClick={() => {
+                      navigator.clipboard.writeText(refUrl);
+                      toast({ title: lang === "ru" ? "Скопировано!" : lang === "zh" ? "已复制！" : "Copied!", description: lang === "ru" ? "Ссылка скопирована в буфер обмена." : lang === "zh" ? "链接已复制到剪贴板。" : "Link copied to clipboard." });
+                    }}
+                  >
+                    <span className="text-xs font-bold">{lang === "ru" ? "Копировать" : lang === "zh" ? "复制" : "Copy"}</span>
+                  </Button>
+                </div>
+                <p className="text-[10px] text-slate-600 mt-2">
+                  {lang === "ru" ? "Когда коллега регистрируется по вашей ссылке, вы оба отслеживаетесь в системе." : lang === "zh" ? "当同事通过您的链接注册时，系统会同时追踪双方。" : "When a colleague registers via your link, both of you are tracked in the system."}
+                </p>
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <Button
                   className="flex-1 h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black"
@@ -979,17 +1014,21 @@ export default function MamzarBeach() {
                 >
                   <Video className="w-4 h-4 mr-2" /> {s.eoiBookTour}
                 </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 h-11 border-slate-700 text-slate-300 hover:bg-slate-800"
-                  onClick={() => {
-                    const msg = `🏖️ *Alef Linar Mamzar Beach — Pre-Launch*\n\nI just registered my broker EOI with DeliWer.\n1BR from AED 849K | 30/70 | 2030 delivery.\n\nRegister: ${window.location.href}\n\n(Code: ${eoiRef})`;
-                    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
-                  }}
-                >
-                  <Share2 className="w-4 h-4 mr-2" /> {s.eoiShareEarn}
-                </Button>
+                <a href={`https://wa.me/?text=${encodeURIComponent(shareMsg)}`} target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button variant="outline" className="w-full h-11 border-slate-700 text-slate-300 hover:bg-slate-800">
+                    <Share2 className="w-4 h-4 mr-2" /> {s.eoiShareEarn}
+                  </Button>
+                </a>
               </div>
+              <a
+                href={`https://t.me/share/url?url=${encodeURIComponent(refUrl)}&text=${encodeURIComponent(shareMsg)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="w-full h-10 border-sky-700/50 text-sky-400 hover:bg-sky-950/40 text-sm">
+                  <SiTelegram className="w-4 h-4 mr-2" /> {lang === "ru" ? "Поделиться в Telegram" : lang === "zh" ? "通过Telegram分享" : "Share via Telegram"}
+                </Button>
+              </a>
               <button onClick={() => setSubmitted(false)} className="text-xs text-slate-600 hover:text-slate-400 transition">
                 {s.eoiRegisterAnother}
               </button>

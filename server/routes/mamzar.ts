@@ -46,6 +46,7 @@ router.post("/eoi", async (req: Request, res: Response) => {
       `Tour requested: ${data.tourRequested ? "Yes ✅" : "No"}`,
       `Early-bird: ${data.earlybirdOpted ? "Yes ✅" : "No"}`,
       data.notes ? `Notes: ${data.notes}` : null,
+      data.referredBy ? `Referred by: ${data.referredBy}` : null,
       ``,
       `Ref: ${refCode}`,
     ].filter(Boolean).join("\n");
