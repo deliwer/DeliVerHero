@@ -1,0 +1,287 @@
+PROJECT: Create a dedicated reverse bidding landing page at buy.chaintrack.com for a limited-time wholesale smartphone procurement event.
+
+OBJECTIVE
+
+Collect buyer demand and target purchase prices for a specific supplier lot before Friday.
+
+The page should position ChainTrack as the procurement and negotiation layer between buyers and suppliers.
+
+DO NOT create a traditional ecommerce listing.
+
+DO NOT create a fixed-price sales page.
+
+The purpose is to collect buyer requirements and bids.
+
+PAGE URL
+
+buy.chaintrack.com
+
+CAMPAIGN NAME
+
+USA iPhone 17 Pro Max Reverse Bidding Event
+
+Closing Friday 18:00 Dubai Time
+
+HERO SECTION
+
+Headline:
+
+Submit Your Price Before Friday
+
+Subheadline:
+
+Available USA inventory is being allocated this week. Submit your quantity requirement and target purchase price. ChainTrack will aggregate demand and negotiate allocations with the supplier.
+
+Countdown Timer:
+
+Days
+Hours
+Minutes
+
+Display prominently.
+
+PRIMARY CTA
+
+Submit Your Bid
+
+SECONDARY CTA
+
+View Available Inventory
+
+AVAILABLE INVENTORY SECTION
+
+Title:
+
+Current Available Stock
+
+Inventory Cards:
+
+iPhone 17 Pro Max 256GB Silver
+
+Quantity:
+84 Units
+
+Reference Price:
+USD 1200
+
+Status:
+Accepting Bids
+
+---
+
+iPhone 17 Pro Max 256GB Deep Blue
+
+Quantity:
+67 Units
+
+Reference Price:
+USD 1170
+
+Status:
+Accepting Bids
+
+---
+
+iPhone 17 Pro Max 256GB Cosmic Orange
+
+Quantity:
+53 Units
+
+Reference Price:
+USD 1160
+
+Status:
+Accepting Bids
+
+TOTAL AVAILABLE
+
+204 Units
+
+HOW IT WORKS
+
+Step 1
+
+Select inventory you want.
+
+Step 2
+
+Enter quantity required.
+
+Step 3
+
+Submit your target purchase price.
+
+Step 4
+
+ChainTrack aggregates buyer demand.
+
+Step 5
+
+Supplier reviews bids.
+
+Step 6
+
+Accepted buyers receive allocation offers.
+
+Display as a horizontal workflow.
+
+REVERSE BID FORM
+
+Fields:
+
+Company Name
+
+Contact Name
+
+WhatsApp Number
+
+Country
+
+Email
+
+Model Required
+
+Preferred Color
+
+Quantity Required
+
+Target Unit Price USD
+
+Destination Country
+
+Additional Notes
+
+Checkbox:
+
+I understand submission of a bid does not guarantee allocation.
+
+Submit Button:
+
+Submit Reverse Bid
+
+DEMAND METER
+
+Create a live visual demand tracker.
+
+Example:
+
+Silver
+
+84 Available
+32 Requested
+
+Deep Blue
+
+67 Available
+45 Requested
+
+Cosmic Orange
+
+53 Available
+21 Requested
+
+Update dynamically from submitted bids.
+
+MARKET ADVANTAGE SECTION
+
+Headline:
+
+Let Suppliers Compete For Your Business
+
+Content:
+
+Traditional procurement requires buyers to continuously monitor supplier portals and auctions.
+
+ChainTrack allows buyers to submit one requirement and receive supplier responses through a centralized sourcing process.
+
+Benefits:
+
+✓ Save procurement time
+
+✓ Access multiple suppliers
+
+✓ Submit your target price
+
+✓ Reduce sourcing uncertainty
+
+✓ Centralized negotiations
+
+✓ Export logistics support
+
+TRUST SECTION
+
+Dubai-Based Trade Facilitation
+
+Independent Sourcing Support
+
+Supplier Relationship Network
+
+International Export Logistics Experience
+
+BID DEADLINE SECTION
+
+Large countdown banner.
+
+Text:
+
+Reverse bidding closes Friday at 18:00 Dubai Time.
+
+Supplier allocation decisions will be reviewed after the deadline.
+
+Late submissions may not be considered.
+
+STICKY FOOTER CTA
+
+Ready to Submit Your Requirement?
+
+[Submit Reverse Bid]
+
+WhatsApp:
++971523946311
+
+Telegram:
+t.me/chaintracklogistics
+
+DESIGN STYLE
+
+Professional B2B trading platform.
+
+Inspired by:
+
+Commodity exchanges
+
+Freight marketplaces
+
+Procurement portals
+
+Avoid:
+
+Retail ecommerce appearance
+
+Consumer shopping layouts
+
+Shopping carts
+
+Product checkout flow
+
+SUCCESS METRIC
+
+A wholesale buyer should immediately understand:
+
+1. Inventory is available.
+
+2. They are not required to accept the reference price.
+
+3. They can submit a target purchase price.
+
+4. ChainTrack aggregates demand.
+
+5. Supplier reviews bids after the Friday deadline.
+
+6. Successful bidders receive allocations and logistics support.
+
+CORE POSITIONING
+
+Don't chase wholesale inventory.
+
+Submit your requirement and let ChainTrack negotiate on your behalf.

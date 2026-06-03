@@ -130,6 +130,7 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const BuyChaintrackPage = lazy(() => import("@/pages/buy-chaintrack"));
+const ReverseAuctionPage = lazy(() => import("@/pages/reverse-auction"));
 const WscMarketplacePage = lazy(() => import("@/pages/wsc-marketplace"));
 const KtCorpMarketplacePage = lazy(() => import("@/pages/ktcorp-marketplace"));
 const WscAdminPage = lazy(() => import("@/pages/wsc-admin"));
@@ -532,6 +533,8 @@ function Router() {
         {/* ChainTrack B2B Wholesale Inventory */}
         <Route path="/chaintrack" component={ChainTrackPage} />
 
+        {/* ChainTrack Reverse Auction Portal — buy.chaintrack.com/reverse-auction */}
+        <Route path="/buy/reverse-auction" component={ReverseAuctionPage} />
         {/* ChainTrack Buy Module — buy.chaintrack.com */}
         <Route path="/buy" component={BuyChaintrackPage} />
         {/* WeSellCellular Buyer Portal — buy.wesellcellular.com */}

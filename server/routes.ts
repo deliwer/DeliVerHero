@@ -58,6 +58,7 @@ import dubaiMarathonRoutes from "./routes/dubai-marathon";
 import voucherRoutes from "./routes/vouchers";
 import chaintrackRoutes from "./routes/chaintrack";
 import buyChaintrackRoutes from "./routes/buy-chaintrack";
+import reverseAuctionRoutes from "./routes/reverse-auction";
 import wscMarketplaceRoutes from "./routes/wsc-marketplace";
 import logisticsIntelligenceRoutes from "./routes/logistics-intelligence";
 import intelRoutes from "./routes/intel";
@@ -393,6 +394,8 @@ Source: Website Concierge Page
 
   // Register ChainTrack Buy Module (buy.chaintrack.com)
   app.use("/api/buy", buyChaintrackRoutes);
+  // Reverse Auction Portal — buy.chaintrack.com/reverse-auction
+  app.use("/api/reverse-auction", reverseAuctionRoutes);
   // WSC + KT Corp Wholesale Marketplace (buy.wesellcellular.com / buy.ktcorpworldwide.com)
   app.use("/api/wsc", wscMarketplaceRoutes);
   app.use("/api/intel", intelRoutes);

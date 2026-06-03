@@ -2280,4 +2280,56 @@ export type InsertBuyBuyer = z.infer<typeof insertBuyBuyerSchema>;
 export type BuyOrder = typeof buyOrders.$inferSelect;
 export type InsertBuyOrder = z.infer<typeof insertBuyOrderSchema>;
 export type BuyBid = typeof buyBids.$inferSelect;
+
+// ── Reverse Auction Events ────────────────────────────────────────────────────
+// isDemo: true  → sample/test data, safe to delete during hardening
+// isDemo: false → live real events (e.g. KT Corp) — supplierRef NEVER sent to frontend
+export const reverseAuctionEvents = pgTable("reverse_auction_events", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  slug: text("slug").notNull().unique(),
+  title: text("title").notNull(),
+  campaignName: text("campaign_name").notNull(),
+  description: text("description"),
+  deadline: timestamp("deadline").notNull(),
+  // Internal supplier reference — NEVER expose in API responses
+  supplierRef: text("supplier_ref"),
+  isDemo: boolean("is_demo").notNull().default(true),
+  // Stock items stored as JSONB: [{color, qty, refPriceUsd, requested}]
+  stockItems: jsonb("stock_items").notNull().default([]),
+  status: text("status").notNull().default("active"), // active | closed | cancelled
+  whatsapp: text("whatsapp").default("+971523946311"),
+  telegram: text("telegram").default("t.me/chaintracklogistics"),
+  metadata: jsonb("metadata").default({}),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+
+// ── Reverse Auction Bids ──────────────────────────────────────────────────────
+// No auth required — open bid submission form
+export const reverseAuctionBids = pgTable("reverse_auction_bids", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  eventId: varchar("event_id").notNull().references(() => reverseAuctionEvents.id),
+  companyName: text("company_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  whatsapp: text("whatsapp").notNull(),
+  email: text("email").notNull(),
+  country: text("country").notNull(),
+  modelRequired: text("model_required").notNull(),
+  preferredColor: text("preferred_color"),
+  quantityRequired: integer("quantity_required").notNull(),
+  targetUnitPriceUsd: integer("target_unit_price_usd").notNull(),
+  destinationCountry: text("destination_country").notNull(),
+  notes: text("notes"),
+  ipAddress: text("ip_address"),
+  status: text("status").notNull().default("submitted"), // submitted | reviewed | allocated | rejected
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
+export const insertReverseAuctionEventSchema = createInsertSchema(reverseAuctionEvents).omit({ id: true, createdAt: true, updatedAt: true });
+export const insertReverseAuctionBidSchema = createInsertSchema(reverseAuctionBids).omit({ id: true, createdAt: true });
+
+export type ReverseAuctionEvent = typeof reverseAuctionEvents.$inferSelect;
+export type InsertReverseAuctionEvent = z.infer<typeof insertReverseAuctionEventSchema>;
+export type ReverseAuctionBid = typeof reverseAuctionBids.$inferSelect;
+export type InsertReverseAuctionBid = z.infer<typeof insertReverseAuctionBidSchema>;
 export type InsertBuyBid = z.infer<typeof insertBuyBidSchema>;
