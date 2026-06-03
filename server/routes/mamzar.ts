@@ -4,6 +4,7 @@ import { mamzarEoi, insertMamzarEoiSchema } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
+import { sendWhatsApp } from "../utils/sendWhatsApp";
 
 const router = Router();
 
@@ -52,6 +53,45 @@ router.post("/eoi", async (req: Request, res: Response) => {
     ].filter(Boolean).join("\n");
 
     const waUrl = `https://wa.me/${WA_NOTIFY}?text=${encodeURIComponent(waLines)}`;
+
+    // ── Auto-push to admin via WhatsApp Business API ──────────────────────────
+    // Fire-and-forget — don't let notification failure block the response
+    (async () => {
+      try {
+        if (data.referredBy) {
+          // Sub-referral: prominent alert with chain info
+          const msg = [
+            `🔗 *New Sub-Referral — Alef Linar Mamzar*`,
+            ``,
+            `Broker: ${data.brokerName} (${data.brokerPhone})`,
+            `Introduced by code: *${data.referredBy}*`,
+            `Their new code: ${refCode}`,
+            data.unitType ? `Unit interest: ${data.unitType}` : null,
+            data.tourRequested ? `Tour requested: Yes ✅` : null,
+            ``,
+            `Chain is growing 🚀`,
+          ].filter(Boolean).join("\n");
+          await sendWhatsApp(WA_NOTIFY, msg);
+        } else {
+          // Direct EOI: standard notification
+          const msg = [
+            `🏖️ *New Direct EOI — Alef Linar Mamzar*`,
+            ``,
+            `Broker: ${data.brokerName} (${data.brokerPhone})`,
+            data.brokerage ? `Brokerage: ${data.brokerage}` : null,
+            data.country ? `Country: ${data.country}` : null,
+            data.unitType ? `Unit interest: ${data.unitType}` : null,
+            data.tourRequested ? `Tour requested: Yes ✅` : null,
+            data.earlybirdOpted ? `Early-bird opted: Yes ✅` : null,
+            ``,
+            `Ref code issued: ${refCode}`,
+          ].filter(Boolean).join("\n");
+          await sendWhatsApp(WA_NOTIFY, msg);
+        }
+      } catch (notifyErr) {
+        console.error("[Mamzar] WA notify error:", notifyErr);
+      }
+    })();
 
     res.json({
       success: true,
