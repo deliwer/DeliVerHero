@@ -10,7 +10,7 @@ import {
   Package, Globe, Gavel, TrendingDown, CheckCircle,
   Star, ArrowRight, Shield, Zap, Users, ChevronRight, Truck, Building2, Banknote,
   FileCheck, AlertCircle, Phone, Plus, Trash2, ClipboardList, Send, CheckCircle2, X,
-  MessageCircle, ExternalLink, MapPin, Plane,
+  MessageCircle, ExternalLink, MapPin, Plane, Eye,
 } from "lucide-react";
 import { SiWhatsapp, SiTelegram } from "react-icons/si";
 import electronicsRetailImg from "@assets/stock_images/people_electronics_r_02ba73a8.jpg";
@@ -211,7 +211,7 @@ export default function BulkPurchasingPage() {
             </div>
 
             {/* Hero path selector */}
-            <div className="grid sm:grid-cols-2 gap-4 max-w-xl">
+            <div className="grid sm:grid-cols-2 gap-4 max-w-xl mb-4">
               <a href="#quick-inquiry">
                 <div className="group rounded-xl border-2 border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/10 hover:border-amber-500/70 transition-all p-5 cursor-pointer">
                   <Banknote className="w-5 h-5 text-amber-400 mb-2" />
@@ -233,6 +233,29 @@ export default function BulkPurchasingPage() {
                 </div>
               </a>
             </div>
+
+            {/* Live Auction Event CTA */}
+            <Link href="/buy/reverse-auction">
+              <div className="group max-w-xl rounded-xl border-2 border-blue-500/50 bg-blue-500/8 hover:bg-blue-500/12 hover:border-blue-400/70 transition-all p-5 cursor-pointer relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(37,99,235,0.1),transparent_60%)]" />
+                <div className="relative flex items-start gap-4">
+                  <Gavel className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <div className="font-black text-white text-sm">Live Bidding Event — iPhone 17 Pro Max</div>
+                      <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-500/20 border border-blue-500/40">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse inline-block" />
+                        <span className="text-[9px] font-black uppercase tracking-widest text-blue-300">Live Now</span>
+                      </div>
+                    </div>
+                    <div className="text-[11px] text-slate-400 mb-3">204 units · USA origin · Closes Friday 18:00 Dubai · Submit your price before the deadline</div>
+                    <div className="flex items-center gap-1 text-blue-400 text-[11px] font-bold uppercase tracking-wider group-hover:gap-2 transition-all">
+                      Submit Reverse Bid <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -676,11 +699,17 @@ export default function BulkPurchasingPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/chaintrack">
-                <Button size="lg" className="bg-cyan-600 hover:bg-cyan-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-go-to-chaintrack">
+              <Link href="/buy/reverse-auction">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest gap-2" data-testid="button-go-to-reverse-auction">
                   <Gavel className="w-5 h-5" />
-                  View Live Auctions on ChainTrack
+                  Submit Reverse Bid — Live Now
                   <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href="/buy">
+                <Button size="lg" variant="outline" className="border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/10 font-black uppercase tracking-widest gap-2" data-testid="button-buy-portal">
+                  <Eye className="w-4 h-4" />
+                  Browse Buy Portal
                 </Button>
               </Link>
               <a href={waLink("[SOURCE: wholesale/wa-first]\nHi ChainTrack — I want to learn about the reverse auction process for bulk iPhones.")} target="_blank" rel="noopener noreferrer">

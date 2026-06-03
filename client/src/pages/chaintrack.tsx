@@ -781,6 +781,43 @@ export default function ChainTrackPage() {
           </div>
         </div>
       </section>
+
+      {/* ── LIVE REVERSE AUCTION EVENT BANNER ── */}
+      <section className="border-y border-blue-500/30 bg-gradient-to-r from-[#060D1F] via-[#0A1428] to-[#060D1F] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="flex items-center gap-4 flex-wrap">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/40 shrink-0">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse inline-block" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-blue-300">Live Bidding Event</span>
+            </div>
+            <div>
+              <div className="text-white font-black text-base md:text-lg leading-tight">
+                USA iPhone 17 Pro Max — Reverse Bidding
+              </div>
+              <div className="text-slate-400 text-xs mt-0.5">
+                204 units available · Desert Silver, Deep Blue, Cosmic Orange · Closes Friday 18:00 Dubai
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 shrink-0 flex-wrap">
+            <Link href="/buy/reverse-auction">
+              <Button size="sm" className="gap-2 bg-blue-600 hover:bg-blue-500 text-white font-black uppercase tracking-widest text-[10px] whitespace-nowrap" data-testid="button-live-auction-cta">
+                <Gavel className="w-3.5 h-3.5" />
+                Submit Reverse Bid
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Button>
+            </Link>
+            <Link href="/buy">
+              <Button size="sm" variant="ghost" className="gap-2 text-slate-300 hover:text-white font-black uppercase tracking-widest text-[10px] whitespace-nowrap" data-testid="button-buy-portal-cta">
+                <Eye className="w-3.5 h-3.5" />
+                All Inventory
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Intent + Urgency strip ── */}
       <div className="border-y border-[#1E293B] bg-[#0A0F1E]">
         {/* Buyer / Seller / Wholesale funnel selector */}
