@@ -8,7 +8,7 @@ import { SEOMeta } from "@/components/seo-meta";
 
 import { DirhamSymbol } from "@/components/dirham-symbol";
 
-const WHATSAPP_NUMBER = "+971523946311";
+const WHATSAPP_NUMBER = "+971523906019";
 const getWhatsAppLink = (service: string) => {
   const text = `Hi, I'm interested in the Move-Out Package regarding: ${service}`;
   return `https://wa.me/${WHATSAPP_NUMBER.replace(/\+/g, "").replace(/\s/g, "")}?text=${encodeURIComponent(text)}`;

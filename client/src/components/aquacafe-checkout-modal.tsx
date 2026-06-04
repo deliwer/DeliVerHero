@@ -248,7 +248,7 @@ export function AquaCafeCheckoutModal({ isOpen, onClose, product }: CheckoutModa
 
   const handleWhatsApp = () => {
     const message = `Hi! I'm interested in the ${product.name} (AED ${product.price}). I'd like to schedule installation in Dubai.`;
-    const whatsappUrl = `https://wa.me/971501234567?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/971523906019?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 

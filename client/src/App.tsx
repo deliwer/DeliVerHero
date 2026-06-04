@@ -257,6 +257,11 @@ function Router() {
       setLocation('/buy');
       return;
     }
+    // /buy is ChainTrack-only — redirect deliwer.com visitors to chaintrack.com/buy
+    if ((hostname === 'deliwer.com' || hostname === 'www.deliwer.com') && location.startsWith('/buy')) {
+      window.location.href = `https://buy.chaintrack.com${location}`;
+      return;
+    }
     if ((hostname === 'buy.wesellcellular.com' || hostname === 'www.buy.wesellcellular.com') && location === '/') {
       setLocation('/buy/wsc');
       return;

@@ -27,7 +27,7 @@ import maintenanceCardBg from "@/assets/images/maintenance-card-bg.jpg";
 import conciergeCardBg from "@/assets/images/concierge-card-bg.jpg";
 import { Navigation } from "@/components/navigation";
 
-const WHATSAPP_NUMBER = "+971523946311";
+const WHATSAPP_NUMBER = "+971523906019";
 
 export default function Residents() {
   const conciergeRef = useRef<HTMLDivElement>(null);

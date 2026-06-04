@@ -1098,7 +1098,7 @@ export default function KtCorpMarketplace() {
                 <p className="text-slate-400 text-sm">Physical inspection footage of the active lot available for immediate offer.</p>
               </div>
               <a
-                href="https://wa.me/971523946311?text=KT+Corp+Lot+Inquiry"
+                href="https://wa.me/971523906019?text=KT+Corp+Lot+Inquiry"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-1.5 bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-2 rounded-lg shrink-0 ml-4"
@@ -1120,7 +1120,7 @@ export default function KtCorpMarketplace() {
             <div className="border-t border-slate-800 px-5 py-3 flex items-center justify-between">
               <p className="text-xs text-slate-400">Lot footage updated when new inventory arrives. Contact us for grades, manifest, and pricing.</p>
               <a
-                href="https://wa.me/971523946311?text=KT+Corp+Lot+Inquiry"
+                href="https://wa.me/971523906019?text=KT+Corp+Lot+Inquiry"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sm:hidden flex items-center gap-1.5 bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-2 rounded-lg"
@@ -1163,7 +1163,7 @@ export default function KtCorpMarketplace() {
             </div>
             <div className="border-t border-slate-800 px-5 py-4 flex items-center justify-between">
               <p className="text-xs text-slate-400">Verified buyers receive weekly auction schedules and live lot alerts via WhatsApp.</p>
-              <a href="https://wa.me/971523946311?text=KT+Corp+Calendar+Access" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/971523906019?text=KT+Corp+Calendar+Access" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-1.5 bg-green-700 hover:bg-green-600 text-white text-xs px-3 py-2 rounded-lg"
                 data-testid="link-kt-calendar-wa">Request Calendar Access</a>
             </div>

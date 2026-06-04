@@ -4,7 +4,7 @@ export const contactInfo = {
     service: "support@deliwer.com",
     phone: "+971 52 394 6311",
     whatsapp: "971523906019",
-    whatsappSecondary: "971523946311",
+    whatsappSecondary: "971523906019",
     phoneSecondary: "+971 52 394 6311",
     address: {
       name: "DeliWer Shopping FZCO",
