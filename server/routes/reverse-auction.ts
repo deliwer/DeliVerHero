@@ -41,7 +41,7 @@ async function seedRealEvent() {
         { id: "orange",  model: "iPhone 17 Pro Max 256GB", color: "Cosmic Orange",   qty: 53, refPriceUsd: 1160, requested: 0 },
       ],
       status: "active",
-      whatsapp: "+971523946311",
+      whatsapp: "+971523906019",
       telegram: "t.me/chaintracklogistics",
       metadata: { origin: "USA", condition: "New Sealed", hsCode: "8517.12" },
     });

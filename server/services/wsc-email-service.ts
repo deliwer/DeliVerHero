@@ -111,7 +111,7 @@ export async function sendBuyerOfferConfirmation(session: {
       </div>
 
       <p style="color:#64748b;font-size:12px;margin:0;line-height:1.6;">
-        Questions? Reply to this email or WhatsApp us at <a href="https://wa.me/971523946311" style="color:#3b82f6;">+971 52 390 6019</a><br>
+        Questions? Reply to this email or WhatsApp us at <a href="https://wa.me/971523906019" style="color:#3b82f6;">+971 52 390 6019</a><br>
         Company: ${buyer.companyName}
       </p>
     </div>
@@ -351,7 +351,7 @@ export async function sendBuyerSessionUpdateNotification(session: {
       ` : ""}
 
       <p style="color:#64748b;font-size:12px;margin:0;line-height:1.6;">
-        Questions? Reply to this email or WhatsApp <a href="https://wa.me/971523946311" style="color:#3b82f6;">+971 52 390 6019</a><br>
+        Questions? Reply to this email or WhatsApp <a href="https://wa.me/971523906019" style="color:#3b82f6;">+971 52 390 6019</a><br>
         Company: ${buyer.companyName}
       </p>
     </div>
@@ -471,7 +471,7 @@ export async function sendBuyerRFQConfirmation(session: {
       </div>
 
       <p style="color:#64748b;font-size:12px;margin:0;line-height:1.6;">
-        Questions? WhatsApp us at <a href="https://wa.me/971523946311" style="color:#6366f1;">+971 52 390 6019</a><br>
+        Questions? WhatsApp us at <a href="https://wa.me/971523906019" style="color:#6366f1;">+971 52 390 6019</a><br>
         Company: ${buyer.companyName}
       </p>
     </div>
