@@ -21,7 +21,7 @@ import {
   Handshake, Globe2, Phone, TrendingUp, Shield, Award,
   ChevronRight, Rocket, Share2, BadgeCheck, Sparkles,
   CalendarClock, Wallet, Home, TreePine, Dumbbell, Coffee,
-  Menu, X,
+  Menu, X, Copy, Check,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -603,6 +603,8 @@ export default function MamzarBeach() {
   const [form, setForm] = useState<EoiForm>(EMPTY);
   const [submitted, setSubmitted] = useState(false);
   const [eoiRef, setEoiRef] = useState("");
+  const [codeCopied, setCodeCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const [lang, setLangState] = useState<Lang>(() => {
     try {
       const saved = localStorage.getItem("dw-mamzar-lang") as Lang | null;
@@ -1027,22 +1029,54 @@ export default function MamzarBeach() {
           </div>
 
           {submitted ? (
-            <div className="text-center space-y-6 py-8">
-              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/15 border-2 border-emerald-500/30 flex items-center justify-center">
-                <CheckCircle2 className="w-8 h-8 text-emerald-400" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">{s.eoiSuccessH}</h3>
-                <p className="text-slate-400">{s.eoiSuccessP}</p>
-              </div>
-              <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6">
-                <p className="text-xs font-black uppercase tracking-widest text-amber-400 mb-2">{s.eoiCodeLabel}</p>
-                <p className="text-3xl font-black text-white">{eoiRef}</p>
-                <p className="text-xs text-slate-500 mt-2">{s.eoiCodeNote}</p>
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-5 py-6"
+            >
+              {/* Success header */}
+              <div className="text-center space-y-3">
+                <motion.div
+                  initial={{ scale: 0.4, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.4, type: "spring", stiffness: 200 }}
+                  className="w-20 h-20 mx-auto rounded-full bg-emerald-500/15 border-2 border-emerald-500/40 flex items-center justify-center"
+                >
+                  <CheckCircle2 className="w-10 h-10 text-emerald-400" />
+                </motion.div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-1">{s.eoiSuccessH}</h3>
+                  <p className="text-slate-400 text-sm">{s.eoiSuccessP}</p>
+                </div>
               </div>
 
-              {/* ── Personal referral link ── */}
-              <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/20 p-5 text-left">
+              {/* Broker code — tap to copy */}
+              <button
+                data-testid="button-copy-broker-code"
+                onClick={() => {
+                  navigator.clipboard.writeText(eoiRef);
+                  setCodeCopied(true);
+                  setTimeout(() => setCodeCopied(false), 2000);
+                }}
+                className="w-full rounded-2xl border border-amber-500/30 bg-amber-500/8 hover:bg-amber-500/14 transition-colors p-6 text-center group"
+              >
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 mb-2">{s.eoiCodeLabel}</p>
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-4xl font-black text-white tracking-widest font-mono">{eoiRef}</span>
+                  <span className="text-amber-400/60 group-hover:text-amber-400 transition-colors">
+                    {codeCopied ? <Check className="w-5 h-5 text-emerald-400" /> : <Copy className="w-5 h-5" />}
+                  </span>
+                </div>
+                <p className="text-[10px] text-slate-500 mt-2">
+                  {codeCopied
+                    ? (lang === "ru" ? "Скопировано!" : lang === "zh" ? "已复制！" : "Copied to clipboard!")
+                    : s.eoiCodeNote}
+                </p>
+              </button>
+
+              {/* Referral link */}
+              <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/20 p-4 text-left">
                 <p className="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-2">
                   {lang === "ru" ? "Ваша реферальная ссылка" : lang === "zh" ? "您的专属推荐链接" : "Your referral link"}
                 </p>
@@ -1053,13 +1087,18 @@ export default function MamzarBeach() {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="shrink-0 border-slate-600 text-slate-300 hover:bg-slate-800"
+                    data-testid="button-copy-referral-link"
+                    className="shrink-0 border-slate-600 text-slate-300 min-w-[72px]"
                     onClick={() => {
                       navigator.clipboard.writeText(refUrl);
-                      toast({ title: lang === "ru" ? "Скопировано!" : lang === "zh" ? "已复制！" : "Copied!", description: lang === "ru" ? "Ссылка скопирована в буфер обмена." : lang === "zh" ? "链接已复制到剪贴板。" : "Link copied to clipboard." });
+                      setLinkCopied(true);
+                      setTimeout(() => setLinkCopied(false), 2000);
                     }}
                   >
-                    <span className="text-xs font-bold">{lang === "ru" ? "Копировать" : lang === "zh" ? "复制" : "Copy"}</span>
+                    {linkCopied
+                      ? <><Check className="w-3.5 h-3.5 mr-1 text-emerald-400" /><span className="text-xs font-bold text-emerald-400">{lang === "ru" ? "Готово" : lang === "zh" ? "完成" : "Done"}</span></>
+                      : <><Copy className="w-3.5 h-3.5 mr-1" /><span className="text-xs font-bold">{lang === "ru" ? "Копировать" : lang === "zh" ? "复制" : "Copy"}</span></>
+                    }
                   </Button>
                 </div>
                 <p className="text-[10px] text-slate-600 mt-2">
@@ -1067,32 +1106,61 @@ export default function MamzarBeach() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              {/* Share CTAs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Button
-                  className="flex-1 h-11 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black"
+                  data-testid="button-book-tour-whatsapp"
+                  className="h-11 bg-emerald-500 text-slate-950 font-black"
                   onClick={() => window.open(waUrl(`Hi DeliWer — I just registered my EOI for Alef Linar Mamzar (ref: ${eoiRef}). When can we schedule the founder site tour?`), "_blank")}
                 >
                   <Video className="w-4 h-4 mr-2" /> {s.eoiBookTour}
                 </Button>
-                <a href={`https://wa.me/?text=${encodeURIComponent(shareMsg)}`} target="_blank" rel="noopener noreferrer" className="flex-1">
-                  <Button variant="outline" className="w-full h-11 border-slate-700 text-slate-300 hover:bg-slate-800">
-                    <Share2 className="w-4 h-4 mr-2" /> {s.eoiShareEarn}
+                <Button
+                  data-testid="button-share-whatsapp"
+                  variant="outline"
+                  className="h-11 border-slate-700 text-slate-300"
+                  onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(shareMsg)}`, "_blank")}
+                >
+                  <Share2 className="w-4 h-4 mr-2" /> {s.eoiShareEarn}
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent(refUrl)}&text=${encodeURIComponent(shareMsg)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button
+                    data-testid="button-share-telegram"
+                    variant="outline"
+                    className="w-full h-10 border-sky-700/50 text-sky-400 text-sm"
+                  >
+                    <SiTelegram className="w-4 h-4 mr-2" /> {lang === "ru" ? "Поделиться в Telegram" : lang === "zh" ? "通过Telegram分享" : "Share via Telegram"}
                   </Button>
                 </a>
+                {"share" in navigator && (
+                  <Button
+                    data-testid="button-native-share"
+                    variant="outline"
+                    className="h-10 border-slate-700 text-slate-400 text-sm"
+                    onClick={() =>
+                      (navigator as any).share({ title: "Alef Linar Mamzar Beach", text: shareMsg, url: refUrl }).catch(() => {})
+                    }
+                  >
+                    <Share2 className="w-4 h-4 mr-2" /> {lang === "ru" ? "Поделиться через устройство" : lang === "zh" ? "通过设备分享" : "Share via Device"}
+                  </Button>
+                )}
               </div>
-              <a
-                href={`https://t.me/share/url?url=${encodeURIComponent(refUrl)}&text=${encodeURIComponent(shareMsg)}`}
-                target="_blank"
-                rel="noopener noreferrer"
+
+              <button
+                data-testid="button-register-another"
+                onClick={() => { setSubmitted(false); setCodeCopied(false); setLinkCopied(false); }}
+                className="w-full text-xs text-slate-600 hover:text-slate-400 transition pt-1"
               >
-                <Button variant="outline" className="w-full h-10 border-sky-700/50 text-sky-400 hover:bg-sky-950/40 text-sm">
-                  <SiTelegram className="w-4 h-4 mr-2" /> {lang === "ru" ? "Поделиться в Telegram" : lang === "zh" ? "通过Telegram分享" : "Share via Telegram"}
-                </Button>
-              </a>
-              <button onClick={() => setSubmitted(false)} className="text-xs text-slate-600 hover:text-slate-400 transition">
                 {s.eoiRegisterAnother}
               </button>
-            </div>
+            </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
