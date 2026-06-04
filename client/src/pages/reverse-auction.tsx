@@ -82,6 +82,28 @@ function DemandBar({ available, requested, color }: { available: number; request
   );
 }
 
+function AnimatedBidCount({ count }: { count: number }) {
+  const [displayed, setDisplayed] = useState(count);
+  const prevRef = useEffect(() => {
+    if (displayed === count) return;
+    const start = displayed;
+    const diff = count - start;
+    const duration = 800;
+    const startTime = performance.now();
+    let raf: number;
+    function step(now: number) {
+      const elapsed = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - elapsed, 3);
+      setDisplayed(Math.round(start + diff * eased));
+      if (elapsed < 1) raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [count]);
+  void prevRef;
+  return <>{displayed}</>;
+}
+
 const COLOR_HEX: Record<string, string> = {
   "Desert Silver": "#C8C8C8",
   "Deep Blue": "#1E3A5F",
@@ -156,6 +178,9 @@ export default function ReverseAuctionPage() {
   }
 
   const totalQty = event?.stockItems.reduce((s, i) => s + i.qty, 0) || 0;
+  const totalBidCount = event?.demand
+    ? Object.values(event.demand).reduce((s, d) => s + d.bidCount, 0)
+    : 0;
 
   if (isLoading) {
     return (
@@ -252,6 +277,26 @@ export default function ReverseAuctionPage() {
             </div>
             <div className="mt-3 text-xs text-slate-500">Closing Friday at 18:00 Dubai Time (UTC+4)</div>
           </div>
+
+          {/* Live bid counter */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8"
+            style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.25)" }}
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
+            </span>
+            <span className="text-sm font-semibold text-white">
+              <AnimatedBidCount count={totalBidCount} />
+              <span className="text-slate-400 font-normal ml-1">
+                {totalBidCount === 1 ? "buyer competing" : "buyers competing"} · live
+              </span>
+            </span>
+          </motion.div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -630,8 +675,17 @@ export default function ReverseAuctionPage() {
       {/* ── Sticky Footer CTA ── */}
       <div className="fixed bottom-0 left-0 right-0 z-50 px-6 py-3 flex items-center justify-between"
         style={{ background: "#0D1525", borderTop: "1px solid rgba(37,99,235,0.3)" }}>
-        <div className="text-sm text-slate-400 hidden sm:block">
-          Ready to submit? <span className="text-white font-medium">{totalQty} units available · Closes Friday 18:00 Dubai</span>
+        <div className="text-sm text-slate-400 hidden sm:block flex items-center gap-3">
+          <span className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+            </span>
+            <span className="text-red-400 font-semibold tabular-nums"><AnimatedBidCount count={totalBidCount} /></span>
+            <span>{totalBidCount === 1 ? "buyer" : "buyers"} competing</span>
+          </span>
+          <span className="text-slate-600">·</span>
+          <span className="text-white font-medium">{totalQty} units · Closes Friday 18:00 Dubai</span>
         </div>
         <button onClick={() => scrollTo("bid-form")}
           className="ml-auto px-6 py-2.5 rounded-lg font-semibold text-white text-sm transition-all hover:opacity-90"
