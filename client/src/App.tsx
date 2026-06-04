@@ -257,10 +257,29 @@ function Router() {
       setLocation('/buy');
       return;
     }
-    // /buy is ChainTrack-only — redirect deliwer.com visitors to chaintrack.com/buy
-    if ((hostname === 'deliwer.com' || hostname === 'www.deliwer.com') && location.startsWith('/buy')) {
-      window.location.href = `https://buy.chaintrack.com${location}`;
-      return;
+    // All ChainTrack routes are chaintrack-side only — redirect deliwer.com visitors
+    if (hostname === 'deliwer.com' || hostname === 'www.deliwer.com') {
+      // /buy/* → buy.chaintrack.com
+      if (location.startsWith('/buy')) {
+        window.location.href = `https://buy.chaintrack.com${location}`;
+        return;
+      }
+      // Auction & buy admin → buy.chaintrack.com
+      if (location.startsWith('/admin/wsc') || location.startsWith('/admin/reverse-auction')) {
+        window.location.href = `https://buy.chaintrack.com${location}`;
+        return;
+      }
+      // ChainTrack info & SEO routes → chaintrack.com
+      const chaintrackPaths = [
+        '/chaintrack', '/chaintrack-grading', '/chaintrack-sourcing',
+        '/grading', '/sourcing', '/freight-broker', '/intel',
+        '/dubai-to-', '/refurbished-iphone-sourcing-dubai',
+        '/dubai-cis-', '/dubai-charter-',
+      ];
+      if (chaintrackPaths.some(p => location === p || location.startsWith(p + '/') || location.startsWith(p + '?'))) {
+        window.location.href = `https://chaintrack.com${location}`;
+        return;
+      }
     }
     if ((hostname === 'buy.wesellcellular.com' || hostname === 'www.buy.wesellcellular.com') && location === '/') {
       setLocation('/buy/wsc');
