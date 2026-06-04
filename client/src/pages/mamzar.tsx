@@ -1158,7 +1158,7 @@ export default function MamzarBeach() {
               <Button
                 type="submit"
                 disabled={!valid || submitEoi.isPending}
-                className="w-full h-13 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-base mt-2"
+                className="w-full h-13 bg-amber-400 text-slate-950 font-black text-base mt-2"
               >
                 {submitEoi.isPending ? (
                   <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 animate-spin" /> Registering…</span>
