@@ -293,10 +293,33 @@ function AuthModal({ onSuccess }: { onSuccess: (buyer: BuyBuyer, token: string) 
                     </button>
                   </div>
                 </div>
-                <Button type="submit" disabled={loginMut.isPending} className="w-full bg-orange-500 hover:bg-orange-600 text-white" data-testid="button-login-submit">
+                <Button type="submit" disabled={loginMut.isPending} className="w-full bg-orange-500 text-white" data-testid="button-login-submit">
                   {loginMut.isPending ? <RefreshCw className="w-4 h-4 animate-spin mr-2" /> : <LogIn className="w-4 h-4 mr-2" />}
                   Sign In
                 </Button>
+
+                {/* ── Demo account quick-login ── */}
+                <div className="relative my-1">
+                  <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-700/60" /></div>
+                  <div className="relative flex justify-center"><span className="bg-slate-900 px-2 text-[10px] text-slate-500 uppercase tracking-widest">or</span></div>
+                </div>
+                <button
+                  type="button"
+                  data-testid="button-demo-login"
+                  disabled={loginMut.isPending}
+                  onClick={() => {
+                    loginForm.setValue("email", "demo@chaintrack.com");
+                    loginForm.setValue("password", "Demo@ChainTrack2026");
+                    loginMut.mutate({ email: "demo@chaintrack.com", password: "Demo@ChainTrack2026" });
+                  }}
+                  className="w-full flex items-center justify-center gap-2 rounded-lg border border-slate-600 bg-slate-800/60 hover:bg-slate-800 text-slate-300 text-xs font-semibold py-2.5 transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+                  Try Demo Account — no sign-up required
+                </button>
+                <p className="text-[10px] text-slate-600 text-center">
+                  demo@chaintrack.com · read-only reference data
+                </p>
               </form>
             </TabsContent>
 
