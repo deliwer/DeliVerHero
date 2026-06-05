@@ -639,4 +639,163 @@ router.get("/bids", async (req, res) => {
   }
 });
 
+// ── Founder Admin API ─────────────────────────────────────────────────────────
+const ADMIN_SECRET = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+
+function adminAuth(req: any, res: any, next: any) {
+  if (req.headers["x-admin-secret"] !== ADMIN_SECRET) {
+    return res.status(401).json({ error: "Unauthorized — admin secret required" });
+  }
+  next();
+}
+
+function generateLotNumber(): string {
+  const ts = Date.now().toString(36).toUpperCase();
+  return `CT-${ts}`;
+}
+
+// Stats
+router.get("/admin/stats", adminAuth, async (_req, res) => {
+  try {
+    const [lotRows, buyerRows, bidRows, orderRows] = await Promise.all([
+      db.select().from(buyLots),
+      db.select().from(buyBuyers),
+      db.select().from(buyBids),
+      db.select().from(buyOrders),
+    ]);
+    const activeLots = lotRows.filter(l => l.status === "active").length;
+    const auctionLots = lotRows.filter(l => l.lotType === "reverse_bid" && l.status === "active").length;
+    const verifiedBuyers = buyerRows.filter(b => b.kycStatus === "approved").length;
+    const totalDemandUnits = bidRows.reduce((s, b) => s + (b.quantity || 0), 0);
+    const totalRevenue = orderRows.reduce((s, o) => s + (o.totalAmount || 0), 0);
+    res.json({
+      totalLots: lotRows.length, activeLots, auctionLots,
+      totalBuyers: buyerRows.length, verifiedBuyers,
+      totalBids: bidRows.length, totalDemandUnits,
+      totalOrders: orderRows.length, totalRevenue,
+    });
+  } catch (err: any) { res.status(500).json({ error: err.message }); }
+});
+
+// All lots (all statuses)
+router.get("/admin/lots", adminAuth, async (_req, res) => {
+  try {
+    const lots = await db.select().from(buyLots).orderBy(desc(buyLots.createdAt));
+    res.json(lots);
+  } catch (err: any) { res.status(500).json({ error: err.message }); }
+});
+
+// Create lot (prices sent in USD dollars, stored as cents)
+router.post("/admin/lots", adminAuth, async (req, res) => {
+  try {
+    const {
+      productName, brand, model, grade, lotType, quantity, unitPriceDollars,
+      originCountry, supplierName, minOrderQty, auctionEndDate, startingBidDollars,
+      condition, incoterms, tags,
+    } = req.body;
+    if (!productName || !model || !grade || !quantity || !originCountry || !supplierName) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+    const unitPrice = Math.round((unitPriceDollars || 0) * 100);
+    const startingBid = startingBidDollars ? Math.round(startingBidDollars * 100) : undefined;
+    const qty = parseInt(quantity);
+    const [lot] = await db.insert(buyLots).values({
+      lotNumber: generateLotNumber(),
+      productName, brand: brand || "Apple", model, grade,
+      lotType: lotType || "supplier_feed",
+      quantity: qty,
+      availableQty: qty,
+      unitPrice,
+      lotPrice: unitPrice * qty,
+      currency: "USD",
+      originCountry, supplierName,
+      condition: condition || "refurbished",
+      minOrderQty: parseInt(minOrderQty) || 25,
+      functionalScore: 92, cosmeticScore: 88,
+      inspectionStatus: "completed", clearanceStatus: "cleared",
+      exportReady: true,
+      auctionEndDate: auctionEndDate ? new Date(auctionEndDate) : undefined,
+      startingBid: startingBid,
+      currentBid: startingBid,
+      incoterms: incoterms || ["FOB", "CIF"],
+      tags: tags || [],
+      photos: [], defects: [],
+      status: "active", metadata: { createdByAdmin: true },
+    }).returning();
+    res.status(201).json(lot);
+  } catch (err: any) { res.status(400).json({ error: err.message }); }
+});
+
+// Update lot
+router.patch("/admin/lots/:id", adminAuth, async (req, res) => {
+  try {
+    const { status, availableQty, unitPriceDollars, startingBidDollars, auctionEndDate, supplierName, tags, metadata } = req.body;
+    const updates: Record<string, any> = { updatedAt: new Date() };
+    if (status !== undefined) updates.status = status;
+    if (availableQty !== undefined) updates.availableQty = parseInt(availableQty);
+    if (unitPriceDollars !== undefined) { updates.unitPrice = Math.round(unitPriceDollars * 100); }
+    if (startingBidDollars !== undefined) updates.startingBid = Math.round(startingBidDollars * 100);
+    if (auctionEndDate !== undefined) updates.auctionEndDate = new Date(auctionEndDate);
+    if (supplierName !== undefined) updates.supplierName = supplierName;
+    if (tags !== undefined) updates.tags = tags;
+    if (metadata !== undefined) updates.metadata = metadata;
+    const [lot] = await db.update(buyLots).set(updates).where(eq(buyLots.id, req.params.id)).returning();
+    if (!lot) return res.status(404).json({ error: "Lot not found" });
+    res.json(lot);
+  } catch (err: any) { res.status(400).json({ error: err.message }); }
+});
+
+// Archive lot
+router.delete("/admin/lots/:id", adminAuth, async (req, res) => {
+  try {
+    await db.update(buyLots).set({ status: "archived", updatedAt: new Date() }).where(eq(buyLots.id, req.params.id));
+    res.json({ ok: true });
+  } catch (err: any) { res.status(400).json({ error: err.message }); }
+});
+
+// All buyers
+router.get("/admin/buyers", adminAuth, async (_req, res) => {
+  try {
+    const buyers = await db.select({
+      id: buyBuyers.id, email: buyBuyers.email, companyName: buyBuyers.companyName,
+      contactName: buyBuyers.contactName, phone: buyBuyers.phone, country: buyBuyers.country,
+      buyerTier: buyBuyers.buyerTier, kycStatus: buyBuyers.kycStatus, status: buyBuyers.status,
+      totalOrders: buyBuyers.totalOrders, totalSpend: buyBuyers.totalSpend,
+      createdAt: buyBuyers.createdAt, verifiedAt: buyBuyers.verifiedAt, metadata: buyBuyers.metadata,
+    }).from(buyBuyers).orderBy(desc(buyBuyers.createdAt));
+    res.json(buyers);
+  } catch (err: any) { res.status(500).json({ error: err.message }); }
+});
+
+// Update buyer
+router.patch("/admin/buyers/:id", adminAuth, async (req, res) => {
+  try {
+    const { buyerTier, kycStatus, status } = req.body;
+    const updates: Record<string, any> = { updatedAt: new Date() };
+    if (buyerTier) updates.buyerTier = buyerTier;
+    if (kycStatus) { updates.kycStatus = kycStatus; if (kycStatus === "approved") updates.verifiedAt = new Date(); }
+    if (status) updates.status = status;
+    const [buyer] = await db.update(buyBuyers).set(updates).where(eq(buyBuyers.id, req.params.id)).returning();
+    const { passwordHash: _, ...safe } = buyer;
+    res.json(safe);
+  } catch (err: any) { res.status(400).json({ error: err.message }); }
+});
+
+// All bids (across all lots, with lot info joined)
+router.get("/admin/bids", adminAuth, async (_req, res) => {
+  try {
+    const bids = await db.select({
+      id: buyBids.id, lotId: buyBids.lotId, buyerId: buyBids.buyerId,
+      bidAmount: buyBids.bidAmount, quantity: buyBids.quantity,
+      status: buyBids.status, notes: buyBids.notes, createdAt: buyBids.createdAt,
+      lotNumber: buyLots.lotNumber, productName: buyLots.productName,
+      buyerCompany: buyBuyers.companyName, buyerCountry: buyBuyers.country,
+    }).from(buyBids)
+      .leftJoin(buyLots, eq(buyBids.lotId, buyLots.id))
+      .leftJoin(buyBuyers, eq(buyBids.buyerId, buyBuyers.id))
+      .orderBy(desc(buyBids.createdAt));
+    res.json(bids);
+  } catch (err: any) { res.status(500).json({ error: err.message }); }
+});
+
 export default router;
