@@ -313,8 +313,30 @@ function AuthModal({ onSuccess }: { onSuccess: (buyer: BuyBuyer, token: string) 
                 {/* ── Demo account quick-login ── */}
                 <div className="relative my-1">
                   <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-700/60" /></div>
-                  <div className="relative flex justify-center"><span className="bg-slate-900 px-2 text-[10px] text-slate-500 uppercase tracking-widest">or</span></div>
+                  <div className="relative flex justify-center"><span className="bg-slate-900 px-2 text-[10px] text-slate-500 uppercase tracking-widest">or try the demo</span></div>
                 </div>
+
+                {/* Demo credentials card */}
+                <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 px-4 py-3 space-y-2">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Demo Account — no sign-up needed</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                    <div>
+                      <span className="text-slate-500 text-[10px] block uppercase tracking-wider">Email</span>
+                      <span className="text-white font-mono select-all">demo@chaintrack.com</span>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 text-[10px] block uppercase tracking-wider">Password</span>
+                      <span className="text-white font-mono select-all">Demo@ChainTrack2026</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-slate-500 leading-relaxed pt-0.5">
+                    Pre-loaded with 12 sample orders · AED 148,500 spend history · Verified KYC tier
+                  </p>
+                </div>
+
                 <button
                   type="button"
                   data-testid="button-demo-login"
@@ -324,14 +346,11 @@ function AuthModal({ onSuccess }: { onSuccess: (buyer: BuyBuyer, token: string) 
                     loginForm.setValue("password", "Demo@ChainTrack2026");
                     loginMut.mutate({ email: "demo@chaintrack.com", password: "Demo@ChainTrack2026" });
                   }}
-                  className="w-full flex items-center justify-center gap-2 rounded-lg border border-slate-600 bg-slate-800/60 hover:bg-slate-800 text-slate-300 text-xs font-semibold py-2.5 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 rounded-lg border border-emerald-600/40 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 text-xs font-bold py-2.5 transition-colors"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
-                  Try Demo Account — no sign-up required
+                  Sign in as Demo Buyer →
                 </button>
-                <p className="text-[10px] text-slate-600 text-center">
-                  demo@chaintrack.com · read-only reference data
-                </p>
               </form>
             </TabsContent>
 
