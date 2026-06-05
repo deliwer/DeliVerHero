@@ -245,6 +245,18 @@ function AuthModal({ onSuccess }: { onSuccess: (buyer: BuyBuyer, token: string) 
 
   return (
     <div className="min-h-screen bg-[#080c14] flex items-center justify-center p-4">
+      {/* ── Secret founder doors (nearly invisible) ── */}
+      <a href="/founder" data-testid="secret-door-top"
+        className="fixed top-3 right-3 z-50 w-5 h-5 opacity-[0.06] hover:opacity-30 transition-opacity duration-300"
+        title="">
+        <Shield className="w-4 h-4 text-slate-400" />
+      </a>
+      <a href="/founder" data-testid="secret-door-bottom"
+        className="fixed bottom-4 right-4 z-50 w-5 h-5 opacity-[0.06] hover:opacity-30 transition-opacity duration-300"
+        title="">
+        <Lock className="w-4 h-4 text-slate-400" />
+      </a>
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -383,9 +395,17 @@ function AuthModal({ onSuccess }: { onSuccess: (buyer: BuyBuyer, token: string) 
             </TabsContent>
           </Tabs>
 
-          <div className="mt-4 pt-4 border-t border-slate-800 flex items-center gap-3">
-            <Shield className="w-4 h-4 text-slate-500 shrink-0" />
-            <p className="text-xs text-slate-500">All buyers undergo KYC verification. Transactions protected by escrow.</p>
+          <div className="mt-4 pt-4 border-t border-slate-800 space-y-3">
+            <div className="flex items-center gap-3">
+              <Shield className="w-4 h-4 text-slate-500 shrink-0" />
+              <p className="text-xs text-slate-500">All buyers undergo KYC verification. Transactions protected by escrow.</p>
+            </div>
+            <a href="/buy/demo"
+              className="flex items-center justify-center gap-2 w-full py-2 rounded-lg text-xs text-slate-400 hover:text-orange-300 border border-slate-800 hover:border-orange-500/30 hover:bg-orange-500/5 transition-all"
+              data-testid="link-view-demo">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse inline-block" />
+              Preview the reverse auction — no sign-in required →
+            </a>
           </div>
         </div>
       </motion.div>
@@ -929,6 +949,18 @@ export default function BuyChaintrackPage() {
 
   return (
     <div className="min-h-screen bg-[#080c14] text-white">
+      {/* ── Secret founder doors (nearly invisible) ── */}
+      <a href="/founder" data-testid="secret-door-top-portal"
+        className="fixed top-3 right-3 z-50 w-5 h-5 opacity-[0.06] hover:opacity-30 transition-opacity duration-300"
+        title="">
+        <Shield className="w-4 h-4 text-slate-400" />
+      </a>
+      <a href="/founder" data-testid="secret-door-bottom-portal"
+        className="fixed bottom-4 right-4 z-50 w-5 h-5 opacity-[0.06] hover:opacity-30 transition-opacity duration-300"
+        title="">
+        <Lock className="w-4 h-4 text-slate-400" />
+      </a>
+
       {/* Top Navigation Bar */}
       <header className="sticky top-0 z-40 bg-[#080c14]/95 backdrop-blur border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">

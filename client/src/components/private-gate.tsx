@@ -22,6 +22,7 @@ const PRIVATE_PREFIXES = [
   "/email-campaigns",
   "/account-management",
   "/founder-dashboard",
+  "/founder",
 ];
 
 const TOKEN = "deliwer-admin-2026";

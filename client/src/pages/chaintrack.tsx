@@ -957,8 +957,53 @@ export default function ChainTrackPage() {
             </div>
           </div>
 
+          {/* ── Featured Demo Video — Reverse Auction Walk-Through ── */}
+          <div className="mt-8 mb-6">
+            <a href="https://youtu.be/aimNwvF3YSw" target="_blank" rel="noopener noreferrer"
+              className="group block rounded-2xl border border-orange-500/35 bg-[#0D1424] overflow-hidden hover:border-orange-500/60 transition-all"
+              data-testid="card-media-featured">
+              <div className="grid md:grid-cols-5 gap-0">
+                {/* Thumbnail */}
+                <div className="md:col-span-2 relative h-52 md:h-auto overflow-hidden bg-[#0A0F1E]">
+                  <img
+                    src="https://img.youtube.com/vi/aimNwvF3YSw/hqdefault.jpg"
+                    alt="Reverse Auction — Live Example Lot"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0D1424]/60 md:block hidden" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/80 via-transparent to-transparent md:hidden" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-black/60 border-2 border-orange-500/60 flex items-center justify-center group-hover:bg-orange-600/80 group-hover:border-orange-400 transition-all">
+                      <svg className="w-7 h-7 text-white ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                </div>
+                {/* Text */}
+                <div className="md:col-span-3 p-6 flex flex-col justify-center">
+                  <span className="inline-flex items-center text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full border mb-3 text-orange-400 bg-orange-500/10 border-orange-500/20 w-fit">
+                    ▶ Live Demo Lot
+                  </span>
+                  <div className="font-black text-white text-lg mb-2 leading-snug">
+                    Reverse Auction — How Buyers Win Better Prices
+                  </div>
+                  <p className="text-[12px] text-slate-400 leading-relaxed mb-4">
+                    Watch a complete reverse auction from listing to allocation. See how ChainTrack aggregates demand from verified buyers across the CIS corridor and presents a consolidated offer to the supplier — securing unit prices that no individual buyer could access alone.
+                  </p>
+                  <div className="flex items-center gap-4 text-[10px] text-slate-500">
+                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-orange-400 inline-block" /> End-to-end auction flow</span>
+                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block" /> Demand aggregation mechanics</span>
+                  </div>
+                  <div className="flex items-center gap-1 mt-4 text-[10px] font-black text-slate-500 group-hover:text-orange-400 transition-colors">
+                    <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Watch on YouTube →
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
           {/* Video / Technology Cards */}
-          <div className="grid md:grid-cols-3 gap-5 mt-10 mb-12">
+          <div className="grid md:grid-cols-3 gap-5 mt-4 mb-12">
             {[
               {
                 videoId: "kLtcgg9gyPE",

@@ -130,6 +130,8 @@ const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
 const CorporateCombined = lazy(() => import("@/pages/corporate-combined"));
 const ChainTrackPage = lazy(() => import("@/pages/chaintrack"));
 const BuyChaintrackPage = lazy(() => import("@/pages/buy-chaintrack"));
+const BuyDemoPage = lazy(() => import("@/pages/buy-demo"));
+const FounderControlPage = lazy(() => import("@/pages/founder-control"));
 const ReverseAuctionPage = lazy(() => import("@/pages/reverse-auction"));
 const ReverseAuctionAdminPage = lazy(() => import("@/pages/admin/reverse-auction-admin"));
 const MamzarAdminPage = lazy(() => import("@/pages/admin/mamzar-admin"));
@@ -561,6 +563,10 @@ function Router() {
 
         {/* ChainTrack Reverse Auction Portal — buy.chaintrack.com/reverse-auction */}
         <Route path="/buy/reverse-auction" component={ReverseAuctionPage} />
+        {/* ChainTrack Buy Demo — public, no auth required */}
+        <Route path="/buy/demo" component={BuyDemoPage} />
+        {/* Unified Founder Control Room — gated by PrivateGate */}
+        <Route path="/founder" component={FounderControlPage} />
         {/* ChainTrack Buy Module — buy.chaintrack.com */}
         <Route path="/buy" component={BuyChaintrackPage} />
         {/* WeSellCellular Buyer Portal — buy.wesellcellular.com */}
