@@ -17,9 +17,6 @@ import {
   ShieldCheck,
   Building2,
   Key,
-  Flame,
-  Zap,
-  Smartphone,
   Waves,
 } from "lucide-react";
 import { motion } from "framer-motion";
@@ -89,38 +86,30 @@ export default function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center space-y-10 relative z-10">
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+
+          {/* Headline block */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
-            className="space-y-5"
+            className="space-y-4"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/15 border border-emerald-500/30 rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest">
-              Dubai Move-In Concierge · One WhatsApp Away
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-500/15 border border-violet-500/30 rounded-full text-violet-400 text-[10px] font-black uppercase tracking-widest">
+              <BarChart3 className="w-3 h-3" /> Dubai Rental Intelligence
             </div>
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white">
-              From{" "}
-              <span className="text-emerald-400" style={{ textShadow: "0 0 40px rgba(16,185,129,0.45)" }}>
-                Keys to Kettle
+              Are You{" "}
+              <span className="text-violet-400" style={{ textShadow: "0 0 40px rgba(139,92,246,0.45)" }}>
+                Overpaying Rent
               </span>
-              {" "}in 24 Hours.
+              {" "}in Dubai?
             </h1>
             <p className="text-lg md:text-xl text-gray-300 font-medium max-w-xl mx-auto leading-relaxed">
-              Ejari, movers, DEWA, internet, cleaning — vetted vendors, flat-rate pricing, one WhatsApp thread.
+              Dubai rents shifted 18–35% in 2024. We benchmark your contract against RERA and find your cheapest legal move — at zero markup.
             </p>
-            <p className="text-sm text-emerald-400 font-black uppercase tracking-widest">
-              Move now. Pay only when services are executed. No upfront coordination fees.
-            </p>
-            <Link href="/flexible-rentals" data-testid="hero-flex-living-pill">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/25 hover:border-emerald-500/50 hover:bg-emerald-500/15 rounded-full text-emerald-300 text-[11px] font-black uppercase tracking-widest transition-all group cursor-pointer">
-                <Key className="w-3 h-3 shrink-0" />
-                Flex Living — rooms, villas & studios · no contract · from AED 550/mo
-                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
 
-            {/* Verified Google Rating ribbon */}
+            {/* Google reviews ribbon */}
             <Link href="/reviews" data-testid="link-hero-reviews">
               <div className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-blue-500/30 rounded-full px-4 py-2 transition-all cursor-pointer group">
                 <div className="flex items-center gap-1.5">
@@ -146,30 +135,84 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
+          {/* 4 key stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto w-full"
+          >
+            {[
+              { label: "Avg rent increase", value: "+26%", icon: <TrendingUp className="w-3.5 h-3.5" />, color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
+              { label: "Avg mover saving", value: "18K AED", icon: <TrendingDown className="w-3.5 h-3.5" />, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+              { label: "Cheaper districts", value: "14+", icon: <MapPin className="w-3.5 h-3.5" />, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+              { label: "DeliWer fee", value: "0 AED", icon: <Calculator className="w-3.5 h-3.5" />, color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+            ].map((s) => (
+              <div key={s.label} className={`rounded-xl border p-3 flex flex-col gap-1 ${s.bg}`}>
+                <div className={s.color}>{s.icon}</div>
+                <div className={`text-xl font-black ${s.color}`}>{s.value}</div>
+                <div className="text-[10px] font-bold text-white/70 leading-tight">{s.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Renew Blind vs Move Smart */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="grid md:grid-cols-2 gap-3 max-w-2xl mx-auto w-full text-left"
+          >
+            <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-2">
+              <div className="flex items-center gap-2 mb-1">
+                <TrendingUp className="w-4 h-4 text-red-400 shrink-0" />
+                <span className="text-xs font-black uppercase tracking-wider text-red-400">Renew Blind</span>
+              </div>
+              {[
+                { label: "Rent hike risk", value: "Up to 20%" },
+                { label: "RERA check", value: "Skipped" },
+                { label: "Annual overpay", value: "6–22K AED" },
+              ].map((row) => (
+                <div key={row.label} className="flex justify-between items-center border-b border-white/5 pb-1.5">
+                  <span className="text-gray-400 text-xs">{row.label}</span>
+                  <span className="text-xs font-bold text-red-400">{row.value}</span>
+                </div>
+              ))}
+            </div>
+            <div className="bg-violet-500/10 border border-violet-500/30 rounded-xl p-4 space-y-2">
+              <div className="flex items-center gap-2 mb-1">
+                <TrendingDown className="w-4 h-4 text-violet-400 shrink-0" />
+                <span className="text-xs font-black uppercase tracking-wider text-violet-400">Move Smart</span>
+              </div>
+              {[
+                { label: "RERA benchmark", value: "Free" },
+                { label: "District scan", value: "14+ options" },
+                { label: "Net annual saving", value: "12–22K AED" },
+              ].map((row) => (
+                <div key={row.label} className="flex justify-between items-center border-b border-violet-500/10 pb-1.5">
+                  <span className="text-gray-400 text-xs">{row.label}</span>
+                  <span className="text-xs font-bold text-violet-300">{row.value}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="flex flex-col items-center gap-4"
           >
             <SmartChannelCTA
-              waMessage="I found a property in Dubai. I want full move-in support (Ejari, movers, setup)."
+              waMessage="Hello DeliWer, I want a free rental analysis and move-in plan."
               size="lg"
               layout="row"
               showBackupLabel={true}
               testIdPrefix="hero"
             />
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-              <button
-                onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
-                data-testid="cta-see-how-it-works"
-                className="h-10 px-6 border border-white/20 text-white font-black uppercase tracking-widest text-xs rounded-xl hover:bg-white/5 transition-all"
-              >
-                See How It Works
-              </button>
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-1">
-              {["Serving tenants across Dubai", "Verified partner network", "WhatsApp & Telegram support"].map((t) => (
+            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+              {["RERA benchmarked", "Zero DeliWer fee", "WhatsApp in minutes"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t}
                 </span>
@@ -178,6 +221,7 @@ export default function LandingPage() {
             <ChannelStatusBar />
           </motion.div>
 
+          {/* Relocation scenario buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -239,64 +283,7 @@ export default function LandingPage() {
             </Link>
           </motion.div>
 
-          {/* ── ChainTrack Electronics Discovery ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.28 }}
-            className="max-w-2xl mx-auto w-full"
-          >
-            <Link href="/chaintrack" data-testid="funnel-btn-chaintrack">
-              <div className="group flex items-center justify-between gap-4 px-5 py-3.5 bg-cyan-500/8 backdrop-blur-sm border border-cyan-500/30 hover:border-cyan-500/60 hover:bg-cyan-500/12 rounded-xl transition-all">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-cyan-500/15 rounded-lg flex items-center justify-center group-hover:bg-cyan-500/25 transition-all shrink-0">
-                    <Smartphone className="w-4 h-4 text-cyan-400" />
-                  </div>
-                  <div>
-                    <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight flex items-center gap-2">
-                      ChainTrack · Used iPhone Marketplace
-                      <span className="bg-cyan-500 text-slate-950 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full">B2B</span>
-                    </div>
-                    <div className="text-[9px] text-cyan-400/80 font-semibold leading-tight">Reverse auction · 34 markets · Phone Flipper Track open</div>
-                  </div>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-cyan-400 shrink-0 group-hover:translate-x-0.5 transition-transform" />
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* ── Flexible Rentals Quick-Pick ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="max-w-2xl mx-auto w-full"
-          >
-            <Link href="/flexible-rentals" data-testid="funnel-btn-flexible-rentals">
-              <div className="group flex items-center justify-between gap-4 px-5 py-3.5 bg-emerald-500/8 backdrop-blur-sm border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-emerald-500/12 rounded-xl transition-all">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-emerald-500/15 rounded-lg flex items-center justify-center group-hover:bg-emerald-500/25 transition-all shrink-0">
-                    <Key className="w-4 h-4 text-emerald-400" />
-                  </div>
-                  <div>
-                    <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight flex items-center gap-2">
-                      Find a Room / Shared Villa
-                      <span className="bg-emerald-500 text-slate-950 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full">New</span>
-                    </div>
-                    <div className="text-[9px] text-emerald-400/80 font-semibold leading-tight">No contract · from AED 550/mo · move in this week</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="flex items-center gap-1 text-[9px] font-black text-amber-400 uppercase tracking-wider">
-                    <Flame className="w-3 h-3" /> 11 available
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-emerald-400 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* ── Partner pull-quote ── */}
+          {/* Partner teaser */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -314,212 +301,20 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ============================================
-          SECTION 2 — PROBLEM / PAIN
+          VALUE PROP — FROM KEYS TO KETTLE IN 24 HOURS
          ============================================ */}
-      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80"
-            alt="Dubai apartment moving in"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/85 to-slate-950/95" />
-        </div>
-        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-4"
-          >
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              Moving in Dubai is <span className="text-red-400">fragmented,</span> slow, and stressful.
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-            {[
-              { icon: "📄", text: "Ejari delays and unclear steps" },
-              { icon: "🚛", text: "Multiple vendors for moving, utilities, cleaning" },
-              { icon: "💸", text: "Hidden costs and last-minute surprises" },
-              { icon: "📞", text: "No single point of coordination" },
-            ].map((item) => (
-              <div key={item.text} className="flex items-start gap-3 bg-red-500/10 backdrop-blur-sm border border-red-500/20 rounded-xl p-4">
-                <span className="text-xl shrink-0">{item.icon}</span>
-                <span className="text-gray-200 font-bold text-sm leading-snug">{item.text}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-gray-300 font-black uppercase tracking-widest text-sm">
-            You've found your home. Now comes the hard part.
-          </p>
-          <div className="flex justify-center">
-            <Link href="/start">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-12 text-sm shadow-lg shadow-emerald-900/30 transition-all" data-testid="cta-problem-start">
-                <ArrowRight className="w-4 h-4 mr-2" /> Start Your Stress-Free Move-In
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* ============================================
-          FLEX RENTALS — CENTRAL REVENUE FEATURE
-         ============================================ */}
-      <section className="relative overflow-hidden border-b border-white/5">
-        {/* Full-bleed photo background */}
-        <img
-          src="https://images.unsplash.com/photo-1560185007-5f0bb1866cab?auto=format&fit=crop&w=1920&q=80"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-slate-950/70" />
-        <div className="absolute inset-0" style={{background: "radial-gradient(ellipse 90% 100% at 50% 60%, rgba(2,6,23,0.88) 0%, rgba(2,6,23,0.55) 60%, transparent 100%)"}} />
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-950 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/8 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20">
-          {/* Top badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-2 mb-8"
-          >
-            <div className="inline-flex items-center gap-2 bg-red-500/15 border border-red-500/30 text-red-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-              <Flame className="w-3 h-3" /> Dubai Rents Up 60% in 3 Years
-            </div>
-            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-              <Zap className="w-3 h-3" /> The Survival Hack
-            </div>
-            <div className="inline-flex items-center gap-2 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full">
-              11+ Available Now
-            </div>
-          </motion.div>
-
-          {/* Hero headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-center mb-6"
-          >
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.88] text-white mb-4">
-              Dubai Rents<br />
-              <span className="text-red-400">Are Breaking</span><br />
-              <span className="text-emerald-400">People.</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-300 font-black uppercase tracking-tight max-w-2xl mx-auto">
-              We fixed that.
-            </p>
-            <p className="text-gray-400 font-medium max-w-xl mx-auto mt-3 leading-relaxed">
-              Rooms, shared villas, studios — month to month. No cheques. No annual lock-in.
-              Move in from <span className="text-white font-black">AED 550/month.</span>
-            </p>
-          </motion.div>
-
-          {/* Stats bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-6 mb-10 text-center"
-          >
-            {[
-              { value: "AED 550", label: "Starting from /mo" },
-              { value: "15+", label: "Active listings" },
-              { value: "12+", label: "Areas covered" },
-              { value: "< 2hrs", label: "Response time" },
-            ].map((s) => (
-              <div key={s.label} className="space-y-0.5">
-                <p className="text-2xl font-black text-emerald-400">{s.value}</p>
-                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">{s.label}</p>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Property type pills */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.15 }}
-            className="flex flex-wrap justify-center gap-2 mb-10"
-          >
-            {[
-              { label: "Shared Villa", color: "text-amber-400 bg-amber-500/10 border-amber-500/25" },
-              { label: "Partition Room", color: "text-blue-400 bg-blue-500/10 border-blue-500/25" },
-              { label: "Private Room", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/25" },
-              { label: "Bed Space", color: "text-violet-400 bg-violet-500/10 border-violet-500/25" },
-              { label: "Studio", color: "text-rose-400 bg-rose-500/10 border-rose-500/25" },
-            ].map((t) => (
-              <span key={t.label} className={`inline-flex items-center border rounded-xl px-3 py-1.5 text-[10px] font-black uppercase tracking-widest ${t.color}`}>
-                {t.label}
-              </span>
-            ))}
-          </motion.div>
-
-          {/* Primary CTAs */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link href="/flexible-rentals">
-              <Button
-                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest text-sm px-10 h-14 rounded-2xl shadow-[0_0_40px_-8px_rgba(16,185,129,0.7)] transition-all hover:shadow-[0_0_60px_-8px_rgba(16,185,129,0.9)] gap-2"
-                data-testid="cta-flex-rentals-main"
-              >
-                <Key className="w-5 h-5" /> Find My Room Now
-              </Button>
-            </Link>
-            <Link href="/flexible-rentals">
-              <Button
-                variant="outline"
-                className="border-white/25 text-white hover:bg-white/8 hover:border-white/50 font-black uppercase tracking-widest text-sm px-8 h-14 rounded-2xl transition-all gap-2"
-                data-testid="cta-flex-rentals-browse"
-              >
-                Browse All 15+ Listings <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </motion.div>
-
-          {/* Checklist row */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.25 }}
-            className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-8"
-          >
-            {["No annual contract", "Bills included options", "Same-day WhatsApp response", "Broker attribution built in", "Verified listings"].map((t) => (
-              <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-400 font-bold">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {t}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ============================================
-          SECTION 3 (UNIFIED) — WHAT DELIVERWER HANDLES
-         ============================================ */}
-      <section className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
+      <section id="how-it-works" className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
-            alt="Home setup"
+            alt=""
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90" />
         </div>
+
         <div className="max-w-4xl mx-auto space-y-10 relative z-10">
+          {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -531,13 +326,16 @@ export default function LandingPage() {
               One coordinator. Everything sorted.
             </div>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              What DeliWer handles for you
+              From{" "}
+              <span className="text-emerald-400">Keys to Kettle</span>
+              {" "}in 24 Hours.
             </h2>
             <p className="text-gray-400 font-medium max-w-lg mx-auto">
-              One conversation. Full move-in coordination. We coordinate everything — our partners execute.
+              Ejari, movers, DEWA, internet, cleaning — vetted vendors, flat-rate pricing, one WhatsApp thread. No upfront coordination fees.
             </p>
           </motion.div>
 
+          {/* Services grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {[
               { icon: "📄", label: "Ejari Registration", href: "/ejari-dubai" },
@@ -545,7 +343,7 @@ export default function LandingPage() {
               { icon: "⚡", label: "DEWA & Utility Setup", href: "/dewa-activation" },
               { icon: "📶", label: "Internet Connection", href: "/setup" },
               { icon: "🧹", label: "Cleaning & Preparation", href: "/home-services" },
-              { icon: "📦", label: "Storage & Logistics", href: "/relocate" },
+              { icon: "💧", label: "Water Filter Setup", href: "/home-services" },
             ].map((s) => (
               <Link key={s.label} href={s.href}>
                 <div className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all cursor-pointer h-full">
@@ -556,22 +354,63 @@ export default function LandingPage() {
             ))}
           </div>
 
-          {/* Virtual Ejari for Business — inline CTA */}
-          <div className="relative overflow-hidden rounded-2xl border border-teal-500/20 bg-teal-950/30 px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div className="shrink-0 w-9 h-9 rounded-xl bg-teal-500/15 border border-teal-500/25 flex items-center justify-center">
-              <span className="text-base">🏢</span>
+          {/* Cost breakdown */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
+            <div className="px-5 py-2.5">
+              <p className="text-[10px] text-amber-400 font-black uppercase tracking-widest">Typical move-in cost estimates</p>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white font-bold text-sm">Need Ejari for a business license?</p>
-              <p className="text-gray-500 text-xs mt-0.5">Virtual Ejari — DLD-registered address for trade licenses, RERA broker cards &amp; freelance permits. Delivered in 48 hrs.</p>
-            </div>
-            <Link href="/virtual-ejari">
-              <div className="shrink-0 flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-teal-300 border border-teal-500/25 hover:border-teal-500/40 px-4 py-2 rounded-xl transition-colors whitespace-nowrap cursor-pointer">
-                Virtual Ejari →
+            {[
+              { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
+              { service: "Movers (depends on property size)", range: "AED 800–2,500", icon: "🚛" },
+              { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
+              { service: "Deep Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
+            ].map((row) => (
+              <div key={row.service} className="flex items-center justify-between px-5 py-3">
+                <div className="flex items-center gap-2">
+                  <span>{row.icon}</span>
+                  <span className="text-gray-300 font-bold text-xs">{row.service}</span>
+                </div>
+                <span className="text-emerald-400 font-black text-xs">{row.range}</span>
               </div>
-            </Link>
+            ))}
+            <div className="px-5 py-3 bg-emerald-500/5">
+              <p className="text-emerald-300 font-black text-xs text-center">DeliWer coordination fee: AED 0 to you</p>
+            </div>
           </div>
 
+          {/* "Just Got Keys?" urgency card */}
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-4 py-1.5 rounded-bl-2xl uppercase tracking-widest">
+              High Priority
+            </div>
+            <div className="flex-1 space-y-3 pr-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Just Received Your Keys?</p>
+              <h3 className="text-xl font-black uppercase tracking-tight text-white leading-tight">
+                Day 1 problems — solved before you arrive.
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                {["No drinking water ready", "No shower filter installed", "Utilities not activated"].map((issue) => (
+                  <div key={issue} className="flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-red-400 text-[10px] font-black">!</span>
+                    </div>
+                    <span className="text-gray-200 font-medium text-sm">{issue}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <Button
+              size="lg"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-14 px-7 text-sm shadow-xl transition-all group shrink-0"
+              onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
+              data-testid="button-just-got-keys"
+            >
+              <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              WhatsApp: I Just Got My Keys
+            </Button>
+          </div>
+
+          {/* CTA block */}
           <div className="flex flex-col items-center gap-3">
             <SmartChannelCTA
               waMessage="I found a property in Dubai. I want full move-in support (Ejari, movers, setup)."
@@ -586,249 +425,9 @@ export default function LandingPage() {
               </Button>
             </Link>
           </div>
-          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">No hidden fees · You pay vendors directly at market rates</p>
-        </div>
-      </section>
-      {/* ============================================
-          SECTION 4 — TRANSACTION SUPPORT
-         ============================================ */}
-      <section id="how-it-works" className="relative py-20 px-6 bg-slate-900/50 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80"
-            alt="Dubai apartment move-in"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-900/95" />
-        </div>
-        <div className="max-w-4xl mx-auto relative z-10 space-y-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-4"
-          >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Transaction Support
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              From Agreement to Move-In —<br />
-              <span className="text-emerald-400">Handled</span>
-            </h2>
-            <p className="text-gray-400 font-medium max-w-xl mx-auto leading-relaxed">
-              DeliWer works alongside your broker, developer, or landlord to ensure everything after the deal is executed seamlessly.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { step: "01", title: "Client chooses property", desc: "Any source — broker, developer, or self-found.", color: "slate" },
-              { step: "02", title: "Agreement confirmed", desc: "Tenancy signed or purchase confirmed with your broker.", color: "slate" },
-              { step: "03", title: "DeliWer activates", desc: "Ejari, DEWA, movers, setup — coordinated in one flow.", color: "emerald", highlight: true },
-            ].map((s) => (
-              <div key={s.step} className={`relative bg-white/5 border rounded-2xl p-6 space-y-3 transition-all ${s.highlight ? "border-emerald-500/40 bg-emerald-500/5" : "border-white/10 hover:border-white/20"}`}>
-                {s.highlight && (
-                  <div className="absolute -top-2.5 left-4 bg-emerald-500 text-slate-950 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
-                    DeliWer Starts Here
-                  </div>
-                )}
-                <div className={`text-4xl font-black ${s.highlight ? "text-emerald-500/40" : "text-white/10"}`}>{s.step}</div>
-                <h3 className="text-white font-black text-sm uppercase tracking-tight leading-snug">{s.title}</h3>
-                <p className="text-gray-500 text-xs font-medium leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Link href="/transaction-support">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-8 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all" data-testid="cta-transaction-support">
-                <ArrowRight className="w-4 h-4 mr-2" /> See How It Works
-              </Button>
-            </Link>
-            <p className="text-gray-600 text-[11px] font-bold uppercase tracking-widest">DeliWer is not part of the deal — we make it real.</p>
-          </div>
-        </div>
-      </section>
-      {/* ============================================
-          DUBAI RENTAL INTELLIGENCE + COST CLARITY
-         ============================================ */}
-      <section className="relative py-16 px-4 border-b border-white/5 overflow-hidden">
-        {/* Lifestyle image background */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80"
-            alt="Dubai skyline"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/85 to-slate-950/95" />
-        </div>
-
-        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
-
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              <BarChart3 className="w-3 h-3" /> Dubai Rental Intelligence
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">
-              Are You <span className="text-violet-400">Overpaying Rent</span> in Dubai?
-            </h2>
-            <p className="text-gray-400 text-sm max-w-xl mx-auto font-medium">
-              Dubai rents shifted 18–35% in 2024. DeliWer benchmarks your contract against RERA and finds your cheapest legal move — at zero markup.
-            </p>
-          </motion.div>
-
-          {/* Key stats — compact 4-col */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              { label: "Avg rent increase", value: "+26%", icon: <TrendingUp className="w-3.5 h-3.5" />, color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
-              { label: "Avg mover saving", value: "18K AED", icon: <TrendingDown className="w-3.5 h-3.5" />, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
-              { label: "Cheaper districts", value: "14+", icon: <MapPin className="w-3.5 h-3.5" />, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
-              { label: "DeliWer fee", value: "0 AED", icon: <Calculator className="w-3.5 h-3.5" />, color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
-            ].map((s) => (
-              <div key={s.label} className={`rounded-xl border p-3 flex flex-col gap-1 ${s.bg}`} data-testid={`stat-${s.label.toLowerCase().replace(/\s/g, "-")}`}>
-                <div className={s.color}>{s.icon}</div>
-                <div className={`text-xl font-black ${s.color}`}>{s.value}</div>
-                <div className="text-[10px] font-bold text-white/70 leading-tight">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Renew vs Move — simplified two-column */}
-          <div className="grid md:grid-cols-2 gap-3">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-3">
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-red-400 shrink-0" />
-                <span className="text-xs font-black uppercase tracking-wider text-red-400">Renew Blind</span>
-              </div>
-              {[
-                { label: "Rent hike risk", value: "Up to 20%" },
-                { label: "RERA check", value: "Skipped" },
-                { label: "Annual overpay", value: "6–22K AED" },
-              ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center border-b border-white/5 pb-2">
-                  <span className="text-gray-400 text-xs">{row.label}</span>
-                  <span className="text-xs font-bold text-red-400">{row.value}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-violet-500/10 border border-violet-500/30 rounded-xl p-5 space-y-3">
-              <div className="flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-violet-400 shrink-0" />
-                <span className="text-xs font-black uppercase tracking-wider text-violet-400">Move Smart</span>
-              </div>
-              {[
-                { label: "RERA benchmark", value: "Free" },
-                { label: "District scan", value: "14+ options" },
-                { label: "Net annual saving", value: "12–22K AED" },
-              ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center border-b border-violet-500/10 pb-2">
-                  <span className="text-gray-400 text-xs">{row.label}</span>
-                  <span className="text-xs font-bold text-violet-300">{row.value}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Cost Breakdown */}
-          <div className="space-y-3">
-            <p className="text-[10px] text-amber-400 font-black uppercase tracking-widest text-center">Typical move-in cost estimates</p>
-            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
-              {[
-                { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
-                { service: "Movers (depends on size)", range: "AED 800–2,500", icon: "🚛" },
-                { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
-                { service: "Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
-              ].map((row) => (
-                <div key={row.service} className="flex items-center justify-between px-5 py-3">
-                  <div className="flex items-center gap-2">
-                    <span>{row.icon}</span>
-                    <span className="text-gray-300 font-bold text-xs">{row.service}</span>
-                  </div>
-                  <span className="text-emerald-400 font-black text-xs">{row.range}</span>
-                </div>
-              ))}
-              <div className="px-5 py-3 bg-emerald-500/5">
-                <p className="text-emerald-300 font-black text-xs text-center">DeliWer coordination fee: AED 0 to you</p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="https://wa.me/971523906019?text=I%20want%20to%20get%20my%20move-in%20plan%20and%20cost%20estimate."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-black px-6 py-3 rounded-2xl text-sm transition-all shadow-lg shadow-emerald-900/30"
-              data-testid="cta-get-move-in-plan"
-            >
-              <MessageCircle className="w-4 h-4" /> Get My Move-In Plan
-            </a>
-            <a
-              href="https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20want%20a%20free%20rental%20analysis%20for%20my%20apartment"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="cta-rental-analysis"
-            >
-              <Button variant="outline" className="border-violet-500/40 text-violet-400 hover:bg-violet-500/10 font-black rounded-2xl px-6 h-10 text-sm transition-all">
-                <Calculator className="w-4 h-4 mr-2" /> Analyse My Rent Free
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
-      {/* JUST GOT KEYS - HIGH-INTENT TRIGGER */}
-      <section className="py-20 px-6 bg-slate-900/50 border-y border-white/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="relative h-64 md:h-96 rounded-3xl overflow-hidden">
-              <img src={lifestyleImages.justGotKeys} alt="New apartment keys" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 to-transparent" />
-            </div>
-            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-8 md:p-12 space-y-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-xs font-black px-4 py-2 rounded-bl-2xl uppercase tracking-widest">High Priority</div>
-              <div className="space-y-4">
-                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white">Just Received Your Apartment Keys?</h3>
-                <p className="text-gray-300 font-bold text-lg">Most new residents discover the same problems on day one:</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                  {[
-                    "No drinking water ready",
-                    "No shower filter installed",
-                    "Utilities not activated"
-                  ].map((issue, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-1">
-                        <span className="text-red-400 text-xs font-black">!</span>
-                      </div>
-                      <span className="text-gray-200 font-medium">{issue}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="border-t border-emerald-500/20 pt-6">
-                <p className="text-gray-300 font-bold mb-4">Let DeliWer prepare your home so your first night is stress-free.</p>
-                <Button 
-                  size="lg" 
-                  className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-16 text-lg shadow-2xl transition-all group"
-                  onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
-                  data-testid="button-just-got-keys"
-                >
-                  <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                  WhatsApp: I Just Got My Keys
-                </Button>
-                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest text-center mt-3">Response within 10 minutes</p>
-              </div>
-            </div>
-          </div>
+          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+            No hidden fees · You pay vendors directly at market rates
+          </p>
         </div>
       </section>
       {/* ============================================
