@@ -16,11 +16,12 @@ import {
   Mail, Star, Send, TrendingUp, Bot, Radio, Target, Eye,
   ArrowRight, Sparkles, Network
 } from "lucide-react";
-import { SiWhatsapp, SiLinkedin, SiInstagram, SiX, SiFacebook, SiTelegram } from "react-icons/si";
+import { SiWhatsapp, SiInstagram, SiX, SiFacebook, SiTelegram } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import { apiRequest } from "@/lib/queryClient";
 
 const PLATFORM_ICONS: Record<string, any> = {
-  linkedin: SiLinkedin,
+  linkedin: FaLinkedin,
   instagram: SiInstagram,
   twitter: SiX,
   facebook: SiFacebook,
@@ -384,7 +385,7 @@ export default function SocialAgentPage() {
                           <div className="flex flex-wrap gap-2">
                             {broker.linkedinUrl && (
                               <a href={broker.linkedinUrl} target="_blank" rel="noopener noreferrer" data-testid={`link-linkedin-${broker.id}`} className="flex items-center gap-1 text-xs text-[#0077B5] hover:opacity-80 transition-opacity">
-                                <SiLinkedin className="w-3 h-3" />LinkedIn
+                                <FaLinkedin className="w-3 h-3" />LinkedIn
                               </a>
                             )}
                             {broker.instagramHandle && (
@@ -476,7 +477,7 @@ export default function SocialAgentPage() {
                                   rel="noopener noreferrer"
                                   className="mt-2 inline-flex items-center gap-1.5 text-xs text-[#0077B5] hover:opacity-80 transition-opacity"
                                 >
-                                  <SiLinkedin className="w-3 h-3" />Open Profile
+                                  <FaLinkedin className="w-3 h-3" />Open Profile
                                 </a>
                               )}
                             </div>
@@ -697,7 +698,7 @@ export default function SocialAgentPage() {
                     },
                     {
                       channel: "LinkedIn Company Pages",
-                      icon: SiLinkedin,
+                      icon: FaLinkedin,
                       color: "text-[#0077B5]",
                       action: "Follow + comment on recent posts → InMail",
                       steps: [

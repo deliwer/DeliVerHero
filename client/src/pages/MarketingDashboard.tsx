@@ -16,13 +16,14 @@ import {
   CircleDot, Wifi, XCircle, ThumbsUp, MessageCircle, User
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SiWhatsapp, SiLinkedin, SiInstagram, SiFacebook, SiTelegram } from "react-icons/si";
+import { SiWhatsapp, SiInstagram, SiFacebook, SiTelegram } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 
 const RENTAL_HEAVY_AREAS = ["Marina", "JVC", "Business Bay", "Downtown", "Hills"];
 
 const SOURCE_CONFIG: Record<string, { label: string; Icon: any; color: string; bg: string }> = {
   whatsapp_group: { label: "WhatsApp", Icon: SiWhatsapp, color: "#25D366", bg: "bg-green-500/10 border-green-500/30" },
-  linkedin: { label: "LinkedIn", Icon: SiLinkedin, color: "#0077B5", bg: "bg-blue-500/10 border-blue-500/30" },
+  linkedin: { label: "LinkedIn", Icon: FaLinkedin, color: "#0077B5", bg: "bg-blue-500/10 border-blue-500/30" },
   facebook: { label: "Facebook", Icon: SiFacebook, color: "#1877F2", bg: "bg-blue-600/10 border-blue-600/30" },
   instagram: { label: "Instagram", Icon: SiInstagram, color: "#E4405F", bg: "bg-pink-500/10 border-pink-500/30" },
   telegram: { label: "Telegram", Icon: SiTelegram, color: "#26A5E4", bg: "bg-sky-500/10 border-sky-500/30" },
@@ -248,7 +249,7 @@ function formatTimeAgo(ts: string): string {
 
 const COMMUNITY_SOURCE_ICON: Record<string, any> = {
   facebook: SiFacebook,
-  linkedin: SiLinkedin,
+  linkedin: FaLinkedin,
   telegram: SiTelegram,
   instagram: SiInstagram,
   reddit: Globe,

@@ -25,7 +25,8 @@ import {
   Send, Languages, BrainCircuit, TrendingDownIcon,
   X, Tag, Building, LayoutGrid
 } from "lucide-react";
-import { SiLinkedin, SiWhatsapp, SiTelegram } from "react-icons/si";
+import { SiWhatsapp, SiTelegram } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
 import ChainTrackAIAgent from "@/components/chaintrack-ai-agent";
 import warehouseImage from "@assets/stock_images/modern_warehouse_ful_49a92694.jpg";
 import cargoPlaneImage from "@assets/stock_images/hero_cargo_plane.jpg";
