@@ -42,15 +42,61 @@ const lifestyleImages = {
   finalCTA: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=800&q=80"
 };
 
+const DUBAI_BENCHMARKS = [
+  { area: "Dubai Marina",          min: 8000,  max: 12000 },
+  { area: "Business Bay",          min: 7500,  max: 11000 },
+  { area: "JVC",                   min: 4500,  max: 7000  },
+  { area: "Downtown Dubai",        min: 10000, max: 16000 },
+  { area: "Deira",                 min: 3500,  max: 6000  },
+  { area: "Al Barsha",             min: 4000,  max: 7000  },
+  { area: "JLT",                   min: 5500,  max: 8500  },
+  { area: "Dubai Hills Estate",    min: 7000,  max: 10000 },
+  { area: "International City",    min: 2500,  max: 4000  },
+  { area: "Palm Jumeirah",         min: 12000, max: 20000 },
+  { area: "Silicon Oasis",         min: 3500,  max: 5500  },
+  { area: "Mirdif",                min: 4000,  max: 6500  },
+  { area: "Bur Dubai",             min: 3500,  max: 6000  },
+  { area: "Al Nahda",              min: 3000,  max: 5500  },
+  { area: "Karama",                min: 3500,  max: 6000  },
+  { area: "Al Furjan",             min: 5000,  max: 8000  },
+  { area: "Motor City",            min: 4500,  max: 7000  },
+  { area: "Sports City",           min: 4000,  max: 6500  },
+];
 
 export default function LandingPage() {
   const [funnelOpen, setFunnelOpen] = useState(false);
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
+  const [calcRent, setCalcRent] = useState("");
+  const [calcDistrict, setCalcDistrict] = useState("");
 
   const openFunnel = (scenario?: FunnelScenario) => {
     setFunnelScenario(scenario);
     setFunnelOpen(true);
   };
+
+  const getCalcResult = () => {
+    const rent = parseFloat(calcRent) || 0;
+    const bm = DUBAI_BENCHMARKS.find(d => d.area === calcDistrict);
+    if (!rent || !bm) return null;
+    if (rent > bm.max * 1.05) {
+      const overpay = Math.round(rent - bm.max);
+      return {
+        overpaying: true,
+        message: `Market range for ${bm.area}: AED ${bm.min.toLocaleString()}–${bm.max.toLocaleString()}/mo. You may be overpaying ~AED ${overpay.toLocaleString()}/mo — that's AED ${Math.round(overpay * 12 / 1000)}K/year.`
+      };
+    }
+    if (rent < bm.min * 0.95) {
+      return {
+        overpaying: false,
+        message: `You're below market for ${bm.area} (AED ${bm.min.toLocaleString()}–${bm.max.toLocaleString()}/mo). Strong position — negotiate your renewal from strength.`
+      };
+    }
+    return {
+      overpaying: false,
+      message: `You're within market range for ${bm.area} (AED ${bm.min.toLocaleString()}–${bm.max.toLocaleString()}/mo). Still worth RERA-checking before your next renewal.`
+    };
+  };
+  const calcResult = getCalcResult();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -156,44 +202,72 @@ export default function LandingPage() {
             ))}
           </motion.div>
 
-          {/* Renew Blind vs Move Smart */}
+          {/* RERA Rent Calculator */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="grid md:grid-cols-2 gap-3 max-w-2xl mx-auto w-full text-left"
+            className="max-w-2xl mx-auto w-full"
           >
-            <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-2">
-              <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="w-4 h-4 text-red-400 shrink-0" />
-                <span className="text-xs font-black uppercase tracking-wider text-red-400">Renew Blind</span>
+            <div className="bg-white/5 border border-violet-500/20 rounded-2xl p-5 space-y-4">
+              <div className="flex items-center gap-2">
+                <Calculator className="w-4 h-4 text-violet-400" />
+                <span className="text-[10px] font-black uppercase tracking-wider text-violet-400">RERA Rent Checker — Is Your Rent Fair?</span>
               </div>
-              {[
-                { label: "Rent hike risk", value: "Up to 20%" },
-                { label: "RERA check", value: "Skipped" },
-                { label: "Annual overpay", value: "6–22K AED" },
-              ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center border-b border-white/5 pb-1.5">
-                  <span className="text-gray-400 text-xs">{row.label}</span>
-                  <span className="text-xs font-bold text-red-400">{row.value}</span>
+
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Monthly rent (AED)</label>
+                  <input
+                    type="number"
+                    value={calcRent}
+                    onChange={(e) => setCalcRent(e.target.value)}
+                    placeholder="e.g. 8500"
+                    className="w-full bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-xl px-4 py-2.5 text-white font-bold text-sm placeholder-gray-600 focus:outline-none transition-colors"
+                    data-testid="input-calc-rent"
+                  />
                 </div>
-              ))}
-            </div>
-            <div className="bg-violet-500/10 border border-violet-500/30 rounded-xl p-4 space-y-2">
-              <div className="flex items-center gap-2 mb-1">
-                <TrendingDown className="w-4 h-4 text-violet-400 shrink-0" />
-                <span className="text-xs font-black uppercase tracking-wider text-violet-400">Move Smart</span>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Your area</label>
+                  <select
+                    value={calcDistrict}
+                    onChange={(e) => setCalcDistrict(e.target.value)}
+                    className="w-full bg-slate-900 border border-white/10 focus:border-violet-500/50 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none transition-colors"
+                    data-testid="select-calc-district"
+                  >
+                    <option value="">Select area…</option>
+                    {DUBAI_BENCHMARKS.map(d => (
+                      <option key={d.area} value={d.area}>{d.area}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              {[
-                { label: "RERA benchmark", value: "Free" },
-                { label: "District scan", value: "14+ options" },
-                { label: "Net annual saving", value: "12–22K AED" },
-              ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center border-b border-violet-500/10 pb-1.5">
-                  <span className="text-gray-400 text-xs">{row.label}</span>
-                  <span className="text-xs font-bold text-violet-300">{row.value}</span>
+
+              {calcResult ? (
+                <div className={`rounded-xl p-3 flex items-start justify-between gap-3 border transition-all ${calcResult.overpaying ? "bg-red-500/10 border-red-500/25" : "bg-emerald-500/10 border-emerald-500/25"}`}>
+                  <div>
+                    <p className={`text-[10px] font-black uppercase tracking-wider mb-1 ${calcResult.overpaying ? "text-red-400" : "text-emerald-400"}`}>
+                      {calcResult.overpaying ? "⚠ Potential Overpayment Detected" : "✓ Within Market Range"}
+                    </p>
+                    <p className="text-white/80 font-medium text-xs leading-relaxed">{calcResult.message}</p>
+                  </div>
+                  {calcResult.overpaying && (
+                    <a
+                      href={`https://wa.me/971523906019?text=I'm paying AED ${calcRent}/mo in ${calcDistrict}. Is this fair? I want a free rent analysis.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider rounded-xl px-3 py-2 transition-colors whitespace-nowrap"
+                      data-testid="link-calc-whatsapp"
+                    >
+                      Fix It Now →
+                    </a>
+                  )}
                 </div>
-              ))}
+              ) : (
+                <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest text-center">
+                  18 Dubai areas benchmarked against RERA market rates
+                </p>
+              )}
             </div>
           </motion.div>
 

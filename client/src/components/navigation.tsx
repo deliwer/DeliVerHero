@@ -388,18 +388,20 @@ export function Navigation() {
         <a
           href="/flexible-rentals"
           data-testid="bar-flex-living-announcement"
-          className="flex items-center justify-center gap-3 py-2 px-4 bg-emerald-700/95 backdrop-blur-sm border-b border-emerald-500/30 hover:bg-emerald-600/95 transition-colors relative z-50 group"
+          className="flex items-center justify-center gap-2.5 py-1.5 px-4 bg-emerald-950/80 backdrop-blur-sm border-b border-emerald-500/15 hover:bg-emerald-900/80 transition-colors relative z-50 group"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse shrink-0" />
-          <span className="text-[11px] font-black uppercase tracking-widest text-white">
-            Flex Living
-          </span>
-          <span className="hidden sm:inline text-emerald-300 text-[11px] font-semibold">·</span>
-          <span className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-emerald-100">
-            Rooms &amp; Villas from AED 550/mo · No Annual Contract · Move In This Week
-          </span>
-          <span className="ml-1 px-2 py-0.5 rounded-full bg-white/20 text-white text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-white/30 transition-colors">
-            Browse Rooms →
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Flex Living</span>
+          <span className="text-emerald-800 text-[10px]">|</span>
+          <span className="text-[9px] font-bold text-white/50">🛏 Rooms</span>
+          <span className="text-emerald-800 text-[9px]">·</span>
+          <span className="text-[9px] font-bold text-white/50">🏠 Villas</span>
+          <span className="text-emerald-800 text-[9px]">·</span>
+          <span className="text-[9px] font-bold text-white/50">🛋 Studios</span>
+          <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
+          <span className="hidden sm:inline text-[9px] font-black text-emerald-400">from AED 550/mo</span>
+          <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-emerald-500/25 transition-colors whitespace-nowrap">
+            11 available →
           </span>
         </a>
       )}
