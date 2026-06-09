@@ -377,6 +377,18 @@ Source: Website Concierge Page
     }
   });
 
+  app.get("/api/admin/rent-analysis-leads", async (req, res) => {
+    const token = req.headers["x-admin-token"] as string;
+    const secret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (token !== secret) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      const rows = await db.select().from(rentAnalysisLeads).orderBy(desc(rentAnalysisLeads.createdAt));
+      res.json(rows);
+    } catch (error: any) {
+      res.status(500).json({ error: "Failed to fetch leads" });
+    }
+  });
+
   app.get("/api/leads", async (req, res) => {
     try {
       const leads = await storage.getLeadApplications();
