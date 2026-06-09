@@ -68,10 +68,38 @@ export default function LandingPage() {
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
   const [calcRent, setCalcRent] = useState("");
   const [calcDistrict, setCalcDistrict] = useState("");
+  const [calcEmail, setCalcEmail] = useState("");
+  const [calcSubmitting, setCalcSubmitting] = useState(false);
+  const [calcSubmitted, setCalcSubmitted] = useState(false);
 
   const openFunnel = (scenario?: FunnelScenario) => {
     setFunnelScenario(scenario);
     setFunnelOpen(true);
+  };
+
+  const submitRentAnalysis = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!calcEmail || !calcRent || !calcDistrict) return;
+    setCalcSubmitting(true);
+    try {
+      const bm = DUBAI_BENCHMARKS.find(d => d.area === calcDistrict);
+      const overpayEstimate = bm ? Math.max(0, Math.round(parseFloat(calcRent) - bm.max)) : undefined;
+      await fetch("/api/rent-analysis-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: calcEmail,
+          district: calcDistrict,
+          monthlyRent: Math.round(parseFloat(calcRent)),
+          overpayEstimate,
+        }),
+      });
+      setCalcSubmitted(true);
+    } catch {
+      setCalcSubmitted(true);
+    } finally {
+      setCalcSubmitting(false);
+    }
   };
 
   const getCalcResult = () => {
@@ -244,14 +272,14 @@ export default function LandingPage() {
               </div>
 
               {calcResult ? (
-                <div className={`rounded-xl p-3 flex items-start justify-between gap-3 border transition-all ${calcResult.overpaying ? "bg-red-500/10 border-red-500/25" : "bg-emerald-500/10 border-emerald-500/25"}`}>
-                  <div>
-                    <p className={`text-[10px] font-black uppercase tracking-wider mb-1 ${calcResult.overpaying ? "text-red-400" : "text-emerald-400"}`}>
-                      {calcResult.overpaying ? "⚠ Potential Overpayment Detected" : "✓ Within Market Range"}
-                    </p>
-                    <p className="text-white/80 font-medium text-xs leading-relaxed">{calcResult.message}</p>
-                  </div>
-                  {calcResult.overpaying && (
+                <div className={`rounded-xl border transition-all ${calcResult.overpaying ? "bg-red-500/10 border-red-500/25" : "bg-emerald-500/10 border-emerald-500/25"}`}>
+                  <div className="p-3 flex items-start justify-between gap-3">
+                    <div>
+                      <p className={`text-[10px] font-black uppercase tracking-wider mb-1 ${calcResult.overpaying ? "text-red-400" : "text-emerald-400"}`}>
+                        {calcResult.overpaying ? "⚠ Potential Overpayment Detected" : "✓ Within Market Range"}
+                      </p>
+                      <p className="text-white/80 font-medium text-xs leading-relaxed">{calcResult.message}</p>
+                    </div>
                     <a
                       href={`https://wa.me/971523906019?text=I'm paying AED ${calcRent}/mo in ${calcDistrict}. Is this fair? I want a free rent analysis.`}
                       target="_blank"
@@ -259,8 +287,43 @@ export default function LandingPage() {
                       className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider rounded-xl px-3 py-2 transition-colors whitespace-nowrap"
                       data-testid="link-calc-whatsapp"
                     >
-                      Fix It Now →
+                      {calcResult.overpaying ? "Fix It Now →" : "Chat Now →"}
                     </a>
+                  </div>
+
+                  {calcResult.overpaying && (
+                    <div className="border-t border-red-500/15 px-3 pb-3 pt-2.5">
+                      {calcSubmitted ? (
+                        <div className="flex items-center gap-2">
+                          <span className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                          </span>
+                          <p className="text-emerald-400 text-[11px] font-bold">
+                            Report saved — a DeliWer advisor will reach out within 24 hours.
+                          </p>
+                        </div>
+                      ) : (
+                        <form onSubmit={submitRentAnalysis} className="flex gap-2">
+                          <input
+                            type="email"
+                            value={calcEmail}
+                            onChange={(e) => setCalcEmail(e.target.value)}
+                            placeholder="your@email.com"
+                            required
+                            className="flex-1 min-w-0 bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-xl px-3 py-2 text-white text-xs font-bold placeholder-gray-600 focus:outline-none transition-colors"
+                            data-testid="input-calc-email"
+                          />
+                          <button
+                            type="submit"
+                            disabled={calcSubmitting}
+                            className="shrink-0 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 text-white text-[10px] font-black uppercase tracking-wider rounded-xl px-3 py-2 transition-colors whitespace-nowrap"
+                            data-testid="btn-calc-save"
+                          >
+                            {calcSubmitting ? "Saving…" : "Get Free Report"}
+                          </button>
+                        </form>
+                      )}
+                    </div>
                   )}
                 </div>
               ) : (

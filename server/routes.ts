@@ -36,7 +36,7 @@ async function handleLogLead(req: any, res: any) {
   }
 }
 import { storage } from "./storage";
-import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema } from "@shared/schema";
+import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema, insertRentAnalysisLeadSchema, rentAnalysisLeads } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
 import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-campaign-service";
 import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog } from "@shared/schema";
@@ -364,6 +364,16 @@ Source: Website Concierge Page
       res.json(lead);
     } catch (error: any) {
       res.status(400).json({ error: error.message || "Failed to submit application" });
+    }
+  });
+
+  app.post("/api/rent-analysis-lead", async (req, res) => {
+    try {
+      const validatedData = insertRentAnalysisLeadSchema.parse(req.body);
+      const [lead] = await db.insert(rentAnalysisLeads).values(validatedData).returning();
+      res.json({ ok: true, id: lead.id });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to save analysis" });
     }
   });
 

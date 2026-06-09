@@ -878,6 +878,15 @@ export const emailSubscribers = pgTable("email_subscribers", {
   createdAt: timestamp("created_at").notNull().default(sql`now()`),
 });
 
+export const rentAnalysisLeads = pgTable("rent_analysis_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull(),
+  district: text("district").notNull(),
+  monthlyRent: integer("monthly_rent").notNull(),
+  overpayEstimate: integer("overpay_estimate"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+
 export const emailCampaigns = pgTable("email_campaigns", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
@@ -1321,6 +1330,7 @@ export const insertWaterFiltrationProjectSchema = createInsertSchema(waterFiltra
 export const insertWaterFiltrationContributionSchema = createInsertSchema(waterFiltrationContributions).omit({ id: true, createdAt: true });
 export const insertCommissionClaimSchema = createInsertSchema(commissionClaims).omit({ id: true, createdAt: true });
 export const insertLeadSchema = createInsertSchema(leads).omit({ id: true, createdAt: true });
+export const insertRentAnalysisLeadSchema = createInsertSchema(rentAnalysisLeads).omit({ id: true, createdAt: true });
 
 // Chaintrack insert schemas
 export const insertChaintrackSellerSchema = createInsertSchema(chaintrackSellers).omit({ id: true, createdAt: true, updatedAt: true });
