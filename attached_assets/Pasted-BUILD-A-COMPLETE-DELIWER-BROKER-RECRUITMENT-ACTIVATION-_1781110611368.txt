@@ -1,0 +1,465 @@
+BUILD A COMPLETE DELIWER BROKER RECRUITMENT, ACTIVATION, FINANCE REFERRAL AND DISTRIBUTION OPERATING SYSTEM INSIDE THE EXISTING DELIWER.COM PLATFORM
+
+PROJECT NAME
+
+DeliWer Broker Network Operating System (BNOS)
+
+OBJECTIVE
+
+Create a unified, low-cost, semi-automated broker recruitment, onboarding, activation, communication and finance referral platform integrated into the existing DeliWer ecosystem.
+
+The system must continuously recruit brokers, activate them, distribute opportunities, generate prefilled WhatsApp communications, manage Zoom onboarding, track finance referrals and operate without paid messaging infrastructure.
+
+The goal is to create a scalable broker network capable of generating property, finance, SME funding and consumer financing opportunities through recruited brokers.
+
+PLATFORM URLS
+
+Main Website:
+https://deliwer.com
+
+Marketing:
+https://deliwer.com/marketing
+
+Finance:
+https://deliwer.com/finance
+
+Recruitment Telegram:
+https://t.me/+971523946311
+
+Broker Activation WhatsApp:
+https://wa.me/971523906019
+
+CONTACTS
+
+Marketing & Recruitment:
++971523946311
+
+Broker Activation & Finance:
++971523906019
+
+Emails:
+[info@deliwer.com](mailto:info@deliwer.com)
+
+SYSTEM ARCHITECTURE
+
+Create a unified operating system consisting of:
+
+1. Broker Recruitment Engine
+2. Broker Master Database
+3. LinkedIn Candidate Intake System
+4. Zoom Onboarding Manager
+5. Broker Activation Engine
+6. WhatsApp Prefilled Message Generator
+7. Telegram Recruitment Bot
+8. Finance Referral CRM
+9. Communication Automation Queue
+10. Admin Dashboard
+11. Analytics Dashboard
+12. Message Template Library
+
+BUSINESS MODEL
+
+Recruit brokers continuously through:
+
+* LinkedIn job applicants
+* Referrals
+* Recruitment campaigns
+* Manual additions
+
+Train brokers through Zoom.
+
+Activate brokers through DeliWer Finance.
+
+Enable brokers to introduce customers seeking:
+
+* Property financing
+* SME financing
+* Working capital
+* Business loans
+* Equipment financing
+* Trade finance
+* Consumer financing
+* Credit solutions
+
+The platform tracks introductions and referrals.
+
+No direct lending is performed.
+
+BROKER RECRUITMENT MODULE
+
+Create candidate intake forms.
+
+Store:
+
+Candidate ID
+Full Name
+Mobile Number
+WhatsApp Number
+Email
+Country
+City
+LinkedIn URL
+Languages
+Industry
+Experience
+Recruitment Source
+Date Applied
+Recruiter Notes
+Status
+
+Status Values
+
+Applied
+Contacted
+Interview Scheduled
+Zoom Scheduled
+Zoom Completed
+Training Completed
+Activated
+Inactive
+Rejected
+
+LINKEDIN RECRUITMENT WORKFLOW
+
+The platform should support daily recruitment activity.
+
+Recruiters manually enter LinkedIn applicants.
+
+Each applicant automatically enters onboarding pipeline.
+
+Create recruitment dashboard showing:
+
+New Applicants
+Pending Contact
+Pending Zoom
+Pending Activation
+Activated Brokers
+
+BROKER MASTER DATABASE
+
+Create central broker repository.
+
+Fields:
+
+Broker ID
+Broker Name
+Mobile
+WhatsApp
+Email
+Country
+City
+Specialization
+Activation Date
+Status
+Total Referrals
+Total Clients
+Last Activity
+Notes
+
+Support manual addition one-by-one.
+
+Support CSV export.
+
+Support search.
+
+Support filtering.
+
+ZOOM ONBOARDING SYSTEM
+
+Track onboarding progress.
+
+Store:
+
+Zoom Date
+Zoom Link
+Attendance Status
+Training Notes
+Activation Recommendation
+
+Training Topics
+
+DeliWer Platform
+Finance Opportunities
+Customer Acquisition
+Referral Process
+Commission Structure
+Client Qualification
+Funding Opportunities
+
+BROKER ACTIVATION SYSTEM
+
+Upon activation generate personalized onboarding package.
+
+Default Message:
+
+Hello {BrokerName},
+
+Welcome to the DeliWer Broker Network.
+
+You are now activated to introduce customers seeking financing and business opportunities.
+
+Potential opportunities include:
+
+• Property Finance
+• SME Finance
+• Working Capital
+• Trade Finance
+• Consumer Finance
+• Business Expansion Funding
+
+For activation support and opportunity discussions please contact:
+
+WhatsApp:
++971523906019
+
+Marketing:
+https://deliwer.com/marketing
+
+Finance:
+https://deliwer.com/finance
+
+We look forward to working with you.
+
+DeliWer Team
+
+WHATSAPP PREFILLED MESSAGE ENGINE
+
+DO NOT USE WHATSAPP BUSINESS API.
+
+DO NOT SEND MESSAGES AUTOMATICALLY.
+
+Generate clickable prefilled links only.
+
+Format:
+
+https://wa.me/{number}?text={encoded_message}
+
+Generate links for:
+
+Activation
+Recruitment
+Follow-Up
+Referral Request
+Finance Introduction
+Zoom Scheduling
+Broker Reactivation
+Lead Distribution
+
+Buttons:
+
+Copy Link
+Open WhatsApp
+Generate New Message
+
+TELEGRAM BOT SYSTEM
+
+Connect to:
+
+https://t.me/+971523946311
+
+Functions:
+
+/newbroker
+/createcandidate
+/listbrokers
+/pending
+/activate
+/followup
+/referrals
+/finance
+/dashboard
+
+The Telegram bot should:
+
+Create broker records
+Update status
+Generate communication links
+Show broker summaries
+Generate follow-up queues
+
+No bulk messaging.
+
+No spam features.
+
+COMMUNICATION AUTOMATION ENGINE
+
+Create automated task generation.
+
+Every Day
+
+Generate broker follow-up list.
+
+Every 7 Days
+
+Generate inactive broker reminder queue.
+
+Every 30 Days
+
+Generate broker reactivation campaign queue.
+
+The system generates communication tasks only.
+
+Human users choose whether to send messages.
+
+MESSAGE TEMPLATE LIBRARY
+
+Create editable templates.
+
+Categories:
+
+Recruitment
+Interview Scheduling
+Zoom Invitations
+Activation
+Finance Introduction
+Referral Request
+Broker Reactivation
+Lead Distribution
+
+Store templates in database.
+
+Allow editing through admin panel.
+
+FINANCE REFERRAL CRM
+
+Create referral tracking system.
+
+Fields:
+
+Referral ID
+Broker
+Client Name
+Client Mobile
+Client Email
+Funding Type
+Funding Requirement
+Country
+Status
+Date Submitted
+Notes
+
+Funding Types
+
+Property Finance
+Business Finance
+Working Capital
+Trade Finance
+SME Finance
+Consumer Finance
+
+Statuses
+
+New
+Submitted
+Review
+Client Contacted
+Documents Pending
+Approved
+Funded
+Closed
+
+DASHBOARDS
+
+Recruitment Dashboard
+
+Applicants Today
+Applicants This Week
+Pending Interviews
+Pending Zoom Sessions
+Activation Queue
+
+Broker Dashboard
+
+Total Brokers
+Active Brokers
+Inactive Brokers
+Top Referrers
+Recent Activity
+
+Finance Dashboard
+
+New Referrals
+Open Opportunities
+Approved Cases
+Funded Cases
+
+ADMIN PANEL
+
+Admin users can:
+
+Create Broker
+Edit Broker
+Delete Broker
+Activate Broker
+Deactivate Broker
+Add Referral
+Edit Referral
+Create Templates
+Generate Messages
+Export Data
+View Analytics
+
+TECHNOLOGY STACK
+
+Frontend
+
+React
+Bootstrap
+Responsive Mobile UI
+
+Backend
+
+Node.js
+Express
+
+Database
+
+SQLite by default
+Optional PostgreSQL support
+
+Authentication
+
+Admin Login
+Role-Based Access
+
+Hosting
+
+Replit Deployments
+
+COST REQUIREMENTS
+
+No SendGrid
+No Twilio
+No WhatsApp API
+No OpenAI dependency
+No paid AI requirements
+No paid CRM subscriptions
+No paid outreach services
+
+SYSTEM DESIGN PRINCIPLES
+
+Low Cost
+Mobile First
+Fast
+Simple
+Scalable
+Manual Control
+Human-In-The-Loop
+Compliance Focused
+
+SUCCESS CRITERIA
+
+A recruiter should be able to:
+
+1. Add LinkedIn applicant.
+2. Schedule Zoom onboarding.
+3. Activate broker.
+4. Generate personalized WhatsApp communication link.
+5. Track broker referrals.
+6. Track finance opportunities.
+7. Monitor broker activity.
+8. Operate continuously with near-zero messaging costs.
+9. Build a broker network that grows daily.
+10. Support DeliWer Marketing and DeliWer Finance through a unified operating system.
+
+Deliver production-ready code, database schema, API endpoints, Telegram bot integration, responsive dashboard, admin panel, documentation and deployment instructions.
