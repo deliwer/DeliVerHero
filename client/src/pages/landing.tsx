@@ -750,7 +750,6 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
-
       {/* ── WHAT DELIWER IS NOT ── */}
       <section className="py-8 px-6 bg-slate-950 border-b border-white/5">
         <div className="max-w-5xl mx-auto">
@@ -779,7 +778,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── ADDITIONAL REAL ESTATE OFFERS ── */}
       <section className="py-10 px-6 bg-slate-950 border-b border-white/5">
         <div className="max-w-5xl mx-auto space-y-4">
@@ -814,7 +812,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       {/* ── DELIWER LIFESTYLE GATEWAY ── */}
       <section className="relative py-16 px-6 overflow-hidden bg-gradient-to-br from-slate-950 via-cyan-950/30 to-slate-950 border-y border-cyan-900/30">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent pointer-events-none" />
@@ -954,7 +951,7 @@ export default function LandingPage() {
               <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
                 Trusted by Dubai Tenants
               </div>
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Built for tenants moving across Dubai</h2>
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Ready to move into your new home?</h2>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -1053,6 +1050,10 @@ export default function LandingPage() {
 
         {/* ── Emerald CTA ── */}
         <div className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
+          </div>
           <div className="max-w-3xl mx-auto space-y-4 relative z-10">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
             <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
