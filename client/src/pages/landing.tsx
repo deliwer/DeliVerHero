@@ -751,6 +751,35 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── WHAT DELIWER IS NOT ── */}
+      <section className="py-8 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-white/[0.025] border border-white/8 rounded-2xl px-6 py-5 flex flex-col sm:flex-row items-center gap-6">
+            <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 border border-white/10 text-lg">🚫</div>
+            <div className="flex-1 text-center sm:text-left space-y-3">
+              <p className="text-gray-300 font-black text-sm uppercase tracking-wide">DeliWer is not a real estate agency</p>
+              <div className="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-1.5">
+                {[
+                  ["We do not", "list, sell, or rent properties"],
+                  ["We do not", "hold or negotiate lease agreements"],
+                  ["We do not", "act as a landlord or RERA-licensed agent"],
+                  ["We do", "coordinate everything that happens after you sign"],
+                ].map(([prefix, text]) => (
+                  <span key={text} className="flex items-center gap-1.5 text-[11px] font-semibold">
+                    <span className={`font-black ${prefix === "We do" ? "text-emerald-400" : "text-red-400/80"}`}>{prefix}</span>
+                    <span className="text-gray-500">{text}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="shrink-0 hidden md:flex flex-col items-end gap-1 text-right">
+              <span className="text-[9px] font-black uppercase tracking-widest text-gray-700">Regulated clarity</span>
+              <span className="text-[9px] text-gray-700 font-semibold">Post-deal operations only</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── ADDITIONAL REAL ESTATE OFFERS ── */}
       <section className="py-10 px-6 bg-slate-950 border-b border-white/5">
         <div className="max-w-5xl mx-auto space-y-4">
