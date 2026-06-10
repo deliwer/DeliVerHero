@@ -99,7 +99,7 @@ export function WhatsAppSticky() {
         className="inline-flex items-center gap-2 bg-[#1a1a2e] hover:bg-[#2a2a4e] border border-purple-500/40 text-purple-300 font-semibold px-4 py-3 rounded-full shadow-lg shadow-purple-900/20 transition-transform hover:scale-105 active:scale-95"
       >
         <Phone className="w-4 h-4" />
-        <span className="hidden sm:inline whitespace-nowrap text-xs">Botim +971 52 390 6019</span>
+        <span className="hidden sm:inline whitespace-nowrap text-xs">Ready to move into your new Home?</span>
       </a>
     </div>
   );
