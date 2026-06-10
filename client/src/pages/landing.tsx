@@ -628,36 +628,51 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* SOLUTION SECTION */}
+      {/* WELCOME BONUS SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Ejari Registration Assistance From Home</h2>
-            <p className="text-gray-400 font-medium text-lg">
-              DeliWer simplifies the process by helping tenants complete Ejari registration easily from the comfort of their home.
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-[10px] font-black uppercase tracking-widest">
+              🎁 The Welcome Bonus Deal
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-[1]">
+              Congratulations —{" "}
+              <span className="text-amber-400" style={{ textShadow: "0 0 40px rgba(251,191,36,0.35)" }}>
+                Welcome to Your New Home.
+              </span>{" "}
+              Lunch Is On Us.
+            </h2>
+            <p className="text-gray-400 font-medium text-lg leading-relaxed">
+              Start your move-in process with DeliWer and earn a free welcome reward. Your first step unlocks exclusive perks — dining credits, partner vouchers, and more — as our way of celebrating your new chapter in Dubai.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
-                "Guidance on required documents",
-                "Support completing online process",
-                "Convenient assistance from home",
-                "Faster move-in progress"
+                "Free dining credit when you start your move-in",
+                "Partner vouchers dropped to your WhatsApp",
+                "Exclusive welcome perks for new residents",
+                "Zero cost — just begin the process",
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                  <span className="text-white font-bold uppercase text-sm">{benefit}</span>
+                  <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
+                  <span className="text-white font-bold text-sm">{benefit}</span>
                 </div>
               ))}
             </div>
-            <Link href="/ejari-dubai">
-              <Button size="lg" className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-xl shadow-2xl transition-all w-full md:w-auto mt-4" data-testid="button-ejari-solution">
-                Start Your Ejari Registration
+            <Link href="/earn" data-testid="btn-welcome-bonus">
+              <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl px-10 h-16 text-xl shadow-2xl transition-all w-full md:w-auto mt-4">
+                Claim Your Welcome Reward →
               </Button>
             </Link>
           </div>
-          <div className="relative h-96 rounded-3xl overflow-hidden border border-white/10">
-            <img src={lifestyleImages.process} alt="Ejari process assistance" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
+          <div className="relative h-96 rounded-3xl overflow-hidden border border-amber-500/20">
+            <img src={lifestyleImages.justGotKeys} alt="Welcome to your new Dubai home" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5">
+              <div className="bg-amber-500/15 backdrop-blur-sm border border-amber-500/30 rounded-xl px-4 py-3">
+                <p className="text-amber-300 font-black text-sm uppercase tracking-wider">🎉 New residents get rewarded</p>
+                <p className="text-white/70 text-xs font-medium mt-0.5">Start your process today — lunch is waiting.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
