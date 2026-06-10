@@ -1048,31 +1048,6 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* ── Emerald CTA ── */}
-        <div className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
-          <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
-            <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
-          </div>
-          <div className="relative z-10 flex flex-col items-center gap-4">
-            <a
-              href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="button-final-cta"
-            >
-              <Button size="lg" className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all group">
-                <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-                Start on WhatsApp
-              </Button>
-            </a>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
-              <span>WhatsApp: +971 52 394 6311</span>
-              <span>·</span>
-              <span>info@deliwer.com</span>
-            </div>
-          </div>
-        </div>
       </section>
       {/* PARTNER NETWORK */}
       <section className="bg-slate-950 border-t border-white/5 px-4">
