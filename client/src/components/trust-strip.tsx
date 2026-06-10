@@ -52,6 +52,9 @@ export function TrustStrip({ variant = "dark", showContact = true }: TrustStripP
           <Link href="/contact">
             <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>Contact</span>
           </Link>
+          <Link href="/about">
+            <span className={`cursor-pointer ${textClass} hover:text-white transition-colors uppercase tracking-widest text-[10px] font-black`}>About</span>
+          </Link>
           <div className="h-4 w-px bg-white/10 hidden md:block mx-2" />
           <a 
             href="tel:+971523946311"

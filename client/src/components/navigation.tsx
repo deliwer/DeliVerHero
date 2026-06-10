@@ -530,6 +530,19 @@ export function Navigation() {
             </Link>
 
             {!isBrokerSide && (
+              <Link href="/about">
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-xs font-black uppercase tracking-widest h-12 rounded-xl text-gray-400 hover:text-white hover:bg-white/5"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-nav-about"
+                >
+                  <Shield className="w-5 h-5 mr-3 text-blue-400" />
+                  About DeliWer
+                </Button>
+              </Link>
+            )}
+            {!isBrokerSide && (
               <Link href="/wartime-readiness">
                 <Button
                   variant="ghost"
