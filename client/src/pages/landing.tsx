@@ -616,199 +616,6 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ============================================
-          SECTION 6 — TRUST / SOCIAL PROOF
-         ============================================ */}
-      <section className="py-20 px-6 bg-slate-950 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
-          >
-            <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              Trusted by Dubai Tenants
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Built for tenants moving across Dubai</h2>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { icon: "📍", title: "JVC, Marina, Al Nahda & more", desc: "Used by tenants in the most popular Dubai districts." },
-              { icon: "🤝", title: "Partner network for execution", desc: "Vetted moving, cleaning, and utility service partners." },
-              { icon: "⚡", title: "Fast WhatsApp response", desc: "We respond within minutes — not hours." },
-            ].map((item) => (
-              <div key={item.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 text-center hover:border-violet-500/30 transition-all">
-                <span className="text-3xl block">{item.icon}</span>
-                <h3 className="text-white font-black text-sm uppercase tracking-tight">{item.title}</h3>
-                <p className="text-gray-500 text-xs font-medium leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* ── DISTRESS DEALS HIGHLIGHT ── */}
-          <div className="relative bg-gradient-to-r from-amber-950/60 via-slate-900 to-amber-950/40 border border-amber-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent pointer-events-none" />
-            <div className="shrink-0 w-12 h-12 bg-amber-500/15 border border-amber-500/30 rounded-xl flex items-center justify-center text-2xl relative z-10">
-              🔥
-            </div>
-            <div className="flex-1 text-center sm:text-left relative z-10">
-              <div className="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" /> Distress Deals Available
-              </div>
-              <p className="text-white font-black text-sm leading-snug">Landlords offering rapid-move vacancies — Ejari, DEWA &amp; setup coordinated within 24 hrs.</p>
-              <p className="text-gray-500 text-[11px] mt-1">Ask us about current availability when you start your move-in on WhatsApp.</p>
-            </div>
-            <a
-              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20know%20about%20distress%20deal%20vacancies%20available%20now."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 relative z-10"
-              data-testid="cta-distress-deals"
-            >
-              <Button className="bg-amber-600 hover:bg-amber-500 text-white font-black rounded-xl px-5 h-9 text-xs shadow-lg shadow-amber-900/30 transition-all whitespace-nowrap">
-                <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Ask on WhatsApp
-              </Button>
-            </a>
-          </div>
-
-          {/* ── Trust Signals anchor — more reviews will be added here ── */}
-          <div className="space-y-6">
-            <div className="flex items-center justify-center gap-3">
-              <div className="h-px flex-1 bg-white/5" />
-              <span className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em]">Customer Reviews · 5.0★ on Google</span>
-              <div className="h-px flex-1 bg-white/5" />
-            </div>
-
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white/3 border border-violet-500/20 rounded-2xl p-8 space-y-5 text-center flex flex-col items-center relative" data-testid="trust-anchor-nicole">
-                {/* Verified badge */}
-                <div className="absolute top-3 right-4 flex items-center gap-1 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
-                  <CheckCircle2 className="w-3 h-3" /> Verified
-                </div>
-
-                <img
-                  src={NicoleImg}
-                  alt="Nicole Oliver"
-                  data-testid="img-testimonial-nicole-landing"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-violet-400/30 shadow-lg shadow-violet-900/30"
-                />
-
-                {/* 5-star row */}
-                <div className="flex items-center justify-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  ))}
-                </div>
-
-                <p className="text-gray-200 font-bold leading-relaxed italic text-sm max-w-lg">
-                  "Just moved into my new place at Marina and DeliWer set up the complete water system — including a free hair shower filter! The difference is incredible. Fast, professional, zero hassle."
-                </p>
-
-                <div className="flex items-center justify-center gap-3">
-                  <div className="text-center">
-                    <p className="text-white font-black text-xs">Nicole Oliver</p>
-                    <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
-                  </div>
-                </div>
-
-                {/* Google review CTA */}
-                <a
-                  href="https://g.page/r/CRptmgoZmDxSEBI/review"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid="link-google-review-trust"
-                  className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-4 w-full justify-center transition-colors"
-                >
-                  <svg className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  Leave a Google Review — Help others find us
-                </a>
-              </div>
-            </div>
-
-            {/* Additional verified Google reviews — grid */}
-            <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {[
-                {
-                  id: "zoya-abassi",
-                  initials: "ZA",
-                  name: "Zoya Abassi",
-                  meta: "Dubai · 10 reviews",
-                  quote:
-                    "Shower filters installed smoothly and hassle-free. Water feels noticeably cleaner and gentler on skin and hair. Definitely recommend.",
-                  date: "1 week ago",
-                },
-                {
-                  id: "becky-choi",
-                  initials: "BC",
-                  name: "Becky Choi",
-                  meta: "Dubai · Local Guide · 23 reviews",
-                  quote: "Great service and professional people.",
-                  date: "1 year ago",
-                  image: BeckyImg,
-                },
-                {
-                  id: "syed-ghayoor",
-                  initials: "SG",
-                  name: "Syed Ghayoor Hassan",
-                  meta: "Dubai · 3 reviews",
-                  quote: "Best service in town.",
-                  date: "2 years ago",
-                },
-              ].map((r) => (
-                <div
-                  key={r.id}
-                  className="bg-white/3 border border-blue-500/20 rounded-2xl p-5 space-y-3 relative"
-                  data-testid={`landing-review-${r.id}`}
-                >
-                  <div className="absolute top-3 right-4 inline-flex items-center gap-1 text-blue-300 text-[9px] font-black uppercase tracking-widest">
-                    <svg className="w-3 h-3" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571.001-.001.002-.001.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
-                    Google
-                  </div>
-                  <div className="flex items-center gap-3">
-                    {(r as any).image ? (
-                      <img
-                        src={(r as any).image}
-                        alt={r.name}
-                        className="w-10 h-10 rounded-full object-cover border border-blue-500/40 shadow"
-                        data-testid={`img-landing-review-${r.id}`}
-                      />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-xs">
-                        {r.initials}
-                      </div>
-                    )}
-                    <div className="text-left">
-                      <p className="text-white font-black text-xs">{r.name}</p>
-                      <p className="text-gray-500 text-[10px]">{r.meta}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-3 h-3 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    ))}
-                  </div>
-                  <p className="text-gray-200 text-xs italic leading-relaxed">"{r.quote}"</p>
-                  <p className="text-gray-600 text-[9px] uppercase tracking-widest font-black">{r.date}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* See all reviews CTA */}
-            <div className="flex justify-center">
-              <Link href="/reviews" data-testid="link-see-all-reviews">
-                <Button
-                  variant="outline"
-                  className="border-blue-500/40 text-blue-300 hover:bg-blue-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-8 text-xs"
-                >
-                  See all customer reviews <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* ============================================
           SECTION 7 — UNIFIED BROKER / LANDLORD
          ============================================ */}
       <section className="py-20 px-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border-b border-white/5">
@@ -943,6 +750,42 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
+
+      {/* ── ADDITIONAL REAL ESTATE OFFERS ── */}
+      <section className="py-10 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-5xl mx-auto space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="h-px flex-1 bg-white/5" />
+            <span className="text-gray-700 text-[9px] font-black uppercase tracking-[0.2em] shrink-0">Additional Offers — Not a Property Agency</span>
+            <div className="h-px flex-1 bg-white/5" />
+          </div>
+
+          {/* Distress Deals */}
+          <div className="relative bg-gradient-to-r from-amber-950/60 via-slate-900 to-amber-950/40 border border-amber-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-5 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent pointer-events-none" />
+            <div className="shrink-0 w-12 h-12 bg-amber-500/15 border border-amber-500/30 rounded-xl flex items-center justify-center text-2xl relative z-10">🔥</div>
+            <div className="flex-1 text-center sm:text-left relative z-10">
+              <div className="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" /> Distress Deals Available
+              </div>
+              <p className="text-white font-black text-sm leading-snug">Landlords offering rapid-move vacancies — Ejari, DEWA &amp; setup coordinated within 24 hrs.</p>
+              <p className="text-gray-500 text-[11px] mt-1">Ask us about current availability when you start your move-in on WhatsApp. DeliWer is not a real estate agency — we coordinate what happens after the deal.</p>
+            </div>
+            <a
+              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%27d%20like%20to%20know%20about%20distress%20deal%20vacancies%20available%20now."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 relative z-10"
+              data-testid="cta-distress-deals"
+            >
+              <Button className="bg-amber-600 hover:bg-amber-500 text-white font-black rounded-xl px-5 h-9 text-xs shadow-lg shadow-amber-900/30 transition-all whitespace-nowrap">
+                <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Ask on WhatsApp
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ── DELIWER LIFESTYLE GATEWAY ── */}
       <section className="relative py-16 px-6 overflow-hidden bg-gradient-to-br from-slate-950 via-cyan-950/30 to-slate-950 border-y border-cyan-900/30">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-transparent to-transparent pointer-events-none" />
@@ -1068,34 +911,144 @@ export default function LandingPage() {
         </div>
       </section>
       {/* FINAL CTA — SECTION 8 */}
-      <section className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
-        </div>
-        <div className="max-w-3xl mx-auto space-y-4 relative z-10">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
-          <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
-        </div>
-        <div className="relative z-10 flex flex-col items-center gap-4">
-          <a
-            href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="button-final-cta"
-          >
-            <Button
-              size="lg"
-              className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all group"
+      <section className="overflow-hidden">
+        {/* ── Trust / Social Proof (dark prelude) ── */}
+        <div className="py-16 px-6 bg-slate-950 border-b border-white/5">
+          <div className="max-w-4xl mx-auto space-y-10">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center space-y-3"
             >
-              <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
-              Start on WhatsApp
-            </Button>
-          </a>
-          <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
-            <span>WhatsApp: +971 52 394 6311</span>
-            <span>·</span>
-            <span>info@deliwer.com</span>
+              <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+                Trusted by Dubai Tenants
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Built for tenants moving across Dubai</h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { icon: "📍", title: "JVC, Marina, Al Nahda & more", desc: "Used by tenants in the most popular Dubai districts." },
+                { icon: "🤝", title: "Partner network for execution", desc: "Vetted moving, cleaning, and utility service partners." },
+                { icon: "⚡", title: "Fast WhatsApp response", desc: "We respond within minutes — not hours." },
+              ].map((item) => (
+                <div key={item.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 text-center hover:border-violet-500/30 transition-all">
+                  <span className="text-3xl block">{item.icon}</span>
+                  <h3 className="text-white font-black text-sm uppercase tracking-tight">{item.title}</h3>
+                  <p className="text-gray-500 text-xs font-medium leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Reviews */}
+            <div className="space-y-6">
+              <div className="flex items-center justify-center gap-3">
+                <div className="h-px flex-1 bg-white/5" />
+                <span className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em]">Customer Reviews · 5.0★ on Google</span>
+                <div className="h-px flex-1 bg-white/5" />
+              </div>
+
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white/3 border border-violet-500/20 rounded-2xl p-8 space-y-5 text-center flex flex-col items-center relative" data-testid="trust-anchor-nicole">
+                  <div className="absolute top-3 right-4 flex items-center gap-1 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+                    <CheckCircle2 className="w-3 h-3" /> Verified
+                  </div>
+                  <img src={NicoleImg} alt="Nicole Oliver" data-testid="img-testimonial-nicole-landing"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-violet-400/30 shadow-lg shadow-violet-900/30" />
+                  <div className="flex items-center justify-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-200 font-bold leading-relaxed italic text-sm max-w-lg">
+                    "Just moved into my new place at Marina and DeliWer set up the complete water system — including a free hair shower filter! The difference is incredible. Fast, professional, zero hassle."
+                  </p>
+                  <div className="text-center">
+                    <p className="text-white font-black text-xs">Nicole Oliver</p>
+                    <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
+                  </div>
+                  <a href="https://g.page/r/CRptmgoZmDxSEBI/review" target="_blank" rel="noopener noreferrer"
+                    data-testid="link-google-review-trust"
+                    className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-4 w-full justify-center transition-colors">
+                    <svg className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    Leave a Google Review — Help others find us
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                {[
+                  { id: "zoya-abassi", initials: "ZA", name: "Zoya Abassi", meta: "Dubai · 10 reviews", quote: "Shower filters installed smoothly and hassle-free. Water feels noticeably cleaner and gentler on skin and hair. Definitely recommend.", date: "1 week ago" },
+                  { id: "becky-choi", initials: "BC", name: "Becky Choi", meta: "Dubai · Local Guide · 23 reviews", quote: "Great service and professional people.", date: "1 year ago", image: BeckyImg },
+                  { id: "syed-ghayoor", initials: "SG", name: "Syed Ghayoor Hassan", meta: "Dubai · 3 reviews", quote: "Best service in town.", date: "2 years ago" },
+                ].map((r) => (
+                  <div key={r.id} className="bg-white/3 border border-blue-500/20 rounded-2xl p-5 space-y-3 relative" data-testid={`landing-review-${r.id}`}>
+                    <div className="absolute top-3 right-4 inline-flex items-center gap-1 text-blue-300 text-[9px] font-black uppercase tracking-widest">
+                      <svg className="w-3 h-3" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571.001-.001.002-.001.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+                      Google
+                    </div>
+                    <div className="flex items-center gap-3">
+                      {(r as any).image ? (
+                        <img src={(r as any).image} alt={r.name} className="w-10 h-10 rounded-full object-cover border border-blue-500/40 shadow" data-testid={`img-landing-review-${r.id}`} />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-xs">{r.initials}</div>
+                      )}
+                      <div className="text-left">
+                        <p className="text-white font-black text-xs">{r.name}</p>
+                        <p className="text-gray-500 text-[10px]">{r.meta}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-3 h-3 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      ))}
+                    </div>
+                    <p className="text-gray-200 text-xs italic leading-relaxed">"{r.quote}"</p>
+                    <p className="text-gray-600 text-[9px] uppercase tracking-widest font-black">{r.date}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-center">
+                <Link href="/reviews" data-testid="link-see-all-reviews">
+                  <Button variant="outline" className="border-blue-500/40 text-blue-300 hover:bg-blue-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-8 text-xs">
+                    See all customer reviews <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Emerald CTA ── */}
+        <div className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
+          </div>
+          <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
+            <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
+          </div>
+          <div className="relative z-10 flex flex-col items-center gap-4">
+            <a
+              href="https://wa.me/971523906019?text=I%20found%20a%20property%20in%20Dubai.%20I%20want%20full%20move-in%20support%20(Ejari%2C%20movers%2C%20setup)."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-final-cta"
+            >
+              <Button size="lg" className="bg-slate-950 hover:bg-slate-900 text-white font-black rounded-2xl px-12 h-16 text-xl shadow-2xl transition-all group">
+                <MessageCircle className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
+                Start on WhatsApp
+              </Button>
+            </a>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-emerald-950 text-sm font-bold">
+              <span>WhatsApp: +971 52 394 6311</span>
+              <span>·</span>
+              <span>info@deliwer.com</span>
+            </div>
           </div>
         </div>
       </section>
