@@ -567,67 +567,6 @@ export default function LandingPage() {
           </p>
         </div>
       </section>
-      {/* ============================================
-          BROKER CAPTURE BANNER
-         ============================================ */}
-      <section className="relative py-0 px-4 overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          <Link href="/broker-onboard" data-testid="banner-broker-onboard">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="group relative flex flex-col md:flex-row items-center justify-between gap-6 px-8 py-7 bg-gradient-to-r from-slate-900 via-emerald-950/40 to-slate-900 border border-emerald-500/25 hover:border-emerald-500/50 rounded-3xl cursor-pointer transition-all hover:shadow-[0_0_60px_-12px_rgba(16,185,129,0.35)] overflow-hidden"
-            >
-              {/* Glow backdrop */}
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-emerald-900/25 via-transparent to-transparent pointer-events-none" />
-
-              {/* LEFT: identity */}
-              <div className="relative z-10 flex items-center gap-5">
-                <div className="shrink-0 w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center group-hover:bg-emerald-500/25 transition-colors">
-                  <Building2 className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">For Dubai Brokers & Agents</span>
-                  </div>
-                  <p className="text-white font-black text-lg md:text-xl uppercase tracking-tight leading-tight">
-                    Your Clients Need Ejari. <span className="text-emerald-400">You Get Paid.</span>
-                  </p>
-                  <p className="text-gray-500 text-xs mt-0.5 font-semibold">
-                    Refer once. Earn AED 150–800+ per client. Zero extra work.
-                  </p>
-                </div>
-              </div>
-
-              {/* CENTER: mini stats */}
-              <div className="relative z-10 hidden md:flex items-center gap-6">
-                {[
-                  { label: "Ejari Referral", value: "AED 150" },
-                  { label: "Move-In Bundle", value: "AED 500" },
-                  { label: "Exclusive Deal", value: "AED 800+" },
-                ].map(s => (
-                  <div key={s.label} className="text-center">
-                    <p className="text-emerald-400 font-black text-base">{s.value}</p>
-                    <p className="text-gray-600 text-[10px] font-bold uppercase tracking-wider">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* RIGHT: CTA */}
-              <div className="relative z-10 flex items-center gap-3 shrink-0">
-                <span className="hidden sm:block text-xs font-black uppercase tracking-widest text-gray-500">60-sec activation</span>
-                <div className="flex items-center gap-2 bg-emerald-500 group-hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest text-xs px-5 py-3 rounded-xl transition-colors whitespace-nowrap">
-                  Activate Now
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </div>
-              </div>
-            </motion.div>
-          </Link>
-        </div>
-      </section>
-
       {/* WELCOME BONUS SECTION */}
       <section className="py-20 px-6 bg-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -870,47 +809,138 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ============================================
-          SECTION 7 — BROKER HOOK
+          SECTION 7 — UNIFIED BROKER / LANDLORD
          ============================================ */}
       <section className="py-20 px-6 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border-b border-white/5">
-        <div className="max-w-4xl mx-auto space-y-4">
-          {/* Transaction Support teaser */}
-          <div className="bg-slate-900 border border-emerald-500/20 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="space-y-1 text-center sm:text-left">
-              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Just Finalized a Property?</p>
-              <p className="text-white font-black text-base">From Agreement to Move-In — Handled.</p>
-              <p className="text-gray-500 text-xs">DeliWer activates after the deal. We don't participate in transactions — we make them real.</p>
-            </div>
-            <Link href="/transaction-support" data-testid="cta-transaction-support-hook">
-              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl px-6 h-10 text-sm shrink-0 transition-all">
-                <ArrowRight className="w-4 h-4 mr-2" /> Learn More
-              </Button>
-            </Link>
-          </div>
+        <div className="max-w-5xl mx-auto space-y-6">
 
-          {/* Broker CTA */}
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-3xl p-10 md:p-14 text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
-              For Real Estate Agents
+          {/* Section header */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              <Building2 className="w-3.5 h-3.5" /> For Partners — Not Tenants
             </div>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Are you a real estate agent?</h2>
-            <p className="text-gray-300 font-medium max-w-lg mx-auto text-lg">
+            <p className="text-gray-400 font-medium max-w-xl mx-auto">
               Deliver a complete client experience — without the operational burden. Earn on every referral.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link href="/broker-onboard" data-testid="cta-broker-partner">
-                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest rounded-2xl h-14 px-10 text-sm shadow-xl shadow-purple-900/30 transition-all">
-                  <ArrowRight className="w-5 h-5 mr-2" /> Generate My Referral Link
-                </Button>
-              </Link>
-              <Link href="/transaction-support" data-testid="cta-broker-transaction-support">
-                <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest rounded-2xl h-14 px-8 text-sm">
-                  <ArrowRight className="w-5 h-5 mr-2" /> Transaction Support
-                </Button>
-              </Link>
-            </div>
-            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">DeliWer does not participate in property transactions — we enhance what happens after.</p>
+          </motion.div>
+
+          {/* Two-column: Broker + Landlord tracks */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            {/* Track A — Broker / Agent */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.05 }}
+              className="relative bg-gradient-to-br from-slate-900 via-emerald-950/30 to-slate-900 border border-emerald-500/25 rounded-3xl p-8 space-y-6 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10 space-y-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">For Dubai Brokers & Agents</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight leading-tight">
+                  Your Clients Need Ejari.{" "}
+                  <span className="text-emerald-400">You Get Paid.</span>
+                </h3>
+                <p className="text-gray-500 text-sm font-semibold">
+                  Refer once. Earn AED 150–800+ per client. Zero extra work.
+                </p>
+              </div>
+
+              {/* Earnings breakdown */}
+              <div className="relative z-10 flex items-center gap-5 border-t border-emerald-500/10 pt-5">
+                {[
+                  { label: "Ejari Referral", value: "AED 150" },
+                  { label: "Move-In Bundle", value: "AED 500" },
+                  { label: "Exclusive Deal", value: "AED 800+" },
+                ].map(s => (
+                  <div key={s.label} className="text-center flex-1">
+                    <p className="text-emerald-400 font-black text-lg">{s.value}</p>
+                    <p className="text-gray-600 text-[9px] font-bold uppercase tracking-wider mt-0.5">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="relative z-10 flex flex-col sm:flex-row gap-3 pt-1">
+                <Link href="/broker-onboard" data-testid="cta-broker-partner" className="flex-1">
+                  <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest rounded-2xl h-12 text-xs shadow-lg shadow-emerald-900/30 transition-all">
+                    <ArrowRight className="w-4 h-4 mr-2" /> Generate My Referral Link
+                  </Button>
+                </Link>
+                <Link href="/broker-onboard" data-testid="banner-broker-onboard" className="shrink-0">
+                  <Button variant="outline" className="border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-5 text-xs transition-all whitespace-nowrap">
+                    60-sec Activation
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Track B — Landlord / Property Owner */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.12 }}
+              className="relative bg-gradient-to-br from-slate-900 via-purple-950/30 to-slate-900 border border-purple-500/25 rounded-3xl p-8 space-y-6 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-purple-900/15 via-transparent to-transparent pointer-events-none" />
+              <div className="relative z-10 space-y-1">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-purple-400">For Landlords & Property Owners</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight leading-tight">
+                  Just Finalized a Property?{" "}
+                  <span className="text-purple-400">We Handle the Rest.</span>
+                </h3>
+                <p className="text-gray-500 text-sm font-semibold">
+                  From agreement to move-in — Ejari, DEWA, movers, setup all coordinated.
+                </p>
+              </div>
+
+              {/* What's handled */}
+              <div className="relative z-10 space-y-2 border-t border-purple-500/10 pt-5">
+                {[
+                  "Ejari & DEWA activation",
+                  "Move-in coordination",
+                  "Post-handover setup",
+                ].map(item => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-gray-300 font-semibold">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                    {item}
+                  </div>
+                ))}
+                <p className="text-gray-600 text-[11px] pt-1">DeliWer activates after the deal — we don't participate in transactions.</p>
+              </div>
+
+              <div className="relative z-10 flex flex-col sm:flex-row gap-3 pt-1">
+                <Link href="/transaction-support" data-testid="cta-transaction-support-hook" className="flex-1">
+                  <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white font-black uppercase tracking-widest rounded-2xl h-12 text-xs shadow-lg shadow-purple-900/30 transition-all">
+                    <ArrowRight className="w-4 h-4 mr-2" /> Transaction Support
+                  </Button>
+                </Link>
+                <Link href="/transaction-support" data-testid="cta-broker-transaction-support" className="shrink-0">
+                  <Button variant="outline" className="border-purple-500/40 text-purple-400 hover:bg-purple-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-5 text-xs transition-all whitespace-nowrap">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+            </motion.div>
           </div>
+
+          <p className="text-center text-gray-600 text-[11px] font-bold uppercase tracking-widest">
+            DeliWer does not participate in property transactions — we enhance what happens after.
+          </p>
         </div>
       </section>
       {/* ── DELIWER LIFESTYLE GATEWAY ── */}
