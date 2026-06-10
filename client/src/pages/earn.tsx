@@ -163,6 +163,96 @@ export default function Earn() {
       {/* Spacer to push content below the fixed subnav */}
       <div style={{ height: subnavHeight }} />
 
+      {/* ── WELCOME BONUS DEAL ── */}
+      <section className="relative py-16 px-4 overflow-hidden border-b border-amber-500/15 bg-[radial-gradient(ellipse_at_top,_rgba(251,191,36,0.08)_0%,_transparent_60%)]" data-testid="welcome-bonus-section">
+        <div className="max-w-4xl mx-auto space-y-10">
+
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-[10px] font-black uppercase tracking-widest">
+              🎁 The Welcome Bonus Deal — New Residents
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-[0.95]">
+              Congratulations —{" "}
+              <span className="text-amber-400" style={{ textShadow: "0 0 40px rgba(251,191,36,0.35)" }}>
+                Welcome to Your New Home.
+              </span>{" "}
+              Lunch&nbsp;Is On Us.
+            </h2>
+            <p className="text-gray-400 font-medium text-base max-w-xl mx-auto leading-relaxed">
+              Every step of your DeliWer move-in unlocks a real reward. Start the process and earn dining credits, home vouchers, and partner gifts — all free.
+            </p>
+          </div>
+
+          {/* Move-in reward steps */}
+          <div className="space-y-2.5">
+            {[
+              { step: 1, trigger: "Start your move-in process",  reward: "Welcome Dining Credit",  value: "AED 100",     color: "amber",   icon: "🍽️" },
+              { step: 2, trigger: "Complete Ejari registration",  reward: "Home Essentials Voucher", value: "AED 75",      color: "violet",  icon: "🔑" },
+              { step: 3, trigger: "Activate DEWA account",        reward: "Water Filter Upgrade",    value: "AED 150 off", color: "blue",    icon: "⚡" },
+              { step: 4, trigger: "Book your movers",             reward: "Free Deep Clean",         value: "AED 200",     color: "emerald", icon: "🚚" },
+              { step: 5, trigger: "Complete full move-in",        reward: "Full Welcome Package",    value: "AED 500+",    color: "rose",    icon: "🎉" },
+            ].map((s, i) => {
+              const cls: Record<string, string> = {
+                amber:   "border-amber-500/30 text-amber-400 bg-amber-500/5",
+                violet:  "border-violet-500/30 text-violet-400 bg-violet-500/5",
+                blue:    "border-blue-500/30 text-blue-400 bg-blue-500/5",
+                emerald: "border-emerald-500/30 text-emerald-400 bg-emerald-500/5",
+                rose:    "border-rose-500/30 text-rose-400 bg-rose-500/5",
+              };
+              const locked = i > 0;
+              return (
+                <div
+                  key={s.step}
+                  data-testid={`welcome-step-${s.step}`}
+                  className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${locked ? "border-white/8 bg-white/[0.015] opacity-60" : cls[s.color]}`}
+                >
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center text-base shrink-0 border ${locked ? "border-white/10 bg-white/5" : `border-current ${cls[s.color]}`}`}>
+                    {locked ? "🔒" : s.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className={`text-[10px] font-black uppercase tracking-wider ${locked ? "text-gray-600" : "text-gray-400"}`}>
+                      Step {s.step} — {s.trigger}
+                    </div>
+                    <div className={`font-black text-sm mt-0.5 ${locked ? "text-gray-500" : "text-white"}`}>{s.reward}</div>
+                  </div>
+                  <div className={`shrink-0 font-black text-sm ${locked ? "text-gray-600" : cls[s.color].split(" ")[1]}`}>
+                    {s.value}
+                  </div>
+                  {!locked && (
+                    <a
+                      href={`https://wa.me/971523906019?text=Hi DeliWer! I'm starting Step ${s.step} of my move-in and want to claim: ${s.reward}.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid={`btn-welcome-step-${s.step}`}
+                      className={`shrink-0 text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-xl border transition-all hover:opacity-80 whitespace-nowrap ${cls[s.color]}`}
+                    >
+                      Claim →
+                    </a>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CTA */}
+          <div className="flex flex-col items-center gap-3 pt-2">
+            <a
+              href="https://wa.me/971523906019?text=Hi DeliWer! I want to claim my Welcome Reward and start my move-in."
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="btn-welcome-start"
+              className="inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-black px-8 py-3.5 rounded-2xl text-base shadow-2xl transition-all"
+            >
+              🎁 Claim My Welcome Reward on WhatsApp
+            </a>
+            <p className="text-gray-600 text-[11px] font-bold uppercase tracking-wider">
+              Free · No conditions · Rewards delivered via WhatsApp
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── HERO ── */}
       <section className="w-full relative overflow-hidden" data-testid="earn-hero-section">
         {/* Banner image */}
