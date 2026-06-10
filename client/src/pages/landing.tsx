@@ -1053,10 +1053,6 @@ export default function LandingPage() {
 
         {/* ── Emerald CTA ── */}
         <div className="relative py-24 px-6 text-center space-y-8 bg-emerald-600 overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img src={lifestyleImages.finalCTA} alt="Happy resident in home" className="w-full h-full object-cover opacity-20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-600/80 to-emerald-600" />
-          </div>
           <div className="max-w-3xl mx-auto space-y-4 relative z-10">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-slate-950">Ready to move into your new home?</h2>
             <p className="text-lg text-emerald-950 font-bold">Tell us your property and we'll handle the rest.</p>
