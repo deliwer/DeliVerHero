@@ -254,7 +254,7 @@ function BrokerIntelSection() {
             <Briefcase className="w-4 h-4 shrink-0" />
             <span>Freight Brokers &amp; Phone Flippers →</span>
             <a
-              href="https://chaintrack.ae"
+              href="https://chaintrack.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors"
