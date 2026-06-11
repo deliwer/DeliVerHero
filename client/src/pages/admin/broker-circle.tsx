@@ -580,16 +580,109 @@ function BrokerAppsTab() {
           ))}
         </div>
 
-        {/* Open inquiries banner (when there are unmatched leads) */}
-        {openInquiries.length > 0 && (
-          <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 px-4 py-3 flex items-center gap-3">
-            <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
-            <p className="text-sm text-cyan-300">
-              <span className="font-bold">{openInquiries.length} open viewing inquiry{openInquiries.length > 1 ? "s" : ""}</span>
-              {" "}waiting to be matched — approve a broker in their area to trigger a match alert.
-            </p>
-          </div>
-        )}
+        {/* ── Area Coverage Gap panel ── */}
+        {openInquiries.length > 0 && (() => {
+          const approvedBrokers = apps.filter((a) => a.status === "approved");
+
+          // Unique areas from open inquiries, preserving first-seen order
+          const uniqueAreas = Array.from(
+            new Set(openInquiries.map((v) => v.listingArea))
+          );
+
+          type AreaInfo = {
+            area: string;
+            inquiryCount: number;
+            matchedBrokers: BrokerApp[];
+          };
+
+          const areaInfos: AreaInfo[] = uniqueAreas.map((area) => ({
+            area,
+            inquiryCount: openInquiries.filter((v) => v.listingArea === area).length,
+            matchedBrokers: approvedBrokers.filter(
+              (b) => (b.areasOfInterest ?? []).length > 0 && areaMatch(b.areasOfInterest!, area)
+            ),
+          }));
+
+          const gaps    = areaInfos.filter((a) => a.matchedBrokers.length === 0);
+          const covered = areaInfos.filter((a) => a.matchedBrokers.length > 0);
+
+          return (
+            <div className="rounded-xl border border-slate-700 bg-slate-900/50 overflow-hidden">
+              {/* Header */}
+              <div className="px-4 py-2.5 border-b border-slate-800 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                  <span className="text-xs font-black uppercase tracking-widest text-slate-400">Area Coverage</span>
+                </div>
+                <div className="flex items-center gap-2 text-[11px]">
+                  <span className="text-emerald-400 font-semibold">{covered.length} covered</span>
+                  {gaps.length > 0 && (
+                    <>
+                      <span className="text-slate-700">·</span>
+                      <span className="text-red-400 font-semibold">{gaps.length} gap{gaps.length > 1 ? "s" : ""}</span>
+                    </>
+                  )}
+                  <span className="text-slate-700">·</span>
+                  <span className="text-slate-500">{openInquiries.length} open lead{openInquiries.length > 1 ? "s" : ""}</span>
+                </div>
+              </div>
+
+              <div className="px-4 py-3 space-y-3">
+                {/* Gap areas — shown first, most actionable */}
+                {gaps.length > 0 && (
+                  <div className="space-y-1.5">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-red-500/70 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> Recruit needed
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {gaps.map(({ area, inquiryCount }) => (
+                        <div
+                          key={area}
+                          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-red-500/30 bg-red-500/8 text-red-300"
+                          data-testid={`gap-area-${area.replace(/\s+/g, "-").toLowerCase()}`}
+                        >
+                          <AlertCircle className="w-3 h-3 shrink-0" />
+                          <span className="text-xs font-semibold">{area}</span>
+                          <span className="text-[10px] bg-red-500/20 px-1 rounded font-mono">
+                            {inquiryCount} lead{inquiryCount > 1 ? "s" : ""}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Covered areas */}
+                {covered.length > 0 && (
+                  <div className="space-y-1.5">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500/60 flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" /> Covered
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {covered.map(({ area, inquiryCount, matchedBrokers }) => (
+                        <div
+                          key={area}
+                          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-emerald-500/25 bg-emerald-500/6 text-emerald-300"
+                          title={matchedBrokers.map((b) => b.name).join(", ")}
+                          data-testid={`covered-area-${area.replace(/\s+/g, "-").toLowerCase()}`}
+                        >
+                          <CheckCircle2 className="w-3 h-3 shrink-0" />
+                          <span className="text-xs font-semibold">{area}</span>
+                          <span className="text-[10px] bg-emerald-500/15 px-1 rounded font-mono text-emerald-400">
+                            {matchedBrokers.length} broker{matchedBrokers.length > 1 ? "s" : ""}
+                          </span>
+                          <span className="text-[10px] bg-slate-700/60 px-1 rounded font-mono text-slate-400">
+                            {inquiryCount} lead{inquiryCount > 1 ? "s" : ""}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Toolbar */}
         <div className="flex flex-col sm:flex-row gap-3">
