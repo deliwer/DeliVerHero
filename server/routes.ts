@@ -2,6 +2,7 @@ import { Express } from "express";
 import { createServer, type Server } from "http";
 import fs from "fs";
 import path from "path";
+import { whatsappWebhookRouter } from "./routes/whatsapp-webhook";
 
 // Log lead to Google Sheets (serverless endpoint for referral tracking)
 async function handleLogLead(req: any, res: any) {
@@ -1060,48 +1061,8 @@ Reply DONE when completed.`;
     }
   });
 
-  // WhatsApp Automation Webhook (Production Ready Setup)
-  app.post("/api/webhooks/whatsapp", async (req, res) => {
-    const { from, text } = req.body;
-    
-    // Production-ready setup for DeliWer WhatsApp-first conversion flow
-    // WhatsApp Business Number: +971523906019
-    
-    const response = {
-      to: from,
-      messages: [] as string[]
-    };
-
-    const input = text?.trim();
-
-    // STEP 1 — INSTANT AUTO-REPLY (TRIGGER)
-    if (!input || input.toLowerCase() === "hi" || input.toLowerCase() === "hello" || input.toLowerCase() === "start" || input.toLowerCase().includes("ejari")) {
-      response.messages.push("Welcome to DeliWer 👋\nWe help people moving into Dubai or fixing life at home.\n\nPlease reply with a number so we can help fast:\n\n1️⃣ Moving into Dubai (Ejari & Biometrics)\n2️⃣ Already living here & need help\n3️⃣ Moving out / furniture disposal\n4️⃣ Something else");
-      return res.json(response);
-    }
-
-    // STEP 2 & 3 — ROUTING & QUALIFICATION
-    switch (input) {
-      case "1": // MESSAGE A (Moving into Dubai)
-        response.messages.push("Got it 👍\nAs an appointed Trustee Center, we can handle your Ejari & Biometrics instantly.\n\nAre you:\n1️⃣ Tenant needing Ejari registration\n2️⃣ Landlord needing verification\n3️⃣ Just moved in and need home setup");
-        break;
-      case "2": // MESSAGE B (Already living here)
-        response.messages.push("Understood 👍\nWhat do you need help with today?\n\nYou can reply in one line, for example:\n• Fix something at home\n• Furniture removal\n• Cleaning or maintenance\n• General living support");
-        break;
-      case "3": // MESSAGE C (Moving out / disposal)
-        response.messages.push("Thanks 👍\nIs this for:\n1️⃣ Furniture & appliance disposal\n2️⃣ Move-out cleaning\n3️⃣ Full move-out support?");
-        break;
-      case "4": // MESSAGE D (Something else)
-        response.messages.push("No problem 👍\nPlease describe what you need help with in one or two lines.");
-        break;
-      default:
-        // STEP 4 — HANDOFF TO HUMAN
-        response.messages.push("Thanks. A DeliWer living support manager will reply shortly.\n\nIf urgent, please mention:\n• Location\n• Timeline\n• Budget range (if known)");
-        break;
-    }
-
-    res.json(response);
-  });
+  // WhatsApp Webhook — Meta-compatible (verification + inbound messages)
+  app.use("/api/webhooks/whatsapp", whatsappWebhookRouter);
 
   // Shopify checkout endpoint
   app.post("/api/shopify/checkout", async (req, res) => {
