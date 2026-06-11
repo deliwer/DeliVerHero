@@ -6,6 +6,7 @@ const PRIVATE_EXCLUSIONS = [
   "/admin/wsc",
   "/admin/reverse-auction",
   "/admin/mamzar",
+  "/admin/broker-circle",
 ];
 
 const PRIVATE_PREFIXES = [

@@ -135,6 +135,7 @@ const FounderControlPage = lazy(() => import("@/pages/founder-control"));
 const ReverseAuctionPage = lazy(() => import("@/pages/reverse-auction"));
 const ReverseAuctionAdminPage = lazy(() => import("@/pages/admin/reverse-auction-admin"));
 const MamzarAdminPage = lazy(() => import("@/pages/admin/mamzar-admin"));
+const BrokerCircleAdmin = lazy(() => import("@/pages/admin/broker-circle"));
 const WscMarketplacePage = lazy(() => import("@/pages/wsc-marketplace"));
 const KtCorpMarketplacePage = lazy(() => import("@/pages/ktcorp-marketplace"));
 const WscAdminPage = lazy(() => import("@/pages/wsc-admin"));
@@ -593,6 +594,7 @@ function Router() {
         <Route path="/admin/wsc" component={WscAdminPage} />
         <Route path="/admin/reverse-auction" component={ReverseAuctionAdminPage} />
         <Route path="/admin/mamzar" component={MamzarAdminPage} />
+        <Route path="/admin/broker-circle" component={BrokerCircleAdmin} />
 
         {/* ChainTrack Certified Grading Infrastructure */}
         <Route path="/chaintrack-grading" component={ChainTrackGradingPage} />
