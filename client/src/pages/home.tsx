@@ -188,20 +188,6 @@ export default function Home() {
         `}
         </script>
       </Helmet>
-      {/* ── STICKY WHATSAPP BUTTON ── */}
-      <a
-        href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-testid="sticky-whatsapp"
-        onClick={() => { try { const e = JSON.parse(localStorage.getItem("dw_events") || "[]"); e.push({ t: "wa_click", src: "sticky", ts: Date.now() }); localStorage.setItem("dw_events", JSON.stringify(e.slice(-200))); } catch {} }}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-emerald-500 hover:bg-emerald-400 text-white font-black rounded-full px-6 py-4 shadow-2xl shadow-emerald-500/40 transition-all hover:scale-105 active:scale-95 text-sm md:text-base"
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageSquare className="w-5 h-5 fill-current shrink-0" />
-        <span className="hidden sm:inline">WhatsApp Us</span>
-      </a>
-
       {/* ── HERO ── */}
       <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden px-4 text-center">
         <div
@@ -211,22 +197,16 @@ export default function Home() {
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-slate-950/90 to-slate-950" />
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-10 py-20">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="space-y-6">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="space-y-4">
             <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-5 py-2 text-emerald-400 text-xs font-black uppercase tracking-widest">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Post-Lease Move-In Concierge · Dubai
+              <CheckCircle2 className="w-3.5 h-3.5" /> Dubai's Default Move-In Platform
             </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.92] drop-shadow-2xl text-white">
-              Complete Your Move-In<br />in Dubai After<br /><span className="text-emerald-400">Lease Signing</span>
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.88] drop-shadow-2xl text-white uppercase">
+              Your Entire<br />Move-In.<br /><span className="text-emerald-400">One Message.</span>
             </h1>
-            <ul className="text-left max-w-md mx-auto space-y-3 text-base md:text-lg text-gray-200 font-medium">
-              {[
-                { icon: <Zap className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />, text: "Finish move-in in record time — Ejari, DEWA & movers coordinated" },
-                { icon: <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />, text: "Avoid paperwork & delays — we handle every vendor for you" },
-                { icon: <UserCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />, text: "Brokers earn referral commission on every move-in job" },
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">{item.icon}<span>{item.text}</span></li>
-              ))}
-            </ul>
+            <p className="text-xl md:text-2xl text-gray-300 font-medium max-w-2xl mx-auto leading-relaxed">
+              Ejari. DEWA. Movers. Cleaning. Water filter. All coordinated by DeliWer — without you chasing a single vendor.
+            </p>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -234,26 +214,19 @@ export default function Home() {
               size="lg"
               data-testid="button-hero-whatsapp"
               className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl px-10 h-16 text-lg shadow-2xl shadow-emerald-500/20"
-              onClick={() => {
-                try { const e = JSON.parse(localStorage.getItem("dw_events") || "[]"); e.push({ t: "wa_click", src: "hero", ts: Date.now() }); localStorage.setItem("dw_events", JSON.stringify(e.slice(-200))); } catch {}
-                handleWhatsApp();
-              }}
+              onClick={() => handleWhatsApp()}
             >
               <MessageSquare className="w-5 h-5 mr-2" /> Start on WhatsApp
             </Button>
-            <Link href="/partners">
-              <Button
-                size="lg"
-                variant="outline"
-                data-testid="button-hero-partners"
-                className="border-white/20 text-white hover:bg-white/5 font-black rounded-2xl px-10 h-16 text-lg w-full sm:w-auto"
-                onClick={() => {
-                  try { const e = JSON.parse(localStorage.getItem("dw_events") || "[]"); e.push({ t: "partners_click", src: "hero", ts: Date.now() }); localStorage.setItem("dw_events", JSON.stringify(e.slice(-200))); } catch {}
-                }}
-              >
-                Brokers — Earn Commission <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              variant="outline"
+              data-testid="button-hero-bundle"
+              className="border-white/20 text-white hover:bg-white/5 font-black rounded-2xl px-10 h-16 text-lg"
+              onClick={() => document.getElementById("starter-bundle")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              See What's Included <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 pt-4 border-t border-white/10">
@@ -266,38 +239,6 @@ export default function Home() {
               <div key={i} className="flex items-center gap-2 font-medium">{item.icon} {item.text}</div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── CLARITY SECTION — Who This Is For ── */}
-      <section className="py-14 px-4 bg-slate-900/80 border-y border-white/5">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
-          <div className="bg-slate-800/60 border border-emerald-500/20 rounded-3xl p-8 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 rounded-full px-4 py-1.5 text-emerald-400 text-xs font-black uppercase tracking-widest">
-              <Building2 className="w-3.5 h-3.5" /> For Founders & Tenants
-            </div>
-            <h2 className="text-2xl font-black text-white leading-tight">Just signed a lease in Dubai?</h2>
-            <p className="text-gray-400 font-medium leading-relaxed">We take over the entire post-signing chaos — Ejari, DEWA, movers, cleaning — coordinated via one WhatsApp message. You focus on settling in.</p>
-            <a
-              href="https://wa.me/971523906019?text=Hi%20DeliWer%2C%20I%20just%20signed%20a%20lease%20in%20Dubai%20and%20need%20move-in%20support"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-emerald-400 font-black text-sm uppercase tracking-widest hover:text-emerald-300 transition-colors"
-              onClick={() => { try { const e = JSON.parse(localStorage.getItem("dw_events") || "[]"); e.push({ t: "wa_click", src: "clarity_tenant", ts: Date.now() }); localStorage.setItem("dw_events", JSON.stringify(e.slice(-200))); } catch {} }}
-            >
-              Get started on WhatsApp <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-          <div className="bg-slate-800/60 border border-white/10 rounded-3xl p-8 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-1.5 text-gray-300 text-xs font-black uppercase tracking-widest">
-              <UserCheck className="w-3.5 h-3.5" /> For Real Estate Brokers
-            </div>
-            <h2 className="text-2xl font-black text-white leading-tight">Close the lease. Refer. Earn.</h2>
-            <p className="text-gray-400 font-medium leading-relaxed">Your clients need move-in support the moment they sign. Refer them to DeliWer and earn a commission on every completed job — zero extra work.</p>
-            <Link href="/partners" className="inline-flex items-center gap-2 text-gray-300 font-black text-sm uppercase tracking-widest hover:text-white transition-colors">
-              See the broker program <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
         </div>
       </section>
       {/* ── THE PAIN ── */}
