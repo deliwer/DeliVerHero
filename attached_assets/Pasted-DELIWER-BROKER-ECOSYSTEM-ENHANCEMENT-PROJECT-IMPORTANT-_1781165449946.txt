@@ -1,0 +1,645 @@
+DELIWER BROKER ECOSYSTEM ENHANCEMENT PROJECT
+
+IMPORTANT INSTRUCTION
+
+THIS IS AN ENHANCEMENT PROJECT ONLY.
+
+DO NOT REBUILD, REPLACE, RESTRUCTURE OR MODIFY EXISTING DELIWER OR CHAINTRACK CORE FUNCTIONALITY.
+
+DO NOT CHANGE:
+
+* Existing page routes
+* Existing URL structure
+* Existing navigation
+* Existing database records
+* Existing dashboards
+* Existing modules
+* Existing marketing pages
+* Existing finance pages
+* Existing ChainTrack modules
+* Existing authentication
+* Existing admin functions
+
+ALL EXISTING FEATURES MUST REMAIN FULLY OPERATIONAL.
+
+THIS PROJECT ADDS NEW CAPABILITIES ONLY.
+
+---
+
+PROJECT OBJECTIVE
+
+Expand the existing Broker Master Database and recruitment ecosystem inside the existing DeliWer platform.
+
+The broker ecosystem is intended to become the primary growth and commission-generation engine for DeliWer and its aggregated services.
+
+The enhancement must consolidate all broker and partner recruitment funnels under:
+
+/marketing
+
+while maintaining separation between different partner categories.
+
+---
+
+EXISTING STRUCTURE PRESERVATION
+
+KEEP ALL CURRENT STRUCTURE UNCHANGED.
+
+DO NOT CREATE NEW PRIMARY SECTIONS.
+
+DO NOT MOVE EXISTING CONTENT.
+
+DO NOT ALTER EXISTING URLS.
+
+ONLY ADD ENHANCEMENTS TO:
+
+/marketing
+
+and
+
+/finance
+
+using existing admin framework and navigation structure.
+
+---
+
+BROKER ECOSYSTEM OVERVIEW
+
+Create a unified partner ecosystem consisting of:
+
+1. Real Estate Brokers
+2. Finance Brokers
+3. Phone Flippers
+4. Freight Brokers
+5. Home Service Partners
+6. General Business Introducers
+7. Non-Verified Partner Candidates
+
+All funnels must originate from the existing recruitment functionality under:
+
+/marketing
+
+---
+
+MASTER PARTNER DATABASE ENHANCEMENT
+
+Upgrade the existing Broker Master DB into a Partner Master Database while preserving backward compatibility.
+
+Existing broker records must remain untouched.
+
+Add partner classifications.
+
+Partner Types:
+
+REAL_ESTATE_BROKER
+
+FINANCE_BROKER
+
+PHONE_FLIPPER
+
+FREIGHT_BROKER
+
+HOME_SERVICE_PARTNER
+
+BUSINESS_INTRODUCER
+
+UNVERIFIED_PARTNER
+
+---
+
+REAL ESTATE BROKER TRACK
+
+Real Estate Brokers remain a protected category.
+
+Store:
+
+Broker Name
+
+Company
+
+Mobile
+
+WhatsApp
+
+Email
+
+LinkedIn URL
+
+RERA Registration Number
+
+RERA Expiry Date
+
+Specialization
+
+Areas Covered
+
+Languages
+
+Years Experience
+
+Activation Status
+
+Notes
+
+These brokers remain separate from all other partner categories.
+
+Only verified brokers with valid RERA information should be classified as:
+
+REAL_ESTATE_BROKER
+
+Real Estate Brokers are eligible for:
+
+Property Sales
+
+Property Rentals
+
+Mortgage Referrals
+
+Investor Introductions
+
+Property Lead Distribution
+
+---
+
+FINANCE BROKER TRACK
+
+Finance Brokers will be managed through:
+
+/finance
+
+but recruited and tracked through:
+
+/marketing
+
+Finance Brokers will be onboarded manually.
+
+No automated approvals.
+
+Activation occurs only after onboarding.
+
+Store:
+
+Broker Name
+
+LinkedIn URL
+
+Mobile
+
+WhatsApp
+
+Email
+
+Country
+
+City
+
+Finance Experience
+
+Banking Experience
+
+Mortgage Experience
+
+Status
+
+Activation Notes
+
+Associated Funding Categories
+
+These brokers will support:
+
+Mortgage Solutions
+
+Business Finance
+
+Working Capital
+
+SME Funding
+
+Consumer Finance
+
+Credit Solutions
+
+Trade Finance
+
+Activation should support collaboration with:
+
+[Yubi](https://www.yubi.com?utm_source=chatgpt.com)
+
+through manual onboarding and manual case submission processes.
+
+No direct API integration required.
+
+No automated credit approval process.
+
+The system only tracks referrals and opportunities.
+
+---
+
+UNVERIFIED PARTNER TRACK
+
+Many LinkedIn applicants will not have verified credentials.
+
+Create a separate classification:
+
+UNVERIFIED_PARTNER
+
+Examples:
+
+LinkedIn applicants
+
+Sales candidates
+
+Lead generators
+
+Referral agents
+
+Independent marketers
+
+Prospective brokers
+
+Store:
+
+Name
+
+Mobile
+
+WhatsApp
+
+LinkedIn URL
+
+Source
+
+Date Added
+
+Recruitment Notes
+
+Status
+
+These records remain isolated from verified broker databases.
+
+---
+
+PHONE FLIPPER TRACK
+
+Phone flippers are associated with:
+
+ChainTrack
+
+Maintain complete separation from DeliWer Finance.
+
+Store:
+
+Name
+
+Mobile
+
+WhatsApp
+
+LinkedIn
+
+Device Categories
+
+Country
+
+Status
+
+Commission Structure
+
+Lead Volume
+
+These partners generate:
+
+Device sourcing
+
+Device trade-ins
+
+Wholesale device opportunities
+
+Refurbishment opportunities
+
+---
+
+FREIGHT BROKER TRACK
+
+Freight brokers are associated with:
+
+ChainTrack Logistics
+
+Store:
+
+Name
+
+Mobile
+
+WhatsApp
+
+Email
+
+Country
+
+Freight Expertise
+
+Import
+
+Export
+
+Cross Border
+
+Status
+
+Commission Structure
+
+These partners generate:
+
+Logistics opportunities
+
+Import opportunities
+
+Export opportunities
+
+Cross-border trade leads
+
+---
+
+HOME SERVICE PARTNER TRACK
+
+Store:
+
+Partner Name
+
+Service Category
+
+Mobile
+
+WhatsApp
+
+Location
+
+Status
+
+Services Covered
+
+Examples:
+
+Maintenance
+
+Cleaning
+
+Moving
+
+Packing
+
+Handyman
+
+Facility Services
+
+---
+
+RECRUITMENT TAB ENHANCEMENT
+
+Inside existing:
+
+/marketing
+
+expand recruitment functionality.
+
+Add categories:
+
+Real Estate Brokers
+
+Finance Brokers
+
+Phone Flippers
+
+Freight Brokers
+
+Home Service Partners
+
+Business Introducers
+
+Unverified Candidates
+
+All recruitment activity starts here.
+
+LinkedIn applicants enter here first.
+
+---
+
+LINKEDIN RECRUITMENT WORKFLOW
+
+LinkedIn candidates are added manually.
+
+Workflow:
+
+Candidate Added
+
+↓
+
+Screening
+
+↓
+
+Zoom Onboarding
+
+↓
+
+Classification
+
+↓
+
+Activation
+
+↓
+
+Partner Master DB
+
+Store:
+
+LinkedIn URL
+
+Application Source
+
+Recruiter Notes
+
+Status History
+
+---
+
+ZOOM ONBOARDING
+
+Track:
+
+Scheduled
+
+Completed
+
+Passed
+
+Activated
+
+Notes
+
+Training Type
+
+Broker Category
+
+No automatic activation.
+
+Activation remains manual.
+
+---
+
+COMMISSION ENGINE
+
+Create commission configuration by partner type.
+
+Real Estate Broker
+
+Finance Broker
+
+Phone Flipper
+
+Freight Broker
+
+Home Service Partner
+
+Business Introducer
+
+Store:
+
+Commission Type
+
+Commission %
+
+Flat Fee
+
+Notes
+
+The system tracks commissions.
+
+The system does not process payments.
+
+---
+
+WHATSAPP COMMUNICATION SYSTEM
+
+Continue using:
+
++971523946311
+
+for recruitment communications.
+
+Continue using:
+
++971523906019
+
+for finance activation and support.
+
+Generate prefilled WhatsApp links only.
+
+No WhatsApp API.
+
+No Twilio.
+
+No automated outbound messaging.
+
+Human review remains required.
+
+---
+
+TELEGRAM RECRUITMENT SUPPORT
+
+Continue using:
+
+t.me/+971523946311
+
+for broker recruitment activities.
+
+Telegram functions should:
+
+Create candidate records
+
+Generate onboarding tasks
+
+Generate follow-up tasks
+
+Generate WhatsApp links
+
+Generate Zoom reminders
+
+No bulk messaging.
+
+No spam functionality.
+
+---
+
+FINANCE ENHANCEMENT REQUIREMENTS
+
+Enhance existing:
+
+/finance
+
+without changing current pages.
+
+Add:
+
+Finance Broker Directory
+
+Finance Referral Tracking
+
+Mortgage Referral Tracking
+
+Business Finance Referral Tracking
+
+Credit Opportunity Tracking
+
+Manual Partner Assignment
+
+Manual Approval Workflow
+
+Manual Case Tracking
+
+The purpose is referral management only.
+
+No lending functionality.
+
+No financial approvals.
+
+No customer risk decisions.
+
+---
+
+ADMIN PANEL ENHANCEMENT
+
+Extend existing admin pages.
+
+Do not replace them.
+
+Add:
+
+Partner Classification
+
+Partner Search
+
+Partner Filters
+
+Partner Status Tracking
+
+Recruitment Pipeline
+
+Commission Tracking
+
+Referral Tracking
+
+Activity Logs
+
+---
+
+FINAL DEVELOPMENT RULE
+
+Preserve all existing DeliWer and ChainTrack functionality exactly as it currently operates.
+
+This project is an additive enhancement only.
+
+All new broker, partner, finance and recruitment capabilities must plug into the existing architecture and routes without altering any current workflows, pages, URLs or business logic.
+
+The final result should create a unified broker and partner ecosystem under /marketing while enhancing /finance referral capabilities and maintaining complete separation between DeliWer, ChainTrack, Real Estate Brokers, Finance Brokers and other partner categories.

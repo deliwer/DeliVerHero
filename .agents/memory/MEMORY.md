@@ -1,0 +1,1 @@
+- [BNOS Module](bnos-module.md) — Broker Network OS lives at /marketing/bnos*; uses 5 new DB tables; no SendGrid/WhatsApp API, only wa.me links.

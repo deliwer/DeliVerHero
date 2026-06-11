@@ -2343,3 +2343,98 @@ export type InsertReverseAuctionEvent = z.infer<typeof insertReverseAuctionEvent
 export type ReverseAuctionBid = typeof reverseAuctionBids.$inferSelect;
 export type InsertReverseAuctionBid = z.infer<typeof insertReverseAuctionBidSchema>;
 export type InsertBuyBid = z.infer<typeof insertBuyBidSchema>;
+
+// ─── BNOS: Partner Candidates (LinkedIn / Recruitment Pipeline) ───────────────
+export const partnerCandidates = pgTable("partner_candidates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  mobile: text("mobile"),
+  whatsapp: text("whatsapp"),
+  email: text("email"),
+  linkedinUrl: text("linkedin_url"),
+  country: text("country").notNull().default("UAE"),
+  city: text("city"),
+  languages: text("languages").array().notNull().default(sql`'{}'::text[]`),
+  industry: text("industry"),
+  experience: text("experience"),
+  source: text("source").notNull().default("linkedin"),
+  partnerType: text("partner_type").notNull().default("UNVERIFIED_PARTNER"),
+  status: text("status").notNull().default("applied"),
+  recruiterNotes: text("recruiter_notes"),
+  zoomDate: timestamp("zoom_date"),
+  activationDate: timestamp("activation_date"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+export const insertPartnerCandidateSchema = createInsertSchema(partnerCandidates).omit({ id: true, createdAt: true, updatedAt: true });
+export type PartnerCandidate = typeof partnerCandidates.$inferSelect;
+export type InsertPartnerCandidate = z.infer<typeof insertPartnerCandidateSchema>;
+
+// ─── BNOS: Zoom Onboarding Sessions ──────────────────────────────────────────
+export const zoomSessions = pgTable("zoom_sessions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  candidateId: varchar("candidate_id").notNull().references(() => partnerCandidates.id),
+  zoomDate: timestamp("zoom_date").notNull(),
+  zoomLink: text("zoom_link"),
+  attendanceStatus: text("attendance_status").notNull().default("scheduled"),
+  trainingTopics: text("training_topics").array().notNull().default(sql`'{}'::text[]`),
+  notes: text("notes"),
+  activationRecommendation: boolean("activation_recommendation").notNull().default(false),
+  trainingType: text("training_type").notNull().default("general"),
+  brokerCategory: text("broker_category"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export const insertZoomSessionSchema = createInsertSchema(zoomSessions).omit({ id: true, createdAt: true });
+export type ZoomSession = typeof zoomSessions.$inferSelect;
+export type InsertZoomSession = z.infer<typeof insertZoomSessionSchema>;
+
+// ─── BNOS: Finance Referrals ──────────────────────────────────────────────────
+export const financeReferrals = pgTable("finance_referrals", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brokerName: text("broker_name").notNull(),
+  brokerMobile: text("broker_mobile"),
+  brokerEmail: text("broker_email"),
+  clientName: text("client_name").notNull(),
+  clientMobile: text("client_mobile").notNull(),
+  clientEmail: text("client_email"),
+  fundingType: text("funding_type").notNull(),
+  fundingRequirement: text("funding_requirement"),
+  country: text("country").notNull().default("UAE"),
+  status: text("status").notNull().default("new"),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+export const insertFinanceReferralSchema = createInsertSchema(financeReferrals).omit({ id: true, createdAt: true, updatedAt: true });
+export type FinanceReferral = typeof financeReferrals.$inferSelect;
+export type InsertFinanceReferral = z.infer<typeof insertFinanceReferralSchema>;
+
+// ─── BNOS: Message Templates ──────────────────────────────────────────────────
+export const bnosTemplates = pgTable("bnos_templates", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  category: text("category").notNull(),
+  name: text("name").notNull(),
+  subject: text("subject"),
+  body: text("body").notNull(),
+  variables: text("variables").array().notNull().default(sql`'{}'::text[]`),
+  isDefault: boolean("is_default").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+export const insertBnosTemplateSchema = createInsertSchema(bnosTemplates).omit({ id: true, createdAt: true, updatedAt: true });
+export type BnosTemplate = typeof bnosTemplates.$inferSelect;
+export type InsertBnosTemplate = z.infer<typeof insertBnosTemplateSchema>;
+
+// ─── BNOS: Commission Configuration ──────────────────────────────────────────
+export const commissionConfig = pgTable("commission_config", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  partnerType: text("partner_type").notNull().unique(),
+  commissionType: text("commission_type").notNull().default("percentage"),
+  commissionPct: integer("commission_pct"),
+  flatFeeAed: integer("flat_fee_aed"),
+  notes: text("notes"),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+export const insertCommissionConfigSchema = createInsertSchema(commissionConfig).omit({ id: true, updatedAt: true });
+export type CommissionConfig = typeof commissionConfig.$inferSelect;
+export type InsertCommissionConfig = z.infer<typeof insertCommissionConfigSchema>;

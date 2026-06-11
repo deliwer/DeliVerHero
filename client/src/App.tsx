@@ -225,6 +225,13 @@ import MarketingLegacy from "@/pages/marketing/legacy";
 import MarketingRecruit from "@/pages/marketing/recruit";
 import MarketingSocial from "@/pages/marketing/social";
 const MarketingAttribution = lazy(() => import("@/pages/marketing/attribution"));
+const BnosDashboard = lazy(() => import("@/pages/marketing/bnos"));
+const BnosCandidates = lazy(() => import("@/pages/marketing/candidates"));
+const BnosZoomOnboarding = lazy(() => import("@/pages/marketing/zoom-onboarding"));
+const BnosFinanceCrm = lazy(() => import("@/pages/marketing/finance-crm"));
+const BnosTemplates = lazy(() => import("@/pages/marketing/templates"));
+const BnosWhatsAppGen = lazy(() => import("@/pages/marketing/whatsapp-gen"));
+const BnosCommission = lazy(() => import("@/pages/marketing/commission"));
 const LegacyFounderDashboard = lazy(() => import("@/pages/MarketingDashboard"));
 const SendGridDashboard = lazy(() => import("@/pages/sendgrid-dashboard"));
 const EmergencyExitPage = lazy(() => import("@/pages/emergency-exit"));
@@ -354,6 +361,13 @@ function Router() {
         <Route path="/marketing/intel" component={MarketingIntelPage} />
         <Route path="/marketing/social" component={MarketingSocial} />
         <Route path="/marketing/attribution" component={MarketingAttribution} />
+        <Route path="/marketing/bnos" component={BnosDashboard} />
+        <Route path="/marketing/candidates" component={BnosCandidates} />
+        <Route path="/marketing/zoom-onboarding" component={BnosZoomOnboarding} />
+        <Route path="/marketing/finance-crm" component={BnosFinanceCrm} />
+        <Route path="/marketing/templates" component={BnosTemplates} />
+        <Route path="/marketing/whatsapp-gen" component={BnosWhatsAppGen} />
+        <Route path="/marketing/commission" component={BnosCommission} />
         <Route path="/marketing/tenant-leads" component={MarketingTenantLeads} />
         <Route path="/marketing/tenant-referrers" component={MarketingTenantReferrers} />
         <Route path="/marketing/referral-engine" component={ReferralEngine} />

@@ -67,6 +67,7 @@ import membershipRoutes from "./routes/memberships";
 import relocateRoutes from "./routes/relocate";
 import tenantCaptureRoutes from "./routes/tenant-capture";
 import marketingReferralRoutes from "./routes/marketing-referral";
+import bnosRoutes from "./routes/bnos";
 import habtoorRoutes from "./routes/habtoor";
 import mamzarRoutes from "./routes/mamzar";
 import flexListingsRoutes from "./routes/flex-listings";
@@ -506,6 +507,7 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
   app.use("/api/relocate", relocateRoutes);
   app.use("/api/tenant-capture", tenantCaptureRoutes);
   app.use("/api/marketing-referral", marketingReferralRoutes);
+  app.use("/api/bnos", bnosRoutes);
   app.use("/api/habtoor", habtoorRoutes);
   app.use("/api/mamzar", mamzarRoutes);
   app.use("/api/flex-listings", flexListingsRoutes);

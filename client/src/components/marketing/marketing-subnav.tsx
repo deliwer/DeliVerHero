@@ -14,6 +14,13 @@ const TABS = [
   { href: "/marketing/founder-dashboard", label: "Command" },
   { href: "/marketing/attribution", label: "Attribution", accent: true as const },
   { href: "/admin/brokers", label: "Broker DB", highlight: true as const },
+  { href: "/marketing/bnos", label: "BNOS", accent: true as const },
+  { href: "/marketing/candidates", label: "Candidates", highlight: true as const },
+  { href: "/marketing/zoom-onboarding", label: "Zoom", highlight: true as const },
+  { href: "/marketing/finance-crm", label: "Finance CRM", highlight: true as const },
+  { href: "/marketing/templates", label: "Templates" },
+  { href: "/marketing/whatsapp-gen", label: "WA Gen", highlight: true as const },
+  { href: "/marketing/commission", label: "Commission" },
 ];
 
 export function MarketingSubNav() {
