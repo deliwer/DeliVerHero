@@ -1,11 +1,15 @@
 import { Helmet } from "react-helmet";
 import { Link } from "wouter";
 import { useMemo, useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -46,6 +50,9 @@ import {
   Rocket,
   GraduationCap,
   FileText,
+  Lock,
+  MapPin,
+  Eye,
 } from "lucide-react";
 
 import { BrokerCTABanner } from "@/components/broker-cta-banner";
@@ -155,6 +162,501 @@ const INVESTMENT_OPPS = [
     accent: "text-cyan-300 border-cyan-500/30 bg-cyan-500/10",
   },
 ];
+
+const DUBAI_AREAS = [
+  "Business Bay", "Downtown Dubai", "Dubai Marina",
+  "JBR — Jumeirah Beach Residence", "Palm Jumeirah", "Dubai Hills Estate",
+  "Arabian Ranches", "Jumeirah Village Circle (JVC)", "Dubai Silicon Oasis",
+  "DAMAC Hills", "Al Furjan", "Motor City",
+  "JLT — Jumeirah Lake Towers", "DIFC / Financial Centre", "Bur Dubai",
+  "Deira", "Al Barsha", "Mirdif", "International City",
+  "Dubai Creek Harbour", "Emaar Beachfront", "Sobha Hartland",
+  "Other / Multiple Areas",
+];
+
+const NDA_SUMMARY = [
+  "You will not disclose or misuse tenant personal details (name, phone, email, budget) obtained via the DeliWer platform.",
+  "You will not approach DeliWer tenants or leads directly outside the DeliWer coordination channel for competing or unrelated purposes.",
+  "You will not introduce or refer DeliWer tenants to any competing concierge, relocation or home-services business without prior written consent from DeliWer.",
+  "Any property inventory data shared for matching purposes is strictly confidential and may not be re-shared with any third party.",
+  "This agreement is binding for 24 months from the acceptance date and is governed by the laws of the Emirate of Dubai, UAE.",
+  "Violation may result in immediate removal from the Inner Circle, forfeiture of pending commissions, and legal action under UAE law.",
+];
+
+function BrokerIntelSection() {
+  const { toast } = useToast();
+
+  const [brokerForm, setBrokerForm] = useState({
+    name: "", phone: "", email: "", reraNumber: "", brokerage: "",
+    areasOfInterest: [] as string[], ndaAccepted: false,
+  });
+  const [brokerSubmitted, setBrokerSubmitted] = useState(false);
+  const [showFullNda, setShowFullNda] = useState(false);
+
+  const [tenantForm, setTenantForm] = useState({
+    name: "", phone: "", area: "", message: "", preferredDate: "",
+  });
+  const [tenantSubmitted, setTenantSubmitted] = useState(false);
+
+  const brokerMutation = useMutation({
+    mutationFn: (data: typeof brokerForm) => apiRequest("POST", "/api/realestate/apply", data),
+    onSuccess: () => {
+      setBrokerSubmitted(true);
+      toast({ title: "Application received!", description: "We'll review your RERA credentials and contact you within 24–48 hours." });
+    },
+    onError: () => {
+      toast({ title: "Submission failed", description: "Please try again or contact us on WhatsApp.", variant: "destructive" });
+    },
+  });
+
+  const tenantMutation = useMutation({
+    mutationFn: (data: { requesterName: string; requesterPhone: string; area: string; message: string; preferredDate: string }) =>
+      apiRequest("POST", "/api/realestate/viewing-inquiry", data),
+    onSuccess: () => {
+      setTenantSubmitted(true);
+      toast({ title: "Viewing inquiry received!", description: "We'll WhatsApp you shortly to discuss available units." });
+    },
+    onError: () => {
+      toast({ title: "Submission failed", description: "Please try again or contact us on WhatsApp.", variant: "destructive" });
+    },
+  });
+
+  const handleBrokerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!brokerForm.name || !brokerForm.phone || !brokerForm.ndaAccepted) return;
+    brokerMutation.mutate(brokerForm);
+  };
+
+  const handleTenantSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!tenantForm.name || !tenantForm.phone || !tenantForm.area) return;
+    tenantMutation.mutate({
+      requesterName: tenantForm.name,
+      requesterPhone: tenantForm.phone,
+      area: tenantForm.area,
+      message: tenantForm.message,
+      preferredDate: tenantForm.preferredDate,
+    });
+  };
+
+  return (
+    <div className="pb-16">
+      {/* Platform Splitter */}
+      <div className="border-b border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 py-3 px-4">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
+          <div className="flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="text-slate-400">Property &amp; Relocation Brokers →</span>
+            <span className="font-bold text-emerald-300">DeliWer Relocations</span>
+            <Badge className="text-[10px] bg-emerald-500/15 text-emerald-300 border-emerald-500/30">You are here ✓</Badge>
+          </div>
+          <div className="flex items-center gap-2 text-slate-500 text-sm">
+            <Briefcase className="w-4 h-4 shrink-0" />
+            <span>Freight Brokers &amp; Phone Flippers →</span>
+            <a
+              href="https://chaintrack.ae"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors"
+              data-testid="link-chaintrack"
+            >
+              ChainTrack ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Map Section */}
+      <section className="py-10 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-7">
+            <Badge className="mb-3 bg-emerald-500/15 text-emerald-300 border-emerald-500/30">
+              <MapPin className="w-3.5 h-3.5 mr-1.5" /> Dubai Property Intelligence
+            </Badge>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-2" data-testid="heading-broker-map">
+              Explore Dubai Projects &amp; Narrow Your Focus
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+              Browse live developments across Dubai. Once you've identified your target areas, apply for Inner Circle access to receive unit-level inventory through our verified WhatsApp &amp; Telegram channels.
+            </p>
+          </div>
+
+          <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl" data-testid="div-map-embed">
+            <iframe
+              src="https://deliwer-shopping-metaverse.map.estate/en/map/uae-dubai/projectsEmbed"
+              title="Dubai Projects Map"
+              className="w-full"
+              style={{ height: 580 }}
+              loading="lazy"
+              allow="fullscreen"
+            />
+          </div>
+          <p className="mt-2 text-center text-[11px] text-slate-500">
+            Interactive project map · Explore developments by area, developer and price range · Data via Map.Estate
+          </p>
+        </div>
+      </section>
+
+      {/* How the Inner Circle Works */}
+      <section className="py-6 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-lg font-bold mb-5 text-center text-slate-200">How the Inner Circle Works</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            {[
+              {
+                phase: "01", Icon: MapPin, color: "cyan",
+                title: "Explore & Narrow",
+                desc: "Browse the interactive map. Identify districts and projects that match your clients' budget and lifestyle.",
+              },
+              {
+                phase: "02", Icon: Lock, color: "amber",
+                title: "Apply & Sign NDA",
+                desc: "Submit your RERA details and accept the non-disclosure agreement. Admin review takes 24–48 hours.",
+              },
+              {
+                phase: "03", Icon: Eye, color: "emerald",
+                title: "Access Unit Inventory",
+                desc: "Verified brokers receive real-time unit-level inventory via private WhatsApp & Telegram channels.",
+              },
+            ].map(({ phase, Icon, color, title, desc }) => (
+              <div
+                key={phase}
+                className={`rounded-xl border border-${color}-500/30 bg-${color}-500/5 p-5`}
+                data-testid={`card-phase-${phase}`}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`text-[11px] font-black text-${color}-400 border border-${color}-500/40 rounded-full w-6 h-6 flex items-center justify-center shrink-0`}>
+                    {phase}
+                  </span>
+                  <Icon className={`w-4 h-4 text-${color}-400`} />
+                </div>
+                <h4 className={`font-bold text-${color}-200 mb-1 text-sm`}>{title}</h4>
+                <p className="text-sm text-slate-400 leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Two-column: Broker Apply + Tenant Inquiry */}
+      <section className="py-6 px-4">
+        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-6">
+
+          {/* ── Broker Inner Circle Application ─────────────────────── */}
+          <Card className="bg-slate-900/70 border-slate-800" data-testid="card-broker-apply">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-9 h-9 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-4 h-4 text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-sm">Apply for Inner Circle Access</h3>
+                  <p className="text-xs text-slate-500">RERA-licensed brokers · Unit inventory access</p>
+                </div>
+              </div>
+
+              {brokerSubmitted ? (
+                <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/30 p-5 text-center">
+                  <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+                  <p className="font-bold text-emerald-300 mb-1">Application Received</p>
+                  <p className="text-sm text-slate-400 mb-4">
+                    We'll review your RERA credentials and contact you within 24–48 hours via WhatsApp to grant access to our inner circle inventory channel.
+                  </p>
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    <a
+                      href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi, I just applied for DeliWer Inner Circle access. Looking forward to hearing from you.")}`}
+                      target="_blank" rel="noopener noreferrer"
+                      data-testid="link-post-apply-wa"
+                    >
+                      <Button size="sm" className="bg-[#25D366] hover:bg-[#20bd5a] text-white gap-1.5">
+                        <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Us
+                      </Button>
+                    </a>
+                    <a href="https://t.me/+971523946311" target="_blank" rel="noopener noreferrer" data-testid="link-post-apply-tg">
+                      <Button size="sm" variant="outline" className="border-[#2AABEE]/40 text-[#2AABEE] hover:bg-[#2AABEE]/10 gap-1.5">
+                        <Globe2 className="w-3.5 h-3.5" /> Telegram
+                      </Button>
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleBrokerSubmit} className="space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Full Name *</Label>
+                      <Input
+                        value={brokerForm.name}
+                        onChange={(e) => setBrokerForm((p) => ({ ...p, name: e.target.value }))}
+                        placeholder="Ahmed Al Rashidi"
+                        className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                        data-testid="input-broker-name"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">WhatsApp *</Label>
+                      <Input
+                        value={brokerForm.phone}
+                        onChange={(e) => setBrokerForm((p) => ({ ...p, phone: e.target.value }))}
+                        placeholder="+971 50 123 4567"
+                        className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                        data-testid="input-broker-phone"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">RERA Licence #</Label>
+                      <Input
+                        value={brokerForm.reraNumber}
+                        onChange={(e) => setBrokerForm((p) => ({ ...p, reraNumber: e.target.value }))}
+                        placeholder="BRN-XXXXXX"
+                        className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                        data-testid="input-broker-rera"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Email</Label>
+                      <Input
+                        type="email"
+                        value={brokerForm.email}
+                        onChange={(e) => setBrokerForm((p) => ({ ...p, email: e.target.value }))}
+                        placeholder="you@brokerage.ae"
+                        className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                        data-testid="input-broker-email"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Brokerage / Agency</Label>
+                    <Input
+                      value={brokerForm.brokerage}
+                      onChange={(e) => setBrokerForm((p) => ({ ...p, brokerage: e.target.value }))}
+                      placeholder="Your agency name"
+                      className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                      data-testid="input-broker-brokerage"
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-[11px] text-slate-400 uppercase tracking-wider mb-2 block">
+                      Areas of Focus <span className="text-slate-600">(select all that apply)</span>
+                    </Label>
+                    <div className="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto pr-1">
+                      {DUBAI_AREAS.map((a) => (
+                        <button
+                          key={a}
+                          type="button"
+                          onClick={() =>
+                            setBrokerForm((p) => ({
+                              ...p,
+                              areasOfInterest: p.areasOfInterest.includes(a)
+                                ? p.areasOfInterest.filter((x) => x !== a)
+                                : [...p.areasOfInterest, a],
+                            }))
+                          }
+                          className={`text-[11px] px-2.5 py-0.5 rounded-full border transition-all ${
+                            brokerForm.areasOfInterest.includes(a)
+                              ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
+                              : "bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-300"
+                          }`}
+                          data-testid={`tag-area-${a.replace(/\W+/g, "-")}`}
+                        >
+                          {a}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* NDA */}
+                  <div className="rounded-lg border border-slate-700 bg-slate-950/60 p-3">
+                    <button
+                      type="button"
+                      onClick={() => setShowFullNda((v) => !v)}
+                      className="flex items-center justify-between w-full text-left mb-2"
+                      data-testid="button-toggle-nda"
+                    >
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                        <Lock className="w-3 h-3" /> Non-Disclosure Agreement
+                      </span>
+                      <span className="text-[11px] text-slate-500">{showFullNda ? "▲ Collapse" : "▼ Read full NDA"}</span>
+                    </button>
+                    {showFullNda && (
+                      <ul className="space-y-2 mb-3">
+                        {NDA_SUMMARY.map((clause, i) => (
+                          <li key={i} className="flex gap-2 text-xs text-slate-400 leading-relaxed">
+                            <span className="text-emerald-500 shrink-0 mt-0.5">•</span>
+                            {clause}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <label className="flex items-start gap-2 cursor-pointer" data-testid="label-nda-accept">
+                      <input
+                        type="checkbox"
+                        checked={brokerForm.ndaAccepted}
+                        onChange={(e) => setBrokerForm((p) => ({ ...p, ndaAccepted: e.target.checked }))}
+                        className="mt-0.5 accent-emerald-500"
+                        data-testid="checkbox-nda"
+                      />
+                      <span className="text-xs text-slate-300 leading-relaxed">
+                        I have read and accept the Non-Disclosure Agreement. I confirm I am a RERA-licensed broker or authorised property professional operating in the UAE.
+                      </span>
+                    </label>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={!brokerForm.name || !brokerForm.phone || !brokerForm.ndaAccepted || brokerMutation.isPending}
+                    className="w-full h-10 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm"
+                    data-testid="button-broker-apply"
+                  >
+                    {brokerMutation.isPending ? "Submitting…" : "Apply for Inner Circle Access →"}
+                  </Button>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* ── Tenant Viewing Inquiry + Direct Contact ──────────────── */}
+          <div className="space-y-4">
+            <Card className="bg-slate-900/70 border-slate-800" data-testid="card-tenant-inquiry">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-9 h-9 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center shrink-0">
+                    <Home className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white text-sm">Tenant: Request a Viewing</h3>
+                    <p className="text-xs text-slate-500">Tell us your preferred area — we'll connect you</p>
+                  </div>
+                </div>
+
+                {tenantSubmitted ? (
+                  <div className="rounded-xl bg-cyan-500/10 border border-cyan-500/30 p-5 text-center">
+                    <CheckCircle2 className="w-7 h-7 text-cyan-400 mx-auto mb-2" />
+                    <p className="font-bold text-cyan-300 mb-1">Inquiry Submitted</p>
+                    <p className="text-sm text-slate-400">
+                      Our team will WhatsApp you within a few hours to discuss available units in your preferred area.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleTenantSubmit} className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Your Name *</Label>
+                        <Input
+                          value={tenantForm.name}
+                          onChange={(e) => setTenantForm((p) => ({ ...p, name: e.target.value }))}
+                          placeholder="Sarah Connor"
+                          className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                          data-testid="input-tenant-name"
+                        />
+                      </div>
+                      <div>
+                        <Label className="text-[11px] text-slate-400 uppercase tracking-wider">WhatsApp *</Label>
+                        <Input
+                          value={tenantForm.phone}
+                          onChange={(e) => setTenantForm((p) => ({ ...p, phone: e.target.value }))}
+                          placeholder="+971 50 123 4567"
+                          className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                          data-testid="input-tenant-phone"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Preferred Area *</Label>
+                      <Select value={tenantForm.area} onValueChange={(v) => setTenantForm((p) => ({ ...p, area: v }))}>
+                        <SelectTrigger
+                          className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                          data-testid="select-tenant-area"
+                        >
+                          <SelectValue placeholder="Select area…" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-slate-900 border-slate-700">
+                          {DUBAI_AREAS.map((a) => (
+                            <SelectItem key={a} value={a}>{a}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Preferred Viewing Date</Label>
+                      <Input
+                        type="date"
+                        value={tenantForm.preferredDate}
+                        onChange={(e) => setTenantForm((p) => ({ ...p, preferredDate: e.target.value }))}
+                        className="mt-1 bg-slate-950 border-slate-700 text-white h-9 text-sm"
+                        data-testid="input-tenant-date"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-[11px] text-slate-400 uppercase tracking-wider">Message / Budget</Label>
+                      <Textarea
+                        value={tenantForm.message}
+                        onChange={(e) => setTenantForm((p) => ({ ...p, message: e.target.value }))}
+                        placeholder="e.g. 2BR, budget AED 120K/yr, moving in August…"
+                        className="mt-1 bg-slate-950 border-slate-700 text-white text-sm resize-none"
+                        rows={3}
+                        data-testid="input-tenant-message"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      disabled={!tenantForm.name || !tenantForm.phone || !tenantForm.area || tenantMutation.isPending}
+                      className="w-full h-10 bg-cyan-600 hover:bg-cyan-500 text-white font-black text-sm"
+                      data-testid="button-tenant-submit"
+                    >
+                      {tenantMutation.isPending ? "Submitting…" : "Request Viewing →"}
+                    </Button>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Direct contact — verified members */}
+            <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4" data-testid="div-direct-contact">
+              <p className="text-[11px] text-slate-500 font-bold uppercase tracking-wider mb-3">
+                Already verified? Contact us directly
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <a
+                  href={`https://wa.me/971523906019?text=${encodeURIComponent("Hi, I'm a verified DeliWer Inner Circle broker and I'd like to access the current unit inventory.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                  data-testid="link-wa-verified"
+                >
+                  <Button className="w-full h-9 bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold gap-2">
+                    <MessageCircle className="w-4 h-4" /> WhatsApp +971 52 390 6019
+                  </Button>
+                </a>
+                <a
+                  href="https://t.me/+971523946311"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1"
+                  data-testid="link-tg-verified"
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full h-9 border-[#2AABEE]/40 text-[#2AABEE] hover:bg-[#2AABEE]/10 text-sm font-bold gap-2"
+                  >
+                    <Globe2 className="w-4 h-4" /> Telegram Channel
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Trust note */}
+            <div className="rounded-xl border border-emerald-800/30 bg-emerald-950/20 p-4 text-xs text-slate-400 leading-relaxed">
+              <span className="text-emerald-300 font-bold">DeliWer Relocations</span> connects RERA-licensed brokers with pre-qualified tenants and verified buyers. Unit inventory is shared exclusively via private WhatsApp &amp; Telegram with verified Inner Circle members. All property introductions are subject to valid tenancy agreements and RERA-compliant terms. Brokers and tenants must be over 21 years of age and operating lawfully within the UAE.
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  );
+}
 
 function fmtAED(n: number) {
   if (!isFinite(n)) return "—";
@@ -588,29 +1090,72 @@ function EligibilityForm() {
 
 export default function RealEstate() {
   const [showFullDisclosure, setShowFullDisclosure] = useState(false);
+  const [activeTab, setActiveTab] = useState<"broker" | "finance">("broker");
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const switchTab = (tab: "broker" | "finance") => {
+    setActiveTab(tab);
+    scrollTo(tab === "broker" ? "broker-intel" : "finance-section");
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Helmet>
-        <title>Home Financing & Move-In Concierge in Dubai | DeliWer</title>
+        <title>Dubai Property Intelligence & Home Financing | DeliWer</title>
         <meta
           name="description"
-          content="Compare mortgages, discover flexible developer payment plans from Emaar, DAMAC, Sobha and Samana, get pre-approval and move into your Dubai home with DeliWer concierge services."
+          content="Broker inner circle access for verified Dubai RERA brokers — explore projects on the map, sign NDA and access unit inventory. Also compare mortgages and developer payment plans from Emaar, DAMAC, Sobha and Samana."
         />
         <meta
           name="keywords"
-          content="Dubai home financing, Dubai mortgage, developer payment plan Dubai, Emaar payment plan, DAMAC payment plan, Sobha payment plan, Samana payment plan, move-in concierge Dubai, rent vs buy Dubai"
+          content="Dubai broker inner circle, RERA broker Dubai, Dubai property map, Dubai home financing, Dubai mortgage, developer payment plan Dubai, move-in concierge Dubai"
         />
-        <meta property="og:title" content="Own Your Home in Dubai — Without the Guesswork | DeliWer" />
+        <meta property="og:title" content="Dubai Property Intelligence & Inner Circle — DeliWer" />
         <meta
           property="og:description"
-          content="Compare mortgages, explore developer payment plans and let DeliWer handle Ejari, DEWA, internet and move-in — all in one place."
+          content="Verified RERA brokers: browse Dubai projects, sign NDA and access exclusive unit inventory. Buyers: compare mortgages and developer payment plans."
         />
       </Helmet>
+
+      {/* ── Sticky Tab Bar ─────────────────────────────────────────── */}
+      <div className="sticky top-0 z-30 bg-slate-950/95 backdrop-blur-md border-b border-slate-800" data-testid="div-tab-bar">
+        <div className="max-w-5xl mx-auto px-4 flex gap-1 py-2">
+          <button
+            onClick={() => switchTab("broker")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              activeTab === "broker"
+                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
+            }`}
+            data-testid="tab-broker"
+          >
+            <MapPin className="w-4 h-4" /> Broker Map Intelligence
+          </button>
+          <button
+            onClick={() => switchTab("finance")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+              activeTab === "finance"
+                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
+            }`}
+            data-testid="tab-finance"
+          >
+            <Calculator className="w-4 h-4" /> Finance &amp; Mortgage
+          </button>
+        </div>
+      </div>
+
+      {/* ── Broker Intelligence Section ────────────────────────────── */}
+      <div id="broker-intel">
+        <BrokerIntelSection />
+      </div>
+
+      {/* ── Finance & Mortgage Section ─────────────────────────────── */}
+      <div id="finance-section">
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-emerald-500/20">
@@ -1368,6 +1913,8 @@ export default function RealEstate() {
           <BrokerCTABanner context="RERA broker? Refer buyers or tenants to DeliWer after deal close — earn AED 150–800+ per move-in referral, free to join." />
         </div>
       </section>
+
+      </div>{/* end #finance-section */}
     </div>
   );
 }

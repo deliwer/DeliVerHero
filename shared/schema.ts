@@ -2438,3 +2438,22 @@ export const commissionConfig = pgTable("commission_config", {
 export const insertCommissionConfigSchema = createInsertSchema(commissionConfig).omit({ id: true, updatedAt: true });
 export type CommissionConfig = typeof commissionConfig.$inferSelect;
 export type InsertCommissionConfig = z.infer<typeof insertCommissionConfigSchema>;
+
+// ── Real Estate Broker Inner Circle ───────────────────────────────────────────
+export const realEstateBrokerCircle = pgTable("real_estate_broker_circle", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  phone: text("phone").notNull(),
+  email: text("email"),
+  reraNumber: text("rera_number"),
+  brokerage: text("brokerage"),
+  areasOfInterest: text("areas_of_interest").array(),
+  ndaAccepted: boolean("nda_accepted").notNull().default(false),
+  ndaAcceptedAt: timestamp("nda_accepted_at"),
+  status: text("status").notNull().default("pending"),
+  ipAddress: text("ip_address"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export const insertRealEstateBrokerCircleSchema = createInsertSchema(realEstateBrokerCircle).omit({ id: true, createdAt: true });
+export type RealEstateBrokerCircle = typeof realEstateBrokerCircle.$inferSelect;
+export type InsertRealEstateBrokerCircle = z.infer<typeof insertRealEstateBrokerCircleSchema>;

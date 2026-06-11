@@ -72,6 +72,7 @@ import bnosRoutes from "./routes/bnos";
 import habtoorRoutes from "./routes/habtoor";
 import mamzarRoutes from "./routes/mamzar";
 import flexListingsRoutes from "./routes/flex-listings";
+import realEstatePortalRoutes from "./routes/realestate-portal";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processPurchase, aedToFils } from "./payment-processing";
 import { sendWhatsApp } from "./utils/sendWhatsApp";
@@ -512,6 +513,7 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
   app.use("/api/habtoor", habtoorRoutes);
   app.use("/api/mamzar", mamzarRoutes);
   app.use("/api/flex-listings", flexListingsRoutes);
+  app.use("/api/realestate", realEstatePortalRoutes);
 
   // PayPal payment endpoints - referenced from PayPal integration blueprint
   app.get("/api/paypal/setup", async (req, res) => {
