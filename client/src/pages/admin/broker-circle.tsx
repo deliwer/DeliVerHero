@@ -8,7 +8,7 @@ import {
   XCircle, Clock, Phone, Mail, Building2,
   MapPin, ShieldCheck, ArrowLeft, Search,
   MessageCircle, Eye, CalendarDays, FileText,
-  Home,
+  Home, Sparkles, X,
 } from "lucide-react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
@@ -46,6 +46,11 @@ type ViewingInquiry = {
   createdAt: string;
 };
 
+type MatchPayload = {
+  broker: BrokerApp;
+  matches: ViewingInquiry[];
+};
+
 // ── Shared helpers ─────────────────────────────────────────────────────────────
 const APP_STATUS: Record<string, { label: string; cls: string; Icon: typeof CheckCircle2 }> = {
   pending:  { label: "Pending",  cls: "bg-amber-500/15 text-amber-300 border-amber-500/30",      Icon: Clock },
@@ -54,17 +59,26 @@ const APP_STATUS: Record<string, { label: string; cls: string; Icon: typeof Chec
 };
 
 const INQ_STATUS: Record<string, { label: string; cls: string; Icon: typeof CheckCircle2 }> = {
-  pending:   { label: "New",        cls: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",         Icon: Clock },
-  contacted: { label: "Contacted",  cls: "bg-amber-500/15 text-amber-300 border-amber-500/30",      Icon: MessageCircle },
-  scheduled: { label: "Scheduled",  cls: "bg-violet-500/15 text-violet-300 border-violet-500/30",   Icon: CalendarDays },
-  completed: { label: "Completed",  cls: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",Icon: CheckCircle2 },
-  cancelled: { label: "Cancelled",  cls: "bg-red-500/15 text-red-300 border-red-500/30",            Icon: XCircle },
+  pending:   { label: "New",       cls: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",          Icon: Clock },
+  contacted: { label: "Contacted", cls: "bg-amber-500/15 text-amber-300 border-amber-500/30",       Icon: MessageCircle },
+  scheduled: { label: "Scheduled", cls: "bg-violet-500/15 text-violet-300 border-violet-500/30",    Icon: CalendarDays },
+  completed: { label: "Completed", cls: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30", Icon: CheckCircle2 },
+  cancelled: { label: "Cancelled", cls: "bg-red-500/15 text-red-300 border-red-500/30",             Icon: XCircle },
 };
 
 function fmt(dt: string) {
   return new Date(dt).toLocaleString("en-AE", {
     timeZone: "Asia/Dubai", day: "2-digit", month: "short",
     year: "numeric", hour: "2-digit", minute: "2-digit",
+  });
+}
+
+/** Case-insensitive area match: broker area list vs a single inquiry area */
+function areaMatch(brokerAreas: string[], inquiryArea: string): boolean {
+  const ia = inquiryArea.toLowerCase();
+  return brokerAreas.some((ba) => {
+    const b = ba.toLowerCase();
+    return b === ia || b.includes(ia) || ia.includes(b);
   });
 }
 
@@ -142,12 +156,109 @@ function LockScreen({ onUnlock }: { onUnlock: () => void }) {
   );
 }
 
+// ── Match modal ────────────────────────────────────────────────────────────────
+function MatchModal({ payload, onClose }: { payload: MatchPayload; onClose: () => void }) {
+  const { broker, matches } = payload;
+
+  // Compose single bulk WA message to the broker listing all matched leads
+  const bulkMsg = [
+    `Hi ${broker.name}! 🎉 Welcome to the DeliWer Inner Circle — you're now approved.`,
+    ``,
+    `We have ${matches.length} tenant viewing request${matches.length > 1 ? "s" : ""} in your preferred areas:`,
+    ``,
+    ...matches.map((m, i) =>
+      `${i + 1}. 📍 ${m.listingArea} — ${m.requesterName} (${m.requesterPhone})${m.preferredDate ? ` · prefers ${m.preferredDate}` : ""}`
+    ),
+    ``,
+    `Please reach out to these tenants directly and let us know how we can support. Good luck! 🏡`,
+  ].join("\n");
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <div className="w-full max-w-lg rounded-2xl border border-emerald-500/20 bg-slate-900 shadow-2xl shadow-emerald-900/20 overflow-hidden">
+        {/* Header */}
+        <div className="px-5 py-4 border-b border-slate-800 flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center shrink-0">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+            </div>
+            <div>
+              <p className="font-bold text-white text-sm">
+                {matches.length} Matching Lead{matches.length !== 1 ? "s" : ""} Found
+              </p>
+              <p className="text-[11px] text-slate-400">
+                {broker.name} · {(broker.areasOfInterest ?? []).join(", ") || "No areas set"}
+              </p>
+            </div>
+          </div>
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-300 transition-colors mt-0.5" data-testid="button-modal-close">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Match list */}
+        <div className="px-5 py-3 max-h-60 overflow-y-auto space-y-2">
+          {matches.map((m) => (
+            <div key={m.id} className="rounded-lg border border-slate-800 bg-slate-800/40 px-3 py-2.5 flex items-start justify-between gap-3">
+              <div className="space-y-0.5 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-sm font-semibold text-white">{m.requesterName}</span>
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
+                    <MapPin className="w-2.5 h-2.5 inline mr-0.5" />{m.listingArea}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-slate-400">
+                  <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{m.requesterPhone}</span>
+                  {m.preferredDate && <span className="flex items-center gap-1"><CalendarDays className="w-3 h-3 text-violet-400" />{m.preferredDate}</span>}
+                </div>
+              </div>
+              {/* Per-match WA button to broker (tell broker about this specific tenant) */}
+              <a
+                href={`https://wa.me/${broker.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
+                  `Hi ${broker.name}, we have a viewing request in ${m.listingArea} — ${m.requesterName} (${m.requesterPhone})${m.preferredDate ? `, prefers ${m.preferredDate}` : ""}. Can you follow up? 🏡`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid={`link-match-single-${m.id}`}
+              >
+                <Button size="sm" variant="outline" className="h-7 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/10 text-[10px] gap-1 shrink-0 px-2">
+                  <MessageCircle className="w-3 h-3" /> Send
+                </Button>
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer: bulk send button */}
+        <div className="px-5 py-4 border-t border-slate-800 flex flex-col sm:flex-row gap-2">
+          <a
+            href={`https://wa.me/${broker.phone.replace(/\D/g, "")}?text=${encodeURIComponent(bulkMsg)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1"
+            data-testid="link-match-bulk"
+          >
+            <Button className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white gap-2 font-bold">
+              <MessageCircle className="w-4 h-4" />
+              Send All {matches.length} Lead{matches.length !== 1 ? "s" : ""} to {broker.name}
+            </Button>
+          </a>
+          <Button variant="ghost" className="text-slate-400 hover:text-slate-200 sm:w-auto" onClick={onClose} data-testid="button-modal-skip">
+            Skip
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Broker Applications tab ────────────────────────────────────────────────────
 function BrokerAppsTab() {
   const { toast } = useToast();
   const qc = useQueryClient();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [matchModal, setMatchModal] = useState<MatchPayload | null>(null);
 
   const { data: apps = [], isLoading, refetch } = useQuery<BrokerApp[]>({
     queryKey: ["/api/realestate/applications"],
@@ -157,12 +268,39 @@ function BrokerAppsTab() {
     refetchInterval: 30_000,
   });
 
+  // Silently pre-fetch inquiries so matching is instant
+  const { data: allViewings = [] } = useQuery<ViewingInquiry[]>({
+    queryKey: ["/api/flex-listings/admin/viewings"],
+    queryFn: () =>
+      fetch("/api/flex-listings/admin/viewings", { headers: { "x-admin-token": ADMIN_TOKEN } })
+        .then((r) => r.json())
+        .then((d) => (Array.isArray(d) ? d : (d.requests ?? d.viewings ?? []))),
+    refetchInterval: 30_000,
+  });
+
+  const openInquiries = allViewings.filter(
+    (v) => v.listingId.startsWith("area-inquiry-") && v.status === "pending"
+  );
+
   const statusMut = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) =>
       apiRequest("PATCH", `/api/realestate/applications/${id}/status`, { status }),
-    onSuccess: (_, { status }) => {
+    onSuccess: (_, { id, status }) => {
       qc.invalidateQueries({ queryKey: ["/api/realestate/applications"] });
       toast({ title: `Application ${status}`, description: "Status updated." });
+
+      // Trigger match modal when approving
+      if (status === "approved") {
+        const broker = apps.find((a) => a.id === id);
+        if (broker && (broker.areasOfInterest ?? []).length > 0) {
+          const matches = openInquiries.filter((v) =>
+            areaMatch(broker.areasOfInterest!, v.listingArea)
+          );
+          if (matches.length > 0) {
+            setMatchModal({ broker, matches });
+          }
+        }
+      }
     },
     onError: () => toast({ title: "Error", description: "Update failed.", variant: "destructive" }),
   });
@@ -186,149 +324,195 @@ function BrokerAppsTab() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        {(
-          [
-            { label: "Total",    value: counts.total,    cls: "border-slate-700",      Icon: Users },
-            { label: "Pending",  value: counts.pending,  cls: "border-amber-500/30",   Icon: Clock },
-            { label: "Approved", value: counts.approved, cls: "border-emerald-500/30", Icon: CheckCircle2 },
-            { label: "Rejected", value: counts.rejected, cls: "border-red-500/30",     Icon: XCircle },
-          ] as const
-        ).map(({ label, value, cls, Icon }) => (
-          <div key={label} className={`rounded-xl border ${cls} bg-slate-900/50 p-4`} data-testid={`app-stat-${label.toLowerCase()}`}>
-            <div className="flex items-center gap-2 mb-1">
-              <Icon className="w-4 h-4 text-slate-400" />
-              <span className="text-xs text-slate-400 font-medium">{label}</span>
-            </div>
-            <p className="text-2xl font-bold text-white">{value}</p>
-          </div>
-        ))}
-      </div>
+    <>
+      {matchModal && (
+        <MatchModal payload={matchModal} onClose={() => setMatchModal(null)} />
+      )}
 
-      {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search name, phone, RERA, brokerage…"
-            className="pl-9 bg-slate-900 border-slate-700 text-white h-9 text-sm"
-            data-testid="input-app-search"
-          />
-        </div>
-        <div className="flex gap-1">
-          {["all", "pending", "approved", "rejected"].map((s) => (
-            <button
-              key={s}
-              onClick={() => setStatusFilter(s)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
-                statusFilter === s
-                  ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-transparent"
-              }`}
-              data-testid={`app-filter-${s}`}
-            >
-              {s}
-            </button>
+      <div className="space-y-6">
+        {/* Stat cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {(
+            [
+              { label: "Total",    value: counts.total,    cls: "border-slate-700",      Icon: Users },
+              { label: "Pending",  value: counts.pending,  cls: "border-amber-500/30",   Icon: Clock },
+              { label: "Approved", value: counts.approved, cls: "border-emerald-500/30", Icon: CheckCircle2 },
+              { label: "Rejected", value: counts.rejected, cls: "border-red-500/30",     Icon: XCircle },
+            ] as const
+          ).map(({ label, value, cls, Icon }) => (
+            <div key={label} className={`rounded-xl border ${cls} bg-slate-900/50 p-4`} data-testid={`app-stat-${label.toLowerCase()}`}>
+              <div className="flex items-center gap-2 mb-1">
+                <Icon className="w-4 h-4 text-slate-400" />
+                <span className="text-xs text-slate-400 font-medium">{label}</span>
+              </div>
+              <p className="text-2xl font-bold text-white">{value}</p>
+            </div>
           ))}
         </div>
-        <div className="flex gap-2">
-          <Button size="sm" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5 text-xs h-9" onClick={() => refetch()} data-testid="button-app-refresh">
-            <RefreshCw className="w-3.5 h-3.5" /> Refresh
-          </Button>
-          <Button size="sm" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5 text-xs h-9" onClick={() => exportBrokerCsv(filtered)} data-testid="button-app-export">
-            <Download className="w-3.5 h-3.5" /> CSV
-          </Button>
+
+        {/* Open inquiries banner (when there are unmatched leads) */}
+        {openInquiries.length > 0 && (
+          <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/5 px-4 py-3 flex items-center gap-3">
+            <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
+            <p className="text-sm text-cyan-300">
+              <span className="font-bold">{openInquiries.length} open viewing inquiry{openInquiries.length > 1 ? "s" : ""}</span>
+              {" "}waiting to be matched — approve a broker in their area to trigger a match alert.
+            </p>
+          </div>
+        )}
+
+        {/* Toolbar */}
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search name, phone, RERA, brokerage…"
+              className="pl-9 bg-slate-900 border-slate-700 text-white h-9 text-sm"
+              data-testid="input-app-search"
+            />
+          </div>
+          <div className="flex gap-1">
+            {["all", "pending", "approved", "rejected"].map((s) => (
+              <button
+                key={s}
+                onClick={() => setStatusFilter(s)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
+                  statusFilter === s
+                    ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
+                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-transparent"
+                }`}
+                data-testid={`app-filter-${s}`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <Button size="sm" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5 text-xs h-9" onClick={() => refetch()} data-testid="button-app-refresh">
+              <RefreshCw className="w-3.5 h-3.5" /> Refresh
+            </Button>
+            <Button size="sm" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5 text-xs h-9" onClick={() => exportBrokerCsv(filtered)} data-testid="button-app-export">
+              <Download className="w-3.5 h-3.5" /> CSV
+            </Button>
+          </div>
         </div>
-      </div>
 
-      {/* List */}
-      {isLoading ? (
-        <p className="text-center py-20 text-slate-500">Loading…</p>
-      ) : filtered.length === 0 ? (
-        <p className="text-center py-20 text-slate-500">
-          {apps.length === 0 ? "No applications yet." : "No results match your filter."}
-        </p>
-      ) : (
-        <div className="space-y-3">
-          {filtered.map((app) => {
-            const m = APP_STATUS[app.status] ?? APP_STATUS.pending;
-            const SI = m.Icon;
-            return (
-              <div key={app.id} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:p-5" data-testid={`card-app-${app.id}`}>
-                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
-                  <div className="flex-1 space-y-2 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-bold text-white">{app.name}</span>
-                      <Badge className={`text-[10px] border ${m.cls} flex items-center gap-1`}>
-                        <SI className="w-3 h-3" /> {m.label}
-                      </Badge>
-                      {app.ndaAccepted && (
-                        <Badge className="text-[10px] bg-emerald-500/10 text-emerald-400 border-emerald-500/20">NDA ✓</Badge>
-                      )}
-                    </div>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
-                      <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" />{app.phone}</span>
-                      {app.email && <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" />{app.email}</span>}
-                      {app.reraNumber && (
-                        <span className="flex items-center gap-1.5">
-                          <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                          <span className="font-mono text-amber-300 text-xs">{app.reraNumber}</span>
-                        </span>
-                      )}
-                      {app.brokerage && <span className="flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5" />{app.brokerage}</span>}
-                    </div>
-                    {app.areasOfInterest && app.areasOfInterest.length > 0 && (
-                      <div className="flex flex-wrap gap-1 items-center">
-                        <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
-                        {app.areasOfInterest.map((a) => (
-                          <span key={a} className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300">{a}</span>
-                        ))}
+        {/* List */}
+        {isLoading ? (
+          <p className="text-center py-20 text-slate-500">Loading…</p>
+        ) : filtered.length === 0 ? (
+          <p className="text-center py-20 text-slate-500">
+            {apps.length === 0 ? "No applications yet." : "No results match your filter."}
+          </p>
+        ) : (
+          <div className="space-y-3">
+            {filtered.map((app) => {
+              const m = APP_STATUS[app.status] ?? APP_STATUS.pending;
+              const SI = m.Icon;
+
+              // Pre-compute matches for this broker (only open/pending inquiries)
+              const brokerMatches = openInquiries.filter((v) =>
+                (app.areasOfInterest ?? []).length > 0 &&
+                areaMatch(app.areasOfInterest!, v.listingArea)
+              );
+
+              return (
+                <div key={app.id} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4 sm:p-5" data-testid={`card-app-${app.id}`}>
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                    <div className="flex-1 space-y-2 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-bold text-white">{app.name}</span>
+                        <Badge className={`text-[10px] border ${m.cls} flex items-center gap-1`}>
+                          <SI className="w-3 h-3" /> {m.label}
+                        </Badge>
+                        {app.ndaAccepted && (
+                          <Badge className="text-[10px] bg-emerald-500/10 text-emerald-400 border-emerald-500/20">NDA ✓</Badge>
+                        )}
+                        {/* Match count badge — visible at a glance */}
+                        {brokerMatches.length > 0 && (
+                          <button
+                            onClick={() => setMatchModal({ broker: app, matches: brokerMatches })}
+                            className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 font-semibold flex items-center gap-1 hover:bg-cyan-500/20 transition-colors"
+                            data-testid={`badge-matches-${app.id}`}
+                          >
+                            <Sparkles className="w-2.5 h-2.5" /> {brokerMatches.length} match{brokerMatches.length > 1 ? "es" : ""}
+                          </button>
+                        )}
                       </div>
-                    )}
-                    <p className="text-[11px] text-slate-600">Applied {fmt(app.createdAt)}{app.ipAddress ? ` · IP: ${app.ipAddress}` : ""}</p>
-                  </div>
+                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
+                        <span className="flex items-center gap-1.5"><Phone className="w-3.5 h-3.5" />{app.phone}</span>
+                        {app.email && <span className="flex items-center gap-1.5"><Mail className="w-3.5 h-3.5" />{app.email}</span>}
+                        {app.reraNumber && (
+                          <span className="flex items-center gap-1.5">
+                            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                            <span className="font-mono text-amber-300 text-xs">{app.reraNumber}</span>
+                          </span>
+                        )}
+                        {app.brokerage && <span className="flex items-center gap-1.5"><Building2 className="w-3.5 h-3.5" />{app.brokerage}</span>}
+                      </div>
+                      {app.areasOfInterest && app.areasOfInterest.length > 0 && (
+                        <div className="flex flex-wrap gap-1 items-center">
+                          <MapPin className="w-3 h-3 text-slate-500 shrink-0" />
+                          {app.areasOfInterest.map((a) => (
+                            <span key={a} className="text-[11px] px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300">{a}</span>
+                          ))}
+                        </div>
+                      )}
+                      <p className="text-[11px] text-slate-600">Applied {fmt(app.createdAt)}{app.ipAddress ? ` · IP: ${app.ipAddress}` : ""}</p>
+                    </div>
 
-                  <div className="flex flex-row sm:flex-col gap-2 shrink-0">
-                    {app.status !== "approved" && (
-                      <Button size="sm" className="h-8 bg-emerald-600 hover:bg-emerald-500 text-white gap-1.5 text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "approved" })} data-testid={`button-approve-${app.id}`}>
-                        <CheckCircle2 className="w-3.5 h-3.5" /> Approve
-                      </Button>
-                    )}
-                    {app.status !== "rejected" && (
-                      <Button size="sm" variant="outline" className="h-8 border-red-700/50 text-red-400 hover:bg-red-900/30 gap-1.5 text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "rejected" })} data-testid={`button-reject-${app.id}`}>
-                        <XCircle className="w-3.5 h-3.5" /> Reject
-                      </Button>
-                    )}
-                    {app.status !== "pending" && (
-                      <Button size="sm" variant="ghost" className="h-8 text-slate-400 hover:text-white text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "pending" })} data-testid={`button-reset-${app.id}`}>
-                        Reset
-                      </Button>
-                    )}
-                    <a
-                      href={`https://wa.me/${app.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
-                        app.status === "approved"
-                          ? `Hi ${app.name}, your DeliWer Inner Circle application has been approved! 🎉 Welcome aboard — you now have access to our unit inventory channel.`
-                          : `Hi ${app.name}, thanks for applying to the DeliWer Inner Circle. We've received your application and will be in touch shortly.`
-                      )}`}
-                      target="_blank" rel="noopener noreferrer"
-                      data-testid={`link-wa-${app.id}`}
-                    >
-                      <Button size="sm" variant="outline" className="h-8 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/10 gap-1.5 text-xs w-full">
-                        <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
-                      </Button>
-                    </a>
+                    <div className="flex flex-row sm:flex-col gap-2 shrink-0">
+                      {app.status !== "approved" && (
+                        <Button size="sm" className="h-8 bg-emerald-600 hover:bg-emerald-500 text-white gap-1.5 text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "approved" })} data-testid={`button-approve-${app.id}`}>
+                          <CheckCircle2 className="w-3.5 h-3.5" /> Approve
+                        </Button>
+                      )}
+                      {app.status !== "rejected" && (
+                        <Button size="sm" variant="outline" className="h-8 border-red-700/50 text-red-400 hover:bg-red-900/30 gap-1.5 text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "rejected" })} data-testid={`button-reject-${app.id}`}>
+                          <XCircle className="w-3.5 h-3.5" /> Reject
+                        </Button>
+                      )}
+                      {app.status !== "pending" && (
+                        <Button size="sm" variant="ghost" className="h-8 text-slate-400 hover:text-white text-xs" disabled={statusMut.isPending} onClick={() => statusMut.mutate({ id: app.id, status: "pending" })} data-testid={`button-reset-${app.id}`}>
+                          Reset
+                        </Button>
+                      )}
+                      {/* "View matches" shortcut for already-approved brokers with open leads */}
+                      {brokerMatches.length > 0 && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="h-8 border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 gap-1.5 text-xs"
+                          onClick={() => setMatchModal({ broker: app, matches: brokerMatches })}
+                          data-testid={`button-viewmatches-${app.id}`}
+                        >
+                          <Sparkles className="w-3.5 h-3.5" /> Matches
+                        </Button>
+                      )}
+                      <a
+                        href={`https://wa.me/${app.phone.replace(/\D/g, "")}?text=${encodeURIComponent(
+                          app.status === "approved"
+                            ? `Hi ${app.name}, your DeliWer Inner Circle application has been approved! 🎉 Welcome aboard — you now have access to our unit inventory channel.`
+                            : `Hi ${app.name}, thanks for applying to the DeliWer Inner Circle. We've received your application and will be in touch shortly.`
+                        )}`}
+                        target="_blank" rel="noopener noreferrer"
+                        data-testid={`link-wa-${app.id}`}
+                      >
+                        <Button size="sm" variant="outline" className="h-8 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/10 gap-1.5 text-xs w-full">
+                          <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
+                        </Button>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
@@ -349,7 +533,6 @@ function ViewingInquiriesTab() {
     refetchInterval: 30_000,
   });
 
-  // Only show realestate-portal submissions (listingId starts with "area-inquiry-")
   const inquiries = allViewings.filter((v) => v.listingId.startsWith("area-inquiry-"));
 
   const statusMut = useMutation({
@@ -469,7 +652,6 @@ function ViewingInquiriesTab() {
             return (
               <div key={inq.id} className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden" data-testid={`card-inq-${inq.id}`}>
                 <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-start gap-4">
-                  {/* Left */}
                   <div className="flex-1 space-y-2 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="font-bold text-white">{inq.requesterName}</span>
@@ -490,16 +672,14 @@ function ViewingInquiriesTab() {
                       )}
                     </div>
                     {inq.message && (
-                      <div className="flex items-start gap-1.5">
-                        <button
-                          onClick={() => setExpandedId(isExpanded ? null : inq.id)}
-                          className="text-[11px] text-slate-500 hover:text-slate-300 flex items-center gap-1 transition-colors"
-                          data-testid={`button-expand-${inq.id}`}
-                        >
-                          <FileText className="w-3 h-3" />
-                          {isExpanded ? "Hide message" : "Show message"}
-                        </button>
-                      </div>
+                      <button
+                        onClick={() => setExpandedId(isExpanded ? null : inq.id)}
+                        className="text-[11px] text-slate-500 hover:text-slate-300 flex items-center gap-1 transition-colors"
+                        data-testid={`button-expand-${inq.id}`}
+                      >
+                        <FileText className="w-3 h-3" />
+                        {isExpanded ? "Hide message" : "Show message"}
+                      </button>
                     )}
                     {isExpanded && inq.message && (
                       <div className="rounded-lg bg-slate-800/60 border border-slate-700 px-3 py-2 text-sm text-slate-300 leading-relaxed">
@@ -509,7 +689,6 @@ function ViewingInquiriesTab() {
                     <p className="text-[11px] text-slate-600">Submitted {fmt(inq.createdAt)}</p>
                   </div>
 
-                  {/* Right: actions */}
                   <div className="flex flex-row sm:flex-col gap-2 shrink-0">
                     <Button
                       size="sm"
