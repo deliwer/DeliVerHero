@@ -459,9 +459,7 @@ export function Navigation() {
                     currentMode === "b2b" ? "bg-purple-500 text-white shadow-md" : "text-slate-300 hover:bg-slate-800"
                   }`}
                   data-testid="mode-b2b-mobile"
-                >
-                  Brokers
-                </button>
+                >Logistics</button>
               </div>
             </div>
 
