@@ -409,11 +409,11 @@ export function Navigation() {
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
         <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Work With Us</span>
         <span className="text-emerald-800 text-[10px]">|</span>
-        <span className="text-[9px] font-bold text-white/50">Broker</span>
+        <span className="text-[9px] font-bold text-white/50">Online</span>
         <span className="text-emerald-800 text-[9px]">·</span>
-        <span className="text-[9px] font-bold text-white/50">Home Services</span>
+        <span className="text-[9px] font-bold text-white/50">Home Based</span>
         <span className="text-emerald-800 text-[9px]">·</span>
-        <span className="text-[9px] font-bold text-white/50">ChainTrack</span>
+        <span className="text-[9px] font-bold text-white/50">Remote</span>
         <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
         <span className="hidden sm:inline text-[9px] font-black text-emerald-400">AED 150–800+ per client</span>
         <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-emerald-500/25 transition-colors whitespace-nowrap">
