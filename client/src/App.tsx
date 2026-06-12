@@ -75,6 +75,7 @@ const PartnersHowItWorks = lazy(() => import("@/pages/partners/how-it-works"));
 const PartnersEarnings = lazy(() => import("@/pages/partners/earnings"));
 const PartnersResources = lazy(() => import("@/pages/partners/resources"));
 const PartnersCareer = lazy(() => import("@/pages/partners/career"));
+const ChainTrackPartners = lazy(() => import("@/pages/partners/chaintrack"));
 const TenantMoveInChecklist = lazy(() => import("@/pages/tenant-move-in-checklist"));
 const RelocationAlliance = lazy(() => import("@/pages/relocation-alliance"));
 const BusinessSetupPage = lazy(() => import("@/pages/relocate/business-setup"));
@@ -511,6 +512,7 @@ function Router() {
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
         <Route path="/rewards" component={Rewards} />
+        <Route path="/partners/chaintrack" component={ChainTrackPartners} />
         <Route path="/partners/career" component={PartnersCareer} />
         <Route path="/career"><Redirect to="/partners/career" /></Route>
         <Route path="/partners/join"><Redirect to="/brokers" /></Route>

@@ -119,8 +119,9 @@ export function Navigation() {
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
   const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
   const isBrokerSide = isManagementSide || isLogisticsSide || CHAINTRACK_PATHS.some((p) => location.startsWith(p));
-  // /partners and /partners/* get their own "DeliWer Partners" branding — distinct from both sides
-  const isPartnerGateway = location === "/partners" || (location.startsWith("/partners/") && !isManagementSide);
+  // /partners/chaintrack gets "ChainTrack Partners" branding; other /partners/* get "DeliWer Partners"
+  const isChainTrackPartnerPage = location.startsWith("/partners/chaintrack");
+  const isPartnerGateway = !isChainTrackPartnerPage && (location === "/partners" || (location.startsWith("/partners/") && !isManagementSide));
   const isDeepChaintrack = !isLogisticsSide && DEEP_CHAINTRACK_PATHS.some((p) => location.startsWith(p));
 
   // Nav items: management → admin; logistics-side → dedicated logistics nav;
@@ -190,7 +191,9 @@ export function Navigation() {
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              {isPartnerGateway ? (
+              {isChainTrackPartnerPage ? (
+                <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack Partners</span>
+              ) : isPartnerGateway ? (
                 <span className="font-black text-xl tracking-tighter uppercase text-emerald-400">DeliWer Partners</span>
               ) : isBrokerSide && !isManagementSide ? (
                 <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack Logistics</span>
@@ -199,6 +202,11 @@ export function Navigation() {
                   isManagementSide ? "text-amber-300" : "text-white"
                 }`}>
                   {isManagementSide ? "ChainTrack" : "DeliWer Relocations"}
+                </span>
+              )}
+              {isChainTrackPartnerPage && (
+                <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
+                  Freight · Trade · Phone Flipper
                 </span>
               )}
               {isPartnerGateway && (
@@ -362,8 +370,8 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-      {/* ── ChainTrack Logistics corridor bar — broker/chaintrack pages (NOT /partners gateway) ── */}
-      {isBrokerSide && !isManagementSide && !isPartnerGateway && (
+      {/* ── ChainTrack Logistics corridor bar — broker/chaintrack pages (NOT /partners gateway or ChainTrack Partners) ── */}
+      {isBrokerSide && !isManagementSide && !isPartnerGateway && !isChainTrackPartnerPage && (
         <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
