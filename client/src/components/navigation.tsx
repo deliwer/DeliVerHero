@@ -400,28 +400,26 @@ export function Navigation() {
           </span>
         </div>
       )}
-      {/* ── Flex Living Announcement Bar — consumer side only ── */}
-      {!isBrokerSide && (
-        <a
-          href="/flexible-rentals"
-          data-testid="bar-flex-living-announcement"
-          className="flex items-center justify-center gap-2.5 py-1.5 px-4 bg-emerald-950/80 backdrop-blur-sm border-b border-emerald-500/15 hover:bg-emerald-900/80 transition-colors relative z-50 group"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Flex Living</span>
-          <span className="text-emerald-800 text-[10px]">|</span>
-          <span className="text-[9px] font-bold text-white/50">🛏 Rooms</span>
-          <span className="text-emerald-800 text-[9px]">·</span>
-          <span className="text-[9px] font-bold text-white/50">🏠 Villas</span>
-          <span className="text-emerald-800 text-[9px]">·</span>
-          <span className="text-[9px] font-bold text-white/50">🛋 Studios</span>
-          <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
-          <span className="hidden sm:inline text-[9px] font-black text-emerald-400">from AED 550/mo</span>
-          <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-emerald-500/25 transition-colors whitespace-nowrap">
-            11 available →
-          </span>
-        </a>
-      )}
+      {/* ── Partner Gateway Bar — always visible ── */}
+      <a
+        href="/partners"
+        data-testid="bar-partner-gateway"
+        className="flex items-center justify-center gap-2.5 py-1.5 px-4 bg-emerald-950/80 backdrop-blur-sm border-b border-emerald-500/15 hover:bg-emerald-900/80 transition-colors relative z-50 group"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Partner Gateway</span>
+        <span className="text-emerald-800 text-[10px]">|</span>
+        <span className="text-[9px] font-bold text-white/50">Broker</span>
+        <span className="text-emerald-800 text-[9px]">·</span>
+        <span className="text-[9px] font-bold text-white/50">Home Services</span>
+        <span className="text-emerald-800 text-[9px]">·</span>
+        <span className="text-[9px] font-bold text-white/50">ChainTrack</span>
+        <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
+        <span className="hidden sm:inline text-[9px] font-black text-emerald-400">AED 150–800+ per client</span>
+        <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-emerald-500/25 transition-colors whitespace-nowrap">
+          Join Now →
+        </span>
+      </a>
       {/* ── Trust Strip — consumer side only ── */}
       {!isBrokerSide && (
         <div className="bg-slate-950/90 backdrop-blur-sm border-b border-white/10 py-1 px-4 overflow-x-auto no-scrollbar relative z-50">
