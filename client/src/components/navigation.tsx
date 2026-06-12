@@ -119,6 +119,8 @@ export function Navigation() {
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
   const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
   const isBrokerSide = isManagementSide || isLogisticsSide || CHAINTRACK_PATHS.some((p) => location.startsWith(p));
+  // /partners and /partners/* get their own "DeliWer Partners" branding — distinct from both sides
+  const isPartnerGateway = location === "/partners" || (location.startsWith("/partners/") && !isManagementSide);
   const isDeepChaintrack = !isLogisticsSide && DEEP_CHAINTRACK_PATHS.some((p) => location.startsWith(p));
 
   // Nav items: management → admin; logistics-side → dedicated logistics nav;
@@ -188,7 +190,9 @@ export function Navigation() {
               <img src={logoPng} alt="DeliWer Logo" className="h-8 w-auto object-contain" />
             </div>
             <div className="flex flex-col leading-none">
-              {isBrokerSide && !isManagementSide ? (
+              {isPartnerGateway ? (
+                <span className="font-black text-xl tracking-tighter uppercase text-emerald-400">DeliWer Partners</span>
+              ) : isBrokerSide && !isManagementSide ? (
                 <span className="font-black text-xl tracking-tighter uppercase text-amber-400">ChainTrack Logistics</span>
               ) : (
                 <span className={`font-black text-2xl tracking-tighter uppercase transition-colors ${
@@ -197,12 +201,17 @@ export function Navigation() {
                   {isManagementSide ? "ChainTrack" : "DeliWer Relocations"}
                 </span>
               )}
+              {isPartnerGateway && (
+                <span className="text-[8px] font-black uppercase tracking-widest text-emerald-500/60">
+                  Broker · Home Services · Trade
+                </span>
+              )}
               {isManagementSide && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
                   Partner Admin
                 </span>
               )}
-              {isBrokerSide && !isManagementSide && (
+              {isBrokerSide && !isManagementSide && !isPartnerGateway && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
                   Air Charter · Trade Corridor
                 </span>
@@ -353,8 +362,8 @@ export function Navigation() {
           </Button>
         </div>
       </nav>
-      {/* ── ChainTrack Logistics corridor bar — all broker/chaintrack pages ── */}
-      {isBrokerSide && !isManagementSide && (
+      {/* ── ChainTrack Logistics corridor bar — broker/chaintrack pages (NOT /partners gateway) ── */}
+      {isBrokerSide && !isManagementSide && !isPartnerGateway && (
         <div className="flex items-center justify-center gap-3 py-2 px-4 bg-amber-950/90 backdrop-blur-sm border-b border-amber-500/20 relative z-50">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
           <span className="text-[11px] font-black uppercase tracking-widest text-amber-300">
@@ -426,8 +435,18 @@ export function Navigation() {
                 : "bg-slate-900 border-white/10"
             }`}
           >
-            {/* ChainTrack Logistics label for mobile — all broker pages */}
-            {isBrokerSide && !isManagementSide && (
+            {/* Partner Gateway label for mobile — /partners only */}
+            {isPartnerGateway && (
+              <div className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                <Handshake className="w-4 h-4 text-emerald-400" />
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-emerald-300">DeliWer Partners</p>
+                  <p className="text-[9px] text-emerald-500/60">Broker · Home Services · ChainTrack</p>
+                </div>
+              </div>
+            )}
+            {/* ChainTrack Logistics label for mobile — all broker pages except /partners */}
+            {isBrokerSide && !isManagementSide && !isPartnerGateway && (
               <div className="flex items-center gap-2.5 py-2 px-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
                 <Anchor className="w-4 h-4 text-amber-400" />
                 <div>

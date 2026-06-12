@@ -29,9 +29,10 @@ const WA_NUMBER = "971523906019";
 // ─────────────────────────────────────────────
 function PartnersSubMenu({ onScrollTo }: { onScrollTo: (id: string) => void }) {
   const items = [
+    { label: "DeliWer Partners", id: "deliwer-partners-gateway" },
+    { label: "ChainTrack Partners", id: "chaintrack-partners-gateway" },
     { label: "Real Estate Track", id: "real-estate-track" },
     { label: "Home Services Track", id: "home-services-track" },
-    { label: "Phone Flipper Track", id: "phone-flipper-track" },
     { label: "Earn Calculator", id: "calculator" },
     { label: "Join Now", id: "join" },
   ];
@@ -551,9 +552,9 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-emerald-500/30">
       <SEOMeta
-        title="Broker & Partner Program — ChainTrack by DeliWer Dubai | Earn AED 150–800 Per Referral"
-        description="Join Dubai's #1 broker partner program. Real Estate Track (AED 150–800/referral), Home Services Track, and Phone Flipper Track via ChainTrack. RERA brokers, freelancers & side-hustlers welcome. 100% online, start today."
-        keywords="broker partner program Dubai, earn with DeliWer, real estate referral commission Dubai, ChainTrack broker portal, RERA broker income, affiliate program Dubai, partner dashboard DeliWer"
+        title="DeliWer Partners & ChainTrack Partners — Career Gateway Dubai | Broker · Home Services · Trade"
+        description="Two career networks. One gateway. DeliWer Partners: Real Estate + Home Services brokers, AED 150–800/referral. ChainTrack Partners: Freight Brokers + Phone Flippers. All free to join. Start today."
+        keywords="DeliWer Partners Dubai, ChainTrack Partners, broker partner program Dubai, real estate referral commission Dubai, freight broker network, phone flipper ChainTrack, partner gateway DeliWer"
         canonical="https://www.deliwer.com/partners"
       />
       <Navigation />
@@ -577,37 +578,39 @@ export default function PartnersPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/50 rounded-full px-5 py-2 mb-8 backdrop-blur-sm">
               <Globe className="w-4 h-4 text-emerald-300" />
-              <span className="text-emerald-200 font-black text-xs uppercase tracking-widest">Join the DeliWer Network</span>
+              <span className="text-emerald-200 font-black text-xs uppercase tracking-widest">Partner Career Gateway</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.95] mb-6 drop-shadow-2xl">
-              Choose Your
+              Two Networks.
               <br />
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Partner Path.
+                Your Career.
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto mb-10 leading-relaxed">
-              Three tracks. One network. All free to join — pick the one that fits you today.
+              <span className="font-black text-emerald-300">DeliWer Partners</span> for brokers &amp; home services.{" "}
+              <span className="font-black text-amber-300">ChainTrack Partners</span> for freight &amp; trade.
+              All free — pick your path.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
               <Button
-                data-testid="button-hero-broker-track-cta"
+                data-testid="button-hero-deliwer-partners-cta"
                 size="lg"
-                onClick={() => document.getElementById("broker-track")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => document.getElementById("deliwer-partners-gateway")?.scrollIntoView({ behavior: "smooth" })}
                 className="bg-emerald-600 hover:bg-emerald-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-emerald-900/40"
               >
-                <Building2 className="w-5 h-5 mr-2" /> Broker Track
+                <Building2 className="w-5 h-5 mr-2" /> DeliWer Partners →
               </Button>
               <Button
-                data-testid="button-hero-phone-flipper-cta"
+                data-testid="button-hero-chaintrack-partners-cta"
                 size="lg"
-                onClick={() => document.getElementById("phone-flipper-track")?.scrollIntoView({ behavior: "smooth" })}
-                className="bg-purple-600 hover:bg-purple-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-purple-900/40"
+                onClick={() => document.getElementById("chaintrack-partners-gateway")?.scrollIntoView({ behavior: "smooth" })}
+                className="bg-amber-600 hover:bg-amber-500 text-white font-black h-14 px-8 text-base rounded-2xl shadow-xl shadow-amber-900/40"
               >
-                <RefreshCw className="w-5 h-5 mr-2" /> Phone Flipper Track
+                <Zap className="w-5 h-5 mr-2" /> ChainTrack Partners →
               </Button>
             </div>
           </motion.div>
@@ -640,21 +643,21 @@ export default function PartnersPage() {
       <section id="choose-path" className="py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">Step 1 · Pick Your Track</Badge>
+            <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-4">Step 1 · Choose Your Network</Badge>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">
-              Three Tracks.{" "}
-              <span className="text-emerald-400">One Network.</span>
+              Two Networks.{" "}
+              <span className="text-emerald-400">One Gateway.</span>
             </h2>
             <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
-              Start with the track that fits you today. Top earners run more than one.
+              DeliWer Partners for brokers &amp; home services. ChainTrack Partners for freight &amp; trade. Both free — pick yours.
             </p>
           </div>
 
           <div className="space-y-5">
 
-            {/* ── BROKER TRACK (parent) ── */}
+            {/* ── DELIWER PARTNERS ── */}
             <motion.div
-              id="broker-track"
+              id="deliwer-partners-gateway"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -665,9 +668,9 @@ export default function PartnersPage() {
                   <Building2 className="w-7 h-7 text-emerald-400" />
                 </div>
                 <div>
-                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-1">🏆 Broker Track</Badge>
-                  <h3 className="text-2xl font-black text-white leading-tight">Two Sub-Tracks Inside</h3>
-                  <p className="text-gray-400 text-sm mt-0.5">Both are free. Choose one or run both in parallel.</p>
+                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/40 mb-1">🏆 DeliWer Partners</Badge>
+                  <h3 className="text-2xl font-black text-white leading-tight">Real Estate · Home Services</h3>
+                  <p className="text-gray-400 text-sm mt-0.5">Two sub-tracks. Both free — choose one or run both in parallel.</p>
                 </div>
               </div>
 
@@ -750,50 +753,104 @@ export default function PartnersPage() {
               </div>
             </motion.div>
 
-            {/* ── PHONE FLIPPER TRACK (standalone) ── */}
+            {/* ── CHAINTRACK PARTNERS ── */}
             <motion.div
-              id="phone-flipper-track"
+              id="chaintrack-partners-gateway"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="border border-purple-500/40 bg-purple-950/20 rounded-3xl p-7 flex flex-col md:flex-row gap-7 items-start"
-              data-testid="card-phone-flipper-track"
+              className="border border-amber-500/40 bg-amber-950/20 rounded-3xl p-7"
+              data-testid="card-chaintrack-partners"
             >
-              <div className="w-14 h-14 rounded-2xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center shrink-0">
-                <RefreshCw className="w-7 h-7 text-purple-400" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0">
+                  <Zap className="w-7 h-7 text-amber-400" />
+                </div>
+                <div>
+                  <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/40 mb-1">⚡ ChainTrack Partners</Badge>
+                  <h3 className="text-2xl font-black text-white leading-tight">Freight Brokers · Phone Flippers</h3>
+                  <p className="text-gray-400 text-sm mt-0.5">Two sub-tracks under the ChainTrack trade network. Both free.</p>
+                </div>
               </div>
-              <div className="flex-1">
-                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 mb-2">📱 Phone Flipper Track</Badge>
-                <h3 className="text-2xl font-black text-white mb-2">Phone Flipper Track</h3>
-                <div className="flex items-start gap-2 bg-purple-500/10 border border-purple-500/20 rounded-xl px-3 py-2.5 mb-4 max-w-sm" data-testid="hint-phone-flipper-fit">
-                  <Smartphone className="w-4 h-4 text-purple-300 shrink-0 mt-0.5" />
-                  <p className="text-xs text-purple-100 leading-relaxed">
-                    <span className="font-black text-purple-300 text-[10px] uppercase block mb-0.5">Best if…</span>
-                    You want to buy, flip and earn cash on pre-owned phones and electronics.
-                  </p>
-                </div>
-                <div className="grid sm:grid-cols-3 gap-2 mb-6">
-                  {[
-                    "B2B wholesale pricing on devices",
-                    "Reverse-bid auctions via ChainTrack",
-                    "Fast cash — buy low, flip high",
-                  ].map(p => (
-                    <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
-                      {p}
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* Sub-track A — Freight Broker */}
+                <div className="border border-amber-500/25 bg-slate-900/60 rounded-2xl p-6 flex flex-col" data-testid="card-freight-broker-track">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-amber-500/15 flex items-center justify-center shrink-0">
+                      <Zap className="w-5 h-5 text-amber-400" />
                     </div>
-                  ))}
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-amber-400">Sub-Track A</p>
+                      <h4 className="text-base font-black text-white">Freight Broker Track</h4>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 bg-amber-500/10 border border-amber-500/20 rounded-xl px-3 py-2 mb-4">
+                    <Zap className="w-3.5 h-3.5 text-amber-300 shrink-0 mt-0.5" />
+                    <p className="text-xs text-amber-100 leading-relaxed">
+                      <span className="font-black text-amber-300 text-[10px] uppercase block mb-0.5">Best if…</span>
+                      You move cargo or want to earn per CBM on Dubai ↔ Gawadar corridors.
+                    </p>
+                  </div>
+                  <div className="space-y-1.5 mb-5 flex-1">
+                    {["Earn per CBM shipped", "Dubai · CPEC · INSTC corridors", "Air charter + sea freight"].map(p => (
+                      <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <Link href="/logistics-funnel">
+                      <Button data-testid="button-freight-broker-cta" className="w-full bg-amber-600 hover:bg-amber-500 font-black h-11 rounded-2xl text-slate-950">
+                        <Zap className="w-4 h-4 mr-2" /> Join Freight Network <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                    <Link href="/logistics">
+                      <Button data-testid="button-freight-broker-logistics" variant="outline" className="w-full border-amber-500/40 text-amber-300 hover:bg-amber-500/10 font-black h-10 rounded-2xl text-sm">
+                        Explore Corridors
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link href="/chaintrack">
-                    <Button data-testid="button-phone-flipper-main-cta" className="bg-purple-600 hover:bg-purple-500 font-black h-12 px-8 rounded-2xl">
-                      <RefreshCw className="w-4 h-4 mr-2" /> Open ChainTrack Platform <ArrowRight className="w-4 h-4 ml-2" />
+
+                {/* Sub-track B — Phone Flipper */}
+                <div id="phone-flipper-track" className="border border-purple-500/25 bg-slate-900/60 rounded-2xl p-6 flex flex-col" data-testid="card-phone-flipper-track">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 rounded-xl bg-purple-500/15 flex items-center justify-center shrink-0">
+                      <RefreshCw className="w-5 h-5 text-purple-400" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-purple-400">Sub-Track B</p>
+                      <h4 className="text-base font-black text-white">Phone Flipper Track</h4>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2 bg-purple-500/10 border border-purple-500/20 rounded-xl px-3 py-2 mb-4" data-testid="hint-phone-flipper-fit">
+                    <Smartphone className="w-3.5 h-3.5 text-purple-300 shrink-0 mt-0.5" />
+                    <p className="text-xs text-purple-100 leading-relaxed">
+                      <span className="font-black text-purple-300 text-[10px] uppercase block mb-0.5">Best if…</span>
+                      You buy, flip and earn on pre-owned phones and electronics.
+                    </p>
+                  </div>
+                  <div className="space-y-1.5 mb-5 flex-1">
+                    {["B2B wholesale pricing on devices", "Reverse-bid auctions via ChainTrack", "Fast cash — buy low, flip high"].map(p => (
+                      <div key={p} className="flex items-start gap-2 text-sm text-gray-300">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                        {p}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <Link href="/chaintrack">
+                      <Button data-testid="button-phone-flipper-main-cta" className="w-full bg-purple-600 hover:bg-purple-500 font-black h-11 rounded-2xl">
+                        <RefreshCw className="w-4 h-4 mr-2" /> Open ChainTrack Platform <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                    <Button data-testid="button-phone-flipper-join" onClick={() => scrollToJoin("phone-flipper")} variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black h-10 rounded-2xl text-sm">
+                      Join Phone Flipper Track
                     </Button>
-                  </Link>
-                  <Button data-testid="button-phone-flipper-join" onClick={() => scrollToJoin("phone-flipper")} variant="outline" className="border-purple-500/40 text-purple-300 hover:bg-purple-500/10 font-black h-12 px-8 rounded-2xl">
-                    Join Phone Flipper Track
-                  </Button>
+                  </div>
                 </div>
               </div>
             </motion.div>
