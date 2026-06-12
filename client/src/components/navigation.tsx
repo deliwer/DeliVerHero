@@ -402,7 +402,7 @@ export function Navigation() {
       )}
       {/* ── Partner Gateway Bar — always visible ── */}
       <a
-        href="/partners"
+        href="/partners?utm_source=nav_bar&utm_medium=announcement&utm_campaign=partner_gateway&utm_content=top_bar"
         data-testid="bar-partner-gateway"
         className="flex items-center justify-center gap-2.5 py-1.5 px-4 bg-emerald-950/80 backdrop-blur-sm border-b border-emerald-500/15 hover:bg-emerald-900/80 transition-colors relative z-50 group"
       >
