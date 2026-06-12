@@ -210,9 +210,7 @@ export function Navigation() {
                 </span>
               )}
               {isPartnerGateway && (
-                <span className="text-[8px] font-black uppercase tracking-widest text-emerald-500/60">
-                  Broker · Home Services · Trade
-                </span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-emerald-500/60">Relocations · Home Services</span>
               )}
               {isManagementSide && (
                 <span className="text-[8px] font-black uppercase tracking-widest text-amber-500/60">
