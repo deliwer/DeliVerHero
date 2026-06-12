@@ -28,6 +28,7 @@ import MaintenanceConcierge from "@/pages/maintenance-concierge";
 import ResidentSupportConcierge from "@/pages/resident-support-concierge";
 import BusinessSetup from "@/pages/BusinessSetup";
 import RealEstate from "@/pages/realestate";
+import FinancePage from "@/pages/finance";
 import MamzarBeach from "@/pages/mamzar";
 import HomeAccess from "@/pages/home-access";
 import InternationalRelocationPricing from "@/pages/relocate-pricing";
@@ -392,7 +393,7 @@ function Router() {
         <Route path="/capture-referrers" component={CaptureReferrers} />
         <Route path="/affiliate-dashboard"><Redirect to="/partner-dashboard" /></Route>
         <Route path="/home-access" component={HomeAccess} />
-        <Route path="/finance" component={RealEstate} />
+        <Route path="/finance" component={FinancePage} />
         <Route path="/mamzar" component={MamzarBeach} />
         <Route path="/mamzar-beach" component={MamzarBeach} />
         <Route path="/linar" component={MamzarBeach} />
