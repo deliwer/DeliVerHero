@@ -241,30 +241,6 @@ function BrokerIntelSection() {
 
   return (
     <div className="pb-16">
-      {/* Platform Splitter */}
-      <div className="border-b border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 py-3 px-4">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
-          <div className="flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span className="text-slate-400">Property &amp; Relocation Brokers →</span>
-            <span className="font-bold text-emerald-300">DeliWer Relocations</span>
-            <Badge className="text-[10px] bg-emerald-500/15 text-emerald-300 border-emerald-500/30">You are here ✓</Badge>
-          </div>
-          <div className="flex items-center gap-2 text-slate-500 text-sm">
-            <Briefcase className="w-4 h-4 shrink-0" />
-            <span>Freight Brokers &amp; Phone Flippers →</span>
-            <a
-              href="https://chaintrack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors"
-              data-testid="link-chaintrack"
-            >
-              ChainTrack ↗
-            </a>
-          </div>
-        </div>
-      </div>
 
       {/* Map Section */}
       <section className="py-10 px-4">
