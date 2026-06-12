@@ -407,9 +407,9 @@ export function Navigation() {
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
         <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Work Online</span>
         <span className="text-emerald-800 text-[10px]">|</span>
-        <span className="text-[9px] font-bold text-white/50">Anywhere</span>
+        <span className="text-[9px] font-bold text-white/50">No Investment</span>
         <span className="text-emerald-800 text-[9px]">·</span>
-        <span className="text-[9px] font-bold text-white/50">Anytime</span>
+        <span className="text-[9px] font-bold text-white/50">No Limit</span>
         <span className="text-emerald-800 text-[9px]">·</span>
         <span className="text-[9px] font-bold text-white/50">No Experience</span>
         <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
