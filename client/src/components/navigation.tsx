@@ -405,13 +405,13 @@ export function Navigation() {
         className="flex items-center justify-center gap-2.5 py-1.5 px-4 bg-emerald-950/80 backdrop-blur-sm border-b border-emerald-500/15 hover:bg-emerald-900/80 transition-colors relative z-50 group"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Work With Us</span>
+        <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Work Online</span>
         <span className="text-emerald-800 text-[10px]">|</span>
-        <span className="text-[9px] font-bold text-white/50">Online</span>
+        <span className="text-[9px] font-bold text-white/50">Anywhere</span>
         <span className="text-emerald-800 text-[9px]">·</span>
-        <span className="text-[9px] font-bold text-white/50">Home Based</span>
+        <span className="text-[9px] font-bold text-white/50">Anytime</span>
         <span className="text-emerald-800 text-[9px]">·</span>
-        <span className="text-[9px] font-bold text-white/50">Remote</span>
+        <span className="text-[9px] font-bold text-white/50">No Experience</span>
         <span className="hidden sm:inline text-emerald-800 text-[9px]">|</span>
         <span className="hidden sm:inline text-[9px] font-black text-emerald-400">AED 150–800+ per client</span>
         <span className="ml-1 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] font-black uppercase tracking-widest shrink-0 group-hover:bg-emerald-500/25 transition-colors whitespace-nowrap">
