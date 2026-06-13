@@ -188,7 +188,31 @@ export default function LeaguePage() {
   const [adminToken, setAdminToken] = useState("");
   const [adminAuthed, setAdminAuthed] = useState(false);
   const [adminTokenInput, setAdminTokenInput] = useState("");
-  const [adminTab, setAdminTab] = useState<"teams" | "matches">("teams");
+  const [adminTab, setAdminTab] = useState<"teams" | "matches" | "broadcast">("teams");
+  const [broadcastWeek, setBroadcastWeek] = useState("");
+  const [broadcastCopied, setBroadcastCopied] = useState(false);
+
+  const buildBroadcastMessage = () => {
+    const weekMatches = broadcastWeek
+      ? matches.filter((m: any) => m.week_label === broadcastWeek)
+      : matches.filter((m: any) => m.status === "upcoming").slice(0, 4);
+    const header = [
+      `🏏 *Brokers Night Cricket League UAE 2026*`,
+      broadcastWeek ? `📅 *${broadcastWeek} — Match Reminder*` : `📅 *Upcoming Matches*`,
+      ``,
+    ].join("\n");
+    if (weekMatches.length === 0) return header + `No matches found for this week.\n\nRegister: https://deliwer.com/league`;
+    const rows = weekMatches.map((m: any) =>
+      `🟢 *${m.home_team}* vs *${m.away_team}*\n📆 ${m.match_date}${m.venue ? `\n📍 ${m.venue}` : ""}`
+    ).join("\n\n");
+    const footer = [
+      ``,
+      `🔗 Full schedule & registration: https://deliwer.com/league`,
+      ``,
+      `_Presented by Mariamain & DeliWer · +971 52 394 6311_`,
+    ].join("\n");
+    return header + rows + footer;
+  };
 
   // New team form
   const [newTeam, setNewTeam] = useState({ team_name: "", agency: "", captain: "", group_name: "A", logo_emoji: "🏏" });
@@ -1041,10 +1065,10 @@ export default function LeaguePage() {
                 <div className="p-6">
                   {/* Tabs */}
                   <div className="flex rounded-xl border border-white/10 overflow-hidden mb-6">
-                    {(["teams", "matches"] as const).map(t => (
+                    {(["teams", "matches", "broadcast"] as const).map(t => (
                       <button key={t} onClick={() => setAdminTab(t)}
                         className={`flex-1 py-2.5 text-sm font-bold capitalize transition-all ${adminTab === t ? "bg-emerald-500 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"}`}>
-                        {t === "teams" ? `Teams (${teams.length})` : `Matches (${matches.length})`}
+                        {t === "teams" ? `Teams (${teams.length})` : t === "matches" ? `Matches (${matches.length})` : "📣 Broadcast"}
                       </button>
                     ))}
                   </div>
@@ -1142,6 +1166,74 @@ export default function LeaguePage() {
                           </div>
                         ))}
                         {matches.length === 0 && <p className="text-slate-600 text-sm text-center py-4">No matches scheduled yet.</p>}
+                      </div>
+                    </div>
+                  )}
+
+                  {adminTab === "broadcast" && (
+                    <div className="space-y-5">
+                      <div className="bg-white/3 border border-white/8 rounded-2xl p-5">
+                        <h4 className="font-bold mb-1 text-sm uppercase tracking-widest text-emerald-400">WhatsApp Broadcast</h4>
+                        <p className="text-xs text-slate-500 mb-4">Generate a pre-formatted match reminder — copy it or open in WhatsApp to paste into a broadcast list or group.</p>
+
+                        {/* Week filter */}
+                        <div className="flex gap-3 items-center mb-4 flex-wrap">
+                          <label className="text-xs text-slate-400 shrink-0">Filter by week:</label>
+                          <Select value={broadcastWeek || "all"} onValueChange={v => setBroadcastWeek(v === "all" ? "" : v)}>
+                            <SelectTrigger className="w-44 bg-white/5 border-white/10 text-white text-sm">
+                              <SelectValue placeholder="All upcoming" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="all">All upcoming matches</SelectItem>
+                              {Array.from(new Set(matches.filter((m: any) => m.week_label).map((m: any) => m.week_label))).map((wk: any) => (
+                                <SelectItem key={wk} value={wk}>{wk}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {/* Message preview */}
+                        <div className="bg-[#111827] border border-white/10 rounded-xl p-4 mb-4">
+                          <p className="text-xs text-slate-500 mb-2 uppercase tracking-widest">Message Preview</p>
+                          <pre className="text-sm text-slate-200 whitespace-pre-wrap font-sans leading-relaxed">{buildBroadcastMessage()}</pre>
+                        </div>
+
+                        {/* Action buttons */}
+                        <div className="flex gap-3 flex-wrap">
+                          <Button
+                            className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold"
+                            onClick={() => {
+                              navigator.clipboard.writeText(buildBroadcastMessage());
+                              setBroadcastCopied(true);
+                              setTimeout(() => setBroadcastCopied(false), 2500);
+                              toast({ title: broadcastCopied ? "Copied again!" : "Copied to clipboard!", description: "Paste into WhatsApp Broadcast or group." });
+                            }}
+                          >
+                            {broadcastCopied ? <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-400" /> : <MessageCircle className="w-4 h-4 mr-2" />}
+                            {broadcastCopied ? "Copied!" : "Copy Message"}
+                          </Button>
+                          <Button
+                            className="bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold"
+                            onClick={() => {
+                              const msg = encodeURIComponent(buildBroadcastMessage());
+                              window.open(`https://wa.me/971523946311?text=${msg}`, "_blank");
+                            }}
+                          >
+                            <MessageCircle className="w-4 h-4 mr-2" />
+                            Open in WhatsApp
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Quick tip */}
+                      <div className="bg-emerald-950/40 border border-emerald-500/20 rounded-xl p-4 text-xs text-slate-400 leading-relaxed">
+                        <p className="font-bold text-emerald-400 mb-1">📋 How to broadcast</p>
+                        <ol className="list-decimal list-inside space-y-1">
+                          <li>Click <strong className="text-white">Copy Message</strong> above.</li>
+                          <li>Open WhatsApp Business → <strong className="text-white">Broadcast Lists</strong>.</li>
+                          <li>Select your broker contacts list and paste.</li>
+                          <li>Alternatively, use <strong className="text-white">Open in WhatsApp</strong> to send directly from your phone.</li>
+                        </ol>
                       </div>
                     </div>
                   )}
