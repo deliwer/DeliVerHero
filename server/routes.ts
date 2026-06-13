@@ -637,6 +637,30 @@ Source: Website Concierge Page
     }
   });
 
+  app.get("/api/league/feed", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const r = await db.execute(`
+        SELECT
+          lm.id, lm.home_team, lm.away_team, lm.result, lm.player_of_match,
+          lm.match_date, lm.week_label, lm.group_name,
+          (SELECT player_name FROM league_player_stats WHERE match_id = lm.id AND runs > 0 ORDER BY runs DESC LIMIT 1) AS top_bat_name,
+          (SELECT team_name  FROM league_player_stats WHERE match_id = lm.id AND runs > 0 ORDER BY runs DESC LIMIT 1) AS top_bat_team,
+          (SELECT runs       FROM league_player_stats WHERE match_id = lm.id AND runs > 0 ORDER BY runs DESC LIMIT 1) AS top_bat_runs,
+          (SELECT player_name FROM league_player_stats WHERE match_id = lm.id AND wickets > 0 ORDER BY wickets DESC, runs DESC LIMIT 1) AS top_ball_name,
+          (SELECT team_name   FROM league_player_stats WHERE match_id = lm.id AND wickets > 0 ORDER BY wickets DESC, runs DESC LIMIT 1) AS top_ball_team,
+          (SELECT wickets     FROM league_player_stats WHERE match_id = lm.id AND wickets > 0 ORDER BY wickets DESC, runs DESC LIMIT 1) AS top_ball_wickets
+        FROM league_matches lm
+        WHERE lm.status = 'completed'
+        ORDER BY lm.match_date DESC NULLS LAST, lm.id DESC
+        LIMIT 20
+      `);
+      res.json(r.rows);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   app.get("/api/league/season-stats", async (_req, res) => {
     try {
       await initLeagueTables();

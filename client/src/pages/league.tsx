@@ -294,6 +294,7 @@ export default function LeaguePage() {
   });
   const { data: seasonStats = [] } = useQuery<any[]>({ queryKey: ["/api/league/season-stats"] });
   const { data: bestPerfs = { topRuns: [], topWickets: [] } } = useQuery<{ topRuns: any[]; topWickets: any[] }>({ queryKey: ["/api/league/best-performances"] });
+  const { data: leagueFeed = [] } = useQuery<any[]>({ queryKey: ["/api/league/feed"] });
   const addStatMut = useMutation({
     mutationFn: (body: any) => adminFetch("POST", `/api/league/matches/${statsMatchId}/stats`, body),
     onSuccess: () => {
@@ -1542,6 +1543,103 @@ export default function LeaguePage() {
                 </div>
               </div>
             )}
+
+            {/* ── League Feed ── */}
+            {leagueFeed.length > 0 && (
+              <div className="mt-16">
+                <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-8 flex items-center justify-center gap-2">
+                  <span className="h-px w-10 bg-slate-800 inline-block" />📰 League Feed<span className="h-px w-10 bg-slate-800 inline-block" />
+                </p>
+
+                <div className="relative max-w-2xl mx-auto">
+                  {/* Vertical spine */}
+                  <div className="absolute left-5 top-0 bottom-0 w-px bg-white/6 pointer-events-none" />
+
+                  <div className="space-y-0">
+                    {leagueFeed.map((entry: any, idx: number) => {
+                      const events: { icon: string; color: string; label: string; sub?: string }[] = [];
+
+                      events.push({
+                        icon: "🏆",
+                        color: "emerald",
+                        label: entry.result || "Match completed",
+                        sub: entry.player_of_match ? `⭐ Player of the Match: ${entry.player_of_match}` : undefined,
+                      });
+
+                      if (entry.top_bat_name && Number(entry.top_bat_runs) > 0) {
+                        events.push({
+                          icon: "🏏",
+                          color: "green",
+                          label: `${entry.top_bat_name} scored ${entry.top_bat_runs} runs`,
+                          sub: entry.top_bat_team,
+                        });
+                      }
+
+                      if (entry.top_ball_name && Number(entry.top_ball_wickets) > 0) {
+                        events.push({
+                          icon: "⚡",
+                          color: "sky",
+                          label: `${entry.top_ball_name} took ${entry.top_ball_wickets} wicket${Number(entry.top_ball_wickets) !== 1 ? "s" : ""}`,
+                          sub: entry.top_ball_team,
+                        });
+                      }
+
+                      const colorMap: Record<string, string> = {
+                        emerald: "bg-emerald-500/15 border-emerald-500/30 text-emerald-400",
+                        green:   "bg-emerald-900/30 border-emerald-500/20 text-emerald-400",
+                        sky:     "bg-sky-900/25 border-sky-500/20 text-sky-400",
+                      };
+
+                      return (
+                        <div key={entry.id} className={`flex gap-4 ${idx < leagueFeed.length - 1 ? "pb-8" : ""}`}>
+                          {/* Timeline dot + connector */}
+                          <div className="flex flex-col items-center shrink-0 relative z-10">
+                            <div className="w-10 h-10 rounded-full bg-[#0d1420] border border-white/10 flex items-center justify-center text-base shadow-lg">
+                              {entry.player_of_match ? "🏆" : "🏏"}
+                            </div>
+                          </div>
+
+                          {/* Card */}
+                          <div className="flex-1 min-w-0 pt-1">
+                            {/* Match header */}
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              <span className="font-black text-white text-sm">{entry.home_team}</span>
+                              <span className="text-slate-600 text-xs">vs</span>
+                              <span className="font-black text-white text-sm">{entry.away_team}</span>
+                              {entry.week_label && (
+                                <span className="text-[10px] text-slate-600 font-medium">{entry.week_label}</span>
+                              )}
+                              {entry.match_date && (
+                                <span className="text-[10px] text-slate-700 ml-auto">{entry.match_date}</span>
+                              )}
+                            </div>
+
+                            {/* Event pills */}
+                            <div className="flex flex-col gap-1.5">
+                              {events.map((ev, ei) => (
+                                <div
+                                  key={ei}
+                                  className={`inline-flex items-start gap-2 rounded-xl border px-3 py-2 text-xs ${colorMap[ev.color]}`}
+                                >
+                                  <span className="text-sm leading-none mt-0.5 shrink-0">{ev.icon}</span>
+                                  <div className="min-w-0">
+                                    <span className="font-bold">{ev.label}</span>
+                                    {ev.sub && (
+                                      <div className="text-[10px] opacity-70 mt-0.5 truncate">{ev.sub}</div>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
           </div>
         </section>
 
