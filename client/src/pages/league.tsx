@@ -262,6 +262,30 @@ export default function LeaguePage() {
     if (params.get("admin") === "1") setAdminOpen(true);
   }, []);
 
+  // Sticky internal nav — track active section
+  const [activeSection, setActiveSection] = useState("");
+  const [navStuck, setNavStuck] = useState(false);
+  useEffect(() => {
+    const sectionIds = ["venue", "leaderboard", "sponsorship", "register"];
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      // Show sticky nav only after hero (approx 500px)
+      setNavStuck(scrollY > 480);
+      // Find which section is in view
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const top = el.getBoundingClientRect().top + scrollY - 120;
+          if (scrollY >= top) current = id;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const handleAdminAuth = () => {
     setAdminToken(adminTokenInput);
     setAdminAuthed(true);
@@ -433,6 +457,43 @@ export default function LeaguePage() {
             <ChevronDown className="w-6 h-6" />
           </div>
         </section>
+
+        {/* ─── STICKY INTERNAL NAV ─── */}
+        <div
+          className={`sticky top-0 z-40 transition-all duration-300 ${navStuck ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}
+        >
+          <div className="bg-[#0a0f1a]/95 backdrop-blur-md border-b border-white/8">
+            <div className="max-w-6xl mx-auto px-4 flex items-center gap-1 sm:gap-2 overflow-x-auto scrollbar-none py-1">
+              {[
+                { id: "venue",       label: "📍 Venue"       },
+                { id: "leaderboard", label: "🏆 Leaderboard" },
+                { id: "sponsorship", label: "💼 Sponsors"    },
+                { id: "register",    label: "✍️ Register"    },
+              ].map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
+                  className={`shrink-0 px-4 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${
+                    activeSection === id
+                      ? "bg-emerald-500 text-white"
+                      : "text-slate-400 hover:text-white hover:bg-white/8"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+              {/* Right-aligned CTA */}
+              <div className="ml-auto shrink-0">
+                <button
+                  onClick={() => document.getElementById("register")?.scrollIntoView({ behavior: "smooth" })}
+                  className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-5 py-2 rounded-lg text-sm transition-all"
+                >
+                  Register Now →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* ─── WHY THIS MATTERS ─── */}
         <section className="py-24 px-4 max-w-6xl mx-auto">
