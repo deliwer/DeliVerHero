@@ -265,6 +265,31 @@ export default function LeaguePage() {
     onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/matches"] }); toast({ title: "Match removed" }); },
   });
 
+  const [statsMatchId, setStatsMatchId] = useState<number | null>(null);
+  const [newStat, setNewStat] = useState({ player_name: "", team_name: "", runs: 0, wickets: 0 });
+  const { data: matchStats = [] } = useQuery<any[]>({
+    queryKey: ["/api/league/matches", statsMatchId, "stats"],
+    queryFn: () => statsMatchId ? fetch(`/api/league/matches/${statsMatchId}/stats`).then(r => r.json()) : Promise.resolve([]),
+    enabled: statsMatchId !== null,
+  });
+  const { data: seasonStats = [] } = useQuery<any[]>({ queryKey: ["/api/league/season-stats"] });
+  const addStatMut = useMutation({
+    mutationFn: (body: any) => adminFetch("POST", `/api/league/matches/${statsMatchId}/stats`, body),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["/api/league/matches", statsMatchId, "stats"] });
+      qc.invalidateQueries({ queryKey: ["/api/league/season-stats"] });
+      setNewStat({ player_name: "", team_name: "", runs: 0, wickets: 0 });
+      toast({ title: "Stat added!" });
+    },
+  });
+  const deleteStatMut = useMutation({
+    mutationFn: (id: number) => adminFetch("DELETE", `/api/league/player-stats/${id}`),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["/api/league/matches", statsMatchId, "stats"] });
+      qc.invalidateQueries({ queryKey: ["/api/league/season-stats"] });
+    },
+  });
+
   // Open admin panel — check URL
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -1149,6 +1174,67 @@ export default function LeaguePage() {
               );
             })()}
 
+            {/* ── Season Stats Leaderboard ── */}
+            {(seasonStats as any[]).length > 0 && (() => {
+              const byRuns = [...(seasonStats as any[])].sort((a, b) => Number(b.total_runs) - Number(a.total_runs));
+              const byWickets = [...(seasonStats as any[])].sort((a, b) => Number(b.total_wickets) - Number(a.total_wickets));
+              return (
+                <div className="mt-14 mb-10">
+                  <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-6 flex items-center justify-center gap-2">
+                    <span className="h-px w-10 bg-slate-800 inline-block" />📊 Season Statistics<span className="h-px w-10 bg-slate-800 inline-block" />
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    {/* Top Run Scorers */}
+                    <div className="bg-white/3 border border-emerald-500/20 rounded-2xl p-4">
+                      <h4 className="text-emerald-400 font-black text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                        🏏 Top Run Scorers
+                      </h4>
+                      <div className="space-y-2">
+                        {byRuns.slice(0, 5).map((p: any, i: number) => (
+                          <div key={`${p.player_name}-runs`} className="flex items-center gap-3">
+                            <span className="text-slate-600 text-xs font-black w-4 shrink-0">#{i + 1}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-bold text-white truncate">{p.player_name}</div>
+                              <div className="text-xs text-slate-500 truncate">{p.team_name}</div>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <div className="text-emerald-400 font-black text-sm tabular-nums">{Number(p.total_runs)}</div>
+                              <div className="text-slate-600 text-xs">runs</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Top Wicket Takers */}
+                    <div className="bg-white/3 border border-sky-500/20 rounded-2xl p-4">
+                      <h4 className="text-sky-400 font-black text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                        ⚡ Top Wicket Takers
+                      </h4>
+                      <div className="space-y-2">
+                        {byWickets.filter((p: any) => Number(p.total_wickets) > 0).slice(0, 5).map((p: any, i: number) => (
+                          <div key={`${p.player_name}-wkts`} className="flex items-center gap-3">
+                            <span className="text-slate-600 text-xs font-black w-4 shrink-0">#{i + 1}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-bold text-white truncate">{p.player_name}</div>
+                              <div className="text-xs text-slate-500 truncate">{p.team_name}</div>
+                            </div>
+                            <div className="text-right shrink-0">
+                              <div className="text-sky-400 font-black text-sm tabular-nums">{Number(p.total_wickets)}</div>
+                              <div className="text-slate-600 text-xs">wickets</div>
+                            </div>
+                          </div>
+                        ))}
+                        {byWickets.filter((p: any) => Number(p.total_wickets) > 0).length === 0 && (
+                          <p className="text-slate-600 text-xs text-center py-3">No wickets recorded yet</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Match schedule */}
             {matches.length > 0 && (
               <div>
@@ -1597,16 +1683,79 @@ export default function LeaguePage() {
                                 </div>
                               </div>
                             ) : (
-                              <div className="flex items-center gap-3">
-                                <div className="flex-1 min-w-0">
-                                  <div className="text-sm font-semibold">{m.home_team} <span className="text-slate-500">vs</span> {m.away_team}</div>
-                                  <div className="text-xs text-slate-500">{m.week_label && `${m.week_label} · `}{m.match_date} · Grp {m.group_name}</div>
-                                  {m.result && <div className="text-xs text-emerald-400 mt-0.5">{m.result}</div>}
-                                  {m.player_of_match && <div className="text-xs text-amber-400 mt-0.5">⭐ {m.player_of_match}</div>}
+                              <div className="flex flex-col gap-2">
+                                <div className="flex items-center gap-3">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-sm font-semibold">{m.home_team} <span className="text-slate-500">vs</span> {m.away_team}</div>
+                                    <div className="text-xs text-slate-500">{m.week_label && `${m.week_label} · `}{m.match_date} · Grp {m.group_name}</div>
+                                    {m.result && <div className="text-xs text-emerald-400 mt-0.5">{m.result}</div>}
+                                    {m.player_of_match && <div className="text-xs text-amber-400 mt-0.5">⭐ {m.player_of_match}</div>}
+                                  </div>
+                                  <span className={`text-xs px-2 py-0.5 rounded-full ${m.status === "completed" ? "bg-emerald-500/20 text-emerald-400" : "bg-yellow-500/10 text-yellow-400"}`}>{m.status}</span>
+                                  {m.status === "completed" && (
+                                    <button
+                                      onClick={() => setStatsMatchId(statsMatchId === m.id ? null : m.id)}
+                                      className={`text-xs px-2 py-1 rounded-lg border transition-all font-bold ${statsMatchId === m.id ? "bg-violet-500/20 border-violet-500/40 text-violet-400" : "border-white/10 text-slate-500 hover:text-slate-300 hover:border-white/20"}`}
+                                    >📊</button>
+                                  )}
+                                  <button onClick={() => setEditingMatch({ ...m })} className="text-blue-400 hover:text-blue-300 p-1.5 rounded-lg hover:bg-blue-500/10 transition-all"><Edit3 className="w-4 h-4" /></button>
+                                  <button onClick={() => deleteMatchMut.mutate(m.id)} className="text-rose-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all"><Trash2 className="w-4 h-4" /></button>
                                 </div>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${m.status === "completed" ? "bg-emerald-500/20 text-emerald-400" : "bg-yellow-500/10 text-yellow-400"}`}>{m.status}</span>
-                                <button onClick={() => setEditingMatch({ ...m })} className="text-blue-400 hover:text-blue-300 p-1.5 rounded-lg hover:bg-blue-500/10 transition-all"><Edit3 className="w-4 h-4" /></button>
-                                <button onClick={() => deleteMatchMut.mutate(m.id)} className="text-rose-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all"><Trash2 className="w-4 h-4" /></button>
+
+                                {/* ── Stats entry panel ── */}
+                                {statsMatchId === m.id && (
+                                  <div className="mt-1 bg-violet-950/30 border border-violet-500/20 rounded-xl p-3 space-y-2">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-violet-400 mb-2">📊 Match Stats — {m.home_team} vs {m.away_team}</p>
+
+                                    {/* Existing stat rows */}
+                                    {matchStats.length > 0 && (
+                                      <div className="space-y-1 mb-2">
+                                        {matchStats.map((s: any) => (
+                                          <div key={s.id} className="flex items-center gap-2 text-xs">
+                                            <span className="flex-1 font-semibold text-white truncate">{s.player_name}</span>
+                                            <span className="text-slate-400 truncate">{s.team_name}</span>
+                                            <span className="text-emerald-400 font-bold tabular-nums">{s.runs}R</span>
+                                            <span className="text-sky-400 font-bold tabular-nums">{s.wickets}W</span>
+                                            <button onClick={() => deleteStatMut.mutate(s.id)} className="text-rose-500 hover:text-rose-400 transition-colors text-sm leading-none">×</button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+
+                                    {/* Add stat form */}
+                                    <div className="flex gap-1.5 flex-wrap">
+                                      <input
+                                        placeholder="Player name"
+                                        value={newStat.player_name}
+                                        onChange={e => setNewStat(p => ({ ...p, player_name: e.target.value }))}
+                                        className="flex-1 min-w-24 bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-violet-500/50"
+                                      />
+                                      <input
+                                        placeholder="Team"
+                                        value={newStat.team_name}
+                                        onChange={e => setNewStat(p => ({ ...p, team_name: e.target.value }))}
+                                        className="w-24 bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-violet-500/50"
+                                      />
+                                      <input
+                                        type="number" min={0} placeholder="Runs"
+                                        value={newStat.runs || ""}
+                                        onChange={e => setNewStat(p => ({ ...p, runs: Number(e.target.value) }))}
+                                        className="w-16 bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-emerald-500/50"
+                                      />
+                                      <input
+                                        type="number" min={0} placeholder="Wkts"
+                                        value={newStat.wickets || ""}
+                                        onChange={e => setNewStat(p => ({ ...p, wickets: Number(e.target.value) }))}
+                                        className="w-16 bg-white/5 border border-white/10 rounded-lg px-2 py-1 text-xs text-white placeholder:text-slate-600 outline-none focus:border-sky-500/50"
+                                      />
+                                      <button
+                                        onClick={() => newStat.player_name && addStatMut.mutate(newStat)}
+                                        disabled={!newStat.player_name || addStatMut.isPending}
+                                        className="px-3 py-1 bg-violet-500 hover:bg-violet-400 disabled:opacity-40 text-white font-bold text-xs rounded-lg transition-all"
+                                      >Add</button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             )}
                           </div>

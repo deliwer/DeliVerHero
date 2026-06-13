@@ -453,6 +453,17 @@ Source: Website Concierge Page
       )
     `);
     await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS player_of_match TEXT NOT NULL DEFAULT ''`);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS league_player_stats (
+        id SERIAL PRIMARY KEY,
+        match_id INTEGER NOT NULL,
+        player_name TEXT NOT NULL DEFAULT '',
+        team_name TEXT NOT NULL DEFAULT '',
+        runs INTEGER NOT NULL DEFAULT 0,
+        wickets INTEGER NOT NULL DEFAULT 0,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      )
+    `);
   };
 
   app.get("/api/league/teams", async (_req, res) => {
@@ -558,6 +569,67 @@ Source: Website Concierge Page
     if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
     try {
       await db.execute(`DELETE FROM league_matches WHERE id=$1`, [req.params.id]);
+      res.json({ ok: true });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.get("/api/league/season-stats", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const r = await db.execute(`
+        SELECT
+          player_name,
+          team_name,
+          SUM(runs) AS total_runs,
+          SUM(wickets) AS total_wickets,
+          COUNT(*) AS matches_played
+        FROM league_player_stats
+        GROUP BY player_name, team_name
+        ORDER BY total_runs DESC, total_wickets DESC
+      `);
+      res.json(r.rows);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.get("/api/league/matches/:id/stats", async (req, res) => {
+    try {
+      await initLeagueTables();
+      const r = await db.execute(
+        `SELECT * FROM league_player_stats WHERE match_id=$1 ORDER BY runs DESC, wickets DESC`,
+        [req.params.id]
+      );
+      res.json(r.rows);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.post("/api/league/matches/:id/stats", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await initLeagueTables();
+      const { player_name, team_name, runs = 0, wickets = 0 } = req.body;
+      if (!player_name) return res.status(400).json({ error: "player_name required" });
+      const r = await db.execute(
+        `INSERT INTO league_player_stats (match_id, player_name, team_name, runs, wickets) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
+        [req.params.id, player_name, team_name ?? "", Number(runs), Number(wickets)]
+      );
+      res.json(r.rows[0]);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.delete("/api/league/player-stats/:id", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await db.execute(`DELETE FROM league_player_stats WHERE id=$1`, [req.params.id]);
       res.json({ ok: true });
     } catch (e: any) {
       res.status(500).json({ error: e.message });
