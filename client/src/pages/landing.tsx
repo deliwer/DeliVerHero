@@ -872,7 +872,6 @@ export default function LandingPage() {
       </section>
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-8">
-          <OperationalBadges variant="dark" />
           <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] max-w-xl mx-auto">
             DeliWer is an operational back-office for Dubai residents and brokers, focused on relocation, settlement, and daily living journeys.
           </p>
