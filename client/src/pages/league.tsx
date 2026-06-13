@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +13,8 @@ import {
   Star, Building2, Mail, Phone, MessageCircle, Download,
   CheckCircle2, ArrowRight, ChevronDown, Camera, Video,
   Award, Handshake, TrendingUp, Shield, Play, MapPin,
-  Instagram, Linkedin, Send, ChevronRight, Sun, Droplets
+  Instagram, Linkedin, Send, ChevronRight, Sun, Droplets,
+  Lock, Plus, Trash2, Edit3, X
 } from "lucide-react";
 
 const STATS = [
@@ -176,6 +177,71 @@ export default function LeaguePage() {
   });
   const animatedTeams = useCountUp(leagueStats?.teams ?? 0);
   const animatedAvailable = useCountUp(leagueStats?.available ?? 0);
+
+  // Teams & matches data
+  const qc = useQueryClient();
+  const { data: teams = [] } = useQuery<any[]>({ queryKey: ["/api/league/teams"] });
+  const { data: matches = [] } = useQuery<any[]>({ queryKey: ["/api/league/matches"] });
+
+  // Admin panel state
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [adminToken, setAdminToken] = useState("");
+  const [adminAuthed, setAdminAuthed] = useState(false);
+  const [adminTokenInput, setAdminTokenInput] = useState("");
+  const [adminTab, setAdminTab] = useState<"teams" | "matches">("teams");
+
+  // New team form
+  const [newTeam, setNewTeam] = useState({ team_name: "", agency: "", captain: "", group_name: "A", logo_emoji: "🏏" });
+  // New match form
+  const [newMatch, setNewMatch] = useState({ home_team: "", away_team: "", home_agency: "", away_agency: "", match_date: "", venue: "Majan Community Ground", group_name: "A", week_label: "", result: "", status: "upcoming" });
+  // Edit match result
+  const [editingMatch, setEditingMatch] = useState<any | null>(null);
+
+  const adminFetch = (method: string, url: string, body?: any) =>
+    fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json", "x-admin-token": adminToken },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: "include",
+    }).then(async r => { if (!r.ok) throw new Error(await r.text()); return r.json(); });
+
+  const addTeamMut = useMutation({
+    mutationFn: (body: any) => adminFetch("POST", "/api/league/teams", body),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/teams"] }); qc.invalidateQueries({ queryKey: ["/api/league/stats"] }); setNewTeam({ team_name: "", agency: "", captain: "", group_name: "A", logo_emoji: "🏏" }); toast({ title: "Team added!" }); },
+    onError: () => toast({ title: "Failed to add team", variant: "destructive" }),
+  });
+
+  const deleteTeamMut = useMutation({
+    mutationFn: (id: number) => adminFetch("DELETE", `/api/league/teams/${id}`),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/teams"] }); qc.invalidateQueries({ queryKey: ["/api/league/stats"] }); toast({ title: "Team removed" }); },
+  });
+
+  const addMatchMut = useMutation({
+    mutationFn: (body: any) => adminFetch("POST", "/api/league/matches", body),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/matches"] }); setNewMatch({ home_team: "", away_team: "", home_agency: "", away_agency: "", match_date: "", venue: "Majan Community Ground", group_name: "A", week_label: "", result: "", status: "upcoming" }); toast({ title: "Match added!" }); },
+    onError: () => toast({ title: "Failed to add match", variant: "destructive" }),
+  });
+
+  const updateMatchMut = useMutation({
+    mutationFn: ({ id, ...body }: any) => adminFetch("PATCH", `/api/league/matches/${id}`, body),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/matches"] }); setEditingMatch(null); toast({ title: "Result updated!" }); },
+  });
+
+  const deleteMatchMut = useMutation({
+    mutationFn: (id: number) => adminFetch("DELETE", `/api/league/matches/${id}`),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["/api/league/matches"] }); toast({ title: "Match removed" }); },
+  });
+
+  // Open admin panel — check URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("admin") === "1") setAdminOpen(true);
+  }, []);
+
+  const handleAdminAuth = () => {
+    setAdminToken(adminTokenInput);
+    setAdminAuthed(true);
+  };
 
   // Parallax on hero
   useEffect(() => {
@@ -670,6 +736,117 @@ export default function LeaguePage() {
           </div>
         )}
 
+        {/* ─── LEADERBOARD ─── */}
+        <section id="leaderboard" className="py-24 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Leaderboard</Badge>
+              <h2 className="text-3xl sm:text-5xl font-black mb-2">Teams &amp; <span className="text-emerald-400">Draw</span></h2>
+              <p className="text-slate-400">Registered agencies competing for the trophy. Groups revealed as teams confirm.</p>
+              {/* Admin link — subtle */}
+              <button
+                className="mt-4 text-xs text-slate-700 hover:text-slate-500 transition-colors"
+                onClick={() => setAdminOpen(true)}
+              >
+                ⚙ Manage
+              </button>
+            </div>
+
+            {teams.length === 0 ? (
+              <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
+                <Trophy className="w-12 h-12 text-slate-700 mx-auto mb-4" />
+                <p className="text-slate-500 font-semibold text-lg">Teams confirming soon</p>
+                <p className="text-slate-600 text-sm mt-2">Registration is open — be among the first agencies to lock in your spot.</p>
+                <Button className="mt-6 bg-emerald-500 hover:bg-emerald-400 text-white font-bold" onClick={() => document.getElementById("register")?.scrollIntoView({ behavior: "smooth" })}>
+                  Register Your Team
+                </Button>
+              </div>
+            ) : (
+              <div className="grid lg:grid-cols-2 gap-8 mb-12">
+                {(["A", "B"] as const).map(grp => {
+                  const grpTeams = teams.filter((t: any) => t.group_name === grp);
+                  if (grpTeams.length === 0) return null;
+                  return (
+                    <div key={grp}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-black text-sm">{grp}</div>
+                        <h3 className="font-black text-xl">Group {grp}</h3>
+                        <span className="text-slate-500 text-sm">{grpTeams.length} teams</span>
+                      </div>
+                      <div className="space-y-3">
+                        {grpTeams.map((team: any, idx: number) => (
+                          <div key={team.id} className="flex items-center gap-4 bg-white/3 border border-white/8 rounded-2xl p-4 hover:border-emerald-500/20 transition-all">
+                            <div className="w-8 text-center font-black text-slate-600 text-sm">{idx + 1}</div>
+                            <div className="text-2xl">{team.logo_emoji}</div>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-bold text-white text-sm truncate">{team.team_name}</div>
+                              <div className="text-xs text-slate-400 truncate">{team.agency}</div>
+                              {team.captain && <div className="text-xs text-slate-600 truncate">Capt: {team.captain}</div>}
+                            </div>
+                            <div className="flex gap-3 text-xs shrink-0">
+                              <div className="text-center">
+                                <div className="font-black text-emerald-400 text-lg">{team.wins}</div>
+                                <div className="text-slate-600">W</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="font-black text-rose-400 text-lg">{team.losses}</div>
+                                <div className="text-slate-600">L</div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Match schedule */}
+            {matches.length > 0 && (
+              <div>
+                <h3 className="font-black text-xl mb-6 text-center">Match Schedule</h3>
+                <div className="overflow-x-auto rounded-2xl border border-white/10">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-white/5">
+                        <th className="text-left p-3 text-slate-400 font-medium">Week</th>
+                        <th className="text-left p-3 text-slate-400 font-medium">Match</th>
+                        <th className="text-left p-3 text-slate-400 font-medium hidden sm:table-cell">Date</th>
+                        <th className="text-left p-3 text-slate-400 font-medium hidden md:table-cell">Grp</th>
+                        <th className="text-left p-3 text-slate-400 font-medium">Result</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {matches.map((m: any) => (
+                        <tr key={m.id} className="hover:bg-white/3 transition-colors">
+                          <td className="p-3 text-slate-500 text-xs">{m.week_label || "—"}</td>
+                          <td className="p-3">
+                            <span className="font-semibold text-white">{m.home_team}</span>
+                            <span className="text-slate-500 mx-2">vs</span>
+                            <span className="font-semibold text-white">{m.away_team}</span>
+                          </td>
+                          <td className="p-3 text-slate-400 hidden sm:table-cell">{m.match_date}</td>
+                          <td className="p-3 hidden md:table-cell">
+                            <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full">{m.group_name}</span>
+                          </td>
+                          <td className="p-3">
+                            {m.status === "completed" ? (
+                              <span className="text-emerald-400 font-bold text-xs">{m.result || "Completed"}</span>
+                            ) : (
+                              <span className="bg-yellow-500/10 text-yellow-400 text-xs px-2 py-0.5 rounded-full">Upcoming</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
         {/* ─── PARTNERS ─── */}
         <section className="py-20 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -829,6 +1006,150 @@ export default function LeaguePage() {
             </Button>
           </div>
         </section>
+
+        {/* ─── ADMIN MODAL ─── */}
+        {adminOpen && (
+          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={(e) => { if (e.target === e.currentTarget) setAdminOpen(false); }}>
+            <div className="bg-[#0d1420] border border-white/10 rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between p-6 border-b border-white/8">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center"><Trophy className="w-4 h-4 text-emerald-400" /></div>
+                  <h3 className="font-black text-lg">League Admin</h3>
+                </div>
+                <button onClick={() => setAdminOpen(false)} className="text-slate-500 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
+              </div>
+
+              {!adminAuthed ? (
+                <div className="p-8 max-w-sm mx-auto">
+                  <Lock className="w-10 h-10 text-slate-600 mx-auto mb-4" />
+                  <p className="text-slate-400 text-center mb-6 text-sm">Enter the admin token to manage teams and matches.</p>
+                  <div className="space-y-3">
+                    <Input
+                      type="password"
+                      placeholder="Admin token"
+                      value={adminTokenInput}
+                      onChange={e => setAdminTokenInput(e.target.value)}
+                      onKeyDown={e => e.key === "Enter" && handleAdminAuth()}
+                      className="bg-white/5 border-white/10 text-white placeholder:text-slate-600"
+                    />
+                    <Button className="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold" onClick={handleAdminAuth}>
+                      Unlock
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-6">
+                  {/* Tabs */}
+                  <div className="flex rounded-xl border border-white/10 overflow-hidden mb-6">
+                    {(["teams", "matches"] as const).map(t => (
+                      <button key={t} onClick={() => setAdminTab(t)}
+                        className={`flex-1 py-2.5 text-sm font-bold capitalize transition-all ${adminTab === t ? "bg-emerald-500 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"}`}>
+                        {t === "teams" ? `Teams (${teams.length})` : `Matches (${matches.length})`}
+                      </button>
+                    ))}
+                  </div>
+
+                  {adminTab === "teams" && (
+                    <div className="space-y-6">
+                      {/* Add team form */}
+                      <div className="bg-white/3 border border-white/8 rounded-2xl p-5">
+                        <h4 className="font-bold mb-4 text-sm uppercase tracking-widest text-emerald-400">Add Team</h4>
+                        <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                          <Input placeholder="Team name *" value={newTeam.team_name} onChange={e => setNewTeam(p => ({ ...p, team_name: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Agency / Company *" value={newTeam.agency} onChange={e => setNewTeam(p => ({ ...p, agency: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Captain name" value={newTeam.captain} onChange={e => setNewTeam(p => ({ ...p, captain: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Emoji (🏏 🦅 🔥)" value={newTeam.logo_emoji} onChange={e => setNewTeam(p => ({ ...p, logo_emoji: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                        </div>
+                        <div className="flex gap-3 items-center">
+                          <Select value={newTeam.group_name} onValueChange={v => setNewTeam(p => ({ ...p, group_name: v }))}>
+                            <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                            <SelectContent><SelectItem value="A">Group A</SelectItem><SelectItem value="B">Group B</SelectItem></SelectContent>
+                          </Select>
+                          <Button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold" disabled={addTeamMut.isPending} onClick={() => addTeamMut.mutate(newTeam)}>
+                            <Plus className="w-4 h-4 mr-1" /> Add Team
+                          </Button>
+                        </div>
+                      </div>
+                      {/* Team list */}
+                      <div className="space-y-2">
+                        {teams.map((team: any) => (
+                          <div key={team.id} className="flex items-center gap-3 bg-white/3 border border-white/8 rounded-xl p-3">
+                            <span className="text-xl">{team.logo_emoji}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="font-semibold text-sm">{team.team_name}</div>
+                              <div className="text-xs text-slate-500">{team.agency} · Grp {team.group_name} · {team.wins}W {team.losses}L</div>
+                            </div>
+                            <button onClick={() => deleteTeamMut.mutate(team.id)} className="text-rose-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        ))}
+                        {teams.length === 0 && <p className="text-slate-600 text-sm text-center py-4">No teams yet.</p>}
+                      </div>
+                    </div>
+                  )}
+
+                  {adminTab === "matches" && (
+                    <div className="space-y-6">
+                      {/* Add match form */}
+                      <div className="bg-white/3 border border-white/8 rounded-2xl p-5">
+                        <h4 className="font-bold mb-4 text-sm uppercase tracking-widest text-emerald-400">Add Match</h4>
+                        <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                          <Input placeholder="Home team *" value={newMatch.home_team} onChange={e => setNewMatch(p => ({ ...p, home_team: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Away team *" value={newMatch.away_team} onChange={e => setNewMatch(p => ({ ...p, away_team: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Home agency" value={newMatch.home_agency} onChange={e => setNewMatch(p => ({ ...p, home_agency: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Away agency" value={newMatch.away_agency} onChange={e => setNewMatch(p => ({ ...p, away_agency: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Date (e.g. Fri 17 Jul 2026)" value={newMatch.match_date} onChange={e => setNewMatch(p => ({ ...p, match_date: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Week (e.g. Week 1)" value={newMatch.week_label} onChange={e => setNewMatch(p => ({ ...p, week_label: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                          <Input placeholder="Venue" value={newMatch.venue} onChange={e => setNewMatch(p => ({ ...p, venue: e.target.value }))} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600" />
+                        </div>
+                        <div className="flex gap-3 items-center flex-wrap">
+                          <Select value={newMatch.group_name} onValueChange={v => setNewMatch(p => ({ ...p, group_name: v }))}>
+                            <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white"><SelectValue /></SelectTrigger>
+                            <SelectContent><SelectItem value="A">Group A</SelectItem><SelectItem value="B">Group B</SelectItem></SelectContent>
+                          </Select>
+                          <Button className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold" disabled={addMatchMut.isPending} onClick={() => addMatchMut.mutate(newMatch)}>
+                            <Plus className="w-4 h-4 mr-1" /> Add Match
+                          </Button>
+                        </div>
+                      </div>
+                      {/* Match list */}
+                      <div className="space-y-2">
+                        {matches.map((m: any) => (
+                          <div key={m.id} className="bg-white/3 border border-white/8 rounded-xl p-3">
+                            {editingMatch?.id === m.id ? (
+                              <div className="flex gap-2 items-center flex-wrap">
+                                <Input placeholder="Result (e.g. Eagles won by 5 wkts)" value={editingMatch.result} onChange={e => setEditingMatch((p: any) => ({ ...p, result: e.target.value }))} className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-600 text-sm" />
+                                <Select value={editingMatch.status} onValueChange={v => setEditingMatch((p: any) => ({ ...p, status: v }))}>
+                                  <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white text-sm"><SelectValue /></SelectTrigger>
+                                  <SelectContent><SelectItem value="upcoming">Upcoming</SelectItem><SelectItem value="completed">Completed</SelectItem></SelectContent>
+                                </Select>
+                                <Button size="sm" className="bg-emerald-500 text-white" onClick={() => updateMatchMut.mutate(editingMatch)}>Save</Button>
+                                <Button size="sm" variant="ghost" className="text-slate-400" onClick={() => setEditingMatch(null)}>Cancel</Button>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-3">
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-sm font-semibold">{m.home_team} <span className="text-slate-500">vs</span> {m.away_team}</div>
+                                  <div className="text-xs text-slate-500">{m.week_label && `${m.week_label} · `}{m.match_date} · Grp {m.group_name}</div>
+                                  {m.result && <div className="text-xs text-emerald-400 mt-0.5">{m.result}</div>}
+                                </div>
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${m.status === "completed" ? "bg-emerald-500/20 text-emerald-400" : "bg-yellow-500/10 text-yellow-400"}`}>{m.status}</span>
+                                <button onClick={() => setEditingMatch({ ...m })} className="text-blue-400 hover:text-blue-300 p-1.5 rounded-lg hover:bg-blue-500/10 transition-all"><Edit3 className="w-4 h-4" /></button>
+                                <button onClick={() => deleteMatchMut.mutate(m.id)} className="text-rose-500 hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all"><Trash2 className="w-4 h-4" /></button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        {matches.length === 0 && <p className="text-slate-600 text-sm text-center py-4">No matches scheduled yet.</p>}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* ─── FOOTER STRIP ─── */}
         <div className="border-t border-white/8 py-8 px-4 text-center">

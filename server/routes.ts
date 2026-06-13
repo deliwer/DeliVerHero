@@ -420,6 +420,148 @@ Source: Website Concierge Page
     }
   });
 
+  // ── LEAGUE TEAMS & MATCHES ─────────────────────────────────────────────
+  const initLeagueTables = async () => {
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS league_teams (
+        id SERIAL PRIMARY KEY,
+        team_name TEXT NOT NULL,
+        agency TEXT NOT NULL,
+        captain TEXT NOT NULL DEFAULT '',
+        group_name TEXT NOT NULL DEFAULT 'A',
+        logo_emoji TEXT NOT NULL DEFAULT '🏏',
+        wins INTEGER NOT NULL DEFAULT 0,
+        losses INTEGER NOT NULL DEFAULT 0,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      )
+    `);
+    await db.execute(`
+      CREATE TABLE IF NOT EXISTS league_matches (
+        id SERIAL PRIMARY KEY,
+        home_team TEXT NOT NULL,
+        away_team TEXT NOT NULL,
+        home_agency TEXT NOT NULL DEFAULT '',
+        away_agency TEXT NOT NULL DEFAULT '',
+        match_date TEXT NOT NULL,
+        venue TEXT NOT NULL DEFAULT 'Majan Community Ground',
+        group_name TEXT NOT NULL DEFAULT 'A',
+        week_label TEXT NOT NULL DEFAULT '',
+        result TEXT NOT NULL DEFAULT '',
+        status TEXT NOT NULL DEFAULT 'upcoming',
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+      )
+    `);
+  };
+
+  app.get("/api/league/teams", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const result = await db.execute(`SELECT * FROM league_teams ORDER BY group_name, wins DESC, team_name ASC`);
+      res.json(result.rows);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.post("/api/league/teams", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await initLeagueTables();
+      const { team_name, agency, captain = "", group_name = "A", logo_emoji = "🏏" } = req.body;
+      if (!team_name || !agency) return res.status(400).json({ error: "team_name and agency required" });
+      const result = await db.execute(
+        `INSERT INTO league_teams (team_name, agency, captain, group_name, logo_emoji) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
+        [team_name, agency, captain, group_name, logo_emoji]
+      );
+      // bump stats counter
+      await db.execute(`UPDATE league_stats SET value = value + 1 WHERE key = 'teams'`).catch(() => {});
+      res.json(result.rows[0]);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.patch("/api/league/teams/:id", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      const { wins, losses } = req.body;
+      const result = await db.execute(
+        `UPDATE league_teams SET wins=$1, losses=$2 WHERE id=$3 RETURNING *`,
+        [wins ?? 0, losses ?? 0, req.params.id]
+      );
+      res.json(result.rows[0]);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.delete("/api/league/teams/:id", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await db.execute(`DELETE FROM league_teams WHERE id=$1`, [req.params.id]);
+      await db.execute(`UPDATE league_stats SET value = GREATEST(value - 1, 0) WHERE key = 'teams'`).catch(() => {});
+      res.json({ ok: true });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.get("/api/league/matches", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const result = await db.execute(`SELECT * FROM league_matches ORDER BY match_date ASC, id ASC`);
+      res.json(result.rows);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.post("/api/league/matches", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await initLeagueTables();
+      const { home_team, away_team, home_agency = "", away_agency = "", match_date, venue = "Majan Community Ground", group_name = "A", week_label = "", result: matchResult = "", status = "upcoming" } = req.body;
+      if (!home_team || !away_team || !match_date) return res.status(400).json({ error: "home_team, away_team, match_date required" });
+      const r = await db.execute(
+        `INSERT INTO league_matches (home_team, away_team, home_agency, away_agency, match_date, venue, group_name, week_label, result, status) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *`,
+        [home_team, away_team, home_agency, away_agency, match_date, venue, group_name, week_label, matchResult, status]
+      );
+      res.json(r.rows[0]);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.patch("/api/league/matches/:id", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      const { result: matchResult, status } = req.body;
+      const r = await db.execute(
+        `UPDATE league_matches SET result=$1, status=$2 WHERE id=$3 RETURNING *`,
+        [matchResult ?? "", status ?? "upcoming", req.params.id]
+      );
+      res.json(r.rows[0]);
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.delete("/api/league/matches/:id", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      await db.execute(`DELETE FROM league_matches WHERE id=$1`, [req.params.id]);
+      res.json({ ok: true });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   app.get("/api/league/download/:doc", (req, res) => {
     const { doc } = req.params;
     const labels: Record<string, string> = {
