@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import {
   Phone,
   Mail,
@@ -65,6 +66,13 @@ function DubaiSkylineSVG() {
 }
 
 export function Footer() {
+  const { data: leagueStats } = useQuery<{ teams: number }>({
+    queryKey: ["/api/league/stats"],
+    refetchInterval: 30_000,
+  });
+  const teamCount = leagueStats?.teams ?? null;
+  const spotsLeft = teamCount !== null ? Math.max(0, 16 - teamCount) : null;
+
   const consumerLinks = [
     { label: "Home Service", url: "/home" },
     { label: "Explore", url: "/explore" },
@@ -381,12 +389,25 @@ export function Footer() {
                     <span className="text-2xl">🏏</span>
                   </div>
                   <div>
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                       </span>
                       <span className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">Registration Open</span>
+                      {teamCount !== null && (
+                        <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${
+                          spotsLeft === 0
+                            ? "bg-red-500/20 border border-red-500/40 text-red-400"
+                            : spotsLeft !== null && spotsLeft <= 4
+                            ? "bg-amber-500/20 border border-amber-500/40 text-amber-400"
+                            : "bg-emerald-500/20 border border-emerald-500/40 text-emerald-400"
+                        }`}>
+                          {spotsLeft === 0
+                            ? "Full — Join Waitlist"
+                            : `${teamCount}/16 teams · ${spotsLeft} spot${spotsLeft === 1 ? "" : "s"} left`}
+                        </span>
+                      )}
                     </div>
                     <h3 className="text-white font-black text-base sm:text-lg leading-tight">
                       Brokers Night Cricket League<br className="sm:hidden" />
