@@ -943,6 +943,83 @@ export default function LeaguePage() {
               </button>
             </div>
 
+            {/* ── Group Leaders Banner — only when at least one team has wins ── */}
+            {(() => {
+              const grpLeader = (grp: string) => {
+                const grpTeams = [...teams.filter((t: any) => t.group_name === grp)].sort((a: any, b: any) => b.wins - a.wins || a.losses - b.losses);
+                return grpTeams[0] as any | undefined;
+              };
+              const leaderA = grpLeader("A");
+              const leaderB = grpLeader("B");
+              const hasStandings = (leaderA?.wins > 0) || (leaderB?.wins > 0);
+              if (!hasStandings || teams.length === 0) return null;
+              return (
+                <div className="mb-10">
+                  <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-4 flex items-center justify-center gap-2">
+                    <span className="h-px w-10 bg-slate-800 inline-block" />Current Group Leaders<span className="h-px w-10 bg-slate-800 inline-block" />
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    {([["A", leaderA], ["B", leaderB]] as [string, any][]).map(([grp, leader]) => {
+                      if (!leader) return (
+                        <div key={grp} className="flex items-center justify-center gap-3 border border-dashed border-white/8 rounded-2xl py-6">
+                          <span className="text-slate-600 text-sm">Group {grp} — no matches yet</span>
+                        </div>
+                      );
+                      const winRate = leader.wins + leader.losses > 0 ? Math.round((leader.wins / (leader.wins + leader.losses)) * 100) : 0;
+                      const isUnbeaten = leader.losses === 0 && leader.wins > 0;
+                      return (
+                        <div key={grp} className="relative overflow-hidden rounded-2xl border border-emerald-500/25 bg-gradient-to-br from-emerald-950/60 via-[#0d1420] to-[#0a0f1a] p-5">
+                          {/* Background glow */}
+                          <div className="absolute -top-6 -right-6 w-28 h-28 bg-emerald-500/8 rounded-full blur-2xl pointer-events-none" />
+                          {/* Group badge */}
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center font-black text-xs text-white">{grp}</div>
+                              <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Group {grp} Leader</span>
+                            </div>
+                            {isUnbeaten && (
+                              <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400">⚡ Unbeaten</span>
+                            )}
+                          </div>
+                          {/* Team identity */}
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-2xl shrink-0">
+                              {leader.logo_emoji}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="font-black text-white text-base truncate">{leader.team_name}</div>
+                              <div className="text-xs text-slate-400 truncate">{leader.agency}</div>
+                              {leader.captain && <div className="text-xs text-slate-600 truncate">Capt: {leader.captain}</div>}
+                            </div>
+                          </div>
+                          {/* Stats row */}
+                          <div className="flex items-center gap-3">
+                            <div className="flex-1 grid grid-cols-3 gap-2 text-center">
+                              <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg py-1.5">
+                                <div className="font-black text-emerald-400 text-xl leading-none">{leader.wins}</div>
+                                <div className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">Won</div>
+                              </div>
+                              <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg py-1.5">
+                                <div className="font-black text-rose-400 text-xl leading-none">{leader.losses}</div>
+                                <div className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">Lost</div>
+                              </div>
+                              <div className="bg-white/5 border border-white/10 rounded-lg py-1.5">
+                                <div className="font-black text-white text-xl leading-none">{winRate}%</div>
+                                <div className="text-[9px] text-slate-600 uppercase tracking-widest mt-0.5">Win %</div>
+                              </div>
+                            </div>
+                            <div className="shrink-0">
+                              <Trophy className="w-7 h-7 text-amber-400/70" />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+
             {teams.length === 0 ? (
               <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
                 <Trophy className="w-12 h-12 text-slate-700 mx-auto mb-4" />
