@@ -70,6 +70,7 @@ export function Footer() {
     { label: "Explore", url: "/explore" },
     { label: "AquaCafe Loyalty", url: "/aquacafe" },
     { label: "Rewards", url: "/earn" },
+    { label: "🏏 Cricket League", url: "/league" },
   ];
 
   const b2bLinks = [
@@ -356,6 +357,50 @@ export function Footer() {
             <EmailSubscriptionForm variant="footer" />
 
           </div>
+        </div>
+
+        {/* ── League Feature Banner ── */}
+        <div className="mt-8 mb-2">
+          <Link href="/league">
+            <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 cursor-pointer group">
+              {/* Background photo */}
+              <img
+                src="https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1400&auto=format&q=80"
+                alt="Brokers Night Cricket League UAE 2026"
+                className="absolute inset-0 w-full h-full object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-700"
+              />
+              {/* Dark overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/95 via-[#0a0f1a]/70 to-emerald-900/40" />
+              {/* Animated border glow */}
+              <div className="absolute inset-0 rounded-2xl ring-1 ring-emerald-500/0 group-hover:ring-emerald-500/50 transition-all duration-500" />
+
+              <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 px-6 py-5 sm:px-8 sm:py-6">
+                <div className="flex items-center gap-4">
+                  {/* Pulsing live dot */}
+                  <div className="shrink-0 w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+                    <span className="text-2xl">🏏</span>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                      </span>
+                      <span className="text-emerald-400 text-[10px] font-black uppercase tracking-widest">Registration Open</span>
+                    </div>
+                    <h3 className="text-white font-black text-base sm:text-lg leading-tight">
+                      Brokers Night Cricket League<br className="sm:hidden" />
+                      <span className="text-emerald-400"> UAE 2026</span>
+                    </h3>
+                    <p className="text-slate-400 text-xs mt-0.5">Play · Network · Grow — Majan Ground, Dubai · 16 Teams · Jul–Sep</p>
+                  </div>
+                </div>
+                <div className="shrink-0 flex items-center gap-2 bg-emerald-500 group-hover:bg-emerald-400 text-white font-black text-sm px-5 py-2.5 rounded-xl transition-all">
+                  Register →
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
 
         {/* ── Full-width Payment CTA ── */}
