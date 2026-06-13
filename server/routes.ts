@@ -575,6 +575,33 @@ Source: Website Concierge Page
     }
   });
 
+  app.get("/api/league/best-performances", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const topRuns = await db.execute(`
+        SELECT lps.id, lps.player_name, lps.team_name, lps.runs, lps.wickets,
+               lm.home_team, lm.away_team, lm.match_date, lm.result
+        FROM league_player_stats lps
+        JOIN league_matches lm ON lm.id = lps.match_id
+        WHERE lps.runs > 0
+        ORDER BY lps.runs DESC
+        LIMIT 3
+      `);
+      const topWickets = await db.execute(`
+        SELECT lps.id, lps.player_name, lps.team_name, lps.runs, lps.wickets,
+               lm.home_team, lm.away_team, lm.match_date, lm.result
+        FROM league_player_stats lps
+        JOIN league_matches lm ON lm.id = lps.match_id
+        WHERE lps.wickets > 0
+        ORDER BY lps.wickets DESC, lps.runs DESC
+        LIMIT 3
+      `);
+      res.json({ topRuns: topRuns.rows, topWickets: topWickets.rows });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   app.get("/api/league/season-stats", async (_req, res) => {
     try {
       await initLeagueTables();

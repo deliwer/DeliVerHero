@@ -273,11 +273,13 @@ export default function LeaguePage() {
     enabled: statsMatchId !== null,
   });
   const { data: seasonStats = [] } = useQuery<any[]>({ queryKey: ["/api/league/season-stats"] });
+  const { data: bestPerfs = { topRuns: [], topWickets: [] } } = useQuery<{ topRuns: any[]; topWickets: any[] }>({ queryKey: ["/api/league/best-performances"] });
   const addStatMut = useMutation({
     mutationFn: (body: any) => adminFetch("POST", `/api/league/matches/${statsMatchId}/stats`, body),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["/api/league/matches", statsMatchId, "stats"] });
       qc.invalidateQueries({ queryKey: ["/api/league/season-stats"] });
+      qc.invalidateQueries({ queryKey: ["/api/league/best-performances"] });
       setNewStat({ player_name: "", team_name: "", runs: 0, wickets: 0 });
       toast({ title: "Stat added!" });
     },
@@ -287,6 +289,7 @@ export default function LeaguePage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["/api/league/matches", statsMatchId, "stats"] });
       qc.invalidateQueries({ queryKey: ["/api/league/season-stats"] });
+      qc.invalidateQueries({ queryKey: ["/api/league/best-performances"] });
     },
   });
 
@@ -1180,6 +1183,94 @@ export default function LeaguePage() {
                 </div>
               );
             })()}
+
+            {/* ── Best Performances Trophy Cards ── */}
+            {(bestPerfs.topRuns.length > 0 || bestPerfs.topWickets.length > 0) && (
+              <div className="mt-14 mb-10">
+                <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-6 flex items-center justify-center gap-2">
+                  <span className="h-px w-10 bg-slate-800 inline-block" />🏆 Best Performances<span className="h-px w-10 bg-slate-800 inline-block" />
+                </p>
+                <div className="grid sm:grid-cols-2 gap-5">
+
+                  {/* Highest Run Score */}
+                  {bestPerfs.topRuns.length > 0 && (() => {
+                    const top = bestPerfs.topRuns[0];
+                    const rest = bestPerfs.topRuns.slice(1);
+                    return (
+                      <div className="relative overflow-hidden rounded-2xl border border-emerald-500/30 bg-gradient-to-br from-emerald-950/60 via-[#0d1420] to-[#0a0f1a] p-5">
+                        <div className="absolute -top-8 -right-8 w-32 h-32 bg-emerald-500/6 rounded-full blur-2xl pointer-events-none" />
+                        <div className="text-[10px] font-black uppercase tracking-widest text-emerald-500/70 mb-3 flex items-center gap-1.5">
+                          <span>🏏</span> Highest Individual Score
+                        </div>
+                        {/* #1 */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center shrink-0">
+                            <span className="text-2xl font-black text-emerald-400 leading-none tabular-nums">{top.runs}</span>
+                          </div>
+                          <div className="min-w-0">
+                            <div className="font-black text-white text-base truncate">{top.player_name}</div>
+                            <div className="text-xs text-slate-400 truncate">{top.team_name}</div>
+                            <div className="text-[10px] text-slate-600 truncate mt-0.5">{top.home_team} vs {top.away_team}{top.match_date ? ` · ${top.match_date}` : ""}</div>
+                          </div>
+                        </div>
+                        {/* #2 and #3 */}
+                        {rest.length > 0 && (
+                          <div className="border-t border-white/6 pt-3 space-y-2">
+                            {rest.map((p: any, i: number) => (
+                              <div key={p.id} className="flex items-center gap-2 text-xs">
+                                <span className="text-slate-600 font-black w-4 shrink-0">#{i + 2}</span>
+                                <span className="flex-1 font-semibold text-slate-300 truncate">{p.player_name}</span>
+                                <span className="text-slate-500 truncate hidden sm:block">{p.team_name}</span>
+                                <span className="text-emerald-400 font-black tabular-nums shrink-0">{p.runs} runs</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+
+                  {/* Best Bowling */}
+                  {bestPerfs.topWickets.length > 0 && (() => {
+                    const top = bestPerfs.topWickets[0];
+                    const rest = bestPerfs.topWickets.slice(1);
+                    return (
+                      <div className="relative overflow-hidden rounded-2xl border border-sky-500/30 bg-gradient-to-br from-sky-950/50 via-[#0d1420] to-[#0a0f1a] p-5">
+                        <div className="absolute -top-8 -right-8 w-32 h-32 bg-sky-500/6 rounded-full blur-2xl pointer-events-none" />
+                        <div className="text-[10px] font-black uppercase tracking-widest text-sky-500/70 mb-3 flex items-center gap-1.5">
+                          <span>⚡</span> Best Bowling Figures
+                        </div>
+                        {/* #1 */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-12 h-12 rounded-xl bg-sky-500/15 border border-sky-500/25 flex items-center justify-center shrink-0">
+                            <span className="text-2xl font-black text-sky-400 leading-none tabular-nums">{top.wickets}W</span>
+                          </div>
+                          <div className="min-w-0">
+                            <div className="font-black text-white text-base truncate">{top.player_name}</div>
+                            <div className="text-xs text-slate-400 truncate">{top.team_name}</div>
+                            <div className="text-[10px] text-slate-600 truncate mt-0.5">{top.home_team} vs {top.away_team}{top.match_date ? ` · ${top.match_date}` : ""}</div>
+                          </div>
+                        </div>
+                        {/* #2 and #3 */}
+                        {rest.length > 0 && (
+                          <div className="border-t border-white/6 pt-3 space-y-2">
+                            {rest.map((p: any, i: number) => (
+                              <div key={p.id} className="flex items-center gap-2 text-xs">
+                                <span className="text-slate-600 font-black w-4 shrink-0">#{i + 2}</span>
+                                <span className="flex-1 font-semibold text-slate-300 truncate">{p.player_name}</span>
+                                <span className="text-slate-500 truncate hidden sm:block">{p.team_name}</span>
+                                <span className="text-sky-400 font-black tabular-nums shrink-0">{p.wickets}W{p.runs > 0 ? ` / ${p.runs}R` : ""}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+
+                </div>
+              </div>
+            )}
 
             {/* ── Season Stats Leaderboard ── */}
             {(seasonStats as any[]).length > 0 && (() => {
