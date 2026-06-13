@@ -3,7 +3,7 @@ import {
   Menu, X, Home, Plane, LogOut, Star, ClipboardList, Building2, CalendarCheck,
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
   Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key,
-  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route, Zap
+  Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route, Zap, Trophy
 } from "lucide-react";
 import { LogisticsCTABar } from "@/components/logistics-cta-bar";
 import { useState } from "react";
@@ -57,6 +57,7 @@ const deliwerNavItems = [
   { path: "/home-services",    label: "Home Service",    id: "home-service",   icon: Star },
   { path: "/errand",           label: "Errand",          id: "errand",         icon: ClipboardList },
   { path: "/private-jet",      label: "Private Jet",     id: "private-jet",    icon: Crown },
+  { path: "/league",           label: "🏏 League",        id: "league",         icon: Trophy },
 ];
 
 // ── Broker / Partner nav items ────────────────────────────────────────────────

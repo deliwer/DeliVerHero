@@ -1490,7 +1490,7 @@ export default function PartnersPage() {
 
             {/* Advance Plus */}
             <a
-              href="https://apbmcdxb.com"
+              href="https://apmcdxb.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group block bg-white/3 border border-white/8 rounded-2xl p-7 hover:border-amber-400/40 hover:bg-amber-400/5 transition-all"
@@ -1504,7 +1504,7 @@ export default function PartnersPage() {
                     <h3 className="font-black text-lg text-white leading-tight">Advance Plus Business Management Consultancy</h3>
                     <span className="bg-amber-500/15 border border-amber-400/30 text-amber-300 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">Premium</span>
                   </div>
-                  <p className="text-amber-400 text-xs font-bold uppercase tracking-widest">apbmcdxb.com</p>
+                  <p className="text-amber-400 text-xs font-bold uppercase tracking-widest">apmcdxb.com</p>
                 </div>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">

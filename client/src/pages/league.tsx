@@ -150,22 +150,25 @@ export default function LeaguePage() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    try {
-      await fetch("/api/league/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, type: activeTab }),
-      });
-      toast({ title: "Registration received!", description: "Our team will contact you within 24 hours." });
-      setFormData({ name: "", company: "", email: "", mobile: "", role: "", message: "" });
-    } catch {
-      toast({ title: "Submitted!", description: "We received your enquiry. Expect a call from our team soon.", variant: "default" });
-    } finally {
-      setSubmitting(false);
-    }
+    const typeLabel = activeTab === "team" ? "Team Registration" : activeTab === "sponsor" ? "Sponsor Enquiry" : "Volunteer Registration";
+    const roleLabel = formData.role || "Not specified";
+    const lines = [
+      `*Brokers Night Cricket League UAE 2026*`,
+      `📋 *${typeLabel}*`,
+      ``,
+      `👤 Name: ${formData.name}`,
+      `🏢 Company: ${formData.company}`,
+      `📧 Email: ${formData.email}`,
+      formData.mobile ? `📱 Mobile: ${formData.mobile}` : null,
+      `🎯 Role: ${roleLabel}`,
+      formData.message ? `💬 Message: ${formData.message}` : null,
+    ].filter(Boolean).join("\n");
+    window.open(`https://wa.me/971523946311?text=${encodeURIComponent(lines)}`, "_blank");
+    setSubmitting(false);
+    toast({ title: "Opening WhatsApp…", description: "Your details are pre-filled. Just hit send!" });
   };
 
   const openWA = () => window.open("https://wa.me/971523946311?text=Hi%20DeliWer%2C%20I'm%20interested%20in%20the%20Brokers%20Night%20Cricket%20League%202026", "_blank");
@@ -706,12 +709,12 @@ export default function LeaguePage() {
                 <Label className="text-slate-300 mb-1.5 block text-sm">Message</Label>
                 <Textarea value={formData.message} onChange={(e) => setFormData(p => ({ ...p, message: e.target.value }))} placeholder="Tell us more — team name, sponsorship tier, or how you'd like to get involved..." rows={4} className="bg-white/5 border-white/10 text-white placeholder:text-slate-600 resize-none" />
               </div>
-              <Button type="submit" disabled={submitting} className="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-4 rounded-xl text-base">
-                {submitting ? "Sending..." : activeTab === "team" ? "Register My Team" : activeTab === "sponsor" ? "Send Sponsor Enquiry" : "Register as Volunteer"}
-                <ArrowRight className="w-4 h-4 ml-2" />
+              <Button type="submit" disabled={submitting} className="w-full bg-[#25D366] hover:bg-[#1ebe57] text-white font-bold py-4 rounded-xl text-base">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                {submitting ? "Opening WhatsApp…" : activeTab === "team" ? "Send via WhatsApp — Register Team" : activeTab === "sponsor" ? "Send via WhatsApp — Sponsor Enquiry" : "Send via WhatsApp — Volunteer"}
               </Button>
               <p className="text-xs text-slate-500 text-center">
-                Submissions sent to <span className="text-slate-400">partners@deliwer.com</span> &amp; <span className="text-slate-400">marketing@deliwer.com</span>
+                Your details open pre-filled in WhatsApp — just hit send to <span className="text-slate-400">+971 52 394 6311</span>
               </p>
             </form>
           </div>
