@@ -153,115 +153,79 @@ export default function LandingPage() {
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
          ============================================ */}
-      <section className="relative min-h-screen flex flex-col justify-center pb-20 px-4 overflow-hidden">
+      <section className="relative min-h-[92vh] flex flex-col justify-center pb-16 px-4 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/75 to-black/90" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+        <div className="max-w-2xl mx-auto text-center space-y-6 relative z-10">
 
-          {/* Headline block */}
+          {/* Headline */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="space-y-4"
+            transition={{ duration: 0.5 }}
+            className="space-y-3"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-violet-500/15 border border-violet-500/30 rounded-full text-violet-400 text-[10px] font-black uppercase tracking-widest">
-              <BarChart3 className="w-3 h-3" /> Dubai Rental Intelligence
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] text-white">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter leading-[0.92] text-white">
               Are You{" "}
-              <span className="text-violet-400" style={{ textShadow: "0 0 40px rgba(139,92,246,0.45)" }}>
+              <span className="text-violet-400" style={{ textShadow: "0 0 32px rgba(139,92,246,0.4)" }}>
                 Overpaying Rent
               </span>
               {" "}in Dubai?
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 font-medium max-w-xl mx-auto leading-relaxed">
-              Dubai rents shifted 18–35% in 2024. We benchmark your contract against RERA and find your cheapest legal move — at zero markup.
+            <p className="text-base text-gray-400 font-medium max-w-md mx-auto leading-relaxed">
+              Rents shifted 18–35% in 2024. We benchmark your contract against RERA and find your cheapest legal move — free.
             </p>
 
             {/* Google reviews ribbon */}
             <Link href="/reviews" data-testid="link-hero-reviews">
-              <div className="inline-flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-blue-500/30 rounded-full px-4 py-2 transition-all cursor-pointer group">
-                <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4" viewBox="0 0 48 48">
-                    <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
-                    <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
-                    <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
-                    <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571.001-.001.002-.001.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
-                  </svg>
-                  <span className="text-white font-black text-sm">5.0</span>
-                </div>
+              <div className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/8 border border-white/10 rounded-full px-3 py-1.5 transition-all cursor-pointer group">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3 h-3 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    <svg key={i} className="w-2.5 h-2.5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                   ))}
                 </div>
-                <span className="text-gray-400 text-xs font-bold">·</span>
-                <span className="text-blue-300 text-xs font-bold uppercase tracking-wider group-hover:text-blue-200 transition-colors">
-                  Verified Google Reviews
-                </span>
-                <ArrowRight className="w-3 h-3 text-blue-300 group-hover:translate-x-0.5 transition-transform" />
+                <span className="text-white font-black text-xs">5.0</span>
+                <span className="text-gray-600 text-xs">·</span>
+                <span className="text-gray-400 text-[10px] font-bold uppercase tracking-wider group-hover:text-gray-300 transition-colors">Verified Google Reviews</span>
               </div>
             </Link>
           </motion.div>
 
-          {/* 4 key stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto w-full"
-          >
-            {[
-              { label: "Avg rent increase", value: "+26%", icon: <TrendingUp className="w-3.5 h-3.5" />, color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
-              { label: "Avg mover saving", value: "18K AED", icon: <TrendingDown className="w-3.5 h-3.5" />, color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
-              { label: "Cheaper districts", value: "14+", icon: <MapPin className="w-3.5 h-3.5" />, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
-              { label: "DeliWer fee", value: "0 AED", icon: <Calculator className="w-3.5 h-3.5" />, color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
-            ].map((s) => (
-              <div key={s.label} className={`rounded-xl border p-3 flex flex-col gap-1 ${s.bg}`}>
-                <div className={s.color}>{s.icon}</div>
-                <div className={`text-xl font-black ${s.color}`}>{s.value}</div>
-                <div className="text-[10px] font-bold text-white/70 leading-tight">{s.label}</div>
-              </div>
-            ))}
-          </motion.div>
-
           {/* RERA Rent Calculator */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="max-w-2xl mx-auto w-full"
+            transition={{ duration: 0.45, delay: 0.12 }}
           >
-            <div className="bg-white/5 border border-violet-500/20 rounded-2xl p-5 space-y-4">
-              <div className="flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-violet-400" />
-                <span className="text-[10px] font-black uppercase tracking-wider text-violet-400">RERA Rent Checker — Is Your Rent Fair?</span>
+            <div className="bg-white/5 border border-violet-500/20 rounded-xl p-4 space-y-3 text-left">
+              <div className="flex items-center gap-1.5">
+                <Calculator className="w-3.5 h-3.5 text-violet-400" />
+                <span className="text-[9px] font-black uppercase tracking-wider text-violet-400">RERA Rent Checker — Is Your Rent Fair?</span>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid sm:grid-cols-2 gap-2.5">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Monthly rent (AED)</label>
+                  <label className="text-[9px] font-bold text-gray-600 uppercase tracking-wider">Monthly rent (AED)</label>
                   <input
                     type="number"
                     value={calcRent}
                     onChange={(e) => setCalcRent(e.target.value)}
                     placeholder="e.g. 8500"
-                    className="w-full bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-xl px-4 py-2.5 text-white font-bold text-sm placeholder-gray-600 focus:outline-none transition-colors"
+                    className="w-full bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-lg px-3 py-2 text-white font-bold text-sm placeholder-gray-600 focus:outline-none transition-colors"
                     data-testid="input-calc-rent"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Your area</label>
+                  <label className="text-[9px] font-bold text-gray-600 uppercase tracking-wider">Your area</label>
                   <select
                     value={calcDistrict}
                     onChange={(e) => setCalcDistrict(e.target.value)}
-                    className="w-full bg-slate-900 border border-white/10 focus:border-violet-500/50 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none transition-colors"
+                    className="w-full bg-slate-900 border border-white/10 focus:border-violet-500/50 rounded-lg px-3 py-2 text-white font-bold text-sm focus:outline-none transition-colors"
                     data-testid="select-calc-district"
                   >
                     <option value="">Select area…</option>
@@ -273,10 +237,10 @@ export default function LandingPage() {
               </div>
 
               {calcResult ? (
-                <div className={`rounded-xl border transition-all ${calcResult.overpaying ? "bg-red-500/10 border-red-500/25" : "bg-emerald-500/10 border-emerald-500/25"}`}>
+                <div className={`rounded-lg border transition-all ${calcResult.overpaying ? "bg-red-500/10 border-red-500/25" : "bg-emerald-500/10 border-emerald-500/25"}`}>
                   <div className="p-3 flex items-start justify-between gap-3">
                     <div>
-                      <p className={`text-[10px] font-black uppercase tracking-wider mb-1 ${calcResult.overpaying ? "text-red-400" : "text-emerald-400"}`}>
+                      <p className={`text-[9px] font-black uppercase tracking-wider mb-1 ${calcResult.overpaying ? "text-red-400" : "text-emerald-400"}`}>
                         {calcResult.overpaying ? "⚠ Potential Overpayment Detected" : "✓ Within Market Range"}
                       </p>
                       <p className="text-white/80 font-medium text-xs leading-relaxed">{calcResult.message}</p>
@@ -285,23 +249,18 @@ export default function LandingPage() {
                       href={`https://wa.me/971523906019?text=I'm paying AED ${calcRent}/mo in ${calcDistrict}. Is this fair? I want a free rent analysis.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider rounded-xl px-3 py-2 transition-colors whitespace-nowrap"
+                      className="shrink-0 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black uppercase tracking-wider rounded-lg px-3 py-2 transition-colors whitespace-nowrap"
                       data-testid="link-calc-whatsapp"
                     >
-                      {calcResult.overpaying ? "Fix It Now →" : "Chat Now →"}
+                      {calcResult.overpaying ? "Fix It →" : "Chat →"}
                     </a>
                   </div>
-
                   {calcResult.overpaying && (
-                    <div className="border-t border-red-500/15 px-3 pb-3 pt-2.5">
+                    <div className="border-t border-red-500/15 px-3 pb-3 pt-2">
                       {calcSubmitted ? (
                         <div className="flex items-center gap-2">
-                          <span className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                            <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                          </span>
-                          <p className="text-emerald-400 text-[11px] font-bold">
-                            Report saved — a DeliWer advisor will reach out within 24 hours.
-                          </p>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                          <p className="text-emerald-400 text-[11px] font-bold">Report saved — advisor will reach out within 24 hrs.</p>
                         </div>
                       ) : (
                         <form onSubmit={submitRentAnalysis} className="flex gap-2">
@@ -311,13 +270,13 @@ export default function LandingPage() {
                             onChange={(e) => setCalcEmail(e.target.value)}
                             placeholder="your@email.com"
                             required
-                            className="flex-1 min-w-0 bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-xl px-3 py-2 text-white text-xs font-bold placeholder-gray-600 focus:outline-none transition-colors"
+                            className="flex-1 min-w-0 bg-white/5 border border-white/10 focus:border-violet-500/50 rounded-lg px-3 py-2 text-white text-xs font-bold placeholder-gray-600 focus:outline-none transition-colors"
                             data-testid="input-calc-email"
                           />
                           <button
                             type="submit"
                             disabled={calcSubmitting}
-                            className="shrink-0 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 text-white text-[10px] font-black uppercase tracking-wider rounded-xl px-3 py-2 transition-colors whitespace-nowrap"
+                            className="shrink-0 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 text-white text-[10px] font-black uppercase tracking-wider rounded-lg px-3 py-2 transition-colors whitespace-nowrap"
                             data-testid="btn-calc-save"
                           >
                             {calcSubmitting ? "Saving…" : "Get Free Report"}
@@ -328,114 +287,49 @@ export default function LandingPage() {
                   )}
                 </div>
               ) : (
-                <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest text-center">
-                  18 Dubai areas benchmarked against RERA market rates
+                <p className="text-[9px] text-gray-700 font-bold uppercase tracking-widest text-center">
+                  18 Dubai areas · RERA market rates · Zero DeliWer fee
                 </p>
               )}
             </div>
           </motion.div>
 
-          {/* CTAs */}
+          {/* Scenario shortcuts */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col items-center gap-4"
+            transition={{ duration: 0.45, delay: 0.2 }}
+            className="grid grid-cols-4 gap-1.5 max-w-xl mx-auto w-full"
           >
-            <SmartChannelCTA
-              waMessage="Hello DeliWer, I want a free rental analysis and move-in plan."
-              size="lg"
-              layout="row"
-              showBackupLabel={true}
-              testIdPrefix="hero"
-            />
-            <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-              {["RERA benchmarked", "Zero DeliWer fee", "WhatsApp in minutes"].map((t) => (
-                <span key={t} className="flex items-center gap-1.5 text-[11px] text-gray-300 font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" /> {t}
-                </span>
-              ))}
-            </div>
-            <ChannelStatusBar />
-          </motion.div>
-
-          {/* Relocation scenario buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-2xl mx-auto w-full"
-          >
-            <button
-              data-testid="funnel-btn-moving-in"
-              onClick={() => openFunnel("moving-in")}
-              className="group flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm border border-emerald-500/30 hover:border-emerald-500 rounded-xl transition-all text-center"
-            >
-              <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center group-hover:bg-emerald-500/20 transition-all">
-                <Home className="w-4 h-4 text-emerald-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Moving In</div>
-                <div className="text-[9px] text-gray-400 font-medium leading-tight">Ejari, DEWA & setup</div>
-              </div>
-            </button>
-
-            <button
-              data-testid="funnel-btn-moving-within"
-              onClick={() => openFunnel("moving-within")}
-              className="group flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm border border-blue-500/30 hover:border-blue-500 rounded-xl transition-all text-center"
-            >
-              <div className="w-8 h-8 bg-blue-500/10 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-all">
-                <TrendingDown className="w-4 h-4 text-blue-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Cheaper Rent</div>
-                <div className="text-[9px] text-gray-400 font-medium leading-tight">Full relocation</div>
-              </div>
-            </button>
-
-            <button
-              data-testid="funnel-btn-leaving"
-              onClick={() => openFunnel("leaving")}
-              className="group flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm border border-amber-500/30 hover:border-amber-500 rounded-xl transition-all text-center"
-            >
-              <div className="w-8 h-8 bg-amber-500/10 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-all">
-                <LogOut className="w-4 h-4 text-amber-400" />
-              </div>
-              <div className="space-y-0.5">
-                <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Leaving Dubai</div>
-                <div className="text-[9px] text-gray-400 font-medium leading-tight">Exit from 900 AED</div>
-              </div>
-            </button>
-
+            {[
+              { testId: "funnel-btn-moving-in", onClick: () => openFunnel("moving-in"), icon: <Home className="w-3.5 h-3.5" />, label: "Moving In", sub: "Ejari, DEWA", color: "border-emerald-500/25 hover:border-emerald-500/60", iconBg: "bg-emerald-500/10 text-emerald-400" },
+              { testId: "funnel-btn-moving-within", onClick: () => openFunnel("moving-within"), icon: <TrendingDown className="w-3.5 h-3.5" />, label: "Cheaper Rent", sub: "Relocate", color: "border-blue-500/25 hover:border-blue-500/60", iconBg: "bg-blue-500/10 text-blue-400" },
+              { testId: "funnel-btn-leaving", onClick: () => openFunnel("leaving"), icon: <LogOut className="w-3.5 h-3.5" />, label: "Leaving", sub: "From 900 AED", color: "border-amber-500/25 hover:border-amber-500/60", iconBg: "bg-amber-500/10 text-amber-400" },
+            ].map((btn) => (
+              <button
+                key={btn.testId}
+                data-testid={btn.testId}
+                onClick={btn.onClick}
+                className={`group flex flex-col items-center gap-1.5 py-3 px-2 bg-white/5 border rounded-xl transition-all text-center ${btn.color}`}
+              >
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${btn.iconBg}`}>{btn.icon}</div>
+                <div>
+                  <div className="font-black text-white text-[9px] uppercase tracking-tight leading-tight">{btn.label}</div>
+                  <div className="text-[8px] text-gray-500 leading-tight mt-0.5">{btn.sub}</div>
+                </div>
+              </button>
+            ))}
             <Link href="/transaction-support" data-testid="funnel-btn-just-signed">
-              <div className="group flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm border border-violet-500/30 hover:border-violet-500 rounded-xl transition-all text-center h-full">
-                <div className="w-8 h-8 bg-violet-500/10 rounded-lg flex items-center justify-center group-hover:bg-violet-500/20 transition-all">
-                  <CheckCircle2 className="w-4 h-4 text-violet-400" />
-                </div>
-                <div className="space-y-0.5">
-                  <div className="font-black text-white uppercase text-[10px] tracking-tight leading-tight">Just Signed?</div>
-                  <div className="text-[9px] text-gray-400 font-medium leading-tight">Post-deal support</div>
+              <div className="group flex flex-col items-center gap-1.5 py-3 px-2 bg-white/5 border border-violet-500/25 hover:border-violet-500/60 rounded-xl transition-all text-center h-full">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-violet-500/10 text-violet-400"><CheckCircle2 className="w-3.5 h-3.5" /></div>
+                <div>
+                  <div className="font-black text-white text-[9px] uppercase tracking-tight leading-tight">Just Signed</div>
+                  <div className="text-[8px] text-gray-500 leading-tight mt-0.5">Post-deal</div>
                 </div>
               </div>
             </Link>
           </motion.div>
 
-          {/* Partner teaser */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center justify-center gap-3 pt-2"
-          >
-            <div className="h-px flex-1 max-w-[60px] bg-white/8" />
-            <Link href="/partners" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors group" data-testid="hero-partner-teaser">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span className="text-[10px] font-black uppercase tracking-widest">Broker or Agent? Earn AED 150–800+ per client</span>
-              <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <div className="h-px flex-1 max-w-[60px] bg-white/8" />
-          </motion.div>
         </div>
       </section>
       <FindAHomeBanner />
