@@ -978,6 +978,50 @@ export default function LeaguePage() {
               </button>
             </div>
 
+            {/* ── Live Match Ticker ── */}
+            {(() => {
+              const liveMatches = (matches as any[]).filter((m: any) => m.status === "live");
+              if (liveMatches.length === 0) return null;
+              return (
+                <div className="sticky top-0 z-30 -mx-4 sm:-mx-6 lg:-mx-8 mb-8">
+                  <div className="relative overflow-hidden bg-gradient-to-r from-red-950/95 via-rose-900/95 to-red-950/95 backdrop-blur-sm border-y border-red-500/40 py-3 px-4">
+                    {/* Animated scan line */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/8 to-transparent animate-pulse pointer-events-none" />
+
+                    <div className="flex items-center justify-center gap-3 flex-wrap">
+                      {/* Pulsing live dot */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="relative flex h-2.5 w-2.5">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
+                        </span>
+                        <span className="text-[10px] font-black uppercase tracking-widest text-red-400">Live Now</span>
+                      </div>
+
+                      <span className="text-slate-600 text-xs">·</span>
+
+                      {/* Match names */}
+                      <div className="flex items-center gap-4 flex-wrap justify-center">
+                        {liveMatches.map((m: any) => (
+                          <div key={m.id} className="flex items-center gap-2">
+                            <span className="font-black text-white text-sm">{m.home_team}</span>
+                            <span className="text-red-400/60 text-xs font-bold">vs</span>
+                            <span className="font-black text-white text-sm">{m.away_team}</span>
+                            {m.venue && (
+                              <span className="text-slate-500 text-[10px] hidden sm:inline">· {m.venue}</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+
+                      <span className="text-slate-600 text-xs">·</span>
+                      <span className="text-[10px] text-slate-500 hidden sm:inline">🏏 Brokers Night Cricket League UAE 2026</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* ── Group Leaders Banner — only when at least one team has wins ── */}
             {(() => {
               const grpLeader = (grp: string) => {
@@ -1352,7 +1396,7 @@ export default function LeaguePage() {
                       {matches.map((m: any) => (
                         <Fragment key={m.id}>
                           <tr
-                            className={`transition-colors ${m.status === "completed" ? "cursor-pointer hover:bg-emerald-950/30" : "hover:bg-white/3"}`}
+                            className={`transition-colors ${m.status === "completed" ? "cursor-pointer hover:bg-emerald-950/30" : m.status === "live" ? "bg-red-950/20 hover:bg-red-950/30" : "hover:bg-white/3"}`}
                             onClick={() => m.status === "completed" && setExpandedScorecardId(expandedScorecardId === m.id ? null : m.id)}
                           >
                             <td className="p-3 text-slate-500 text-xs">{m.week_label || "—"}</td>
@@ -1373,7 +1417,15 @@ export default function LeaguePage() {
                               <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-0.5 rounded-full">{m.group_name}</span>
                             </td>
                             <td className="p-3" onClick={e => e.stopPropagation()}>
-                              {m.status === "completed" ? (
+                              {m.status === "live" ? (
+                                <div className="flex items-center gap-1.5">
+                                  <span className="relative flex h-2 w-2 shrink-0">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+                                  </span>
+                                  <span className="text-red-400 font-black text-xs uppercase tracking-wide">Live</span>
+                                </div>
+                              ) : m.status === "completed" ? (
                                 <div className="flex flex-col gap-1">
                                   <div className="flex items-center gap-2 flex-wrap">
                                     <span className="text-emerald-400 font-bold text-xs">{m.result || "Completed"}</span>
@@ -1832,7 +1884,7 @@ export default function LeaguePage() {
                                   <Input placeholder="Result (e.g. Eagles won by 5 wkts)" value={editingMatch.result} onChange={e => setEditingMatch((p: any) => ({ ...p, result: e.target.value }))} className="flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-600 text-sm" />
                                   <Select value={editingMatch.status} onValueChange={v => setEditingMatch((p: any) => ({ ...p, status: v }))}>
                                     <SelectTrigger className="w-32 bg-white/5 border-white/10 text-white text-sm"><SelectValue /></SelectTrigger>
-                                    <SelectContent><SelectItem value="upcoming">Upcoming</SelectItem><SelectItem value="completed">Completed</SelectItem></SelectContent>
+                                    <SelectContent><SelectItem value="upcoming">Upcoming</SelectItem><SelectItem value="live">🔴 Live</SelectItem><SelectItem value="completed">Completed</SelectItem></SelectContent>
                                   </Select>
                                 </div>
                                 <div className="flex gap-2 items-center flex-wrap">
