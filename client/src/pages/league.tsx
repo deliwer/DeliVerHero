@@ -315,6 +315,7 @@ export default function LeaguePage() {
   });
 
   const [expandedScorecardId, setExpandedScorecardId] = useState<number | null>(null);
+  const [expandedTeamId, setExpandedTeamId] = useState<number | null>(null);
   const { data: scorecardStats = [] } = useQuery<any[]>({
     queryKey: ["/api/league/scorecard", expandedScorecardId],
     queryFn: () => expandedScorecardId ? fetch(`/api/league/matches/${expandedScorecardId}/stats`).then(r => r.json()) : Promise.resolve([]),
@@ -1142,12 +1143,45 @@ export default function LeaguePage() {
                         <span className="text-slate-500 text-sm">{grpTeams.length} teams</span>
                       </div>
                       <div className="space-y-3">
-                        {grpTeams.map((team: any, idx: number) => (
-                          <div key={team.id} className="flex items-center gap-4 bg-white/3 border border-white/8 rounded-2xl p-4 hover:border-emerald-500/20 transition-all group">
+                        {grpTeams.map((team: any, idx: number) => {
+                          const isTeamExpanded = expandedTeamId === team.id;
+
+                          // Derive H2H from already-fetched matches
+                          const teamMatches = (matches as any[]).filter(
+                            (m: any) => m.status === "completed" &&
+                              (m.home_team === team.team_name || m.away_team === team.team_name)
+                          );
+                          // Group by opponent with W/L
+                          const h2hMap: Record<string, { opponent: string; wins: number; losses: number; matches: any[] }> = {};
+                          for (const m of teamMatches) {
+                            const opponent = m.home_team === team.team_name ? m.away_team : m.home_team;
+                            if (!h2hMap[opponent]) h2hMap[opponent] = { opponent, wins: 0, losses: 0, matches: [] };
+                            // Heuristic: result text starts with winner's name
+                            const resultLower = (m.result || "").toLowerCase();
+                            const teamWon = resultLower.startsWith(team.team_name.toLowerCase());
+                            if (teamWon) h2hMap[opponent].wins++;
+                            else h2hMap[opponent].losses++;
+                            h2hMap[opponent].matches.push({ ...m, teamWon });
+                          }
+                          const h2hEntries = Object.values(h2hMap);
+
+                          return (
+                          <div key={team.id} className={`bg-white/3 border rounded-2xl transition-all group ${isTeamExpanded ? "border-emerald-500/30" : "border-white/8 hover:border-emerald-500/20"}`}>
+                            <div
+                              className="flex items-center gap-4 p-4 cursor-pointer"
+                              onClick={() => setExpandedTeamId(isTeamExpanded ? null : team.id)}
+                            >
                             <div className="w-8 text-center font-black text-slate-600 text-sm">{idx + 1}</div>
                             <div className="text-2xl">{team.logo_emoji}</div>
                             <div className="flex-1 min-w-0">
-                              <div className="font-bold text-white text-sm truncate">{team.team_name}</div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-white text-sm truncate">{team.team_name}</span>
+                                {teamMatches.length > 0 && (
+                                  <span className={`text-[9px] font-black uppercase tracking-wide transition-colors ${isTeamExpanded ? "text-emerald-400" : "text-slate-700"}`}>
+                                    {isTeamExpanded ? "▲" : "▼"}
+                                  </span>
+                                )}
+                              </div>
                               <div className="text-xs text-slate-400 truncate">{team.agency}</div>
                               {team.captain && <div className="text-xs text-slate-600 truncate">Capt: {team.captain}</div>}
                             </div>
@@ -1180,8 +1214,58 @@ export default function LeaguePage() {
                                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                               </a>
                             </div>
-                          </div>
-                        ))}
+                          </div>{/* end inner click row */}
+
+                          {/* H2H expansion panel */}
+                          {isTeamExpanded && h2hEntries.length > 0 && (
+                            <div className="border-t border-white/6 px-4 pb-4 pt-3">
+                              <p className="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-3">
+                                Head-to-Head Record
+                              </p>
+                              <div className="space-y-2">
+                                {h2hEntries.map((entry) => (
+                                  <div key={entry.opponent} className="flex flex-col gap-1">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-xs font-bold text-white flex-1 truncate">vs {entry.opponent}</span>
+                                      <div className="flex items-center gap-1.5 shrink-0">
+                                        {entry.wins > 0 && (
+                                          <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400">
+                                            {entry.wins}W
+                                          </span>
+                                        )}
+                                        {entry.losses > 0 && (
+                                          <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400">
+                                            {entry.losses}L
+                                          </span>
+                                        )}
+                                      </div>
+                                    </div>
+                                    {entry.matches.map((m: any) => (
+                                      <div key={m.id} className="text-[10px] text-slate-600 pl-2 flex items-center gap-1.5">
+                                        <span className={m.teamWon ? "text-emerald-600" : "text-rose-700"}>
+                                          {m.teamWon ? "✓" : "✗"}
+                                        </span>
+                                        <span className="truncate">{m.result || "No result"}</span>
+                                        {m.match_date && <span className="text-slate-700 shrink-0">· {m.match_date}</span>}
+                                      </div>
+                                    ))}
+                                  </div>
+                                ))}
+                              </div>
+                              {h2hEntries.length === 0 && (
+                                <p className="text-slate-700 text-xs">No completed matches yet.</p>
+                              )}
+                            </div>
+                          )}
+                          {isTeamExpanded && teamMatches.length === 0 && (
+                            <div className="border-t border-white/6 px-4 pb-4 pt-3">
+                              <p className="text-slate-700 text-xs">No completed matches yet — check back after their first game.</p>
+                            </div>
+                          )}
+
+                        </div>
+                          );
+                        })}
                       </div>
                     </div>
                   );
