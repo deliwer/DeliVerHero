@@ -708,6 +708,94 @@ export default function LeaguePage() {
           </div>
         </section>
 
+        {/* ─── VENUE ─── */}
+        <section id="venue" className="py-24 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Venue</Badge>
+              <h2 className="text-3xl sm:text-5xl font-black mb-3">Where the <span className="text-emerald-400">Action Happens</span></h2>
+              <p className="text-slate-400 max-w-xl mx-auto">Night cricket under the lights — Majan Community Ground, Dubai. Parking on site. Easy access from Emirates Road.</p>
+            </div>
+
+            {/* Map + photos grid */}
+            <div className="grid lg:grid-cols-2 gap-6 mb-8">
+              {/* Google Maps embed */}
+              <div className="rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:min-h-[380px] relative">
+                <iframe
+                  title="Majan Community Ground"
+                  src="https://maps.google.com/maps?q=Majan+Community+Football+Ground,+Dubai,+UAE&output=embed&hl=en&z=16"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: "380px" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full"
+                />
+              </div>
+
+              {/* Photo grid */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="col-span-2 rounded-2xl overflow-hidden aspect-video">
+                  <img
+                    src="https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=900&auto=format&q=80"
+                    alt="Cricket match night lights"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden aspect-square">
+                  <img
+                    src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&q=80"
+                    alt="Cricket ground"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="rounded-xl overflow-hidden aspect-square">
+                  <img
+                    src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&auto=format&q=80"
+                    alt="Cricket action"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Venue info cards */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              {[
+                { icon: MapPin, label: "Address", value: "Majan Community Ground\nDubai, UAE", color: "text-emerald-400" },
+                { icon: Calendar, label: "Match Days", value: "Weekly evenings\nJul – Sep 2026", color: "text-yellow-400" },
+                { icon: Users, label: "Capacity", value: "250+ spectators\nBrokers & families welcome", color: "text-blue-400" },
+                { icon: Shield, label: "Facilities", value: "Floodlit pitch\nParking · Refreshments", color: "text-purple-400" },
+              ].map((item) => (
+                <div key={item.label} className="bg-white/3 border border-white/8 rounded-2xl p-5 hover:border-emerald-500/20 transition-all">
+                  <item.icon className={`w-6 h-6 ${item.color} mb-3`} />
+                  <p className="text-xs text-slate-500 uppercase tracking-widest mb-1">{item.label}</p>
+                  <p className="text-sm font-medium text-slate-200 whitespace-pre-line leading-snug">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Directions CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="https://maps.app.goo.gl/4T2c2Wi7mCbj7Kqi8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3.5 rounded-xl transition-all text-sm"
+              >
+                <MapPin className="w-4 h-4" /> Get Directions on Google Maps
+              </a>
+              <button
+                onClick={() => document.getElementById("register")?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 font-bold px-8 py-3.5 rounded-xl transition-all text-sm"
+              >
+                <Trophy className="w-4 h-4 text-emerald-400" /> Register Your Team
+              </button>
+            </div>
+          </div>
+        </section>
+
         {/* ─── MEDIA ─── */}
         <section className="py-20 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
           <div className="max-w-6xl mx-auto">
@@ -1010,7 +1098,7 @@ export default function LeaguePage() {
               { icon: Phone, label: "Call / WhatsApp", value: "+971 52 394 6311", href: "tel:+971523946311" },
               { icon: Mail, label: "Partners Email", value: "partners@deliwer.com", href: "mailto:partners@deliwer.com" },
               { icon: Mail, label: "Marketing Email", value: "marketing@deliwer.com", href: "mailto:marketing@deliwer.com" },
-              { icon: MapPin, label: "Venue", value: "Majan Community Ground, Dubai", href: "#" },
+              { icon: MapPin, label: "Venue", value: "Majan Community Ground, Dubai", href: "https://maps.app.goo.gl/4T2c2Wi7mCbj7Kqi8" },
             ].map((c) => (
               <a key={c.label} href={c.href} className="bg-white/3 border border-white/8 rounded-2xl p-5 hover:border-emerald-500/30 transition-all group">
                 <c.icon className="w-6 h-6 text-emerald-400 mb-3" />
