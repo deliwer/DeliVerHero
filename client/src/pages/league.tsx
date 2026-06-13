@@ -1089,6 +1089,66 @@ export default function LeaguePage() {
               </div>
             )}
 
+            {/* ── Player of the Match Tally ── */}
+            {(() => {
+              const tally: Record<string, { count: number; matches: string[] }> = {};
+              (matches as any[]).forEach((m: any) => {
+                if (m.status === "completed" && m.player_of_match?.trim()) {
+                  const name = m.player_of_match.trim();
+                  if (!tally[name]) tally[name] = { count: 0, matches: [] };
+                  tally[name].count++;
+                  tally[name].matches.push(`${m.home_team} vs ${m.away_team}`);
+                }
+              });
+              const ranked = Object.entries(tally).sort((a, b) => b[1].count - a[1].count);
+              if (ranked.length === 0) return null;
+              const medals = ["🥇", "🥈", "🥉"];
+              return (
+                <div className="mt-14 mb-10">
+                  <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-6 flex items-center justify-center gap-2">
+                    <span className="h-px w-10 bg-slate-800 inline-block" />⭐ Player of the Match Tally<span className="h-px w-10 bg-slate-800 inline-block" />
+                  </p>
+                  <div className="max-w-2xl mx-auto space-y-2">
+                    {ranked.map(([name, data], idx) => {
+                      const isTop = idx === 0;
+                      return (
+                        <div
+                          key={name}
+                          className={`flex items-center gap-4 rounded-2xl border px-5 py-3.5 transition-all ${
+                            isTop
+                              ? "bg-gradient-to-r from-amber-950/50 via-[#0d1420] to-[#0a0f1a] border-amber-500/30"
+                              : "bg-white/3 border-white/8"
+                          }`}
+                        >
+                          {/* Rank */}
+                          <span className="text-xl w-7 shrink-0 text-center">
+                            {medals[idx] ?? <span className="text-slate-600 font-black text-sm">#{idx + 1}</span>}
+                          </span>
+
+                          {/* Name + matches */}
+                          <div className="flex-1 min-w-0">
+                            <div className={`font-black text-sm truncate ${isTop ? "text-amber-300" : "text-white"}`}>
+                              {name}
+                            </div>
+                            <div className="text-xs text-slate-500 truncate">{data.matches.join(" · ")}</div>
+                          </div>
+
+                          {/* Award count */}
+                          <div className={`shrink-0 flex items-center gap-1.5 font-black text-sm tabular-nums ${isTop ? "text-amber-400" : "text-slate-300"}`}>
+                            <span>⭐</span>
+                            <span>{data.count}</span>
+                            <span className={`text-xs font-medium ${isTop ? "text-amber-600" : "text-slate-600"}`}>
+                              {data.count === 1 ? "award" : "awards"}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Match schedule */}
             {matches.length > 0 && (
               <div>
