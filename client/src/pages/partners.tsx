@@ -10,11 +10,11 @@ import { useToast } from "@/hooks/use-toast";
 import { Navigation } from "@/components/navigation";
 import { Link } from "wouter";
 import {
-  Globe, Users, DollarSign, CheckCircle2, ArrowRight,
+  Globe, Users, DollarSign, CheckCircle2, ArrowRight, ArrowUpRight,
   Zap, Shield, Smartphone, MessageCircle, Building2,
   Droplets, ChevronDown, Copy, Check,
   Lock, Play, BookOpen, TrendingUp, Handshake, Repeat2,
-  Network, Rocket, Target, RefreshCw,
+  Network, Rocket, Target, RefreshCw, Trophy,
   Megaphone, LayoutGrid, UserCheck, Settings, Mail, Database, BellRing, BarChart3,
 } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
@@ -1404,6 +1404,116 @@ export default function PartnersPage() {
             </div>
 
             <JoinFunnel defaultTrack={selectedTrack} />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── LEAGUE PROMO ─── */}
+      <section className="py-20 px-4 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <a href="/league" className="block group">
+            <div className="relative rounded-3xl overflow-hidden border border-emerald-500/30 hover:border-emerald-400/60 transition-all duration-300">
+              <img
+                src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1400&q=80"
+                alt="Brokers Night Cricket League UAE 2026"
+                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/50" />
+              <div className="relative px-8 py-12 md:py-16 md:px-14 flex flex-col md:flex-row items-start md:items-center gap-8">
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/40 rounded-full px-4 py-1.5 text-emerald-300 text-xs font-black uppercase tracking-widest mb-5">
+                    <Trophy className="w-3.5 h-3.5" /> Community Initiative
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-tight mb-3">
+                    Brokers Night<br />
+                    <span className="text-emerald-400">Cricket League</span><br />
+                    UAE 2026
+                  </h2>
+                  <p className="text-yellow-400 font-black text-lg mb-3 tracking-wide">Play. Network. Grow.</p>
+                  <p className="text-gray-300 max-w-lg mb-5">
+                    Presented by <strong className="text-white">Mariamain</strong> &amp; <strong className="text-emerald-300">DeliWer</strong> — the UAE real estate community's sports, wellness and networking league. 16 teams · 8 weeks · 36,000+ broker reach.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold px-4 py-2 rounded-full">Register a Team</span>
+                    <span className="bg-yellow-500/15 border border-yellow-400/30 text-yellow-300 text-xs font-bold px-4 py-2 rounded-full">Become a Sponsor</span>
+                    <span className="bg-white/5 border border-white/15 text-gray-300 text-xs font-bold px-4 py-2 rounded-full">AED 2,500 – 10,000</span>
+                  </div>
+                </div>
+                <div className="shrink-0">
+                  <div className="bg-emerald-500 group-hover:bg-emerald-400 transition-colors text-white font-black px-8 py-4 rounded-2xl text-sm uppercase tracking-widest flex items-center gap-2 shadow-xl shadow-emerald-900/50">
+                    View League <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {/* ─── FEATURED PARTNERS ─── */}
+      <section className="py-20 px-4 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="bg-white/10 text-gray-300 border-white/20 mb-4">Featured Partners</Badge>
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
+              Trusted <span className="text-emerald-400">Ecosystem Partners</span>
+            </h2>
+            <p className="text-gray-500 mt-3 text-sm max-w-xl mx-auto">Organisations we work alongside to deliver the best outcomes for the UAE real estate community.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {/* Mariamain */}
+            <a
+              href="https://www.mariamain.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white/3 border border-white/8 rounded-2xl p-7 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 font-black text-emerald-400 text-lg group-hover:border-emerald-400/50 transition-colors">
+                  MM
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-black text-lg text-white leading-tight">Mariamain Technical Services</h3>
+                    <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">Featured</span>
+                  </div>
+                  <p className="text-emerald-400 text-xs font-bold uppercase tracking-widest">mariamain.com</p>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Technical services partner co-organising the Brokers Night Cricket League UAE 2026 — building community, wellness and sporting culture across the UAE real estate ecosystem.
+              </p>
+              <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold uppercase tracking-widest group-hover:gap-3 transition-all">
+                Visit mariamain.com <ArrowUpRight className="w-3.5 h-3.5" />
+              </div>
+            </a>
+
+            {/* Advance Plus */}
+            <a
+              href="https://apbmcdxb.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white/3 border border-white/8 rounded-2xl p-7 hover:border-amber-400/40 hover:bg-amber-400/5 transition-all"
+            >
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 font-black text-amber-400 text-sm group-hover:border-amber-400/50 transition-colors">
+                  AP
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 flex-wrap mb-1">
+                    <h3 className="font-black text-lg text-white leading-tight">Advance Plus Business Management Consultancy</h3>
+                    <span className="bg-amber-500/15 border border-amber-400/30 text-amber-300 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">Premium</span>
+                  </div>
+                  <p className="text-amber-400 text-xs font-bold uppercase tracking-widest">apbmcdxb.com</p>
+                </div>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Premium business management consultancy partner supporting UAE company formation, operational excellence and strategic growth for real estate professionals and investors in Dubai.
+              </p>
+              <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-widest group-hover:gap-3 transition-all">
+                Visit apbmcdxb.com <ArrowUpRight className="w-3.5 h-3.5" />
+              </div>
+            </a>
           </div>
         </div>
       </section>
