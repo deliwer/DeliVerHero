@@ -442,116 +442,82 @@ export default function LandingPage() {
       {/* ============================================
           VALUE PROP — FROM KEYS TO KETTLE IN 24 HOURS
          ============================================ */}
-      <section id="how-it-works" className="relative py-24 px-6 border-b border-white/5 overflow-hidden bg-slate-950">
-        {/* Subtle top glow */}
+      <section id="how-it-works" className="relative py-14 px-6 border-b border-white/5 overflow-hidden bg-slate-950">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
-        <div className="max-w-3xl mx-auto space-y-16 relative z-10">
+        <div className="max-w-3xl mx-auto space-y-8 relative z-10">
 
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center space-y-4"
+            transition={{ duration: 0.4 }}
+            className="text-center space-y-2"
           >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+            <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
               One coordinator. Everything sorted.
             </div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white leading-tight">
               From Keys to Kettle{" "}
               <span className="text-emerald-400">in 24 Hours.</span>
             </h2>
-            <p className="text-gray-400 font-medium max-w-md mx-auto leading-relaxed">
-              One WhatsApp message. We handle Ejari, movers, DEWA, cleaning and water setup — you just show up.
+            <p className="text-gray-500 text-sm max-w-sm mx-auto">
+              One message. Ejari, movers, DEWA, cleaning, water — you just show up.
             </p>
           </motion.div>
 
           {/* 3-step flow */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
+          <div className="grid grid-cols-3 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/8">
             {[
-              {
-                step: "01",
-                icon: "💬",
-                title: "Message Us",
-                body: "Tell us your move-in date and apartment size on WhatsApp. Takes 60 seconds.",
-              },
-              {
-                step: "02",
-                icon: "📋",
-                title: "We Coordinate",
-                body: "Ejari, DEWA, movers, cleaning, internet — we brief vetted vendors and manage the schedule.",
-              },
-              {
-                step: "03",
-                icon: "🏠",
-                title: "Arrive Home-Ready",
-                body: "Walk into a connected, clean, registered home. AED 0 coordination fee to you.",
-              },
+              { step: "01", icon: "💬", title: "Message Us", body: "Move-in date + apartment size. 60 seconds." },
+              { step: "02", icon: "📋", title: "We Coordinate", body: "Vendors briefed, schedule managed." },
+              { step: "03", icon: "🏠", title: "Arrive Ready", body: "Connected, clean, registered. AED 0 fee." },
             ].map((s, i) => (
               <motion.div
                 key={s.step}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="bg-slate-900/80 px-7 py-8 space-y-3 flex flex-col"
+                transition={{ duration: 0.35, delay: i * 0.08 }}
+                className="bg-slate-900/80 px-4 py-5 space-y-2 flex flex-col"
               >
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500/60">{s.step}</span>
-                <span className="text-3xl">{s.icon}</span>
-                <p className="text-white font-black text-base leading-snug">{s.title}</p>
-                <p className="text-gray-500 text-sm font-medium leading-relaxed flex-1">{s.body}</p>
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/50">{s.step}</span>
+                <span className="text-xl">{s.icon}</span>
+                <p className="text-white font-black text-sm leading-snug">{s.title}</p>
+                <p className="text-gray-500 text-xs font-medium leading-relaxed flex-1">{s.body}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* What's covered — compact pill row */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {[
-              { icon: "📄", label: "Ejari" },
-              { icon: "🚛", label: "Movers" },
-              { icon: "⚡", label: "DEWA" },
-              { icon: "📶", label: "Internet" },
-              { icon: "🧹", label: "Cleaning" },
-              { icon: "💧", label: "Water Filter" },
-            ].map((s) => (
-              <span
-                key={s.label}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs font-bold"
-              >
-                {s.icon} {s.label}
+          {/* Services + urgency — single row */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
+            {["📄 Ejari", "🚛 Movers", "⚡ DEWA", "📶 Internet", "🧹 Cleaning", "💧 Water Filter"].map((s) => (
+              <span key={s} className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/5 border border-white/8 text-gray-500 text-[10px] font-bold">
+                {s}
               </span>
             ))}
           </div>
 
           {/* Just Got Keys urgency strip */}
-          <div className="rounded-2xl border border-emerald-500/25 bg-emerald-950/30 px-6 py-5 flex flex-col sm:flex-row items-center gap-5">
+          <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/25 px-5 py-4 flex flex-col sm:flex-row items-center gap-4">
             <div className="flex-1 min-w-0">
-              <p className="text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-1">Just received your keys?</p>
-              <p className="text-white font-black text-lg leading-snug">Day 1 sorted — before you arrive.</p>
-              <p className="text-gray-500 text-sm mt-1">Water, utilities, and cleaning ready on move-in day.</p>
+              <p className="text-emerald-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Just received your keys?</p>
+              <p className="text-white font-black text-sm leading-snug">Day 1 sorted — before you arrive.</p>
             </div>
             <Button
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-12 px-6 text-sm shrink-0 gap-2 transition-all"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-lg h-9 px-5 text-xs shrink-0 gap-1.5 transition-all"
               onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
               data-testid="button-just-got-keys"
             >
-              <MessageCircle className="w-4 h-4" /> I Just Got My Keys
+              <MessageCircle className="w-3.5 h-3.5" /> I Just Got My Keys
             </Button>
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col items-center gap-3">
-            <Link href="/concierge-pricing">
-              <Button variant="outline" className="border-white/15 text-gray-500 hover:text-white hover:border-white/30 font-bold rounded-xl px-6 h-9 text-xs transition-all">
-                See pricing →
-              </Button>
-            </Link>
-            <p className="text-[10px] text-gray-700 font-bold uppercase tracking-widest">
-              No hidden fees · You pay vendors directly at market rates
-            </p>
-          </div>
+          {/* Footer note */}
+          <p className="text-center text-[10px] text-gray-700 font-bold uppercase tracking-widest">
+            No hidden fees · <Link href="/concierge-pricing"><span className="text-gray-500 hover:text-gray-300 transition-colors cursor-pointer">See pricing →</span></Link>
+          </p>
 
         </div>
       </section>
