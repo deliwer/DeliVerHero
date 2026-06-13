@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -131,6 +132,35 @@ const REACH_CHANNELS = [
   { label: "Real Estate Agencies", icon: Building2, value: "100+" },
 ];
 
+// Animated number counter hook
+function useCountUp(target: number, duration = 1200) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (target === 0) return;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [target, duration]);
+  return count;
+}
+
+// Pulsing dot for "live" feel
+function LiveDot() {
+  return (
+    <span className="relative inline-flex h-2 w-2 mr-1.5">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+    </span>
+  );
+}
+
 export default function LeaguePage() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"team" | "sponsor" | "volunteer">("team");
@@ -138,6 +168,14 @@ export default function LeaguePage() {
   const [formData, setFormData] = useState({ name: "", company: "", email: "", mobile: "", role: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Live team counter
+  const { data: leagueStats } = useQuery<{ teams: number; spots: number; available: number }>({
+    queryKey: ["/api/league/stats"],
+    refetchInterval: 30_000,
+  });
+  const animatedTeams = useCountUp(leagueStats?.teams ?? 0);
+  const animatedAvailable = useCountUp(leagueStats?.available ?? 0);
 
   // Parallax on hero
   useEffect(() => {
@@ -248,6 +286,46 @@ export default function LeaguePage() {
               >
                 <Download className="w-5 h-5 mr-2" /> Download Deck
               </Button>
+            </div>
+
+            {/* Live team counter */}
+            <div className="max-w-4xl mx-auto mb-4">
+              <div className="relative bg-emerald-950/60 border border-emerald-500/40 rounded-2xl p-5 backdrop-blur-sm overflow-hidden">
+                {/* urgency progress bar */}
+                {leagueStats && (
+                  <div
+                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-emerald-300 transition-all duration-1000"
+                    style={{ width: `${(leagueStats.teams / leagueStats.spots) * 100}%` }}
+                  />
+                )}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center shrink-0">
+                      <Trophy className="w-6 h-6 text-emerald-400" />
+                    </div>
+                    <div className="text-left">
+                      <div className="flex items-center gap-1.5 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-0.5">
+                        <LiveDot /> Live Registration
+                      </div>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-4xl font-black text-white tabular-nums">{animatedTeams}</span>
+                        <span className="text-slate-400 text-sm">/ {leagueStats?.spots ?? 16} teams</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center sm:items-end gap-1">
+                    <div className="text-3xl font-black text-yellow-400 tabular-nums">{animatedAvailable}</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-widest">spots remaining</div>
+                    <Button
+                      size="sm"
+                      className="mt-1 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-xl text-xs px-4"
+                      onClick={() => document.getElementById("register")?.scrollIntoView({ behavior: "smooth" })}
+                    >
+                      Register Now →
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Stats bar */}

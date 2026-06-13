@@ -383,6 +383,43 @@ Source: Website Concierge Page
     }
   });
 
+  app.get("/api/league/stats", async (_req, res) => {
+    try {
+      // Create table + seed on first access
+      await db.execute(`
+        CREATE TABLE IF NOT EXISTS league_stats (
+          key TEXT PRIMARY KEY,
+          value INTEGER NOT NULL DEFAULT 0
+        )
+      `);
+      await db.execute(`
+        INSERT INTO league_stats (key, value) VALUES ('teams', 4)
+        ON CONFLICT (key) DO NOTHING
+      `);
+      const result = await db.execute(`SELECT value FROM league_stats WHERE key = 'teams'`);
+      const teams = (result.rows[0] as any)?.value ?? 4;
+      const spots = 16;
+      res.json({ teams: Number(teams), spots, available: spots - Number(teams) });
+    } catch {
+      res.json({ teams: 4, spots: 16, available: 12 });
+    }
+  });
+
+  app.post("/api/league/stats/increment", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      await db.execute(`UPDATE league_stats SET value = value + 1 WHERE key = 'teams'`);
+      const result = await db.execute(`SELECT value FROM league_stats WHERE key = 'teams'`);
+      const teams = (result.rows[0] as any)?.value ?? 4;
+      res.json({ teams: Number(teams) });
+    } catch {
+      res.status(500).json({ error: "Failed to update" });
+    }
+  });
+
   app.get("/api/league/download/:doc", (req, res) => {
     const { doc } = req.params;
     const labels: Record<string, string> = {
