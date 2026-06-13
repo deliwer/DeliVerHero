@@ -448,9 +448,11 @@ Source: Website Concierge Page
         week_label TEXT NOT NULL DEFAULT '',
         result TEXT NOT NULL DEFAULT '',
         status TEXT NOT NULL DEFAULT 'upcoming',
+        player_of_match TEXT NOT NULL DEFAULT '',
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
       )
     `);
+    await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS player_of_match TEXT NOT NULL DEFAULT ''`);
   };
 
   app.get("/api/league/teams", async (_req, res) => {
@@ -540,10 +542,10 @@ Source: Website Concierge Page
     const secret = req.headers["x-admin-token"] as string;
     if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
     try {
-      const { result: matchResult, status } = req.body;
+      const { result: matchResult, status, player_of_match = "" } = req.body;
       const r = await db.execute(
-        `UPDATE league_matches SET result=$1, status=$2 WHERE id=$3 RETURNING *`,
-        [matchResult ?? "", status ?? "upcoming", req.params.id]
+        `UPDATE league_matches SET result=$1, status=$2, player_of_match=$3 WHERE id=$4 RETURNING *`,
+        [matchResult ?? "", status ?? "upcoming", player_of_match, req.params.id]
       );
       res.json(r.rows[0]);
     } catch (e: any) {
