@@ -453,6 +453,10 @@ Source: Website Concierge Page
       )
     `);
     await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS player_of_match TEXT NOT NULL DEFAULT ''`);
+    await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS home_runs INTEGER`);
+    await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS home_overs NUMERIC(5,1)`);
+    await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS away_runs INTEGER`);
+    await db.execute(`ALTER TABLE league_matches ADD COLUMN IF NOT EXISTS away_overs NUMERIC(5,1)`);
     await db.execute(`
       CREATE TABLE IF NOT EXISTS league_player_stats (
         id SERIAL PRIMARY KEY,
@@ -553,10 +557,19 @@ Source: Website Concierge Page
     const secret = req.headers["x-admin-token"] as string;
     if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
     try {
-      const { result: matchResult, status, player_of_match = "" } = req.body;
+      const { result: matchResult, status, player_of_match = "", home_runs, home_overs, away_runs, away_overs } = req.body;
       const r = await db.execute(
-        `UPDATE league_matches SET result=$1, status=$2, player_of_match=$3 WHERE id=$4 RETURNING *`,
-        [matchResult ?? "", status ?? "upcoming", player_of_match, req.params.id]
+        `UPDATE league_matches SET result=$1, status=$2, player_of_match=$3,
+          home_runs=$4, home_overs=$5, away_runs=$6, away_overs=$7
+         WHERE id=$8 RETURNING *`,
+        [
+          matchResult ?? "", status ?? "upcoming", player_of_match,
+          home_runs != null ? Number(home_runs) : null,
+          home_overs != null ? Number(home_overs) : null,
+          away_runs != null ? Number(away_runs) : null,
+          away_overs != null ? Number(away_overs) : null,
+          req.params.id,
+        ]
       );
       res.json(r.rows[0]);
     } catch (e: any) {
@@ -605,6 +618,59 @@ Source: Website Concierge Page
     try {
       await db.execute(`DELETE FROM league_matches WHERE id=$1`, [req.params.id]);
       res.json({ ok: true });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
+  app.get("/api/league/nrr", async (_req, res) => {
+    try {
+      await initLeagueTables();
+      const r = await db.execute(`
+        SELECT
+          team_name,
+          SUM(runs_for)::float       AS total_runs_for,
+          SUM(overs_for)::float      AS total_overs_for,
+          SUM(runs_against)::float   AS total_runs_against,
+          SUM(overs_against)::float  AS total_overs_against
+        FROM (
+          SELECT
+            home_team          AS team_name,
+            home_runs          AS runs_for,
+            home_overs         AS overs_for,
+            away_runs          AS runs_against,
+            away_overs         AS overs_against
+          FROM league_matches
+          WHERE status = 'completed'
+            AND home_runs IS NOT NULL AND home_overs IS NOT NULL
+            AND away_runs IS NOT NULL AND away_overs IS NOT NULL
+            AND home_overs > 0 AND away_overs > 0
+          UNION ALL
+          SELECT
+            away_team          AS team_name,
+            away_runs          AS runs_for,
+            away_overs         AS overs_for,
+            home_runs          AS runs_against,
+            home_overs         AS overs_against
+          FROM league_matches
+          WHERE status = 'completed'
+            AND home_runs IS NOT NULL AND home_overs IS NOT NULL
+            AND away_runs IS NOT NULL AND away_overs IS NOT NULL
+            AND home_overs > 0 AND away_overs > 0
+        ) t
+        GROUP BY team_name
+      `);
+      const nrrMap: Record<string, number> = {};
+      for (const row of r.rows as any[]) {
+        const rf = Number(row.total_runs_for)    || 0;
+        const of_ = Number(row.total_overs_for)  || 0;
+        const ra = Number(row.total_runs_against) || 0;
+        const oa = Number(row.total_overs_against)|| 0;
+        if (of_ > 0 && oa > 0) {
+          nrrMap[row.team_name] = parseFloat(((rf / of_) - (ra / oa)).toFixed(3));
+        }
+      }
+      res.json(nrrMap);
     } catch (e: any) {
       res.status(500).json({ error: e.message });
     }

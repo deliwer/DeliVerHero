@@ -248,10 +248,13 @@ export default function LeaguePage() {
 
   const [lastSavedResult, setLastSavedResult] = useState<any | null>(null);
 
+  const { data: nrrMap = {} } = useQuery<Record<string, number>>({ queryKey: ["/api/league/nrr"] });
+
   const updateMatchMut = useMutation({
     mutationFn: ({ id, ...body }: any) => adminFetch("PATCH", `/api/league/matches/${id}`, body),
     onSuccess: (_data, variables) => {
       qc.invalidateQueries({ queryKey: ["/api/league/matches"] });
+      qc.invalidateQueries({ queryKey: ["/api/league/nrr"] });
       if (variables.status === "completed" && variables.result) {
         setLastSavedResult(variables);
       }
@@ -1196,8 +1199,17 @@ export default function LeaguePage() {
                               <div className="text-xs font-bold text-rose-400 text-center">{t.losses}</div>
                               {/* Pts */}
                               <div className={`text-sm font-black text-center ${t.pts > 0 ? "text-white" : "text-slate-600"}`}>{t.pts}</div>
-                              {/* NRR placeholder */}
-                              <div className="text-[10px] text-slate-700 text-center">—</div>
+                              {/* NRR */}
+                              {(() => {
+                                const nrr = nrrMap[t.team_name];
+                                if (nrr == null) return <div className="text-[10px] text-slate-700 text-center">—</div>;
+                                const pos = nrr >= 0;
+                                return (
+                                  <div className={`text-[10px] font-bold text-center ${pos ? "text-emerald-400" : "text-rose-400"}`}>
+                                    {pos ? "+" : ""}{nrr.toFixed(3)}
+                                  </div>
+                                );
+                              })()}
                             </div>
                           );
                         })}
@@ -2255,6 +2267,48 @@ export default function LeaguePage() {
                                     onChange={e => setEditingMatch((p: any) => ({ ...p, player_of_match: e.target.value }))}
                                     className="flex-1 bg-amber-500/5 border-amber-500/20 text-white placeholder:text-slate-600 text-sm"
                                   />
+                                </div>
+                                {/* Innings scores for NRR */}
+                                <div className="border border-white/6 rounded-lg p-2.5 bg-white/[0.02]">
+                                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-600 mb-2">Innings scores (for NRR)</p>
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <div>
+                                      <p className="text-[9px] text-slate-600 mb-1 truncate">{editingMatch.home_team}</p>
+                                      <div className="flex gap-1.5">
+                                        <Input
+                                          type="number" min="0" placeholder="Runs"
+                                          value={editingMatch.home_runs ?? ""}
+                                          onChange={e => setEditingMatch((p: any) => ({ ...p, home_runs: e.target.value === "" ? null : Number(e.target.value) }))}
+                                          className="w-0 flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-700 text-xs h-8"
+                                        />
+                                        <Input
+                                          type="number" min="0" max="20" step="0.1" placeholder="Ovs"
+                                          value={editingMatch.home_overs ?? ""}
+                                          onChange={e => setEditingMatch((p: any) => ({ ...p, home_overs: e.target.value === "" ? null : Number(e.target.value) }))}
+                                          className="w-0 flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-700 text-xs h-8"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <p className="text-[9px] text-slate-600 mb-1 truncate">{editingMatch.away_team}</p>
+                                      <div className="flex gap-1.5">
+                                        <Input
+                                          type="number" min="0" placeholder="Runs"
+                                          value={editingMatch.away_runs ?? ""}
+                                          onChange={e => setEditingMatch((p: any) => ({ ...p, away_runs: e.target.value === "" ? null : Number(e.target.value) }))}
+                                          className="w-0 flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-700 text-xs h-8"
+                                        />
+                                        <Input
+                                          type="number" min="0" max="20" step="0.1" placeholder="Ovs"
+                                          value={editingMatch.away_overs ?? ""}
+                                          onChange={e => setEditingMatch((p: any) => ({ ...p, away_overs: e.target.value === "" ? null : Number(e.target.value) }))}
+                                          className="w-0 flex-1 bg-white/5 border-white/10 text-white placeholder:text-slate-700 text-xs h-8"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="flex gap-2 items-center">
                                   <Button size="sm" className="bg-emerald-500 text-white" onClick={() => updateMatchMut.mutate(editingMatch)}>Save</Button>
                                   <Button size="sm" variant="ghost" className="text-slate-400" onClick={() => setEditingMatch(null)}>Cancel</Button>
                                 </div>
