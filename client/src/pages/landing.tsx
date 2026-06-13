@@ -543,13 +543,6 @@ export default function LandingPage() {
 
           {/* CTA */}
           <div className="flex flex-col items-center gap-3">
-            <SmartChannelCTA
-              waMessage="I found a property in Dubai. I want full move-in support (Ejari, movers, setup)."
-              size="md"
-              layout="row"
-              showBackupLabel={true}
-              testIdPrefix="bundle"
-            />
             <Link href="/concierge-pricing">
               <Button variant="outline" className="border-white/15 text-gray-500 hover:text-white hover:border-white/30 font-bold rounded-xl px-6 h-9 text-xs transition-all">
                 See pricing →
