@@ -442,114 +442,106 @@ export default function LandingPage() {
       {/* ============================================
           VALUE PROP — FROM KEYS TO KETTLE IN 24 HOURS
          ============================================ */}
-      <section id="how-it-works" className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90" />
-        </div>
+      <section id="how-it-works" className="relative py-24 px-6 border-b border-white/5 overflow-hidden bg-slate-950">
+        {/* Subtle top glow */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
-        <div className="max-w-4xl mx-auto space-y-10 relative z-10">
-          {/* Section header */}
+        <div className="max-w-3xl mx-auto space-y-16 relative z-10">
+
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center space-y-3"
+            className="text-center space-y-4"
           >
-            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
               One coordinator. Everything sorted.
             </div>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
-              From{" "}
-              <span className="text-emerald-400">Keys to Kettle</span>
-              {" "}in 24 Hours.
+              From Keys to Kettle{" "}
+              <span className="text-emerald-400">in 24 Hours.</span>
             </h2>
-            <p className="text-gray-400 font-medium max-w-lg mx-auto">
-              Ejari, movers, DEWA, internet, cleaning — vetted vendors, flat-rate pricing, one WhatsApp thread. No upfront coordination fees.
+            <p className="text-gray-400 font-medium max-w-md mx-auto leading-relaxed">
+              One WhatsApp message. We handle Ejari, movers, DEWA, cleaning and water setup — you just show up.
             </p>
           </motion.div>
 
-          {/* Services grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {/* 3-step flow */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/8">
             {[
-              { icon: "📄", label: "Ejari Registration", href: "/ejari-dubai" },
-              { icon: "🚛", label: "Movers & Packing", href: "/relocate" },
-              { icon: "⚡", label: "DEWA & Utility Setup", href: "/dewa-activation" },
-              { icon: "📶", label: "Internet Connection", href: "/setup" },
-              { icon: "🧹", label: "Cleaning & Preparation", href: "/home-services" },
-              { icon: "💧", label: "Water Filter Setup", href: "/home-services" },
+              {
+                step: "01",
+                icon: "💬",
+                title: "Message Us",
+                body: "Tell us your move-in date and apartment size on WhatsApp. Takes 60 seconds.",
+              },
+              {
+                step: "02",
+                icon: "📋",
+                title: "We Coordinate",
+                body: "Ejari, DEWA, movers, cleaning, internet — we brief vetted vendors and manage the schedule.",
+              },
+              {
+                step: "03",
+                icon: "🏠",
+                title: "Arrive Home-Ready",
+                body: "Walk into a connected, clean, registered home. AED 0 coordination fee to you.",
+              },
+            ].map((s, i) => (
+              <motion.div
+                key={s.step}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="bg-slate-900/80 px-7 py-8 space-y-3 flex flex-col"
+              >
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500/60">{s.step}</span>
+                <span className="text-3xl">{s.icon}</span>
+                <p className="text-white font-black text-base leading-snug">{s.title}</p>
+                <p className="text-gray-500 text-sm font-medium leading-relaxed flex-1">{s.body}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* What's covered — compact pill row */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              { icon: "📄", label: "Ejari" },
+              { icon: "🚛", label: "Movers" },
+              { icon: "⚡", label: "DEWA" },
+              { icon: "📶", label: "Internet" },
+              { icon: "🧹", label: "Cleaning" },
+              { icon: "💧", label: "Water Filter" },
             ].map((s) => (
-              <Link key={s.label} href={s.href}>
-                <div className="group flex items-center gap-3 px-4 py-3 bg-white/10 backdrop-blur-md border border-white/15 hover:border-emerald-400/50 hover:bg-white/15 rounded-xl transition-all cursor-pointer h-full">
-                  <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{s.icon}</span>
-                  <span className="text-white font-black text-xs uppercase tracking-tight leading-tight">{s.label}</span>
-                </div>
-              </Link>
+              <span
+                key={s.label}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-400 text-xs font-bold"
+              >
+                {s.icon} {s.label}
+              </span>
             ))}
           </div>
 
-          {/* Cost breakdown */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden divide-y divide-white/5">
-            <div className="px-5 py-2.5">
-              <p className="text-[10px] text-amber-400 font-black uppercase tracking-widest">Typical move-in cost estimates</p>
-            </div>
-            {[
-              { service: "Ejari Registration", range: "AED 200–300", icon: "📄" },
-              { service: "Movers (depends on property size)", range: "AED 800–2,500", icon: "🚛" },
-              { service: "Utility Setup (DEWA)", range: "Varies by property", icon: "⚡" },
-              { service: "Deep Cleaning (optional)", range: "AED 250–600", icon: "🧹" },
-            ].map((row) => (
-              <div key={row.service} className="flex items-center justify-between px-5 py-3">
-                <div className="flex items-center gap-2">
-                  <span>{row.icon}</span>
-                  <span className="text-gray-300 font-bold text-xs">{row.service}</span>
-                </div>
-                <span className="text-emerald-400 font-black text-xs">{row.range}</span>
-              </div>
-            ))}
-            <div className="px-5 py-3 bg-emerald-500/5">
-              <p className="text-emerald-300 font-black text-xs text-center">DeliWer coordination fee: AED 0 to you</p>
-            </div>
-          </div>
-
-          {/* "Just Got Keys?" urgency card */}
-          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-emerald-500 text-slate-950 text-[10px] font-black px-4 py-1.5 rounded-bl-2xl uppercase tracking-widest">
-              High Priority
-            </div>
-            <div className="flex-1 space-y-3 pr-2">
-              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Just Received Your Keys?</p>
-              <h3 className="text-xl font-black uppercase tracking-tight text-white leading-tight">
-                Day 1 problems — solved before you arrive.
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                {["No drinking water ready", "No shower filter installed", "Utilities not activated"].map((issue) => (
-                  <div key={issue} className="flex items-start gap-2">
-                    <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-red-400 text-[10px] font-black">!</span>
-                    </div>
-                    <span className="text-gray-200 font-medium text-sm">{issue}</span>
-                  </div>
-                ))}
-              </div>
+          {/* Just Got Keys urgency strip */}
+          <div className="rounded-2xl border border-emerald-500/25 bg-emerald-950/30 px-6 py-5 flex flex-col sm:flex-row items-center gap-5">
+            <div className="flex-1 min-w-0">
+              <p className="text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-1">Just received your keys?</p>
+              <p className="text-white font-black text-lg leading-snug">Day 1 sorted — before you arrive.</p>
+              <p className="text-gray-500 text-sm mt-1">Water, utilities, and cleaning ready on move-in day.</p>
             </div>
             <Button
-              size="lg"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl h-14 px-7 text-sm shadow-xl transition-all group shrink-0"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl h-12 px-6 text-sm shrink-0 gap-2 transition-all"
               onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
               data-testid="button-just-got-keys"
             >
-              <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-              WhatsApp: I Just Got My Keys
+              <MessageCircle className="w-4 h-4" /> I Just Got My Keys
             </Button>
           </div>
 
-          {/* CTA block */}
+          {/* CTA */}
           <div className="flex flex-col items-center gap-3">
             <SmartChannelCTA
               waMessage="I found a property in Dubai. I want full move-in support (Ejari, movers, setup)."
@@ -559,14 +551,15 @@ export default function LandingPage() {
               testIdPrefix="bundle"
             />
             <Link href="/concierge-pricing">
-              <Button variant="outline" className="border-white/20 text-gray-400 hover:text-white hover:border-white/40 font-black rounded-xl px-6 h-10 text-sm transition-all">
-                View Pricing →
+              <Button variant="outline" className="border-white/15 text-gray-500 hover:text-white hover:border-white/30 font-bold rounded-xl px-6 h-9 text-xs transition-all">
+                See pricing →
               </Button>
             </Link>
+            <p className="text-[10px] text-gray-700 font-bold uppercase tracking-widest">
+              No hidden fees · You pay vendors directly at market rates
+            </p>
           </div>
-          <p className="text-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-            No hidden fees · You pay vendors directly at market rates
-          </p>
+
         </div>
       </section>
       {/* WELCOME BONUS SECTION */}
