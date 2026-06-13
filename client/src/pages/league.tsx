@@ -1121,6 +1121,105 @@ export default function LeaguePage() {
               );
             })()}
 
+            {/* ── Points Table ── */}
+            {teams.length > 0 && (() => {
+              const ptGroups = (["A", "B"] as const).map(grp => {
+                const rows = teams
+                  .filter((t: any) => t.group_name === grp)
+                  .map((t: any) => ({
+                    ...t,
+                    played: (t.wins ?? 0) + (t.losses ?? 0),
+                    pts: (t.wins ?? 0) * 2,
+                  }))
+                  .sort((a: any, b: any) => b.pts - a.pts || b.wins - a.wins || a.losses - b.losses);
+                return { grp, rows };
+              }).filter(g => g.rows.length > 0);
+              if (ptGroups.length === 0) return null;
+              return (
+                <div className="mb-10">
+                  <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-600 mb-5 flex items-center justify-center gap-2">
+                    <span className="h-px w-10 bg-slate-800 inline-block" />Points Table<span className="h-px w-10 bg-slate-800 inline-block" />
+                  </p>
+                  <div className={`grid gap-6 ${ptGroups.length > 1 ? "lg:grid-cols-2" : ""}`}>
+                    {ptGroups.map(({ grp, rows }) => (
+                      <div key={grp} className="rounded-2xl border border-white/8 overflow-hidden bg-white/[0.02]">
+                        {/* Table header */}
+                        <div className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.03] border-b border-white/8">
+                          <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center font-black text-xs text-white shrink-0">{grp}</div>
+                          <span className="font-black text-sm text-white">Group {grp}</span>
+                        </div>
+                        {/* Column labels */}
+                        <div className="grid items-center px-4 py-1.5 border-b border-white/5"
+                          style={{ gridTemplateColumns: "2rem 1fr 2.5rem 2.5rem 2.5rem 2.5rem 3.5rem" }}>
+                          <div />
+                          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600">Team</div>
+                          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 text-center">P</div>
+                          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 text-center">W</div>
+                          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 text-center">L</div>
+                          <div className="text-[9px] font-black uppercase tracking-widest text-emerald-600 text-center">Pts</div>
+                          <div className="text-[9px] font-black uppercase tracking-widest text-slate-600 text-center">NRR</div>
+                        </div>
+                        {/* Rows */}
+                        {rows.map((t: any, idx: number) => {
+                          const isTop = idx === 0 && t.pts > 0;
+                          const isElim = t.played > 0 && t.wins === 0 && rows.length >= 4;
+                          return (
+                            <div
+                              key={t.id}
+                              className={`grid items-center px-4 py-2.5 border-b border-white/5 last:border-b-0 transition-colors cursor-pointer hover:bg-white/[0.03] ${isTop ? "bg-emerald-950/30" : ""}`}
+                              style={{ gridTemplateColumns: "2rem 1fr 2.5rem 2.5rem 2.5rem 2.5rem 3.5rem" }}
+                              onClick={() => setExpandedTeamId(expandedTeamId === t.id ? null : t.id)}
+                            >
+                              {/* Rank / status dot */}
+                              <div className="flex items-center justify-center">
+                                {isTop ? (
+                                  <span className="text-amber-400 text-xs">🏆</span>
+                                ) : isElim ? (
+                                  <span className="w-2 h-2 rounded-full bg-rose-600/60 inline-block" />
+                                ) : (
+                                  <span className="text-[10px] font-black text-slate-700">{idx + 1}</span>
+                                )}
+                              </div>
+                              {/* Team name + emoji */}
+                              <div className="flex items-center gap-2 min-w-0">
+                                <span className="text-base leading-none shrink-0">{t.logo_emoji}</span>
+                                <div className="min-w-0">
+                                  <div className="text-xs font-bold text-white truncate">{t.team_name}</div>
+                                  <div className="text-[9px] text-slate-600 truncate">{t.agency}</div>
+                                </div>
+                              </div>
+                              {/* P */}
+                              <div className="text-xs font-semibold text-slate-400 text-center">{t.played}</div>
+                              {/* W */}
+                              <div className="text-xs font-bold text-emerald-400 text-center">{t.wins}</div>
+                              {/* L */}
+                              <div className="text-xs font-bold text-rose-400 text-center">{t.losses}</div>
+                              {/* Pts */}
+                              <div className={`text-sm font-black text-center ${t.pts > 0 ? "text-white" : "text-slate-600"}`}>{t.pts}</div>
+                              {/* NRR placeholder */}
+                              <div className="text-[10px] text-slate-700 text-center">—</div>
+                            </div>
+                          );
+                        })}
+                        {/* Legend */}
+                        <div className="flex items-center gap-4 px-4 py-2 bg-white/[0.01] border-t border-white/5">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-amber-400 text-[10px]">🏆</span>
+                            <span className="text-[9px] text-slate-700">Group leader</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-rose-600/60 inline-block" />
+                            <span className="text-[9px] text-slate-700">Elimination zone</span>
+                          </div>
+                          <div className="ml-auto text-[9px] text-slate-700">2 pts per win · click row to see H2H</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
             {teams.length === 0 ? (
               <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
                 <Trophy className="w-12 h-12 text-slate-700 mx-auto mb-4" />
