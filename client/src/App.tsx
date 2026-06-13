@@ -251,6 +251,7 @@ const CaptureReferrers = lazy(() => import("@/pages/capture-referrers"));
 const MarketingTenantLeads = lazy(() => import("@/pages/marketing/tenant-leads"));
 const MarketingTenantReferrers = lazy(() => import("@/pages/marketing/tenant-referrers"));
 const ReferralEngine = lazy(() => import("@/pages/marketing/referral-engine"));
+const LeaguePage = lazy(() => import("@/pages/league"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -374,6 +375,7 @@ function Router() {
         <Route path="/marketing/tenant-leads" component={MarketingTenantLeads} />
         <Route path="/marketing/tenant-referrers" component={MarketingTenantReferrers} />
         <Route path="/marketing/referral-engine" component={ReferralEngine} />
+        <Route path="/league" component={LeaguePage} />
         <Route path="/errand" component={ErrandPage} />
         <Route path="/marketing/legacy" component={MarketingLegacy} />
         <Route path="/marketing/legacy/affiliate-management" component={AffiliateManagement} />

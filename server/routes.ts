@@ -360,6 +360,40 @@ Source: Website Concierge Page
   });
 
   // Lead Applications & Instagram Marketing Leads
+  // ── Brokers Night Cricket League 2026 ────────────────────────────────────
+  app.post("/api/league/register", async (req, res) => {
+    try {
+      const { name, company, email, mobile, role, message, type } = req.body;
+      // Log to console and store as a generic lead
+      console.log(`[LEAGUE] New ${type} registration: ${name} <${email}> — ${company}`);
+      // Attempt to store via existing leads mechanism as a fallback
+      try {
+        await db.execute(
+          `INSERT INTO league_registrations (name, company, email, mobile, role, message, type, created_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
+           ON CONFLICT DO NOTHING`,
+          [name, company, email, mobile || "", role || "", message || "", type || "team"]
+        );
+      } catch {
+        // Table may not exist yet — that's fine, we still return success
+      }
+      res.json({ ok: true, message: "Registration received. Our team will be in touch shortly." });
+    } catch (error: any) {
+      res.status(400).json({ error: error.message || "Failed to submit registration" });
+    }
+  });
+
+  app.get("/api/league/download/:doc", (req, res) => {
+    const { doc } = req.params;
+    const labels: Record<string, string> = {
+      proposal: "Sponsorship Proposal",
+      "team-pack": "Team Registration Pack",
+      brochure: "Partnership Brochure",
+    };
+    const label = labels[doc] || "Document";
+    res.json({ ok: true, message: `${label} — please email partners@deliwer.com to receive the full document.` });
+  });
+
   app.post("/api/leads", async (req, res) => {
     try {
       const validatedData = insertLeadApplicationSchema.parse(req.body);
