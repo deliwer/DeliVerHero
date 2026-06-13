@@ -564,6 +564,41 @@ Source: Website Concierge Page
     }
   });
 
+  app.post("/api/league/matches/:id/kick-off-broadcast", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
+    try {
+      const r = await db.execute(`SELECT * FROM league_matches WHERE id=$1`, [req.params.id]);
+      const m = r.rows[0] as any;
+      if (!m) return res.status(404).json({ error: "Match not found" });
+
+      const message =
+        `🏏 *MATCH STARTING NOW*\n\n` +
+        `🔴 *${m.home_team}* vs *${m.away_team}*\n` +
+        (m.venue ? `📍 ${m.venue}\n` : "") +
+        (m.match_date ? `📅 ${m.match_date}\n` : "") +
+        (m.week_label ? `🗓 ${m.week_label}\n` : "") +
+        `\n📊 Follow live standings 👇\n` +
+        `${process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}` : "https://deliwer.com"}/league\n\n` +
+        `_Brokers Night Cricket League UAE 2026 — Presented by Mariamain & DeliWer_`;
+
+      const numbersRaw = process.env.WHATSAPP_BROADCAST_NUMBERS || "";
+      const numbers = numbersRaw.split(",").map((n: string) => n.trim()).filter(Boolean);
+
+      if (!process.env.WHATSAPP_TOKEN || !process.env.WHATSAPP_PHONE_NUMBER_ID || numbers.length === 0) {
+        return res.json({ simulated: true, message, sentTo: 0 });
+      }
+
+      const results = await Promise.allSettled(
+        numbers.map((num: string) => sendWhatsApp(num, message))
+      );
+      const sent = results.filter((r: any) => r.status === "fulfilled" && r.value?.success).length;
+      res.json({ simulated: false, sentTo: sent, total: numbers.length, message });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
   app.delete("/api/league/matches/:id", async (req, res) => {
     const secret = req.headers["x-admin-token"] as string;
     if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) return res.status(401).json({ error: "Unauthorized" });
