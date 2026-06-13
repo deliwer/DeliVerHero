@@ -873,23 +873,6 @@ export default function LandingPage() {
       <footer className="py-20 px-4 border-t border-white/5 text-center bg-slate-950">
         <div className="max-w-4xl mx-auto space-y-8">
           <OperationalBadges variant="dark" />
-          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
-            {[
-              { label: "About", href: "/about" },
-              { label: "Move-In", href: "/relocate" },
-              { label: "Ejari", href: "/ejari" },
-              { label: "Pricing", href: "/concierge-pricing" },
-              { label: "Earn Rewards", href: "/earn" },
-              { label: "Contact", href: "/contact" },
-              { label: "Partners", href: "/partners" },
-            ].map((l) => (
-              <Link key={l.href} href={l.href}>
-                <span className="text-gray-600 hover:text-gray-400 transition-colors text-[10px] font-black uppercase tracking-widest cursor-pointer">
-                  {l.label}
-                </span>
-              </Link>
-            ))}
-          </div>
           <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] max-w-xl mx-auto">
             DeliWer is an operational back-office for Dubai residents and brokers, focused on relocation, settlement, and daily living journeys.
           </p>
