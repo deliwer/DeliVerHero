@@ -780,19 +780,28 @@ export default function LeaguePage() {
 
             {/* Map + photos grid */}
             <div className="grid lg:grid-cols-2 gap-6 mb-8">
-              {/* Google Maps embed */}
+              {/* OpenStreetMap embed — no API key, no X-Frame-Options block */}
               <div className="rounded-2xl overflow-hidden border border-white/10 aspect-[4/3] lg:aspect-auto lg:min-h-[380px] relative">
                 <iframe
                   title="Majan Community Ground"
-                  src="https://maps.google.com/maps?q=Majan+Community+Football+Ground,+Dubai,+UAE&output=embed&hl=en&z=16"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=55.353%2C25.088%2C55.383%2C25.108&layer=mapnik&marker=25.098%2C55.368"
                   width="100%"
                   height="100%"
                   style={{ border: 0, minHeight: "380px" }}
                   allowFullScreen
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full"
                 />
+                {/* "Open in Google Maps" pill overlay */}
+                <a
+                  href="https://maps.app.goo.gl/4T2c2Wi7mCbj7Kqi8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-white text-slate-900 text-xs font-black px-3 py-1.5 rounded-full shadow-lg hover:bg-emerald-50 transition-colors"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  Open in Google Maps
+                </a>
               </div>
 
               {/* Photo grid */}
