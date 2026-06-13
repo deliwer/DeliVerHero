@@ -521,150 +521,108 @@ export default function LandingPage() {
 
         </div>
       </section>
-      {/* WELCOME BONUS SECTION */}
-      <section className="py-20 px-6 bg-white/5">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-[10px] font-black uppercase tracking-widest">
-              🎁 The Welcome Bonus Deal
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-[1]">
-              Congratulations —{" "}
-              <span className="text-amber-400" style={{ textShadow: "0 0 40px rgba(251,191,36,0.35)" }}>
-                Welcome to Your New Home.
-              </span>{" "}
-              Lunch Is On Us.
-            </h2>
-            <p className="text-gray-400 font-medium text-lg leading-relaxed">
-              Start your move-in process with DeliWer and earn a free welcome reward. Your first step unlocks exclusive perks — dining credits, partner vouchers, and more — as our way of celebrating your new chapter in Dubai.
-            </p>
-            <div className="space-y-3">
-              {[
-                "Free dining credit when you start your move-in",
-                "Partner vouchers dropped to your WhatsApp",
-                "Exclusive welcome perks for new residents",
-                "Zero cost — just begin the process",
-              ].map((benefit, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-                  <span className="text-white font-bold text-sm">{benefit}</span>
-                </div>
-              ))}
-            </div>
-            <Link href="/earn" data-testid="btn-welcome-bonus">
-              <Button size="lg" className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl px-10 h-16 text-xl shadow-2xl transition-all w-full md:w-auto mt-4">
-                Claim Your Welcome Reward →
-              </Button>
-            </Link>
-          </div>
-          <div className="relative h-96 rounded-3xl overflow-hidden border border-amber-500/20">
-            <img src={lifestyleImages.justGotKeys} alt="Welcome to your new Dubai home" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5">
-              <div className="bg-amber-500/15 backdrop-blur-sm border border-amber-500/30 rounded-xl px-4 py-3">
-                <p className="text-amber-300 font-black text-sm uppercase tracking-wider">🎉 New residents get rewarded</p>
-                <p className="text-white/70 text-xs font-medium mt-0.5">Start your process today — lunch is waiting.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* FINAL CTA — SECTION 8 (moved up) */}
+      {/* FINAL CTA — SECTION 8 */}
       <section className="overflow-hidden">
-        {/* ── Trust / Social Proof ── */}
-        <div className="py-16 px-6 bg-slate-950 border-b border-white/5">
-          <div className="max-w-4xl mx-auto space-y-10">
+        <div className="py-12 px-6 bg-slate-950 border-b border-white/5">
+          <div className="max-w-4xl mx-auto space-y-8">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center space-y-3"
+              transition={{ duration: 0.4 }}
+              className="text-center space-y-2"
             >
-              <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+              <div className="inline-flex items-center gap-1.5 bg-violet-500/10 border border-violet-500/25 text-violet-400 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
                 Trusted by Dubai Tenants
               </div>
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white">Ready to move into your new home?</h2>
+              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Ready to move into your new home?</h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/8">
               {[
-                { icon: "📍", title: "JVC, Marina, Al Nahda & more", desc: "Used by tenants in the most popular Dubai districts." },
-                { icon: "🤝", title: "Partner network for execution", desc: "Vetted moving, cleaning, and utility service partners." },
-                { icon: "⚡", title: "Fast WhatsApp response", desc: "We respond within minutes — not hours." },
-              ].map((item) => (
-                <div key={item.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-2 text-center hover:border-violet-500/30 transition-all">
-                  <span className="text-3xl block">{item.icon}</span>
-                  <h3 className="text-white font-black text-sm uppercase tracking-tight">{item.title}</h3>
-                  <p className="text-gray-500 text-xs font-medium leading-relaxed">{item.desc}</p>
-                </div>
+                { icon: "📍", title: "JVC, Marina, Al Nahda & more", desc: "Popular Dubai districts covered." },
+                { icon: "🤝", title: "Partner network", desc: "Vetted movers, cleaners, utilities." },
+                { icon: "⚡", title: "Fast response", desc: "WhatsApp reply within minutes." },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.08 }}
+                  className="bg-slate-900/80 px-4 py-5 space-y-1.5 text-center"
+                >
+                  <span className="text-xl block">{item.icon}</span>
+                  <h3 className="text-white font-black text-xs uppercase tracking-tight">{item.title}</h3>
+                  <p className="text-gray-500 text-[10px] font-medium leading-relaxed">{item.desc}</p>
+                </motion.div>
               ))}
             </div>
 
             {/* Reviews */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <div className="flex items-center justify-center gap-3">
                 <div className="h-px flex-1 bg-white/5" />
-                <span className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em]">Customer Reviews · 5.0★ on Google</span>
+                <span className="text-gray-600 text-[9px] font-black uppercase tracking-[0.2em]">Customer Reviews · 5.0★ on Google</span>
                 <div className="h-px flex-1 bg-white/5" />
               </div>
 
               <div className="max-w-2xl mx-auto">
-                <div className="bg-white/3 border border-violet-500/20 rounded-2xl p-8 space-y-5 text-center flex flex-col items-center relative" data-testid="trust-anchor-nicole">
-                  <div className="absolute top-3 right-4 flex items-center gap-1 text-emerald-400 text-[10px] font-black uppercase tracking-widest">
+                <div className="bg-white/3 border border-violet-500/20 rounded-xl p-6 space-y-4 text-center flex flex-col items-center relative" data-testid="trust-anchor-nicole">
+                  <div className="absolute top-3 right-4 flex items-center gap-1 text-emerald-400 text-[9px] font-black uppercase tracking-widest">
                     <CheckCircle2 className="w-3 h-3" /> Verified
                   </div>
                   <img src={NicoleImg} alt="Nicole Oliver" data-testid="img-testimonial-nicole-landing"
-                    className="w-16 h-16 rounded-full object-cover border-2 border-violet-400/30 shadow-lg shadow-violet-900/30" />
-                  <div className="flex items-center justify-center gap-1">
+                    className="w-12 h-12 rounded-full object-cover border-2 border-violet-400/30 shadow-lg shadow-violet-900/30" />
+                  <div className="flex items-center justify-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     ))}
                   </div>
-                  <p className="text-gray-200 font-bold leading-relaxed italic text-sm max-w-lg">
+                  <p className="text-gray-300 font-medium leading-relaxed italic text-xs max-w-md">
                     "Just moved into my new place at Marina and DeliWer set up the complete water system — including a free hair shower filter! The difference is incredible. Fast, professional, zero hassle."
                   </p>
-                  <div className="text-center">
+                  <div>
                     <p className="text-white font-black text-xs">Nicole Oliver</p>
                     <p className="text-gray-500 text-[10px]">Dubai Marina · Germany 🇩🇪</p>
                   </div>
                   <a href="https://g.page/r/CRptmgoZmDxSEBI/review" target="_blank" rel="noopener noreferrer"
                     data-testid="link-google-review-trust"
-                    className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-4 w-full justify-center transition-colors">
-                    <svg className="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-[9px] font-black uppercase tracking-widest border-t border-white/5 pt-3 w-full justify-center transition-colors">
+                    <svg className="w-3 h-3 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     Leave a Google Review — Help others find us
                   </a>
                 </div>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              <div className="grid sm:grid-cols-2 gap-3 max-w-4xl mx-auto">
                 {[
                   { id: "zoya-abassi", initials: "ZA", name: "Zoya Abassi", meta: "Dubai · 10 reviews", quote: "Shower filters installed smoothly and hassle-free. Water feels noticeably cleaner and gentler on skin and hair. Definitely recommend.", date: "1 week ago" },
                   { id: "becky-choi", initials: "BC", name: "Becky Choi", meta: "Dubai · Local Guide · 23 reviews", quote: "Great service and professional people.", date: "1 year ago", image: BeckyImg },
                   { id: "syed-ghayoor", initials: "SG", name: "Syed Ghayoor Hassan", meta: "Dubai · 3 reviews", quote: "Best service in town.", date: "2 years ago" },
                 ].map((r) => (
-                  <div key={r.id} className="bg-white/3 border border-blue-500/20 rounded-2xl p-5 space-y-3 relative" data-testid={`landing-review-${r.id}`}>
-                    <div className="absolute top-3 right-4 inline-flex items-center gap-1 text-blue-300 text-[9px] font-black uppercase tracking-widest">
+                  <div key={r.id} className="bg-white/3 border border-blue-500/20 rounded-xl p-4 space-y-2.5 relative" data-testid={`landing-review-${r.id}`}>
+                    <div className="absolute top-3 right-3 inline-flex items-center gap-1 text-blue-300 text-[9px] font-black uppercase tracking-widest">
                       <svg className="w-3 h-3" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571.001-.001.002-.001.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
                       Google
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5">
                       {(r as any).image ? (
-                        <img src={(r as any).image} alt={r.name} className="w-10 h-10 rounded-full object-cover border border-blue-500/40 shadow" data-testid={`img-landing-review-${r.id}`} />
+                        <img src={(r as any).image} alt={r.name} className="w-8 h-8 rounded-full object-cover border border-blue-500/40 shadow shrink-0" data-testid={`img-landing-review-${r.id}`} />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-xs">{r.initials}</div>
+                        <div className="w-8 h-8 rounded-full bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-300 font-black text-[10px] shrink-0">{r.initials}</div>
                       )}
-                      <div className="text-left">
+                      <div>
                         <p className="text-white font-black text-xs">{r.name}</p>
                         <p className="text-gray-500 text-[10px]">{r.meta}</p>
                       </div>
                     </div>
-                    <div className="flex gap-1">
+                    <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-3 h-3 fill-amber-400 text-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                       ))}
                     </div>
-                    <p className="text-gray-200 text-xs italic leading-relaxed">"{r.quote}"</p>
+                    <p className="text-gray-300 text-[11px] italic leading-relaxed">"{r.quote}"</p>
                     <p className="text-gray-600 text-[9px] uppercase tracking-widest font-black">{r.date}</p>
                   </div>
                 ))}
@@ -672,15 +630,57 @@ export default function LandingPage() {
 
               <div className="flex justify-center">
                 <Link href="/reviews" data-testid="link-see-all-reviews">
-                  <Button variant="outline" className="border-blue-500/40 text-blue-300 hover:bg-blue-500/10 font-black uppercase tracking-widest rounded-2xl h-12 px-8 text-xs">
-                    See all customer reviews <ArrowRight className="w-4 h-4 ml-2" />
+                  <Button variant="outline" className="border-blue-500/30 text-blue-400 hover:bg-blue-500/10 font-black uppercase tracking-widest rounded-xl h-9 px-6 text-[10px]">
+                    See all reviews <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
                   </Button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
-
+      </section>
+      {/* WELCOME BONUS SECTION */}
+      <section className="py-12 px-6 bg-white/[0.03] border-b border-white/5">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/25 rounded-full text-amber-400 text-[9px] font-black uppercase tracking-widest">
+              🎁 The Welcome Bonus Deal
+            </div>
+            <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-white leading-tight">
+              Welcome to your new home.{" "}
+              <span className="text-amber-400">Lunch is on us.</span>
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Start your move-in with DeliWer and unlock dining credits, partner vouchers, and welcome perks — at zero cost.
+            </p>
+            <div className="space-y-2">
+              {[
+                "Free dining credit on move-in start",
+                "Partner vouchers to your WhatsApp",
+                "Exclusive perks for new residents",
+              ].map((benefit, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span className="text-gray-300 text-sm">{benefit}</span>
+                </div>
+              ))}
+            </div>
+            <Link href="/earn" data-testid="btn-welcome-bonus">
+              <Button className="bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl px-7 h-11 text-sm shadow-lg transition-all">
+                Claim Your Welcome Reward →
+              </Button>
+            </Link>
+          </div>
+          <div className="relative h-64 rounded-2xl overflow-hidden border border-amber-500/15">
+            <img src={lifestyleImages.justGotKeys} alt="Welcome to your new Dubai home" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
+            <div className="absolute bottom-3 left-3 right-3">
+              <div className="bg-amber-500/15 backdrop-blur-sm border border-amber-500/25 rounded-lg px-3 py-2">
+                <p className="text-amber-300 font-black text-xs uppercase tracking-wider">🎉 New residents get rewarded</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       {/* ── WHAT DELIWER IS NOT ── */}
       <section className="py-8 px-6 bg-slate-950 border-b border-white/5">
