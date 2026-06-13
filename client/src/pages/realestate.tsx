@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, RefreshCw, MessageCircle, ChevronDown } from "lucide-react";
+import { MapPin, RefreshCw, MessageCircle, ChevronDown, PiggyBank, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const DUBAI_AREAS = [
   "Downtown Dubai",
@@ -129,6 +130,38 @@ function BookViewingCTA() {
   );
 }
 
+function FinanceCrosslink() {
+  return (
+    <div className="mt-6 max-w-2xl mx-auto">
+      <Link href="/finance">
+        <div className="group rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-950/40 to-slate-900 hover:border-blue-500/40 hover:from-blue-950/60 transition-all p-5 sm:p-6 shadow-lg cursor-pointer" data-testid="crosslink-finance">
+          <div className="flex items-start sm:items-center justify-between gap-4">
+            <div className="flex items-start sm:items-center gap-4">
+              <div className="w-11 h-11 rounded-xl bg-blue-500/15 border border-blue-500/25 flex items-center justify-center shrink-0">
+                <PiggyBank className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <p className="font-black text-white text-sm mb-1">Ready to buy? Compare mortgages first.</p>
+                <p className="text-slate-400 text-xs leading-relaxed">
+                  Check eligibility, compare bank rates and developer payment plans — all in one place, powered by Yubi.
+                </p>
+                <div className="flex flex-wrap gap-3 mt-2">
+                  {["Pre-approval in 48 hrs", "0% commission", "15+ banks compared"].map((tag) => (
+                    <span key={tag} className="inline-flex items-center gap-1 text-[10px] font-bold text-blue-300/80">
+                      <CheckCircle2 className="w-3 h-3 text-blue-400" /> {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <ArrowRight className="w-5 h-5 text-blue-400 shrink-0 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
 function MapSection() {
   return (
     <div className="pb-16">
@@ -153,6 +186,7 @@ function MapSection() {
           </p>
 
           <BookViewingCTA />
+          <FinanceCrosslink />
         </div>
       </section>
     </div>
