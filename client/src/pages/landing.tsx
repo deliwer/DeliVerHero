@@ -28,6 +28,7 @@ import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
 import { RelocationFunnel, FunnelScenario } from "@/components/relocation-funnel";
+import { FindAHomeBanner } from "@/components/find-a-home-banner";
 
 const HERO_LIFESTYLE_IMG = "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1600&q=80";
 
@@ -437,6 +438,7 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+      <FindAHomeBanner />
       {/* ============================================
           VALUE PROP — FROM KEYS TO KETTLE IN 24 HOURS
          ============================================ */}

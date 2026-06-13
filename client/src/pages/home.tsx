@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/navigation";
+import { FindAHomeBanner } from "@/components/find-a-home-banner";
 import { useState, useEffect } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Helmet } from "react-helmet";
@@ -241,6 +242,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      <FindAHomeBanner />
       {/* ── THE PAIN ── */}
       <section className="py-20 px-4 bg-slate-900/60 border-y border-white/5">
         <div className="max-w-4xl mx-auto space-y-10">
