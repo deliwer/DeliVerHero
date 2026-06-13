@@ -1,0 +1,424 @@
+REPLIT PROMPT
+
+Create a production-ready landing page at:
+
+/league
+
+for DeliWer and Mariamain.
+
+The page should present the "Brokers Night Cricket League UAE 2026" as a premium sports, networking, sustainability, wellness, and business-growth initiative for the UAE real estate industry.
+
+IMPORTANT:
+
+* Preserve all existing DeliWer architecture, routes, APIs, navigation, CMS structures, databases, and functionality.
+* Add only the new /league route.
+* Mobile-first responsive design.
+* SEO optimized.
+* Fast loading.
+* Suitable for sponsor acquisition, broker registrations, and media coverage.
+* Professional corporate appearance comparable to major sporting events and property developer launches.
+
+DESIGN DIRECTION
+
+Visual style:
+
+* Modern sports event meets luxury real estate branding.
+* Premium UAE corporate look.
+* Inspired by ICC, IPL, FIFA community events, Expo City Dubai sustainability themes, and major developer launches.
+* Use real-life royalty-free images.
+* Large cinematic hero sections.
+* Emotional storytelling.
+* Community-focused.
+* Avoid clutter.
+* High conversion-focused layout.
+
+COLOR PALETTE
+
+Primary:
+
+* Deep Navy
+* Emerald Green
+* White
+
+Accent:
+
+* Gold
+* Sustainable Green
+
+Visual themes:
+
+* Cricket
+* Community
+* Wellness
+* Networking
+* Sustainability
+* UAE Real Estate
+
+IMAGE REQUIREMENTS
+
+Use high-quality real-life photography.
+
+Sections should include:
+
+1. Night cricket action
+2. Diverse UAE professionals
+3. Real estate brokers networking
+4. Trophy celebrations
+5. Team photos
+6. Community engagement
+7. Sustainable city imagery
+8. Dubai skyline
+9. Healthy lifestyle visuals
+10. Sponsors and partners collaboration
+
+Images must feel authentic and aspirational.
+
+HERO SECTION
+
+Headline:
+
+BROKERS NIGHT CRICKET LEAGUE UAE 2026
+
+Subheadline:
+
+Play. Network. Grow.
+
+Presented by Mariamain and DeliWer
+
+Supporting Wellness, Sustainability and Growth Across the UAE Real Estate Community.
+
+CTA Buttons:
+
+Register a Team
+Become a Sponsor
+Download Sponsorship Deck
+
+Background:
+
+Full-width cinematic cricket image with subtle animated overlay.
+
+Add statistics:
+
+36,000+
+Broker Reach
+
+250+
+Industry Participants
+
+16
+Teams
+
+8
+Weeks
+
+AED 30,000+
+Sponsor Exposure Package
+
+SECTION 1
+WHY THIS MATTERS
+
+Storytelling section.
+
+Explain:
+
+* Industry stress
+* Burnout
+* Relationship fragmentation
+* Need for wellness
+* Community building
+* Positive networking
+
+Use icons and image cards.
+
+SECTION 2
+THE VISION
+
+Headline:
+
+Building the UAE's Largest Real Estate Sports Community
+
+Show roadmap:
+
+2026
+Cricket League
+
+2027
+Inter-Agency Championship
+
+2028
+UAE Real Estate Sports Festival
+
+Future activities:
+
+* Cricket
+* Football
+* Padel
+* Volleyball
+* Family Days
+* Awards
+
+Animated timeline.
+
+SECTION 3
+SUSTAINABILITY IMPACT
+
+This must be a major section.
+
+Theme:
+
+Healthy Communities.
+Healthy Business.
+Healthy Future.
+
+Include:
+
+Environmental Impact
+
+* Digital-first event
+* Paperless registrations
+* Digital scorecards
+* QR-code engagement
+
+Community Impact
+
+* Wellness
+* Mental resilience
+* Team building
+
+Economic Impact
+
+* SME support
+* Broker development
+* Sponsor visibility
+* Partner growth
+
+Display ESG-style impact cards.
+
+SECTION 4
+SPONSORSHIP OPPORTUNITY
+
+Headline:
+
+Connect With UAE Real Estate Decision Makers
+
+Interactive sponsorship cards.
+
+TITLE SPONSOR
+
+AED 10,000
+
+Benefits:
+
+* Naming rights
+* Jersey branding
+* Trophy branding
+* Media interviews
+* Lead generation
+
+GOLD SPONSOR
+
+AED 5,000
+
+Benefits:
+
+* Team sponsorship
+* Ground branding
+* Content features
+
+SILVER SPONSOR
+
+AED 2,500
+
+Benefits:
+
+* Activation booths
+* Lead capture
+* Brand visibility
+
+Add attractive comparison table.
+
+SECTION 5
+MARKETING REACH
+
+Display visually:
+
+36,000+
+Broker Database
+
+Telegram Communities
+
+WhatsApp Networks
+
+LinkedIn Outreach
+
+Email Campaigns
+
+Real Estate Agencies
+
+Partner Ecosystem
+
+Show audience funnel infographic.
+
+SECTION 6
+WHO SHOULD SPONSOR
+
+Cards for:
+
+* Developers
+* Banks
+* Mortgage Providers
+* Property Portals
+* Telecom Providers
+* Insurance Companies
+* Movers
+* Maintenance Companies
+* Business Setup Firms
+* Hospitality Brands
+
+SECTION 7
+EVENT FORMAT
+
+Interactive timeline.
+
+Week 1-2
+Registration
+
+Week 3-7
+League Matches
+
+Week 8
+Finals
+
+Week 8
+Awards Gala
+
+Display tournament journey visually.
+
+SECTION 8
+MEDIA & CONTENT
+
+Show:
+
+* Reels
+* Shorts
+* Interviews
+* Highlights
+* Team Profiles
+* Sponsor Spotlights
+
+Add sample content mockups.
+
+SECTION 9
+GALLERY
+
+Dynamic masonry gallery.
+
+Real-life sports and networking images.
+
+Lightbox enabled.
+
+SECTION 10
+PARTNERS
+
+Featured brands section.
+
+Mariamain
+
+DeliWer
+
+Future sponsors placeholders.
+
+SECTION 11
+DOWNLOAD CENTER
+
+Professional sponsor resources.
+
+Buttons:
+
+Download Sponsorship Proposal (PDF)
+
+Download Team Registration Pack
+
+Download Partnership Brochure
+
+Generate downloadable PDFs dynamically.
+
+SECTION 12
+REGISTRATION
+
+Forms:
+
+Team Registration
+
+Sponsor Inquiry
+
+Volunteer Registration
+
+Fields:
+
+Name
+Company
+Email
+Mobile
+Role
+Message
+
+Send submissions to:
+
+[partners@deliwer.com](mailto:partners@deliwer.com)
+[marketing@deliwer.com](mailto:marketing@deliwer.com)
+
+SECTION 13
+CONTACT
+
+DeliWer
+
+Website:
+https://deliwer.com
+
+League Page:
+https://deliwer.com/league
+
+Emails:
+
+[partners@deliwer.com](mailto:partners@deliwer.com)
+
+[marketing@deliwer.com](mailto:marketing@deliwer.com)
+
+[info@deliwer.com](mailto:info@deliwer.com)
+
+Phones:
+
++971523946311
+
++971523906019
+
+WhatsApp:
+
+https://wa.me/971523946311
+
+Telegram:
+
+https://t.me/+971523946311
+
+FOOTER MESSAGE
+
+"Brokers Night Cricket League UAE 2026 is a community initiative promoting wellness, networking, sustainability and professional growth across the UAE real estate ecosystem."
+
+TECHNICAL REQUIREMENTS
+
+* SEO metadata
+* Open Graph support
+* Schema markup
+* PDF download support
+* Image lazy loading
+* Mobile responsive
+* Accessibility compliant
+* Analytics ready
+* High Lighthouse score
+* Reusable CMS-driven sections
+* Sponsor management capability
+* Team registration database
+* Future event expansion architecture
+
+The final page should feel like a premium event website capable of attracting sponsors, brokers, developers, media partners, and community organizations while strengthening the Mariamain and DeliWer brands.
