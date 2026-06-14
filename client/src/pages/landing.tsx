@@ -139,6 +139,27 @@ export default function LandingPage() {
   const [calcSubmitted, setCalcSubmitted] = useState(false);
   const { count: dxbToday, flash: dxbFlash } = useDxbCounter();
   const { earner, visible } = useRecentEarners();
+  const [dxbName, setDxbName] = useState("");
+  const [dxbResult, setDxbResult] = useState<{ score: number; level: number; badge: string; color: string } | null>(null);
+  const [dxbAnimating, setDxbAnimating] = useState(false);
+
+  const calcDxbScore = (name: string) => {
+    const clean = name.trim();
+    if (!clean) return;
+    let hash = 0;
+    for (let i = 0; i < clean.length; i++) hash = (hash * 31 + clean.charCodeAt(i)) >>> 0;
+    const score = 150 + (hash % 2651);
+    const levels = [
+      { min: 0,    badge: "Hero Member",              color: "from-slate-600 to-slate-500",    level: 1 },
+      { min: 500,  badge: "Community Champion",       color: "from-emerald-700 to-emerald-500", level: 2 },
+      { min: 1000, badge: "Sustainability Ambassador",color: "from-blue-700 to-blue-500",       level: 3 },
+      { min: 1800, badge: "Planet Hero Elite",        color: "from-violet-700 to-violet-500",   level: 4 },
+      { min: 2400, badge: "Hall of Heroes",           color: "from-amber-600 to-yellow-400",    level: 5 },
+    ];
+    const { badge, color, level } = [...levels].reverse().find(l => score >= l.min)!;
+    setDxbAnimating(true);
+    setTimeout(() => { setDxbResult({ score, level, badge, color }); setDxbAnimating(false); }, 320);
+  };
 
   const openFunnel = (scenario?: FunnelScenario) => {
     setFunnelScenario(scenario);
@@ -763,6 +784,106 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── YOUR DXB SCORE WIDGET ── */}
+      <section className="py-8 px-6 bg-slate-950 border-b border-emerald-500/10">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] overflow-hidden">
+            {/* Header row */}
+            <div className="flex items-center gap-3 px-5 py-3.5 border-b border-emerald-500/10">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-400 flex items-center justify-center shrink-0">
+                <Sparkles className="w-3 h-3 text-slate-950" />
+              </div>
+              <p className="text-xs font-black uppercase tracking-widest text-white">What's your DXB Score?</p>
+              <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-emerald-600">Free · Instant</span>
+            </div>
+
+            <div className="px-5 py-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+              {/* Input + button */}
+              {!dxbResult ? (
+                <>
+                  <p className="text-sm text-gray-400 shrink-0 hidden sm:block">Enter your first name →</p>
+                  <form
+                    className="flex gap-2 flex-1 w-full"
+                    onSubmit={e => { e.preventDefault(); calcDxbScore(dxbName); }}
+                    data-testid="form-dxb-score"
+                  >
+                    <input
+                      type="text"
+                      value={dxbName}
+                      onChange={e => setDxbName(e.target.value)}
+                      placeholder="Your first name…"
+                      maxLength={32}
+                      className="flex-1 bg-slate-900 border border-white/10 rounded-xl px-4 h-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                      data-testid="input-dxb-name"
+                    />
+                    <Button
+                      type="submit"
+                      disabled={!dxbName.trim() || dxbAnimating}
+                      className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl px-5 h-10 text-sm shrink-0 transition-all disabled:opacity-40"
+                      data-testid="btn-dxb-calculate"
+                    >
+                      {dxbAnimating ? "…" : "Calculate →"}
+                    </Button>
+                  </form>
+                </>
+              ) : (
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key="result"
+                    initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full"
+                    data-testid="dxb-score-result"
+                  >
+                    {/* Badge */}
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${dxbResult.color} flex flex-col items-center justify-center shrink-0 shadow-lg`}>
+                      <Crown className="w-5 h-5 text-white" />
+                      <span className="text-[8px] font-black text-white/80 mt-0.5">LVL {dxbResult.level}</span>
+                    </div>
+
+                    {/* Score info */}
+                    <div className="flex-1">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                        {dxbName.trim()}'s starting score
+                      </p>
+                      <p className="text-3xl font-black text-white tabular-nums leading-tight">
+                        {dxbResult.score.toLocaleString()}
+                        <span className="text-emerald-400 text-lg ml-1.5">DXBs</span>
+                      </p>
+                      <p className="text-xs text-emerald-400 font-black">{dxbResult.badge}</p>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex flex-col gap-2 shrink-0">
+                      <Link href="/community" data-testid="btn-dxb-result-cta">
+                        <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl px-5 h-10 text-sm w-full transition-all">
+                          Start earning real DXBs →
+                        </Button>
+                      </Link>
+                      <button
+                        onClick={() => { setDxbResult(null); setDxbName(""); }}
+                        className="text-[10px] text-gray-600 hover:text-gray-400 font-bold transition-colors text-center"
+                        data-testid="btn-dxb-retry"
+                      >
+                        Try another name
+                      </button>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              )}
+            </div>
+
+            {/* Footer hint */}
+            {!dxbResult && (
+              <div className="px-5 pb-3 flex items-center gap-2">
+                <span className="text-[9px] text-gray-700">Score is calculated from your name — join Planet Heroes to build your real score through actions.</span>
+              </div>
+            )}
           </div>
         </div>
       </section>
