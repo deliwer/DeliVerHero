@@ -18,6 +18,12 @@ import {
   Building2,
   Key,
   Waves,
+  Sparkles,
+  Zap,
+  Users,
+  Shield,
+  Crown,
+  Leaf,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SiTelegram } from "react-icons/si";
@@ -576,6 +582,83 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      {/* ── PLANET HEROES BANNER ── */}
+      <section className="py-12 px-6 bg-gradient-to-br from-emerald-950/60 via-slate-950 to-slate-950 border-b border-emerald-500/15 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-emerald-500/5 rounded-full blur-[80px]" />
+        </div>
+        <div className="max-w-5xl mx-auto relative">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            {/* Left — branding + copy */}
+            <div className="flex-1 space-y-4 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-emerald-400 text-[9px] font-black uppercase tracking-widest">
+                <Sparkles className="w-3 h-3" />
+                Earn. Impact. Play.
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter text-white leading-[0.9] uppercase">
+                Planet<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Heroes</span>
+              </h2>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-md">
+                Join Dubai's unified rewards ecosystem. Earn <span className="text-emerald-400 font-black">DXBs</span> — Dubai's loyalty currency — through everyday actions: AquaCafe orders, referrals, recycling, and more. 5 badge levels. Free to join.
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                {[
+                  { icon: Shield, label: "5 Badge Levels" },
+                  { icon: Zap, label: "8 Ways to Earn" },
+                  { icon: Users, label: "36,000+ Members" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="flex items-center gap-1.5 text-xs text-emerald-300 font-bold">
+                    <Icon className="w-3.5 h-3.5 text-emerald-500" />
+                    {label}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start pt-1">
+                <Link href="/community" data-testid="btn-planet-heroes-banner">
+                  <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl px-7 h-11 text-sm shadow-lg shadow-emerald-900/30 transition-all">
+                    Explore Planet Heroes <ArrowRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </Link>
+                <a
+                  href="https://wa.me/971523906019?text=I%20want%20to%20become%20a%20Planet%20Heroes%20Founding%20Member!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="btn-ph-founding-member-landing"
+                >
+                  <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black rounded-xl px-7 h-11 text-sm transition-all">
+                    <Crown className="w-3.5 h-3.5 mr-1.5" />
+                    Become a Founding Member
+                  </Button>
+                </a>
+              </div>
+            </div>
+
+            {/* Right — badge level cards */}
+            <div className="flex flex-col gap-2 w-full md:w-64 shrink-0">
+              <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 text-center md:text-left mb-1">Badge Progression</p>
+              {[
+                { level: 1, name: "Hero Member",              color: "from-slate-600 to-slate-500",   icon: Shield },
+                { level: 2, name: "Community Champion",       color: "from-emerald-700 to-emerald-500", icon: Users },
+                { level: 3, name: "Sustainability Ambassador",color: "from-blue-700 to-blue-500",      icon: Leaf },
+                { level: 4, name: "Planet Hero Elite",        color: "from-violet-700 to-violet-500",  icon: Sparkles },
+                { level: 5, name: "Hall of Heroes",           color: "from-amber-600 to-yellow-400",   icon: Crown },
+              ].map(({ level, name, color, icon: Icon }) => (
+                <div key={level} className="flex items-center gap-3 px-3 py-2 bg-white/3 border border-white/8 rounded-xl">
+                  <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${color} flex items-center justify-center shrink-0`}>
+                    <Icon className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-600">Level {level}</p>
+                    <p className="text-xs font-black text-white leading-tight">{name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── WHAT DELIWER IS NOT ── */}
       <section className="py-8 px-6 bg-slate-950 border-b border-white/5">
         <div className="max-w-5xl mx-auto">
