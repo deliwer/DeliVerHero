@@ -495,7 +495,7 @@ export function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className={`md:hidden absolute top-full left-0 right-0 border-b p-6 space-y-3 z-[70] shadow-2xl ${
+            className={`md:hidden absolute top-full left-0 right-0 border-b p-6 space-y-3 z-[70] shadow-2xl overflow-y-auto max-h-[calc(100dvh-120px)] ${
               isBrokerSide
                 ? "bg-amber-950 border-amber-500/20"
                 : "bg-slate-900 border-white/10"
