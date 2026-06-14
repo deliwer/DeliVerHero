@@ -525,7 +525,7 @@ function Router() {
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
-        <Route path="/rewards" component={Rewards} />
+        <Route path="/rewards"><Redirect to="/planetheroes/rewards" /></Route>
         <Route path="/partners/chaintrack" component={ChainTrackPartners} />
         <Route path="/partners/career" component={PartnersCareer} />
         <Route path="/career"><Redirect to="/partners/career" /></Route>
