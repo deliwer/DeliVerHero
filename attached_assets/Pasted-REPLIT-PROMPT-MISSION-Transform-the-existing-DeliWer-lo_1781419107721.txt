@@ -1,0 +1,581 @@
+REPLIT PROMPT
+
+MISSION
+
+Transform the existing DeliWer loyalty, environmental, leaderboard, AquaCafe, community, and league initiatives into a unified ecosystem called:
+
+PLANET HEROES
+
+Tagline:
+
+Earn. Impact. Play.
+
+IMPORTANT
+
+Do NOT remove existing routes.
+
+Do NOT break existing SEO.
+
+Do NOT delete existing pages.
+
+Create redirects and route aliases while preserving all current functionality.
+
+All previous funnels should progressively transition into the Planet Heroes ecosystem.
+
+PRIMARY OBJECTIVE
+
+Create a gamified sustainability, wellness, sports, loyalty, and community platform that can onboard:
+
+* 36,000 Real Estate Brokers
+* AquaCafe Members
+* DeliWer Customers
+* Community Volunteers
+* Sponsors
+* Developers
+* Corporate Teams
+
+as Planet Heroes Members.
+
+CORE STRUCTURE
+
+NEW PRIMARY HUB
+
+/planetheroes
+
+This becomes the central ecosystem.
+
+Existing routes should continue to function but redirect users into Planet Heroes journeys.
+
+ROUTE MIGRATION
+
+Current Route:
+
+/environmental
+
+New Position:
+
+/planetheroes/impact
+
+Redirect:
+
+/environmental → /planetheroes/impact
+
+Current Route:
+
+/leaderboard
+
+New Position:
+
+/planetheroes/leaderboard
+
+Redirect:
+
+/leaderboard → /planetheroes/leaderboard
+
+Current Route:
+
+/aquacafe
+
+New Position:
+
+/planetheroes/rewards
+
+Maintain AquaCafe storefront.
+
+Add Planet Heroes Rewards layer.
+
+Current Route:
+
+/league
+
+New Position:
+
+/planetheroes/league
+
+Current Route:
+
+Community Pages
+
+New Position:
+
+/planetheroes/community
+
+NEW NAVIGATION
+
+Planet Heroes
+
+Dropdown:
+
+Impact Center
+
+League
+
+Leaderboard
+
+Rewards
+
+Challenges
+
+Community
+
+Sponsors
+
+Hall of Heroes
+
+FOUNDING MEMBERS CAMPAIGN
+
+Hero Banner:
+
+36,000 Founding Members Wanted
+
+Join the Planet Heroes Movement
+
+Free Membership
+
+Lifetime Founding Status
+
+Priority Access
+
+Exclusive Rewards
+
+League Participation
+
+Community Recognition
+
+Prominent CTA:
+
+Become a Founding Member
+
+PLANET HEROES REWARDS
+
+Replace traditional loyalty language.
+
+OLD
+
+Points
+
+NEW
+
+Planet Points
+
+OLD
+
+Customer Rewards
+
+NEW
+
+Hero Rewards
+
+OLD
+
+Loyalty Program
+
+NEW
+
+Planet Heroes Rewards
+
+REWARDS ENGINE
+
+Members earn Planet Points through:
+
+AquaCafe Orders
+
+Water Refills
+
+Reusable Packaging
+
+Referrals
+
+Broker Referrals
+
+League Participation
+
+Volunteer Activities
+
+Environmental Actions
+
+Partner Transactions
+
+Community Events
+
+Social Sharing
+
+BADGES SYSTEM
+
+Level 1
+
+Hero Member
+
+Level 2
+
+Community Champion
+
+Level 3
+
+Sustainability Ambassador
+
+Level 4
+
+Planet Hero Elite
+
+Level 5
+
+Hall of Heroes
+
+Display badges everywhere.
+
+Profiles
+
+Leaderboards
+
+League Registrations
+
+Community Pages
+
+Member Directory
+
+IMPACT CENTER
+
+/planetheroes/impact
+
+Replace static environmental content.
+
+Create live dashboard.
+
+Metrics:
+
+Plastic Bottles Saved
+
+Water Delivered
+
+Carbon Reduction
+
+Trees Supported
+
+Volunteer Hours
+
+Community Events
+
+Sports Participation
+
+Broker Engagement
+
+Sustainability Challenges
+
+Display:
+
+Animated Counters
+
+Interactive Charts
+
+Progress Rings
+
+Leaderboards
+
+Community Milestones
+
+LEADERBOARD
+
+/planetheroes/leaderboard
+
+Categories:
+
+Top Heroes
+
+Top Brokers
+
+Top Agencies
+
+Top Teams
+
+Top Referrers
+
+Top AquaCafe Members
+
+Top Volunteers
+
+Top Sustainability Contributors
+
+Top Community Builders
+
+Monthly Rankings
+
+Annual Rankings
+
+All-Time Rankings
+
+LEAGUE
+
+/planetheroes/league
+
+Rename:
+
+Planet Heroes League
+
+Tagline:
+
+Play. Network. Impact.
+
+Current Phase:
+
+Majan Community Ground
+
+Future Vision:
+
+Dubai Cricket Stadium Championship
+
+Features:
+
+Team Registration
+
+Fixtures
+
+Results
+
+Player Profiles
+
+Team Profiles
+
+Sponsors
+
+Match Highlights
+
+League Points
+
+Hero Points Integration
+
+Every match participation earns Planet Points.
+
+CHALLENGES MODULE
+
+/planetheroes/challenges
+
+Examples:
+
+Drink Sustainably Challenge
+
+Walk To Work Challenge
+
+Referral Challenge
+
+Volunteer Challenge
+
+Plastic-Free Week
+
+Community Support Challenge
+
+Leaderboard integration required.
+
+COMMUNITY HUB
+
+/planetheroes/community
+
+Features:
+
+Member Directory
+
+Broker Directory
+
+Partner Directory
+
+Volunteer Directory
+
+Events Calendar
+
+Success Stories
+
+Community Posts
+
+Hero Spotlights
+
+SPONSORS HUB
+
+/planetheroes/sponsors
+
+Sponsor Categories:
+
+Developers
+
+Banks
+
+Mortgage Providers
+
+Insurance
+
+Telecom
+
+Hospitality
+
+Maintenance
+
+Moving Services
+
+Business Setup
+
+Display:
+
+Brand Visibility
+
+Community Reach
+
+Impact Metrics
+
+League Sponsorship Packages
+
+Downloadable Sponsor Deck
+
+HALL OF HEROES
+
+/planetheroes/hall-of-heroes
+
+Recognition platform.
+
+Top Contributors
+
+Top Sponsors
+
+Top Teams
+
+Top Brokers
+
+Community Champions
+
+Environmental Champions
+
+Annual Awards
+
+GAMIFICATION ENGINE
+
+Actions → Points → Badges → Rankings → Recognition
+
+Every action should contribute to a member score.
+
+Members should feel progression.
+
+SOCIAL FEATURES
+
+Member Profiles
+
+Achievements
+
+Badges
+
+Hero Timeline
+
+Impact History
+
+Shareable Certificates
+
+Referral Links
+
+COMMUNITY STORYTELLING
+
+Use real-life imagery.
+
+Themes:
+
+Sports
+
+Wellness
+
+Sustainability
+
+Families
+
+Water
+
+Community
+
+Volunteering
+
+UAE Culture
+
+Environmental Responsibility
+
+Visual style:
+
+Premium
+
+Modern
+
+Inspirational
+
+Mission-driven
+
+Not corporate or transactional.
+
+EMAIL AUTOMATION
+
+On Registration:
+
+Welcome Hero
+
+Achievement Emails
+
+Badge Unlocks
+
+Leaderboard Updates
+
+Challenge Invitations
+
+League Invitations
+
+Sponsor Offers
+
+COMMUNITY ECONOMY
+
+Planet Points redeemable for:
+
+AquaCafe Benefits
+
+League Registrations
+
+Event Tickets
+
+Partner Discounts
+
+Community Merchandise
+
+Recognition Awards
+
+ANALYTICS
+
+Track:
+
+Members
+
+Points Earned
+
+Points Redeemed
+
+League Participation
+
+Referrals
+
+Impact Metrics
+
+Sponsor Exposure
+
+Community Growth
+
+FINAL POSITIONING
+
+Planet Heroes is the community movement.
+
+Planet Heroes Rewards is the loyalty platform.
+
+Planet Heroes League is the sports platform.
+
+Planet Heroes Impact Center is the sustainability platform.
+
+Planet Heroes Leaderboard is the recognition platform.
+
+DeliWer powers the ecosystem.
+
+AquaCafe powers sustainable consumption.
+
+Mariamain powers community engagement.
+
+All systems should operate under a unified mission:
+
+Creating healthier communities, stronger relationships, and measurable environmental impact through gamified participation.
