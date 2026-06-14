@@ -167,7 +167,7 @@ export default function PlanetHeroesLeaderboard() {
             </Button>
           </a>
           <div className="mt-4">
-            <Link href="/community"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Community Hub</Button></Link>
+            <Link href="/planetheroes"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Planet Heroes Hub</Button></Link>
           </div>
         </div>
       </div>

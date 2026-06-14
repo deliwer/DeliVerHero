@@ -153,7 +153,7 @@ export default function PlanetHeroesImpact() {
             ))}
           </div>
           <div className="text-center">
-            <Link href="/community/challenges" data-testid="link-view-all-challenges">
+            <Link href="/planetheroes/challenges" data-testid="link-view-all-challenges">
               <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 font-black uppercase tracking-widest rounded-xl h-9 px-6 text-[10px]">
                 View All Challenges <ChevronRight className="w-3.5 h-3.5 ml-1" />
               </Button>
@@ -162,7 +162,7 @@ export default function PlanetHeroesImpact() {
         </motion.section>
 
         <div className="text-center">
-          <Link href="/community" data-testid="link-back-ph-hub">
+          <Link href="/planetheroes" data-testid="link-back-ph-hub">
             <Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Planet Heroes Hub</Button>
           </Link>
         </div>

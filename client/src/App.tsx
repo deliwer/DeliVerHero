@@ -507,6 +507,7 @@ function Router() {
           {/* Ecosystem Pages */}
           <Route path="/explore" component={Explore} />
           <Route path="/leaderboard" component={Leaderboard} />
+          <Route path="/community" component={Leaderboard} />
           <Route path="/impact-dashboard" component={ImpactDashboard} />
           <Route path="/home-service/aquacafe" component={AquaCafe} />
           <Route path="/aquacafe" component={AquaCafe} />
@@ -524,7 +525,7 @@ function Router() {
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
-        <Route path="/rewards"><Redirect to="/community/rewards" /></Route>
+        <Route path="/rewards"><Redirect to="/planetheroes/rewards" /></Route>
         <Route path="/partners/chaintrack" component={ChainTrackPartners} />
         <Route path="/partners/career" component={PartnersCareer} />
         <Route path="/career"><Redirect to="/partners/career" /></Route>
@@ -556,29 +557,21 @@ function Router() {
         <Route path="/planet-hero-affiliates" component={PlanetHeroAffiliates} />
         <Route path="/planet-hero-manual" component={PlanetHeroManual} />
 
-        {/* Community Ecosystem (was Planet Heroes) — /community is the canonical base */}
-        <Route path="/community" component={PlanetHeroesHub} />
-        <Route path="/community/impact" component={PlanetHeroesImpact} />
-        <Route path="/community/leaderboard" component={PlanetHeroesLeaderboard} />
-        <Route path="/community/rewards" component={PlanetHeroesRewards} />
-        <Route path="/community/challenges" component={PlanetHeroesChallenges} />
-        <Route path="/community/members" component={PlanetHeroesCommunity} />
-        <Route path="/community/sponsors" component={PlanetHeroesSponsors} />
-        <Route path="/community/hall-of-heroes" component={PlanetHeroesHallOfHeroes} />
-        <Route path="/community/league" component={PlanetHeroesLeagueRedirect} />
+        {/* Planet Heroes Ecosystem — NEW HUB */}
+        <Route path="/planetheroes" component={PlanetHeroesHub} />
+        <Route path="/planetheroes/impact" component={PlanetHeroesImpact} />
+        <Route path="/planetheroes/leaderboard" component={PlanetHeroesLeaderboard} />
+        <Route path="/planetheroes/rewards" component={PlanetHeroesRewards} />
+        <Route path="/planetheroes/challenges" component={PlanetHeroesChallenges} />
+        <Route path="/planetheroes/community" component={PlanetHeroesCommunity} />
+        <Route path="/planetheroes/sponsors" component={PlanetHeroesSponsors} />
+        <Route path="/planetheroes/hall-of-heroes" component={PlanetHeroesHallOfHeroes} />
+        <Route path="/planetheroes/league" component={PlanetHeroesLeagueRedirect} />
 
-        {/* Redirects — legacy /planetheroes/* and old aliases → /community/* */}
-        <Route path="/planetheroes"><Redirect to="/community" /></Route>
-        <Route path="/planetheroes/impact"><Redirect to="/community/impact" /></Route>
-        <Route path="/planetheroes/leaderboard"><Redirect to="/community/leaderboard" /></Route>
-        <Route path="/planetheroes/rewards"><Redirect to="/community/rewards" /></Route>
-        <Route path="/planetheroes/challenges"><Redirect to="/community/challenges" /></Route>
-        <Route path="/planetheroes/community"><Redirect to="/community/members" /></Route>
-        <Route path="/planetheroes/sponsors"><Redirect to="/community/sponsors" /></Route>
-        <Route path="/planetheroes/hall-of-heroes"><Redirect to="/community/hall-of-heroes" /></Route>
-        <Route path="/planetheroes/league"><Redirect to="/community/league" /></Route>
-        <Route path="/environmental"><Redirect to="/community/impact" /></Route>
-        <Route path="/leaderboard"><Redirect to="/community/leaderboard" /></Route>
+        {/* Route aliases — old routes redirect into Planet Heroes journeys */}
+        <Route path="/environmental"><Redirect to="/planetheroes/impact" /></Route>
+        <Route path="/leaderboard"><Redirect to="/planetheroes/leaderboard" /></Route>
+        <Route path="/community"><Redirect to="/planetheroes/community" /></Route>
         
         {/* Saqi Kawthar Project Mission */}
         <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />
