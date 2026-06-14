@@ -7,7 +7,7 @@ import {
   Globe, Flame, Award, ChevronDown
 } from "lucide-react";
 import { LogisticsCTABar } from "@/components/logistics-cta-bar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { TrustStrip } from "@/components/trust-strip";
 import { motion, AnimatePresence } from "framer-motion";
@@ -130,6 +130,18 @@ export function Navigation() {
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isPlanetHeroesOpen, setIsPlanetHeroesOpen] = useState(false);
+  const [dxbBalance, setDxbBalance] = useState<number>(0);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("dxb_balance");
+    if (stored) setDxbBalance(parseInt(stored, 10) || 0);
+    const handler = () => {
+      const updated = localStorage.getItem("dxb_balance");
+      setDxbBalance(updated ? parseInt(updated, 10) || 0 : 0);
+    };
+    window.addEventListener("storage", handler);
+    return () => window.removeEventListener("storage", handler);
+  }, []);
 
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
   const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
@@ -317,6 +329,23 @@ export function Navigation() {
                   )}
                 </AnimatePresence>
               </div>
+            )}
+
+            {/* ── DXB Balance Pill (consumer side only) ── */}
+            {!isBrokerSide && (
+              <Link href="/planetheroes/rewards" data-testid="nav-dxb-pill">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 hover:border-emerald-400/50 hover:bg-emerald-500/15 transition-all cursor-pointer">
+                  <span className="text-sm">💎</span>
+                  {dxbBalance > 0 ? (
+                    <>
+                      <span className="text-emerald-400 font-black text-[10px] tabular-nums">{dxbBalance.toLocaleString()}</span>
+                      <span className="text-emerald-500/70 font-black text-[9px] uppercase tracking-widest">DXBs</span>
+                    </>
+                  ) : (
+                    <span className="text-emerald-400 font-black text-[9px] uppercase tracking-widest">Earn DXBs</span>
+                  )}
+                </div>
+              </Link>
             )}
 
             <div className="w-px h-4 bg-white/10 mx-2" />
@@ -549,6 +578,26 @@ export function Navigation() {
             </div>
 
             <div className="w-full h-px bg-white/10" />
+
+            {/* DXB Balance pill — mobile */}
+            {!isBrokerSide && (
+              <Link href="/planetheroes/rewards" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-dxb-pill">
+                <div className="flex items-center justify-between px-4 py-3 rounded-xl bg-emerald-500/8 border border-emerald-500/20 hover:border-emerald-400/40 transition-all">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">💎</span>
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-widest text-emerald-500/70">Your DXB Balance</p>
+                      {dxbBalance > 0 ? (
+                        <p className="text-emerald-400 font-black text-base tabular-nums leading-none">{dxbBalance.toLocaleString()} <span className="text-[10px]">DXBs</span></p>
+                      ) : (
+                        <p className="text-white font-black text-sm leading-none">Start earning DXBs →</p>
+                      )}
+                    </div>
+                  </div>
+                  <span className="text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400">Rewards</span>
+                </div>
+              </Link>
+            )}
 
             {/* Management section label for mobile */}
             {isManagementSide && (

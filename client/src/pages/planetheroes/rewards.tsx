@@ -198,7 +198,7 @@ const TABS: { key: TabKey; label: string; icon: typeof Utensils; count: number }
 
 function RedeemButton({ pts, label }: { pts: number; label: string }) {
   const { toast } = useToast();
-  const msg = encodeURIComponent(`I'd like to redeem ${pts.toLocaleString()} Planet Points for: ${label}`);
+  const msg = encodeURIComponent(`I'd like to redeem ${pts.toLocaleString()} DXBs for: ${label}`);
   return (
     <a
       href={`https://wa.me/971523906019?text=${msg}`}
@@ -210,7 +210,7 @@ function RedeemButton({ pts, label }: { pts: number; label: string }) {
         size="sm"
         className="w-full bg-emerald-600/40 hover:bg-emerald-600 border border-emerald-500/40 hover:border-emerald-400 text-white font-black rounded-lg h-8 text-[10px] uppercase tracking-widest transition-all"
       >
-        Redeem {pts.toLocaleString()} pts
+        Redeem {pts.toLocaleString()} DXBs
       </Button>
     </a>
   );
@@ -234,14 +234,14 @@ export default function PlanetHeroesRewards() {
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-emerald-400 text-[10px] font-black uppercase tracking-widest mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Planet Heroes Loyalty Hub
+              <Sparkles className="w-3.5 h-3.5" /> Planet Heroes · DXB Loyalty Hub
             </div>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.88]">
               Hero<br /><span className="text-emerald-400">Rewards</span>
             </h1>
             <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
-              One loyalty universe. Earn Planet Points across AquaCafe, DeliWer services, league matches,
-              and partner restaurants — then redeem for real-world perks across the entire ecosystem.
+              One loyalty universe. Earn <span className="text-emerald-400 font-black">DXBs</span> — Dubai's loyalty currency — across AquaCafe, DeliWer services, league matches,
+              and partner restaurants, then redeem for real-world perks across the entire ecosystem.
             </p>
           </motion.div>
 
@@ -270,12 +270,12 @@ export default function PlanetHeroesRewards() {
             className="flex flex-col sm:flex-row justify-center gap-3"
           >
             <a
-              href="https://wa.me/971523906019?text=I%20want%20to%20check%20my%20Planet%20Points%20balance!"
+              href="https://wa.me/971523906019?text=I%20want%20to%20check%20my%20DXB%20balance!"
               target="_blank" rel="noopener noreferrer"
               data-testid="btn-check-points"
             >
               <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl px-8 h-12 text-sm shadow-lg shadow-emerald-900/40 transition-all">
-                <Zap className="w-4 h-4 mr-2" /> Check My Points Balance
+                <Zap className="w-4 h-4 mr-2" /> Check My DXB Balance
               </Button>
             </a>
             <a
@@ -300,10 +300,10 @@ export default function PlanetHeroesRewards() {
         >
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-              <Zap className="w-3 h-3" /> Points Engine
+              <Zap className="w-3 h-3" /> DXBs Engine
             </div>
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter">Earn Points Everywhere</h2>
-            <p className="text-gray-500 text-sm max-w-xl mx-auto">Every interaction with the DeliWer ecosystem adds to your Planet Points balance.</p>
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter">Earn DXBs Everywhere</h2>
+            <p className="text-gray-500 text-sm max-w-xl mx-auto">Every interaction with the DeliWer ecosystem adds to your DXB balance.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {EARN_LIST.map((e) => (
@@ -313,7 +313,7 @@ export default function PlanetHeroesRewards() {
                   <p className="text-white font-black text-sm">{e.label}</p>
                   <p className="text-gray-500 text-[10px]">{e.desc}</p>
                 </div>
-                <span className="text-emerald-400 font-black text-sm shrink-0">+{e.pts} pts</span>
+                <span className="text-emerald-400 font-black text-sm shrink-0">+{e.pts} DXBs</span>
               </div>
             ))}
           </div>
@@ -394,7 +394,7 @@ export default function PlanetHeroesRewards() {
                           </div>
                           <div className="flex flex-col items-end gap-1.5 shrink-0">
                             <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border ${ac.badge}`}>
-                              from {r.rewards[0].pts} pts
+                              from {r.rewards[0].pts} DXBs
                             </span>
                             <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                           </div>
@@ -466,7 +466,7 @@ export default function PlanetHeroesRewards() {
                         <p className="text-white font-black text-sm">{t.label}</p>
                         <p className="text-gray-500 text-[10px] mt-0.5">{t.desc}</p>
                       </div>
-                      <p className="text-blue-400 font-black text-base">{t.pts.toLocaleString()} pts</p>
+                      <p className="text-blue-400 font-black text-base">{t.pts.toLocaleString()} DXBs</p>
                       <RedeemButton pts={t.pts} label={t.label} />
                     </div>
                   ))}
@@ -503,7 +503,7 @@ export default function PlanetHeroesRewards() {
                         <p className="text-white font-black text-sm">{p.label}</p>
                         <p className="text-gray-500 text-[10px] mt-0.5">{p.desc}</p>
                       </div>
-                      <p className="text-cyan-400 font-black text-base">{p.pts.toLocaleString()} pts</p>
+                      <p className="text-cyan-400 font-black text-base">{p.pts.toLocaleString()} DXBs</p>
                       <RedeemButton pts={p.pts} label={p.label} />
                     </div>
                   ))}
@@ -548,7 +548,7 @@ export default function PlanetHeroesRewards() {
                         <p className="text-white font-black text-sm">{p.label}</p>
                         <p className="text-gray-500 text-[10px] mt-0.5">{p.desc}</p>
                       </div>
-                      <p className="text-violet-400 font-black text-base">{p.pts.toLocaleString()} pts</p>
+                      <p className="text-violet-400 font-black text-base">{p.pts.toLocaleString()} DXBs</p>
                       <RedeemButton pts={p.pts} label={p.label} />
                     </div>
                   ))}
@@ -583,7 +583,7 @@ export default function PlanetHeroesRewards() {
                   <div>
                     <p className="text-[9px] font-black uppercase tracking-widest text-gray-500">Level {t.level}</p>
                     <p className="text-white font-black text-xs leading-snug mt-0.5">{t.name}</p>
-                    <p className="text-[9px] text-gray-600 mt-0.5">{t.min.toLocaleString()}+ pts</p>
+                    <p className="text-[9px] text-gray-600 mt-0.5">{t.min.toLocaleString()}+ DXBs</p>
                   </div>
                   <ul className="space-y-1">
                     {t.perks.map((perk) => (
@@ -604,7 +604,7 @@ export default function PlanetHeroesRewards() {
           initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4 }}
         >
           <div className="bg-white/3 border border-emerald-500/15 rounded-2xl p-6 max-w-3xl mx-auto space-y-4">
-            <h3 className="text-white font-black text-lg text-center">Why Planet Points Beat Ordinary Loyalty Points</h3>
+            <h3 className="text-white font-black text-lg text-center">Why DXBs Beat Ordinary Loyalty Points</h3>
             <div className="grid sm:grid-cols-2 gap-2">
               {[
                 "Points never expire while you're active",

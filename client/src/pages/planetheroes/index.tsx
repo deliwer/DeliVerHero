@@ -18,7 +18,7 @@ const SUB_SECTIONS = [
   { path: "/planetheroes/impact", label: "Impact Center", icon: Globe, color: "emerald", desc: "Live sustainability metrics & progress" },
   { path: "/planetheroes/leaderboard", label: "Leaderboard", icon: Trophy, color: "amber", desc: "Top Heroes, Brokers & Teams" },
   { path: "/planetheroes/league", label: "PH League", icon: Target, color: "blue", desc: "Play. Network. Impact." },
-  { path: "/planetheroes/rewards", label: "Rewards", icon: Zap, color: "violet", desc: "Planet Points & Hero Rewards" },
+  { path: "/planetheroes/rewards", label: "Rewards", icon: Zap, color: "violet", desc: "DXBs & Hero Rewards" },
   { path: "/planetheroes/challenges", label: "Challenges", icon: Flame, color: "rose", desc: "Earn points through actions" },
   { path: "/planetheroes/community", label: "Community", icon: Users, color: "cyan", desc: "Members, brokers & events" },
   { path: "/planetheroes/sponsors", label: "Sponsors", icon: Award, color: "orange", desc: "Brand visibility & packages" },
@@ -37,14 +37,14 @@ const COLOR_MAP: Record<string, string> = {
 };
 
 const EARN_ACTIONS = [
-  { icon: "💧", label: "AquaCafe Orders", pts: "+50 pts" },
-  { icon: "♻️", label: "Reusable Packaging", pts: "+30 pts" },
-  { icon: "🤝", label: "Referrals", pts: "+200 pts" },
-  { icon: "🏏", label: "League Participation", pts: "+100 pts" },
-  { icon: "🌱", label: "Environmental Actions", pts: "+75 pts" },
-  { icon: "🏙️", label: "Broker Referrals", pts: "+500 pts" },
-  { icon: "🎯", label: "Challenges Completed", pts: "+150 pts" },
-  { icon: "📢", label: "Social Sharing", pts: "+25 pts" },
+  { icon: "💧", label: "AquaCafe Orders", pts: "+50 DXBs" },
+  { icon: "♻️", label: "Reusable Packaging", pts: "+30 DXBs" },
+  { icon: "🤝", label: "Referrals", pts: "+200 DXBs" },
+  { icon: "🏏", label: "League Participation", pts: "+100 DXBs" },
+  { icon: "🌱", label: "Environmental Actions", pts: "+75 DXBs" },
+  { icon: "🏙️", label: "Broker Referrals", pts: "+500 DXBs" },
+  { icon: "🎯", label: "Challenges Completed", pts: "+150 DXBs" },
+  { icon: "📢", label: "Social Sharing", pts: "+25 DXBs" },
 ];
 
 export default function PlanetHeroesHub() {
@@ -73,7 +73,7 @@ export default function PlanetHeroesHub() {
               <span className="text-emerald-400">Heroes</span>
             </h1>
             <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-              A unified ecosystem bringing together 36,000 brokers, AquaCafe members, DeliWer customers, and community volunteers — all earning Planet Points for real-world impact.
+              A unified ecosystem bringing together 36,000 brokers, AquaCafe members, DeliWer customers, and community volunteers — all earning <span className="text-emerald-400 font-black">DXBs</span>, Dubai's loyalty currency for real-world impact.
             </p>
 
             {/* Founding Member CTA */}
@@ -149,7 +149,7 @@ export default function PlanetHeroesHub() {
               Hero Progression System
             </div>
             <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Climb the Ranks</h2>
-            <p className="text-gray-500 text-sm max-w-md mx-auto">Every action earns Planet Points. Level up your badge and unlock exclusive access.</p>
+            <p className="text-gray-500 text-sm max-w-md mx-auto">Every action earns DXBs. Level up your badge and unlock exclusive access.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             {BADGE_LEVELS.map((b) => {
@@ -177,9 +177,9 @@ export default function PlanetHeroesHub() {
         >
           <div className="text-center space-y-2">
             <div className="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
-              <Zap className="w-3.5 h-3.5" /> Planet Points Engine
+              <Zap className="w-3.5 h-3.5" /> DXBs Engine
             </div>
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Earn Points Everywhere</h2>
+            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Earn DXBs Everywhere</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {EARN_ACTIONS.map((a) => (
@@ -204,7 +204,7 @@ export default function PlanetHeroesHub() {
               { val: "36,000+", label: "Founding Members Target", icon: "🎯" },
               { val: "5", label: "Badge Levels", icon: "🏅" },
               { val: "8", label: "Earn Categories", icon: "⚡" },
-              { val: "∞", label: "Planet Points", icon: "🌍" },
+              { val: "∞", label: "DXBs to Earn", icon: "💎" },
             ].map((s) => (
               <div key={s.label} className="bg-slate-900/80 px-5 py-6 text-center space-y-1.5">
                 <span className="text-2xl">{s.icon}</span>
