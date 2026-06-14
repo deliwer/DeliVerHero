@@ -153,7 +153,7 @@ export default function LandingPage() {
       {/* ============================================
           MAIN HERO — Are You Overpaying Rent?
          ============================================ */}
-      <section className="relative min-h-[92vh] flex flex-col justify-center pb-16 px-4 overflow-hidden">
+      <section className="relative min-h-[92vh] flex flex-col justify-center pt-32 pb-16 px-4 overflow-hidden">
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${HERO_LIFESTYLE_IMG})` }}
