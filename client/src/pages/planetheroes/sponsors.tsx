@@ -138,7 +138,7 @@ export default function PlanetHeroesSponsors() {
         </div>
 
         <div className="text-center">
-          <Link href="/planetheroes"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Planet Heroes Hub</Button></Link>
+          <Link href="/community"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Community Hub</Button></Link>
         </div>
       </div>
     </div>

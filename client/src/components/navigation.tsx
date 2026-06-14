@@ -114,22 +114,9 @@ const DEEP_CHAINTRACK_PATHS = [
   "/cobone-corporate", "/phone-flippers",
 ];
 
-const PLANET_HEROES_ITEMS = [
-  { path: "/planetheroes", label: "Hub", icon: Globe },
-  { path: "/planetheroes/impact", label: "Impact Center", icon: Globe },
-  { path: "/planetheroes/leaderboard", label: "Leaderboard", icon: Trophy },
-  { path: "/planetheroes/league", label: "League", icon: Trophy },
-  { path: "/planetheroes/rewards", label: "Rewards", icon: Zap },
-  { path: "/planetheroes/challenges", label: "Challenges", icon: Flame },
-  { path: "/planetheroes/community", label: "Community", icon: Users },
-  { path: "/planetheroes/sponsors", label: "Sponsors", icon: Award },
-  { path: "/planetheroes/hall-of-heroes", label: "Hall of Heroes", icon: Crown },
-];
-
 export function Navigation() {
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isPlanetHeroesOpen, setIsPlanetHeroesOpen] = useState(false);
 
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
   const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
@@ -271,53 +258,6 @@ export function Navigation() {
                 </Button>
               );
             })}
-
-            {/* ── Planet Heroes Dropdown (consumer side only) ── */}
-            {!isBrokerSide && (
-              <div className="relative" onMouseLeave={() => setIsPlanetHeroesOpen(false)}>
-                <button
-                  onMouseEnter={() => setIsPlanetHeroesOpen(true)}
-                  onClick={() => setIsPlanetHeroesOpen(!isPlanetHeroesOpen)}
-                  className={`flex items-center gap-1 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all ${
-                    location.startsWith("/planetheroes")
-                      ? "bg-emerald-500/10 text-emerald-400"
-                      : "text-gray-400 hover:text-white"
-                  }`}
-                  data-testid="nav-planetheroes"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  🌍 Planet Heroes
-                  <ChevronDown className={`w-3 h-3 transition-transform ${isPlanetHeroesOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {isPlanetHeroesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8, scale: 0.97 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -8, scale: 0.97 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-52 bg-slate-900 border border-emerald-500/20 rounded-xl shadow-2xl shadow-black/50 overflow-hidden z-[200]"
-                    >
-                      {PLANET_HEROES_ITEMS.map((item) => (
-                        <Link
-                          key={item.path}
-                          href={item.path}
-                          onClick={() => setIsPlanetHeroesOpen(false)}
-                          data-testid={`ph-dropdown-${item.label.toLowerCase().replace(/\s/g, "-")}`}
-                        >
-                          <div className={`flex items-center gap-2.5 px-4 py-2.5 hover:bg-emerald-500/10 transition-colors ${
-                            location === item.path ? "bg-emerald-500/10 text-emerald-400" : "text-gray-400 hover:text-white"
-                          }`}>
-                            <item.icon className="w-3.5 h-3.5 text-emerald-500/60 shrink-0" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
-                          </div>
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )}
 
             <div className="w-px h-4 bg-white/10 mx-2" />
 
@@ -580,35 +520,6 @@ export function Navigation() {
                 {item.label}
               </Button>
             ))}
-
-            {/* ── Planet Heroes (mobile — consumer side only) ── */}
-            {!isBrokerSide && (
-              <>
-                <div className="w-full h-px bg-emerald-500/15" />
-                <p className="text-[9px] font-black uppercase tracking-widest text-emerald-500/60 px-1 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> 🌍 Planet Heroes
-                </p>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {PLANET_HEROES_ITEMS.filter(i => i.path !== "/planetheroes").map((item) => (
-                    <Link
-                      key={item.path}
-                      href={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      data-testid={`mobile-ph-${item.label.toLowerCase().replace(/\s/g, "-")}`}
-                    >
-                      <div className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border transition-all ${
-                        location === item.path
-                          ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400"
-                          : "bg-white/3 border-white/8 text-gray-400"
-                      }`}>
-                        <item.icon className="w-3.5 h-3.5 text-emerald-500/60 shrink-0" />
-                        <span className="text-[9px] font-black uppercase tracking-widest leading-tight">{item.label}</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </>
-            )}
 
             <div className="w-full h-px bg-white/10" />
 

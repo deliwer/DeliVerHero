@@ -140,7 +140,7 @@ export default function PlanetHeroesChallenges() {
             <p className="text-white font-black text-sm">Challenge winners top the Leaderboard</p>
             <p className="text-gray-500 text-[11px]">Complete challenges to earn points and rise in the monthly and annual rankings.</p>
           </div>
-          <Link href="/planetheroes/leaderboard" data-testid="link-challenges-leaderboard">
+          <Link href="/community/leaderboard" data-testid="link-challenges-leaderboard">
             <Button variant="outline" className="border-amber-500/30 text-amber-400 hover:bg-amber-500/10 font-black rounded-xl h-9 px-5 text-[10px] uppercase tracking-widest shrink-0">
               View Rankings
             </Button>
@@ -148,7 +148,7 @@ export default function PlanetHeroesChallenges() {
         </div>
 
         <div className="text-center pt-2">
-          <Link href="/planetheroes"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Planet Heroes Hub</Button></Link>
+          <Link href="/community"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Community Hub</Button></Link>
         </div>
       </div>
     </div>

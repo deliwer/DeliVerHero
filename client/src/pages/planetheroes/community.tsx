@@ -189,7 +189,7 @@ export default function PlanetHeroesCommunity() {
               <MessageCircle className="w-4 h-4 mr-2" /> Join Community
             </Button>
           </a>
-          <Link href="/planetheroes"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Hub</Button></Link>
+          <Link href="/community"><Button variant="ghost" className="text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest">← Hub</Button></Link>
         </div>
       </div>
     </div>

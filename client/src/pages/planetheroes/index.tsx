@@ -15,14 +15,14 @@ const BADGE_LEVELS = [
 ];
 
 const SUB_SECTIONS = [
-  { path: "/planetheroes/impact", label: "Impact Center", icon: Globe, color: "emerald", desc: "Live sustainability metrics & progress" },
-  { path: "/planetheroes/leaderboard", label: "Leaderboard", icon: Trophy, color: "amber", desc: "Top Heroes, Brokers & Teams" },
-  { path: "/planetheroes/league", label: "PH League", icon: Target, color: "blue", desc: "Play. Network. Impact." },
-  { path: "/planetheroes/rewards", label: "Rewards", icon: Zap, color: "violet", desc: "DXBs & Hero Rewards" },
-  { path: "/planetheroes/challenges", label: "Challenges", icon: Flame, color: "rose", desc: "Earn points through actions" },
-  { path: "/planetheroes/community", label: "Community", icon: Users, color: "cyan", desc: "Members, brokers & events" },
-  { path: "/planetheroes/sponsors", label: "Sponsors", icon: Award, color: "orange", desc: "Brand visibility & packages" },
-  { path: "/planetheroes/hall-of-heroes", label: "Hall of Heroes", icon: Crown, color: "yellow", desc: "Annual recognition platform" },
+  { path: "/community/impact", label: "Impact Center", icon: Globe, color: "emerald", desc: "Live sustainability metrics & progress" },
+  { path: "/community/leaderboard", label: "Leaderboard", icon: Trophy, color: "amber", desc: "Top Heroes, Brokers & Teams" },
+  { path: "/community/league", label: "PH League", icon: Target, color: "blue", desc: "Play. Network. Impact." },
+  { path: "/community/rewards", label: "Rewards", icon: Zap, color: "violet", desc: "DXBs & Hero Rewards" },
+  { path: "/community/challenges", label: "Challenges", icon: Flame, color: "rose", desc: "Earn points through actions" },
+  { path: "/community/members", label: "Members", icon: Users, color: "cyan", desc: "Members, brokers & events" },
+  { path: "/community/sponsors", label: "Sponsors", icon: Award, color: "orange", desc: "Brand visibility & packages" },
+  { path: "/community/hall-of-heroes", label: "Hall of Heroes", icon: Crown, color: "yellow", desc: "Annual recognition platform" },
 ];
 
 const COLOR_MAP: Record<string, string> = {
