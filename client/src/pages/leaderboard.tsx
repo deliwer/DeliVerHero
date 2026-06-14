@@ -656,7 +656,8 @@ export default function Leaderboard() {
             { id: "leaderboard", label: "🏆 Rankings", icon: Trophy },
             { id: "live", label: "🔴 Live Feed", icon: Zap },
             { id: "forum", label: "💭 Forum", icon: MessageCircle },
-            { id: "achievements", label: "🎖️ Achievements", icon: Award }
+            { id: "achievements", label: "🎖️ Achievements", icon: Award },
+            { id: "planet-heroes", label: "🌍 Planet Heroes", icon: Leaf }
           ].map(({ id, label, icon: Icon }) => (
             <button
               key={id}
@@ -1731,6 +1732,154 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        )}
+
+        {/* Planet Heroes Tab */}
+        {activeTab === "planet-heroes" && (
+          <div className="space-y-10">
+            {/* Stats Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/10">
+              {[
+                { val: "36,000+", label: "Founding Members Target", icon: "🎯" },
+                { val: "5", label: "Badge Levels", icon: "🏅" },
+                { val: "8", label: "Earn Categories", icon: "⚡" },
+                { val: "∞", label: "DXBs to Earn", icon: "💎" },
+              ].map((s) => (
+                <div key={s.label} className="bg-slate-900/80 px-5 py-6 text-center space-y-1.5">
+                  <span className="text-2xl">{s.icon}</span>
+                  <p className="text-white font-black text-2xl md:text-3xl">{s.val}</p>
+                  <p className="text-gray-500 text-xs font-bold uppercase tracking-widest leading-tight">{s.label}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Founding Member CTA */}
+            <div className="bg-gradient-to-r from-emerald-950/80 via-slate-800/90 to-emerald-950/80 border border-emerald-500/30 rounded-2xl p-8 text-center space-y-4">
+              <div className="inline-flex items-center gap-1.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse inline-block" />
+                36,000 Founding Members Wanted
+              </div>
+              <h2 className="text-3xl font-black text-white">Join the Planet Heroes Movement</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl mx-auto mt-2">
+                {["Free Membership", "Lifetime Founding Status", "Priority Access", "Exclusive Rewards"].map((b) => (
+                  <div key={b} className="flex items-center gap-1.5 text-sm text-emerald-300 font-bold">
+                    <span className="text-emerald-400">✓</span> {b}
+                  </div>
+                ))}
+              </div>
+              <a
+                href="https://wa.me/971523906019?text=I%20want%20to%20become%20a%20Planet%20Heroes%20Founding%20Member!"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="btn-become-founding-member-community"
+              >
+                <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-8 py-3 rounded-xl text-sm shadow-lg mt-2">
+                  Become a Founding Member <ArrowRight className="w-4 h-4 ml-1 inline" />
+                </Button>
+              </a>
+            </div>
+
+            {/* Sub-sections Nav Grid */}
+            <div>
+              <h3 className="text-xl font-black text-white mb-4 text-center uppercase tracking-tight">Explore Planet Heroes</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { path: "/planetheroes/impact", label: "Impact Center", Icon: Globe, colorCls: "text-emerald-400 bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-400/60", desc: "Live sustainability metrics" },
+                  { path: "/planetheroes/leaderboard", label: "Leaderboard", Icon: Trophy, colorCls: "text-amber-400 bg-amber-500/10 border-amber-500/30 hover:border-amber-400/60", desc: "Top Heroes & Teams" },
+                  { path: "/planetheroes/league", label: "PH League", Icon: Target, colorCls: "text-blue-400 bg-blue-500/10 border-blue-500/30 hover:border-blue-400/60", desc: "Play. Network. Impact." },
+                  { path: "/planetheroes/rewards", label: "Rewards", Icon: Zap, colorCls: "text-violet-400 bg-violet-500/10 border-violet-500/30 hover:border-violet-400/60", desc: "DXBs & Hero Rewards" },
+                  { path: "/planetheroes/challenges", label: "Challenges", Icon: Flame, colorCls: "text-rose-400 bg-rose-500/10 border-rose-500/30 hover:border-rose-400/60", desc: "Earn through actions" },
+                  { path: "/planetheroes/community", label: "Community", Icon: Users, colorCls: "text-cyan-400 bg-cyan-500/10 border-cyan-500/30 hover:border-cyan-400/60", desc: "Members & events" },
+                  { path: "/planetheroes/sponsors", label: "Sponsors", Icon: Award, colorCls: "text-orange-400 bg-orange-500/10 border-orange-500/30 hover:border-orange-400/60", desc: "Brand visibility" },
+                  { path: "/planetheroes/hall-of-heroes", label: "Hall of Heroes", Icon: Crown, colorCls: "text-yellow-400 bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-400/60", desc: "Annual recognition" },
+                ].map(({ path, label, Icon, colorCls, desc }) => (
+                  <Link key={path} href={path} data-testid={`ph-nav-${label.toLowerCase().replace(/\s+/g, '-')}`}>
+                    <div className={`group flex flex-col gap-3 p-4 bg-slate-800/40 border rounded-xl transition-all cursor-pointer ${colorCls}`}>
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${colorCls}`}>
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="font-black text-white text-sm leading-tight">{label}</p>
+                        <p className="text-xs text-gray-500 mt-0.5">{desc}</p>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Badge Levels */}
+            <div className="space-y-6">
+              <div className="text-center space-y-2">
+                <div className="inline-flex items-center gap-1.5 bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                  Hero Progression System
+                </div>
+                <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Climb the Ranks</h2>
+                <p className="text-gray-400 text-sm max-w-md mx-auto">Every action earns DXBs. Level up your badge and unlock exclusive access.</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
+                {[
+                  { level: 1, name: "Hero Member", color: "from-slate-600 to-slate-500", border: "border-slate-500/40", Icon: Shield },
+                  { level: 2, name: "Community Champion", color: "from-emerald-700 to-emerald-500", border: "border-emerald-500/40", Icon: Users },
+                  { level: 3, name: "Sustainability Ambassador", color: "from-blue-700 to-blue-500", border: "border-blue-500/40", Icon: Leaf },
+                  { level: 4, name: "Planet Hero Elite", color: "from-violet-700 to-violet-500", border: "border-violet-500/40", Icon: Star },
+                  { level: 5, name: "Hall of Heroes", color: "from-amber-600 to-yellow-400", border: "border-amber-400/60", Icon: Crown },
+                ].map(({ level, name, color, border, Icon }) => (
+                  <div key={level} className={`flex-1 bg-slate-800/40 border ${border} rounded-xl p-4 text-center space-y-2`}>
+                    <div className={`w-10 h-10 mx-auto rounded-full bg-gradient-to-br ${color} flex items-center justify-center shadow-lg`}>
+                      <Icon className="w-4 h-4 text-white" />
+                    </div>
+                    <p className="text-xs font-black uppercase tracking-widest text-gray-500">Level {level}</p>
+                    <p className="text-white font-black text-xs leading-snug">{name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Earn DXBs Grid */}
+            <div className="space-y-6">
+              <div className="text-center space-y-2">
+                <div className="inline-flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full">
+                  <Zap className="w-3.5 h-3.5" /> DXBs Engine
+                </div>
+                <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white">Earn DXBs Everywhere</h2>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { icon: "💧", label: "AquaCafe Orders", pts: "+50 DXBs" },
+                  { icon: "♻️", label: "Reusable Packaging", pts: "+30 DXBs" },
+                  { icon: "🤝", label: "Referrals", pts: "+200 DXBs" },
+                  { icon: "🏏", label: "League Participation", pts: "+100 DXBs" },
+                  { icon: "🌱", label: "Environmental Actions", pts: "+75 DXBs" },
+                  { icon: "🏙️", label: "Broker Referrals", pts: "+500 DXBs" },
+                  { icon: "🎯", label: "Challenges Completed", pts: "+150 DXBs" },
+                  { icon: "📢", label: "Social Sharing", pts: "+25 DXBs" },
+                ].map((a) => (
+                  <div key={a.label} className="bg-slate-800/40 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+                    <span className="text-2xl">{a.icon}</span>
+                    <p className="text-white font-black text-xs leading-snug">{a.label}</p>
+                    <span className="text-emerald-400 font-black text-xs uppercase tracking-widest">{a.pts}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Final CTA */}
+            <div className="text-center space-y-4 pb-6">
+              <a
+                href="https://wa.me/971523906019?text=I%20want%20to%20join%20Planet%20Heroes!"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="btn-ph-join-final-community"
+              >
+                <Button className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-12 py-3 rounded-xl text-sm shadow-lg">
+                  Join Planet Heroes Free <ArrowRight className="w-4 h-4 ml-1.5 inline" />
+                </Button>
+              </a>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free membership · No investment required · Earn from day one</p>
+            </div>
           </div>
         )}
       </div>
