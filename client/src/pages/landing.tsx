@@ -25,7 +25,7 @@ import {
   Crown,
   Leaf,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { SiTelegram } from "react-icons/si";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
@@ -90,6 +90,45 @@ function useDxbCounter() {
   return { count, flash };
 }
 
+const EARNER_POOL = [
+  { name: "Ahmed R.",    action: "referral bonus",        dxb: 25 },
+  { name: "Priya S.",    action: "AquaCafe order",         dxb: 8  },
+  { name: "James K.",    action: "move-in booking",        dxb: 40 },
+  { name: "Fatima A.",   action: "recycling drop-off",     dxb: 12 },
+  { name: "Liu W.",      action: "community challenge",    dxb: 15 },
+  { name: "Omar M.",     action: "venue check-in",         dxb: 6  },
+  { name: "Sarah L.",    action: "water filter order",     dxb: 20 },
+  { name: "Ravi P.",     action: "DXB quiz",               dxb: 10 },
+  { name: "Nour H.",     action: "referral bonus",         dxb: 25 },
+  { name: "Elena V.",    action: "AquaCafe order",         dxb: 7  },
+  { name: "Khalid B.",   action: "move-out booking",       dxb: 35 },
+  { name: "Mei T.",      action: "recycling drop-off",     dxb: 11 },
+  { name: "Carlos D.",   action: "community challenge",    dxb: 18 },
+  { name: "Aisha N.",    action: "DEWA registration",      dxb: 30 },
+  { name: "Tom W.",      action: "venue check-in",         dxb: 5  },
+  { name: "Divya K.",    action: "water filter order",     dxb: 22 },
+  { name: "Hassan F.",   action: "referral bonus",         dxb: 25 },
+  { name: "Sophie R.",   action: "Ejari completion",       dxb: 50 },
+  { name: "Yusuf A.",    action: "DXB quiz",               dxb: 9  },
+  { name: "Ananya M.",   action: "AquaCafe order",         dxb: 6  },
+];
+
+function useRecentEarners() {
+  const [index, setIndex] = useState(() => Math.floor(Math.random() * EARNER_POOL.length));
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex(i => (i + 1) % EARNER_POOL.length);
+        setVisible(true);
+      }, 350);
+    }, 2800);
+    return () => clearInterval(id);
+  }, []);
+  return { earner: EARNER_POOL[index], visible };
+}
+
 export default function LandingPage() {
   const [funnelOpen, setFunnelOpen] = useState(false);
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
@@ -99,6 +138,7 @@ export default function LandingPage() {
   const [calcSubmitting, setCalcSubmitting] = useState(false);
   const [calcSubmitted, setCalcSubmitted] = useState(false);
   const { count: dxbToday, flash: dxbFlash } = useDxbCounter();
+  const { earner, visible } = useRecentEarners();
 
   const openFunnel = (scenario?: FunnelScenario) => {
     setFunnelScenario(scenario);
@@ -621,6 +661,35 @@ export default function LandingPage() {
           </motion.span>
           <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">DXBs</span>
           <span className="hidden sm:inline text-[10px] text-gray-700 font-semibold">— resets at midnight</span>
+        </div>
+
+        {/* Recent earners live feed */}
+        <div className="border-b border-emerald-500/10 px-6 py-2 flex items-center justify-center gap-2 overflow-hidden" style={{ minHeight: 32 }}>
+          <span className="text-[9px] font-black uppercase tracking-widest text-gray-700 shrink-0">Just earned</span>
+          <div className="relative h-5 overflow-hidden flex-1 max-w-sm" data-testid="ph-earner-feed">
+            <AnimatePresence mode="wait">
+              {visible && (
+                <motion.div
+                  key={earner.name + earner.action}
+                  initial={{ y: 12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -12, opacity: 0 }}
+                  transition={{ duration: 0.28, ease: "easeInOut" }}
+                  className="absolute inset-0 flex items-center gap-2"
+                >
+                  <span className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-[8px] font-black text-emerald-400 shrink-0 select-none">
+                    {earner.name[0]}
+                  </span>
+                  <span className="text-[10px] font-bold text-gray-400 truncate">
+                    <span className="text-white font-black">{earner.name}</span>
+                    {" "}via {earner.action}
+                  </span>
+                  <span className="text-[10px] font-black text-emerald-400 shrink-0">+{earner.dxb} DXBs</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <span className="w-1 h-1 rounded-full bg-emerald-500/40 shrink-0 animate-pulse" />
         </div>
 
         <div className="absolute inset-0 pointer-events-none">
