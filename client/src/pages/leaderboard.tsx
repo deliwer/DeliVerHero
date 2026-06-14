@@ -433,59 +433,73 @@ export default function Leaderboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       <SEOMeta
-        title="Dubai Future District Wellness Hub | Museum of the Future Tours & Healthy Living"
-        description="Discover Dubai's wellness & innovation hub for international travelers and residents. Museum of the Future tours, Downtown wellness journeys, healthy dining at Chill & Grill, La Perle show experiences, and sustainable living rewards. Join AED 99 membership for exclusive discounts."
-        keywords="Museum of the Future Dubai, Dubai wellness journey, Downtown Dubai experiences, healthy dining Dubai, sustainable living UAE, Dubai tourism, wellness travel Dubai, Museum of the Future tickets, La Perle Dubai, Chill & Grill Dubai, Dubai Future District, wellness hub Dubai, sustainable tourism, eco-friendly Dubai, Museum tour Dubai, international travelers Dubai"
+        title="Planet Heroes Dubai | Earn DXBs · Impact Commerce · Environmental Leadership"
+        description="Join Planet Heroes — Dubai's unified ecosystem for 36,000 brokers, AquaCafe members, DeliWer customers, and community volunteers earning DXBs. 5 badge levels, 8 earn categories, real-world environmental impact in the Dubai Future District."
+        keywords="Planet Heroes Dubai, DXBs Dubai, earn DXBs, Dubai Future District, impact commerce Dubai, electronics recycling Dubai, environmental leadership UAE, Planet Hero badge, AquaCafe rewards, DeliWer community, sustainability Dubai, broker referral rewards, founding member Dubai, Dubai loyalty currency"
       />
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Header - Dubai Future District */}
+        {/* Hero Header - Planet Heroes */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-6 border border-blue-500/30">
+          {/* Dubai Future District badge — kept */}
+          <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-4 border border-blue-500/30">
             <Building2 className="w-6 h-6" />
             <span className="font-bold text-lg">DUBAI FUTURE DISTRICT</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6" data-testid="page-title">
-            Community Engagement Hub
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-400 to-cyan-400 mt-2">
-              Impact Commerce • Electronics Recycling • Metropolitan Leadership
+
+          {/* Planet Heroes pill */}
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
+              <Sparkles className="w-3.5 h-3.5" />
+              Earn. Impact. Play.
+            </div>
+          </div>
+
+          <h1 className="text-4xl md:text-7xl font-black text-white mb-6 leading-[0.9] uppercase tracking-tighter" data-testid="page-title">
+            Planet
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-green-300 to-cyan-400">
+              Heroes
+            </span>
+            <span className="block text-2xl md:text-3xl font-black text-gray-300 mt-4 normal-case tracking-normal">
+              Earn DXBs • Impact Commerce • Environmental Leadership
             </span>
           </h1>
+
           <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Join Dubai's movement as a global leader in environmental innovation. Engage with Future District activities, Museum of the Future experiences, Dubai AI Week, and Future Festival. Turn everyday actions into environmental impact through smart shopping and electronics recycling.
+            A unified ecosystem bringing together 36,000 brokers, AquaCafe members, DeliWer customers, and community volunteers — all earning <span className="text-emerald-400 font-black">DXBs</span>, Dubai's loyalty currency for real-world environmental impact in the Future District.
           </p>
-          
-          {/* Upcoming Event Highlight */}
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 text-purple-300 px-6 py-3 rounded-full mb-6">
-            <Calendar className="w-5 h-5" />
-            <span className="font-bold">Dubai AI Week April 15-18 • Future Festival May 20-25</span>
+
+          {/* Founding Member highlight */}
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-600/20 to-orange-600/20 border border-amber-500/30 text-amber-300 px-6 py-3 rounded-full mb-6">
+            <Crown className="w-5 h-5" />
+            <span className="font-bold">36,000 Founding Members Wanted • 5 Badge Levels • Free to Join</span>
           </div>
         </div>
 
-        {/* Impact Stats Banner */}
+        {/* Planet Heroes Stats Banner */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-          <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30 rounded-xl p-4 text-center">
-            <Building2 className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-blue-400">{communityStats.eventsHosted}</div>
-            <div className="text-sm text-blue-300">Events Hosted</div>
-            <div className="text-xs text-gray-400">Future District</div>
-          </div>
           <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 border border-emerald-500/30 rounded-xl p-4 text-center">
-            <Recycle className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-emerald-400">{(communityStats.devicesRecycled / 1000).toFixed(1)}K</div>
-            <div className="text-sm text-emerald-300">Devices Recycled</div>
-            <div className="text-xs text-gray-400">E-Waste Impact</div>
+            <Users className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-emerald-400">36,000+</div>
+            <div className="text-sm text-emerald-300">Founding Members</div>
+            <div className="text-xs text-gray-400">Target</div>
           </div>
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-xl p-4 text-center">
-            <Users className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-purple-400">{communityStats.tourismEngagement.toLocaleString()}</div>
-            <div className="text-sm text-purple-300">Tourist Engagement</div>
-            <div className="text-xs text-gray-400">Monthly visitors</div>
+          <div className="bg-gradient-to-r from-violet-500/20 to-purple-500/20 border border-violet-500/30 rounded-xl p-4 text-center">
+            <Shield className="w-8 h-8 text-violet-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-violet-400">5</div>
+            <div className="text-sm text-violet-300">Badge Levels</div>
+            <div className="text-xs text-gray-400">Hero Progression</div>
           </div>
           <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl p-4 text-center">
-            <Trophy className="w-8 h-8 text-amber-400 mx-auto mb-2" />
-            <div className="text-2xl font-bold text-amber-400">{communityStats.totalMembers.toLocaleString()}</div>
-            <div className="text-sm text-amber-300">Active Members</div>
-            <div className="text-xs text-gray-400">+{communityStats.monthlyGrowth}% growth</div>
+            <Zap className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-amber-400">8</div>
+            <div className="text-sm text-amber-300">Earn Categories</div>
+            <div className="text-xs text-gray-400">DXBs Engine</div>
+          </div>
+          <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 rounded-xl p-4 text-center">
+            <Sparkles className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+            <div className="text-2xl font-bold text-cyan-400">∞</div>
+            <div className="text-sm text-cyan-300">DXBs to Earn</div>
+            <div className="text-xs text-gray-400">Real-World Impact</div>
           </div>
         </div>
 
