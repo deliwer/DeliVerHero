@@ -70,6 +70,26 @@ const DUBAI_BENCHMARKS = [
   { area: "Sports City",           min: 4000,  max: 6500  },
 ];
 
+function useDxbCounter() {
+  const seed = (() => {
+    const now = new Date();
+    const secondsSinceMidnight = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    return Math.floor(secondsSinceMidnight * 2.3) + 12400;
+  })();
+  const [count, setCount] = useState(seed);
+  const [flash, setFlash] = useState(false);
+  useEffect(() => {
+    const id = setInterval(() => {
+      const increment = Math.floor(Math.random() * 5) + 2;
+      setCount(c => c + increment);
+      setFlash(true);
+      setTimeout(() => setFlash(false), 600);
+    }, 3000);
+    return () => clearInterval(id);
+  }, []);
+  return { count, flash };
+}
+
 export default function LandingPage() {
   const [funnelOpen, setFunnelOpen] = useState(false);
   const [funnelScenario, setFunnelScenario] = useState<FunnelScenario | undefined>(undefined);
@@ -78,6 +98,7 @@ export default function LandingPage() {
   const [calcEmail, setCalcEmail] = useState("");
   const [calcSubmitting, setCalcSubmitting] = useState(false);
   const [calcSubmitted, setCalcSubmitted] = useState(false);
+  const { count: dxbToday, flash: dxbFlash } = useDxbCounter();
 
   const openFunnel = (scenario?: FunnelScenario) => {
     setFunnelScenario(scenario);
@@ -583,11 +604,29 @@ export default function LandingPage() {
         </div>
       </section>
       {/* ── PLANET HEROES BANNER ── */}
-      <section className="py-12 px-6 bg-gradient-to-br from-emerald-950/60 via-slate-950 to-slate-950 border-b border-emerald-500/15 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-emerald-950/60 via-slate-950 to-slate-950 border-b border-emerald-500/15 relative overflow-hidden">
+        {/* Live DXB ticker strip */}
+        <div className="border-b border-emerald-500/15 px-6 py-2.5 flex items-center justify-center gap-3 bg-emerald-500/5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+          <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">DXBs earned today</span>
+          <motion.span
+            key={dxbToday}
+            initial={{ y: -8, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`text-sm font-black tabular-nums transition-colors duration-300 ${dxbFlash ? "text-emerald-300" : "text-emerald-400"}`}
+            data-testid="dxb-today-counter"
+          >
+            {dxbToday.toLocaleString()}
+          </motion.span>
+          <span className="text-[10px] font-black uppercase tracking-widest text-emerald-600">DXBs</span>
+          <span className="hidden sm:inline text-[10px] text-gray-700 font-semibold">— resets at midnight</span>
+        </div>
+
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-emerald-500/5 rounded-full blur-[80px]" />
         </div>
-        <div className="max-w-5xl mx-auto relative">
+        <div className="max-w-5xl mx-auto relative px-6 py-12">
           <div className="flex flex-col md:flex-row items-center gap-8">
             {/* Left — branding + copy */}
             <div className="flex-1 space-y-4 text-center md:text-left">
