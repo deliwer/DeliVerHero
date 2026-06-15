@@ -551,6 +551,7 @@ function Router() {
         
         {/* Planet Hero Gateway (legacy — preserved) */}
         <Route path="/planet-hero" component={PlanetHero} />
+        <Route path="/planetheroes"><Redirect to="/community" /></Route>
         <Route path="/planet-hero-missions" component={PlanetHeroMissions} />
         <Route path="/planet-hero-affiliates" component={PlanetHeroAffiliates} />
         <Route path="/planet-hero-manual" component={PlanetHeroManual} />
