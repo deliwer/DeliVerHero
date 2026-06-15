@@ -21,11 +21,34 @@
  */
 
 const BASE_URL = "https://www.deliwer.com";
+const PLANET_HEROES_BASE = "https://planetheroes.deliwer.com";
 
 // ── IndexNow key ──────────────────────────────────────────────────────────────
 // Key verification file served from public/ at:
 //   https://www.deliwer.com/deliwer2026seopingkey.txt
+//   https://planetheroes.deliwer.com/deliwer2026seopingkey.txt  (same server)
 export const INDEXNOW_KEY = "deliwer2026seopingkey";
+
+// ── Planet Heroes high-value URLs for IndexNow ───────────────────────────────
+const PLANET_HEROES_URLS = [
+  `${PLANET_HEROES_BASE}/community`,
+  `${PLANET_HEROES_BASE}/`,
+  `${PLANET_HEROES_BASE}/league`,
+  `${PLANET_HEROES_BASE}/leaderboard`,
+  `${PLANET_HEROES_BASE}/play`,
+  `${PLANET_HEROES_BASE}/earn`,
+  `${PLANET_HEROES_BASE}/rewards`,
+  `${PLANET_HEROES_BASE}/exchange`,
+  `${PLANET_HEROES_BASE}/environmental`,
+  `${PLANET_HEROES_BASE}/aquacafe`,
+  `${PLANET_HEROES_BASE}/wellness`,
+  `${PLANET_HEROES_BASE}/invest`,
+  `${PLANET_HEROES_BASE}/planet-hero`,
+  `${PLANET_HEROES_BASE}/planet-hero-missions`,
+  `${PLANET_HEROES_BASE}/impact-dashboard`,
+  `${PLANET_HEROES_BASE}/collect`,
+  `${PLANET_HEROES_BASE}/redeem`,
+];
 
 // ── High-value URLs for IndexNow instant indexing ────────────────────────────
 const INDEX_NOW_URLS = [
@@ -84,25 +107,24 @@ async function postJson(url: string, payload: object): Promise<{ status: number;
   }
 }
 
-// ── IndexNow submission — Bing + IndexNow.org + Yandex ───────────────────────
-async function submitIndexNow(): Promise<PingResult[]> {
-  const payload = {
-    host: "www.deliwer.com",
-    key: INDEXNOW_KEY,
-    keyLocation: `${BASE_URL}/${INDEXNOW_KEY}.txt`,
-    urlList: INDEX_NOW_URLS,
-  };
+// ── IndexNow submission helper ────────────────────────────────────────────────
+async function submitToIndexNow(
+  host: string,
+  keyLocation: string,
+  urlList: string[],
+  label: string
+): Promise<PingResult[]> {
+  const payload = { host, key: INDEXNOW_KEY, keyLocation, urlList };
 
-  const hosts: Array<{ engine: string; endpoint: string }> = [
-    { engine: "Bing / IndexNow", endpoint: "https://www.bing.com/indexnow" },
-    { engine: "IndexNow.org (aggregator)", endpoint: "https://api.indexnow.org/indexnow" },
-    { engine: "Yandex / IndexNow", endpoint: "https://yandex.com/indexnow" },
+  const engines: Array<{ engine: string; endpoint: string }> = [
+    { engine: `Bing / IndexNow (${label})`,         endpoint: "https://www.bing.com/indexnow" },
+    { engine: `IndexNow.org aggregator (${label})`, endpoint: "https://api.indexnow.org/indexnow" },
+    { engine: `Yandex / IndexNow (${label})`,       endpoint: "https://yandex.com/indexnow" },
   ];
 
-  const results: PingResult[] = await Promise.all(
-    hosts.map(async ({ engine, endpoint }) => {
+  return Promise.all(
+    engines.map(async ({ engine, endpoint }) => {
       const { status, body } = await postJson(endpoint, payload);
-      // 200 or 202 = accepted
       const ok = status === 200 || status === 202;
       return {
         engine,
@@ -111,14 +133,32 @@ async function submitIndexNow(): Promise<PingResult[]> {
         status,
         ok,
         message: ok
-          ? `✓ ${INDEX_NOW_URLS.length} URLs accepted by ${engine}`
+          ? `✓ ${urlList.length} URLs accepted by ${engine}`
           : `✗ HTTP ${status} — ${body.slice(0, 100)}`,
         timestamp: now(),
       };
     })
   );
+}
 
-  return results;
+// ── IndexNow submission — deliwer.com ─────────────────────────────────────────
+async function submitIndexNow(): Promise<PingResult[]> {
+  return submitToIndexNow(
+    "www.deliwer.com",
+    `${BASE_URL}/${INDEXNOW_KEY}.txt`,
+    INDEX_NOW_URLS,
+    "deliwer.com"
+  );
+}
+
+// ── IndexNow submission — planetheroes.deliwer.com ────────────────────────────
+export async function submitPlanetHeroesIndexNow(): Promise<PingResult[]> {
+  return submitToIndexNow(
+    "planetheroes.deliwer.com",
+    `${PLANET_HEROES_BASE}/${INDEXNOW_KEY}.txt`,
+    PLANET_HEROES_URLS,
+    "planetheroes"
+  );
 }
 
 // ── Main exported function ────────────────────────────────────────────────────
@@ -131,7 +171,12 @@ export async function runSeoPing(): Promise<{
   console.log("[SEO] Starting weekly SEO / IndexNow ping cycle…");
   const runAt = now();
 
-  const results = await submitIndexNow();
+  // Run deliwer.com + planetheroes.deliwer.com submissions in parallel
+  const [deliwerResults, planetHeroesResults] = await Promise.all([
+    submitIndexNow(),
+    submitPlanetHeroesIndexNow(),
+  ]);
+  const results = [...deliwerResults, ...planetHeroesResults];
 
   const succeeded = results.filter(r => r.ok).length;
   const failed = results.filter(r => !r.ok).length;

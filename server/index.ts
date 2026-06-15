@@ -5,7 +5,7 @@ import "./instagram-sniffer";
 import { whatsappAgent } from "./services/whatsapp-agent";
 import { runDailyAutomation, runFollowUpAutomation } from "./services/broker-automation";
 import { runDailyTipsBroadcast } from "./services/tips-alert-service";
-import { runSeoPing } from "./services/seo-ping";
+import { runSeoPing, submitPlanetHeroesIndexNow } from "./services/seo-ping";
 
 const app = express();
 app.use(express.json({ limit: '50mb' }));
@@ -104,6 +104,20 @@ setTimeout(() => {
 setInterval(() => {
   runSeoPing().catch((err) => console.error('[SEO] Weekly ping error:', err));
 }, SEVEN_DAYS);
+
+// ── Planet Heroes one-time startup ping ───────────────────────────────────────
+// Runs 2 minutes after boot (after the main ping) to notify Bing/Yandex of the
+// new planetheroes.deliwer.com sitemap and high-value community URLs.
+setTimeout(() => {
+  console.log('[SEO] Submitting Planet Heroes subdomain URLs to IndexNow…');
+  submitPlanetHeroesIndexNow()
+    .then(results => {
+      const ok = results.filter(r => r.ok).length;
+      console.log(`[SEO] Planet Heroes ping — ${ok}/${results.length} engines accepted`);
+      results.forEach(r => console.log(`[SEO]   ${r.message}`));
+    })
+    .catch(err => console.error('[SEO] Planet Heroes ping error:', err));
+}, 120_000);
 
 app.use((req, res, next) => {
   const start = Date.now();
