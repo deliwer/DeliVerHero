@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SEOMeta } from '@/components/seo-meta';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -361,6 +362,22 @@ export default function Community() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+      <SEOMeta
+        title="Planet Heroes Community — Join Dubai's Sustainability Movement"
+        description="Connect with 12,000+ Planet Heroes in Dubai. Earn rewards for reducing plastic, recycling e-waste, and completing sustainability missions. Join the community at planetheroes.deliwer.com."
+        canonical="https://planetheroes.deliwer.com"
+        ogType="website"
+        keywords="Planet Heroes Dubai, sustainability community Dubai, eco rewards Dubai, green living UAE, reduce plastic Dubai, e-waste recycling Dubai, sustainability challenges UAE, DeliWer Planet Heroes, environmental missions Dubai, eco points Dubai"
+        webPageType="WebPage"
+        breadcrumbs={[{ name: "Planet Heroes Community", url: "https://planetheroes.deliwer.com" }]}
+        dateModified="2026-06-15"
+        faqs={[
+          { question: "What is Planet Heroes?", answer: "Planet Heroes is DeliWer's sustainability community in Dubai where members earn rewards for eco-friendly actions like reducing plastic bottle use, recycling e-waste, and completing green missions." },
+          { question: "How do I earn rewards in Planet Heroes?", answer: "Complete sustainability missions, refer friends, participate in community challenges, and log eco-friendly actions. Points can be redeemed for discounts and real rewards." },
+          { question: "Who can join Planet Heroes?", answer: "Anyone living in Dubai or the UAE can join Planet Heroes for free. Sign up at planetheroes.deliwer.com and start earning points immediately." },
+          { question: "How many members does Planet Heroes have?", answer: "Planet Heroes has over 12,000 active members across Dubai who have collectively prevented 2.4 million plastic bottles and saved 180 tonnes of CO₂." },
+        ]}
+      />
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
