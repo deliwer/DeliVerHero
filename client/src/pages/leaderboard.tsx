@@ -186,7 +186,6 @@ function PlanetHeroesNav() {
 
 export default function Leaderboard() {
   const { data: heroes, isLoading, error } = useLeaderboard(50);
-  const [activeTab, setActiveTab] = useState<string>("wellness-hub");
   const [newPost, setNewPost] = useState({ title: "", content: "", category: "water" as const });
   const [forumSearchQuery, setForumSearchQuery] = useState("");
   const { toast } = useToast();
@@ -616,40 +615,41 @@ export default function Leaderboard() {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {[
-            { id: "wellness-hub", label: "🌿 Wellness & Discovery", icon: Heart },
-            { id: "community-hub", label: "🏢 Community Hub", icon: Building2 },
-            { id: "chill-grill", label: "🍕 Chill & Grill", icon: Utensils },
-            { id: "future-events", label: "📅 Future Events", icon: Calendar },
-            { id: "activities", label: "🎯 District Activities", icon: Target },
-            { id: "leaderboard", label: "🏆 Rankings", icon: Trophy },
-            { id: "live", label: "🔴 Live Feed", icon: Zap },
-            { id: "forum", label: "💭 Forum", icon: MessageCircle },
-            { id: "achievements", label: "🎖️ Achievements", icon: Award },
-            { id: "planet-heroes", label: "🌍 Planet Heroes", icon: Leaf }
-          ].map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id)}
-              className={`flex items-center px-4 py-2 rounded-xl font-medium transition-all text-sm ${
-                activeTab === id
-                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
-                  : 'bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-600'
-              }`}
-              data-testid={`tab-${id}`}
-            >
-              <Icon className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">{label.split(' ').slice(1).join(' ')}</span>
-              <span className="sm:hidden">{label.split(' ')[0]}</span>
-            </button>
-          ))}
-        </div>
+        {/* Section Navigation */}
+        <nav className="sticky top-14 z-40 bg-slate-950/95 backdrop-blur-md border-b border-white/10 mb-10 -mx-4 px-4">
+          <div className="overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1 py-2 min-w-max">
+              {[
+                { id: "wellness-hub",  label: "Wellness & Discovery", icon: Heart,         color: "text-emerald-400" },
+                { id: "community-hub", label: "Community Hub",        icon: Building2,     color: "text-blue-400"    },
+                { id: "chill-grill",   label: "Chill & Grill",        icon: Utensils,      color: "text-orange-400"  },
+                { id: "future-events", label: "Future Events",         icon: Calendar,      color: "text-purple-400"  },
+                { id: "activities",    label: "District Activities",   icon: Target,        color: "text-cyan-400"    },
+                { id: "leaderboard",   label: "Rankings",             icon: Trophy,        color: "text-amber-400"   },
+                { id: "live",          label: "Live Feed",            icon: Zap,           color: "text-red-400"     },
+                { id: "forum",         label: "Forum",                icon: MessageCircle, color: "text-pink-400"    },
+                { id: "achievements",  label: "Achievements",         icon: Award,         color: "text-violet-400"  },
+                { id: "planet-heroes", label: "Planet Heroes",        icon: Leaf,          color: "text-green-400"   },
+              ].map(({ id, label, icon: Icon, color }) => (
+                <button
+                  key={id}
+                  onClick={() => {
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/8 transition-colors whitespace-nowrap"
+                  data-testid={`nav-${id}`}
+                >
+                  <Icon className={`w-4 h-4 ${color}`} />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
 
-        {/* Wellness & Discovery Hub Tab - International Engagement Lead Magnet */}
-        {activeTab === "wellness-hub" && (
-          <div className="space-y-8">
+        {/* Wellness & Discovery Hub */}
+        <div id="wellness-hub" className="space-y-8 scroll-mt-24">
             {/* Hero Section for International Travelers */}
             <section className="relative w-full py-16 px-4 bg-gradient-to-br from-emerald-900/40 via-teal-900/40 to-cyan-900/40 rounded-3xl border-2 border-emerald-500/30 overflow-hidden">
               <div className="absolute inset-0">
@@ -1194,12 +1194,10 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* Community Hub Tab */}
-        {activeTab === "community-hub" && (
-          <div className="space-y-8">
+        {/* Community Hub */}
+        <div id="community-hub" className="space-y-8 scroll-mt-24">
             {/* Future District Activities */}
             <Card className="bg-gradient-to-r from-blue-900/30 to-cyan-900/30 border border-blue-500/30">
               <CardHeader>
@@ -1267,12 +1265,10 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* Chill & Grill Tab */}
-        {activeTab === "chill-grill" && (
-          <div className="space-y-6">
+        {/* Chill & Grill */}
+        <div id="chill-grill" className="space-y-6 scroll-mt-24">
             {/* Chill & Grill Partnership Experience */}
             <section className="w-full py-12 px-4 bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded-3xl border-2 border-orange-500/30" data-testid="chill-grill-partnership">
               <div className="max-w-7xl mx-auto">
@@ -1351,12 +1347,10 @@ export default function Leaderboard() {
                 </div>
               </div>
             </section>
-          </div>
-        )}
+        </div>
 
-        {/* Future Events Tab */}
-        {activeTab === "future-events" && (
-          <div className="space-y-6">
+        {/* Future Events */}
+        <div id="future-events" className="space-y-6 scroll-mt-24">
             <Card className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-3">
@@ -1444,19 +1438,15 @@ export default function Leaderboard() {
                 </Button>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* District Activities Tab */}
-        {activeTab === "activities" && (
-          <div className="space-y-6">
+        {/* District Activities */}
+        <div id="activities" className="space-y-6 scroll-mt-24">
             <SocialChallengesFeed />
-          </div>
-        )}
+        </div>
 
-        {/* Leaderboard Tab */}
-        {activeTab === "leaderboard" && (
-          <div className="space-y-6">
+        {/* Rankings */}
+        <div id="leaderboard" className="space-y-6 scroll-mt-24">
             {hasLeaderboardError ? (
               <Card className="bg-slate-800/50 border-slate-700">
                 <CardContent className="p-8 text-center">
@@ -1506,12 +1496,10 @@ export default function Leaderboard() {
                 </CardContent>
               </Card>
             )}
-          </div>
-        )}
+        </div>
 
-        {/* Live Feed Tab */}
-        {activeTab === "live" && (
-          <div className="space-y-6">
+        {/* Live Feed */}
+        <div id="live" className="space-y-6 scroll-mt-24">
             <Card className="bg-gradient-to-r from-red-900/30 to-orange-900/30 border border-red-500/30">
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -1557,12 +1545,10 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* Forum Tab */}
-        {activeTab === "forum" && (
-          <div className="space-y-6">
+        {/* Forum */}
+        <div id="forum" className="space-y-6 scroll-mt-24">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white">Community Forum</CardTitle>
@@ -1658,12 +1644,10 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* Achievements Tab */}
-        {activeTab === "achievements" && (
-          <div className="space-y-6">
+        {/* Achievements */}
+        <div id="achievements" className="space-y-6 scroll-mt-24">
             <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-3">
@@ -1703,12 +1687,10 @@ export default function Leaderboard() {
                 </div>
               </CardContent>
             </Card>
-          </div>
-        )}
+        </div>
 
-        {/* Planet Heroes Tab */}
-        {activeTab === "planet-heroes" && (
-          <div className="space-y-10">
+        {/* Planet Heroes */}
+        <div id="planet-heroes" className="space-y-10 scroll-mt-24">
             {/* Stats Row */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/10">
               {[
@@ -1851,8 +1833,7 @@ export default function Leaderboard() {
               </a>
               <p className="text-gray-500 text-xs font-bold uppercase tracking-widest">Free membership · No investment required · Earn from day one</p>
             </div>
-          </div>
-        )}
+        </div>
 
         {/* ⭐ Order Starter Kit - Above Footer */}
         <section className="w-full mt-12 px-4 bg-gradient-to-br from-emerald-900/40 to-blue-900/40 border-4 border-emerald-500/50 rounded-3xl backdrop-blur-sm" data-testid="order-starter-kit-primary">
