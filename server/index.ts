@@ -11,6 +11,19 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false }));
 
+// ── Subdomain routing — server-side (handles bots & pre-JS requests) ─────────
+// planetheroes.deliwer.com/ → /community (301)
+// planetheroes.deliwer.com/<any-path> → passes through unchanged
+app.use((req, res, next) => {
+  const host = req.hostname || req.headers.host || '';
+  if (host === 'planetheroes.deliwer.com' || host === 'www.planetheroes.deliwer.com') {
+    if (req.path === '/' || req.path === '') {
+      return res.redirect(301, '/community');
+    }
+  }
+  next();
+});
+
 // ── Founder-only routes: block crawlers/AI bots at HTTP layer ───────────────
 // Adds noindex/nofollow/noarchive headers and Referrer-Policy for privacy.
 const PRIVATE_PATH_RE = /^\/(marketing|admin|operations|investor-dashboard|affiliate-dashboard|corporate-dashboard|partner-dashboard|hero-dashboard|mission-control|sendgrid-dashboard|founder-dashboard|email-campaigns|account-management|capture-admin|habtoor-admin|broker-master-db|api\/attribution|api\/log)(\/|$)/i;

@@ -350,9 +350,13 @@ function Router() {
     }
 
     // Domain-based routing for planetheroes.deliwer.com → Planet Heroes community
-    if ((hostname === 'planetheroes.deliwer.com' || hostname === 'www.planetheroes.deliwer.com') && location === '/') {
-      setLocation('/community');
-      return;
+    // Root → /community; deep paths (e.g. /league, /play) pass through unchanged
+    if (hostname === 'planetheroes.deliwer.com' || hostname === 'www.planetheroes.deliwer.com') {
+      if (location === '/') {
+        setLocation('/community');
+        return;
+      }
+      // All other paths (/league, /play, /earn, etc.) are served as-is
     }
     
     // Global referral capture — store ?ref= param from any page visit
