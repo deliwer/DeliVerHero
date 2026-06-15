@@ -67,7 +67,6 @@ const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
 const AffiliateManagement = lazy(() => import("@/pages/affiliate-management"));
 const PartnerProgram = lazy(() => import("@/pages/partner-program"));
 const CommunityToolkit = lazy(() => import("@/pages/community-toolkit"));
-const Community = lazy(() => import("@/pages/community"));
 const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
 const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
 const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
@@ -508,7 +507,7 @@ function Router() {
           {/* Ecosystem Pages */}
           <Route path="/explore" component={Explore} />
           <Route path="/leaderboard" component={Leaderboard} />
-          <Route path="/community" component={Community} />
+          <Route path="/community" component={Leaderboard} />
           <Route path="/impact-dashboard" component={ImpactDashboard} />
           <Route path="/home-service/aquacafe" component={AquaCafe} />
           <Route path="/aquacafe" component={AquaCafe} />
@@ -572,6 +571,7 @@ function Router() {
         {/* Route aliases — old routes redirect into Planet Heroes journeys */}
         <Route path="/environmental"><Redirect to="/planetheroes/impact" /></Route>
         <Route path="/leaderboard"><Redirect to="/planetheroes/leaderboard" /></Route>
+        <Route path="/community"><Redirect to="/planetheroes/community" /></Route>
         
         {/* Saqi Kawthar Project Mission */}
         <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />
