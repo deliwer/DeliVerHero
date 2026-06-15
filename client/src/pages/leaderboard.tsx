@@ -1,4 +1,4 @@
-import { Trophy, Crown, Medal, Star, Users, Target, Zap, Globe, Heart, Award, TrendingUp, MessageCircle, Share2, MapPin, Gift, Calendar, CheckCircle, Flame, Send, Camera, Hash, Filter, Search, Plus, Droplet, Recycle, ExternalLink, Clock, Play, Phone, Shield, Truck, Navigation, AlertCircle, Headphones, Utensils, Coffee, Smartphone, Building2, Sparkles, ArrowRight, Leaf, ShoppingCart, ChefHat, Footprints } from "lucide-react";
+import { Trophy, Crown, Medal, Star, Users, Target, Zap, Globe, Heart, Award, TrendingUp, MessageCircle, Share2, MapPin, Gift, Calendar, CheckCircle, Flame, Send, Camera, Hash, Filter, Search, Plus, Droplet, Recycle, ExternalLink, Clock, Play, Phone, Shield, Truck, Navigation, AlertCircle, Headphones, Utensils, Coffee, Smartphone, Building2, Sparkles, ArrowRight, Leaf, ShoppingCart, ChefHat, Footprints, Menu, X as XIcon, Home } from "lucide-react";
 import { useLeaderboard } from "@/hooks/use-leaderboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -70,6 +70,118 @@ interface FutureEvent {
   participants?: number;
   category: "ai" | "sustainability" | "innovation" | "community";
   impact: string;
+}
+
+const PH_NAV = [
+  { label: "Overview",   href: "ph-hero"   },
+  { label: "Earn DXBs", href: "ph-earn"   },
+  { label: "Badges",    href: "ph-badges" },
+  { label: "Rankings",  href: "ph-ranks"  },
+];
+
+function PlanetHeroesNav() {
+  const [open, setOpen] = useState(false);
+
+  const go = (id: string) => {
+    setOpen(false);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <nav className="sticky top-0 z-50 border-b border-emerald-900/40 bg-slate-950/95 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14 gap-2">
+        {/* Brand */}
+        <div className="flex items-center gap-3 shrink-0">
+          <a href="/" className="flex items-center gap-1.5 text-gray-500 hover:text-white transition-colors text-xs font-bold" aria-label="Back to DeliWer">
+            <Home className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">DeliWer</span>
+          </a>
+          <span className="text-gray-700">/</span>
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🌍</span>
+            <span className="font-black text-white tracking-tight">Planet Heroes</span>
+            <span className="hidden sm:inline-flex items-center gap-1 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">
+              <span className="w-1 h-1 rounded-full bg-emerald-400 animate-pulse" />
+              Dubai
+            </span>
+          </div>
+        </div>
+
+        {/* Desktop section links */}
+        <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+          {PH_NAV.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => go(item.href)}
+              className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              {item.label}
+            </button>
+          ))}
+          <button
+            onClick={() => go("ph-join")}
+            className="px-3 py-1.5 text-xs font-bold uppercase tracking-widest rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-colors ml-1"
+          >
+            Join Free
+          </button>
+        </div>
+
+        {/* Desktop right */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          <a
+            href="https://wa.me/971523906019?text=I%20want%20to%20join%20Planet%20Heroes!"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="sm" className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black">
+              <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Join on WhatsApp
+            </Button>
+          </a>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="flex items-center gap-1 md:hidden p-2 text-slate-400 hover:text-white"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
+        >
+          {open ? <XIcon className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Mobile drawer */}
+      {open && (
+        <div className="md:hidden border-t border-emerald-900/30 bg-slate-950 px-4 py-3 space-y-1">
+          {PH_NAV.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => go(item.href)}
+              className="w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              {item.label}
+            </button>
+          ))}
+          <button
+            onClick={() => go("ph-join")}
+            className="w-full text-left px-4 py-2.5 text-sm font-bold uppercase tracking-widest rounded-xl bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors"
+          >
+            Join Free
+          </button>
+          <a
+            href="https://wa.me/971523906019?text=I%20want%20to%20join%20Planet%20Heroes!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <Button size="sm" className="w-full mt-2 bg-emerald-500 text-slate-950 font-black">
+              <MessageCircle className="w-3.5 h-3.5 mr-1.5" /> Join on WhatsApp
+            </Button>
+          </a>
+        </div>
+      )}
+    </nav>
+  );
 }
 
 export default function Leaderboard() {
@@ -432,6 +544,7 @@ export default function Leaderboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+      <PlanetHeroesNav />
       <SEOMeta
         title="Planet Heroes Dubai | Earn DXBs · Impact Commerce · Environmental Leadership"
         description="Join Planet Heroes — Dubai's unified ecosystem for 36,000 brokers, AquaCafe members, DeliWer customers, and community volunteers earning DXBs. 5 badge levels, 8 earn categories, real-world environmental impact in the Dubai Future District."
@@ -439,7 +552,7 @@ export default function Leaderboard() {
       />
       <div className="container mx-auto px-4 py-8">
         {/* Hero Header - Planet Heroes */}
-        <div className="text-center mb-12">
+        <div id="ph-hero" className="text-center mb-12">
           {/* Dubai Future District badge — kept */}
           <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-400 px-6 py-3 rounded-full mb-4 border border-blue-500/30">
             <Building2 className="w-6 h-6" />

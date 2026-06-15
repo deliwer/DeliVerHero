@@ -793,12 +793,14 @@ function MainShell({ children }: { children: React.ReactNode }) {
 }
 
 const MAMZAR_PATHS = ["/mamzar", "/mamzar-beach", "/linar"];
+const STANDALONE_PATHS = ["/community", "/planetheroes/community", "/planetheroes/leaderboard"];
 
 function AppChrome() {
   const [location] = useLocation();
   const isMamzar = MAMZAR_PATHS.some(p => location === p || location.startsWith(p + "/"));
+  const isStandalone = STANDALONE_PATHS.some(p => location === p || location.startsWith(p + "/"));
 
-  if (isMamzar) {
+  if (isMamzar || isStandalone) {
     return (
       <div className="min-h-screen bg-slate-950">
         <Router />

@@ -24,6 +24,9 @@ import {
   Shield,
   Crown,
   Leaf,
+  Copy,
+  Check,
+  Link2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiTelegram } from "react-icons/si";
@@ -138,6 +141,19 @@ export default function LandingPage() {
   const [calcSubmitting, setCalcSubmitting] = useState(false);
   const [calcSubmitted, setCalcSubmitted] = useState(false);
   const { count: dxbToday, flash: dxbFlash } = useDxbCounter();
+  const [refName, setRefName] = useState("");
+  const [refCode, setRefCode] = useState("");
+  const [refCopied, setRefCopied] = useState(false);
+  const generateRefCode = (name: string) => {
+    const code = name.trim().toLowerCase().replace(/\s+/g, "_").replace(/[^a-z0-9_]/g, "");
+    setRefCode(code || "");
+  };
+  const copyRefLink = () => {
+    const link = `https://deliwer.com/move-in?ref=${refCode}`;
+    navigator.clipboard.writeText(link).catch(() => {});
+    setRefCopied(true);
+    setTimeout(() => setRefCopied(false), 2000);
+  };
   const { earner, visible } = useRecentEarners();
   const [dxbName, setDxbName] = useState("");
   const [dxbResult, setDxbResult] = useState<{ score: number; level: number; badge: string; color: string } | null>(null);
@@ -1094,6 +1110,88 @@ export default function LandingPage() {
 
         </div>
       </section>
+      {/* ── BROKER REFERRAL LINK GENERATOR ── */}
+      <section className="py-10 px-6 bg-slate-950 border-b border-white/5">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-2xl border border-white/8 bg-white/[0.025] overflow-hidden">
+            <div className="flex items-center gap-3 px-5 py-3.5 border-b border-white/8">
+              <div className="w-6 h-6 rounded-full bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center shrink-0">
+                <Link2 className="w-3 h-3 text-emerald-400" />
+              </div>
+              <p className="text-xs font-black uppercase tracking-widest text-white">Broker Referral Link Generator</p>
+              <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-gray-600">Track every click</span>
+            </div>
+            <div className="px-5 py-5 space-y-4">
+              <p className="text-xs text-gray-500">Enter your name or brokerage to generate your personal tracking link. Share it — every client who books through it is credited to you.</p>
+              {!refCode ? (
+                <form
+                  className="flex gap-2"
+                  onSubmit={e => { e.preventDefault(); generateRefCode(refName); }}
+                  data-testid="form-ref-generator"
+                >
+                  <input
+                    type="text"
+                    value={refName}
+                    onChange={e => setRefName(e.target.value)}
+                    placeholder="Your name or brokerage…"
+                    maxLength={40}
+                    className="flex-1 bg-slate-900 border border-white/10 rounded-xl px-4 h-10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-emerald-500/50 transition-colors"
+                    data-testid="input-ref-name"
+                  />
+                  <Button
+                    type="submit"
+                    disabled={!refName.trim()}
+                    className="bg-white text-slate-950 hover:bg-gray-100 font-black rounded-xl px-5 h-10 text-sm shrink-0 disabled:opacity-40 transition-all"
+                    data-testid="btn-generate-ref"
+                  >
+                    Generate →
+                  </Button>
+                </form>
+              ) : (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 bg-slate-900 border border-emerald-500/20 rounded-xl px-4 h-11 overflow-hidden">
+                    <span className="text-[10px] font-black text-gray-600 shrink-0 uppercase tracking-widest">Link</span>
+                    <span className="text-xs text-gray-400 font-mono flex-1 truncate">
+                      deliwer.com/move-in?ref=<span className="text-emerald-400 font-black">{refCode}</span>
+                    </span>
+                    <button
+                      onClick={copyRefLink}
+                      className="shrink-0 flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-emerald-400 hover:text-emerald-300 transition-colors"
+                      data-testid="btn-copy-ref-link"
+                    >
+                      {refCopied ? <><Check className="w-3 h-3" /> Copied!</> : <><Copy className="w-3 h-3" /> Copy</>}
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { label: "Clicks", value: "0", note: "last 7 days" },
+                      { label: "Leads",  value: "0", note: "submitted" },
+                      { label: "Earned", value: "AED 0", note: "commission" },
+                    ].map(({ label, value, note }) => (
+                      <div key={label} className="bg-slate-900 border border-white/8 rounded-xl px-3 py-2.5 text-center">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-gray-600">{label}</p>
+                        <p className="text-lg font-black text-white">{value}</p>
+                        <p className="text-[9px] text-gray-700">{note}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[9px] text-gray-700">Stats update after your first client booking. <a href="/partners" className="text-emerald-600 hover:text-emerald-400 transition-colors">Full dashboard →</a></p>
+                    <button
+                      onClick={() => { setRefCode(""); setRefName(""); }}
+                      className="text-[10px] text-gray-600 hover:text-gray-400 font-bold transition-colors"
+                      data-testid="btn-reset-ref"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PARTNER NETWORK */}
       <section className="bg-slate-950 border-t border-white/5 px-4">
         <div className="max-w-4xl mx-auto">
