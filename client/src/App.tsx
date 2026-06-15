@@ -347,6 +347,12 @@ function Router() {
       setLocation('/aquacafe');
       return;
     }
+
+    // Domain-based routing for planetheroes.deliwer.com → Planet Heroes community
+    if ((hostname === 'planetheroes.deliwer.com' || hostname === 'www.planetheroes.deliwer.com') && location === '/') {
+      setLocation('/community');
+      return;
+    }
     
     // Global referral capture — store ?ref= param from any page visit
     import("@/lib/referral").then(({ captureReferral }) => captureReferral());
