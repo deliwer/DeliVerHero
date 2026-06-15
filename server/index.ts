@@ -6,6 +6,7 @@ import { whatsappAgent } from "./services/whatsapp-agent";
 import { runDailyAutomation, runFollowUpAutomation } from "./services/broker-automation";
 import { runDailyTipsBroadcast } from "./services/tips-alert-service";
 import { runSeoPing, submitPlanetHeroesIndexNow } from "./services/seo-ping";
+import { runSeoDigest } from "./services/seo-digest-service";
 
 const app = express();
 app.use(express.json({ limit: '50mb' }));
@@ -104,6 +105,28 @@ setTimeout(() => {
 setInterval(() => {
   runSeoPing().catch((err) => console.error('[SEO] Weekly ping error:', err));
 }, SEVEN_DAYS);
+
+// ── SEO Weekly Digest — every Monday 06:00 UAE (02:00 UTC) ───────────────────
+function msUntilNextMondayUAE(): number {
+  // UAE = UTC+4; target 06:00 UAE = 02:00 UTC on Monday
+  const now = new Date();
+  const next = new Date(now);
+  // Advance to next Monday 02:00 UTC
+  const dayOfWeek = next.getUTCDay(); // 0=Sun, 1=Mon…
+  const daysUntilMonday = dayOfWeek === 1 ? 0 : (8 - dayOfWeek) % 7 || 7;
+  next.setUTCDate(next.getUTCDate() + daysUntilMonday);
+  next.setUTCHours(2, 0, 0, 0);
+  if (next <= now) next.setUTCDate(next.getUTCDate() + 7); // already past this week's Monday
+  return next.getTime() - now.getTime();
+}
+
+setTimeout(() => {
+  runSeoDigest().catch(err => console.error('[SEO-DIGEST] Monday digest error:', err));
+  // Then repeat every 7 days
+  setInterval(() => {
+    runSeoDigest().catch(err => console.error('[SEO-DIGEST] Weekly repeat error:', err));
+  }, SEVEN_DAYS);
+}, msUntilNextMondayUAE());
 
 // ── Planet Heroes one-time startup ping ───────────────────────────────────────
 // Runs 2 minutes after boot (after the main ping) to notify Bing/Yandex of the

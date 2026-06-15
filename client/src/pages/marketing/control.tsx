@@ -119,6 +119,14 @@ function SeoPingPanel() {
           {triggering === "Planet Heroes ping" ? "Submitting…" : "🦸 Planet Heroes Only"}
         </button>
         <button
+          onClick={() => trigger("/api/admin/seo-digest", "Weekly digest")}
+          disabled={!!triggering}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-violet-500/20 hover:bg-violet-500/30 disabled:opacity-50 text-violet-300 border border-violet-500/30 font-semibold text-sm rounded-lg transition-all"
+          data-testid="seo-trigger-digest"
+        >
+          {triggering === "Weekly digest" ? "Sending…" : "📧 Send Digest Now"}
+        </button>
+        <button
           onClick={() => refetch()}
           className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-400 border border-white/10 text-sm rounded-lg transition-all"
           data-testid="seo-refresh"

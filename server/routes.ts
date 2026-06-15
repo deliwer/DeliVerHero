@@ -6110,6 +6110,22 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  // ── SEO Weekly Digest — manual trigger ───────────────────────────────────────
+  app.post("/api/admin/seo-digest", async (req, res) => {
+    const secret = req.headers["x-admin-secret"] || req.body?.secret;
+    const adminSecret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (secret !== adminSecret) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      const { runSeoDigest } = await import("./services/seo-digest-service.js");
+      const result = await runSeoDigest();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // ── Missed Call Auto-Reply ─────────────────────────────────────────────────
   // Webhook URL to configure in Twilio (or any telephony provider):
   //   POST https://<your-domain>/api/webhooks/missed-call
