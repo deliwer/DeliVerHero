@@ -127,16 +127,7 @@ const PlanetHeroMissions = lazy(() => import("@/pages/planet-hero-missions"));
 const PlanetHeroAffiliates = lazy(() => import("@/pages/planet-hero-affiliates"));
 const PlanetHeroManual = lazy(() => import("@/pages/planet-hero-manual"));
 
-// Planet Heroes Ecosystem
-const PlanetHeroesHub = lazy(() => import("@/pages/planetheroes/index"));
-const PlanetHeroesImpact = lazy(() => import("@/pages/planetheroes/impact"));
-const PlanetHeroesLeaderboard = lazy(() => import("@/pages/planetheroes/leaderboard"));
-const PlanetHeroesRewards = lazy(() => import("@/pages/planetheroes/rewards"));
-const PlanetHeroesChallenges = lazy(() => import("@/pages/planetheroes/challenges"));
-const PlanetHeroesCommunity = lazy(() => import("@/pages/planetheroes/community"));
-const PlanetHeroesSponsors = lazy(() => import("@/pages/planetheroes/sponsors"));
-const PlanetHeroesHallOfHeroes = lazy(() => import("@/pages/planetheroes/hall-of-heroes"));
-const PlanetHeroesLeagueRedirect = lazy(() => import("@/pages/planetheroes/league"));
+
 const MissionControlSaqiKawthar = lazy(() => import("@/pages/mission-control-saqi-kawthar"));
 const RestaurantRewards = lazy(() => import("@/pages/restaurant-rewards"));
 const MetaverseGamingHub = lazy(() => import("@/pages/metaverse-gaming-hub"));
@@ -525,7 +516,7 @@ function Router() {
         <Route path="/collect" component={Collect} />
         <Route path="/redeem" component={Redeem} />
         <Route path="/play" component={Play} />
-        <Route path="/rewards"><Redirect to="/planetheroes/rewards" /></Route>
+        <Route path="/rewards" component={Rewards} />
         <Route path="/partners/chaintrack" component={ChainTrackPartners} />
         <Route path="/partners/career" component={PartnersCareer} />
         <Route path="/career"><Redirect to="/partners/career" /></Route>
@@ -557,21 +548,9 @@ function Router() {
         <Route path="/planet-hero-affiliates" component={PlanetHeroAffiliates} />
         <Route path="/planet-hero-manual" component={PlanetHeroManual} />
 
-        {/* Planet Heroes Ecosystem — NEW HUB */}
-        <Route path="/planetheroes" component={PlanetHeroesHub} />
-        <Route path="/planetheroes/impact" component={PlanetHeroesImpact} />
-        <Route path="/planetheroes/leaderboard" component={PlanetHeroesLeaderboard} />
-        <Route path="/planetheroes/rewards" component={PlanetHeroesRewards} />
-        <Route path="/planetheroes/challenges" component={PlanetHeroesChallenges} />
-        <Route path="/planetheroes/community" component={PlanetHeroesCommunity} />
-        <Route path="/planetheroes/sponsors" component={PlanetHeroesSponsors} />
-        <Route path="/planetheroes/hall-of-heroes" component={PlanetHeroesHallOfHeroes} />
-        <Route path="/planetheroes/league" component={PlanetHeroesLeagueRedirect} />
-
-        {/* Route aliases — old routes redirect into Planet Heroes journeys */}
-        <Route path="/environmental"><Redirect to="/planetheroes/impact" /></Route>
-        <Route path="/leaderboard"><Redirect to="/planetheroes/leaderboard" /></Route>
-        <Route path="/community"><Redirect to="/planetheroes/community" /></Route>
+        <Route path="/environmental" component={Environmental} />
+        <Route path="/leaderboard" component={Leaderboard} />
+        <Route path="/community" component={lazy(() => import("@/pages/relocate-community"))} />
         
         {/* Saqi Kawthar Project Mission */}
         <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />
@@ -793,7 +772,7 @@ function MainShell({ children }: { children: React.ReactNode }) {
 }
 
 const MAMZAR_PATHS = ["/mamzar", "/mamzar-beach", "/linar"];
-const STANDALONE_PATHS = ["/community", "/planetheroes/community", "/planetheroes/leaderboard"];
+const STANDALONE_PATHS = ["/community"];
 
 function AppChrome() {
   const [location] = useLocation();

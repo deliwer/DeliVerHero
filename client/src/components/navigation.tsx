@@ -114,22 +114,10 @@ const DEEP_CHAINTRACK_PATHS = [
   "/cobone-corporate", "/phone-flippers",
 ];
 
-const PLANET_HEROES_ITEMS = [
-  { path: "/planetheroes", label: "Hub", icon: Globe },
-  { path: "/planetheroes/impact", label: "Impact Center", icon: Globe },
-  { path: "/planetheroes/leaderboard", label: "Leaderboard", icon: Trophy },
-  { path: "/planetheroes/league", label: "League", icon: Trophy },
-  { path: "/planetheroes/rewards", label: "Rewards", icon: Zap },
-  { path: "/planetheroes/challenges", label: "Challenges", icon: Flame },
-  { path: "/planetheroes/community", label: "Community", icon: Users },
-  { path: "/planetheroes/sponsors", label: "Sponsors", icon: Award },
-  { path: "/planetheroes/hall-of-heroes", label: "Hall of Heroes", icon: Crown },
-];
 
 export function Navigation() {
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isPlanetHeroesOpen, setIsPlanetHeroesOpen] = useState(false);
 
   const isManagementSide = MANAGEMENT_PATHS.some((p) => location === p || location.startsWith(p + "/"));
   const isLogisticsSide = LOGISTICS_PATHS.some((p) => location.startsWith(p));
