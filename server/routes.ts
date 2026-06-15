@@ -6067,7 +6067,19 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
     try {
       const { getLastPingReport } = await import("./services/seo-ping.js");
-      res.json(getLastPingReport());
+      const report = getLastPingReport();
+      res.json({
+        ...report,
+        endpoints: {
+          triggerAll:          "POST /api/admin/seo-ping",
+          triggerPlanetHeroes: "POST /api/admin/seo-ping/planetheroes",
+          status:              "GET  /api/admin/seo-ping/status",
+        },
+        sitemaps: {
+          deliwer:      "https://www.deliwer.com/sitemap.xml",
+          planetHeroes: "https://planetheroes.deliwer.com/sitemap-planetheroes.xml",
+        },
+      });
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

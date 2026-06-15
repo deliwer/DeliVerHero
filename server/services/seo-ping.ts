@@ -84,6 +84,10 @@ export interface PingResult {
 let lastRunAt: string | null = null;
 let lastResults: PingResult[] = [];
 
+// Planet Heroes separate tracking
+let phLastRunAt: string | null = null;
+let phLastResults: PingResult[] = [];
+
 function now(): string {
   return new Date().toISOString();
 }
@@ -153,12 +157,16 @@ async function submitIndexNow(): Promise<PingResult[]> {
 
 // ── IndexNow submission — planetheroes.deliwer.com ────────────────────────────
 export async function submitPlanetHeroesIndexNow(): Promise<PingResult[]> {
-  return submitToIndexNow(
+  const results = await submitToIndexNow(
     "planetheroes.deliwer.com",
     `${PLANET_HEROES_BASE}/${INDEXNOW_KEY}.txt`,
     PLANET_HEROES_URLS,
     "planetheroes"
   );
+  // Persist so getLastPingReport always has fresh Planet Heroes data
+  phLastRunAt = now();
+  phLastResults = results;
+  return results;
 }
 
 // ── Main exported function ────────────────────────────────────────────────────
@@ -185,16 +193,49 @@ export async function runSeoPing(): Promise<{
   results.forEach(r => console.log(`[SEO]   ${r.message}`));
 
   lastRunAt = runAt;
-  lastResults = results;
+  lastResults = deliwerResults;
+  // planetHeroesResults already persisted inside submitPlanetHeroesIndexNow()
 
   return {
-    ok: succeeded > 0,          // pass if at least one engine accepted
+    ok: succeeded > 0,
     runAt,
     summary: { total: results.length, succeeded, failed },
     results,
   };
 }
 
+// ── Status report — structured per-domain breakdown ───────────────────────────
 export function getLastPingReport() {
-  return { lastRunAt, results: lastResults };
+  const deliwerOk   = lastResults.filter(r => r.ok).length;
+  const deliwerFail = lastResults.filter(r => !r.ok).length;
+  const phOk        = phLastResults.filter(r => r.ok).length;
+  const phFail      = phLastResults.filter(r => !r.ok).length;
+
+  return {
+    lastRunAt,
+    summary: {
+      deliwer: {
+        domain: "www.deliwer.com",
+        sitemap: "https://www.deliwer.com/sitemap.xml",
+        urlCount: INDEX_NOW_URLS.length,
+        lastRunAt,
+        succeeded: deliwerOk,
+        failed: deliwerFail,
+        ok: deliwerOk > 0,
+      },
+      planetHeroes: {
+        domain: "planetheroes.deliwer.com",
+        sitemap: "https://planetheroes.deliwer.com/sitemap-planetheroes.xml",
+        urlCount: PLANET_HEROES_URLS.length,
+        lastRunAt: phLastRunAt,
+        succeeded: phOk,
+        failed: phFail,
+        ok: phOk > 0,
+      },
+    },
+    results: {
+      deliwer: lastResults,
+      planetHeroes: phLastResults,
+    },
+  };
 }
