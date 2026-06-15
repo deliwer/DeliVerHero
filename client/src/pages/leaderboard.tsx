@@ -192,7 +192,14 @@ export default function Leaderboard() {
   const [, setLocation] = useLocation();
   const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [activeSection, setActiveSection] = useState("wellness-hub");
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const navScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const container = navScrollRef.current;
@@ -2042,6 +2049,18 @@ export default function Leaderboard() {
             </div>
           </div>
         </section>
+
+        {/* Back to top */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          data-testid="button-back-to-top"
+          aria-label="Back to top"
+          className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-11 h-11 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/30 transition-all duration-300 ${showBackToTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+          </svg>
+        </button>
       </div>
     </div>
   );
