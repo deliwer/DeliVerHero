@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Link, useLocation } from "wouter";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { SocialChallengesFeed } from "@/components/social-challenges-feed";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -192,6 +192,16 @@ export default function Leaderboard() {
   const [, setLocation] = useLocation();
   const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [activeSection, setActiveSection] = useState("wellness-hub");
+  const navScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = navScrollRef.current;
+    if (!container) return;
+    const btn = container.querySelector(`[data-testid="nav-${activeSection}"]`) as HTMLElement | null;
+    if (!btn) return;
+    const targetScroll = btn.offsetLeft - container.offsetWidth / 2 + btn.offsetWidth / 2;
+    container.scrollTo({ left: Math.max(0, targetScroll), behavior: "smooth" });
+  }, [activeSection]);
 
   useEffect(() => {
     const sectionIds = [
@@ -656,7 +666,7 @@ export default function Leaderboard() {
 
         {/* Section Navigation */}
         <nav className="sticky top-14 z-40 bg-slate-950/95 backdrop-blur-md border-b border-white/10 mb-10 -mx-4 px-4">
-          <div className="overflow-x-auto scrollbar-none">
+          <div ref={navScrollRef} className="overflow-x-auto scrollbar-none">
             <div className="flex items-center gap-1 py-2 min-w-max">
               {[
                 { id: "wellness-hub",  label: "Wellness & Discovery", icon: Heart,         color: "text-emerald-400" },
