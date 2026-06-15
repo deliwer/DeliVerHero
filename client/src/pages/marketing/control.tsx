@@ -22,9 +22,222 @@ const FUNNEL_LABELS: Record<string, string> = {
   urgency_get_slot: "Urgency Get Slot",
 };
 
+function fmt(ts: string | null) {
+  if (!ts) return "Never";
+  const d = new Date(ts);
+  return d.toLocaleString("en-AE", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
+}
+
+function SeoPingPanel() {
+  const [triggering, setTriggering] = useState<string | null>(null);
+  const [flash, setFlash] = useState<string | null>(null);
+
+  const { data: status, isLoading, refetch } = useQuery<any>({
+    queryKey: ["/api/admin/seo-ping/status"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/seo-ping/status", {
+        headers: { "x-admin-secret": "deliwer-admin-2026" },
+      });
+      return res.json();
+    },
+    refetchInterval: 60_000,
+  });
+
+  async function trigger(endpoint: string, label: string) {
+    setTriggering(label);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-admin-secret": "deliwer-admin-2026" },
+      });
+      const json = await res.json();
+      setFlash(json.ok ? `✓ ${label} — ${json.summary?.succeeded ?? 0}/${json.summary?.total ?? 0} engines accepted` : `✗ ${label} failed`);
+      refetch();
+    } catch {
+      setFlash(`✗ ${label} — network error`);
+    } finally {
+      setTriggering(null);
+      setTimeout(() => setFlash(null), 5000);
+    }
+  }
+
+  const dw = status?.summary?.deliwer;
+  const ph = status?.summary?.planetHeroes;
+
+  const domains = [
+    {
+      key: "deliwer",
+      label: "deliwer.com",
+      icon: "🌐",
+      color: "emerald",
+      data: dw,
+      sitemap: "https://www.deliwer.com/sitemap.xml",
+      triggerEndpoint: "/api/admin/seo-ping",
+      triggerLabel: "All (deliwer.com + Planet Heroes)",
+      results: status?.results?.deliwer ?? [],
+    },
+    {
+      key: "planetHeroes",
+      label: "planetheroes.deliwer.com",
+      icon: "🦸",
+      color: "cyan",
+      data: ph,
+      sitemap: "https://planetheroes.deliwer.com/sitemap-planetheroes.xml",
+      triggerEndpoint: "/api/admin/seo-ping/planetheroes",
+      triggerLabel: "Planet Heroes only",
+      results: status?.results?.planetHeroes ?? [],
+    },
+  ];
+
+  return (
+    <div className="space-y-6">
+      {/* Flash message */}
+      {flash && (
+        <div className={`px-4 py-3 rounded-xl text-sm font-medium border ${
+          flash.startsWith("✓") ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400" : "bg-red-500/10 border-red-500/30 text-red-400"
+        }`}>
+          {flash}
+        </div>
+      )}
+
+      {/* Quick-action row */}
+      <div className="flex flex-wrap gap-3">
+        <button
+          onClick={() => trigger("/api/admin/seo-ping", "Full ping")}
+          disabled={!!triggering}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-black font-bold text-sm rounded-lg transition-all"
+          data-testid="seo-trigger-all"
+        >
+          {triggering === "Full ping" ? "Submitting…" : "⚡ Submit All Domains"}
+        </button>
+        <button
+          onClick={() => trigger("/api/admin/seo-ping/planetheroes", "Planet Heroes ping")}
+          disabled={!!triggering}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 disabled:opacity-50 text-cyan-300 border border-cyan-500/30 font-semibold text-sm rounded-lg transition-all"
+          data-testid="seo-trigger-planetheroes"
+        >
+          {triggering === "Planet Heroes ping" ? "Submitting…" : "🦸 Planet Heroes Only"}
+        </button>
+        <button
+          onClick={() => refetch()}
+          className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-400 border border-white/10 text-sm rounded-lg transition-all"
+          data-testid="seo-refresh"
+        >
+          ↻ Refresh Status
+        </button>
+      </div>
+
+      {isLoading ? (
+        <div className="h-40 flex items-center justify-center text-gray-500 text-sm">Loading status…</div>
+      ) : (
+        <div className="grid md:grid-cols-2 gap-5">
+          {domains.map((d) => {
+            const isOk = d.data?.ok;
+            const borderColor = isOk === true ? "border-emerald-500/30" : isOk === false ? "border-red-500/30" : "border-white/10";
+            const dotColor   = isOk === true ? "bg-emerald-400" : isOk === false ? "bg-red-400" : "bg-gray-500";
+            const labelColor = isOk === true ? "text-emerald-400" : isOk === false ? "text-red-400" : "text-gray-400";
+
+            return (
+              <div key={d.key} className={`bg-white/5 border ${borderColor} rounded-2xl p-5 flex flex-col gap-4`} data-testid={`seo-domain-${d.key}`}>
+                {/* Header */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-lg shrink-0">{d.icon}</span>
+                    <div className="min-w-0">
+                      <div className="font-bold text-sm truncate">{d.label}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">{d.data?.urlCount ?? 0} URLs in sitemap</div>
+                    </div>
+                  </div>
+                  <div className={`flex items-center gap-1.5 shrink-0 text-xs font-semibold ${labelColor}`}>
+                    <span className={`w-2 h-2 rounded-full shrink-0 ${dotColor} ${isOk ? "animate-pulse" : ""}`} />
+                    {isOk === true ? "OK" : isOk === false ? "Failed" : "Never run"}
+                  </div>
+                </div>
+
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-2">
+                  {[
+                    { label: "Succeeded", value: d.data?.succeeded ?? "—", color: "text-emerald-400" },
+                    { label: "Failed",    value: d.data?.failed ?? "—",    color: "text-red-400" },
+                    { label: "URLs",      value: d.data?.urlCount ?? "—",  color: "text-white" },
+                  ].map((s) => (
+                    <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
+                      <div className={`text-xl font-black ${s.color}`}>{s.value}</div>
+                      <div className="text-[10px] text-gray-500 mt-0.5">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Last run */}
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-gray-500">Last run</span>
+                  <span className="text-gray-300 font-mono">{fmt(d.data?.lastRunAt ?? null)}</span>
+                </div>
+
+                {/* Sitemap link */}
+                <a
+                  href={d.sitemap}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-blue-400 hover:text-blue-300 truncate transition-colors"
+                >
+                  {d.sitemap}
+                </a>
+
+                {/* Per-engine results */}
+                {d.results.length > 0 && (
+                  <div className="border-t border-white/10 pt-3 space-y-2">
+                    <div className="text-xs text-gray-500 font-medium mb-2">Last submission results</div>
+                    {d.results.map((r: any, i: number) => (
+                      <div key={i} className="flex items-center justify-between gap-2" data-testid={`seo-result-${d.key}-${i}`}>
+                        <span className="text-xs text-gray-400 truncate flex-1">{r.engine}</span>
+                        <span className={`text-xs font-mono shrink-0 ${r.ok ? "text-emerald-400" : "text-red-400"}`}>
+                          {r.ok ? `✓ ${r.status}` : `✗ ${r.status}`}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Individual trigger */}
+                <button
+                  onClick={() => trigger(d.triggerEndpoint, d.triggerLabel)}
+                  disabled={!!triggering}
+                  className="w-full py-2 text-xs font-semibold rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 disabled:opacity-50 text-gray-300 transition-all"
+                  data-testid={`seo-trigger-${d.key}`}
+                >
+                  {triggering === d.triggerLabel ? "Submitting…" : `↑ Re-submit ${d.label}`}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Engine legend */}
+      <div className="bg-white/3 border border-white/8 rounded-xl p-4">
+        <div className="text-xs text-gray-500 font-medium mb-2">IndexNow engine coverage</div>
+        <div className="flex flex-wrap gap-4 text-xs text-gray-400">
+          {[
+            { engine: "Bing", icon: "🔵" },
+            { engine: "IndexNow.org (→ DuckDuckGo, Naver, Seznam, Yep)", icon: "🔗" },
+            { engine: "Yandex", icon: "🟡" },
+            { engine: "Google (crawls via sitemap-planetheroes.xml)", icon: "🔴" },
+          ].map((e) => (
+            <div key={e.engine} className="flex items-center gap-1.5">
+              <span>{e.icon}</span>
+              <span>{e.engine}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function FounderControl() {
   const [leads, setLeads] = useState<any[]>([]);
-  const [view, setView] = useState<"overview" | "leads" | "partners" | "funnel">("overview");
+  const [view, setView] = useState<"overview" | "leads" | "partners" | "funnel" | "seo">("overview");
   const [filter, setFilter] = useState("all");
 
   const { data: funnelReport, isLoading: funnelLoading } = useQuery<any>({
@@ -144,17 +357,17 @@ export default function FounderControl() {
           ))}
         </div>
 
-        <div className="flex items-center gap-1 mb-4 border-b border-white/10 pb-1">
-          {(["overview", "leads", "partners", "funnel"] as const).map((t) => (
+        <div className="flex items-center gap-1 mb-4 border-b border-white/10 pb-1 overflow-x-auto">
+          {(["overview", "leads", "partners", "funnel", "seo"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setView(t)}
-              className={`px-4 py-2 text-sm font-medium capitalize transition-all ${
+              className={`px-4 py-2 text-sm font-medium capitalize whitespace-nowrap transition-all ${
                 view === t ? "text-white border-b-2 border-emerald-500 -mb-px" : "text-gray-500 hover:text-gray-300"
               }`}
               data-testid={`tab-${t}`}
             >
-              {t === "funnel" ? "Broker Funnel" : t}
+              {t === "funnel" ? "Broker Funnel" : t === "seo" ? "🔍 SEO Pings" : t}
             </button>
           ))}
         </div>
@@ -403,6 +616,8 @@ export default function FounderControl() {
             )}
           </div>
         )}
+
+        {view === "seo" && <SeoPingPanel />}
       </div>
       <StickyBrokerWhatsApp />
     </div>
