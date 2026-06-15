@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Link, useLocation } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SocialChallengesFeed } from "@/components/social-challenges-feed";
 import { useToast } from "@/hooks/use-toast";
 import { shopifyCartService } from "@/lib/shopify-cart";
@@ -191,6 +191,20 @@ export default function Leaderboard() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [isOrderLoading, setIsOrderLoading] = useState(false);
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const tryScroll = (attempts = 0) => {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (attempts < 10) {
+        setTimeout(() => tryScroll(attempts + 1), 100);
+      }
+    };
+    tryScroll();
+  }, []);
 
   const handleOrderStarterKit = async () => {
     setIsOrderLoading(true);
@@ -635,7 +649,10 @@ export default function Leaderboard() {
                   key={id}
                   onClick={() => {
                     const el = document.getElementById(id);
-                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      history.replaceState(null, "", `#${id}`);
+                    }
                   }}
                   className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/8 transition-colors whitespace-nowrap"
                   data-testid={`nav-${id}`}
