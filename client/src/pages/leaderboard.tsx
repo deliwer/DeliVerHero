@@ -191,6 +191,31 @@ export default function Leaderboard() {
   const { toast } = useToast();
   const [, setLocation] = useLocation();
   const [isOrderLoading, setIsOrderLoading] = useState(false);
+  const [activeSection, setActiveSection] = useState("wellness-hub");
+
+  useEffect(() => {
+    const sectionIds = [
+      "wellness-hub", "community-hub", "chill-grill", "future-events",
+      "activities", "leaderboard", "live", "forum", "achievements", "planet-heroes",
+    ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            history.replaceState(null, "", `#${entry.target.id}`);
+            break;
+          }
+        }
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    );
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const hash = window.location.hash.slice(1);
@@ -654,7 +679,7 @@ export default function Leaderboard() {
                       history.replaceState(null, "", `#${id}`);
                     }
                   }}
-                  className="flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white hover:bg-white/8 transition-colors whitespace-nowrap"
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap ${activeSection === id ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/8"}`}
                   data-testid={`nav-${id}`}
                 >
                   <Icon className={`w-4 h-4 ${color}`} />
