@@ -67,6 +67,7 @@ const MarinaGateMoveIn = lazy(() => import("@/pages/marina-gate-move-in"));
 const AffiliateManagement = lazy(() => import("@/pages/affiliate-management"));
 const PartnerProgram = lazy(() => import("@/pages/partner-program"));
 const CommunityToolkit = lazy(() => import("@/pages/community-toolkit"));
+const CommunityPage = lazy(() => import("@/pages/community"));
 const DeBacciWelcome = lazy(() => import("@/pages/partners/debacci-welcome"));
 const EGLCWelcome = lazy(() => import("@/pages/partners/eglc-welcome"));
 const MytablonWelcome = lazy(() => import("@/pages/partners/mytablon-welcome"));
@@ -504,7 +505,7 @@ function Router() {
           {/* Ecosystem Pages */}
           <Route path="/explore" component={Explore} />
           <Route path="/leaderboard" component={Leaderboard} />
-          <Route path="/community" component={Leaderboard} />
+          <Route path="/community" component={CommunityPage} />
           <Route path="/impact-dashboard" component={ImpactDashboard} />
           <Route path="/home-service/aquacafe" component={AquaCafe} />
           <Route path="/aquacafe" component={AquaCafe} />
@@ -556,7 +557,7 @@ function Router() {
 
         <Route path="/environmental" component={Environmental} />
         <Route path="/leaderboard" component={Leaderboard} />
-        <Route path="/community" component={lazy(() => import("@/pages/relocate-community"))} />
+        
         
         {/* Saqi Kawthar Project Mission */}
         <Route path="/mission-control-saqi-kawthar" component={MissionControlSaqiKawthar} />

@@ -1,1118 +1,885 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SEOMeta } from '@/components/seo-meta';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { LeaderboardWidget } from '@/components/leaderboard-widget';
-import { Link } from 'wouter';
-import { 
-  Users, 
-  Trophy, 
-  Globe, 
-  Star, 
-  Zap, 
-  Calendar,
-  MessageSquare,
-  Share2,
-  Gift,
-  Target,
-  Flame,
-  Shield,
-  Heart,
-  CheckCircle,
-  TrendingUp,
-  MapPin,
-  Camera,
-  Hash,
-  Clock,
-  Truck,
-  Phone,
-  Navigation,
-  AlertCircle,
-  Headphones,
-  Droplet,
-  Recycle,
-  Send,
-  Filter,
-  Search,
-  Settings,
-  Plus,
-  ExternalLink,
-  MessageCircle,
-  Play,
-  Award,
-  ArrowRight
-} from 'lucide-react';
 import { SocialChallengesFeed } from '@/components/social-challenges-feed';
+import { Link } from 'wouter';
+import {
+  Trophy, Users, Globe, Star, Zap, Calendar, MessageSquare,
+  Share2, Gift, Target, Flame, Heart, CheckCircle, TrendingUp,
+  MapPin, Droplet, Recycle, Send, Search, Plus, ExternalLink,
+  MessageCircle, Play, Award, ArrowRight, Building2, Plane,
+  Wind, Sun, Cpu, Train, Dumbbell, Leaf, Shield, Bike, Activity,
+  ChevronRight, Sparkles, Home, Filter
+} from 'lucide-react';
 
-interface CommunityEvent {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  participants: number;
-  reward: string;
-  type: 'challenge' | 'workshop' | 'cleanup' | 'social';
-  status: 'upcoming' | 'active' | 'completed';
-}
+const NAV_TABS = [
+  { id: "overview",     label: "Home",             icon: Home },
+  { id: "league",       label: "🏆 Brokers League",  icon: Trophy },
+  { id: "sports",       label: "Sports & Wellness", icon: Dumbbell },
+  { id: "sustainability", label: "Sustainability",  icon: Leaf },
+  { id: "future",       label: "Dubai Future",      icon: Sparkles },
+  { id: "connect",      label: "Connect",           icon: Globe },
+  { id: "leaderboard",  label: "Leaderboard",       icon: Award },
+  { id: "events",       label: "Events",            icon: Calendar },
+];
 
-interface SocialPost {
-  id: string;
-  author: string;
-  avatar: string;
-  content: string;
-  image?: string;
-  likes: number;
-  comments: number;
-  shares: number;
-  timeAgo: string;
-  badges: string[];
-}
+const COMMUNITY_STATS = [
+  { value: "36,000+", label: "Members & Brokers", color: "text-emerald-400" },
+  { value: "2.4M",    label: "Bottles Prevented",  color: "text-blue-400" },
+  { value: "180T",    label: "CO₂ Saved",           color: "text-amber-400" },
+  { value: "+23%",    label: "Monthly Growth",      color: "text-purple-400" },
+];
 
-interface ForumPost {
-  id: string;
-  author: string;
-  avatar: string;
-  title: string;
-  content: string;
-  category: "water" | "ewaste" | "missions" | "global";
-  location: string;
-  likes: number;
-  replies: number;
-  timestamp: string;
-  tags: string[];
-}
+const LEAGUE_SECTORS = [
+  {
+    title: "Real Estate Brokers League",
+    subtitle: "Cricket Season 2026",
+    description: "36,000+ Dubai real estate brokers compete across 16 teams in cricket, padel, football and more. Sponsored by top UAE developers.",
+    stats: "16 teams · 250+ participants · AED 30,000+ exposure",
+    icon: Trophy,
+    color: "from-amber-500/20 to-yellow-500/10",
+    border: "border-amber-400/30",
+    badge: "ACTIVE SEASON",
+    badgeColor: "bg-amber-500/20 text-amber-300",
+    cta: "Join the League",
+    href: "/league",
+    emoji: "🏏",
+  },
+  {
+    title: "Property Owners Circle",
+    subtitle: "Landlord & Developer Network",
+    description: "Connect with owners, developers, and landlords across Dubai. Share tenant insights, market data, and off-plan opportunities.",
+    stats: "2,400+ owners · Mamzar · Habtoor · DAMAC",
+    icon: Building2,
+    color: "from-blue-500/20 to-cyan-500/10",
+    border: "border-blue-400/30",
+    badge: "OPEN",
+    badgeColor: "bg-blue-500/20 text-blue-300",
+    cta: "Explore Properties",
+    href: "/realestate",
+    emoji: "🏙️",
+  },
+  {
+    title: "Recommerce Trade Network",
+    subtitle: "Circular Economy Exchange",
+    description: "Buy, sell and trade smartphones, electronics and devices. Every trade prevents e-waste and funds clean water missions.",
+    stats: "15,000+ devices traded · iPhone · Samsung · MacBook",
+    icon: Recycle,
+    color: "from-green-500/20 to-emerald-500/10",
+    border: "border-green-400/30",
+    badge: "LIVE",
+    badgeColor: "bg-green-500/20 text-green-300",
+    cta: "Trade Now",
+    href: "/exchange",
+    emoji: "♻️",
+  },
+];
 
-interface SocialResource {
-  id: string;
-  name: string;
-  type: "whatsapp" | "linkedin" | "facebook" | "telegram" | "discord";
-  url: string;
-  description: string;
-  members: number;
-  isOfficial: boolean;
-  adminOnly?: boolean;
-}
+const SPORTS_PILLARS = [
+  {
+    icon: "🏏",
+    title: "Cricket League",
+    body: "The DeliWer Brokers Cricket League — 16 agency teams, 8-week season, full jersey branding and UAE's biggest real estate sports moment.",
+    link: "/league",
+    cta: "View League",
+  },
+  {
+    icon: "🎾",
+    title: "Padel & Tennis",
+    body: "Padel tournaments at top Dubai courts — enter as an individual or represent your agency. Doubles and mixed formats available.",
+    link: "/league",
+    cta: "Sign Up",
+  },
+  {
+    icon: "⚽",
+    title: "Football",
+    body: "5-a-side and 7-a-side agency leagues across Dubai Sports City, JVC and Motor City. Inter-district and inter-agency formats.",
+    link: "/league",
+    cta: "Join Team",
+  },
+  {
+    icon: "🏊",
+    title: "Triathlon & Run",
+    body: "Dubai Marathon participants, triathlon teams and running groups from the community. Track your training and earn Hero Points.",
+    link: "/earn",
+    cta: "Track Run",
+  },
+  {
+    icon: "🥗",
+    title: "Healthy Living",
+    body: "Nutrition challenges, clean eating missions, AquaCafe hydration tracking. Earn DXB points for hitting wellness milestones.",
+    link: "/aquacafe",
+    cta: "Start Mission",
+  },
+  {
+    icon: "🧘",
+    title: "Wellness & Mindfulness",
+    body: "Yoga sessions, mindfulness retreats and community wellness days organised across Dubai parks and beach locations.",
+    link: "/rewards",
+    cta: "Earn Rewards",
+  },
+];
 
-interface DeliveryZone {
-  name: string;
-  areas: string[];
-  timeSlots: string[];
-  fee: number;
-  nextDay: boolean;
-}
+const FUTURE_PILLARS = [
+  {
+    icon: Wind,
+    iconColor: "text-sky-400",
+    bg: "from-sky-500/10 to-blue-500/5",
+    border: "border-sky-400/20",
+    title: "Clean Energy",
+    body: "Solar, hydrogen and clean energy projects reshaping Dubai's grid. Planet Heroes earn points for reducing household energy consumption.",
+    link: "/environmental",
+  },
+  {
+    icon: Cpu,
+    iconColor: "text-purple-400",
+    bg: "from-purple-500/10 to-violet-500/5",
+    border: "border-purple-400/20",
+    title: "AI & Smart City",
+    body: "Dubai's AI roadmap, smart logistics, predictive maintenance and autonomous services. ChainTrack integrates real-time AI routing.",
+    link: "/chaintrack",
+  },
+  {
+    icon: Plane,
+    iconColor: "text-amber-400",
+    bg: "from-amber-500/10 to-yellow-500/5",
+    border: "border-amber-400/20",
+    title: "Aerotropolis & DWC",
+    body: "Dubai World Central and Al Maktoum airport — the world's largest aerotropolis. Logistics, freight and airport-adjacent communities.",
+    link: "/chaintrack-logistics",
+  },
+  {
+    icon: Train,
+    iconColor: "text-emerald-400",
+    bg: "from-emerald-500/10 to-green-500/5",
+    border: "border-emerald-400/20",
+    title: "Transport & Mobility",
+    body: "Metro expansion, Hyperloop proposals, EV infrastructure and last-mile delivery reshaping how Dubai moves people and goods.",
+    link: "/chaintrack",
+  },
+  {
+    icon: Sun,
+    iconColor: "text-orange-400",
+    bg: "from-orange-500/10 to-amber-500/5",
+    border: "border-orange-400/20",
+    title: "Travel & Tourism",
+    body: "Halal travel, luxury wellness retreats, eco-tourism and private aviation. DeliWer members unlock exclusive travel rewards.",
+    link: "/earn",
+  },
+  {
+    icon: Activity,
+    iconColor: "text-rose-400",
+    bg: "from-rose-500/10 to-pink-500/5",
+    border: "border-rose-400/20",
+    title: "Dubai Future District",
+    body: "The 1km² Future District is home to startups, accelerators and innovation labs. Connect with founders, investors and ecosystem builders.",
+    link: "/invest",
+  },
+];
+
+const SUSTAINABILITY_ACTIONS = [
+  { emoji: "💧", title: "Water Heroes", desc: "AquaCafe filter installation prevents plastic bottle waste — 2.4M bottles and counting.", pts: "+500 pts", link: "/aquacafe" },
+  { emoji: "📱", title: "Recommerce", desc: "Trade in old devices. Each iPhone = 2,400 bottles prevented & clean water funded.", pts: "+750 pts", link: "/exchange" },
+  { emoji: "🌳", title: "Carbon Offset", desc: "Complete eco missions to offset your carbon footprint and earn Green Hero badges.", pts: "+300 pts", link: "/play" },
+  { emoji: "☀️", title: "Clean Energy", desc: "Report your renewable energy usage and earn community recognition.", pts: "+400 pts", link: "/environmental" },
+  { emoji: "🚴", title: "Green Commute", desc: "Log cycling, walking or public transport trips and multiply your Planet Hero score.", pts: "+200 pts", link: "/earn" },
+  { emoji: "🏖️", title: "Beach Cleanups", desc: "Join monthly Jumeirah beach cleanups with fellow Heroes. Earn Cleanup Champion badge.", pts: "+600 pts", link: "/play" },
+];
+
+const CONNECT_CHANNELS = [
+  {
+    type: "whatsapp",
+    emoji: "💬",
+    name: "DeliWer Shopping Metaverse — Dubai Heroes",
+    desc: "Official WhatsApp community — daily missions, tips and celebration",
+    members: "2,847",
+    color: "border-green-400/30 bg-green-500/5",
+    url: "https://chat.whatsapp.com/GcnBVI6Ere6GqOg0jb8L5O",
+  },
+  {
+    type: "whatsapp",
+    emoji: "💬",
+    name: "AquaCafe Champions",
+    desc: "Installation support, water quality tips and impact sharing",
+    members: "1,643",
+    color: "border-green-400/30 bg-green-500/5",
+    url: "https://chat.whatsapp.com/EjlA3pKnhn8AcpxDEuTnvC",
+  },
+  {
+    type: "league",
+    emoji: "🏆",
+    name: "Brokers League Community",
+    desc: "36,000 real estate brokers — sports, deals, referrals and market intel",
+    members: "36,000+",
+    color: "border-amber-400/30 bg-amber-500/5",
+    url: "/league",
+    internal: true,
+  },
+  {
+    type: "telegram",
+    emoji: "✈️",
+    name: "Global Water Heroes Network",
+    desc: "International network connecting water sustainability projects",
+    members: "12,456",
+    color: "border-cyan-400/30 bg-cyan-500/5",
+    url: "#",
+  },
+];
+
+const EVENTS = [
+  {
+    id: "cricket-2026",
+    title: "🏏 Brokers Cricket League — Season Opener",
+    description: "16 real estate agency teams battle in the UAE's biggest industry cricket event. Sponsorships, jersey branding and full media coverage.",
+    date: "July 2026",
+    participants: 250,
+    reward: "Trophy + AED 10,000 sponsor package",
+    status: "upcoming",
+    badge: "SPORTS",
+    badgeColor: "bg-amber-500/20 text-amber-300",
+    link: "/league",
+  },
+  {
+    id: "ramadan-bottles",
+    title: "💧 1 Million Bottles by Ramadan",
+    description: "Community-wide challenge to prevent 1 million plastic bottles. 80% complete — join now to earn the Golden Hero badge.",
+    date: "Ongoing",
+    participants: 8734,
+    reward: "Golden Hero Badge + AED 1,000 voucher + 2X lifetime points",
+    status: "active",
+    badge: "SUSTAINABILITY",
+    badgeColor: "bg-emerald-500/20 text-emerald-300",
+    link: "/play",
+  },
+  {
+    id: "beach-cleanup",
+    title: "🏖️ Jumeirah Beach Community Cleanup",
+    description: "Monthly cleanup with Planet Heroes. Build real-world impact with your community.",
+    date: "Last Sunday of each month",
+    participants: 89,
+    reward: "Cleanup Champion Badge + 300 Hero Points",
+    status: "upcoming",
+    badge: "COMMUNITY",
+    badgeColor: "bg-blue-500/20 text-blue-300",
+    link: "/play",
+  },
+  {
+    id: "future-summit",
+    title: "🚀 Dubai Future District Networking",
+    description: "Connect with startup founders, AI innovators, clean energy pioneers and Dubai's most ambitious community builders.",
+    date: "Q3 2026",
+    participants: 320,
+    reward: "Innovation Badge + Exclusive Investor Access",
+    status: "upcoming",
+    badge: "FUTURE",
+    badgeColor: "bg-purple-500/20 text-purple-300",
+    link: "/invest",
+  },
+  {
+    id: "padel-open",
+    title: "🎾 DeliWer Padel Open",
+    description: "Agency padel tournament — individuals, doubles and mixed. Top Dubai courts, prize pool and trophy presentation.",
+    date: "August 2026",
+    participants: 64,
+    reward: "Champion Trophy + AED 5,000 Prize Pool",
+    status: "upcoming",
+    badge: "SPORTS",
+    badgeColor: "bg-amber-500/20 text-amber-300",
+    link: "/league",
+  },
+];
 
 export default function Community() {
   const [activeTab, setActiveTab] = useState<string>("overview");
-  const [selectedEvent, setSelectedEvent] = useState<string>("");
-  const [forumSearchQuery, setForumSearchQuery] = useState("");
-  const [newPost, setNewPost] = useState({ title: "", content: "", category: "water" as const });
-  const [isAdmin] = useState(false); // This would be set based on user auth
-  
-  const communityStats = {
-    totalMembers: 12847,
-    bottlesPrevented: 2400000,
-    co2Saved: 180,
-    treesEquivalent: 2400,
-    monthlyGrowth: 23
-  };
-
-  const events: CommunityEvent[] = [
-    {
-      id: "ramadan2025",
-      title: "1 Million Bottles by Ramadan",
-      description: "Community-wide challenge to prevent 1 million plastic bottles before Ramadan 2025",
-      date: "March 10, 2025",
-      participants: 8734,
-      reward: "Exclusive Golden Hero Badge + AED 1000 voucher",
-      type: "challenge",
-      status: "active"
-    },
-    {
-      id: "sustainability-workshop",
-      title: "Sustainability in Action Workshop",
-      description: "Learn advanced eco-techniques from Dubai Municipality environmental experts",
-      date: "March 5, 2025",
-      participants: 156,
-      reward: "Certificate + 500 Hero Points",
-      type: "workshop",
-      status: "upcoming"
-    },
-    {
-      id: "beach-cleanup",
-      title: "Jumeirah Beach Community Cleanup",
-      description: "Monthly beach cleanup with fellow Planet Heroes - build impact together",
-      date: "February 28, 2025",
-      participants: 89,
-      reward: "Cleanup Champion Badge + 300 Points",
-      type: "cleanup",
-      status: "upcoming"
-    },
-    {
-      id: "hero-meetup",
-      title: "Planet Heroes Dubai Meetup",
-      description: "Monthly social gathering for all Planet Heroes - networking and celebration",
-      date: "March 15, 2025",
-      participants: 234,
-      reward: "Community Builder Badge",
-      type: "social",
-      status: "upcoming"
-    }
-  ];
-
-  const socialPosts: SocialPost[] = [
-    {
-      id: "post1",
-      author: "Sarah M.",
-      avatar: "SM",
-      content: "Just hit Level 3 Planet Hero! 🌍✨ My AquaCafe system has prevented 1,200 bottles this month. Every sip feels like saving the planet! #PlanetHero #DubaiGreen",
-      likes: 47,
-      comments: 12,
-      shares: 8,
-      timeAgo: "2 hours ago",
-      badges: ["Level 3 Hero", "Water Warrior"]
-    },
-    {
-      id: "post2", 
-      author: "Ahmed K.",
-      avatar: "AK",
-      content: "Amazing workshop today on sustainable living! Learned so much from the Dubai Municipality team. Who else is joining the beach cleanup this weekend?",
-      likes: 23,
-      comments: 15,
-      shares: 5,
-      timeAgo: "4 hours ago",
-      badges: ["Community Leader", "Eco Educator"]
-    },
-    {
-      id: "post3",
-      author: "Fatima A.",
-      avatar: "FA", 
-      content: "Monthly impact: 500 bottles prevented, 37.5kg CO₂ saved! 🌱 My old iPhone 12 trade turned into the best environmental decision ever. Thank you @DeliWer team!",
-      likes: 91,
-      comments: 24,
-      shares: 18,
-      timeAgo: "6 hours ago",
-      badges: ["Founding Hero", "Impact Leader"]
-    }
-  ];
-
-  const forumPosts: ForumPost[] = [
-    {
-      id: "1",
-      author: "Amira Al-Zahra",
-      avatar: "AZ",
-      title: "Connecting Dubai's Water Heroes with Global Communities",
-      content: "Looking to connect with water sustainability groups worldwide. Our AquaCafe mission has prevented 50,000+ bottles in Dubai. What initiatives are running in your cities?",
-      category: "water",
-      location: "Dubai, UAE",
-      likes: 24,
-      replies: 8,
-      timestamp: "2 hours ago",
-      tags: ["water-heroes", "global-connect", "aquacafe"]
-    },
-    {
-      id: "2", 
-      author: "Omar Khalil",
-      avatar: "OK",
-      title: "E-Waste Trading Network: iPhone → Clean Water Impact",
-      content: "Just completed my 15th iPhone trade-in! Each device = 2,400 bottles prevented. Building connections with e-waste programs in Singapore and Kenya. Who's interested in cross-border impact?",
-      category: "ewaste",
-      location: "Dubai, UAE", 
-      likes: 31,
-      replies: 12,
-      timestamp: "4 hours ago",
-      tags: ["iphone-trade", "e-waste", "global-impact"]
-    },
-    {
-      id: "3",
-      author: "Sarah Chen",
-      avatar: "SC", 
-      title: "Multiplayer Mission: Global Water Week Challenge",
-      content: "Starting a 7-day global challenge! Teams from different cities compete to prevent the most plastic bottles. Dubai vs Singapore vs São Paulo. Who's in?",
-      category: "missions",
-      location: "Singapore",
-      likes: 45,
-      replies: 20,
-      timestamp: "6 hours ago",
-      tags: ["multiplayer", "global-challenge", "team-missions"]
-    },
-    {
-      id: "4",
-      author: "Green Lagos Initiative",
-      avatar: "GL",
-      title: "Water Purification Lessons from Dubai's AquaCafe",
-      content: "We're implementing similar shower filter programs in Lagos. Dubai Heroes - can you share best practices and installation tips for community rollout?",
-      category: "water", 
-      location: "Lagos, Nigeria",
-      likes: 19,
-      replies: 6,
-      timestamp: "1 day ago",
-      tags: ["water-purification", "community-sharing", "best-practices"]
-    }
-  ];
-
-  const socialResources: SocialResource[] = [
-    {
-      id: "whatsapp1",
-      name: "DeliWer Shopping Metaverse - Dubai Heroes",
-      type: "whatsapp",
-      url: "https://chat.whatsapp.com/GcnBVI6Ere6GqOg0jb8L5O",
-      description: "Official WhatsApp community for Dubai Planet Heroes - daily missions, tips, and celebration",
-      members: 2847,
-      isOfficial: true
-    },
-    {
-      id: "whatsapp2",
-      name: "DeliWer AquaCafe Champions",
-      type: "whatsapp",
-      url: "https://chat.whatsapp.com/EjlA3pKnhn8AcpxDEuTnvC",
-      description: "Dedicated group for AquaCafe users - installation support, water quality discussions, impact sharing",
-      members: 1643,
-      isOfficial: true
-    },
-    {
-      id: "linkedin1",
-      name: "DeliWer Shopping - Professional Network",
-      type: "linkedin",
-      url: "#",
-      description: "Connect with sustainability professionals and corporate partners in Dubai's green economy",
-      members: 5234,
-      isOfficial: true,
-      adminOnly: true
-    },
-    {
-      id: "facebook1",
-      name: "DeliWer Shopping Community",
-      type: "facebook",
-      url: "#",
-      description: "Share your environmental journey, connect with families, and discover local green initiatives",
-      members: 8921,
-      isOfficial: true,
-      adminOnly: true
-    },
-    {
-      id: "telegram1",
-      name: "Global Water Heroes Network",
-      type: "telegram",
-      url: "#",
-      description: "International network connecting water sustainability projects across continents",
-      members: 12456,
-      isOfficial: false,
-      adminOnly: true
-    }
-  ];
-
-  const achievements = [
-    {
-      title: "Water Guardian",
-      description: "Prevent 1,000 plastic bottles",
-      icon: <Shield className="w-8 h-8 text-blue-500" />,
-      progress: 78,
-      unlocked: false
-    },
-    {
-      title: "Community Builder", 
-      description: "Refer 10 new Planet Heroes",
-      icon: <Users className="w-8 h-8 text-hero-green-500" />,
-      progress: 60,
-      unlocked: false
-    },
-    {
-      title: "Impact Multiplier",
-      description: "Reach Level 5 Hero status",
-      icon: <Zap className="w-8 h-8 text-amber-500" />,
-      progress: 45,
-      unlocked: false
-    },
-    {
-      title: "Event Champion",
-      description: "Participate in 5 community events",
-      icon: <Trophy className="w-8 h-8 text-purple-500" />,
-      progress: 100,
-      unlocked: true
-    }
-  ];
-
-  const deliveryZones: Record<string, DeliveryZone> = {
-    zone1: {
-      name: "Dubai City Center",
-      areas: ["Downtown Dubai", "DIFC", "Business Bay", "Marina", "JBR"],
-      timeSlots: ["9:00-11:00", "11:00-13:00", "14:00-16:00", "16:00-18:00", "18:00-20:00"],
-      fee: 0,
-      nextDay: true
-    },
-    zone2: {
-      name: "Dubai Suburbs",
-      areas: ["Jumeirah", "Umm Suqeim", "Al Barsha", "Motor City", "Sports City"],
-      timeSlots: ["10:00-12:00", "14:00-16:00", "16:00-18:00"],
-      fee: 25,
-      nextDay: false
-    },
-    zone3: {
-      name: "Extended Dubai",
-      areas: ["Dubai Investment Park", "Dubailand", "Dubai South", "International City"],
-      timeSlots: ["10:00-14:00", "14:00-18:00"],
-      fee: 50,
-      nextDay: false
-    }
-  };
+  const [forumSearch, setForumSearch] = useState("");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
       <SEOMeta
         title="Planet Heroes Community — Join Dubai's Sustainability Movement"
-        description="Connect with 12,000+ Planet Heroes in Dubai. Earn rewards for reducing plastic, recycling e-waste, and completing sustainability missions. Join the community at planetheroes.deliwer.com."
+        description="Connect with 36,000+ Planet Heroes in Dubai. Sports, wellness, sustainability, real estate brokers league, AI, clean energy, and Dubai Future District initiatives. Join at planetheroes.deliwer.com."
         canonical="https://planetheroes.deliwer.com"
         ogType="website"
-        keywords="Planet Heroes Dubai, sustainability community Dubai, eco rewards Dubai, green living UAE, reduce plastic Dubai, e-waste recycling Dubai, sustainability challenges UAE, DeliWer Planet Heroes, environmental missions Dubai, eco points Dubai"
+        keywords="Planet Heroes Dubai, sustainability community Dubai, Brokers League Dubai, eco rewards Dubai, green living UAE, Dubai Future District, real estate sports Dubai, clean energy UAE, recommerce Dubai, aerotropolis Dubai"
         webPageType="WebPage"
         breadcrumbs={[{ name: "Planet Heroes Community", url: "https://planetheroes.deliwer.com" }]}
         dateModified="2026-06-15"
         faqs={[
-          { question: "What is Planet Heroes?", answer: "Planet Heroes is DeliWer's sustainability community in Dubai where members earn rewards for eco-friendly actions like reducing plastic bottle use, recycling e-waste, and completing green missions." },
-          { question: "How do I earn rewards in Planet Heroes?", answer: "Complete sustainability missions, refer friends, participate in community challenges, and log eco-friendly actions. Points can be redeemed for discounts and real rewards." },
-          { question: "Who can join Planet Heroes?", answer: "Anyone living in Dubai or the UAE can join Planet Heroes for free. Sign up at planetheroes.deliwer.com and start earning points immediately." },
-          { question: "How many members does Planet Heroes have?", answer: "Planet Heroes has over 12,000 active members across Dubai who have collectively prevented 2.4 million plastic bottles and saved 180 tonnes of CO₂." },
+          { question: "What is Planet Heroes?", answer: "Planet Heroes is DeliWer's multidimensional community platform spanning sports, wellness, sustainability, real estate, recommerce and Dubai Future District initiatives." },
+          { question: "What is the Brokers League?", answer: "The DeliWer Brokers League is a real estate industry sports competition with 36,000+ Dubai brokers competing in cricket, padel, football and more across 16 agency teams." },
+          { question: "How do I earn rewards?", answer: "Complete sustainability missions, trade devices, join sports events, reduce plastic consumption, and refer friends. Points convert to real AED vouchers and exclusive badges." },
+          { question: "Who can join?", answer: "Anyone in Dubai — real estate brokers, property owners, sustainability advocates, sports enthusiasts, entrepreneurs, and expats. Join free at planetheroes.deliwer.com." },
         ]}
       />
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-hero-green-500 to-dubai-blue-500 bg-clip-text text-[#3b82f6]">
-                Planet Heroes
-              </span>
-              <br />
-              <span className="text-3xl md:text-4xl">Community Hub</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Join Dubai's largest environmental community. Connect globally, share missions, and multiply your impact through collaboration.
-            </p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-hero-green-500">{communityStats.totalMembers.toLocaleString()}</div>
-                <div className="text-sm text-gray-400">Planet Heroes</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-500">{(communityStats.bottlesPrevented / 1000000).toFixed(1)}M</div>
-                <div className="text-sm text-gray-400">Bottles Prevented</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-amber-500">{communityStats.co2Saved}T</div>
-                <div className="text-sm text-gray-400">CO₂ Saved</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-500">+{communityStats.monthlyGrowth}%</div>
-                <div className="text-sm text-gray-400">Monthly Growth</div>
-              </div>
-            </div>
-
-            {/* Trust-based CTA to Relocation */}
-            <div className="mt-12 text-center">
-              <p className="text-gray-300 text-lg mb-2">
-                Some members start by shopping.
-              </p>
-              <p className="text-gray-400 mb-4">
-                Others go on to build their lives in Dubai.
-              </p>
-              <Link href="/relocate">
-                <button 
-                  className="text-cyan-400 hover:text-cyan-300 font-medium flex items-center justify-center mx-auto gap-2 transition-colors duration-200"
-                  data-testid="link-community-relocate"
-                >
-                  <Globe className="w-4 h-4" />
-                  Explore Relocation Pathways
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </Link>
-            </div>
+      {/* ── HERO ───────────────────────────────────────────────── */}
+      <section className="relative pt-20 pb-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/30 via-slate-950/60 to-slate-950 pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-300 text-sm font-semibold mb-6">
+            <Sparkles className="w-4 h-4" />
+            Dubai Municipality Partner · Future District Member
           </div>
 
-          {/* Enhanced Action Hub */}
-          <div className="mb-12">
-            <div className="text-center mb-6">
-              <h3 className="text-xl font-bold text-white mb-4">Take Action Now</h3>
-              <p className="text-gray-300">Join active missions, connect with the community, and create measurable impact.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              <div className="bg-gradient-to-br from-red-900/50 to-cyan-900/50 border border-red-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/mission-control-saqi-kawthar'}>
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  <AlertCircle className="w-5 h-5 text-red-400" />
-                  🚨 Saqi Kawthar Project Mission
-                </h3>
-                <p className="text-sm text-gray-300 mb-4">Urgent relief - Help provide clean water to communities in need</p>
-                <div className="text-cyan-400 font-semibold text-sm">Active Mission →</div>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
+            <span className="text-white">PLANET</span>{" "}
+            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">HEROES</span>
+          </h1>
+          <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Dubai's unified platform for sports, wellness, sustainability, real estate, recommerce, clean energy and Dubai Future District — all in one community.
+          </p>
+
+          {/* Stats row */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
+            {COMMUNITY_STATS.map((s) => (
+              <div key={s.label} className="bg-white/5 border border-white/10 rounded-2xl p-4">
+                <div className={`text-3xl font-black ${s.color}`}>{s.value}</div>
+                <div className="text-sm text-slate-400 mt-1">{s.label}</div>
               </div>
-              <div className="bg-slate-800/50 border border-hero-green-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => window.location.href = '/play'}>
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  <Play className="w-5 h-5 text-hero-green-400" />
-                  Sustainability Missions
-                </h3>
-                <p className="text-sm text-gray-300 mb-4">Trade devices, earn points, and unlock exclusive rewards</p>
-                <div className="text-hero-green-400 font-semibold text-sm">View All Missions →</div>
-              </div>
-              <div className="bg-slate-800/50 border border-blue-500/30 rounded-2xl p-6 cursor-pointer transform hover:scale-105 transition-all" onClick={() => setActiveTab('challenges')}>
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  <Users className="w-5 h-5 text-blue-400" />
-                  Challenge Friends
-                </h3>
-                <p className="text-sm text-gray-300 mb-4">Create social challenges and multiply your environmental impact</p>
-                <div className="text-blue-400 font-semibold text-sm">Start Challenge →</div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Navigation Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {[
-              { id: "overview", label: "Overview", icon: Globe },
-              { id: "challenges", label: "Challenge Friends", icon: Target },
-              { id: "forum", label: "Heroes Forum", icon: MessageCircle },
-              { id: "events", label: "Events", icon: Calendar },
-              { id: "social", label: "Social Feed", icon: MessageSquare },
-              { id: "connect", label: "Global Connect", icon: ExternalLink },
-              { id: "leaderboard", label: "Leaderboard", icon: Trophy },
-              { id: "achievements", label: "Achievements", icon: Star },
-              { id: "delivery", label: "Delivery Areas", icon: Truck }
-            ].map(({ id, label, icon: Icon }) => (
+          {/* Quick CTAs */}
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link href="/league">
+              <Button className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-full px-6 h-11">
+                <Trophy className="w-4 h-4 mr-2" />
+                Brokers League
+              </Button>
+            </Link>
+            <Link href="/play">
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-full px-6 h-11">
+                <Play className="w-4 h-4 mr-2" />
+                Sustainability Missions
+              </Button>
+            </Link>
+            <Link href="/earn">
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 rounded-full px-6 h-11">
+                <Zap className="w-4 h-4 mr-2" />
+                Earn Rewards
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── NAV TABS ───────────────────────────────────────────── */}
+      <div className="sticky top-0 z-20 bg-slate-950/90 backdrop-blur border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+            {NAV_TABS.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => setActiveTab(id)}
-                className={`flex items-center px-4 py-2 rounded-xl font-medium transition-all text-sm ${
+                className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
                   activeTab === id
-                    ? 'bg-hero-green-500 text-black'
-                    : 'glass text-white hover:bg-slate-700'
+                    ? 'bg-emerald-500 text-slate-950 shadow'
+                    : 'text-slate-300 hover:bg-white/10'
                 }`}
-                data-testid={`tab-${id}`}
               >
-                <Icon className="w-4 h-4 mr-2" />
+                {id !== "league" && <Icon className="w-4 h-4" />}
                 {label}
               </button>
             ))}
           </div>
+        </div>
+      </div>
 
-          {/* Challenge Friends Tab */}
-          {activeTab === "challenges" && (
-            <div className="space-y-6">
-              <Card className="glass border-slate-600">
-                <CardContent className="p-6 bg-gradient-to-br from-hero-green-900/20 to-dubai-blue-900/20 backdrop-blur-sm">
-                  <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
-                    <Target className="w-6 h-6 text-hero-green-400 mr-2" />
-                    Challenge Friends & Social Impact
-                  </h2>
-                  <p className="text-gray-300 mb-6">
-                    Create and join environmental challenges with friends. Amplify your sustainability impact through social competition and collaboration.
-                  </p>
-                </CardContent>
-              </Card>
+      {/* ── TAB CONTENT ───────────────────────────────────────── */}
+      <section className="max-w-6xl mx-auto px-4 py-10">
 
-              {/* Social Challenges Feed Component */}
-              <SocialChallengesFeed />
-            </div>
-          )}
-
-          {/* Heroes Forum Tab */}
-          {activeTab === "forum" && (
-            <div className="space-y-6">
-              {/* Search and Filter */}
-              <Card className="glass border-slate-600">
-                <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <div className="relative flex-1">
-                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                      <Input
-                        placeholder="Search discussions, missions, and global communities..."
-                        value={forumSearchQuery}
-                        onChange={(e) => setForumSearchQuery(e.target.value)}
-                        className="pl-10 bg-slate-800/50 border-slate-600 text-white placeholder-gray-400"
-                        data-testid="input-forum-search"
-                      />
-                    </div>
-                    <Button variant="outline" className="border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20">
-                      <Filter className="w-4 h-4 mr-2" />
-                      Filter
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Categories */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { id: "water", label: "Water Heroes", icon: Droplet, color: "text-cyan-400", bgColor: "bg-cyan-500/20" },
-                  { id: "ewaste", label: "E-Waste Trading", icon: Recycle, color: "text-green-400", bgColor: "bg-green-500/20" },
-                  { id: "missions", label: "Global Missions", icon: Globe, color: "text-purple-400", bgColor: "bg-purple-500/20" },
-                  { id: "connect", label: "Community Connect", icon: Users, color: "text-orange-400", bgColor: "bg-orange-500/20" }
-                ].map((category) => {
-                  const Icon = category.icon;
+        {/* ── HOME / OVERVIEW ── */}
+        {activeTab === "overview" && (
+          <div className="space-y-10">
+            {/* Three sector cards */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Flame className="w-6 h-6 text-orange-400" />
+                Community Pillars
+              </h2>
+              <div className="grid md:grid-cols-3 gap-5">
+                {LEAGUE_SECTORS.map((s) => {
+                  const Icon = s.icon;
                   return (
-                    <Card key={category.id} className="glass border-slate-600 hover:border-slate-500 transition-colors cursor-pointer">
-                      <CardContent className={`p-4 text-center ${category.bgColor}`}>
-                        <Icon className={`w-8 h-8 ${category.color} mx-auto mb-2`} />
-                        <h3 className="font-medium text-white text-sm">{category.label}</h3>
-                      </CardContent>
-                    </Card>
+                    <div key={s.title} className={`bg-gradient-to-br ${s.color} border ${s.border} rounded-2xl p-6 hover:scale-[1.02] transition-transform`}>
+                      <div className="flex items-start justify-between mb-3">
+                        <span className="text-3xl">{s.emoji}</span>
+                        <Badge className={`text-xs ${s.badgeColor} border-0`}>{s.badge}</Badge>
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-1">{s.title}</h3>
+                      <p className="text-xs text-slate-400 mb-2">{s.subtitle}</p>
+                      <p className="text-sm text-slate-300 mb-4">{s.description}</p>
+                      <p className="text-xs text-slate-500 mb-4">{s.stats}</p>
+                      <Link href={s.href}>
+                        <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white border-0">
+                          {s.cta} <ChevronRight className="w-3 h-3 ml-1" />
+                        </Button>
+                      </Link>
+                    </div>
                   );
                 })}
               </div>
+            </div>
 
-              {/* Post Creation */}
-              <Card className="glass border-slate-600">
-                <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                  <h3 className="text-lg font-bold text-white mb-4">Share with Global Heroes</h3>
-                  <div className="space-y-4">
-                    <Input
-                      placeholder="What's your environmental mission or question?"
-                      value={newPost.title}
-                      onChange={(e) => setNewPost({...newPost, title: e.target.value})}
-                      className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400"
-                      data-testid="input-post-title"
-                    />
-                    <Textarea
-                      placeholder="Share your experience, ask for advice, or connect with other heroes..."
-                      value={newPost.content}
-                      onChange={(e) => setNewPost({...newPost, content: e.target.value})}
-                      className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 min-h-[100px]"
-                      data-testid="textarea-post-content"
-                    />
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-2">
-                        <Badge variant="outline" className="border-cyan-500/30 text-cyan-300 cursor-pointer hover:bg-cyan-500/10">
-                          <Droplet className="w-3 h-3 mr-1" />
-                          Water
-                        </Badge>
-                        <Badge variant="outline" className="border-green-500/30 text-green-300 cursor-pointer hover:bg-green-500/10">
-                          <Recycle className="w-3 h-3 mr-1" />
-                          E-Waste
-                        </Badge>
-                      </div>
-                      <Button className="bg-emerald-600 hover:bg-emerald-700" data-testid="button-post-share">
-                        <Send className="w-4 h-4 mr-2" />
-                        Share
-                      </Button>
+            {/* Active Challenge */}
+            <div className="bg-gradient-to-r from-emerald-900/40 to-cyan-900/30 border border-emerald-500/30 rounded-2xl p-8">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                <span className="text-emerald-400 text-sm font-bold uppercase tracking-widest">Active Challenge</span>
+              </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">1 Million Bottles by Ramadan</h3>
+                  <p className="text-slate-300 mb-5">Join Dubai's biggest environmental mission. Every AquaCafe installation, device trade-in and eco mission counts.</p>
+                  <div className="mb-4">
+                    <div className="flex justify-between text-sm text-slate-400 mb-2">
+                      <span>Community Progress</span><span className="text-emerald-400 font-bold">80% Complete</span>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-emerald-500 to-cyan-500 h-3 rounded-full" style={{ width: '80%' }} />
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Forum Posts */}
-              <div className="space-y-4">
-                {forumPosts
-                  .filter(post => 
-                    forumSearchQuery === "" || 
-                    post.title.toLowerCase().includes(forumSearchQuery.toLowerCase()) ||
-                    post.content.toLowerCase().includes(forumSearchQuery.toLowerCase()) ||
-                    post.tags.some(tag => tag.toLowerCase().includes(forumSearchQuery.toLowerCase()))
-                  )
-                  .map((post) => (
-                  <Card key={post.id} className="glass border-slate-600 hover:border-slate-600 transition-colors">
-                    <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                      <div className="flex items-start gap-4">
-                        <Avatar className="bg-emerald-500">
-                          <AvatarFallback className="text-white font-bold">
-                            {post.avatar}
-                          </AvatarFallback>
-                        </Avatar>
-                        
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h4 className="font-bold text-white">{post.author}</h4>
-                            <span className="text-gray-400 text-sm">{post.location}</span>
-                            <span className="text-gray-500 text-sm">{post.timestamp}</span>
-                            <Badge variant="outline" className={`${
-                              post.category === 'water' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30' :
-                              post.category === 'ewaste' ? 'bg-green-500/20 text-green-300 border-green-500/30' :
-                              post.category === 'missions' ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' :
-                              'bg-blue-500/20 text-blue-300 border-blue-500/30'
-                            }`}>
-                              {post.category}
-                            </Badge>
-                          </div>
-                          
-                          <h5 className="text-lg font-semibold text-white mb-3">{post.title}</h5>
-                          <p className="text-gray-300 mb-4 leading-relaxed">{post.content}</p>
-                          
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {post.tags.map((tag) => (
-                              <Badge key={tag} variant="secondary" className="bg-slate-700 text-gray-300 text-xs">
-                                #{tag}
-                              </Badge>
-                            ))}
-                          </div>
-                          
-                          <div className="flex items-center gap-6 text-gray-400">
-                            <button 
-                              className="flex items-center gap-2 hover:text-red-400 transition-colors"
-                              data-testid={`button-like-${post.id}`}
-                            >
-                              <Heart className="w-4 h-4" />
-                              <span>{post.likes}</span>
-                            </button>
-                            <button 
-                              className="flex items-center gap-2 hover:text-emerald-400 transition-colors"
-                              data-testid={`button-reply-${post.id}`}
-                            >
-                              <MessageCircle className="w-4 h-4" />
-                              <span>{post.replies} replies</span>
-                            </button>
-                            <button 
-                              className="text-gray-400 hover:text-white transition-colors"
-                              data-testid={`button-share-${post.id}`}
-                            >
-                              Share
-                            </button>
-                          </div>
-                        </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="text-center p-3 bg-white/5 rounded-xl">
+                      <div className="text-2xl font-bold text-white">23</div>
+                      <div className="text-xs text-slate-400">Days Left</div>
+                    </div>
+                    <div className="text-center p-3 bg-white/5 rounded-xl">
+                      <div className="text-2xl font-bold text-white">200K</div>
+                      <div className="text-xs text-slate-400">Bottles to Go</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-400 uppercase mb-3">Challenge Rewards</h4>
+                  <div className="space-y-2 mb-5">
+                    {[
+                      { icon: Trophy, label: "Golden Hero Badge", color: "text-amber-400 border-amber-400/30 bg-amber-500/10" },
+                      { icon: Gift, label: "AED 1,000 Voucher", color: "text-emerald-400 border-emerald-400/30 bg-emerald-500/10" },
+                      { icon: Zap, label: "Lifetime 2X Points", color: "text-cyan-400 border-cyan-400/30 bg-cyan-500/10" },
+                    ].map(({ icon: Icon, label, color }) => (
+                      <div key={label} className={`flex items-center gap-3 p-3 border rounded-xl ${color}`}>
+                        <Icon className="w-4 h-4" />
+                        <span className="font-medium text-sm">{label}</span>
                       </div>
-                    </CardContent>
-                  </Card>
+                    ))}
+                  </div>
+                  <Link href="/play">
+                    <Button className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold">
+                      <Target className="w-4 h-4 mr-2" /> Join Challenge
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links Grid */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6">Quick Actions</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { emoji: "🏏", label: "Brokers League", href: "/league", color: "border-amber-400/30 hover:border-amber-400/60" },
+                  { emoji: "💧", label: "AquaCafe Water", href: "/aquacafe", color: "border-blue-400/30 hover:border-blue-400/60" },
+                  { emoji: "♻️", label: "Trade Devices", href: "/exchange", color: "border-emerald-400/30 hover:border-emerald-400/60" },
+                  { emoji: "🚀", label: "Earn Rewards", href: "/earn", color: "border-purple-400/30 hover:border-purple-400/60" },
+                  { emoji: "🏠", label: "Ejari & Move-In", href: "/ejari-registration", color: "border-cyan-400/30 hover:border-cyan-400/60" },
+                  { emoji: "🌍", label: "Relocate to Dubai", href: "/relocate", color: "border-teal-400/30 hover:border-teal-400/60" },
+                  { emoji: "📦", label: "ChainTrack Logistics", href: "/chaintrack", color: "border-orange-400/30 hover:border-orange-400/60" },
+                  { emoji: "🌱", label: "Environmental", href: "/environmental", color: "border-green-400/30 hover:border-green-400/60" },
+                ].map(({ emoji, label, href, color }) => (
+                  <Link key={href} href={href}>
+                    <div className={`bg-white/5 border ${color} rounded-2xl p-4 text-center transition-all hover:bg-white/10 cursor-pointer`}>
+                      <div className="text-2xl mb-2">{emoji}</div>
+                      <div className="text-sm font-semibold text-slate-200">{label}</div>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Global Connect Tab */}
-          {activeTab === "connect" && (
-            <div className="space-y-6">
-              <Card className="glass border-slate-600">
-                <CardContent className="p-6 from-emerald-600/20 to-cyan-600/20 bg-[#152e35]">
-                  <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
-                    <ExternalLink className="w-6 h-6 text-emerald-400 mr-2" />
-                    Connect with DeliWer Communities Worldwide
-                  </h2>
-                  <p className="text-emerald-100 mb-6">
-                    Join our official social channels and connect with environmental heroes across Dubai and beyond. 
-                    Share your journey, get support, and multiply your impact.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {socialResources.filter(resource => !resource.adminOnly || isAdmin).map((resource) => {
-                  const getIcon = (type: string) => {
-                    switch(type) {
-                      case 'whatsapp': return '💬';
-                      case 'linkedin': return '💼';
-                      case 'facebook': return '👥';
-                      case 'telegram': return '✈️';
-                      case 'discord': return '🎮';
-                      default: return '🌐';
-                    }
-                  };
-
-                  const getColor = (type: string) => {
-                    switch(type) {
-                      case 'whatsapp': return 'border-green-500/30 bg-green-500/10';
-                      case 'linkedin': return 'border-blue-500/30 bg-blue-500/10';
-                      case 'facebook': return 'border-indigo-500/30 bg-indigo-500/10';
-                      case 'telegram': return 'border-cyan-500/30 bg-cyan-500/10';
-                      case 'discord': return 'border-purple-500/30 bg-purple-500/10';
-                      default: return 'border-gray-500/30 bg-gray-500/10';
-                    }
-                  };
-
-                  return (
-                    <Card key={resource.id} className={`glass border-slate-600 hover:border-slate-500 transition-colors ${getColor(resource.type)}`}>
-                      <CardContent className="p-6">
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center gap-3">
-                            <span className="text-2xl">{getIcon(resource.type)}</span>
-                            <div>
-                              <h3 className="font-bold text-white flex items-center gap-2">
-                                {resource.name}
-                                {resource.isOfficial && (
-                                  <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
-                                    Official
-                                  </Badge>
-                                )}
-                              </h3>
-                              <p className="text-sm text-gray-400 capitalize">{resource.type}</p>
-                            </div>
-                          </div>
-                          {isAdmin && (
-                            <Button size="sm" variant="outline" className="border-slate-600">
-                              <Settings className="w-4 h-4" />
-                            </Button>
-                          )}
-                        </div>
-                        
-                        <p className="text-gray-300 mb-4 text-sm">{resource.description}</p>
-                        
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-sm text-gray-400">
-                            <Users className="w-4 h-4" />
-                            <span>{resource.members.toLocaleString()} members</span>
-                          </div>
-                          <Button 
-                            size="sm" 
-                            className="bg-emerald-600 hover:bg-emerald-700"
-                            onClick={() => window.open(resource.url, '_blank')}
-                            data-testid={`button-join-${resource.id}`}
-                          >
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Join
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
+        {/* ── BROKERS LEAGUE ── */}
+        {activeTab === "league" && (
+          <div className="space-y-8">
+            <div className="bg-gradient-to-br from-amber-900/30 to-yellow-900/20 border border-amber-400/30 rounded-2xl p-8">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-4xl">🏏</span>
+                <div>
+                  <h2 className="text-3xl font-black text-white">DeliWer Brokers League</h2>
+                  <p className="text-amber-300 font-semibold">Cricket Season 2026 · Real Estate Industry Sports</p>
+                </div>
               </div>
-
-              {isAdmin && (
-                <Card className="glass border-slate-600">
-                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                    <h3 className="text-lg font-bold text-white mb-4 flex items-center">
-                      <Settings className="w-5 h-5 text-amber-400 mr-2" />
-                      Admin: Manage Resources
-                    </h3>
-                    <p className="text-gray-300 mb-4 text-sm">
-                      Add new social channels, communities, and resources for the DeliWer global network.
-                    </p>
-                    <Button className="bg-amber-600 hover:bg-amber-700" data-testid="button-add-resource">
-                      <Plus className="w-4 h-4 mr-2" />
-                      Add New Resource
-                    </Button>
-                  </CardContent>
-                </Card>
-              )}
-            </div>
-          )}
-
-          {/* Overview Tab */}
-          {activeTab === "overview" && (
-            <div className="space-y-8">
-              {/* Community Challenges */}
-              <Card className="glass border-slate-600">
-                <CardContent className="p-8 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-                    <Flame className="w-6 h-6 text-red-500 mr-2" />
-                    ACTIVE COMMUNITY CHALLENGE
-                  </h2>
-                  
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-3xl font-bold text-white mb-2">1 Million Bottles by Ramadan</h3>
-                      <p className="text-gray-300 mb-6">Join the biggest environmental mission in Dubai's history</p>
-                      
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex justify-between text-sm text-gray-400 mb-2">
-                            <span>Progress</span>
-                            <span>80% Complete</span>
-                          </div>
-                          <div className="w-full bg-slate-700 rounded-full h-4">
-                            <div className="bg-gradient-to-r from-hero-green-500 to-hero-green-600 h-4 rounded-full" style={{width: '80%'}}></div>
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                            <div className="text-2xl font-bold text-white">23</div>
-                            <div className="text-sm text-gray-400">days left</div>
-                          </div>
-                          <div className="text-center p-4 bg-slate-700/50 rounded-lg">
-                            <div className="text-2xl font-bold text-white">200K</div>
-                            <div className="text-sm text-gray-400">bottles to go</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-4">Challenge Rewards</h4>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                          <Trophy className="w-5 h-5 text-amber-500 mr-3" />
-                          <span className="text-amber-500 font-medium">Golden Hero Badge</span>
-                        </div>
-                        <div className="flex items-center p-3 bg-hero-green-500/10 border border-hero-green-500/30 rounded-lg">
-                          <Gift className="w-5 h-5 text-hero-green-500 mr-3" />
-                          <span className="text-hero-green-500 font-medium">AED 1000 Voucher</span>
-                        </div>
-                        <div className="flex items-center p-3 bg-dubai-blue-500/10 border border-dubai-blue-500/30 rounded-lg">
-                          <Zap className="w-5 h-5 text-dubai-blue-500 mr-3" />
-                          <span className="text-dubai-blue-500 font-medium">Lifetime 2X Points</span>
-                        </div>
-                      </div>
-                      
-                      <Button className="w-full mt-6 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-black py-3 font-bold">
-                        <Target className="mr-2 w-5 h-5" />
-                        Join Challenge
-                      </Button>
-                    </div>
+              <p className="text-slate-300 text-lg mb-6 max-w-3xl">
+                The UAE's premier real estate industry sports league — 36,000 brokers, 16 agency teams, 8 weeks of cricket, padel, football and more. Your agency vs the world.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                {[
+                  { v: "36,000+", l: "Broker Reach" },
+                  { v: "250+", l: "Participants" },
+                  { v: "16", l: "Teams" },
+                  { v: "8 Wks", l: "Season" },
+                  { v: "AED 30K+", l: "Sponsor Value" },
+                ].map(({ v, l }) => (
+                  <div key={l} className="text-center bg-white/5 rounded-xl p-3">
+                    <div className="text-xl font-black text-amber-400">{v}</div>
+                    <div className="text-xs text-slate-400">{l}</div>
                   </div>
-                </CardContent>
-              </Card>
-
-              {/* Community Impact Map */}
-              <Card className="glass border-slate-600">
-                <CardContent className="p-8 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center">
-                    <MapPin className="w-6 h-6 text-dubai-blue-500 mr-2" />
-                    Dubai Impact Heatmap
-                  </h2>
-                  
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center p-6 bg-slate-700/30 rounded-xl">
-                      <div className="text-3xl font-bold text-hero-green-500 mb-2">3,247</div>
-                      <div className="text-gray-300 mb-2">Heroes in Downtown</div>
-                      <div className="w-full bg-slate-600 rounded-full h-2">
-                        <div className="bg-hero-green-500 h-2 rounded-full" style={{width: '85%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center p-6 bg-slate-700/30 rounded-xl">
-                      <div className="text-3xl font-bold text-dubai-blue-500 mb-2">2,891</div>
-                      <div className="text-gray-300 mb-2">Heroes in Marina</div>
-                      <div className="w-full bg-slate-600 rounded-full h-2">
-                        <div className="bg-dubai-blue-500 h-2 rounded-full" style={{width: '75%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div className="text-center p-6 bg-slate-700/30 rounded-xl">
-                      <div className="text-3xl font-bold text-amber-500 mb-2">1,956</div>
-                      <div className="text-gray-300 mb-2">Heroes in JBR</div>
-                      <div className="w-full bg-slate-600 rounded-full h-2">
-                        <div className="bg-amber-500 h-2 rounded-full" style={{width: '60%'}}></div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/league">
+                  <Button className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-full px-8">
+                    <Trophy className="w-4 h-4 mr-2" /> Join the League
+                  </Button>
+                </Link>
+                <Link href="/league">
+                  <Button variant="outline" className="border-amber-400/40 text-amber-300 hover:bg-amber-500/10 rounded-full px-8">
+                    <Star className="w-4 h-4 mr-2" /> Sponsor a Team
+                  </Button>
+                </Link>
+              </div>
             </div>
-          )}
 
-          {/* Events Tab */}
-          {activeTab === "events" && (
-            <div className="space-y-6">
-              {events.map((event) => (
-                <Card key={event.id} className="glass border-slate-600">
-                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                    <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-xl font-bold text-white">{event.title}</h3>
-                          <Badge className={`${
-                            event.status === 'active' ? 'bg-hero-green-500/20 text-hero-green-500 border-hero-green-500/30' :
-                            event.status === 'upcoming' ? 'bg-dubai-blue-500/20 text-dubai-blue-500 border-dubai-blue-500/30' :
-                            'bg-gray-500/20 text-gray-500 border-gray-500/30'
-                          }`}>
-                            {event.status}
-                          </Badge>
-                        </div>
-                        <p className="text-gray-300 mb-3">{event.description}</p>
-                        <div className="flex items-center gap-4 text-sm text-gray-400">
-                          <div className="flex items-center">
-                            <Calendar className="w-4 h-4 mr-1" />
-                            {event.date}
-                          </div>
-                          <div className="flex items-center">
-                            <Users className="w-4 h-4 mr-1" />
-                            {event.participants} participants
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <Button className={`${
-                        event.status === 'active' ? 'bg-hero-green-500 hover:bg-hero-green-600' :
-                        'bg-dubai-blue-500 hover:bg-dubai-blue-600'
-                      } text-white`}>
-                        {event.status === 'active' ? 'Join Now' : 'Register'}
-                      </Button>
-                    </div>
-                    
-                    <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-                      <div className="flex items-center">
-                        <Gift className="w-5 h-5 text-amber-500 mr-2" />
-                        <span className="text-amber-500 font-medium">Reward: {event.reward}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {/* Social Feed Tab */}
-          {activeTab === "social" && (
-            <div className="space-y-6">
-              <Card className="glass border-slate-600">
-                <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-hero-green-500 rounded-full flex items-center justify-center text-black font-bold">
-                      YOU
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Share your Planet Hero journey..."
-                      className="flex-1 bg-slate-700 text-white rounded-lg px-4 py-3 border border-slate-600 focus:border-hero-green-500 focus:outline-none"
-                    />
-                    <Button className="bg-hero-green-500 hover:bg-hero-green-600 text-black">
-                      <Share2 className="w-4 h-4 mr-2" />
-                      Post
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {socialPosts.map((post) => (
-                <Card key={post.id} className="glass border-slate-600">
-                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-hero-green-500 rounded-full flex items-center justify-center text-black font-bold text-sm">
-                        {post.avatar}
-                      </div>
-                      
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h4 className="font-bold text-white">{post.author}</h4>
-                          {post.badges.map((badge, index) => (
-                            <Badge key={index} className="bg-amber-500/20 text-amber-500 border-amber-500/30 text-xs">
-                              {badge}
-                            </Badge>
-                          ))}
-                          <span className="text-gray-500 text-sm ml-auto">{post.timeAgo}</span>
-                        </div>
-                        
-                        <p className="text-gray-300 mb-4">{post.content}</p>
-                        
-                        <div className="flex items-center gap-6 text-sm text-gray-400">
-                          <button className="flex items-center gap-1 hover:text-red-400 transition-colors">
-                            <Heart className="w-4 h-4" />
-                            {post.likes}
-                          </button>
-                          <button className="flex items-center gap-1 hover:text-blue-400 transition-colors">
-                            <MessageSquare className="w-4 h-4" />
-                            {post.comments}
-                          </button>
-                          <button className="flex items-center gap-1 hover:text-hero-green-400 transition-colors">
-                            <Share2 className="w-4 h-4" />
-                            {post.shares}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {/* Leaderboard Tab */}
-          {activeTab === "leaderboard" && (
+            {/* Future Sports */}
             <div>
-              <LeaderboardWidget showHeader={true} />
-            </div>
-          )}
-
-          {/* Achievements Tab */}
-          {activeTab === "achievements" && (
-            <div className="grid md:grid-cols-2 gap-6">
-              {achievements.map((achievement, index) => (
-                <Card key={index} className="glass border-slate-600">
-                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                    <div className="flex items-start gap-4">
-                      <div className={`p-3 rounded-full ${achievement.unlocked ? 'bg-slate-700' : 'bg-slate-800/50'}`}>
-                        {achievement.icon}
-                      </div>
-                      
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className={`font-bold ${achievement.unlocked ? 'text-white' : 'text-gray-400'}`}>
-                            {achievement.title}
-                          </h3>
-                          {achievement.unlocked && (
-                            <CheckCircle className="w-5 h-5 text-hero-green-500" />
-                          )}
-                        </div>
-                        
-                        <p className="text-gray-300 text-sm mb-4">{achievement.description}</p>
-                        
-                        <div className="space-y-2">
-                          <div className="flex justify-between text-sm">
-                            <span className="text-gray-400">Progress</span>
-                            <span className={achievement.unlocked ? 'text-hero-green-500' : 'text-white'}>
-                              {achievement.progress}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-slate-700 rounded-full h-2">
-                            <div 
-                              className={`h-2 rounded-full ${
-                                achievement.unlocked ? 'bg-hero-green-500' : 'bg-gray-500'
-                              }`}
-                              style={{width: `${achievement.progress}%`}}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
+              <h3 className="text-xl font-bold mb-4 text-slate-200">League Sports Calendar</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  { emoji: "🏏", sport: "Cricket", status: "Active — Season 2026", color: "border-amber-400/30" },
+                  { emoji: "🎾", sport: "Padel", status: "Coming Q3 2026", color: "border-blue-400/30" },
+                  { emoji: "⚽", sport: "Football", status: "Coming Q4 2026", color: "border-emerald-400/30" },
+                  { emoji: "🏐", sport: "Volleyball", status: "Planned 2027", color: "border-purple-400/30" },
+                  { emoji: "👨‍👩‍👧", sport: "Family Days", status: "Quarterly Events", color: "border-pink-400/30" },
+                  { emoji: "🏆", sport: "Awards Gala", status: "Annual — Dec 2026", color: "border-yellow-400/30" },
+                ].map(({ emoji, sport, status, color }) => (
+                  <Link key={sport} href="/league">
+                    <div className={`bg-white/5 border ${color} rounded-2xl p-5 hover:bg-white/10 transition-all cursor-pointer`}>
+                      <div className="text-3xl mb-3">{emoji}</div>
+                      <h4 className="font-bold text-white">{sport}</h4>
+                      <p className="text-xs text-slate-400 mt-1">{status}</p>
                     </div>
-                  </CardContent>
-                </Card>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Property Owners + Recommerce */}
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="bg-blue-500/10 border border-blue-400/30 rounded-2xl p-6">
+                <div className="text-3xl mb-3">🏙️</div>
+                <h3 className="text-lg font-bold text-white mb-2">Property Owners Circle</h3>
+                <p className="text-sm text-slate-300 mb-4">Landlords, developers and investors across Dubai. Market intelligence, broker referrals, and off-plan opportunities.</p>
+                <Link href="/realestate">
+                  <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white">Explore Properties <ArrowRight className="w-3 h-3 ml-1" /></Button>
+                </Link>
+              </div>
+              <div className="bg-emerald-500/10 border border-emerald-400/30 rounded-2xl p-6">
+                <div className="text-3xl mb-3">♻️</div>
+                <h3 className="text-lg font-bold text-white mb-2">Recommerce Trade Network</h3>
+                <p className="text-sm text-slate-300 mb-4">Buy, sell and trade smartphones and electronics. Every trade funds clean water missions and earns Hero Points.</p>
+                <Link href="/exchange">
+                  <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white">Trade Now <ArrowRight className="w-3 h-3 ml-1" /></Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── SPORTS & WELLNESS ── */}
+        {activeTab === "sports" && (
+          <div className="space-y-8">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <h2 className="text-3xl font-black text-white mb-3">Sports & Wellness</h2>
+              <p className="text-slate-300">From cricket to triathlon, padel to mindfulness — Planet Heroes live active, healthy, connected lives.</p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {SPORTS_PILLARS.map((p) => (
+                <div key={p.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-white/20 transition-all">
+                  <div className="text-3xl mb-3">{p.icon}</div>
+                  <h3 className="text-lg font-bold text-white mb-2">{p.title}</h3>
+                  <p className="text-sm text-slate-300 mb-4 leading-relaxed">{p.body}</p>
+                  <Link href={p.link}>
+                    <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 text-xs">
+                      {p.cta} <ArrowRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </Link>
+                </div>
               ))}
             </div>
-          )}
 
-          {/* Delivery Areas Tab */}
-          {activeTab === "delivery" && (
-            <div className="grid md:grid-cols-3 gap-6">
-              {Object.values(deliveryZones).map((zone, index) => (
-                <Card key={index} className="glass border-slate-600">
-                  <CardContent className="p-6 bg-gradient-to-br from-slate-900/80 to-slate-800/90 backdrop-blur-sm">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Truck className="w-6 h-6 text-dubai-blue-500" />
-                      <h3 className="text-lg font-bold text-white">{zone.name}</h3>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-medium text-gray-400 mb-2">Areas Covered</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {zone.areas.map((area, areaIndex) => (
-                            <Badge key={areaIndex} variant="secondary" className="bg-slate-700 text-gray-300 text-xs">
-                              {area}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <h4 className="text-sm font-medium text-gray-400 mb-2">Time Slots</h4>
-                        <div className="grid grid-cols-2 gap-1">
-                          {zone.timeSlots.map((slot, slotIndex) => (
-                            <div key={slotIndex} className="text-xs text-gray-300 bg-slate-700/50 rounded px-2 py-1 text-center">
-                              {slot}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-between items-center pt-2 border-t border-slate-700">
-                        <div>
-                          <div className="text-lg font-bold text-white">
-                            {zone.fee === 0 ? 'FREE' : `AED ${zone.fee}`}
-                          </div>
-                          <div className="text-xs text-gray-400">Delivery Fee</div>
-                        </div>
-                        <div className="text-right">
-                          <div className={`text-sm font-medium ${zone.nextDay ? 'text-hero-green-500' : 'text-amber-500'}`}>
-                            {zone.nextDay ? 'Next Day' : '2-3 Days'}
-                          </div>
-                          <div className="text-xs text-gray-400">Delivery</div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+            {/* Wellness CTA */}
+            <div className="bg-gradient-to-r from-rose-900/30 to-pink-900/20 border border-rose-400/30 rounded-2xl p-8 text-center">
+              <Dumbbell className="w-10 h-10 text-rose-400 mx-auto mb-3" />
+              <h3 className="text-2xl font-bold text-white mb-2">Your Wellness Journey Earns Points</h3>
+              <p className="text-slate-300 mb-5 max-w-xl mx-auto">Log runs, cleanups, water habits and green commutes. Every healthy choice multiplies your Planet Hero score and earns real rewards.</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Link href="/earn"><Button className="bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-full">Start Earning</Button></Link>
+                <Link href="/rewards"><Button variant="outline" className="border-rose-400/40 text-rose-300 hover:bg-rose-500/10 rounded-full">View Rewards</Button></Link>
+              </div>
+            </div>
+
+            {/* Challenges Feed */}
+            <div>
+              <h3 className="text-xl font-bold mb-4">Social Challenges</h3>
+              <SocialChallengesFeed />
+            </div>
+          </div>
+        )}
+
+        {/* ── SUSTAINABILITY ── */}
+        {activeTab === "sustainability" && (
+          <div className="space-y-8">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <h2 className="text-3xl font-black text-white mb-3">Sustainability Actions</h2>
+              <p className="text-slate-300">Every action earns Hero Points. Every point drives real environmental change in Dubai and beyond.</p>
+            </div>
+
+            {/* Action cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {SUSTAINABILITY_ACTIONS.map((a) => (
+                <Link key={a.title} href={a.link}>
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 hover:border-emerald-400/30 transition-all cursor-pointer h-full">
+                    <div className="text-3xl mb-3">{a.emoji}</div>
+                    <h3 className="text-lg font-bold text-white mb-2">{a.title}</h3>
+                    <p className="text-sm text-slate-300 mb-4 leading-relaxed">{a.desc}</p>
+                    <Badge className="bg-emerald-500/20 text-emerald-300 border-0">{a.pts}</Badge>
+                  </div>
+                </Link>
               ))}
             </div>
-          )}
-        </div>
+
+            {/* Impact stats */}
+            <div className="bg-gradient-to-r from-emerald-900/30 to-teal-900/20 border border-emerald-500/30 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-emerald-400" /> Community Impact — Dubai
+              </h3>
+              <div className="grid md:grid-cols-3 gap-5">
+                {[
+                  { area: "Downtown Dubai", heroes: "3,247", pct: 85, color: "bg-emerald-500" },
+                  { area: "Dubai Marina", heroes: "2,891", pct: 75, color: "bg-cyan-500" },
+                  { area: "JBR & JLT", heroes: "1,956", pct: 60, color: "bg-amber-500" },
+                ].map(({ area, heroes, pct, color }) => (
+                  <div key={area} className="text-center p-5 bg-white/5 rounded-xl">
+                    <div className="text-2xl font-bold text-white mb-1">{heroes}</div>
+                    <div className="text-sm text-slate-300 mb-3">Heroes in {area}</div>
+                    <div className="w-full bg-slate-700 rounded-full h-2">
+                      <div className={`${color} h-2 rounded-full`} style={{ width: `${pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Saqi Kawthar mission */}
+            <div className="bg-gradient-to-r from-red-900/30 to-cyan-900/20 border border-red-500/30 rounded-2xl p-7">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />
+                <span className="text-red-400 text-sm font-bold uppercase tracking-widest">Urgent Mission</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">🚨 Saqi Kawthar Project</h3>
+              <p className="text-slate-300 mb-4">Help provide clean water to communities in critical need. Every device trade-in and AquaCafe installation funds water relief directly.</p>
+              <Link href="/mission-control-saqi-kawthar">
+                <Button className="bg-red-600 hover:bg-red-500 text-white font-bold">Join Mission <ArrowRight className="w-4 h-4 ml-2" /></Button>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* ── DUBAI FUTURE ── */}
+        {activeTab === "future" && (
+          <div className="space-y-8">
+            <div className="text-center max-w-2xl mx-auto mb-6">
+              <h2 className="text-3xl font-black text-white mb-3">Dubai Future District</h2>
+              <p className="text-slate-300">AI, clean energy, aerotropolis, smart transport and healthy living — Planet Heroes are at the forefront of Dubai's next chapter.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {FUTURE_PILLARS.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <Link key={p.title} href={p.link}>
+                    <div className={`bg-gradient-to-br ${p.bg} border ${p.border} rounded-2xl p-6 hover:scale-[1.02] transition-transform cursor-pointer h-full`}>
+                      <Icon className={`w-8 h-8 ${p.iconColor} mb-3`} />
+                      <h3 className="text-lg font-bold text-white mb-2">{p.title}</h3>
+                      <p className="text-sm text-slate-300 leading-relaxed">{p.body}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Airport / Aerotropolis highlight */}
+            <div className="bg-gradient-to-r from-amber-900/20 to-sky-900/20 border border-amber-400/20 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
+              <div className="text-7xl">✈️</div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-2">Aerotropolis — Dubai World Central</h3>
+                <p className="text-slate-300 mb-4">Al Maktoum International is growing into the world's largest airport city. ChainTrack connects cargo, logistics operators and import/export businesses across the aerotropolis zone.</p>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/chaintrack-logistics"><Button className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold">ChainTrack Logistics</Button></Link>
+                  <Link href="/chaintrack"><Button variant="outline" className="border-amber-400/40 text-amber-300 hover:bg-amber-500/10">Freight Intelligence</Button></Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Travel CTA */}
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="bg-violet-500/10 border border-violet-400/30 rounded-2xl p-6">
+                <Cpu className="w-8 h-8 text-violet-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">AI & Smart City Hub</h3>
+                <p className="text-sm text-slate-300 mb-4">Connect with Dubai's AI startup ecosystem, smart city initiatives and tech entrepreneurs building the future.</p>
+                <Link href="/invest"><Button size="sm" className="bg-violet-600 hover:bg-violet-500 text-white">Explore AI Hub <ArrowRight className="w-3 h-3 ml-1" /></Button></Link>
+              </div>
+              <div className="bg-orange-500/10 border border-orange-400/30 rounded-2xl p-6">
+                <Sun className="w-8 h-8 text-orange-400 mb-3" />
+                <h3 className="text-lg font-bold text-white mb-2">Travel & Healthy Living</h3>
+                <p className="text-sm text-slate-300 mb-4">Earn travel perks, wellness retreats and airport lounge access through your Planet Hero points and DXB rewards.</p>
+                <Link href="/earn"><Button size="sm" className="bg-orange-600 hover:bg-orange-500 text-white">Earn Travel Perks <ArrowRight className="w-3 h-3 ml-1" /></Button></Link>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── CONNECT ── */}
+        {activeTab === "connect" && (
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-slate-800/60 to-slate-800/40 border border-white/10 rounded-2xl p-7 mb-2">
+              <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <Globe className="w-6 h-6 text-emerald-400" /> Connect Worldwide
+              </h2>
+              <p className="text-slate-300">Join our official channels and connect with Planet Heroes, brokers, sustainability advocates and Dubai Future District innovators.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-5">
+              {CONNECT_CHANNELS.map((c) => (
+                <div key={c.name} className={`border ${c.color} rounded-2xl p-6`}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <span className="text-2xl">{c.emoji}</span>
+                    <div>
+                      <h3 className="font-bold text-white text-sm">{c.name}</h3>
+                      <p className="text-xs text-slate-400 capitalize mt-0.5">{c.type}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-slate-300 mb-4">{c.desc}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                      <Users className="w-3.5 h-3.5" />{c.members} members
+                    </div>
+                    {c.internal ? (
+                      <Link href={c.url}>
+                        <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs">Join <ArrowRight className="w-3 h-3 ml-1" /></Button>
+                      </Link>
+                    ) : (
+                      <Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs" onClick={() => window.open(c.url, '_blank')}>
+                        <ExternalLink className="w-3 h-3 mr-1" /> Join
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Forum / Post */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <MessageCircle className="w-5 h-5 text-emerald-400" /> Heroes Forum
+              </h3>
+              <div className="relative mb-4">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Search discussions, missions, communities..."
+                  value={forumSearch}
+                  onChange={(e) => setForumSearch(e.target.value)}
+                  className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {["Water Heroes", "Recommerce", "Brokers", "Clean Energy", "Sports", "Dubai Future"].map((tag) => (
+                  <Badge key={tag} variant="outline" className="border-white/20 text-slate-300 hover:bg-white/10 cursor-pointer text-xs">#{tag}</Badge>
+                ))}
+              </div>
+              <input
+                type="text"
+                placeholder="Share your Planet Hero journey..."
+                className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-emerald-500 mb-3"
+              />
+              <Button className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold">
+                <Send className="w-4 h-4 mr-2" /> Post to Community
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* ── LEADERBOARD ── */}
+        {activeTab === "leaderboard" && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-2xl font-bold text-white">Community Leaderboard</h2>
+              <Link href="/leaderboard">
+                <Button size="sm" variant="outline" className="border-white/20 text-white hover:bg-white/10 text-xs">Full Leaderboard <ArrowRight className="w-3 h-3 ml-1" /></Button>
+              </Link>
+            </div>
+            <LeaderboardWidget showHeader={true} />
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-5">
+                <Trophy className="w-7 h-7 text-amber-400 mb-2" />
+                <h3 className="font-bold text-white mb-1">Brokers League Table</h3>
+                <p className="text-sm text-slate-300 mb-3">See how agency teams rank in the 2026 cricket season.</p>
+                <Link href="/league"><Button size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold">View League Table</Button></Link>
+              </div>
+              <div className="bg-emerald-500/10 border border-emerald-400/30 rounded-2xl p-5">
+                <Leaf className="w-7 h-7 text-emerald-400 mb-2" />
+                <h3 className="font-bold text-white mb-1">Hero Points Ranking</h3>
+                <p className="text-sm text-slate-300 mb-3">Top Planet Heroes by sustainability missions, trades and referrals.</p>
+                <Link href="/earn"><Button size="sm" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold">Earn Points</Button></Link>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── EVENTS ── */}
+        {activeTab === "events" && (
+          <div className="space-y-5">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              <Calendar className="w-6 h-6 text-emerald-400" /> Upcoming Events
+            </h2>
+            {EVENTS.map((ev) => (
+              <div key={ev.id} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-lg font-bold text-white">{ev.title}</h3>
+                      <Badge className={`text-xs border-0 ${ev.badgeColor}`}>{ev.badge}</Badge>
+                      <Badge className={`text-xs border-0 ${ev.status === 'active' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300'}`}>
+                        {ev.status === 'active' ? '● ACTIVE' : 'UPCOMING'}
+                      </Badge>
+                    </div>
+                    <p className="text-slate-300 text-sm mb-3">{ev.description}</p>
+                    <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
+                      <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{ev.date}</span>
+                      <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" />{ev.participants.toLocaleString()} participants</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2 md:items-end">
+                    <div className="text-xs text-amber-300 flex items-center gap-1">
+                      <Gift className="w-3.5 h-3.5" />{ev.reward}
+                    </div>
+                    <Link href={ev.link}>
+                      <Button size="sm" className={`font-bold text-xs ${ev.status === 'active' ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-blue-600 hover:bg-blue-500 text-white'}`}>
+                        {ev.status === 'active' ? 'Join Now' : 'Register'} <ArrowRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
       </section>
     </div>
   );
