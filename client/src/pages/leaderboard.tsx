@@ -193,10 +193,16 @@ export default function Leaderboard() {
   const [isOrderLoading, setIsOrderLoading] = useState(false);
   const [activeSection, setActiveSection] = useState("wellness-hub");
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const navScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setShowBackToTop(window.scrollY > 400);
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setShowBackToTop(scrolled > 400);
+      setScrollProgress(total > 0 ? Math.min(100, (scrolled / total) * 100) : 0);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -673,6 +679,12 @@ export default function Leaderboard() {
 
         {/* Section Navigation */}
         <nav className="sticky top-14 z-40 bg-slate-950/95 backdrop-blur-md border-b border-white/10 mb-10 -mx-4 px-4">
+          <div className="absolute bottom-0 left-0 h-[2px] bg-white/5 w-full">
+            <div
+              className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 transition-[width] duration-100 ease-out"
+              style={{ width: `${scrollProgress}%` }}
+            />
+          </div>
           <div ref={navScrollRef} className="overflow-x-auto scrollbar-none">
             <div className="flex items-center gap-1 py-2 min-w-max">
               {[
