@@ -1133,6 +1133,64 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
     }
   });
 
+  app.get("/sitemap-planetheroes.xml", (req, res) => {
+    const BASE = "https://planetheroes.deliwer.com";
+    const now = new Date().toISOString().split("T")[0];
+
+    const urls = [
+      // Core community hub
+      { loc: `${BASE}/community`,             priority: "1.0", freq: "daily" },
+      { loc: `${BASE}/`,                      priority: "1.0", freq: "daily" },
+      // Sports & Brokers League
+      { loc: `${BASE}/league`,                priority: "0.9", freq: "weekly" },
+      { loc: `${BASE}/leaderboard`,           priority: "0.8", freq: "daily" },
+      // Sustainability & missions
+      { loc: `${BASE}/play`,                  priority: "0.9", freq: "daily" },
+      { loc: `${BASE}/earn`,                  priority: "0.9", freq: "weekly" },
+      { loc: `${BASE}/rewards`,               priority: "0.8", freq: "weekly" },
+      { loc: `${BASE}/exchange`,              priority: "0.8", freq: "weekly" },
+      { loc: `${BASE}/environmental`,         priority: "0.8", freq: "weekly" },
+      { loc: `${BASE}/aquacafe`,              priority: "0.8", freq: "weekly" },
+      { loc: `${BASE}/mission-control-saqi-kawthar`, priority: "0.8", freq: "weekly" },
+      // Wellness
+      { loc: `${BASE}/wellness`,              priority: "0.7", freq: "weekly" },
+      // Dubai Future
+      { loc: `${BASE}/invest`,                priority: "0.7", freq: "monthly" },
+      { loc: `${BASE}/chaintrack`,            priority: "0.7", freq: "monthly" },
+      { loc: `${BASE}/chaintrack-logistics`,  priority: "0.7", freq: "monthly" },
+      // Real estate
+      { loc: `${BASE}/realestate`,            priority: "0.7", freq: "monthly" },
+      { loc: `${BASE}/mamzar`,                priority: "0.6", freq: "monthly" },
+      // Relocation
+      { loc: `${BASE}/relocate`,              priority: "0.7", freq: "monthly" },
+      { loc: `${BASE}/ejari-registration`,    priority: "0.7", freq: "monthly" },
+      // Planet Hero gateway
+      { loc: `${BASE}/planet-hero`,           priority: "0.7", freq: "monthly" },
+      { loc: `${BASE}/planet-hero-missions`,  priority: "0.7", freq: "monthly" },
+      // Impact
+      { loc: `${BASE}/impact-dashboard`,      priority: "0.6", freq: "weekly" },
+      { loc: `${BASE}/collect`,               priority: "0.6", freq: "weekly" },
+      { loc: `${BASE}/redeem`,                priority: "0.6", freq: "weekly" },
+    ];
+
+    const xml = [
+      `<?xml version="1.0" encoding="UTF-8"?>`,
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"`,
+      `        xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
+      ...urls.map(({ loc, priority, freq }) => [
+        `  <url>`,
+        `    <loc>${loc}</loc>`,
+        `    <lastmod>${now}</lastmod>`,
+        `    <changefreq>${freq}</changefreq>`,
+        `    <priority>${priority}</priority>`,
+        `  </url>`,
+      ].join("\n")),
+      `</urlset>`,
+    ].join("\n");
+
+    res.type("application/xml").set("Cache-Control", "public, max-age=86400").send(xml);
+  });
+
   app.get("/llms.txt", (req, res) => {
     const llmsPath = path.resolve(import.meta.dirname, "../public/llms.txt");
     if (fs.existsSync(llmsPath)) {

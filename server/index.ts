@@ -17,8 +17,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const host = req.hostname || req.headers.host || '';
   if (host === 'planetheroes.deliwer.com' || host === 'www.planetheroes.deliwer.com') {
+    // Root → community hub
     if (req.path === '/' || req.path === '') {
       return res.redirect(301, '/community');
+    }
+    // Serve a subdomain-specific robots.txt pointing to its own sitemap
+    if (req.path === '/robots.txt') {
+      return res.type('text/plain').send(
+        'User-agent: *\nAllow: /\nSitemap: https://planetheroes.deliwer.com/sitemap-planetheroes.xml\n'
+      );
     }
   }
   next();
