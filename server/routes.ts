@@ -6073,6 +6073,31 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     }
   });
 
+  app.post("/api/admin/seo-ping/planetheroes", async (req, res) => {
+    const secret = req.headers["x-admin-secret"] || req.body?.secret;
+    const adminSecret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (secret !== adminSecret) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      const { submitPlanetHeroesIndexNow } = await import("./services/seo-ping.js");
+      const startedAt = new Date().toISOString();
+      const results = await submitPlanetHeroesIndexNow();
+      const succeeded = results.filter(r => r.ok).length;
+      const failed = results.filter(r => !r.ok).length;
+      res.json({
+        ok: succeeded > 0,
+        subdomain: "planetheroes.deliwer.com",
+        sitemap: "https://planetheroes.deliwer.com/sitemap-planetheroes.xml",
+        runAt: startedAt,
+        summary: { total: results.length, succeeded, failed },
+        results,
+      });
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
   // ── Missed Call Auto-Reply ─────────────────────────────────────────────────
   // Webhook URL to configure in Twilio (or any telephony provider):
   //   POST https://<your-domain>/api/webhooks/missed-call
