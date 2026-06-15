@@ -612,6 +612,48 @@ export default function Leaderboard() {
         keywords="Planet Heroes Dubai, DXBs Dubai, earn DXBs, Dubai Future District, impact commerce Dubai, electronics recycling Dubai, environmental leadership UAE, Planet Hero badge, AquaCafe rewards, DeliWer community, sustainability Dubai, broker referral rewards, founding member Dubai, Dubai loyalty currency"
       />
       <div className="container mx-auto px-4 py-8">
+        {/* Section Navigation */}
+        <nav className="sticky top-14 z-40 bg-slate-950/95 backdrop-blur-md border-b border-white/10 mb-10 -mx-4 px-4">
+          <div className="absolute bottom-0 left-0 h-[2px] bg-white/5 w-full">
+            <div
+              className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 transition-[width] duration-100 ease-out"
+              style={{ width: `${scrollProgress}%` }}
+            />
+          </div>
+          <div ref={navScrollRef} className="overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1 py-2 min-w-max">
+              {[
+                { id: "wellness-hub",  label: "Wellness & Discovery", icon: Heart,         color: "text-emerald-400" },
+                { id: "community-hub", label: "Community Hub",        icon: Building2,     color: "text-blue-400"    },
+                { id: "chill-grill",   label: "Chill & Grill",        icon: Utensils,      color: "text-orange-400"  },
+                { id: "future-events", label: "Future Events",         icon: Calendar,      color: "text-purple-400"  },
+                { id: "activities",    label: "District Activities",   icon: Target,        color: "text-cyan-400"    },
+                { id: "leaderboard",   label: "Rankings",             icon: Trophy,        color: "text-amber-400"   },
+                { id: "live",          label: "Live Feed",            icon: Zap,           color: "text-red-400"     },
+                { id: "forum",         label: "Forum",                icon: MessageCircle, color: "text-pink-400"    },
+                { id: "achievements",  label: "Achievements",         icon: Award,         color: "text-violet-400"  },
+                { id: "planet-heroes", label: "Planet Heroes",        icon: Leaf,          color: "text-green-400"   },
+              ].map(({ id, label, icon: Icon, color }) => (
+                <button
+                  key={id}
+                  onClick={() => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth", block: "start" });
+                      history.replaceState(null, "", `#${id}`);
+                    }
+                  }}
+                  className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap ${activeSection === id ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/8"}`}
+                  data-testid={`nav-${id}`}
+                >
+                  <Icon className={`w-4 h-4 ${color}`} />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
+
         {/* Hero Header - Planet Heroes */}
         <div id="ph-hero" className="text-center mb-12">
           {/* Dubai Future District badge — kept */}
@@ -676,48 +718,6 @@ export default function Leaderboard() {
             <div className="text-xs text-gray-400">Real-World Impact</div>
           </div>
         </div>
-
-        {/* Section Navigation */}
-        <nav className="sticky top-14 z-40 bg-slate-950/95 backdrop-blur-md border-b border-white/10 mb-10 -mx-4 px-4">
-          <div className="absolute bottom-0 left-0 h-[2px] bg-white/5 w-full">
-            <div
-              className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 transition-[width] duration-100 ease-out"
-              style={{ width: `${scrollProgress}%` }}
-            />
-          </div>
-          <div ref={navScrollRef} className="overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-1 py-2 min-w-max">
-              {[
-                { id: "wellness-hub",  label: "Wellness & Discovery", icon: Heart,         color: "text-emerald-400" },
-                { id: "community-hub", label: "Community Hub",        icon: Building2,     color: "text-blue-400"    },
-                { id: "chill-grill",   label: "Chill & Grill",        icon: Utensils,      color: "text-orange-400"  },
-                { id: "future-events", label: "Future Events",         icon: Calendar,      color: "text-purple-400"  },
-                { id: "activities",    label: "District Activities",   icon: Target,        color: "text-cyan-400"    },
-                { id: "leaderboard",   label: "Rankings",             icon: Trophy,        color: "text-amber-400"   },
-                { id: "live",          label: "Live Feed",            icon: Zap,           color: "text-red-400"     },
-                { id: "forum",         label: "Forum",                icon: MessageCircle, color: "text-pink-400"    },
-                { id: "achievements",  label: "Achievements",         icon: Award,         color: "text-violet-400"  },
-                { id: "planet-heroes", label: "Planet Heroes",        icon: Leaf,          color: "text-green-400"   },
-              ].map(({ id, label, icon: Icon, color }) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                      el.scrollIntoView({ behavior: "smooth", block: "start" });
-                      history.replaceState(null, "", `#${id}`);
-                    }
-                  }}
-                  className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap ${activeSection === id ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/8"}`}
-                  data-testid={`nav-${id}`}
-                >
-                  <Icon className={`w-4 h-4 ${color}`} />
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </nav>
 
         {/* Wellness & Discovery Hub */}
         <div id="wellness-hub" className="space-y-8 scroll-mt-24">
