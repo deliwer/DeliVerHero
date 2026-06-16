@@ -30,6 +30,11 @@ Disallow: /api/
 Sitemap: https://www.deliwer.com/sitemap.xml
 Sitemap: https://www.deliwer.com/sitemap-consumer.xml
 Sitemap: https://www.deliwer.com/sitemap-broker.xml
+Sitemap: https://www.deliwer.com/sitemap-chaintrack.xml
+Sitemap: https://www.deliwer.com/sitemap-subdomains.xml
+Sitemap: https://www.deliwer.com/sitemap-planetheroes.xml
+Sitemap: https://logistics.chaintrack.com/sitemap-chaintrack.xml
+Sitemap: https://chaintrack.com/sitemap-chaintrack.xml
 
 # LLM / AI crawlers — explicitly permitted with their own crawl-delay
 # See /llms.txt for structured AI-readable context about this site
