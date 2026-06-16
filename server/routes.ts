@@ -853,6 +853,27 @@ Source: Website Concierge Page
       pdf.font("Helvetica").fontSize(9).fillColor(SLATE)
          .text("partners@deliwer.com  ·  +971 52 394 6311  ·  www.deliwer.com", { align: "center" });
 
+      // WhatsApp CTA button on cover
+      pdf.moveDown(1.2);
+      const waUrl = "https://wa.me/971523946311?text=Hi%2C%20I%27m%20interested%20in%20sponsoring%20the%20Brokers%20Night%20Cricket%20League%20UAE%202026";
+      const btnW = 200;
+      const btnH = 32;
+      const btnX = (pdf.page.width - btnW) / 2;
+      const btnY = pdf.y;
+      // Button background
+      pdf.roundedRect(btnX, btnY, btnW, btnH, 6).fill("#25D366");
+      // Button label — clickable
+      pdf.font("Helvetica-Bold").fontSize(11).fillColor(DARK)
+         .text("💬  Message Us on WhatsApp", btnX, btnY + 9, {
+           width: btnW,
+           align: "center",
+           link: waUrl,
+         });
+
+      pdf.moveDown(0.5);
+      pdf.font("Helvetica").fontSize(7).fillColor("#25D366")
+         .text("Tap to open WhatsApp — pre-filled message ready", { align: "center", link: waUrl });
+
       // ── PAGE 2 — WHY SPONSOR ───────────────────────────────────────────────
       pdf.addPage({ margin: 56, size: "A4" });
       pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
