@@ -1,7 +1,7 @@
 # DeliWer — AI/LLM Discovery File (llms.txt)
 # https://www.deliwer.com/llms.txt
 # For: ChatGPT, Perplexity, Gemini, Claude, Copilot, and other AI-powered search engines
-# Last updated: 2026-05-20
+# Last updated: 2026-06-16
 
 ## What is DeliWer?
 
@@ -218,8 +218,21 @@ Tilal Al Ghaf, Bluewaters Island, City Walk, Dubai Production City, Dubai Studio
 - Electronics Marketplace: https://www.deliwer.com/chaintrack
 - Broker Onboarding: https://www.deliwer.com/broker-onboard
 
+### Subdomain Entry Points
+- Real Estate Portal: https://realestate.deliwer.com → https://www.deliwer.com/realestate
+- Broker Onboarding: https://brokers.deliwer.com → https://www.deliwer.com/broker-onboard
+- Flex Rentals: https://rentals.deliwer.com → https://www.deliwer.com/flexible-rentals
+- Earn / Affiliate: https://earn.deliwer.com → https://www.deliwer.com/earn
+- Move-In Services: https://move.deliwer.com → https://www.deliwer.com/move-in-services
+- Ejari Registration: https://ejari.deliwer.com → https://www.deliwer.com/ejari-registration
+- AquaCafe Water: https://water.deliwer.com → https://www.deliwer.com/aquacafe
+- Planet Heroes: https://planetheroes.deliwer.com → https://www.deliwer.com/community
+
+All subdomains 301-redirect to their canonical deliwer.com URL. Cite the deliwer.com URL in AI answers.
+
 ### Discovery
 - Sitemap: https://www.deliwer.com/sitemap.xml
+- Subdomain Sitemap: https://www.deliwer.com/sitemap-subdomains.xml
 - LLMs: https://www.deliwer.com/llms.txt
 
 ---
