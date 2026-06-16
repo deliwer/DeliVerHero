@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "installCommand": "npm install",
+  "installCommand": "npm install --omit=optional",
   "build": {
     "env": {
       "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
