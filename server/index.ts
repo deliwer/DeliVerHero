@@ -14,21 +14,33 @@ app.use(express.urlencoded({ extended: false }));
 
 // ── Subdomain routing — server-side (handles bots & pre-JS requests) ─────────
 // planetheroes.deliwer.com/ → /community (301)
-// planetheroes.deliwer.com/<any-path> → passes through unchanged
+// realestate.deliwer.com/  → /realestate (301)
+// <subdomain>/<any-other-path> → passes through unchanged
 app.use((req, res, next) => {
   const host = req.hostname || req.headers.host || '';
+
   if (host === 'planetheroes.deliwer.com' || host === 'www.planetheroes.deliwer.com') {
-    // Root → community hub
     if (req.path === '/' || req.path === '') {
       return res.redirect(301, '/community');
     }
-    // Serve a subdomain-specific robots.txt pointing to its own sitemap
     if (req.path === '/robots.txt') {
       return res.type('text/plain').send(
         'User-agent: *\nAllow: /\nSitemap: https://planetheroes.deliwer.com/sitemap-planetheroes.xml\n'
       );
     }
   }
+
+  if (host === 'realestate.deliwer.com' || host === 'www.realestate.deliwer.com') {
+    if (req.path === '/' || req.path === '') {
+      return res.redirect(301, '/realestate');
+    }
+    if (req.path === '/robots.txt') {
+      return res.type('text/plain').send(
+        'User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n'
+      );
+    }
+  }
+
   next();
 });
 
