@@ -480,14 +480,13 @@ export default function LeaguePage() {
               >
                 <Star className="w-5 h-5 mr-2" /> Become a Sponsor
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/20 text-white hover:bg-white/10 font-bold px-8 py-4 text-base rounded-xl"
-                onClick={() => document.getElementById("download")?.scrollIntoView({ behavior: "smooth" })}
+              <a
+                href="/api/league/download/proposal"
+                download="BNCL-2026-Sponsorship-Proposal.pdf"
+                className="inline-flex items-center justify-center gap-2 border border-white/20 text-white hover:bg-white/10 font-bold px-8 py-4 text-base rounded-xl transition-all"
               >
-                <Download className="w-5 h-5 mr-2" /> Download Deck
-              </Button>
+                <Download className="w-5 h-5" /> Download Proposal
+              </a>
             </div>
 
             {/* Live team counter */}
@@ -581,6 +580,22 @@ export default function LeaguePage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* ─── FLOATING DOWNLOAD PILL ─── */}
+        <div
+          className={`fixed bottom-6 right-6 z-50 transition-all duration-300 ${
+            navStuck ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
+          }`}
+        >
+          <a
+            href="/api/league/download/proposal"
+            download="BNCL-2026-Sponsorship-Proposal.pdf"
+            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-black text-sm px-5 py-3 rounded-full shadow-lg shadow-amber-500/30 transition-all hover:scale-105 active:scale-95"
+          >
+            <Download className="w-4 h-4 shrink-0" />
+            Download Proposal
+          </a>
         </div>
 
         {/* ─── WHY THIS MATTERS ─── */}
