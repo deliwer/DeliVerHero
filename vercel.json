@@ -1,7 +1,7 @@
 {
   "buildCommand": "vite build",
   "outputDirectory": "dist/public",
-  "installCommand": "npm install --ignore-scripts",
+  "installCommand": "npm install",
   "functions": {
     "api/index.js": {
       "memory": 1024,
