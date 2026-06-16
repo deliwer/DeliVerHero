@@ -27,6 +27,7 @@ import {
   Copy,
   Check,
   Link2,
+  Trophy,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiTelegram } from "react-icons/si";
@@ -877,27 +878,46 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right — badge level cards */}
-            <div className="flex flex-col gap-2 w-full md:w-64 shrink-0">
-              <p className="text-[9px] font-black uppercase tracking-widest text-gray-600 text-center md:text-left mb-1">Badge Progression</p>
-              {[
-                { level: 1, name: "Hero Member",              color: "from-slate-600 to-slate-500",   icon: Shield },
-                { level: 2, name: "Community Champion",       color: "from-emerald-700 to-emerald-500", icon: Users },
-                { level: 3, name: "Sustainability Ambassador",color: "from-blue-700 to-blue-500",      icon: Leaf },
-                { level: 4, name: "Planet Hero Elite",        color: "from-violet-700 to-violet-500",  icon: Sparkles },
-                { level: 5, name: "Hall of Heroes",           color: "from-amber-600 to-yellow-400",   icon: Crown },
-              ].map(({ level, name, color, icon: Icon }) => (
-                <div key={level} className="flex items-center gap-3 px-3 py-2 bg-white/3 border border-white/8 rounded-xl">
-                  <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${color} flex items-center justify-center shrink-0`}>
-                    <Icon className="w-3.5 h-3.5 text-white" />
+            {/* Right — League banner */}
+            <Link href="/league" className="block w-full md:w-64 shrink-0 group">
+              <div className="relative rounded-2xl border border-yellow-400/30 bg-gradient-to-b from-yellow-500/10 to-amber-900/10 overflow-hidden p-5 flex flex-col gap-4 hover:border-yellow-400/60 transition-all">
+                {/* Glow */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-500/10 via-transparent to-transparent pointer-events-none" />
+
+                {/* Badge */}
+                <div className="flex items-center gap-2 relative">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-yellow-500 to-amber-400 flex items-center justify-center shrink-0 shadow-lg shadow-yellow-900/40">
+                    <Trophy className="w-4 h-4 text-black" />
                   </div>
                   <div>
-                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-600">Level {level}</p>
-                    <p className="text-xs font-black text-white leading-tight">{name}</p>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-yellow-500">UAE 2026</p>
+                    <p className="text-[10px] font-black text-white leading-tight">Brokers Night Cricket League</p>
                   </div>
+                  <span className="ml-auto text-[8px] font-black uppercase tracking-widest text-yellow-500/60 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded-full">LIVE</span>
                 </div>
-              ))}
-            </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-2 relative">
+                  {[
+                    { val: "36K+", lbl: "Brokers" },
+                    { val: "6",    lbl: "Match Nights" },
+                    { val: "250+", lbl: "Players" },
+                    { val: "AED 10K", lbl: "Title Sponsor" },
+                  ].map(({ val, lbl }) => (
+                    <div key={lbl} className="bg-black/30 rounded-xl px-3 py-2 text-center">
+                      <p className="text-sm font-black text-yellow-400 leading-tight">{val}</p>
+                      <p className="text-[9px] text-gray-500 font-bold leading-tight">{lbl}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="relative flex items-center justify-between bg-yellow-500/15 border border-yellow-500/30 rounded-xl px-4 py-2.5 group-hover:bg-yellow-500/25 transition-all">
+                  <span className="text-xs font-black text-yellow-300">View Sponsorship Tiers</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-yellow-400 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
