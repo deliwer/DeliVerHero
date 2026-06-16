@@ -43,6 +43,18 @@ export default function DewaActivation() {
           { question: "Do I need Ejari before DEWA activation?", answer: "Yes. A valid Ejari certificate is required to activate DEWA in Dubai. DeliWer can coordinate both Ejari registration and DEWA activation together as part of the move-in concierge." }
         ]}
         serviceSchema={{ name: "DEWA Activation Dubai", description: "DeliWer coordinates DEWA electricity and water activation for new Dubai tenants. Same-day coordination available." }}
+        howTo={{
+          name: "How to Activate DEWA in Dubai",
+          description: "Step-by-step guide to activating your DEWA electricity and water connection in a new Dubai apartment through DeliWer.",
+          steps: [
+            { name: "Get your Ejari certificate", text: "Ensure your tenancy contract is registered and you have a valid Ejari certificate — DEWA requires it before activating any new account." },
+            { name: "WhatsApp your documents to DeliWer", text: "Send your Ejari certificate, Emirates ID, and apartment details to DeliWer on WhatsApp (+971523906019). We handle the submission on your behalf." },
+            { name: "Pay the DEWA security deposit", text: "DEWA charges a refundable security deposit based on your property type. DeliWer will confirm the exact amount and payment method." },
+            { name: "DEWA activates your connection", text: "DEWA typically activates the electricity and water connection within 1–3 business days. DeliWer follows up on your behalf to ensure timely activation." }
+          ],
+          totalTime: "P3D",
+          estimatedCost: "Security deposit varies (refundable)"
+        }}
         dateModified="2026-05-12"
       />
       <Navigation />
