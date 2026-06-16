@@ -2457,3 +2457,21 @@ export const realEstateBrokerCircle = pgTable("real_estate_broker_circle", {
 export const insertRealEstateBrokerCircleSchema = createInsertSchema(realEstateBrokerCircle).omit({ id: true, createdAt: true });
 export type RealEstateBrokerCircle = typeof realEstateBrokerCircle.$inferSelect;
 export type InsertRealEstateBrokerCircle = z.infer<typeof insertRealEstateBrokerCircleSchema>;
+
+// ── SEO Digest History ─────────────────────────────────────────────────────────
+export const seoDigestHistory = pgTable("seo_digest_history", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  runAt: timestamp("run_at").notNull().default(sql`now()`),
+  trigger: text("trigger").notNull().default("manual"),         // "manual" | "cron"
+  pingOk: boolean("ping_ok").notNull().default(false),
+  emailSent: boolean("email_sent").notNull().default(false),
+  whatsappSent: boolean("whatsapp_sent").notNull().default(false),
+  deliwerEnginesOk: integer("deliwer_engines_ok").notNull().default(0),
+  deliwerEnginesFailed: integer("deliwer_engines_failed").notNull().default(0),
+  phEnginesOk: integer("ph_engines_ok").notNull().default(0),
+  phEnginesFailed: integer("ph_engines_failed").notNull().default(0),
+  overallOk: boolean("overall_ok").notNull().default(false),
+});
+export const insertSeoDigestHistorySchema = createInsertSchema(seoDigestHistory).omit({ id: true, runAt: true });
+export type SeoDigestHistory = typeof seoDigestHistory.$inferSelect;
+export type InsertSeoDigestHistory = z.infer<typeof insertSeoDigestHistorySchema>;

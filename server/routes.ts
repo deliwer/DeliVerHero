@@ -40,7 +40,7 @@ import { storage } from "./storage";
 import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertContactSchema, insertQuoteSchema, insertCorporateLeadSchema, insertEmailCampaignSchema, insertOrderSchema, insertCustomerSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, redeemCouponSchema, insertPlanetMissionSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, insertMetaverseRewardSchema, redeemRewardSchema, insertAchievementBadgeSchema, updateAvatarSchema, insertDailyQuestSchema, insertWellnessPassportSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, aiDeliPriceRequestSchema, sellRequestSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertLeadApplicationSchema, insertCommissionClaimSchema, insertRentAnalysisLeadSchema, rentAnalysisLeads } from "@shared/schema";
 import { processLead, trackCTAEvent } from "./lead-service";
 import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-campaign-service";
-import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog } from "@shared/schema";
+import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog, seoDigestHistory } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and, lt, sql as drizzleSql } from "drizzle-orm";
 import { runBrokerFetch, getLocalFileStats } from "./services/broker-fetch-service";
@@ -6121,6 +6121,25 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const { runSeoDigest } = await import("./services/seo-digest-service.js");
       const result = await runSeoDigest();
       res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
+  // ── SEO Digest History ────────────────────────────────────────────────────────
+  app.get("/api/admin/seo-digest/history", async (req, res) => {
+    const secret = req.headers["x-admin-secret"] || req.query?.secret;
+    const adminSecret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
+    if (secret !== adminSecret) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    try {
+      const rows = await db
+        .select()
+        .from(seoDigestHistory)
+        .orderBy(desc(seoDigestHistory.runAt))
+        .limit(50);
+      res.json({ history: rows });
     } catch (err: any) {
       res.status(500).json({ error: err.message });
     }

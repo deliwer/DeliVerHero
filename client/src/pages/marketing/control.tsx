@@ -43,6 +43,17 @@ function SeoPingPanel() {
     refetchInterval: 60_000,
   });
 
+  const { data: historyData, refetch: refetchHistory } = useQuery<any>({
+    queryKey: ["/api/admin/seo-digest/history"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/seo-digest/history", {
+        headers: { "x-admin-secret": "deliwer-admin-2026" },
+      });
+      return res.json();
+    },
+    refetchInterval: 120_000,
+  });
+
   async function trigger(endpoint: string, label: string) {
     setTriggering(label);
     try {
@@ -53,6 +64,7 @@ function SeoPingPanel() {
       const json = await res.json();
       setFlash(json.ok ? `✓ ${label} — ${json.summary?.succeeded ?? 0}/${json.summary?.total ?? 0} engines accepted` : `✗ ${label} failed`);
       refetch();
+      refetchHistory();
     } catch {
       setFlash(`✗ ${label} — network error`);
     } finally {
@@ -238,6 +250,87 @@ function SeoPingPanel() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Digest run history */}
+      <div className="bg-white/3 border border-white/8 rounded-xl overflow-hidden" data-testid="seo-digest-history">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/8">
+          <div className="text-xs font-bold text-gray-300 uppercase tracking-widest">📋 Digest Run History</div>
+          <button
+            onClick={() => refetchHistory()}
+            className="text-[10px] text-gray-500 hover:text-gray-300 transition-colors font-medium"
+          >
+            ↻ Refresh
+          </button>
+        </div>
+
+        {!historyData?.history?.length ? (
+          <div className="px-4 py-6 text-center text-gray-600 text-xs">
+            No digest runs recorded yet — trigger one above to start tracking.
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-white/8">
+                  {["Run At (UAE)", "Trigger", "Ping", "Email", "WhatsApp", "DW Engines", "PH Engines", "Status"].map((h) => (
+                    <th key={h} className="px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider text-gray-600 whitespace-nowrap">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {historyData.history.map((row: any, i: number) => {
+                  const runAt = row.runAt
+                    ? new Date(row.runAt).toLocaleString("en-AE", {
+                        day: "2-digit", month: "short", year: "numeric",
+                        hour: "2-digit", minute: "2-digit", hour12: false,
+                        timeZone: "Asia/Dubai",
+                      })
+                    : "—";
+                  const ok = (v: boolean) => v
+                    ? <span className="text-emerald-400 font-bold">✓</span>
+                    : <span className="text-red-400 font-bold">✗</span>;
+                  return (
+                    <tr
+                      key={row.id}
+                      className={`border-b border-white/5 ${i % 2 === 0 ? "bg-white/[0.01]" : ""} hover:bg-white/[0.04] transition-colors`}
+                      data-testid={`seo-history-row-${i}`}
+                    >
+                      <td className="px-3 py-2.5 font-mono text-gray-300 whitespace-nowrap">{runAt}</td>
+                      <td className="px-3 py-2.5">
+                        <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold uppercase ${
+                          row.trigger === "cron"
+                            ? "bg-blue-500/15 text-blue-400"
+                            : "bg-violet-500/15 text-violet-400"
+                        }`}>
+                          {row.trigger ?? "manual"}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-center">{ok(row.pingOk)}</td>
+                      <td className="px-3 py-2.5 text-center">{ok(row.emailSent)}</td>
+                      <td className="px-3 py-2.5 text-center">{ok(row.whatsappSent)}</td>
+                      <td className="px-3 py-2.5 text-center">
+                        <span className={row.deliwerEnginesFailed > 0 ? "text-red-400" : "text-emerald-400"}>
+                          {row.deliwerEnginesOk}/{(row.deliwerEnginesOk ?? 0) + (row.deliwerEnginesFailed ?? 0)}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-center">
+                        <span className={row.phEnginesFailed > 0 ? "text-red-400" : "text-emerald-400"}>
+                          {row.phEnginesOk}/{(row.phEnginesOk ?? 0) + (row.phEnginesFailed ?? 0)}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2.5 text-center">
+                        {row.overallOk
+                          ? <span className="text-emerald-400 font-black text-[10px]">OK</span>
+                          : <span className="text-red-400 font-black text-[10px]">FAIL</span>}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

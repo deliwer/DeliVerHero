@@ -11,6 +11,8 @@
 
 import { sendEmail } from "../sendgrid-service";
 import { runSeoPing, getLastPingReport, type PingResult } from "./seo-ping";
+import { db } from "../db";
+import { seoDigestHistory } from "@shared/schema";
 
 const FOUNDER_EMAIL   = "info@deliwer.com";
 const FOUNDER_WHATSAPP = "+971523946311";
@@ -197,7 +199,7 @@ export interface DigestResult {
   report: ReturnType<typeof getLastPingReport>;
 }
 
-export async function runSeoDigest(): Promise<DigestResult> {
+export async function runSeoDigest(triggerLabel: "manual" | "cron" = "manual"): Promise<DigestResult> {
   const runAt = new Date().toISOString();
   console.log("[SEO-DIGEST] Starting weekly SEO digest…");
 
@@ -238,6 +240,26 @@ export async function runSeoDigest(): Promise<DigestResult> {
     console.log(`[SEO-DIGEST] WhatsApp ${whatsappSent ? "sent" : "failed"} → ${FOUNDER_WHATSAPP}`);
   } catch (err) {
     console.error("[SEO-DIGEST] WhatsApp error:", err);
+  }
+
+  const deliwerSummary = report.summary.deliwer;
+  const phSummary      = report.summary.planetHeroes;
+
+  try {
+    await db.insert(seoDigestHistory).values({
+      trigger:              triggerLabel,
+      pingOk,
+      emailSent,
+      whatsappSent,
+      deliwerEnginesOk:     deliwerSummary.succeeded ?? 0,
+      deliwerEnginesFailed: deliwerSummary.failed ?? 0,
+      phEnginesOk:          phSummary.succeeded ?? 0,
+      phEnginesFailed:      phSummary.failed ?? 0,
+      overallOk:            emailSent || whatsappSent,
+    });
+    console.log("[SEO-DIGEST] History row saved to DB");
+  } catch (err) {
+    console.error("[SEO-DIGEST] Failed to save history row:", err);
   }
 
   return { ok: emailSent || whatsappSent, runAt, pingOk, emailSent, whatsappSent, report };

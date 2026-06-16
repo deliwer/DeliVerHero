@@ -121,10 +121,10 @@ function msUntilNextMondayUAE(): number {
 }
 
 setTimeout(() => {
-  runSeoDigest().catch(err => console.error('[SEO-DIGEST] Monday digest error:', err));
+  runSeoDigest("cron").catch(err => console.error('[SEO-DIGEST] Monday digest error:', err));
   // Then repeat every 7 days
   setInterval(() => {
-    runSeoDigest().catch(err => console.error('[SEO-DIGEST] Weekly repeat error:', err));
+    runSeoDigest("cron").catch(err => console.error('[SEO-DIGEST] Weekly repeat error:', err));
   }, SEVEN_DAYS);
 }, msUntilNextMondayUAE());
 
