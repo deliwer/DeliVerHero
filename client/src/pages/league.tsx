@@ -84,6 +84,25 @@ const SPONSORSHIP_TIERS = [
   },
 ];
 
+const GOVT_SERVICES_TIER = {
+  tier: "GOVERNMENT SERVICES PARTNER",
+  price: "AED 3,500",
+  color: "from-amber-400 to-orange-300",
+  border: "border-amber-400/50",
+  bg: "bg-amber-400/8",
+  icon: Building2,
+  tag: "FEATURED · APBMC MODEL",
+  benefits: [
+    "Trade license co-branding on all materials",
+    "PRO & business setup spotlight segment",
+    "Dedicated booth for client consultations",
+    "Lead capture from broker & agency network",
+    "Feature in weekly email to 36,000+ brokers",
+    "Co-branded social content each match week",
+    "Premier partner listing on event page",
+  ],
+};
+
 const WHO_SHOULD_SPONSOR = [
   { label: "Developers", icon: Building2 },
   { label: "Banks", icon: Shield },
@@ -670,6 +689,57 @@ export default function LeaguePage() {
               ))}
             </div>
 
+            {/* ── Government Services Partner — featured tier ── */}
+            <div className={`relative border-2 ${GOVT_SERVICES_TIER.border} ${GOVT_SERVICES_TIER.bg} rounded-2xl p-6 mb-8 overflow-hidden`}>
+              {/* "Featured" ribbon */}
+              <div className="absolute top-0 right-0 bg-gradient-to-r from-amber-500 to-orange-400 text-black text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-bl-xl">
+                {GOVT_SERVICES_TIER.tag}
+              </div>
+
+              <div className="grid lg:grid-cols-[auto_1fr_auto] gap-6 items-start">
+                {/* Icon + tier + price */}
+                <div className="flex flex-col items-center lg:items-start gap-2 min-w-[160px]">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${GOVT_SERVICES_TIER.color} flex items-center justify-center`}>
+                    <GOVT_SERVICES_TIER.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-black text-sm tracking-widest text-amber-300 uppercase">{GOVT_SERVICES_TIER.tier}</h3>
+                  <div className={`text-4xl font-black bg-gradient-to-r ${GOVT_SERVICES_TIER.color} bg-clip-text text-transparent`}>{GOVT_SERVICES_TIER.price}</div>
+                  <p className="text-xs text-slate-500 leading-snug">Designed for business setup firms, PRO service providers &amp; government services consultancies.</p>
+                  <div className="mt-1 text-[10px] text-amber-400/60 font-bold uppercase tracking-widest flex items-center gap-1">
+                    <Building2 className="w-3 h-3" /> Currently held by APBMC
+                  </div>
+                </div>
+
+                {/* Benefits list */}
+                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                  {GOVT_SERVICES_TIER.benefits.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm text-slate-300">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="flex flex-col gap-3 lg:min-w-[180px]">
+                  <Button
+                    className="w-full font-bold bg-amber-500 hover:bg-amber-400 text-black border-0"
+                    onClick={() => { setActiveTab("sponsor"); document.getElementById("register")?.scrollIntoView({ behavior: "smooth" }); }}
+                  >
+                    Enquire Now <ArrowRight className="w-4 h-4 ml-1" />
+                  </Button>
+                  <a
+                    href="https://www.apmcdxb.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-center text-[10px] text-amber-400/60 hover:text-amber-400 transition-colors font-medium"
+                  >
+                    See APBMC — current partner →
+                  </a>
+                </div>
+              </div>
+            </div>
+
             {/* Comparison table */}
             <div className="overflow-x-auto rounded-2xl border border-white/10">
               <table className="w-full text-sm">
@@ -679,26 +749,30 @@ export default function LeaguePage() {
                     <th className="text-center p-4 text-yellow-400 font-bold">Title</th>
                     <th className="text-center p-4 text-amber-300 font-bold">Gold</th>
                     <th className="text-center p-4 text-slate-300 font-bold">Silver</th>
+                    <th className="text-center p-4 text-amber-400 font-bold whitespace-nowrap">Govt Services</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   {[
-                    ["Naming Rights", true, false, false],
-                    ["Jersey Branding", true, false, false],
-                    ["Trophy Branding", true, false, false],
-                    ["Team Sponsorship", true, true, false],
-                    ["Ground Branding", true, true, false],
-                    ["Media Interviews", true, true, false],
-                    ["Activation Booth", true, true, true],
-                    ["Lead Capture", true, true, true],
-                    ["Social Media Features", true, true, true],
-                    ["Email Campaigns", true, true, false],
-                  ].map(([label, t, g, s]) => (
+                    ["Naming Rights",         true,  false, false, false],
+                    ["Jersey Branding",       true,  false, false, false],
+                    ["Trophy Branding",       true,  false, false, false],
+                    ["Team Sponsorship",      true,  true,  false, false],
+                    ["Ground Branding",       true,  true,  false, false],
+                    ["Media Interviews",      true,  true,  false, true ],
+                    ["Activation Booth",      true,  true,  true,  true ],
+                    ["Lead Capture",          true,  true,  true,  true ],
+                    ["Social Media Features", true,  true,  true,  true ],
+                    ["Email Campaigns",       true,  true,  false, true ],
+                    ["Trade License Branding",false, false, false, true ],
+                    ["PRO Services Spotlight",false, false, false, true ],
+                  ].map(([label, t, g, s, gov]) => (
                     <tr key={label as string} className="hover:bg-white/3 transition-colors">
                       <td className="p-4 text-slate-300">{label as string}</td>
                       <td className="p-4 text-center">{t ? <CheckCircle2 className="w-4 h-4 text-yellow-400 mx-auto" /> : <span className="text-slate-600">—</span>}</td>
                       <td className="p-4 text-center">{g ? <CheckCircle2 className="w-4 h-4 text-amber-300 mx-auto" /> : <span className="text-slate-600">—</span>}</td>
                       <td className="p-4 text-center">{s ? <CheckCircle2 className="w-4 h-4 text-slate-400 mx-auto" /> : <span className="text-slate-600">—</span>}</td>
+                      <td className="p-4 text-center">{gov ? <CheckCircle2 className="w-4 h-4 text-amber-400 mx-auto" /> : <span className="text-slate-600">—</span>}</td>
                     </tr>
                   ))}
                 </tbody>
