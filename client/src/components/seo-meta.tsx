@@ -196,7 +196,7 @@ const SCHEMA_ORG = JSON.stringify({
       inLanguage: "en-AE",
       potentialAction: {
         "@type": "SearchAction",
-        target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/search?q={search_term_string}` },
+        target: `${BASE_URL}/search?q={search_term_string}`,
         "query-input": "required name=search_term_string",
       },
     },
