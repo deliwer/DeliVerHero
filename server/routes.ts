@@ -788,15 +788,251 @@ Source: Website Concierge Page
     }
   });
 
-  app.get("/api/league/download/:doc", (req, res) => {
+  app.get("/api/league/download/:doc", async (req, res) => {
     const { doc } = req.params;
-    const labels: Record<string, string> = {
-      proposal: "Sponsorship Proposal",
-      "team-pack": "Team Registration Pack",
-      brochure: "Partnership Brochure",
-    };
-    const label = labels[doc] || "Document";
-    res.json({ ok: true, message: `${label} — please email partners@deliwer.com to receive the full document.` });
+
+    if (doc !== "proposal") {
+      return res.json({ ok: true, message: "Please email partners@deliwer.com to receive this document." });
+    }
+
+    try {
+      const PDFDocument = (await import("pdfkit")).default;
+      const pdf = new PDFDocument({ margin: 56, size: "A4", info: { Title: "Sponsorship Proposal – Brokers Night Cricket League UAE 2026", Author: "DeliWer Relocations" } });
+
+      res.setHeader("Content-Type", "application/pdf");
+      res.setHeader("Content-Disposition", 'attachment; filename="BNCL-2026-Sponsorship-Proposal.pdf"');
+      res.setHeader("Cache-Control", "no-store");
+      pdf.pipe(res);
+
+      const W = pdf.page.width - 112; // usable width (margins × 2)
+      const DARK   = "#0a0f1a";
+      const AMBER  = "#f59e0b";
+      const GOLD   = "#fbbf24";
+      const SLATE  = "#64748b";
+      const WHITE  = "#ffffff";
+      const GREEN  = "#10b981";
+
+      // ── COVER ──────────────────────────────────────────────────────────────
+      pdf.rect(0, 0, pdf.page.width, pdf.page.height).fill(DARK);
+
+      // Amber accent bar top
+      pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
+
+      pdf.moveDown(4);
+      pdf.font("Helvetica-Bold").fontSize(9).fillColor(AMBER)
+         .text("UAE'S PREMIER REAL ESTATE SPORTS INITIATIVE", { align: "center", characterSpacing: 2 });
+
+      pdf.moveDown(1.2);
+      pdf.font("Helvetica-Bold").fontSize(38).fillColor(WHITE)
+         .text("BROKERS NIGHT\nCRICKET LEAGUE", { align: "center", lineGap: 4 });
+
+      pdf.font("Helvetica-Bold").fontSize(26).fillColor(AMBER)
+         .text("UAE 2026", { align: "center" });
+
+      pdf.moveDown(1.5);
+      pdf.font("Helvetica").fontSize(13).fillColor("#94a3b8")
+         .text("Official Sponsorship Proposal", { align: "center" });
+
+      pdf.moveDown(0.6);
+      pdf.font("Helvetica").fontSize(11).fillColor("#64748b")
+         .text("Presented by Mariamain & DeliWer Relocations", { align: "center" });
+
+      pdf.moveDown(3);
+
+      // Stats row
+      const stats = [["36,000+", "Database Reach"], ["5,000+", "Active Brokers"], ["250+", "Players"], ["6", "Match Nights"]];
+      const cellW = W / stats.length;
+      const statY = pdf.y;
+      stats.forEach(([val, lbl], i) => {
+        const x = 56 + i * cellW;
+        pdf.font("Helvetica-Bold").fontSize(22).fillColor(GOLD).text(val, x, statY, { width: cellW, align: "center" });
+        pdf.font("Helvetica").fontSize(8).fillColor(SLATE).text(lbl, x, statY + 28, { width: cellW, align: "center" });
+      });
+
+      pdf.moveDown(6);
+      pdf.font("Helvetica").fontSize(9).fillColor(SLATE)
+         .text("partners@deliwer.com  ·  +971 52 394 6311  ·  www.deliwer.com", { align: "center" });
+
+      // ── PAGE 2 — WHY SPONSOR ───────────────────────────────────────────────
+      pdf.addPage({ margin: 56, size: "A4" });
+      pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
+
+      const sectionHeader = (title: string, sub: string) => {
+        pdf.moveDown(1.5);
+        pdf.font("Helvetica-Bold").fontSize(20).fillColor(WHITE).text(title);
+        pdf.font("Helvetica").fontSize(11).fillColor(SLATE).text(sub);
+        pdf.moveDown(0.6);
+        pdf.moveTo(56, pdf.y).lineTo(56 + W, pdf.y).strokeColor(AMBER).lineWidth(1).stroke();
+        pdf.moveDown(0.8);
+      };
+
+      sectionHeader("Why Sponsor the League?", "Put your brand in front of the decision-makers who drive Dubai's property market.");
+
+      const bullets = [
+        ["Direct access to 36,000+ UAE real estate brokers", GREEN],
+        ["6 high-energy match nights — premium networking", AMBER],
+        ["WhatsApp, email & social media integrations", AMBER],
+        ["Traceable lead generation — not just logo placement", GREEN],
+        ["Co-branding alongside a verified Dubai concierge platform", GOLD],
+      ];
+      bullets.forEach(([text, color]) => {
+        pdf.font("Helvetica").fontSize(11).fillColor(color).text("✓ ", { continued: true });
+        pdf.fillColor(WHITE).text(text as string);
+        pdf.moveDown(0.3);
+      });
+
+      // ── PAGE 3 — SPONSORSHIP TIERS ────────────────────────────────────────
+      pdf.addPage({ margin: 56, size: "A4" });
+      pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
+
+      sectionHeader("Sponsorship Tiers", "Choose the package that matches your brand ambition.");
+
+      const tiers = [
+        {
+          name: "TITLE SPONSOR",
+          price: "AED 10,000",
+          color: GOLD,
+          benefits: [
+            "Naming rights to the league",
+            "Full jersey branding",
+            "Trophy & podium branding",
+            "Media interviews & spotlights",
+            "Lead generation integration",
+            "Social media campaign features",
+            "VIP awards gala placement",
+          ],
+        },
+        {
+          name: "GOLD SPONSOR",
+          price: "AED 5,000",
+          color: AMBER,
+          benefits: [
+            "Team sponsorship rights",
+            "Ground & boundary branding",
+            "Dedicated content features",
+            "Interview segments",
+            "Email campaign inclusion",
+            "Partner ecosystem listing",
+          ],
+        },
+        {
+          name: "SILVER SPONSOR",
+          price: "AED 2,500",
+          color: "#94a3b8",
+          benefits: [
+            "On-ground activation booth",
+            "Lead capture opportunities",
+            "Brand visibility at matches",
+            "Social media mentions",
+            "Partner directory listing",
+          ],
+        },
+        {
+          name: "GOVERNMENT SERVICES PARTNER",
+          price: "AED 3,500",
+          color: AMBER,
+          tag: "FEATURED",
+          benefits: [
+            "Trade license co-branding on all materials",
+            "PRO & business setup spotlight segment",
+            "Dedicated booth for client consultations",
+            "Lead capture from broker & agency network",
+            "Feature in weekly email to 36,000+ brokers",
+            "Co-branded social content each match week",
+            "Premier partner listing on event page",
+          ],
+        },
+      ];
+
+      tiers.forEach((tier) => {
+        const blockY = pdf.y;
+        // Left accent bar
+        pdf.rect(56, blockY, 4, 14 + tier.benefits.length * 17).fill(tier.color);
+
+        pdf.font("Helvetica-Bold").fontSize(12).fillColor(tier.color)
+           .text(tier.name, 70, blockY);
+        pdf.font("Helvetica-Bold").fontSize(16).fillColor(WHITE)
+           .text(tier.price, 70, blockY + 14);
+
+        const listStart = blockY + 34;
+        tier.benefits.forEach((b, i) => {
+          pdf.font("Helvetica").fontSize(9).fillColor("#94a3b8")
+             .text(`• ${b}`, 76, listStart + i * 15);
+        });
+
+        if ((tier as any).tag) {
+          pdf.font("Helvetica-Bold").fontSize(7).fillColor(DARK)
+             .rect(pdf.page.width - 56 - 60, blockY, 60, 13).fill(AMBER)
+             .fillColor(DARK).text(tier.tag, pdf.page.width - 56 - 58, blockY + 3, { width: 56, align: "center" });
+        }
+
+        pdf.moveDown(tier.benefits.length * 0.6 + 2);
+      });
+
+      // ── PAGE 4 — FEATURED PARTNER ─────────────────────────────────────────
+      pdf.addPage({ margin: 56, size: "A4" });
+      pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
+
+      sectionHeader("Premier Government Services Partner", "A dedicated ecosystem partnership for business setup & PRO service firms.");
+
+      pdf.font("Helvetica-Bold").fontSize(14).fillColor(GOLD).text("Current Partner: Advance Plus Management Consultancy");
+      pdf.font("Helvetica").fontSize(10).fillColor(SLATE).text("www.apmcdxb.com");
+      pdf.moveDown(0.8);
+
+      const partnerBenefits = [
+        "Trade license co-branding on all league materials and digital assets",
+        "Exclusive PRO services spotlight segment during each match night",
+        "Dedicated consultation booth at all 6 venues",
+        "Direct lead capture pipeline from 5,000+ active broker network",
+        "Co-branded slot in weekly email to 36,000+ UAE real estate contacts",
+        "Social media features — reels, stories & posts each match week",
+        "Premier Partner badge on the official event page",
+      ];
+      partnerBenefits.forEach((b) => {
+        pdf.font("Helvetica").fontSize(10).fillColor(AMBER).text("✓ ", { continued: true });
+        pdf.fillColor(WHITE).text(b);
+        pdf.moveDown(0.2);
+      });
+
+      pdf.moveDown(1);
+      pdf.font("Helvetica-Bold").fontSize(10).fillColor(GOLD).text("AED 3,500 per season  ·  Limited to 1 partner firm per season");
+
+      // ── PAGE 5 — CONTACT ─────────────────────────────────────────────────
+      pdf.addPage({ margin: 56, size: "A4" });
+      pdf.rect(0, 0, pdf.page.width, 8).fill(AMBER);
+
+      sectionHeader("Get In Touch", "Reserve your sponsorship or request a custom package.");
+
+      const contacts = [
+        ["Email", "partners@deliwer.com"],
+        ["WhatsApp / Phone", "+971 52 394 6311"],
+        ["Website", "www.deliwer.com"],
+        ["League Page", "www.deliwer.com/league"],
+        ["Current Govt Services Partner", "www.apmcdxb.com"],
+      ];
+      contacts.forEach(([label, value]) => {
+        pdf.font("Helvetica-Bold").fontSize(10).fillColor(AMBER).text(`${label}:  `, { continued: true });
+        pdf.font("Helvetica").fillColor(WHITE).text(value);
+        pdf.moveDown(0.4);
+      });
+
+      pdf.moveDown(2);
+      pdf.font("Helvetica").fontSize(9).fillColor(SLATE)
+         .text("Brokers Night Cricket League UAE 2026 is an initiative by DeliWer Relocations, Dubai's verified move-in / move-out concierge platform. All sponsorship packages include full analytics reporting and monthly performance updates.", { width: W });
+
+      pdf.moveDown(2);
+      // Footer bar
+      pdf.rect(0, pdf.page.height - 36, pdf.page.width, 36).fill("#0d1420");
+      pdf.font("Helvetica").fontSize(8).fillColor(SLATE)
+         .text("© 2026 DeliWer Relocations LLC — Confidential Sponsorship Proposal", 56, pdf.page.height - 22, { width: W, align: "center" });
+
+      pdf.end();
+    } catch (err: any) {
+      console.error("[PDF] generation error:", err);
+      if (!res.headersSent) {
+        res.status(500).json({ error: "Failed to generate PDF" });
+      }
+    }
   });
 
   app.post("/api/leads", async (req, res) => {

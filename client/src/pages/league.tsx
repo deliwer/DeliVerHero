@@ -1939,8 +1939,14 @@ export default function LeaguePage() {
               <a
                 key={doc.label}
                 href={doc.href}
+                download={doc.href.endsWith("/proposal") ? "BNCL-2026-Sponsorship-Proposal.pdf" : undefined}
                 className="flex flex-col items-center gap-3 bg-white/3 border border-white/8 rounded-2xl p-6 hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all group"
-                onClick={(e) => { e.preventDefault(); toast({ title: `${doc.label} requested`, description: "Contact partners@deliwer.com to receive the full document." }); }}
+                onClick={(e) => {
+                  if (!doc.href.endsWith("/proposal")) {
+                    e.preventDefault();
+                    toast({ title: `${doc.label} requested`, description: "Contact partners@deliwer.com to receive the full document." });
+                  }
+                }}
               >
                 <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
                   <doc.icon className="w-6 h-6 text-emerald-400" />
