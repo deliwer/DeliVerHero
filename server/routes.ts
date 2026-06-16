@@ -853,16 +853,41 @@ Source: Website Concierge Page
       pdf.font("Helvetica").fontSize(9).fillColor(SLATE)
          .text("partners@deliwer.com  ·  +971 52 394 6311  ·  www.deliwer.com", { align: "center" });
 
-      // WhatsApp CTA button on cover
+      // WhatsApp CTA button + QR code on cover
       pdf.moveDown(1.2);
       const waUrl = "https://wa.me/971523946311?text=Hi%2C%20I%27m%20interested%20in%20sponsoring%20the%20Brokers%20Night%20Cricket%20League%20UAE%202026";
-      const btnW = 200;
+
+      // Generate QR code as PNG buffer
+      const QRCode = await import("qrcode");
+      const qrBuffer = await QRCode.toBuffer(waUrl, {
+        type: "png",
+        width: 160,
+        margin: 1,
+        color: { dark: "#25D366", light: "#0a0f1a" },
+      });
+
+      const qrSize = 80;
+      const qrX = (pdf.page.width - qrSize) / 2;
+      const qrY = pdf.y;
+
+      // White border around QR for contrast
+      pdf.roundedRect(qrX - 6, qrY - 6, qrSize + 12, qrSize + 12, 5).fill("#111827");
+      pdf.image(qrBuffer, qrX, qrY, { width: qrSize, height: qrSize, link: waUrl });
+
+      // QR label
+      pdf.font("Helvetica-Bold").fontSize(8).fillColor("#25D366")
+         .text("Scan to open WhatsApp", { align: "center" });
+      pdf.font("Helvetica").fontSize(7).fillColor(SLATE)
+         .text("Pre-filled sponsorship enquiry ready", { align: "center" });
+
+      pdf.moveDown(0.8);
+
+      // Clickable text button below QR
+      const btnW = 220;
       const btnH = 32;
       const btnX = (pdf.page.width - btnW) / 2;
       const btnY = pdf.y;
-      // Button background
       pdf.roundedRect(btnX, btnY, btnW, btnH, 6).fill("#25D366");
-      // Button label — clickable
       pdf.font("Helvetica-Bold").fontSize(11).fillColor(DARK)
          .text("💬  Message Us on WhatsApp", btnX, btnY + 9, {
            width: btnW,
