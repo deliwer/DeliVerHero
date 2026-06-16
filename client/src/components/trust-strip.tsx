@@ -124,7 +124,7 @@ export function PartnerStrip() {
         <div className="flex flex-col items-center sm:items-start gap-1">
           <span className="text-[9px] text-amber-400 font-black uppercase tracking-widest">Premier Government Services Ecosystem Partner</span>
           <a
-            href="https://www.apbmcdxb.com"
+            href="https://www.apmcdxb.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-base font-black text-white hover:text-amber-300 transition-colors"
@@ -132,7 +132,7 @@ export function PartnerStrip() {
           <span className="text-[10px] text-white/40">Government Services · Business Setup · PRO Services — Dubai</span>
         </div>
         <a
-          href="https://www.apbmcdxb.com"
+          href="https://www.apmcdxb.com"
           target="_blank"
           rel="noopener noreferrer"
           className="shrink-0 text-[10px] font-black uppercase tracking-widest text-amber-400 border border-amber-400/40 px-3 py-1.5 rounded-lg hover:bg-amber-400/10 transition-all"

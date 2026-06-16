@@ -1815,7 +1815,7 @@ export default function LeaguePage() {
 
             {/* Premier Govt Services Ecosystem Partner — APBMC */}
             <a
-              href="https://www.apbmcdxb.com"
+              href="https://www.apmcdxb.com"
               target="_blank"
               rel="noopener noreferrer"
               className="block mb-6 rounded-2xl border border-amber-400/40 bg-amber-400/5 hover:bg-amber-400/10 hover:border-amber-400/60 transition-all p-7"
@@ -1825,9 +1825,9 @@ export default function LeaguePage() {
                   <span className="inline-block text-[9px] text-amber-400 font-black uppercase tracking-widest mb-2 bg-amber-400/10 border border-amber-400/20 px-2 py-1 rounded-md">
                     Premier Government Services Ecosystem Partner
                   </span>
-                  <div className="text-xl font-black text-white mb-1">Advance Plus Business Management</div>
+                  <div className="text-xl font-black text-white mb-1">Advance Plus Management Consultancy</div>
                   <p className="text-slate-400 text-sm">Government Services · Business Setup · PRO Services · Trade Licensing — Dubai</p>
-                  <p className="text-amber-400/70 text-xs mt-1 font-medium">www.apbmcdxb.com</p>
+                  <p className="text-amber-400/70 text-xs mt-1 font-medium">www.apmcdxb.com</p>
                 </div>
                 <div className="shrink-0 w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-2xl font-black text-amber-400">
                   AP
