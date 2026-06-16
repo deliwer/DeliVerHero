@@ -1,7 +1,7 @@
 {
   "buildCommand": "vite build",
   "outputDirectory": "dist/public",
-  "installCommand": "npm install",
+  "installCommand": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 PLAYWRIGHT_BROWSERS_PATH=0 npm install --legacy-peer-deps",
   "functions": {
     "api/index.js": {
       "memory": 1024,
