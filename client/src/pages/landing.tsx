@@ -33,6 +33,8 @@ import { SiTelegram } from "react-icons/si";
 import { PartnerStrip, OperationalBadges } from "@/components/trust-strip";
 import NicoleImg from "@assets/Nicole_Oliver.jpeg";
 import BeckyImg from "@assets/Becky_Choi_1776889041274.jpeg";
+import DubaiApartmentImg from "@assets/Dubai_Creek_Apartment.jpg";
+import DubaiCreekImg from "@assets/Dubai_Creek_1765884931780.jpg";
 import { useEffect, useState } from "react";
 import { SEOMeta } from "@/components/seo-meta";
 import { Navigation } from "@/components/navigation";
@@ -440,77 +442,175 @@ export default function LandingPage() {
       {/* ============================================
           VALUE PROP — FROM KEYS TO KETTLE IN 24 HOURS
          ============================================ */}
-      <section id="how-it-works" className="relative py-14 px-6 border-b border-white/5 overflow-hidden bg-slate-950">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+      <section id="how-it-works" className="relative py-20 px-6 border-b border-white/5 overflow-hidden">
+        {/* Section background — Dubai creek at low opacity */}
+        <div className="absolute inset-0">
+          <img src={DubaiCreekImg} alt="" className="w-full h-full object-cover object-center" style={{ opacity: 0.12 }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/80 to-slate-950" />
+        </div>
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
-        <div className="max-w-3xl mx-auto space-y-8 relative z-10">
+        <div className="max-w-5xl mx-auto space-y-12 relative z-10">
 
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center space-y-2"
+            transition={{ duration: 0.45 }}
+            className="text-center space-y-3"
           >
             <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">
               One coordinator. Everything sorted.
             </div>
-            <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white leading-tight">
               From Keys to Kettle{" "}
               <span className="text-emerald-400">in 24 Hours.</span>
             </h2>
-            <p className="text-gray-500 text-sm max-w-sm mx-auto">
-              One message. Ejari, movers, DEWA, cleaning, water — you just show up.
+            <p className="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">
+              One WhatsApp message. We handle Ejari, movers, DEWA, cleaning, and water — you just show up.
             </p>
           </motion.div>
 
-          {/* 3-step flow */}
-          <div className="grid grid-cols-3 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/8">
+          {/* 3-step image cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { step: "01", icon: "💬", title: "Message Us", body: "Move-in date + apartment size. 60 seconds." },
-              { step: "02", icon: "📋", title: "We Coordinate", body: "Vendors briefed, schedule managed." },
-              { step: "03", icon: "🏠", title: "Arrive Ready", body: "Connected, clean, registered. AED 0 fee." },
+              {
+                step: "01",
+                icon: "💬",
+                title: "Message Us",
+                body: "Send your move-in date and apartment size. Takes 60 seconds.",
+                tag: "60 seconds",
+                tagColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+                img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=700&q=80",
+                accent: "from-blue-600/40 to-blue-900/80",
+                border: "border-blue-500/20 hover:border-blue-400/40",
+              },
+              {
+                step: "02",
+                icon: "📋",
+                title: "We Coordinate",
+                body: "Your assigned concierge briefs every vendor and manages the full schedule.",
+                tag: "Zero chasing",
+                tagColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+                img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80",
+                accent: "from-amber-700/40 to-amber-950/80",
+                border: "border-amber-500/20 hover:border-amber-400/40",
+              },
+              {
+                step: "03",
+                icon: "🏠",
+                title: "Arrive Ready",
+                body: "Walk in to a connected, clean, registered home. AED 0 coordination fee.",
+                tag: "AED 0 fee",
+                tagColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+                img: DubaiApartmentImg,
+                accent: "from-emerald-800/40 to-emerald-950/80",
+                border: "border-emerald-500/20 hover:border-emerald-400/40",
+              },
             ].map((s, i) => (
               <motion.div
                 key={s.step}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.35, delay: i * 0.08 }}
-                className="bg-slate-900/80 px-4 py-5 space-y-2 flex flex-col"
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className={`relative rounded-2xl overflow-hidden border ${s.border} transition-all duration-300 group cursor-default`}
+                style={{ height: 280 }}
               >
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-500/50">{s.step}</span>
-                <span className="text-xl">{s.icon}</span>
-                <p className="text-white font-black text-sm leading-snug">{s.title}</p>
-                <p className="text-gray-500 text-xs font-medium leading-relaxed flex-1">{s.body}</p>
+                {/* Background photo */}
+                <img
+                  src={s.img}
+                  alt={s.title}
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                />
+                {/* Gradient overlay — heavier at bottom for text legibility */}
+                <div className={`absolute inset-0 bg-gradient-to-t ${s.accent} via-slate-900/60 to-slate-900/30`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute inset-0 p-5 flex flex-col justify-between">
+                  {/* Top — step number + tag */}
+                  <div className="flex items-start justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-white/40">{s.step}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border ${s.tagColor}`}>
+                      {s.tag}
+                    </span>
+                  </div>
+
+                  {/* Bottom — icon + text */}
+                  <div className="space-y-1.5">
+                    <span className="text-2xl block">{s.icon}</span>
+                    <h3 className="text-white font-black text-lg leading-tight">{s.title}</h3>
+                    <p className="text-gray-300 text-xs font-medium leading-relaxed">{s.body}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
 
-          {/* Services + urgency — single row */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5">
-            {["📄 Ejari", "🚛 Movers", "⚡ DEWA", "📶 Internet", "🧹 Cleaning", "💧 Water Filter"].map((s) => (
-              <span key={s} className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/5 border border-white/8 text-gray-500 text-[10px] font-bold">
-                {s}
-              </span>
-            ))}
+          {/* Services included — visual 2-row grid */}
+          <div className="space-y-3">
+            <p className="text-center text-[9px] font-black uppercase tracking-[0.25em] text-gray-600">Everything included in one coordination</p>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+              {[
+                { emoji: "📄", label: "Ejari",       sub: "Registration" },
+                { emoji: "🚛", label: "Movers",       sub: "Vetted crew" },
+                { emoji: "⚡", label: "DEWA",         sub: "Activation" },
+                { emoji: "📶", label: "Internet",     sub: "Setup" },
+                { emoji: "🧹", label: "Cleaning",     sub: "Deep clean" },
+                { emoji: "💧", label: "Water Filter", sub: "Installed" },
+              ].map((s) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col items-center gap-1 bg-white/[0.04] border border-white/8 rounded-xl py-3 px-2 text-center hover:bg-white/[0.07] hover:border-emerald-500/20 transition-all"
+                >
+                  <span className="text-xl">{s.emoji}</span>
+                  <span className="text-white font-black text-[10px] leading-none">{s.label}</span>
+                  <span className="text-gray-600 text-[9px] font-medium">{s.sub}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Just Got Keys urgency strip */}
-          <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/25 px-5 py-4 flex flex-col sm:flex-row items-center gap-4">
-            <div className="flex-1 min-w-0">
-              <p className="text-emerald-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Just received your keys?</p>
-              <p className="text-white font-black text-sm leading-snug">Day 1 sorted — before you arrive.</p>
+          {/* Just Got Keys — image-backed urgency CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="relative rounded-2xl overflow-hidden border border-emerald-500/25"
+          >
+            <img
+              src={DubaiApartmentImg}
+              alt="Dubai apartment ready to move in"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{ opacity: 0.25 }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/60" />
+            <div className="relative flex flex-col sm:flex-row items-center gap-5 px-6 py-6">
+              {/* Key icon */}
+              <div className="shrink-0 w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-2xl">
+                🔑
+              </div>
+              <div className="flex-1 min-w-0 text-center sm:text-left">
+                <p className="text-emerald-400 text-[9px] font-black uppercase tracking-widest mb-0.5">Just received your keys?</p>
+                <p className="text-white font-black text-base leading-snug">Day 1 sorted — before you even arrive.</p>
+                <p className="text-gray-500 text-xs mt-1">WhatsApp us now and we'll have everything ready when you walk in.</p>
+              </div>
+              <Button
+                className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black rounded-xl h-11 px-6 text-sm shrink-0 gap-2 transition-all shadow-lg shadow-emerald-900/30"
+                onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
+                data-testid="button-just-got-keys"
+              >
+                <MessageCircle className="w-4 h-4" /> I Just Got My Keys
+              </Button>
             </div>
-            <Button
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-lg h-9 px-5 text-xs shrink-0 gap-1.5 transition-all"
-              onClick={() => window.open('https://wa.me/971523906019?text=Hello%20DeliWer,%20I%20just%20received%20my%20apartment%20keys%20and%20need%20home%20setup', '_blank')}
-              data-testid="button-just-got-keys"
-            >
-              <MessageCircle className="w-3.5 h-3.5" /> I Just Got My Keys
-            </Button>
-          </div>
+          </motion.div>
 
           {/* Footer note */}
           <p className="text-center text-[10px] text-gray-700 font-bold uppercase tracking-widest">
