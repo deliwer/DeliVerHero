@@ -45,6 +45,34 @@ export default function EjariRegistration() {
           { question: "Can I register Ejari without visiting a Trustee Center?", answer: "Yes. DeliWer handles the submission on your behalf through RERA-authorized Trustee Centers. You coordinate everything via WhatsApp — no queue, no in-person visit required." },
         ]}
         serviceSchema={{ name: "Ejari Registration Dubai", description: "DeliWer coordinates Ejari registration for Dubai tenants through RERA-authorized Trustee Centers. Covers all Dubai areas. Documents checked, submitted, and delivered digitally.", price: "AED 220" }}
+        howTo={{
+          name: "How to Register Ejari in Dubai",
+          description: "Ejari registration is mandatory for every Dubai tenancy contract under UAE law. Follow these steps to register through a RERA-authorized Trustee Center via DeliWer — no queue, no in-person visit required.",
+          totalTime: "P3D",
+          estimatedCost: "220",
+          steps: [
+            {
+              name: "Gather your documents",
+              text: "Collect the signed tenancy contract, tenant's Emirates ID (front and back), landlord's Emirates ID or passport copy, and the property title deed. If you are a company tenant, also prepare the trade licence and company stamp.",
+            },
+            {
+              name: "WhatsApp your documents to DeliWer",
+              text: "Send all documents to DeliWer via WhatsApp (+971 52 390 6019). DeliWer reviews them for completeness before submission — this avoids rejection delays at the Trustee Center.",
+            },
+            {
+              name: "DeliWer submits to a RERA-authorized Trustee Center",
+              text: "DeliWer coordinates submission through an authorized RERA Trustee Center on your behalf. You do not need to visit in person or queue at any government office.",
+            },
+            {
+              name: "Receive your Ejari certificate",
+              text: "Your Ejari certificate is issued within 1–3 business days and delivered digitally. The certificate includes your unique Ejari ID number, required for DEWA activation and any address-based government services.",
+            },
+            {
+              name: "Use your Ejari to activate DEWA",
+              text: "With your Ejari certificate in hand, apply for DEWA (Dubai Electricity and Water Authority) connection using your Ejari number. DeliWer can coordinate the DEWA activation step as well — ask via WhatsApp.",
+            },
+          ],
+        }}
       />
       <Navigation />
 

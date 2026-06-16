@@ -257,6 +257,30 @@ export default function MoveInServices() {
           { question: "Does DeliWer cover Dubai areas other than JVC?", answer: "Yes. DeliWer covers all Dubai areas including Dubai Marina, Business Bay, Downtown Dubai, Al Barsha, Deira, JLT, Dubai Hills, Arabian Ranches, Al Furjan, International City, and 40+ more neighbourhoods." },
         ]}
         serviceSchema={{ name: "Move-In Services Dubai", description: "DeliWer coordinates all move-in services for new Dubai tenants — deep cleaning, drinking water setup, AC maintenance, domestic help, and document processing. Single WhatsApp contact, all Dubai areas.", price: "AED 499" }}
+        howTo={{
+          name: "How to Set Up Your New Dubai Apartment with DeliWer",
+          description: "Moving into a new apartment in Dubai involves more than just getting the keys. Follow these steps to get your cleaning, water, maintenance, and document services coordinated in one go via DeliWer.",
+          totalTime: "P2D",
+          estimatedCost: "499",
+          steps: [
+            {
+              name: "WhatsApp DeliWer your move-in details",
+              text: "Send a message to DeliWer (+971 52 390 6019) with your new apartment address, building name, and move-in date. The team will respond within minutes during business hours (Mon–Sun, 08:00–22:00 UAE).",
+            },
+            {
+              name: "Select your services",
+              text: "Choose from: apartment deep cleaning (AED 350), drinking water setup (AED 299), AC maintenance check (AED 450), domestic help on day one (AED 150), and document services — Ejari and DEWA (AED 800). DeliWer can bundle everything at a package rate.",
+            },
+            {
+              name: "Confirm and pay",
+              text: "Once you confirm your services, DeliWer coordinates all vendors and sends you confirmation. Payment is accepted in AED via cash, credit card, or bank transfer.",
+            },
+            {
+              name: "Move in to a ready apartment",
+              text: "DeliWer's teams arrive on your confirmed date to clean, install water filtration, service the AC, and assist with any documentation. You collect the keys and walk into a fully set-up home.",
+            },
+          ],
+        }}
       />
       {/* Hero Section */}
       <section className="relative py-20 px-6 lg:py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">
