@@ -31,14 +31,46 @@ app.use((req, res, next) => {
   }
 
   if (host === 'realestate.deliwer.com' || host === 'www.realestate.deliwer.com') {
-    if (req.path === '/' || req.path === '') {
-      return res.redirect(301, '/realestate');
-    }
-    if (req.path === '/robots.txt') {
-      return res.type('text/plain').send(
-        'User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n'
-      );
-    }
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/realestate');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'brokers.deliwer.com' || host === 'www.brokers.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/broker-onboard');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'rentals.deliwer.com' || host === 'www.rentals.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/flexible-rentals');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'earn.deliwer.com' || host === 'www.earn.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/earn');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'move.deliwer.com' || host === 'www.move.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/move-in-services');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'ejari.deliwer.com' || host === 'www.ejari.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/ejari-registration');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'water.deliwer.com' || host === 'www.water.deliwer.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/aquacafe');
+    if (req.path === '/robots.txt') return res.type('text/plain').send('User-agent: *\nAllow: /\nSitemap: https://deliwer.com/sitemap.xml\n');
+  }
+
+  if (host === 'buy.wesellcellular.com' || host === 'www.buy.wesellcellular.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/buy/wsc');
+  }
+
+  if (host === 'buy.ktcorpworldwide.com' || host === 'www.buy.ktcorpworldwide.com') {
+    if (req.path === '/' || req.path === '') return res.redirect(301, '/buy/ktcorp');
   }
 
   next();
