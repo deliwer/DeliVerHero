@@ -307,9 +307,9 @@ function Router() {
       return;
     }
 
-    // Domain-based routing for realestate.deliwer.com → Alef Linar Mamzar funnel
+    // Domain-based routing for realestate.deliwer.com → Real Estate portal
     if ((hostname === 'realestate.deliwer.com' || hostname === 'www.realestate.deliwer.com') && location === '/') {
-      setLocation('/mamzar');
+      setLocation('/realestate');
       return;
     }
 
