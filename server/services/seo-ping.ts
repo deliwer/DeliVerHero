@@ -68,6 +68,11 @@ const INDEX_NOW_URLS = [
   `${BASE_URL}/realestate`,
   `${BASE_URL}/errand`,
   `${BASE_URL}/bulk-tradein`,
+  // Subdomain canonical landing pages
+  `${BASE_URL}/broker-onboard`,
+  `${BASE_URL}/flexible-rentals`,
+  `${BASE_URL}/earn`,
+  `${BASE_URL}/move-in-services`,
 ];
 
 // ── Result types ──────────────────────────────────────────────────────────────

@@ -1415,6 +1415,38 @@ Services: remote sourcing, certified grading, logistics coordination (Dubai-Gawa
     }
   });
 
+  app.get("/sitemap-subdomains.xml", (req, res) => {
+    const now = new Date().toISOString().split("T")[0];
+
+    const subdomains = [
+      { subdomain: "realestate.deliwer.com", path: "/realestate",        priority: "0.9", freq: "weekly"  },
+      { subdomain: "brokers.deliwer.com",    path: "/broker-onboard",    priority: "0.9", freq: "weekly"  },
+      { subdomain: "rentals.deliwer.com",    path: "/flexible-rentals",  priority: "0.8", freq: "weekly"  },
+      { subdomain: "earn.deliwer.com",       path: "/earn",              priority: "0.8", freq: "weekly"  },
+      { subdomain: "move.deliwer.com",       path: "/move-in-services",  priority: "0.8", freq: "weekly"  },
+      { subdomain: "ejari.deliwer.com",      path: "/ejari-registration",priority: "0.8", freq: "weekly"  },
+      { subdomain: "water.deliwer.com",      path: "/aquacafe",          priority: "0.7", freq: "monthly" },
+    ];
+
+    const xml = [
+      `<?xml version="1.0" encoding="UTF-8"?>`,
+      `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"`,
+      `        xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
+      ...subdomains.map(({ subdomain, path, priority, freq }) => [
+        `  <url>`,
+        `    <loc>https://${subdomain}/</loc>`,
+        `    <lastmod>${now}</lastmod>`,
+        `    <changefreq>${freq}</changefreq>`,
+        `    <priority>${priority}</priority>`,
+        `    <xhtml:link rel="canonical" href="https://www.deliwer.com${path}"/>`,
+        `  </url>`,
+      ].join("\n")),
+      `</urlset>`,
+    ].join("\n");
+
+    res.type("application/xml").set("Cache-Control", "public, max-age=86400").send(xml);
+  });
+
   app.get("/sitemap-planetheroes.xml", (req, res) => {
     const BASE = "https://planetheroes.deliwer.com";
     const now = new Date().toISOString().split("T")[0];
