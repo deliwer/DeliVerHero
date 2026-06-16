@@ -1,7 +1,7 @@
 {
   "buildCommand": "vite build",
   "outputDirectory": "dist/public",
-  "installCommand": "npm ci --ignore-scripts",
+  "installCommand": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npm install",
   "functions": {
     "api/index.js": {
       "memory": 1024,
