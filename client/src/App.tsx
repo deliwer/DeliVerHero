@@ -784,7 +784,7 @@ function MainShell({ children }: { children: React.ReactNode }) {
 }
 
 const MAMZAR_PATHS = ["/mamzar", "/mamzar-beach", "/linar"];
-const STANDALONE_PATHS = ["/community"];
+const STANDALONE_PATHS = ["/community", "/league"];
 
 function AppChrome() {
   const [location] = useLocation();
