@@ -1055,6 +1055,16 @@ export default function FlexibleRentalsPage() {
       <SEOMeta
         title="Flexible Rentals Dubai & Sharjah | Rooms, Studios, Bed Spaces | Rentals by DeliWer"
         description="Find rooms, bed spaces, partitions, studios and shared villas in Dubai & Sharjah — no annual contracts. Video tours, verified brokers, instant WhatsApp viewing booking."
+        canonical="https://www.deliwer.com/flexible-rentals"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Flexible Rentals", url: "/flexible-rentals" }]}
+        faqs={[
+          { question: "Can I rent a room in Dubai without an annual contract?", answer: "Yes. DeliWer's Flex Rentals service offers monthly rooms in Dubai and Sharjah with no annual contract required. Options include private rooms, partition rooms, bed spaces, studios, and shared villa rooms. Move in and out month-by-month." },
+          { question: "What is the cheapest room to rent in Dubai per month?", answer: "Bed spaces start from AED 400–800/month. Partition rooms are AED 550–1,500/month. Private rooms range from AED 2,500–4,500/month depending on area. Studios start from AED 3,500/month. Prices vary by building and neighbourhood." },
+          { question: "Which Dubai areas have monthly rooms available through DeliWer?", answer: "DeliWer's flexible rentals cover Dubai Marina, JVC, Al Barsha, Deira, International City, Jumeirah, Mirdif, Al Furjan, Business Bay, Downtown Dubai, JLT, Karama, Silicon Oasis, Al Quoz, and Sharjah. New listings added weekly." },
+          { question: "How do I book a monthly room through DeliWer?", answer: "Browse listings on DeliWer's flexible rentals page, or WhatsApp +971523946311 directly with your budget, preferred area, and move-in date. A viewing can be arranged within 24 hours. No forms, no agents, no annual contract required." },
+        ]}
+        serviceSchema={{ name: "Flexible Rentals Dubai — Monthly Rooms No Contract", description: "DeliWer connects tenants with verified monthly rooms, studios, bed spaces, and shared villas in Dubai and Sharjah. No annual contract. Covering 40+ Dubai areas with instant WhatsApp booking.", price: "AED 400" }}
       />
 
       {/* ── HERO ─────────────────────────────────────────────────────────────── */}

@@ -247,6 +247,16 @@ export default function MoveInServices() {
         title="JVC Move-In Support | DeliWer"
         description="Just moved into JVC? We handle the setup. From cleaning to water to maintenance — coordinated after you get the keys."
         keywords="move-in services JVC, apartment setup Jumeirah Village Circle, JVC home services, JVC move-in coordination"
+        canonical="https://www.deliwer.com/move-in-services"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Move-In Services", url: "/move-in-services" }]}
+        faqs={[
+          { question: "What is included in DeliWer's move-in service?", answer: "DeliWer's move-in service covers apartment deep cleaning, drinking water setup, AC maintenance checks, domestic help on day one, and document services (Ejari, DEWA). All coordinated via a single WhatsApp message — no separate vendors to chase." },
+          { question: "How much does move-in coordination cost in JVC?", answer: "Move-in coordination starts from AED 499 for basic coordination. Deep cleaning is AED 350, drinking water setup AED 299, and maintenance checks AED 450. Bundle pricing is available — WhatsApp DeliWer for a custom quote." },
+          { question: "How quickly can DeliWer arrange move-in services?", answer: "Most move-in services can be arranged same-day or next-day in JVC and surrounding Dubai areas. Send a WhatsApp message with your move-in date and address and DeliWer will confirm availability within minutes." },
+          { question: "Does DeliWer cover Dubai areas other than JVC?", answer: "Yes. DeliWer covers all Dubai areas including Dubai Marina, Business Bay, Downtown Dubai, Al Barsha, Deira, JLT, Dubai Hills, Arabian Ranches, Al Furjan, International City, and 40+ more neighbourhoods." },
+        ]}
+        serviceSchema={{ name: "Move-In Services Dubai", description: "DeliWer coordinates all move-in services for new Dubai tenants — deep cleaning, drinking water setup, AC maintenance, domestic help, and document processing. Single WhatsApp contact, all Dubai areas.", price: "AED 499" }}
       />
       {/* Hero Section */}
       <section className="relative py-20 px-6 lg:py-32 overflow-hidden flex items-center justify-center min-h-[60vh]">

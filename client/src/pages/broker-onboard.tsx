@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Helmet } from "react-helmet";
+import { SEOMeta } from "@/components/seo-meta";
 
 const WA_NUMBER = "971523906019";
 function openWA(msg: string) {
@@ -217,19 +217,21 @@ export default function BrokerOnboard() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-emerald-500/40">
-      <Helmet>
-        <title>Broker Onboarding — Partner Portal | ChainTrack &amp; DeliWer</title>
-        <meta name="description" content="Onboard as a DeliWer broker partner. Earn commissions on Ejari, relocation, logistics sourcing, and electronics exports. Three B2B tracks: Electronics, Logistics, Relocation." />
-        <meta name="keywords" content="broker onboarding Dubai, RERA broker partner, DeliWer broker, ChainTrack broker, earn commission Dubai relocation, Ejari broker commission, Dubai partner program" />
-        <meta property="og:title" content="Broker Onboarding — Partner Portal | DeliWer &amp; ChainTrack" />
-        <meta property="og:description" content="Join DeliWer's broker program. Three B2B tracks: Electronics export, logistics freight, and relocation concierge. Earn AED 150–800+ per client." />
-        <meta property="og:url" content="https://www.deliwer.com/broker-onboard" />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://www.deliwer.com/broker-onboard" />
-        <meta name="geo.region" content="AE-DU" />
-        <meta name="geo.placename" content="Dubai, UAE" />
-        <meta name="robots" content="index, follow" />
-      </Helmet>
+      <SEOMeta
+        title="Broker Onboarding — Partner Portal | ChainTrack & DeliWer"
+        description="Onboard as a DeliWer broker partner. Earn commissions on Ejari, relocation, logistics sourcing, and electronics exports. Three B2B tracks: Electronics, Logistics, Relocation."
+        keywords="broker onboarding Dubai, RERA broker partner, DeliWer broker, ChainTrack broker, earn commission Dubai relocation, Ejari broker commission, Dubai partner program"
+        canonical="https://www.deliwer.com/broker-onboard"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Broker Onboarding", url: "/broker-onboard" }]}
+        faqs={[
+          { question: "How do I join DeliWer's broker partner program?", answer: "Start by selecting your track on deliwer.com/broker-onboard: Electronics export, Logistics freight, or Relocation concierge. Then WhatsApp +971523946311 with your name, company (if any), and chosen track. Onboarding takes under 24 hours — no RERA license required for the logistics and electronics tracks." },
+          { question: "How much commission do DeliWer brokers earn?", answer: "Relocation track: AED 150–800 per confirmed move-in client. Electronics track: 3–5% on sourced device batches. Logistics freight track: 5% gross freight value per coordinated shipment. Corridor Captains earn an additional 1% override on sub-broker volumes." },
+          { question: "What are the three broker tracks at DeliWer?", answer: "Track 1 — Relocation Concierge: Refer clients who need Ejari, DEWA, movers, or move-in services and earn per confirmed placement. Track 2 — Logistics Freight: Coordinate cargo on the Dubai–Gawadar corridor and earn 5% commission. Track 3 — Electronics Export: Source refurbished iPhones and devices from Dubai for CIS markets and earn 3–5%." },
+          { question: "Do I need a RERA license to join as a DeliWer broker?", answer: "A RERA license is not required for the Logistics or Electronics tracks. For the Relocation Concierge track, having a RERA-registered brokerage accelerates approval, but individual agents can also qualify. WhatsApp DeliWer to discuss your specific situation." },
+        ]}
+        serviceSchema={{ name: "DeliWer Broker Partner Program", description: "Three B2B commission tracks: Relocation Concierge (AED 150–800/placement), Logistics Freight (5% per shipment), and Electronics Export (3–5% per batch). Onboard via WhatsApp — no complex paperwork.", price: "Free to join" }}
+      />
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-screen flex flex-col items-center justify-center px-4">

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet";
+import { SEOMeta } from "@/components/seo-meta";
 import { useState } from "react";
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
@@ -196,22 +196,20 @@ function MapSection() {
 export default function RealEstate() {
   return (
     <div className="min-h-screen bg-slate-950 text-white">
-      <Helmet>
-        <title>Find Your Next Home in Dubai | Project Map | DeliWer</title>
-        <meta
-          name="description"
-          content="Browse live Dubai property developments on an interactive map. Filter by area, developer and price — then connect with DeliWer to arrange viewings and move-in concierge."
-        />
-        <meta
-          name="keywords"
-          content="Dubai property map, buy apartment Dubai, Dubai new projects, Dubai developments, find home Dubai, move to Dubai"
-        />
-        <meta property="og:title" content="Find Your Next Home in Dubai — DeliWer" />
-        <meta
-          property="og:description"
-          content="Browse live Dubai property developments. Filter by area, developer and budget — then let DeliWer handle your viewing and move-in."
-        />
-      </Helmet>
+      <SEOMeta
+        title="Find Your Next Home in Dubai | Project Map | DeliWer"
+        description="Browse live Dubai property developments on an interactive map. Filter by area, developer and price — then connect with DeliWer to arrange viewings and move-in concierge."
+        keywords="Dubai property map, buy apartment Dubai, Dubai new projects, Dubai developments, find home Dubai, move to Dubai"
+        canonical="https://www.deliwer.com/realestate"
+        webPageType="ServicePage"
+        breadcrumbs={[{ name: "Real Estate", url: "/realestate" }]}
+        faqs={[
+          { question: "Can I find a property to buy or rent in Dubai through DeliWer?", answer: "Yes. DeliWer's real estate portal lets you browse live Dubai property developments filtered by area, developer, and budget. Once you find a property, DeliWer connects you with a verified RERA-registered broker and handles your viewing appointment and move-in concierge." },
+          { question: "What areas does DeliWer's Dubai property portal cover?", answer: "DeliWer's real estate portal covers all major Dubai development areas including JVC, Dubai Marina, Business Bay, Downtown Dubai, Dubai Hills Estate, Arabian Ranches, Palm Jumeirah, Dubai Creek Harbour, Meydan, Al Furjan, DAMAC Hills, Town Square, and 30+ more communities." },
+          { question: "How do I book a property viewing through DeliWer?", answer: "Browse the project map on deliwer.com/realestate, select a development, and click the WhatsApp button. DeliWer coordinates the viewing with the developer's sales team and arranges same-day or next-day appointments in most cases." },
+          { question: "What happens after I find a property on DeliWer's portal?", answer: "Once you select a property, DeliWer handles the full move-in sequence: connecting you with a RERA broker, arranging a viewing, assisting with contract signing, and then coordinating Ejari registration, DEWA activation, cleaning, and movers — all from one WhatsApp contact." },
+        ]}
+      />
 
       <div id="project-map">
         <MapSection />

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import { SEOMeta } from "@/components/seo-meta";
 import {
   Droplets, Leaf, Phone, Gift,
   Smartphone, Crown, Recycle, Globe, TreePine, Flame,
@@ -131,6 +132,20 @@ export default function Earn() {
     <div
       className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-950"
     >
+      <SEOMeta
+        title="Earn DXB Points & Rewards | AquaCafe Wellness Program | DeliWer"
+        description="Earn DXB points by upgrading your water, trading old electronics, and dining with DeliWer partners. Redeem for real meals, discounts, and Planet Hero rewards across Dubai."
+        keywords="earn points Dubai, DXB points, AquaCafe rewards, DeliWer earn, Dubai wellness rewards, water upgrade Dubai, electronics trade-in Dubai, earn dining vouchers"
+        canonical="https://www.deliwer.com/earn"
+        webPageType="WebPage"
+        breadcrumbs={[{ name: "Earn", url: "/earn" }]}
+        faqs={[
+          { question: "How do I earn DXB points with DeliWer?", answer: "There are three main ways to earn DXB points: (1) Upgrade your water — install the AquaCafe starter kit for AED 99 and earn 1,000 DXBs. (2) Trade in old electronics — hand in any iPhone or device and earn up to 5,000 DXBs. (3) Refer a friend — when they sign up, you earn bonus DXBs." },
+          { question: "What can I redeem DXB points for?", answer: "DXB points can be redeemed for dining vouchers at Chill & Grill (AED 89 set lunch), AquaCafe tastings, Green Bowl Co. plant-based bowls, and other partner restaurants across Dubai. Points can also be used for discounts on DeliWer services." },
+          { question: "What is the AquaCafe earn program?", answer: "AquaCafe is DeliWer's wellness and rewards brand. Customers who install an AquaCafe water filtration system or Kangen water upgrade automatically join the earn program and receive DXB points, access to Planet Hero status levels, and priority dining partner benefits." },
+          { question: "Is there a fee to join the DeliWer earn program?", answer: "The earn program is free to join. The AquaCafe starter kit (which activates your first 1,000 DXBs) costs AED 99 and includes the alkaline Kangen water upgrade and a free shower filter installation." },
+        ]}
+      />
 
       {/* ── UNIFIED TOP SUB-NAV — fixed directly under the global nav bars ── */}
       <nav
