@@ -1,20 +1,11 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
   "installCommand": "npm install",
-  "functions": {
-    "api/index.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    },
-    "api/shopify.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    },
-    "api/rera-brokers.js": {
-      "memory": 512,
-      "maxDuration": 15,
-      "includeFiles": "server/data/rera_brokers.json"
+  "build": {
+    "env": {
+      "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
+      "PLAYWRIGHT_BROWSERS_PATH": "0"
     }
   },
   "headers": [
@@ -61,8 +52,6 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production",
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
-    "PLAYWRIGHT_BROWSERS_PATH": "0"
+    "NODE_ENV": "production"
   }
 }
