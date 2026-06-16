@@ -565,24 +565,20 @@ export default function LeaguePage() {
         </div>
 
         {/* ─── WHY THIS MATTERS ─── */}
-        <section className="py-24 px-4 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+        <section className="py-16 px-4 max-w-5xl mx-auto">
+          <div className="text-center mb-10">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Why This Matters</Badge>
-            <h2 className="text-3xl sm:text-5xl font-black mb-4">The UAE Real Estate <span className="text-emerald-400">Human Challenge</span></h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">Behind every transaction is a professional under pressure. We're building the infrastructure for community, wellness and genuine growth.</p>
+            <h2 className="text-3xl sm:text-4xl font-black mb-3">Built for the UAE Real Estate Community</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-3 gap-5">
             {[
-              { icon: Heart, title: "Industry Burnout", desc: "Brokers face intense pressure, long hours and constant competition. Physical and mental wellbeing suffers.", color: "text-rose-400" },
-              { icon: Users, title: "Fragmented Networks", desc: "Relationships in real estate are transactional. Authentic community bonds are rare and undervalued.", color: "text-blue-400" },
-              { icon: Sun, title: "Wellness Gap", desc: "Sport and wellness are proven to improve performance, resilience and decision-making in high-stakes roles.", color: "text-yellow-400" },
               { icon: Handshake, title: "Referral Potential", desc: "The strongest deals start with trust built outside the office. Cricket creates those moments.", color: "text-emerald-400" },
-              { icon: TrendingUp, title: "Business Growth", desc: "A connected real estate community closes more deals, retains talent and builds stronger agencies.", color: "text-purple-400" },
-              { icon: Globe, title: "Sustainability Impact", desc: "A healthy workforce builds a healthy city. Wellness initiatives align with Dubai's 2040 vision.", color: "text-teal-400" },
+              { icon: TrendingUp, title: "Business Growth", desc: "A connected community closes more deals, retains talent and builds stronger agencies.", color: "text-purple-400" },
+              { icon: Sun, title: "Wellness Impact", desc: "Sport is proven to improve performance and resilience in high-stakes professional roles.", color: "text-yellow-400" },
             ].map((item) => (
-              <div key={item.title} className="bg-white/3 border border-white/8 rounded-2xl p-6 hover:border-emerald-500/30 transition-all group">
-                <item.icon className={`w-8 h-8 ${item.color} mb-4`} />
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+              <div key={item.title} className="bg-white/3 border border-white/8 rounded-2xl p-5 hover:border-emerald-500/30 transition-all">
+                <item.icon className={`w-7 h-7 ${item.color} mb-3`} />
+                <h3 className="font-bold mb-1.5">{item.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -629,53 +625,11 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── SUSTAINABILITY ─── */}
-        <section className="py-24 px-4 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="bg-teal-500/10 text-teal-400 border-teal-500/30 mb-4">Sustainability Impact</Badge>
-            <h2 className="text-3xl sm:text-5xl font-black mb-4">Healthy Communities.<br /><span className="text-teal-400">Healthy Business. Healthy Future.</span></h2>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                title: "Environmental Impact",
-                color: "border-teal-500/30 bg-teal-500/5",
-                icon: Leaf,
-                iconColor: "text-teal-400",
-                items: ["Digital-first event", "Paperless registrations", "Digital scorecards", "QR-code engagement"],
-              },
-              {
-                title: "Community Impact",
-                color: "border-emerald-500/30 bg-emerald-500/5",
-                icon: Heart,
-                iconColor: "text-emerald-400",
-                items: ["Wellness programmes", "Mental resilience", "Team building", "Cross-agency friendships"],
-              },
-              {
-                title: "Economic Impact",
-                color: "border-yellow-400/30 bg-yellow-400/5",
-                icon: TrendingUp,
-                iconColor: "text-yellow-400",
-                items: ["SME support", "Broker career growth", "Sponsor ROI visibility", "Partner ecosystem growth"],
-              },
-            ].map((card) => (
-              <div key={card.title} className={`border rounded-2xl p-6 ${card.color}`}>
-                <card.icon className={`w-8 h-8 ${card.iconColor} mb-4`} />
-                <h3 className="font-bold text-lg mb-4">{card.title}</h3>
-                <ul className="space-y-2">
-                  {card.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
-                      <CheckCircle2 className={`w-4 h-4 shrink-0 ${card.iconColor}`} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-500/20 rounded-2xl p-8 text-center">
-            <Droplets className="w-10 h-10 text-teal-400 mx-auto mb-4" />
-            <p className="text-xl font-semibold mb-2">Aligned with Dubai 2040 Urban Master Plan</p>
-            <p className="text-slate-400">This initiative supports community wellbeing, sustainable urban living and the growth of a high-performing real estate ecosystem in the UAE.</p>
+        <section className="py-12 px-4 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-500/20 rounded-2xl p-7 text-center">
+            <Droplets className="w-8 h-8 text-teal-400 mx-auto mb-3" />
+            <p className="text-lg font-bold mb-1">Aligned with Dubai 2040 Urban Master Plan</p>
+            <p className="text-slate-400 text-sm max-w-xl mx-auto">Digital-first, paperless event supporting community wellbeing, broker career growth and a high-performing real estate ecosystem in the UAE.</p>
           </div>
         </section>
 
@@ -792,20 +746,21 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── WHO SHOULD SPONSOR ─── */}
-        <section className="py-20 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+        <section className="py-14 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-8">
               <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/30 mb-4">Who Should Sponsor</Badge>
-              <h2 className="text-3xl sm:text-4xl font-black mb-2">Is Your Brand in the <span className="text-purple-400">Real Estate Ecosystem?</span></h2>
+              <h2 className="text-2xl sm:text-3xl font-black mb-2">Is Your Brand in the <span className="text-purple-400">Real Estate Ecosystem?</span></h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {WHO_SHOULD_SPONSOR.map((item) => (
-                <div key={item.label} className="bg-white/3 border border-white/8 rounded-2xl p-5 text-center hover:border-purple-500/30 hover:bg-purple-500/5 transition-all cursor-default group">
-                  <item.icon className="w-7 h-7 text-purple-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {WHO_SHOULD_SPONSOR.slice(0, 6).map((item) => (
+                <div key={item.label} className="bg-white/3 border border-white/8 rounded-xl p-4 text-center hover:border-purple-500/30 hover:bg-purple-500/5 transition-all cursor-default group flex items-center gap-3">
+                  <item.icon className="w-5 h-5 text-purple-400 shrink-0 group-hover:scale-110 transition-transform" />
                   <p className="text-sm font-medium text-slate-300">{item.label}</p>
                 </div>
               ))}
             </div>
+            <p className="text-center text-xs text-slate-600 mt-4">+ Telecom providers, insurance companies, hospitality brands & more</p>
           </div>
         </section>
 
@@ -1840,23 +1795,57 @@ export default function LeaguePage() {
 
         {/* ─── PARTNERS ─── */}
         <section className="py-20 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge className="bg-white/10 text-slate-300 border-white/20 mb-4">Partners</Badge>
-            <h2 className="text-3xl sm:text-4xl font-black mb-10">Presented By</h2>
-            <div className="grid sm:grid-cols-3 gap-6 items-center">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-emerald-500/30 transition-all">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10">
+              <Badge className="bg-white/10 text-slate-300 border-white/20 mb-4">Partners</Badge>
+              <h2 className="text-3xl sm:text-4xl font-black">Presented By</h2>
+            </div>
+
+            {/* Presenting partners */}
+            <div className="grid sm:grid-cols-2 gap-5 mb-6">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-emerald-500/30 transition-all text-center">
                 <div className="text-2xl font-black text-emerald-400 mb-1">DeliWer</div>
                 <p className="text-slate-400 text-sm">Dubai's Premier Relocation & Concierge Ecosystem</p>
               </div>
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-yellow-400/30 transition-all">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-yellow-400/30 transition-all text-center">
                 <div className="text-2xl font-black text-yellow-400 mb-1">Mariamain</div>
                 <p className="text-slate-400 text-sm">Community Cricket &amp; Lifestyle Initiative — UAE</p>
               </div>
-              <div className="bg-white/3 border border-dashed border-white/10 rounded-2xl p-8 text-center">
-                <div className="text-slate-500 text-sm mb-1">Your Brand Here</div>
-                <div className="text-slate-600 text-xs">Become a Title Sponsor</div>
-              </div>
             </div>
+
+            {/* Premier Govt Services Ecosystem Partner — APBMC */}
+            <a
+              href="https://www.apbmcdxb.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block mb-6 rounded-2xl border border-amber-400/40 bg-amber-400/5 hover:bg-amber-400/10 hover:border-amber-400/60 transition-all p-7"
+            >
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
+                <div className="text-center sm:text-left">
+                  <span className="inline-block text-[9px] text-amber-400 font-black uppercase tracking-widest mb-2 bg-amber-400/10 border border-amber-400/20 px-2 py-1 rounded-md">
+                    Premier Government Services Ecosystem Partner
+                  </span>
+                  <div className="text-xl font-black text-white mb-1">Advance Plus Business Management</div>
+                  <p className="text-slate-400 text-sm">Government Services · Business Setup · PRO Services · Trade Licensing — Dubai</p>
+                  <p className="text-amber-400/70 text-xs mt-1 font-medium">www.apbmcdxb.com</p>
+                </div>
+                <div className="shrink-0 w-16 h-16 rounded-2xl bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-2xl font-black text-amber-400">
+                  AP
+                </div>
+              </div>
+            </a>
+
+            {/* Title sponsor slot */}
+            <button
+              onClick={() => { setActiveTab("sponsor"); document.getElementById("register")?.scrollIntoView({ behavior: "smooth" }); }}
+              className="w-full bg-white/2 border border-dashed border-white/10 hover:border-yellow-400/30 hover:bg-yellow-400/5 rounded-2xl p-6 text-center transition-all group"
+            >
+              <div className="text-slate-500 text-sm mb-1 group-hover:text-yellow-400 transition-colors">Your Brand Here</div>
+              <div className="text-slate-600 text-xs">Become a Title Sponsor — AED 10,000 · Naming rights + jersey branding</div>
+              <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-yellow-400/60 group-hover:text-yellow-400 transition-colors">
+                <Star className="w-3.5 h-3.5" /> Enquire about Title Sponsorship →
+              </div>
+            </button>
           </div>
         </section>
 
