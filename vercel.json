@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cp node_modules/@esbuild/linux-x64/bin/esbuild node_modules/esbuild/bin/esbuild && cp node_modules/vite/node_modules/@esbuild/linux-x64/bin/esbuild node_modules/vite/node_modules/esbuild/bin/esbuild && chmod +x node_modules/esbuild/bin/esbuild node_modules/vite/node_modules/esbuild/bin/esbuild && vite build",
+  "buildCommand": "vite build",
   "outputDirectory": "dist/public",
   "installCommand": "npm install --ignore-scripts",
   "functions": {
