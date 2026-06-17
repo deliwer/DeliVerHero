@@ -1,0 +1,170 @@
+Alright — I’ll draft the **developer-ready Shopify headless + AI Concierge blueprint** so you can give it to a dev (or even no-code deploy it) and have the *exact* launch funnel ready.
+
+We’ll keep it **lean**, **gamified**, and **AI-first**, but designed so two cofounders can run it without paid ads.
+
+---
+
+## **DeliWer – Shopify Headless GTM Funnel Blueprint**
+
+### **1. Tech Stack & Integrations**
+
+**Base:**
+
+* **Shopify** (for product catalog, checkout, order tracking, fulfillment).
+* **Hydrogen + Oxygen** (Shopify’s headless React framework for speed and custom UI).
+* **GraphQL Storefront API** (to query products, create carts, process checkouts).
+
+**AI Concierge:**
+
+* **OpenAI API** (GPT-4o-mini for speed)
+* **LangChain** (for context memory — trade-in rules, pricing tiers).
+* **Webhook** integration to Shopify Functions for checkout automation.
+
+**Gamification & Data:**
+
+* **Firebase Realtime Database** (Leaderboard, Hero stats, referrals).
+* **Cloudinary** (User profile pics, shareable badges).
+* **Vercel** (Hosting Hydrogen app — fast deploy).
+
+---
+
+### **2. Page & Funnel Structure**
+
+#### **Page 1 – Hero Challenge Landing Page**
+
+* **Above-the-fold**:
+
+  * “Trade Your Old iPhone for AED 1,000+ in Premium Water — Become a Dubai Planet Hero.”
+  * Live **Leaderboard** snippet + “Only X Hero spots left” counter.
+* **AI Concierge CTA**: “Check your trade-in value now →” (scrolls to embedded chat).
+* **Social Proof**: Carousel of current Heroes (pics + saved liters).
+
+---
+
+#### **Page 2 – AI Concierge (Embedded Chat)**
+
+* Functions:
+
+  1. Greet user → Ask phone model & condition.
+  2. Instantly fetch trade-in price from pricing table in Firebase.
+  3. Offer reward packages (AquaCafe Starter Kit + perks).
+  4. Book pick-up or store drop-off (Google Calendar API integration).
+  5. Create a **Hero Profile** in Firebase (name, city, phone model, reward, impact score).
+  6. Trigger Shopify checkout with reward product pre-loaded.
+
+---
+
+#### **Page 3 – Impact Dashboard**
+
+* Realtime:
+
+  * Total liters of bottled water replaced.
+  * Total CO₂ saved.
+  * Top 10 Heroes by points.
+* Publicly visible “Hero of the Day” profile.
+
+---
+
+#### **Page 4 – Referral / Share Page**
+
+* After completion, user gets:
+
+  * Unique referral link (tracked in Firebase).
+  * AI-generated “Hero Badge” image + short story (ready for Instagram/TikTok).
+  * Extra leaderboard points for every successful referral.
+
+---
+
+### **3. Gamification Logic**
+
+**Points System:**
+
+* Trade-in = Base 100 pts.
+* Each referral = +50 pts.
+* Social share (auto-detected via tagged hashtag) = +25 pts.
+
+**Levels:**
+
+* Level 1: Bronze Hero (starter).
+* Level 2: Silver Hero (≥300 pts) — gets free filter refill.
+* Level 3: Gold Hero (≥600 pts) — lifetime 10% extra reward value.
+
+---
+
+### **4. Data Flows**
+
+**Flow 1 – Trade-in Pricing**
+
+```
+User → AI Concierge → Firebase Trade-in Table → Show Reward → Shopify Checkout → Fulfillment
+```
+
+**Flow 2 – Leaderboard Updates**
+
+```
+Trade-in Completion → Firebase Hero Stats Update → Leaderboard API → Landing Page
+```
+
+**Flow 3 – Referral Tracking**
+
+```
+Referral Link → Firebase → Leaderboard Boost + Reward Credit
+```
+
+---
+
+### **5. AI Concierge Prompt Skeleton**
+
+```plaintext
+You are the DeliWer AI Concierge. 
+Your role:
+1. Greet warmly, make user feel like a Hero.
+2. Ask for iPhone model & condition.
+3. Calculate trade-in reward using preloaded table.
+4. Offer AquaCafe kit reward, explain environmental impact.
+5. Book fulfillment.
+6. Create a Hero profile and direct them to checkout.
+Always highlight urgency: only X Hero spots left today.
+```
+
+---
+
+### **6. Launch Timeline (Dev + Go-Live)**
+
+**Week 1:**
+
+* Set up Shopify + Hydrogen skeleton.
+* Integrate Firebase for leaderboard & stats.
+* Build AI Concierge with trade-in table.
+
+**Week 2:**
+
+* Design Hero Challenge landing page.
+* Implement referral link generator.
+* Create shareable badge templates in Cloudinary.
+
+**Week 3:**
+
+* Populate leaderboard with beta testers.
+* Test full funnel (trade-in → checkout → badge share).
+* Prepare media kit + founder videos.
+
+**Week 4 (Launch Week):**
+
+* Go live with 100 Hero spots.
+* Daily leaderboard updates on social.
+* Cofounders livestream Hero trades.
+
+---
+
+If you send me:
+
+1. **Your current Liquid/HTML/JSON gamified site files**
+2. **Trade-in pricing table** (iPhone models + conditions + reward values)
+3. **Exact AquaCafe kit product details** (SKU, price, inventory)
+
+…I can wire this into a **ready-to-deploy Hydrogen + AI Concierge architecture diagram + page mockups** so the dev just builds to spec without guessing.
+
+---
+
+Do you want me to **start drawing the actual architecture diagram and mockup layout** for these 4 key pages so it’s visually clear for your developer? That will make it truly plug-and-play.

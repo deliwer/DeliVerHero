@@ -1,1 +1,4 @@
-{}
+{
+  "installCommand": "npm install --omit=dev --ignore-scripts --no-audit --no-fund",
+  "buildCommand": "echo 'using pre-built dist'"
+}

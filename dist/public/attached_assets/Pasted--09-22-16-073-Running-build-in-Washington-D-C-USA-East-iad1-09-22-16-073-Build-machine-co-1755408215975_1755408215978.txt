@@ -1,0 +1,60 @@
+[09:22:16.073] Running build in Washington, D.C., USA (East) – iad1
+[09:22:16.073] Build machine configuration: 2 cores, 8 GB
+[09:22:16.089] Cloning github.com/deliwer/DeliVerHero (Branch: main, Commit: 66a22f8)
+[09:22:16.995] Cloning completed: 906.000ms
+[09:22:17.040] Found .vercelignore
+[09:22:17.079] Removed 151 ignored files defined in .vercelignore
+[09:22:17.079]   /.env.example
+[09:22:17.079]   /.git/config
+[09:22:17.079]   /.git/description
+[09:22:17.079]   /.git/FETCH_HEAD
+[09:22:17.079]   /.git/HEAD
+[09:22:17.079]   /.git/hooks/applypatch-msg.sample
+[09:22:17.079]   /.git/hooks/commit-msg.sample
+[09:22:17.079]   /.git/hooks/fsmonitor-watchman.sample
+[09:22:17.080]   /.git/hooks/post-update.sample
+[09:22:17.080]   /.git/hooks/pre-applypatch.sample
+[09:22:18.390] Restored build cache from previous deployment (88JjPfYm6BmuN9YRhhb5JkwkFZw8)
+[09:22:21.199] Running "vercel build"
+[09:22:21.613] Vercel CLI 45.0.10
+[09:22:22.367] Running "install" command: `npm install`...
+[09:22:25.105] 
+[09:22:25.106] added 3 packages, and audited 657 packages in 2s
+[09:22:25.106] 
+[09:22:25.107] 70 packages are looking for funding
+[09:22:25.107]   run `npm fund` for details
+[09:22:25.140] 
+[09:22:25.141] 14 vulnerabilities (3 low, 9 moderate, 2 high)
+[09:22:25.141] 
+[09:22:25.142] To address issues that do not require attention, run:
+[09:22:25.142]   npm audit fix
+[09:22:25.142] 
+[09:22:25.142] To address all issues (including breaking changes), run:
+[09:22:25.143]   npm audit fix --force
+[09:22:25.143] 
+[09:22:25.143] Run `npm audit` for details.
+[09:22:25.389] 
+[09:22:25.390] > rest-express@1.0.0 build
+[09:22:25.390] > vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+[09:22:25.390] 
+[09:22:25.629] [36mvite v5.4.19 [32mbuilding for production...[36m[39m
+[09:22:25.685] transforming...
+[09:22:25.697] [32m✓[39m 2 modules transformed.
+[09:22:25.742] rendering chunks...
+[09:22:25.747] computing gzip size...
+[09:22:25.751] [2mdist/[22m[32mindex.html  [39m[1m[2m2.80 kB[22m[1m[22m[2m │ gzip: 1.22 kB[22m
+[09:22:25.754] [32m✓ built in 99ms[39m
+[09:22:25.786] ✘ [ERROR] Could not resolve "./vite"
+[09:22:25.786] 
+[09:22:25.786]     server/index.ts:3:44:
+[09:22:25.786]       3 │ import { setupVite, serveStatic, log } from "./vite";
+[09:22:25.786]         ╵                                             ~~~~~~~~
+[09:22:25.786] 
+[09:22:25.788] ✘ [ERROR] Could not resolve "./storage"
+[09:22:25.788] 
+[09:22:25.788]     server/routes.ts:3:24:
+[09:22:25.788]       3 │ import { storage } from "./storage";
+[09:22:25.788]         ╵                         ~~~~~~~~~~~
+[09:22:25.788] 
+[09:22:25.789] 2 errors
+[09:22:25.799] Error: Command "npm run build" exited with 1
