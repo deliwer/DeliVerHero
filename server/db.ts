@@ -9,4 +9,9 @@ if (!process.env.DATABASE_URL) {
 }
 
 export const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+
+pool.on("error", (err) => {
+  console.error("[db] Idle client error:", err.message);
+});
+
 export const db = drizzle({ client: pool, schema });

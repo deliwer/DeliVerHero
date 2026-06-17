@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+echo "==> Installing packages (no postinstall scripts)"
+npm install --ignore-scripts
+
 echo "==> Setting up esbuild platform binaries"
 
 setup_esbuild() {
