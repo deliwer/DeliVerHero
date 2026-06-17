@@ -41,7 +41,7 @@ import { insertHeroSchema, insertTradeInSchema, updateHeroSchema, insertSponsorS
 import { processLead, trackCTAEvent } from "./lead-service";
 import { generateRefCode, generatePartnerLink, runCampaign } from "./broker-campaign-service";
 import { brokerCampaigns, brokerCampaignEntries, brokerMaster, brokerAutomationLog, seoDigestHistory } from "@shared/schema";
-import { db } from "./db";
+import { db, pool } from "./db";
 import { eq, desc, and, lt, sql as drizzleSql } from "drizzle-orm";
 import { runBrokerFetch, getLocalFileStats } from "./services/broker-fetch-service";
 import * as path from "path";
@@ -6623,6 +6623,57 @@ Or just describe what you need in a message. A team member will respond shortly 
     const simulated = calls.filter(c => c.replyMode === "simulated").length;
     const failed = calls.filter(c => c.replyMode === "failed").length;
     res.json({ calls, stats: { total, sent, simulated, failed } });
+  });
+
+  // ── System Status ─────────────────────────────────────────────────────────
+  app.get("/api/admin/system-status", async (req, res) => {
+    const secret = req.headers["x-admin-token"] as string;
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    // Last deploy timestamp from dist/index.js mtime
+    let deployedAt: string | null = null;
+    try {
+      const fs = await import("fs");
+      const stat = fs.statSync(new URL("../../dist/index.js", import.meta.url));
+      deployedAt = stat.mtime.toISOString();
+    } catch {
+      deployedAt = null;
+    }
+
+    // DB table row counts
+    const tableStats: Record<string, number> = {};
+    try {
+      const tables = [
+        "users", "brokers", "leads", "referrals", "partners",
+        "memberships", "vouchers", "wellness_passports", "missed_calls",
+      ];
+      for (const t of tables) {
+        try {
+          const r = await pool.query(`SELECT COUNT(*)::int AS n FROM "${t}"`);
+          tableStats[t] = r.rows[0]?.n ?? 0;
+        } catch { /* table may not exist */ }
+      }
+    } catch { /* db unavailable */ }
+
+    const services = {
+      openai:    !!process.env.OPENAI_API_KEY,
+      anthropic: !!process.env.ANTHROPIC_API_KEY,
+      stripe:    !!process.env.STRIPE_SECRET_KEY,
+      paypal:    !!(process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET),
+      sendgrid:  !!process.env.SENDGRID_API_KEY,
+      whatsapp:  !!(process.env.WHATSAPP_TOKEN && process.env.WHATSAPP_PHONE_NUMBER_ID),
+    };
+
+    res.json({
+      deployedAt,
+      uptimeSeconds: Math.floor(process.uptime()),
+      nodeVersion: process.version,
+      environment: process.env.NODE_ENV || "development",
+      services,
+      tableStats,
+    });
   });
 
   const httpServer = createServer(app);

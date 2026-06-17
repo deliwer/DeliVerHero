@@ -4,7 +4,7 @@ import {
   Package, RefreshCw, Truck, Crown, LayoutGrid, ShoppingBag, AlertTriangle, Handshake,
   Briefcase, Percent, MapPin, Users, DollarSign, BookOpen, Smartphone, Youtube, Key,
   Settings, BarChart3, Mail, Database, UserCheck, Megaphone, Shield, Anchor, Route, Zap, Trophy,
-  Globe, Flame, Award, ChevronDown
+  Globe, Flame, Award, ChevronDown, Server
 } from "lucide-react";
 import { LogisticsCTABar } from "@/components/logistics-cta-bar";
 import { useState } from "react";
@@ -79,6 +79,7 @@ const managementNavItems = [
   { path: "/admin/flex-rentals",  label: "Flex Admin",     id: "mgmt-flex",       icon: Settings,   external: false },
   { path: "/sendgrid-dashboard",  label: "Email Campaigns",id: "mgmt-email",      icon: Mail,       external: false },
   { path: "/broker-master-db",    label: "Broker DB",      id: "mgmt-db",         icon: Database,   external: false },
+  { path: "/admin/system",        label: "System Status",  id: "mgmt-system",     icon: Server,     external: false },
 ];
 
 // ── ChainTrack deep-nav (phone marketplace only) ─────────────────────────────
