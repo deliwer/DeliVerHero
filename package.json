@@ -4,7 +4,7 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development npx tsx server/index.ts",
+    "dev": "NODE_ENV=development tsx server/index.ts",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:subpath": "VITE_BASE_PATH=/pakistan-mission vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
@@ -121,9 +121,9 @@
     "autoprefixer": "^10.4.20",
     "drizzle-kit": "^0.30.6",
     "esbuild": "^0.25.12",
+    "playwright": "^1.58.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.17",
-    "playwright": "^1.58.1",
     "tsx": "^4.22.4",
     "typescript": "^5.6.3",
     "vite": "^5.4.21"
