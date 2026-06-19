@@ -443,7 +443,7 @@ export default function LeaguePage() {
         <section
           ref={heroRef}
           className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1600&q=80')" }}
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1920&q=90')" }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/80 via-[#0a0f1a]/60 to-[#0a0f1a]" />
           {/* animated glow rings */}
@@ -599,29 +599,39 @@ export default function LeaguePage() {
         </div>
 
         {/* ─── WHY THIS MATTERS ─── */}
-        <section className="py-16 px-4 max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Why This Matters</Badge>
-            <h2 className="text-3xl sm:text-4xl font-black mb-3">Built for the UAE Real Estate Community</h2>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-5">
-            {[
-              { icon: Handshake, title: "Referral Potential", desc: "The strongest deals start with trust built outside the office. Cricket creates those moments.", color: "text-emerald-400" },
-              { icon: TrendingUp, title: "Business Growth", desc: "A connected community closes more deals, retains talent and builds stronger agencies.", color: "text-purple-400" },
-              { icon: Sun, title: "Wellness Impact", desc: "Sport is proven to improve performance and resilience in high-stakes professional roles.", color: "text-yellow-400" },
-            ].map((item) => (
-              <div key={item.title} className="bg-white/3 border border-white/8 rounded-2xl p-5 hover:border-emerald-500/30 transition-all">
-                <item.icon className={`w-7 h-7 ${item.color} mb-3`} />
-                <h3 className="font-bold mb-1.5">{item.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+        <section
+          className="relative py-20 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1562077772-3bd90403f7f0?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/88 via-[#0a0f1a]/80 to-[#0a0f1a]/92" />
+          <div className="relative z-10 max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Why This Matters</Badge>
+              <h2 className="text-3xl sm:text-4xl font-black mb-3">Built for the UAE Real Estate Community</h2>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-5">
+              {[
+                { icon: Handshake, title: "Referral Potential", desc: "The strongest deals start with trust built outside the office. Cricket creates those moments.", color: "text-emerald-400" },
+                { icon: TrendingUp, title: "Business Growth", desc: "A connected community closes more deals, retains talent and builds stronger agencies.", color: "text-purple-400" },
+                { icon: Sun, title: "Wellness Impact", desc: "Sport is proven to improve performance and resilience in high-stakes professional roles.", color: "text-yellow-400" },
+              ].map((item) => (
+                <div key={item.title} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 hover:border-emerald-500/40 transition-all">
+                  <item.icon className={`w-7 h-7 ${item.color} mb-3`} />
+                  <h3 className="font-bold mb-1.5">{item.title}</h3>
+                  <p className="text-slate-300 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ─── THE VISION ─── */}
-        <section className="py-24 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-6xl mx-auto">
+        <section
+          className="relative py-24 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/90 via-[#0d1420]/85 to-[#0a0f1a]/95" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <Badge className="bg-yellow-400/10 text-yellow-400 border-yellow-400/30 mb-4">The Vision</Badge>
               <h2 className="text-3xl sm:text-5xl font-black mb-4">Building the UAE's Largest<br /><span className="text-yellow-400">Real Estate Sports Community</span></h2>
@@ -668,8 +678,13 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── SPONSORSHIP ─── */}
-        <section id="sponsorship" className="py-24 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-6xl mx-auto">
+        <section
+          id="sponsorship"
+          className="relative py-24 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/92 via-[#0d1420]/88 to-[#0a0f1a]/95" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <Badge className="bg-yellow-400/10 text-yellow-400 border-yellow-400/30 mb-4">Sponsorship Opportunity</Badge>
               <h2 className="text-3xl sm:text-5xl font-black mb-4">Connect With UAE Real Estate<br /><span className="text-yellow-400">Decision Makers</span></h2>
@@ -797,7 +812,12 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── MARKETING REACH ─── */}
-        <section className="py-24 px-4 max-w-6xl mx-auto">
+        <section
+          className="relative py-24 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/88 via-[#0a0f1a]/82 to-[#0a0f1a]/92" />
+          <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/30 mb-4">Marketing Reach</Badge>
             <h2 className="text-3xl sm:text-5xl font-black mb-4">Your Brand Reaches<br /><span className="text-blue-400">36,000+ Real Estate Professionals</span></h2>
@@ -832,11 +852,16 @@ export default function LeaguePage() {
               ))}
             </div>
           </div>
+          </div>
         </section>
 
         {/* ─── WHO SHOULD SPONSOR ─── */}
-        <section className="py-14 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-5xl mx-auto">
+        <section
+          className="relative py-14 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/88 via-[#0a0f1a]/82 to-[#0a0f1a]/90" />
+          <div className="max-w-5xl mx-auto relative z-10">
             <div className="text-center mb-8">
               <Badge className="bg-purple-500/10 text-purple-400 border-purple-500/30 mb-4">Who Should Sponsor</Badge>
               <h2 className="text-2xl sm:text-3xl font-black mb-2">Is Your Brand in the <span className="text-purple-400">Real Estate Ecosystem?</span></h2>
@@ -854,37 +879,48 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── EVENT FORMAT ─── */}
-        <section className="py-24 px-4 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Event Format</Badge>
-            <h2 className="text-3xl sm:text-5xl font-black mb-2">The Tournament <span className="text-emerald-400">Journey</span></h2>
-            <p className="text-slate-400">Majan Community Football Ground, Dubai — weekly evening matches</p>
-          </div>
-          <div className="relative">
-            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-emerald-500/20" />
-            <div className="space-y-8">
-              {EVENT_WEEKS.map((w, i) => (
-                <div key={i} className={`flex flex-col lg:flex-row gap-6 items-center ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
-                  <div className="flex-1">
-                    <div className={`bg-white/3 border border-white/8 rounded-2xl p-6 hover:border-emerald-500/30 transition-all ${i % 2 === 1 ? "lg:text-right" : ""}`}>
-                      <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest mb-1">{w.week}</p>
-                      <h3 className="text-xl font-black mb-2">{w.phase}</h3>
-                      <p className="text-slate-400 text-sm">{w.desc}</p>
+        <section
+          className="relative py-24 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/90 via-[#0a0f1a]/82 to-[#0a0f1a]/95" />
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Event Format</Badge>
+              <h2 className="text-3xl sm:text-5xl font-black mb-2">The Tournament <span className="text-emerald-400">Journey</span></h2>
+              <p className="text-slate-400">Majan Community Football Ground, Dubai — weekly evening matches</p>
+            </div>
+            <div className="relative">
+              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-emerald-500/20" />
+              <div className="space-y-8">
+                {EVENT_WEEKS.map((w, i) => (
+                  <div key={i} className={`flex flex-col lg:flex-row gap-6 items-center ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
+                    <div className="flex-1">
+                      <div className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-emerald-500/40 transition-all ${i % 2 === 1 ? "lg:text-right" : ""}`}>
+                        <p className="text-emerald-400 text-sm font-bold uppercase tracking-widest mb-1">{w.week}</p>
+                        <h3 className="text-xl font-black mb-2">{w.phase}</h3>
+                        <p className="text-slate-300 text-sm">{w.desc}</p>
+                      </div>
                     </div>
+                    <div className="relative z-10 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shrink-0 font-black text-sm">
+                      {i + 1}
+                    </div>
+                    <div className="flex-1 hidden lg:block" />
                   </div>
-                  <div className="relative z-10 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shrink-0 font-black text-sm">
-                    {i + 1}
-                  </div>
-                  <div className="flex-1 hidden lg:block" />
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* ─── VENUE ─── */}
-        <section id="venue" className="py-24 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-6xl mx-auto">
+        <section
+          id="venue"
+          className="relative py-24 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1540747913346-19212a4b423f?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/88 via-[#0d1420]/80 to-[#0a0f1a]/95" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-12">
               <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/30 mb-4">Venue</Badge>
               <h2 className="text-3xl sm:text-5xl font-black mb-3">Where the <span className="text-emerald-400">Action Happens</span></h2>
@@ -980,8 +1016,12 @@ export default function LeaguePage() {
         </section>
 
         {/* ─── MEDIA ─── */}
-        <section className="py-20 bg-gradient-to-b from-[#0d1420] to-[#0a0f1a] px-4">
-          <div className="max-w-6xl mx-auto">
+        <section
+          className="relative py-20 px-4 bg-cover bg-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1600&q=80')" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1a]/90 via-[#0d1420]/85 to-[#0a0f1a]/92" />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-12">
               <Badge className="bg-pink-500/10 text-pink-400 border-pink-500/30 mb-4">Media &amp; Content</Badge>
               <h2 className="text-3xl sm:text-4xl font-black mb-2">Amplified Across <span className="text-pink-400">Every Platform</span></h2>
