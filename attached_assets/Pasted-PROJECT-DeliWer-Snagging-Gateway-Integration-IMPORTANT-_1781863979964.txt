@@ -1,0 +1,306 @@
+PROJECT: DeliWer Snagging Gateway Integration
+
+IMPORTANT:
+
+Do NOT modify, replace, restructure, rename, remove, or break any existing pages, routes, APIs, databases, navigation, workflows, components, forms, dashboards, CRM functions, broker functions, finance functions, rental functions, league functions, or service funnels.
+
+This is an additive enhancement only.
+
+The existing DeliWer platform architecture remains untouched.
+
+OBJECTIVE
+
+Add a new strategic service funnel called:
+
+"Property Snagging & Move-In Readiness"
+
+The purpose is not to create a standalone snagging business.
+
+The purpose is to use snagging as a customer acquisition gateway into the broader DeliWer ecosystem.
+
+CUSTOMER JOURNEY
+
+Property Purchase
+→ Property Handover
+→ Snagging Inspection
+→ Move-In Readiness
+→ Service Activation
+→ Ongoing Resident Services
+
+The snagging funnel becomes the bridge between Real Estate and DeliWer Services.
+
+TARGET AUDIENCES
+
+1. Property Buyers
+2. Property Investors
+3. Overseas Investors
+4. Landlords
+5. New Tenants
+6. Real Estate Brokers
+7. Property Managers
+8. Developers
+
+NEW ROUTE
+
+Add:
+
+/snagging
+
+Do not alter any existing routes.
+
+LANDING PAGE STRUCTURE
+
+Hero Section
+
+Headline:
+
+"Before You Move In, Make Sure Everything Works"
+
+Subheadline:
+
+Independent Property Snagging, Handover Inspection, and Move-In Readiness Services.
+
+CTA:
+
+Book Inspection
+
+Secondary CTA:
+
+Request Callback
+
+SERVICE OPTIONS
+
+Basic Snagging
+
+* Property inspection
+* Defect identification
+* Photo report
+
+Premium Snagging
+
+* Detailed snagging report
+* Video walkthrough
+* Defect tracking
+* Follow-up verification
+
+Remote Investor Inspection
+
+* Live video inspection
+* Recorded walkthrough
+* Remote reporting
+
+Move-In Readiness Package
+
+* Snagging
+* Deep cleaning
+* AC inspection
+* Water quality inspection
+* Utility setup coordination
+* Home readiness checklist
+
+BROKER INTEGRATION
+
+Create a broker referral mechanism.
+
+Allow brokers to:
+
+* Submit snagging requests
+* Register client handovers
+* Earn referral commissions
+* Track lead status
+
+Display:
+
+"This service can be offered by your broker as part of your property handover experience."
+
+BROKER DATABASE CONNECTION
+
+Without altering existing broker structures:
+
+Create relationship mapping between:
+
+Broker
+→ Property
+→ Snagging Request
+→ Service Activation
+
+This should connect to existing CRM records.
+
+DEVELOPER INTEGRATION
+
+Add a developer enquiry form:
+
+Fields:
+
+* Developer Name
+* Project Name
+* Number of Units
+* Expected Handover Date
+* Contact Person
+* Email
+* Mobile
+
+Purpose:
+
+Bulk snagging opportunities.
+
+SERVICE ACTIVATION ENGINE
+
+After snagging completion:
+
+Display:
+
+"Recommended Next Steps"
+
+Use existing DeliWer services where available.
+
+Potential recommendations:
+
+* Water Delivery
+* Water Filtration
+* Cleaning
+* AC Maintenance
+* Home Maintenance
+* Furniture
+* Relocation Services
+* Internet Setup
+* Smart Home Setup
+
+Do not hardcode services.
+
+Pull dynamically from existing service catalog.
+
+AUTO-FUNNEL LOGIC
+
+When snagging status becomes:
+
+COMPLETED
+
+Automatically create:
+
+Move-In Readiness Opportunity
+
+inside CRM.
+
+Suggested tags:
+
+snagging
+move-in
+handover
+property-owner
+high-intent
+
+LEAD SCORING
+
+Increase CRM lead score when:
+
+Inspection Booked +20
+Inspection Completed +30
+Move-In Package Accepted +50
+
+ANALYTICS
+
+Create dashboard widgets:
+
+* Snagging Leads
+* Broker Generated Leads
+* Developer Generated Leads
+* Completed Inspections
+* Service Conversions
+* Revenue Generated
+
+Additive only.
+
+No changes to existing analytics.
+
+PROPERTY TIMELINE
+
+Add a visual timeline:
+
+Property Reserved
+↓
+Property Handover
+↓
+Snagging
+↓
+Move-In Ready
+↓
+Services Activated
+↓
+Resident Lifecycle
+
+SEO PAGES
+
+Generate SEO content for:
+
+/snagging-dubai
+/snagging-sharjah
+/snagging-ajman
+/property-handover-inspection
+/move-in-readiness
+
+Schema enabled.
+
+REMOTE INSPECTION FEATURE
+
+Allow:
+
+* WhatsApp booking
+* Telegram booking
+* Video upload
+* Remote inspection requests
+
+Connect to existing communication systems where available.
+
+AI RECOMMENDATION LAYER
+
+After report generation:
+
+Recommend relevant DeliWer services based on:
+
+* Property Type
+* Unit Size
+* Community
+* Inspection Findings
+
+Do not use hardcoded recommendations.
+
+Use existing recommendation framework if available.
+
+ADMIN DASHBOARD
+
+Create a Snagging Module containing:
+
+* Requests
+* Scheduling
+* Inspectors
+* Reports
+* Broker Referrals
+* Developer Leads
+* Conversion Metrics
+
+Must inherit existing authentication and permissions.
+
+UI REQUIREMENTS
+
+Maintain current DeliWer design language.
+
+No redesign.
+
+No navigation restructuring.
+
+No layout replacement.
+
+No database breaking changes.
+
+No route conflicts.
+
+No CRM changes that affect existing workflows.
+
+All additions must be modular and reversible.
+
+SUCCESS METRIC
+
+The snagging service is not the destination.
+
+Its purpose is to convert property transactions into long-term DeliWer service relationships and recurring revenue opportunities.

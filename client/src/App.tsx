@@ -256,6 +256,12 @@ const MarketingTenantLeads = lazy(() => import("@/pages/marketing/tenant-leads")
 const MarketingTenantReferrers = lazy(() => import("@/pages/marketing/tenant-referrers"));
 const ReferralEngine = lazy(() => import("@/pages/marketing/referral-engine"));
 const LeaguePage = lazy(() => import("@/pages/league"));
+const SnaggingPage = lazy(() => import("@/pages/snagging"));
+const SnaggingDubai = lazy(() => import("@/pages/snagging-dubai"));
+const SnaggingSharjah = lazy(() => import("@/pages/snagging-sharjah"));
+const SnaggingAjman = lazy(() => import("@/pages/snagging-ajman"));
+const PropertyHandoverInspection = lazy(() => import("@/pages/property-handover-inspection"));
+const MoveInReadiness = lazy(() => import("@/pages/move-in-readiness-page"));
 
 function Router() {
   const [location, setLocation] = useLocation();
@@ -751,6 +757,14 @@ function Router() {
         <Route path="/moving-apartment-dubai">
           {() => { window.location.replace("/moving-apartment-dubai-guide"); return null; }}
         </Route>
+
+        {/* Property Snagging & Move-In Readiness */}
+        <Route path="/snagging" component={SnaggingPage} />
+        <Route path="/snagging-dubai" component={SnaggingDubai} />
+        <Route path="/snagging-sharjah" component={SnaggingSharjah} />
+        <Route path="/snagging-ajman" component={SnaggingAjman} />
+        <Route path="/property-handover-inspection" component={PropertyHandoverInspection} />
+        <Route path="/move-in-readiness" component={MoveInReadiness} />
 
         <Route component={NotFound} />
         </Switch>

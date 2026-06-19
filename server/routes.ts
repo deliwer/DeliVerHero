@@ -73,6 +73,7 @@ import habtoorRoutes from "./routes/habtoor";
 import mamzarRoutes from "./routes/mamzar";
 import flexListingsRoutes from "./routes/flex-listings";
 import realEstatePortalRoutes from "./routes/realestate-portal";
+import snaggingRoutes from "./routes/snagging";
 import { createPaypalOrder, capturePaypalOrder, loadPaypalDefault } from "./paypal";
 import { processPurchase, aedToFils } from "./payment-processing";
 import { sendWhatsApp } from "./utils/sendWhatsApp";
@@ -6675,6 +6676,9 @@ Or just describe what you need in a message. A team member will respond shortly 
       tableStats,
     });
   });
+
+  // ── Snagging & Property Handover ──────────────────────────────────────────
+  app.use("/api/snagging", snaggingRoutes);
 
   const httpServer = createServer(app);
   return httpServer;

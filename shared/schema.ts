@@ -2475,3 +2475,66 @@ export const seoDigestHistory = pgTable("seo_digest_history", {
 export const insertSeoDigestHistorySchema = createInsertSchema(seoDigestHistory).omit({ id: true, runAt: true });
 export type SeoDigestHistory = typeof seoDigestHistory.$inferSelect;
 export type InsertSeoDigestHistory = z.infer<typeof insertSeoDigestHistorySchema>;
+
+// ── Snagging & Property Handover ───────────────────────────────────────────────
+
+export const snaggingRequests = pgTable("snagging_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  propertyType: text("property_type"),       // apartment | villa | townhouse | penthouse
+  communityArea: text("community_area"),
+  unitSize: text("unit_size"),               // studio | 1BR | 2BR | 3BR | 4BR+
+  serviceType: text("service_type").notNull(), // basic | premium | remote | move-in-readiness
+  preferredDate: text("preferred_date"),
+  notes: text("notes"),
+  source: text("source").default("website"), // website | broker | developer | whatsapp
+  brokerReferralId: varchar("broker_referral_id"),
+  status: text("status").notNull().default("pending"), // pending | scheduled | in-progress | completed | converted
+  leadScore: integer("lead_score").notNull().default(0),
+  crmTags: text("crm_tags").array().default([]),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+});
+export const insertSnaggingRequestSchema = createInsertSchema(snaggingRequests).omit({ id: true, createdAt: true, updatedAt: true });
+export type SnaggingRequest = typeof snaggingRequests.$inferSelect;
+export type InsertSnaggingRequest = z.infer<typeof insertSnaggingRequestSchema>;
+
+export const snaggingBrokerReferrals = pgTable("snagging_broker_referrals", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  brokerName: text("broker_name").notNull(),
+  brokerPhone: text("broker_phone").notNull(),
+  brokerEmail: text("broker_email"),
+  brokerage: text("brokerage"),
+  clientName: text("client_name").notNull(),
+  clientPhone: text("client_phone").notNull(),
+  propertyAddress: text("property_address"),
+  communityArea: text("community_area"),
+  handoverDate: text("handover_date"),
+  serviceType: text("service_type").notNull().default("basic"),
+  commissionRate: real("commission_rate").default(0.10),
+  status: text("status").notNull().default("submitted"), // submitted | contacted | booked | completed | commission-paid
+  snaggingRequestId: varchar("snagging_request_id"),
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export const insertSnaggingBrokerReferralSchema = createInsertSchema(snaggingBrokerReferrals).omit({ id: true, createdAt: true });
+export type SnaggingBrokerReferral = typeof snaggingBrokerReferrals.$inferSelect;
+export type InsertSnaggingBrokerReferral = z.infer<typeof insertSnaggingBrokerReferralSchema>;
+
+export const snaggingDeveloperLeads = pgTable("snagging_developer_leads", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  developerName: text("developer_name").notNull(),
+  projectName: text("project_name").notNull(),
+  numberOfUnits: integer("number_of_units"),
+  expectedHandoverDate: text("expected_handover_date"),
+  contactPerson: text("contact_person").notNull(),
+  email: text("email").notNull(),
+  mobile: text("mobile").notNull(),
+  notes: text("notes"),
+  status: text("status").notNull().default("new"), // new | contacted | proposal-sent | won | lost
+  createdAt: timestamp("created_at").notNull().default(sql`now()`),
+});
+export const insertSnaggingDeveloperLeadSchema = createInsertSchema(snaggingDeveloperLeads).omit({ id: true, createdAt: true });
+export type SnaggingDeveloperLead = typeof snaggingDeveloperLeads.$inferSelect;
+export type InsertSnaggingDeveloperLead = z.infer<typeof insertSnaggingDeveloperLeadSchema>;
