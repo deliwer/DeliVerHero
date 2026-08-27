@@ -152,6 +152,9 @@ __export(schema_exports, {
   insertRewardRedemptionSchema: () => insertRewardRedemptionSchema,
   insertSeasonSchema: () => insertSeasonSchema,
   insertSeoDigestHistorySchema: () => insertSeoDigestHistorySchema,
+  insertSnaggingBrokerReferralSchema: () => insertSnaggingBrokerReferralSchema,
+  insertSnaggingDeveloperLeadSchema: () => insertSnaggingDeveloperLeadSchema,
+  insertSnaggingRequestSchema: () => insertSnaggingRequestSchema,
   insertSponsorSchema: () => insertSponsorSchema,
   insertSponsoredMissionSchema: () => insertSponsoredMissionSchema,
   insertStarsPurchaseSchema: () => insertStarsPurchaseSchema,
@@ -212,6 +215,9 @@ __export(schema_exports, {
   seasons: () => seasons,
   sellRequestSchema: () => sellRequestSchema,
   seoDigestHistory: () => seoDigestHistory,
+  snaggingBrokerReferrals: () => snaggingBrokerReferrals,
+  snaggingDeveloperLeads: () => snaggingDeveloperLeads,
+  snaggingRequests: () => snaggingRequests,
   socialChallenges: () => socialChallenges,
   socialShares: () => socialShares,
   sponsoredMissions: () => sponsoredMissions,
@@ -248,7 +254,7 @@ import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, integer, timestamp, boolean, jsonb, real } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-var founderStreaks, insertFounderStreakSchema, users, heroes, tradeIns, impactStats, referrals, conciergeConversations, insertConciergeConversationSchema, contacts, quotes, socialChallenges, challengeParticipants, socialShares, wellnessPassports, wellnessJourneys, wellnessJourneySteps, aquaShowPerks, luxuryHotelPartners, restaurantPartners, wellnessJourneyParticipants, dubaiChallenges, dubaiRewards, sponsors, corporateAccounts, corporateUsers, bulkQuotes, purchaseOrders, sponsorshipTiers, leadApplications, leadInteractions, chaintrackMembershipTiers, chaintrackComplianceRules, insertLeadApplicationSchema, ejariConversations, relocateLeads, userSubscriptions, orders, customers, loyaltyMemberships, digitalVouchers, tombolaPrizes, tombolaSpins, tombolaConfig, couponTemplates, issuedCoupons, planetMissions, heroMissionProgress, planetPointsTransactions, metaverseAvatars, achievementBadges, heroBadges, metaverseRewards, rewardRedemptions, dailyQuests, cities, seasons, emailSubscribers, rentAnalysisLeads, emailCampaigns, corporateLeads, sponsoredMissions, missionSponsorships, starsPurchases, waterFiltrationProjects, waterFiltrationContributions, commissionClaims, leads, chaintrackSellers, chaintrackEscrows, chaintrackShipments, chaintrackDocuments, chaintrackAmlLogs, chaintrackComplianceAlerts, chaintrackAuditLogs, chaintrackInventory, chaintrackAuctions, chaintrackBids, chaintrackSuppliers, fulfillmentResellers, fulfillmentOrders, resellerInventorySubscriptions, fulfillmentPricing, insertHeroSchema, insertTradeInSchema, insertContactSchema, insertQuoteSchema, insertSponsorSchema, insertWellnessPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, insertEjariConversationSchema, insertRelocateLeadSchema, insertOrderSchema, insertCustomerSchema, insertLoyaltyMembershipSchema, insertDigitalVoucherSchema, insertTombolaPrizeSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, insertIssuedCouponSchema, insertPlanetMissionSchema, insertHeroMissionProgressSchema, insertMetaverseAvatarSchema, insertAchievementBadgeSchema, insertHeroBadgeSchema, insertMetaverseRewardSchema, insertRewardRedemptionSchema, insertDailyQuestSchema, insertCitySchema, insertSeasonSchema, insertEmailSubscriberSchema, insertEmailCampaignSchema, insertCorporateLeadSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertCommissionClaimSchema, insertLeadSchema, insertRentAnalysisLeadSchema, insertChaintrackSellerSchema, insertChaintrackEscrowSchema, insertChaintrackShipmentSchema, insertChaintrackDocumentSchema, insertChaintrackAmlLogSchema, insertChaintrackComplianceAlertSchema, insertChaintrackAuditLogSchema, insertChaintrackInventorySchema, insertChaintrackBidSchema, insertFulfillmentResellerSchema, insertFulfillmentOrderSchema, insertResellerInventorySubscriptionSchema, insertFulfillmentPricingSchema, updateHeroSchema, updateAvatarSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, redeemRewardSchema, redeemCouponSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, aiDeliPriceRequestSchema, sellRequestSchema, affiliates, insertAffiliateSchema, affiliateLeads, insertAffiliateleadSchema, brokerMaster, insertBrokerMasterSchema, brokerAutomationLog, intentSignals, insertIntentSignalSchema, brokerCampaigns, insertBrokerCampaignSchema, brokerCampaignEntries, insertBrokerCampaignEntrySchema, emergencyEvacuationProfiles, insertEmergencyEvacuationSchema, wartimeMembers, insertWartimeMemberSchema, tipsSendLog, tenantReferrers, insertTenantReferrerSchema, tenantLeads, insertTenantLeadSchema, marketingReferrers, insertMarketingReferrerSchema, marketingLeads, insertMarketingLeadSchema, habtoorInventory, brokerNdaAcceptance, insertBrokerNdaSchema, propertyLeadClaims, insertPropertyLeadClaimSchema, dealClosureReports, insertDealClosureSchema, virtualTourRequests, insertVirtualTourRequestSchema, brokerBlacklist, flexListings, insertFlexListingSchema, flexListingReviews, insertFlexListingReviewSchema, viewingRequests, insertViewingRequestSchema, brokerFunnelEvents, missedCalls, insertMissedCallSchema, intelPosts, insertIntelPostSchema, wscStockItems, wscOfferSessions, wscOfferItems, insertWscStockItemSchema, insertWscOfferSessionSchema, insertWscOfferItemSchema, buyLots, buyBuyers, mamzarEoi, insertMamzarEoiSchema, buyOrders, buyBids, insertBuyLotSchema, insertBuyBuyerSchema, insertBuyOrderSchema, insertBuyBidSchema, reverseAuctionEvents, reverseAuctionBids, insertReverseAuctionEventSchema, insertReverseAuctionBidSchema, partnerCandidates, insertPartnerCandidateSchema, zoomSessions, insertZoomSessionSchema, financeReferrals, insertFinanceReferralSchema, bnosTemplates, insertBnosTemplateSchema, commissionConfig, insertCommissionConfigSchema, realEstateBrokerCircle, insertRealEstateBrokerCircleSchema, seoDigestHistory, insertSeoDigestHistorySchema;
+var founderStreaks, insertFounderStreakSchema, users, heroes, tradeIns, impactStats, referrals, conciergeConversations, insertConciergeConversationSchema, contacts, quotes, socialChallenges, challengeParticipants, socialShares, wellnessPassports, wellnessJourneys, wellnessJourneySteps, aquaShowPerks, luxuryHotelPartners, restaurantPartners, wellnessJourneyParticipants, dubaiChallenges, dubaiRewards, sponsors, corporateAccounts, corporateUsers, bulkQuotes, purchaseOrders, sponsorshipTiers, leadApplications, leadInteractions, chaintrackMembershipTiers, chaintrackComplianceRules, insertLeadApplicationSchema, ejariConversations, relocateLeads, userSubscriptions, orders, customers, loyaltyMemberships, digitalVouchers, tombolaPrizes, tombolaSpins, tombolaConfig, couponTemplates, issuedCoupons, planetMissions, heroMissionProgress, planetPointsTransactions, metaverseAvatars, achievementBadges, heroBadges, metaverseRewards, rewardRedemptions, dailyQuests, cities, seasons, emailSubscribers, rentAnalysisLeads, emailCampaigns, corporateLeads, sponsoredMissions, missionSponsorships, starsPurchases, waterFiltrationProjects, waterFiltrationContributions, commissionClaims, leads, chaintrackSellers, chaintrackEscrows, chaintrackShipments, chaintrackDocuments, chaintrackAmlLogs, chaintrackComplianceAlerts, chaintrackAuditLogs, chaintrackInventory, chaintrackAuctions, chaintrackBids, chaintrackSuppliers, fulfillmentResellers, fulfillmentOrders, resellerInventorySubscriptions, fulfillmentPricing, insertHeroSchema, insertTradeInSchema, insertContactSchema, insertQuoteSchema, insertSponsorSchema, insertWellnessPassportSchema, insertWellnessJourneySchema, insertWellnessJourneyStepSchema, insertAquaShowPerkSchema, insertLuxuryHotelPartnerSchema, insertRestaurantPartnerSchema, insertWellnessJourneyParticipantSchema, insertEjariConversationSchema, insertRelocateLeadSchema, insertOrderSchema, insertCustomerSchema, insertLoyaltyMembershipSchema, insertDigitalVoucherSchema, insertTombolaPrizeSchema, insertTombolaSpinSchema, insertCouponTemplateSchema, insertIssuedCouponSchema, insertPlanetMissionSchema, insertHeroMissionProgressSchema, insertMetaverseAvatarSchema, insertAchievementBadgeSchema, insertHeroBadgeSchema, insertMetaverseRewardSchema, insertRewardRedemptionSchema, insertDailyQuestSchema, insertCitySchema, insertSeasonSchema, insertEmailSubscriberSchema, insertEmailCampaignSchema, insertCorporateLeadSchema, insertSponsoredMissionSchema, insertMissionSponsorshipSchema, insertStarsPurchaseSchema, insertWaterFiltrationProjectSchema, insertWaterFiltrationContributionSchema, insertCommissionClaimSchema, insertLeadSchema, insertRentAnalysisLeadSchema, insertChaintrackSellerSchema, insertChaintrackEscrowSchema, insertChaintrackShipmentSchema, insertChaintrackDocumentSchema, insertChaintrackAmlLogSchema, insertChaintrackComplianceAlertSchema, insertChaintrackAuditLogSchema, insertChaintrackInventorySchema, insertChaintrackBidSchema, insertFulfillmentResellerSchema, insertFulfillmentOrderSchema, insertResellerInventorySubscriptionSchema, insertFulfillmentPricingSchema, updateHeroSchema, updateAvatarSchema, acceptMissionSchema, updateMissionProgressSchema, completeMissionSchema, redeemRewardSchema, redeemCouponSchema, progressStepSchema, phoneRequestSchema, redeemPassportSchema, aiDeliPriceRequestSchema, sellRequestSchema, affiliates, insertAffiliateSchema, affiliateLeads, insertAffiliateleadSchema, brokerMaster, insertBrokerMasterSchema, brokerAutomationLog, intentSignals, insertIntentSignalSchema, brokerCampaigns, insertBrokerCampaignSchema, brokerCampaignEntries, insertBrokerCampaignEntrySchema, emergencyEvacuationProfiles, insertEmergencyEvacuationSchema, wartimeMembers, insertWartimeMemberSchema, tipsSendLog, tenantReferrers, insertTenantReferrerSchema, tenantLeads, insertTenantLeadSchema, marketingReferrers, insertMarketingReferrerSchema, marketingLeads, insertMarketingLeadSchema, habtoorInventory, brokerNdaAcceptance, insertBrokerNdaSchema, propertyLeadClaims, insertPropertyLeadClaimSchema, dealClosureReports, insertDealClosureSchema, virtualTourRequests, insertVirtualTourRequestSchema, brokerBlacklist, flexListings, insertFlexListingSchema, flexListingReviews, insertFlexListingReviewSchema, viewingRequests, insertViewingRequestSchema, brokerFunnelEvents, missedCalls, insertMissedCallSchema, intelPosts, insertIntelPostSchema, wscStockItems, wscOfferSessions, wscOfferItems, insertWscStockItemSchema, insertWscOfferSessionSchema, insertWscOfferItemSchema, buyLots, buyBuyers, mamzarEoi, insertMamzarEoiSchema, buyOrders, buyBids, insertBuyLotSchema, insertBuyBuyerSchema, insertBuyOrderSchema, insertBuyBidSchema, reverseAuctionEvents, reverseAuctionBids, insertReverseAuctionEventSchema, insertReverseAuctionBidSchema, partnerCandidates, insertPartnerCandidateSchema, zoomSessions, insertZoomSessionSchema, financeReferrals, insertFinanceReferralSchema, bnosTemplates, insertBnosTemplateSchema, commissionConfig, insertCommissionConfigSchema, realEstateBrokerCircle, insertRealEstateBrokerCircleSchema, seoDigestHistory, insertSeoDigestHistorySchema, snaggingRequests, insertSnaggingRequestSchema, snaggingBrokerReferrals, insertSnaggingBrokerReferralSchema, snaggingDeveloperLeads, insertSnaggingDeveloperLeadSchema;
 var init_schema = __esm({
   "shared/schema.ts"() {
     "use strict";
@@ -2368,6 +2374,65 @@ var init_schema = __esm({
       overallOk: boolean("overall_ok").notNull().default(false)
     });
     insertSeoDigestHistorySchema = createInsertSchema(seoDigestHistory).omit({ id: true, runAt: true });
+    snaggingRequests = pgTable("snagging_requests", {
+      id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+      name: text("name").notNull(),
+      email: text("email").notNull(),
+      phone: text("phone").notNull(),
+      propertyType: text("property_type"),
+      // apartment | villa | townhouse | penthouse
+      communityArea: text("community_area"),
+      unitSize: text("unit_size"),
+      // studio | 1BR | 2BR | 3BR | 4BR+
+      serviceType: text("service_type").notNull(),
+      // basic | premium | remote | move-in-readiness
+      preferredDate: text("preferred_date"),
+      notes: text("notes"),
+      source: text("source").default("website"),
+      // website | broker | developer | whatsapp
+      brokerReferralId: varchar("broker_referral_id"),
+      status: text("status").notNull().default("pending"),
+      // pending | scheduled | in-progress | completed | converted
+      leadScore: integer("lead_score").notNull().default(0),
+      crmTags: text("crm_tags").array().default([]),
+      createdAt: timestamp("created_at").notNull().default(sql`now()`),
+      updatedAt: timestamp("updated_at").notNull().default(sql`now()`)
+    });
+    insertSnaggingRequestSchema = createInsertSchema(snaggingRequests).omit({ id: true, createdAt: true, updatedAt: true });
+    snaggingBrokerReferrals = pgTable("snagging_broker_referrals", {
+      id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+      brokerName: text("broker_name").notNull(),
+      brokerPhone: text("broker_phone").notNull(),
+      brokerEmail: text("broker_email"),
+      brokerage: text("brokerage"),
+      clientName: text("client_name").notNull(),
+      clientPhone: text("client_phone").notNull(),
+      propertyAddress: text("property_address"),
+      communityArea: text("community_area"),
+      handoverDate: text("handover_date"),
+      serviceType: text("service_type").notNull().default("basic"),
+      commissionRate: real("commission_rate").default(0.1),
+      status: text("status").notNull().default("submitted"),
+      // submitted | contacted | booked | completed | commission-paid
+      snaggingRequestId: varchar("snagging_request_id"),
+      createdAt: timestamp("created_at").notNull().default(sql`now()`)
+    });
+    insertSnaggingBrokerReferralSchema = createInsertSchema(snaggingBrokerReferrals).omit({ id: true, createdAt: true });
+    snaggingDeveloperLeads = pgTable("snagging_developer_leads", {
+      id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+      developerName: text("developer_name").notNull(),
+      projectName: text("project_name").notNull(),
+      numberOfUnits: integer("number_of_units"),
+      expectedHandoverDate: text("expected_handover_date"),
+      contactPerson: text("contact_person").notNull(),
+      email: text("email").notNull(),
+      mobile: text("mobile").notNull(),
+      notes: text("notes"),
+      status: text("status").notNull().default("new"),
+      // new | contacted | proposal-sent | won | lost
+      createdAt: timestamp("created_at").notNull().default(sql`now()`)
+    });
+    insertSnaggingDeveloperLeadSchema = createInsertSchema(snaggingDeveloperLeads).omit({ id: true, createdAt: true });
   }
 });
 
@@ -3616,7 +3681,7 @@ __export(tips_alert_service_exports, {
   runDailyTipsBroadcast: () => runDailyTipsBroadcast,
   sendEmergencyAlert: () => sendEmergencyAlert
 });
-import { eq as eq17, sql as sql10 } from "drizzle-orm";
+import { eq as eq18, sql as sql10 } from "drizzle-orm";
 function buildTipEmail(tip, firstName) {
   return `
 <!DOCTYPE html>
@@ -3743,7 +3808,7 @@ function getTipById(id) {
   return TIPS_LIBRARY.find((t) => t.id === id);
 }
 async function getActiveSubscribers() {
-  return db.select().from(emailSubscribers).where(eq17(emailSubscribers.isActive, true));
+  return db.select().from(emailSubscribers).where(eq18(emailSubscribers.isActive, true));
 }
 async function runDailyTipsBroadcast(overrideTipId) {
   console.log("[TIPS] Starting daily tips broadcast");
@@ -3828,7 +3893,7 @@ async function sendEmergencyAlert(alertLevel, message) {
 }
 async function getSubscriberStats() {
   const [{ total }] = await db.select({ total: sql10`count(*)` }).from(emailSubscribers);
-  const [{ active }] = await db.select({ active: sql10`count(*)` }).from(emailSubscribers).where(eq17(emailSubscribers.isActive, true));
+  const [{ active }] = await db.select({ active: sql10`count(*)` }).from(emailSubscribers).where(eq18(emailSubscribers.isActive, true));
   const recentLogs = await db.select().from(tipsSendLog).orderBy(sql10`sent_at desc`).limit(10);
   return { total: Number(total), active: Number(active), recentLogs };
 }
@@ -4119,12 +4184,12 @@ __export(intent_interceptor_service_exports, {
   seedIntentSignals: () => seedIntentSignals,
   updateSignalStatus: () => updateSignalStatus
 });
-import { eq as eq18, desc as desc13, and as and9, sql as sql11 } from "drizzle-orm";
+import { eq as eq19, desc as desc14, and as and9, sql as sql11 } from "drizzle-orm";
 import OpenAI from "openai";
 async function cleanExampleContactData() {
-  await db.update(intentSignals).set({ contactName: null, contactHandle: null }).where(eq18(intentSignals.captureType, "ai_example"));
+  await db.update(intentSignals).set({ contactName: null, contactHandle: null }).where(eq19(intentSignals.captureType, "ai_example"));
   for (const [oldName, newName] of Object.entries(COMMUNITY_ALIASES)) {
-    await db.update(intentSignals).set({ community: newName }).where(and9(eq18(intentSignals.community, oldName), eq18(intentSignals.captureType, "ai_example")));
+    await db.update(intentSignals).set({ community: newName }).where(and9(eq19(intentSignals.community, oldName), eq19(intentSignals.captureType, "ai_example")));
   }
 }
 async function seedIntentSignals() {
@@ -4150,11 +4215,11 @@ async function createManualSignal(data) {
   return signal;
 }
 async function generateAIResponse(signalId) {
-  const [signal] = await db.select().from(intentSignals).where(eq18(intentSignals.id, signalId));
+  const [signal] = await db.select().from(intentSignals).where(eq19(intentSignals.id, signalId));
   if (!signal) throw new Error("Signal not found");
   const template = buildResponseTemplate(signal);
   if (!openai) {
-    await db.update(intentSignals).set({ aiResponse: template }).where(eq18(intentSignals.id, signalId));
+    await db.update(intentSignals).set({ aiResponse: template }).where(eq19(intentSignals.id, signalId));
     return template;
   }
   try {
@@ -4177,10 +4242,10 @@ Return JSON: { "message": "..." }`;
     });
     const data = JSON.parse(response.choices[0].message.content || "{}");
     const message = data.message || template;
-    await db.update(intentSignals).set({ aiResponse: message }).where(eq18(intentSignals.id, signalId));
+    await db.update(intentSignals).set({ aiResponse: message }).where(eq19(intentSignals.id, signalId));
     return message;
   } catch {
-    await db.update(intentSignals).set({ aiResponse: template }).where(eq18(intentSignals.id, signalId));
+    await db.update(intentSignals).set({ aiResponse: template }).where(eq19(intentSignals.id, signalId));
     return template;
   }
 }
@@ -4199,15 +4264,15 @@ function buildResponseTemplate(signal) {
 async function getIntentSignals(filters) {
   await seedIntentSignals();
   const conditions = [];
-  if (filters.status) conditions.push(eq18(intentSignals.status, filters.status));
-  if (filters.source) conditions.push(eq18(intentSignals.source, filters.source));
-  if (filters.intentType) conditions.push(eq18(intentSignals.intentType, filters.intentType));
-  if (filters.captureType) conditions.push(eq18(intentSignals.captureType, filters.captureType));
-  const rows = await db.select().from(intentSignals).where(conditions.length > 0 ? and9(...conditions) : void 0).orderBy(desc13(intentSignals.capturedAt)).limit(filters.limit || 100);
+  if (filters.status) conditions.push(eq19(intentSignals.status, filters.status));
+  if (filters.source) conditions.push(eq19(intentSignals.source, filters.source));
+  if (filters.intentType) conditions.push(eq19(intentSignals.intentType, filters.intentType));
+  if (filters.captureType) conditions.push(eq19(intentSignals.captureType, filters.captureType));
+  const rows = await db.select().from(intentSignals).where(conditions.length > 0 ? and9(...conditions) : void 0).orderBy(desc14(intentSignals.capturedAt)).limit(filters.limit || 100);
   return rows;
 }
 async function updateSignalStatus(id, status) {
-  await db.update(intentSignals).set({ status }).where(eq18(intentSignals.id, id));
+  await db.update(intentSignals).set({ status }).where(eq19(intentSignals.id, id));
 }
 async function getIntentStats() {
   const byStatus = await db.select({ status: intentSignals.status, count: sql11`count(*)` }).from(intentSignals).groupBy(intentSignals.status);
@@ -4474,7 +4539,7 @@ __export(social_discovery_service_exports, {
   runSocialDiscovery: () => runSocialDiscovery,
   updateBrokerSocial: () => updateBrokerSocial
 });
-import { eq as eq19, isNull, or as or3, sql as sql12 } from "drizzle-orm";
+import { eq as eq20, isNull, or as or3, sql as sql12 } from "drizzle-orm";
 import OpenAI2 from "openai";
 function getDiscoveryStatus() {
   return {
@@ -4589,7 +4654,7 @@ async function runSocialDiscovery(limit = 100) {
     }).from(brokerMaster).where(
       or3(
         isNull(brokerMaster.socialDiscoveryStatus),
-        eq19(brokerMaster.socialDiscoveryStatus, "pending")
+        eq20(brokerMaster.socialDiscoveryStatus, "pending")
       )
     ).limit(limit);
     _currentProgress.total = brokers.length;
@@ -4599,7 +4664,7 @@ async function runSocialDiscovery(limit = 100) {
       await Promise.all(
         batch.map(async (broker) => {
           try {
-            await db.update(brokerMaster).set({ socialDiscoveryStatus: "discovering" }).where(eq19(brokerMaster.id, broker.id));
+            await db.update(brokerMaster).set({ socialDiscoveryStatus: "discovering" }).where(eq20(brokerMaster.id, broker.id));
             const result = await discoverHandlesForBroker(broker);
             const hasAny = !!(result.linkedinUrl || result.instagramHandle || result.twitterHandle || result.facebookUrl || result.gmbUrl);
             await db.update(brokerMaster).set({
@@ -4612,7 +4677,7 @@ async function runSocialDiscovery(limit = 100) {
               socialDiscoveredAt: /* @__PURE__ */ new Date(),
               socialNotes: result.notes,
               updatedAt: /* @__PURE__ */ new Date()
-            }).where(eq19(brokerMaster.id, broker.id));
+            }).where(eq20(brokerMaster.id, broker.id));
             if (hasAny) found++;
             processed++;
             _currentProgress.processed = processed;
@@ -4620,7 +4685,7 @@ async function runSocialDiscovery(limit = 100) {
           } catch (err) {
             errors++;
             console.error(`[SOCIAL DISCOVERY] Error on ${broker.name}:`, err.message);
-            await db.update(brokerMaster).set({ socialDiscoveryStatus: "not_found", updatedAt: /* @__PURE__ */ new Date() }).where(eq19(brokerMaster.id, broker.id));
+            await db.update(brokerMaster).set({ socialDiscoveryStatus: "not_found", updatedAt: /* @__PURE__ */ new Date() }).where(eq20(brokerMaster.id, broker.id));
           }
         })
       );
@@ -4638,13 +4703,13 @@ async function updateBrokerSocial(brokerId, social) {
     socialDiscoveryStatus: "found",
     socialDiscoveredAt: /* @__PURE__ */ new Date(),
     updatedAt: /* @__PURE__ */ new Date()
-  }).where(eq19(brokerMaster.id, brokerId));
+  }).where(eq20(brokerMaster.id, brokerId));
 }
 async function getSocialDiscoveryStats() {
   const rows = await db.select({
     status: brokerMaster.socialDiscoveryStatus,
     count: sql12`count(*)`
-  }).from(brokerMaster).where(eq19(brokerMaster.deleted, false)).groupBy(brokerMaster.socialDiscoveryStatus);
+  }).from(brokerMaster).where(eq20(brokerMaster.deleted, false)).groupBy(brokerMaster.socialDiscoveryStatus);
   const stats = {
     pending: 0,
     discovering: 0,
@@ -6090,7 +6155,7 @@ init_broker_fetch_service();
 init_broker_followup_service();
 init_broker_automation();
 init_sendgrid_service();
-import { eq as eq20, desc as desc14, and as and10, sql as drizzleSql } from "drizzle-orm";
+import { eq as eq21, desc as desc15, and as and10, sql as drizzleSql } from "drizzle-orm";
 import * as path2 from "path";
 import OpenAI4 from "openai";
 import Stripe2 from "stripe";
@@ -12992,6 +13057,169 @@ router22.patch("/applications/:id/status", async (req, res) => {
 });
 var realestate_portal_default = router22;
 
+// server/routes/snagging.ts
+init_db();
+init_schema();
+import { Router as Router23 } from "express";
+import { eq as eq17, desc as desc13 } from "drizzle-orm";
+var router23 = Router23();
+function calcLeadScore(data) {
+  let score = 20;
+  if (data.serviceType === "move-in-readiness") score += 30;
+  else if (data.serviceType === "premium") score += 15;
+  else if (data.serviceType === "remote") score += 10;
+  if (data.source === "broker") score += 10;
+  if (data.preferredDate) score += 5;
+  return score;
+}
+router23.post("/request", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.name || !data.phone || !data.email || !data.serviceType) {
+      return res.status(400).json({ error: "name, phone, email and serviceType are required" });
+    }
+    const leadScore = calcLeadScore(data);
+    const tags = ["snagging", "handover", "property-owner", "high-intent"];
+    if (data.serviceType === "move-in-readiness") tags.push("move-in");
+    const [request] = await db.insert(snaggingRequests).values({
+      ...data,
+      leadScore,
+      crmTags: tags
+    }).returning();
+    const msg = `\u{1F3E0} *New Snagging Request*
+Name: ${data.name}
+Phone: ${data.phone}
+Service: ${data.serviceType}
+Area: ${data.communityArea || "TBD"}
+Date: ${data.preferredDate || "Flexible"}
+Score: ${leadScore}`;
+    sendWhatsApp(process.env.ADMIN_WHATSAPP || "+971504547110", msg).catch(() => {
+    });
+    res.status(201).json({ success: true, id: request.id, leadScore });
+  } catch (err) {
+    console.error("[SNAGGING] request error:", err);
+    res.status(500).json({ error: "Failed to submit snagging request" });
+  }
+});
+router23.post("/broker-referral", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.brokerName || !data.brokerPhone || !data.clientName || !data.clientPhone) {
+      return res.status(400).json({ error: "brokerName, brokerPhone, clientName, clientPhone required" });
+    }
+    const leadScore = calcLeadScore({ ...data, source: "broker" }) + 10;
+    const [snagReq] = await db.insert(snaggingRequests).values({
+      name: data.clientName,
+      email: data.clientEmail || "",
+      phone: data.clientPhone,
+      communityArea: data.communityArea,
+      serviceType: data.serviceType || "basic",
+      source: "broker",
+      leadScore,
+      crmTags: ["snagging", "broker-referral", "handover", "high-intent"]
+    }).returning();
+    const [referral] = await db.insert(snaggingBrokerReferrals).values({
+      ...data,
+      snaggingRequestId: snagReq.id
+    }).returning();
+    const msg = `\u{1F91D} *Broker Snagging Referral*
+Broker: ${data.brokerName} (${data.brokerPhone})
+Client: ${data.clientName}
+Area: ${data.communityArea || "TBD"}`;
+    sendWhatsApp(process.env.ADMIN_WHATSAPP || "+971504547110", msg).catch(() => {
+    });
+    res.status(201).json({ success: true, referralId: referral.id, requestId: snagReq.id });
+  } catch (err) {
+    console.error("[SNAGGING] broker-referral error:", err);
+    res.status(500).json({ error: "Failed to submit broker referral" });
+  }
+});
+router23.post("/developer-enquiry", async (req, res) => {
+  try {
+    const data = req.body;
+    if (!data.developerName || !data.projectName || !data.contactPerson || !data.email || !data.mobile) {
+      return res.status(400).json({ error: "developerName, projectName, contactPerson, email, mobile required" });
+    }
+    const [lead] = await db.insert(snaggingDeveloperLeads).values(data).returning();
+    const msg = `\u{1F3D7}\uFE0F *Developer Snagging Enquiry*
+Developer: ${data.developerName}
+Project: ${data.projectName}
+Units: ${data.numberOfUnits || "TBD"}
+Handover: ${data.expectedHandoverDate || "TBD"}
+Contact: ${data.contactPerson} \u2014 ${data.mobile}`;
+    sendWhatsApp(process.env.ADMIN_WHATSAPP || "+971504547110", msg).catch(() => {
+    });
+    res.status(201).json({ success: true, id: lead.id });
+  } catch (err) {
+    console.error("[SNAGGING] developer-enquiry error:", err);
+    res.status(500).json({ error: "Failed to submit developer enquiry" });
+  }
+});
+router23.get("/requests", async (req, res) => {
+  try {
+    const requests = await db.select().from(snaggingRequests).orderBy(desc13(snaggingRequests.createdAt)).limit(200);
+    res.json(requests);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch requests" });
+  }
+});
+router23.get("/broker-referrals", async (req, res) => {
+  try {
+    const referrals2 = await db.select().from(snaggingBrokerReferrals).orderBy(desc13(snaggingBrokerReferrals.createdAt)).limit(200);
+    res.json(referrals2);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch referrals" });
+  }
+});
+router23.get("/developer-leads", async (req, res) => {
+  try {
+    const leads2 = await db.select().from(snaggingDeveloperLeads).orderBy(desc13(snaggingDeveloperLeads.createdAt)).limit(200);
+    res.json(leads2);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch developer leads" });
+  }
+});
+router23.patch("/requests/:id/status", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const validStatuses = ["pending", "scheduled", "in-progress", "completed", "converted"];
+    if (!validStatuses.includes(status)) return res.status(400).json({ error: "Invalid status" });
+    let extraScore = 0;
+    if (status === "completed") extraScore = 30;
+    if (status === "converted") extraScore = 50;
+    const [updated] = await db.update(snaggingRequests).set({
+      status,
+      leadScore: extraScore > 0 ? db.select({ s: snaggingRequests.leadScore }).from(snaggingRequests).where(eq17(snaggingRequests.id, id)) : void 0,
+      updatedAt: /* @__PURE__ */ new Date()
+    }).where(eq17(snaggingRequests.id, id)).returning();
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update status" });
+  }
+});
+router23.get("/stats", async (req, res) => {
+  try {
+    const requests = await db.select().from(snaggingRequests);
+    const referrals2 = await db.select().from(snaggingBrokerReferrals);
+    const developerLeads = await db.select().from(snaggingDeveloperLeads);
+    const stats = {
+      totalLeads: requests.length,
+      brokerLeads: requests.filter((r) => r.source === "broker").length,
+      developerLeads: developerLeads.length,
+      completedInspections: requests.filter((r) => r.status === "completed" || r.status === "converted").length,
+      serviceConversions: requests.filter((r) => r.status === "converted").length,
+      pendingRequests: requests.filter((r) => r.status === "pending").length,
+      scheduledRequests: requests.filter((r) => r.status === "scheduled").length,
+      brokerReferralsTotal: referrals2.length
+    };
+    res.json(stats);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch stats" });
+  }
+});
+var snagging_default = router23;
+
 // server/routes.ts
 init_paypal();
 
@@ -14027,7 +14255,7 @@ _Brokers Night Cricket League UAE 2026 \u2014 Presented by Mariamain & DeliWer_`
     const secret = process.env.ADMIN_SECRET || "deliwer-admin-2026";
     if (token !== secret) return res.status(401).json({ error: "Unauthorized" });
     try {
-      const rows = await db.select().from(rentAnalysisLeads).orderBy(desc14(rentAnalysisLeads.createdAt));
+      const rows = await db.select().from(rentAnalysisLeads).orderBy(desc15(rentAnalysisLeads.createdAt));
       res.json(rows);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch leads" });
@@ -17545,9 +17773,9 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
   app2.get("/api/marketing/broker-campaign/:id", async (req, res) => {
     try {
-      const [campaign] = await db.select().from(brokerCampaigns).where(eq20(brokerCampaigns.id, req.params.id)).limit(1);
+      const [campaign] = await db.select().from(brokerCampaigns).where(eq21(brokerCampaigns.id, req.params.id)).limit(1);
       if (!campaign) return res.status(404).json({ error: "Campaign not found" });
-      const entries = await db.select().from(brokerCampaignEntries).where(eq20(brokerCampaignEntries.campaignId, req.params.id));
+      const entries = await db.select().from(brokerCampaignEntries).where(eq21(brokerCampaignEntries.campaignId, req.params.id));
       res.json({ campaign, entries });
     } catch (err) {
       res.status(500).json({ error: "Failed to fetch campaign" });
@@ -17555,10 +17783,10 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
   app2.post("/api/marketing/broker-campaign/:id/start", async (req, res) => {
     try {
-      const [campaign] = await db.select().from(brokerCampaigns).where(eq20(brokerCampaigns.id, req.params.id)).limit(1);
+      const [campaign] = await db.select().from(brokerCampaigns).where(eq21(brokerCampaigns.id, req.params.id)).limit(1);
       if (!campaign) return res.status(404).json({ error: "Campaign not found" });
       if (campaign.status === "running") return res.status(409).json({ error: "Campaign already running" });
-      await db.update(brokerCampaigns).set({ status: "idle" }).where(eq20(brokerCampaigns.id, campaign.id));
+      await db.update(brokerCampaigns).set({ status: "idle" }).where(eq21(brokerCampaigns.id, campaign.id));
       setImmediate(() => runCampaign(campaign.id).catch((err) => console.error("[CAMPAIGN] Start error:", err)));
       res.json({ started: true, campaignId: campaign.id, total: campaign.totalBrokers });
     } catch (err) {
@@ -17567,7 +17795,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
   app2.post("/api/marketing/broker-campaign/:id/pause", async (req, res) => {
     try {
-      await db.update(brokerCampaigns).set({ status: "paused" }).where(eq20(brokerCampaigns.id, req.params.id));
+      await db.update(brokerCampaigns).set({ status: "paused" }).where(eq21(brokerCampaigns.id, req.params.id));
       res.json({ success: true, status: "paused" });
     } catch (err) {
       res.status(500).json({ error: "Failed to pause campaign" });
@@ -17575,7 +17803,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   });
   app2.post("/api/marketing/broker-campaign/:id/resume", async (req, res) => {
     try {
-      await db.update(brokerCampaigns).set({ status: "running" }).where(eq20(brokerCampaigns.id, req.params.id));
+      await db.update(brokerCampaigns).set({ status: "running" }).where(eq21(brokerCampaigns.id, req.params.id));
       setImmediate(() => {
         runCampaign(req.params.id).catch(
           (err) => console.error("[CAMPAIGN] Resume error:", err)
@@ -17596,7 +17824,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
         sentCount: drizzleSql`count(*) filter (where ${brokerMaster.status} = 'sent')`,
         followedUp: drizzleSql`count(*) filter (where ${brokerMaster.status} = 'followed_up')`,
         converted: drizzleSql`count(*) filter (where ${brokerMaster.status} = 'converted')`
-      }).from(brokerMaster).where(and10(eq20(brokerMaster.deleted, false), drizzleSql`${brokerMaster.company} is not null`)).groupBy(brokerMaster.company).orderBy(drizzleSql`count(*) desc`).limit(limit);
+      }).from(brokerMaster).where(and10(eq21(brokerMaster.deleted, false), drizzleSql`${brokerMaster.company} is not null`)).groupBy(brokerMaster.company).orderBy(drizzleSql`count(*) desc`).limit(limit);
       res.json(rows);
     } catch (err) {
       res.status(500).json({ error: "Failed to fetch company breakdown" });
@@ -17607,12 +17835,12 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const XLSX2 = await import("xlsx");
       const search = String(req.query.search || "").trim().toLowerCase();
       const statusFilter = String(req.query.status || "").trim();
-      let whereClause = eq20(brokerMaster.deleted, false);
+      let whereClause = eq21(brokerMaster.deleted, false);
       if (search) {
         whereClause = and10(whereClause, drizzleSql`(lower(${brokerMaster.name}) like ${"%" + search + "%"} or lower(${brokerMaster.email}) like ${"%" + search + "%"} or lower(coalesce(${brokerMaster.company}, '')) like ${"%" + search + "%"})`);
       }
       if (statusFilter && statusFilter !== "all") {
-        whereClause = and10(whereClause, eq20(brokerMaster.status, statusFilter));
+        whereClause = and10(whereClause, eq21(brokerMaster.status, statusFilter));
       }
       const rows_data = await db.select({
         Name: brokerMaster.name,
@@ -17626,7 +17854,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
         RefCode: brokerMaster.refCode,
         PartnerLink: brokerMaster.partnerLink,
         CreatedAt: brokerMaster.createdAt
-      }).from(brokerMaster).where(whereClause).orderBy(desc14(brokerMaster.createdAt)).limit(1e4);
+      }).from(brokerMaster).where(whereClause).orderBy(desc15(brokerMaster.createdAt)).limit(1e4);
       const rows = rows_data.map((r) => ({
         ...r,
         Phone: r.Phone || "",
@@ -17657,9 +17885,9 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   app2.get("/api/marketing/broker-campaign/:id/export", async (req, res) => {
     try {
       const XLSX2 = await import("xlsx");
-      const [campaign] = await db.select().from(brokerCampaigns).where(eq20(brokerCampaigns.id, req.params.id)).limit(1);
+      const [campaign] = await db.select().from(brokerCampaigns).where(eq21(brokerCampaigns.id, req.params.id)).limit(1);
       if (!campaign) return res.status(404).json({ error: "Campaign not found" });
-      const entries = await db.select().from(brokerCampaignEntries).where(eq20(brokerCampaignEntries.campaignId, req.params.id));
+      const entries = await db.select().from(brokerCampaignEntries).where(eq21(brokerCampaignEntries.campaignId, req.params.id));
       const rows = entries.map((e) => ({
         Name: e.name,
         Email: e.email,
@@ -17698,7 +17926,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
         res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         return res.send(buf2);
       }
-      const entries = await db.select().from(brokerCampaignEntries).where(eq20(brokerCampaignEntries.campaignId, latest.id));
+      const entries = await db.select().from(brokerCampaignEntries).where(eq21(brokerCampaignEntries.campaignId, latest.id));
       const rows = entries.map((e) => ({
         Name: e.name,
         Email: e.email,
@@ -17730,15 +17958,15 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const offset = (page - 1) * limit;
       const search = String(req.query.search || "").trim().toLowerCase();
       const statusFilter = String(req.query.status || "").trim();
-      const baseWhere = eq20(brokerMaster.deleted, false);
+      const baseWhere = eq21(brokerMaster.deleted, false);
       let whereClause = baseWhere;
       if (search) {
         whereClause = and10(whereClause, drizzleSql`(lower(${brokerMaster.name}) like ${"%" + search + "%"} or lower(${brokerMaster.email}) like ${"%" + search + "%"} or lower(coalesce(${brokerMaster.company}, '')) like ${"%" + search + "%"})`);
       }
       if (statusFilter && statusFilter !== "all") {
-        whereClause = and10(whereClause, eq20(brokerMaster.status, statusFilter));
+        whereClause = and10(whereClause, eq21(brokerMaster.status, statusFilter));
       }
-      const brokers = await db.select().from(brokerMaster).where(whereClause).orderBy(desc14(brokerMaster.createdAt)).limit(limit).offset(offset);
+      const brokers = await db.select().from(brokerMaster).where(whereClause).orderBy(desc15(brokerMaster.createdAt)).limit(limit).offset(offset);
       const [totalRow] = await db.select({ count: drizzleSql`count(*)` }).from(brokerMaster).where(whereClause);
       const statusCounts = await db.select({
         status: brokerMaster.status,
@@ -17759,7 +17987,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     try {
       const { id } = req.params;
       const { notes } = req.body;
-      await db.update(brokerMaster).set({ notes: notes ?? null, updatedAt: /* @__PURE__ */ new Date() }).where(eq20(brokerMaster.id, id));
+      await db.update(brokerMaster).set({ notes: notes ?? null, updatedAt: /* @__PURE__ */ new Date() }).where(eq21(brokerMaster.id, id));
       res.json({ success: true, id, notes: notes ?? null });
     } catch (err) {
       res.status(500).json({ error: "Failed to update notes" });
@@ -17768,7 +17996,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   app2.delete("/api/marketing/broker-master/:id", async (req, res) => {
     try {
       const { id } = req.params;
-      await db.update(brokerMaster).set({ deleted: true, updatedAt: /* @__PURE__ */ new Date() }).where(eq20(brokerMaster.id, id));
+      await db.update(brokerMaster).set({ deleted: true, updatedAt: /* @__PURE__ */ new Date() }).where(eq21(brokerMaster.id, id));
       res.json({ success: true, id });
     } catch (err) {
       res.status(500).json({ error: "Failed to remove broker" });
@@ -17777,7 +18005,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   app2.post("/api/marketing/broker-master/:id/restore", async (req, res) => {
     try {
       const { id } = req.params;
-      await db.update(brokerMaster).set({ deleted: false, updatedAt: /* @__PURE__ */ new Date() }).where(eq20(brokerMaster.id, id));
+      await db.update(brokerMaster).set({ deleted: false, updatedAt: /* @__PURE__ */ new Date() }).where(eq21(brokerMaster.id, id));
       res.json({ success: true, id });
     } catch (err) {
       res.status(500).json({ error: "Failed to restore broker" });
@@ -17870,7 +18098,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   app2.get("/api/marketing/automation/logs", async (req, res) => {
     try {
       const limit = parseInt(String(req.query.limit || "20"));
-      const logs = await db.select().from(brokerAutomationLog).orderBy(desc14(brokerAutomationLog.startedAt)).limit(limit);
+      const logs = await db.select().from(brokerAutomationLog).orderBy(desc15(brokerAutomationLog.startedAt)).limit(limit);
       res.json(logs);
     } catch (err) {
       res.status(500).json({ error: "Failed to fetch logs" });
@@ -17881,7 +18109,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const entries = await db.select().from(brokerCampaignEntries);
       let added = 0;
       for (const entry of entries) {
-        const existing = await db.select({ id: brokerMaster.id }).from(brokerMaster).where(eq20(brokerMaster.email, entry.email)).limit(1);
+        const existing = await db.select({ id: brokerMaster.id }).from(brokerMaster).where(eq21(brokerMaster.email, entry.email)).limit(1);
         if (existing.length === 0) {
           await db.insert(brokerMaster).values({
             email: entry.email,
@@ -17908,10 +18136,10 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const { emailSubscribers: emailSubscribers2 } = await Promise.resolve().then(() => (init_schema(), schema_exports));
       const { email, firstName, source } = req.body;
       if (!email || !email.includes("@")) return res.status(400).json({ error: "Valid email required" });
-      const existing = await db.select().from(emailSubscribers2).where(eq20(emailSubscribers2.email, email.toLowerCase())).limit(1);
+      const existing = await db.select().from(emailSubscribers2).where(eq21(emailSubscribers2.email, email.toLowerCase())).limit(1);
       if (existing.length > 0) {
         if (!existing[0].isActive) {
-          await db.update(emailSubscribers2).set({ isActive: true, unsubscribedAt: null }).where(eq20(emailSubscribers2.email, email.toLowerCase()));
+          await db.update(emailSubscribers2).set({ isActive: true, unsubscribedAt: null }).where(eq21(emailSubscribers2.email, email.toLowerCase()));
           return res.json({ success: true, reactivated: true, message: "Welcome back! You've been resubscribed." });
         }
         return res.json({ success: true, alreadySubscribed: true, message: "You're already subscribed!" });
@@ -17934,7 +18162,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     try {
       const { emailSubscribers: emailSubscribers2 } = await Promise.resolve().then(() => (init_schema(), schema_exports));
       const { email } = req.body;
-      await db.update(emailSubscribers2).set({ isActive: false, unsubscribedAt: /* @__PURE__ */ new Date() }).where(eq20(emailSubscribers2.email, email.toLowerCase()));
+      await db.update(emailSubscribers2).set({ isActive: false, unsubscribedAt: /* @__PURE__ */ new Date() }).where(eq21(emailSubscribers2.email, email.toLowerCase()));
       res.json({ success: true });
     } catch (err) {
       res.status(500).json({ error: err.message || "Unsubscribe failed" });
@@ -18055,8 +18283,8 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
   app2.get("/api/emergency-exit/plan/:code", async (req, res) => {
     try {
       const { emergencyEvacuationProfiles: emergencyEvacuationProfiles2 } = await Promise.resolve().then(() => (init_schema(), schema_exports));
-      const { eq: eq21 } = await import("drizzle-orm");
-      const [profile] = await db.select().from(emergencyEvacuationProfiles2).where(eq21(emergencyEvacuationProfiles2.planCode, req.params.code.toUpperCase())).limit(1);
+      const { eq: eq22 } = await import("drizzle-orm");
+      const [profile] = await db.select().from(emergencyEvacuationProfiles2).where(eq22(emergencyEvacuationProfiles2.planCode, req.params.code.toUpperCase())).limit(1);
       if (!profile) return res.status(404).json({ error: "Plan not found" });
       res.json(profile);
     } catch (err) {
@@ -18295,7 +18523,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
         socialDiscoveryStatus: brokerMaster.socialDiscoveryStatus,
         socialDiscoveredAt: brokerMaster.socialDiscoveredAt,
         socialNotes: brokerMaster.socialNotes
-      }).from(brokerMaster).where(eq20(brokerMaster.id, id));
+      }).from(brokerMaster).where(eq21(brokerMaster.id, id));
       if (!broker) return res.status(404).json({ error: "Broker not found" });
       res.json(broker);
     } catch (err) {
@@ -18306,7 +18534,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
     try {
       const { id } = req.params;
       const { platform } = req.body;
-      const [broker] = await db.select().from(brokerMaster).where(eq20(brokerMaster.id, id));
+      const [broker] = await db.select().from(brokerMaster).where(eq21(brokerMaster.id, id));
       if (!broker) return res.status(404).json({ error: "Broker not found" });
       const { generateBrokerDirectMessage: generateBrokerDirectMessage2 } = await Promise.resolve().then(() => (init_community_outreach_service(), community_outreach_service_exports));
       const message = await generateBrokerDirectMessage2({
@@ -18348,7 +18576,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       const limit = Number(req.query.limit) || 50;
       const offset = (page - 1) * limit;
       const status = req.query.status;
-      const whereClause = status ? and10(eq20(brokerMaster.deleted, false), eq20(brokerMaster.socialDiscoveryStatus, status)) : eq20(brokerMaster.deleted, false);
+      const whereClause = status ? and10(eq21(brokerMaster.deleted, false), eq21(brokerMaster.socialDiscoveryStatus, status)) : eq21(brokerMaster.deleted, false);
       const brokers = await db.select({
         id: brokerMaster.id,
         name: brokerMaster.name,
@@ -18364,7 +18592,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
         socialDiscoveryStatus: brokerMaster.socialDiscoveryStatus,
         socialDiscoveredAt: brokerMaster.socialDiscoveredAt,
         socialNotes: brokerMaster.socialNotes
-      }).from(brokerMaster).where(whereClause).orderBy(desc14(brokerMaster.createdAt)).limit(limit).offset(offset);
+      }).from(brokerMaster).where(whereClause).orderBy(desc15(brokerMaster.createdAt)).limit(limit).offset(offset);
       const [totalRow] = await db.select({ count: drizzleSql`count(*)` }).from(brokerMaster).where(whereClause);
       res.json({ brokers, total: Number(totalRow?.count || 0), page, limit });
     } catch (err) {
@@ -18455,7 +18683,7 @@ Be friendly, professional, and data-driven. Use emojis sparingly. Keep responses
       return res.status(401).json({ error: "Unauthorized" });
     }
     try {
-      const rows = await db.select().from(seoDigestHistory).orderBy(desc14(seoDigestHistory.runAt)).limit(50);
+      const rows = await db.select().from(seoDigestHistory).orderBy(desc15(seoDigestHistory.runAt)).limit(50);
       res.json({ history: rows });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -18611,6 +18839,59 @@ Or just describe what you need in a message. A team member will respond shortly 
     const failed = calls.filter((c) => c.replyMode === "failed").length;
     res.json({ calls, stats: { total, sent, simulated, failed } });
   });
+  app2.get("/api/admin/system-status", async (req, res) => {
+    const secret = req.headers["x-admin-token"];
+    if (secret !== (process.env.ADMIN_SECRET || "deliwer-admin-2026")) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    let deployedAt = null;
+    try {
+      const fs4 = await import("fs");
+      const stat = fs4.statSync(new URL("../../dist/index.js", import.meta.url));
+      deployedAt = stat.mtime.toISOString();
+    } catch {
+      deployedAt = null;
+    }
+    const tableStats = {};
+    try {
+      const tables = [
+        "users",
+        "brokers",
+        "leads",
+        "referrals",
+        "partners",
+        "memberships",
+        "vouchers",
+        "wellness_passports",
+        "missed_calls"
+      ];
+      for (const t of tables) {
+        try {
+          const r = await pool.query(`SELECT COUNT(*)::int AS n FROM "${t}"`);
+          tableStats[t] = r.rows[0]?.n ?? 0;
+        } catch {
+        }
+      }
+    } catch {
+    }
+    const services = {
+      openai: !!process.env.OPENAI_API_KEY,
+      anthropic: !!process.env.ANTHROPIC_API_KEY,
+      stripe: !!process.env.STRIPE_SECRET_KEY,
+      paypal: !!(process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_CLIENT_SECRET),
+      sendgrid: !!process.env.SENDGRID_API_KEY,
+      whatsapp: !!(process.env.WHATSAPP_TOKEN && process.env.WHATSAPP_PHONE_NUMBER_ID)
+    };
+    res.json({
+      deployedAt,
+      uptimeSeconds: Math.floor(process.uptime()),
+      nodeVersion: process.version,
+      environment: process.env.NODE_ENV || "development",
+      services,
+      tableStats
+    });
+  });
+  app2.use("/api/snagging", snagging_default);
   const httpServer = createServer(app2);
   return httpServer;
 }
